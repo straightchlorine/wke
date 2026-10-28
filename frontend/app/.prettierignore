@@ -1,0 +1,10 @@
+dist
+build
+node_modules
+pnpm-lock.yaml
+pnpm-workspace.yaml
+src/routeTree.gen.ts
+src/api/generated
+playwright-report
+test-results
+coverage
