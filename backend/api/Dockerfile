@@ -1,8 +1,9 @@
-# syntax=docker/dockerfile:1
+# Multi-arch index digest
+ARG PYTHON_BASE=python:3.13.18-slim-trixie@sha256:76baad6037690d6e8c4397fbcaef17bca6f19eecef822b708fe8fa3417d30bb5
 
-FROM python:3.13-slim AS builder
+FROM ${PYTHON_BASE} AS builder
 
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.13.6@sha256:af22a52f5eafef3d78e551599d405c02df61919d18028f0cea8eda93bc9986d0 /uv /usr/local/bin/uv
 
 WORKDIR /app
 
@@ -11,17 +12,22 @@ ENV UV_COMPILE_BYTECODE=1 \
     UV_PYTHON_DOWNLOADS=never
 
 COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev --no-install-project
+RUN uv sync --locked --no-dev --no-install-project
 
 COPY src ./src
-COPY README.md ./
-RUN uv sync --frozen --no-dev
+RUN uv sync --locked --no-dev
 
 
-FROM python:3.13-slim AS runtime
+FROM ${PYTHON_BASE} AS runtime
 
-# Drop the base image pip; the venv is uv-managed and nothing calls pip at runtime.
-RUN rm -rf /usr/local/lib/python3.13/site-packages/pip* /usr/local/bin/pip*
+LABEL org.opencontainers.image.source="https://github.com/straightchlorine/wke"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.title="wke-api"
+LABEL org.opencontainers.image.description="Wikipedia Knowledge Explorer - REST, MCP, job worker, watcher and trending entrypoints"
+
+# dropping the base image pip:
+# the venv is uv-managed, nothing calls pip at runtime
+RUN rm -rf /usr/local/lib/python3.*/site-packages/pip* /usr/local/bin/pip*
 
 RUN groupadd --gid 10001 wke && \
     useradd --uid 10001 --gid wke --no-create-home --shell /usr/sbin/nologin wke

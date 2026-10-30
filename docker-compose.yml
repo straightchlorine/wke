@@ -1,41 +1,63 @@
 services:
-  frontend:
-    build:
-      context: ./frontend
-      args:
-        VITE_API_BASE_URL: http://localhost:8000
-    image: ghcr.io/straightchlorine/wke-frontend:latest
+  api:
+    build: ./backend/api
+    image: ghcr.io/straightchlorine/wke-api:latest
+    env_file: ./backend/api/.env
+    environment:
+      ML_URL: http://ml:8000
+      REDIS_URL: redis://redis:6379/0
+      WKE_PORT: "8000"
+      PUBLIC_HOST: localhost:8080
+      PUBLIC_SCHEME: http
     ports:
-      - "8080:80"
+      - "8000:8000"
     depends_on:
-      backend:
+      redis:
+        condition: service_healthy
+    networks:
+      - app-network
+    restart: unless-stopped
+    mem_limit: 512m
+
+  ml:
+    build: ./backend/ml
+    image: ghcr.io/straightchlorine/wke-ml:latest
+    ports:
+      - "8001:8000"
+    networks:
+      - app-network
+    restart: unless-stopped
+    mem_limit: 3g
+    profiles: ["ml"]
+
+  redis:
+    # also the multi-arch digest
+    image: redis:7.4.11-alpine@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499
+    command: ["redis-server", "--maxmemory", "256mb", "--maxmemory-policy", "volatile-lru", "--save", "", "--appendonly", "no"]
+    networks:
+      - app-network
+    restart: unless-stopped
+    mem_limit: 320m
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  web:
+    build:
+      context: ./frontend/app
+    image: ghcr.io/straightchlorine/wke-web:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      api:
         condition: service_healthy
     networks:
       - app-network
     restart: unless-stopped
     mem_limit: 128m
-    healthcheck:
-      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://127.0.0.1/ || exit 1"]
-      interval: 30s
-      timeout: 3s
-      retries: 3
-      start_period: 5s
-
-  backend:
-    build: ./backend
-    image: ghcr.io/straightchlorine/wke-backend:latest
-    ports:
-      - "8000:8000"
-    networks:
-      - app-network
-    restart: unless-stopped
-    mem_limit: 4g
-    healthcheck:
-      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/docs').read()\" || exit 1"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
 
 networks:
   app-network:

@@ -1,17 +1,13 @@
-FROM node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293
-
-ARG VITE_API_BASE_URL
-ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
+FROM node:24-alpine
 
 WORKDIR /app
 
-ENV PNPM_VERSION=10.18.0
-RUN corepack enable && corepack prepare "pnpm@${PNPM_VERSION}" --activate
+RUN corepack enable && corepack prepare "pnpm@12.6.0" --activate
 
-COPY ./app/package.json ./app/pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
-COPY ./app .
+COPY . .
 
 EXPOSE 5173
 
