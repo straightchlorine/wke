@@ -15,6 +15,7 @@ dependencies = [
     "selectolax>=1.0.2,<2",
     "mcp>=2.3,<3",
     "pyyaml>=6.0.3,<7",
+    "structlog>=26.1,<27",
 ]
 
 [dependency-groups]

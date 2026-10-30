@@ -7,11 +7,16 @@ set dotenv-load
 set dotenv-path := "backend/api/.env"
 
 export WKE_PORT := env("WKE_PORT", "8000")
+
 ML_PORT := env("ML_PORT", "8001")
 WEB_PORT := env("WEB_PORT", "8080")
 SHARE_PORT := env("SHARE_PORT", "8081")
 REDIS_PORT := env("REDIS_PORT", "6379")
+
 export WATCHER_METRICS_PORT := env("WATCHER_METRICS_PORT", "8002")
+export LOG_FORMAT := env("LOG_FORMAT", "console")
+export WKE_ML_LOG_FORMAT := LOG_FORMAT
+
 API_ORIGIN := "http://localhost:" + WKE_PORT
 
 export ML_URL := "http://localhost:" + ML_PORT

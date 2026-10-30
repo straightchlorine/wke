@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Annotated, Literal
 
-from pydantic import AnyHttpUrl, EmailStr, Field, RedisDsn, TypeAdapter, field_validator
+from pydantic import AnyHttpUrl, Field, RedisDsn, TypeAdapter, field_validator, validate_email
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 
@@ -86,6 +86,13 @@ class Settings(BaseSettings):
         default="INFO",
         description="Python logging level name.",
     )
+    log_format: Literal["json", "console"] = Field(
+        default="json",
+        description=(
+            "Log line format: 'json', one object per line for a log collector; "
+            "'console', colored lines for a terminal."
+        ),
+    )
     pod_cidr: str = Field(
         description="Traefik pod CIDR for uvicorn --forwarded-allow-ips.",
     )
@@ -133,7 +140,7 @@ class Settings(BaseSettings):
         if value.startswith("https://"):
             TypeAdapter(AnyHttpUrl).validate_python(value)
             return value
-        TypeAdapter(EmailStr).validate_python(value)
+        validate_email(value)
         return value
 
     @field_validator("log_level", mode="after")
@@ -146,4 +153,5 @@ class Settings(BaseSettings):
         return normalized
 
 
-settings = Settings()
+# model_validate({}) reads the environment as Settings() does and type-checks
+settings = Settings.model_validate({})
