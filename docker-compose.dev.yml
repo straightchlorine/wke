@@ -5,6 +5,12 @@ services:
       service: api
     image: !reset null
 
+  watcher:
+    extends:
+      file: docker-compose.yml
+      service: watcher
+    image: !reset null
+
   ml:
     extends:
       file: docker-compose.yml

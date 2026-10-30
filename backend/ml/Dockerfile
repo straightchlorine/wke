@@ -81,7 +81,6 @@ WORKDIR /app
 COPY --from=builder --chown=wkeml:wkeml /app/.venv /app/.venv
 COPY --from=builder --chown=wkeml:wkeml /models /models
 COPY --chown=wkeml:wkeml src/ ./src/
-COPY --chown=wkeml:wkeml bench/ ./bench/
 
 # set up the environment
 ENV PATH="/app/.venv/bin:${PATH}" \
