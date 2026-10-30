@@ -24,6 +24,7 @@ FIXTURE_REV_ID: int = _PAGE["lastrevid"]
 FIXTURE_REV_TIMESTAMP: str = _PAGE["revisions"][0]["timestamp"]
 
 PIPELINE_VERSION = "test-pv"
+JOB_ID = "0123456789abcdef"
 MISSING_TITLE = "Ghost Page Does Not Exist"
 DISAMBIGUATION_TITLE = "Mercury (disambiguation)"
 NEW_TITLE = "Grace Hopper"

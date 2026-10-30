@@ -1,0 +1,48 @@
+{
+ "fixtures": {
+  "morelike.json": {
+   "bytes": 18173,
+   "status": 200,
+   "url": "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=morelike%3AJesus&gsrlimit=8&gsrnamespace=0&prop=extracts%7Cinfo%7Crevisions&exintro=1&explaintext=1&exlimit=8&rvprop=timestamp&maxlag=5&format=json&formatversion=2"
+  },
+  "mostread.json": {
+   "bytes": 146198,
+   "date": "2026-09-27",
+   "mostread_date": "2026-09-26Z",
+   "status": 200,
+   "url": "https://en.wikipedia.org/api/rest_v1/feed/featured/2026/09/27"
+  },
+  "pageviews_top.json": {
+   "bytes": 86978,
+   "date": "2026-09-26",
+   "status": 200,
+   "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/2026/09/26"
+  },
+  "parsoid.html": {
+   "bytes": 2725831,
+   "content_revision_id": "1382808793",
+   "original_bytes": 2370154,
+   "requested_rev_id": 1382808793,
+   "sections_kept": null,
+   "status": 200,
+   "url": "https://en.wikipedia.org/w/rest.php/v1/revision/1382808793/html"
+  },
+  "resolve.json": {
+   "bytes": 1506,
+   "status": 200,
+   "url": "https://en.wikipedia.org/w/api.php?action=query&titles=Jesus&format=json&formatversion=2&redirects=1&prop=info%7Cpageprops%7Cdescription%7Clinks%7Crevisions&pllimit=10&plnamespace=0&rvprop=timestamp&maxlag=5"
+  },
+  "revision.json": {
+   "bytes": 209,
+   "status": 200,
+   "url": "https://en.wikipedia.org/w/api.php?action=query&revids=1382808793&prop=revisions&rvprop=timestamp&format=json&formatversion=2&maxlag=5"
+  },
+  "search.json": {
+   "bytes": 885,
+   "status": 200,
+   "url": "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=Jesus&gsrlimit=8&gsrnamespace=0&gsrinfo=suggestion&prop=pageprops&ppprop=disambiguation&format=json&formatversion=2&maxlag=5"
+  }
+ },
+ "recorded_at": "2026-10-30T14:59:48.623021Z",
+ "user_agent": "wke/0.1.0 (https://github.com/straightchlorine/wke) httpx/0.28.1"
+}

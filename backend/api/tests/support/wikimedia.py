@@ -36,19 +36,6 @@ class WmFixtures:
         with (self._dir / name).open(encoding="utf-8") as handle:
             return json.load(handle)
 
-    def search_json(self) -> Any:
-        """Recorded search.json reshaped as a `generator=search` response."""
-        recorded = self.json("search.json")["query"]
-        entries = recorded["search"]
-        pages = [
-            {"pageid": e["pageid"], "ns": e["ns"], "title": e["title"], "index": i + 1}
-            for i, e in enumerate(entries)
-        ]
-        query: dict[str, Any] = {"pages": pages}
-        if "searchinfo" in recorded:
-            query["searchinfo"] = recorded["searchinfo"]
-        return {"batchcomplete": True, "query": query}
-
     def synthetic(self, name: str) -> Any:
         """Load a hand-written fixture from tests/fixtures/synthetic/."""
         with (self._dir.parent / "synthetic" / name).open(encoding="utf-8") as handle:
@@ -98,7 +85,7 @@ def wikimedia_handler(wm_fixtures: WmFixtures) -> Handler:
 
             # The disambiguation candidate path (DossierService.search),
             # same generator=search call as GET /api/v1/search.
-            return httpx.Response(200, json=wm_fixtures.search_json())
+            return httpx.Response(200, json=wm_fixtures.json("search.json"))
 
         if params.get("action") == "query" and "revids" in params:
             return httpx.Response(200, json=wm_fixtures.json("revision.json"))

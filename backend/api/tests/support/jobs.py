@@ -8,8 +8,6 @@ from typing import Any
 from tests.support.constants import FIXTURE_PAGE_ID, FIXTURE_REV_ID, FIXTURE_TITLE
 from wke.core.models import Job, JobProgress
 
-JOB_ID = "0123456789abcdef"
-
 
 def make_job(**overrides) -> Job:
     """Build a queued Job for the recorded article; keyword overrides replace any field.
