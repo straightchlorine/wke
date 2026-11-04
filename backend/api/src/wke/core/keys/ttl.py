@@ -23,7 +23,7 @@ RC_COUNTER_TTL_SECONDS = 2 * HOUR
 # Worst-case hold time of a single _call:
 #
 # three 15s HTTP timeouts
-#   + two 8s full-jitter retry sleeps (5xx path),
+#   + two 8s full-jitter retry sleeps (5xx or network-error path),
 #   or two 15s timeouts
 #       + one clamped 30s Retry-After sleep (rate-limit path), with margin.
 #
