@@ -44,7 +44,17 @@ FIXED_TIME = datetime(2026, 9, 20, 12, 0, 0, tzinfo=UTC)
 _HTTP_URL = TypeAdapter(HttpUrl)
 
 
-def _pin(page_id: int, title: str, rev_id: int) -> RevisionPin:
+def make_pin(page_id: int, title: str, rev_id: int) -> RevisionPin:
+    """Build an English Wikipedia revision pin, edited and retrieved at FIXED_TIME.
+
+    Args:
+        page_id: the page id.
+        title: the page title.
+        rev_id: the revision id.
+
+    Returns:
+        RevisionPin: with its /wiki/ URL and oldid permalink.
+    """
     return RevisionPin(
         page_id=page_id,
         title=title,
@@ -92,8 +102,8 @@ def make_fixture_dossier() -> Dossier:
         "---", a fenced code block) to exercise the renderer's injection
         defence.
     """
-    seed_pin = _pin(FACTORY_PAGE_ID, FACTORY_TITLE, FACTORY_REV_ID)
-    related_pin = _pin(FACTORY_RELATED_PAGE_ID, FACTORY_RELATED_TITLE, FACTORY_RELATED_REV_ID)
+    seed_pin = make_pin(FACTORY_PAGE_ID, FACTORY_TITLE, FACTORY_REV_ID)
+    related_pin = make_pin(FACTORY_RELATED_PAGE_ID, FACTORY_RELATED_TITLE, FACTORY_RELATED_REV_ID)
     citations = [
         Citation(id="c1", pin=seed_pin, role="seed", anchor=None, url=_url(seed_pin, None)),
         Citation(
@@ -358,7 +368,7 @@ def make_overflowing_fixture_dossier() -> Dossier:
     Returns:
         A Dossier with 10 sections of 6 low-relevance chunks each.
     """
-    seed_pin = _pin(42, "Overflow Topic", 7_000_000)
+    seed_pin = make_pin(42, "Overflow Topic", 7_000_000)
     citations = [Citation(id="c1", pin=seed_pin, role="seed", anchor=None, url=None)]
 
     lead_text = "Overflow Topic is a fixture article built to exceed the pack budget."
@@ -633,7 +643,7 @@ def dossiers(draw: st.DrawFn) -> Dossier:
     page_id = draw(st.integers(min_value=1, max_value=10_000_000))
     rev_id = draw(st.integers(min_value=1, max_value=10_000_000))
 
-    seed_pin_ = _pin(page_id, "Fixture Topic", rev_id)
+    seed_pin_ = make_pin(page_id, "Fixture Topic", rev_id)
     citations = [Citation(id="c1", pin=seed_pin_, role="seed", anchor=None, url=None)]
 
     lead_text = draw(chunk_text())
