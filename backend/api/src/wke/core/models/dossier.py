@@ -174,6 +174,8 @@ class Budget(WkeModel):
     """How a view fits its token budget."""
 
     requested: BudgetTokens
+    # What requested and used_est_tokens cover: the dossier part only.
+    counts: Literal["dossier"] = "dossier"
     used_est_tokens: int
     estimator: Literal["chars/4"] = "chars/4"
     included_chunk_ids: list[str]
@@ -237,3 +239,35 @@ class DossierView(Dossier):
     freshness: Freshness
     budget: Budget
     links: DossierLinks
+
+
+class DossierContent(WkeModel):
+    """The dossier part of a response: the packed sections, passages and graph."""
+
+    sections: list[Section]
+    chunks: list[Chunk]
+    graph: DossierGraph
+
+
+class DossierMetadata(WkeModel):
+    """The metadata part of a response: identity, build, freshness, budget and links."""
+
+    id: str = Field(pattern=r"^[0-9]+@[0-9]+:[0-9a-f]{12}$")
+    topic: DossierTopic
+    build: BuildInfo
+    freshness: Freshness
+    budget: Budget
+    links: DossierLinks
+
+
+class DossierResponse(WkeModel):
+    """The JSON body of a dossier read: the selected parts of a packed view.
+
+    A part that was not selected is left out of the serialised body, never null.
+    """
+
+    schema_version: Literal["2"] = "2"
+    license_notice: str
+    dossier: DossierContent
+    metadata: DossierMetadata | None = None
+    sources: list[Citation] | None = None

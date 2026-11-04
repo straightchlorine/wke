@@ -60,3 +60,36 @@ def sized(first: str, tokens: int) -> str:
     """Pad a sentence with filler words until it is about the given tokens."""
     filler = " ".join(f"item{n}" for n in range(tokens * 4 // 7 + 1))
     return f"{first} {filler}."[: tokens * 4]
+
+
+def table_chunk_text(rows: int, total: bool = False) -> str:
+    """Build the text of a table chunk: caption, header, separator and numbered rows.
+
+    Args:
+        rows: how many data rows.
+        total: True to end the table with a "Total" row.
+
+    Returns:
+        str: the chunk text, without a count note.
+    """
+    lines = ["Medal table", "| Rank | Nation | Gold |", "| --- | --- | --- |"]
+    lines += [f"| {n} | Nation number {n} | {n * 3} |" for n in range(1, rows + 1)]
+    if total:
+        lines.append("| Total |  | 999 |")
+    return "\n".join(lines)
+
+
+def list_chunk_text(items: int) -> str:
+    """Build the text of a list chunk: numbered items, each with one nested line.
+
+    Args:
+        items: how many top-level items.
+
+    Returns:
+        str: the chunk text, without a count note.
+    """
+    out = []
+    for n in range(1, items + 1):
+        out.append(f"- Item number {n}")
+        out.append(f"  - Detail of item {n}")
+    return "\n".join(out)

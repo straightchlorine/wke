@@ -20,6 +20,7 @@ from wke.core.models import (
     Citation,
     Dossier,
     DossierGraph,
+    DossierLinks,
     DossierTopic,
     Freshness,
     GraphEdge,
@@ -29,6 +30,7 @@ from wke.core.models import (
     RevisionPin,
     Section,
 )
+from wke.core.text.tokens import est_tokens
 
 FACTORY_TITLE = "Jesus"
 FACTORY_PAGE_ID = 1095706
@@ -440,6 +442,129 @@ def make_overflowing_fixture_dossier() -> Dossier:
         graph=DossierGraph(nodes=[], edges=[]),
         license_notice="Text from Wikipedia, licensed CC BY-SA 4.0.",
     )
+
+
+def make_links(dossier: Dossier | None = None) -> DossierLinks:
+    """Build the response links of the fixture dossier.
+
+    Args:
+        dossier: The dossier the links point at; the factory dossier when None.
+
+    Returns:
+        DossierLinks: self, pinned, markdown and Wikipedia links on a test host.
+    """
+    page_id = dossier.topic.page_id if dossier else FACTORY_PAGE_ID
+    title = dossier.topic.title.replace(" ", "_") if dossier else FACTORY_TITLE
+    rev_id = FACTORY_REV_ID
+    base = f"https://wke.example/api/v1/dossiers/{page_id}"
+    return DossierLinks(
+        self=_HTTP_URL.validate_python(base),
+        pinned=_HTTP_URL.validate_python(f"{base}/rev/{rev_id}"),
+        markdown=_HTTP_URL.validate_python(f"{base}.md"),
+        wikipedia=_HTTP_URL.validate_python(f"https://en.wikipedia.org/wiki/{title}"),
+    )
+
+
+def make_nested_dossier() -> Dossier:
+    """Build a dossier of nested, empty and multi-chunk sections.
+
+    Returns:
+        Dossier: lead, empty parent with a child, a leaf without prose, a two-chunk section.
+    """
+    base = make_fixture_dossier()
+    template = base.chunks[0]
+
+    def chunk(n: int, path: list[str]) -> Chunk:
+        return template.model_copy(
+            update={
+                "id": f"1:{n}:0",
+                "heading_path": path,
+                "order": n,
+                "text": f"Passage number {n}.",
+                "est_tokens": 6,
+            }
+        )
+
+    chunks = [chunk(0, []), chunk(2, ["Parent", "Child"]), chunk(4, ["Busy"]), chunk(5, ["Busy"])]
+    chunks[3] = chunks[3].model_copy(update={"id": "1:4:1"})
+
+    def section(sid: str, label: str, path: list[str], ids: list[str], state: str) -> Section:
+        return Section(
+            id=sid,
+            label=label,
+            label_source="article_title" if sid == "0" else "heading",
+            chunk_ids=ids,
+            heading_path=path,
+            summary_state=state,  # type: ignore[arg-type]
+        )
+
+    sections = [
+        section("0", "Topic", [], ["1:0:0"], "skipped"),
+        section("1", "Parent", ["Parent"], [], "no_prose"),
+        section("2", "Child", ["Parent", "Child"], ["1:2:0"], "skipped"),
+        section("3", "Leaf", ["Leaf"], [], "no_prose"),
+        section("4", "Busy", ["Busy"], ["1:4:0", "1:4:1"], "skipped"),
+    ]
+    return base.model_copy(update={"sections": sections, "chunks": chunks})
+
+
+def make_budget_dossier() -> Dossier:
+    """Build a dossier whose last two sections hold passages too big for 2000 tokens.
+
+    Returns:
+        Dossier: lead, a heading-only parent whose child fits, and two sections
+        whose passages do not.
+    """
+    dossier = make_nested_dossier()
+    template = dossier.chunks[0]
+    big = template.model_copy(
+        update={"id": "1:9:0", "heading_path": ["Huge"], "order": 9, "text": "x" * 8000}
+    )
+    big = big.model_copy(update={"est_tokens": est_tokens(big.text)})
+    huge2 = big.model_copy(update={"id": "1:10:0", "heading_path": ["Huger"], "order": 10})
+    summary = make_summary("A short summary.")
+
+    def section(sid: str, label: str, path: list[str], ids: list[str], state: str) -> Section:
+        return Section(
+            id=sid,
+            label=label,
+            label_source="heading",
+            chunk_ids=ids,
+            heading_path=path,
+            summary_state=state,  # type: ignore[arg-type]
+            summary=summary if state == "done" else None,
+        )
+
+    sections = [
+        *dossier.sections[:3],
+        section("5", "Huge", ["Huge"], ["1:9:0"], "done"),
+        section("6", "Huger", ["Huger"], ["1:10:0"], "skipped"),
+        *dossier.sections[3:],
+    ]
+    return dossier.model_copy(
+        update={"sections": sections, "chunks": [*dossier.chunks, big, huge2]}
+    )
+
+
+def make_lead_only_dossier(tokens: int = 0, text: str | None = None) -> Dossier:
+    """Build a dossier whose only content is one lead passage.
+
+    Args:
+        tokens: Size of a generated lead in estimated tokens; ignored when text is given.
+        text: The lead text itself.
+
+    Returns:
+        Dossier: one section holding one link-free lead chunk, with no summary.
+    """
+    dossier = make_fixture_dossier()
+    body = text if text is not None else "w" * (tokens * 4 - 1) + "."
+    lead = dossier.chunks[0].model_copy(
+        update={"text": body, "est_tokens": est_tokens(body), "links": []}
+    )
+    section = dossier.sections[0].model_copy(
+        update={"chunk_ids": [lead.id], "summary": None, "summary_state": "skipped"}
+    )
+    return dossier.model_copy(update={"sections": [section], "chunks": [lead]})
 
 
 def make_freshness(dossier: Dossier) -> Freshness:
