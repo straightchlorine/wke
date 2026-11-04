@@ -92,3 +92,6 @@ tmp-files/
 # Sphinx/mkdocs output
 docs/_build/
 /site
+
+# Infisical project link (private)
+.infisical.yaml
