@@ -13,16 +13,12 @@ from tests.support.constants import (
     FIXTURE_REV_ID,
     FIXTURE_REV_TIMESTAMP,
     FIXTURE_TITLE,
-    REQUIRED_ENV,
 )
-from tests.support.wikimedia import make_wikimedia_client, no_sleep
+from tests.support.wikimedia import make_wikimedia_client
 from wke.clients.redis import RedisClient
 from wke.clients.user_agent import build_user_agent
 from wke.clients.wikimedia import WikifeedsNotFound
 from wke.core.errors import ApiException
-
-ACTION_API_URL = REQUIRED_ENV["WIKIPEDIA_API_URL"]
-REST_API_URL = REQUIRED_ENV["WIKIPEDIA_REST_URL"]
 
 
 async def test_user_agent_format(settings, redis_client, wm_fixtures) -> None:
@@ -32,7 +28,7 @@ async def test_user_agent_format(settings, redis_client, wm_fixtures) -> None:
         seen["ua"] = request.headers.get("user-agent")
         return httpx.Response(200, json=wm_fixtures.json("search.json"))
 
-    client = make_wikimedia_client(redis_client, handler, sleep=no_sleep)
+    client = make_wikimedia_client(redis_client, handler)
     await client.search(FIXTURE_TITLE, 8)
 
     assert seen["ua"] == build_user_agent()
@@ -48,7 +44,7 @@ async def test_gzip_accepted(redis_client, wm_fixtures) -> None:
         seen["accept_encoding"] = request.headers.get("accept-encoding", "")
         return httpx.Response(200, json=wm_fixtures.json("search.json"))
 
-    client = make_wikimedia_client(redis_client, handler, sleep=no_sleep)
+    client = make_wikimedia_client(redis_client, handler)
     await client.search(FIXTURE_TITLE, 8)
 
     assert "gzip" in seen["accept_encoding"]
@@ -58,18 +54,35 @@ async def test_search_returns_results(redis_client, wm_fixtures) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         return httpx.Response(200, json=wm_fixtures.json("search.json"))
 
-    client = make_wikimedia_client(redis_client, handler, sleep=no_sleep)
+    client = make_wikimedia_client(redis_client, handler)
     results = await client.search(FIXTURE_TITLE, 8)
 
     assert results[0]["title"] == FIXTURE_TITLE
     assert results[0]["pageid"] == FIXTURE_PAGE_ID
 
 
+async def test_search_sends_the_topic_search_request(redis_client, wm_fixtures) -> None:
+    """One generator=search call that also asks for the spelling suggestion and
+    each page's disambiguation flag."""
+    params: dict[str, str] = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        params.update(request.url.params)
+        return httpx.Response(200, json=wm_fixtures.json("search.json"))
+
+    await make_wikimedia_client(redis_client, handler).search(FIXTURE_TITLE, 8)
+
+    assert params["generator"] == "search"
+    assert (params["gsrsearch"], params["gsrlimit"]) == (FIXTURE_TITLE, "8")
+    assert params["gsrinfo"] == "suggestion"
+    assert (params["prop"], params["ppprop"]) == ("pageprops", "disambiguation")
+
+
 async def test_resolve_returns_page(redis_client, wm_fixtures) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         return httpx.Response(200, json=wm_fixtures.json("resolve.json"))
 
-    client = make_wikimedia_client(redis_client, handler, sleep=no_sleep)
+    client = make_wikimedia_client(redis_client, handler)
     page = await client.resolve(FIXTURE_TITLE)
 
     assert page["pageid"] == FIXTURE_PAGE_ID
@@ -80,18 +93,17 @@ async def test_morelike_returns_pages(redis_client, wm_fixtures) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         return httpx.Response(200, json=wm_fixtures.json("morelike.json"))
 
-    client = make_wikimedia_client(redis_client, handler, sleep=no_sleep)
+    client = make_wikimedia_client(redis_client, handler)
     pages = await client.morelike(FIXTURE_TITLE)
 
-    assert isinstance(pages, list)
-    assert len(pages) > 0
+    assert pages == wm_fixtures.json("morelike.json")["query"]["pages"]
 
 
 async def test_revision_timestamp_returns_real_edit_time(redis_client, wm_fixtures) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         return httpx.Response(200, json=wm_fixtures.json("revision.json"))
 
-    client = make_wikimedia_client(redis_client, handler, sleep=no_sleep)
+    client = make_wikimedia_client(redis_client, handler)
     timestamp = await client.revision_timestamp(FIXTURE_REV_ID)
 
     assert timestamp == FIXTURE_REV_TIMESTAMP
@@ -101,7 +113,7 @@ async def test_revision_timestamp_missing_raises(redis_client) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         return httpx.Response(200, json={"query": {"pages": [{"pageid": 1, "ns": 0}]}})
 
-    client = make_wikimedia_client(redis_client, handler, sleep=no_sleep)
+    client = make_wikimedia_client(redis_client, handler)
 
     with pytest.raises(ApiException) as exc_info:
         await client.revision_timestamp(999)
@@ -120,7 +132,7 @@ async def test_content_revision_id_mismatch_raises(redis_client, wm_fixtures) ->
             headers={"content-revision-id": "999999999"},
         )
 
-    client = make_wikimedia_client(redis_client, handler, sleep=no_sleep)
+    client = make_wikimedia_client(redis_client, handler)
     with pytest.raises(ApiException) as exc_info:
         await client.revision_html(rev_id)
 
@@ -134,7 +146,7 @@ async def test_revision_html_body_cap(redis_client) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         return httpx.Response(200, content=oversized, headers={"content-revision-id": "1"})
 
-    client = make_wikimedia_client(redis_client, handler, sleep=no_sleep)
+    client = make_wikimedia_client(redis_client, handler)
     with pytest.raises(ApiException) as exc_info:
         await client.revision_html(1)
 

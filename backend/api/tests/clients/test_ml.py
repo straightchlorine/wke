@@ -69,9 +69,12 @@ async def test_4xx_raises_ml_unavailable_not_http_status_error() -> None:
     assert exc_info.value.reason == "http_400"
 
 
-async def test_invalid_json_raises_ml_unavailable() -> None:
+@pytest.mark.parametrize(
+    "body", [b"not json", b'["not", "an", "object"]'], ids=["not-json", "json-list"]
+)
+async def test_a_body_that_is_not_a_json_object_raises_ml_unavailable(body: bytes) -> None:
     def handler(request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=b"not json")
+        return httpx.Response(200, content=body)
 
     with pytest.raises(MLUnavailable) as exc_info:
         await _client(handler).summarize("some text")
