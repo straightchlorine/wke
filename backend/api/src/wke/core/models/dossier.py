@@ -11,6 +11,7 @@ from wke.core.models.base import WkeModel
 from wke.core.models.budgets import BudgetTokens
 from wke.core.models.catalog import FreshnessState
 
+ChunkKind = Literal["prose", "facts", "table", "list"]
 SummaryState = Literal["pending", "done", "skipped", "unavailable", "no_prose", "withheld"]
 
 
@@ -71,7 +72,7 @@ class Chunk(WkeModel):
     # "prose" is a paragraph run, "facts" the infobox key facts, "table" one
     # wikitable as compact Markdown rows, "list" one list as "- item" lines;
     # only prose carries sentences.
-    kind: Literal["prose", "facts", "table", "list"] = "prose"
+    kind: ChunkKind = "prose"
     citation_id: str
     heading_path: list[str]
     order: int
