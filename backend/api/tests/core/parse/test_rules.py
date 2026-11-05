@@ -252,6 +252,43 @@ def test_intro_before_a_wrapper_with_prose_survives() -> None:
     assert texts(article)[-1].endswith("to the crowd: Quote here.")
 
 
+@pytest.mark.parametrize(
+    "block",
+    [
+        "<ul><li>a</li></ul>",
+        "<table><tr><td>1</td></tr></table>",
+        "<!-- a comment --><ul><li>a</li></ul>",
+        "<div class='div-col'><ul><li>a</li></ul></div>",
+        "<div class='clade'><div></div></div>",
+    ],
+    ids=["list", "table", "list-after-a-comment", "wrapped-list", "emptied-wrapper"],
+)
+def test_a_lead_list_introduction_is_dropped_though_the_lead_keeps_fragments(block: str) -> None:
+    # Twelve words or more, so the caption rule does not drop it first.
+    intro = "The parts of the subject that the lead goes on to list in full are:"
+    article = parse_sections(
+        f"<p>The lead is a sentence.</p><p>{intro}</p>{block}", "<p>Body is prose.</p>"
+    )
+    assert texts(article)[0] == "The lead is a sentence."
+
+
+def test_a_long_lead_paragraph_without_a_full_stop_is_kept_not_taken_for_a_caption() -> None:
+    unended = "A second lead paragraph that runs on for well over twelve words without a stop"
+    article = parse_sections(
+        f"<p>The lead is a sentence.</p><p>{unended}</p>", "<p>Body is prose.</p>"
+    )
+    assert texts(article)[0] == f"The lead is a sentence. {unended}"
+
+
+def test_a_wrapper_holding_prose_is_a_quote_not_a_dropped_list() -> None:
+    article = parse_sections(
+        "<p>The lead is a sentence.</p><p>It reads:</p>"
+        "<div><p>A quoted paragraph.</p><ul><li>a</li></ul></div>",
+        "<p>Body is prose.</p>",
+    )
+    assert texts(article)[0] == "The lead is a sentence. It reads: A quoted paragraph."
+
+
 def test_leads_only_paragraph_is_kept_even_as_an_intro() -> None:
     article = parse_sections(
         "<p>The topics covered are:</p><ul><li>a</li></ul>", "<p>Body is prose.</p>"

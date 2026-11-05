@@ -94,6 +94,14 @@ class ChunkWriter:
         state: ParseState,
         parsed_section: ParsedSection,
     ) -> None:
+        """Start a writer for one section.
+
+        Args:
+            section_id: the section's id, for the chunk ids.
+            heading_path: heading path every chunk carries; empty for the lead.
+            state: parse accumulator, extended with the new chunks.
+            parsed_section: the section that gets the chunk ids.
+        """
         self.section_id = section_id
         self.heading_path = heading_path
         self.state = state

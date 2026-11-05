@@ -73,7 +73,7 @@ class WikiTable:
 
     caption: str
     header: list[str]
-    rows: list[list[str]] = field(default_factory=list)
+    rows: list[list[str]] = field(default_factory=list[list[str]])
 
 
 def _take_carried(out: list[str], carried: dict[int, tuple[str, int]]) -> None:

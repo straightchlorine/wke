@@ -39,8 +39,8 @@ class OwnContent:
     """Lists, tables and code blocks found directly in one section, outside subsections."""
 
     is_lead: bool = False
-    lists: list[LexborNode] = field(default_factory=list)
-    tables: list[LexborNode] = field(default_factory=list)
+    lists: list[LexborNode] = field(default_factory=list[LexborNode])
+    tables: list[LexborNode] = field(default_factory=list[LexborNode])
     pre_blocks: int = 0
 
 

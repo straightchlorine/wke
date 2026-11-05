@@ -13,6 +13,12 @@ class ParseState:
     """Mutable accumulator threaded through the recursive section walk."""
 
     def __init__(self, rev_id: int, citation_id: str) -> None:
+        """Start an empty accumulator for one revision.
+
+        Args:
+            rev_id: the revision the HTML belongs to, for the chunk ids.
+            citation_id: the citation every chunk of the revision carries.
+        """
         self.rev_id = rev_id
         self.citation_id = citation_id
         self.sections: list[ParsedSection] = []
