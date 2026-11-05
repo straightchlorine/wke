@@ -10,6 +10,8 @@ import json
 from pathlib import Path
 
 FIXTURES_DIR = Path(__file__).parent.parent / "fixtures" / "wm"
+# Hand-written HTML and JSON snippets that no recording overwrites.
+SYNTHETIC_DIR = FIXTURES_DIR.parent / "synthetic"
 
 _RESOLVE = json.loads((FIXTURES_DIR / "resolve.json").read_text(encoding="utf-8"))
 _PAGE = _RESOLVE["query"]["pages"][0]

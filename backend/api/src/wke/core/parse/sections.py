@@ -17,6 +17,9 @@ BOILERPLATE_ANCHORS = frozenset(
         "See_also",
         "References",
         "Notes",
+        "Notes_and_references",
+        "References_and_notes",
+        "Footnotes",
         "Further_reading",
         "External_links",
         "Bibliography",
@@ -25,22 +28,33 @@ BOILERPLATE_ANCHORS = frozenset(
     )
 )
 
-# Sections whose lists are citations of the article's own sources: their
-# prose is kept, their lists are neither emitted nor counted.
-REFERENCE_LIST_ANCHORS = frozenset(
-    ("Works_cited", "Sources", "Cited_works", "Selected_bibliography")
-)
+# Bibliography sections: their lists are citation entries:
+# ("Smith, J. (2001). Title."),
+# not facts about the topic.
+# The lists of such a section and of its subsections (a "Works cited" split into
+# "Books" and "Journal articles") are not turned into list chunks, and not
+# counted among the lists left out, so the dossier does not report "2 lists not included"
+# for its own bibliography.
+# A paragraph in such a section is article text and is kept like any other.
+# "Sources" is not here: it is boilerplate (above) and skipped whole.
+REFERENCE_LIST_ANCHORS = frozenset(("Works_cited", "Cited_works", "Selected_bibliography"))
 
 HEADING_SELECTOR = "h1, h2, h3, h4, h5, h6"
 
 
-def walk_sections(container: LexborNode, heading_path: list[str], state: ParseState) -> None:
+def walk_sections(
+    container: LexborNode,
+    heading_path: list[str],
+    state: ParseState,
+    in_reference_list: bool = False,
+) -> None:
     """Process each direct-child `<section data-mw-section-id>` of container.
 
     Args:
         container: the body or a section whose child sections are walked.
         heading_path: the headings of the sections above, outermost first.
         state: parse accumulator, extended with the sections and chunks.
+        in_reference_list: True below a REFERENCE_LIST_ANCHORS section.
     """
     for child in container.iter():
         if child.tag != "section":
@@ -67,7 +81,8 @@ def walk_sections(container: LexborNode, heading_path: list[str], state: ParseSt
         state.sections.append(parsed_section)
 
         runs, own = collect_own_paragraphs(child, is_lead=not heading)
-        if anchor in REFERENCE_LIST_ANCHORS:
+        cites = in_reference_list or anchor in REFERENCE_LIST_ANCHORS
+        if cites:
             own.lists = []
 
         emit_chunks(runs, section_id, own_heading_path, state, parsed_section)
@@ -76,7 +91,7 @@ def walk_sections(container: LexborNode, heading_path: list[str], state: ParseSt
             own, heading, prose_tokens, section_id, own_heading_path, state, parsed_section
         )
 
-        walk_sections(child, own_heading_path, state)
+        walk_sections(child, own_heading_path, state, cites)
 
 
 def section_heading(section: LexborNode) -> tuple[str, str]:
