@@ -88,7 +88,7 @@ def list_chunk_text(items: int) -> str:
     Returns:
         str: the chunk text, without a count note.
     """
-    out = []
+    out: list[str] = []
     for n in range(1, items + 1):
         out.append(f"- Item number {n}")
         out.append(f"  - Detail of item {n}")

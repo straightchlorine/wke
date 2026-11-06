@@ -15,6 +15,7 @@ from hypothesis import strategies as st
 from pydantic import HttpUrl, TypeAdapter
 
 from wke.core.models import (
+    Budget,
     BuildInfo,
     Chunk,
     Citation,
@@ -22,6 +23,7 @@ from wke.core.models import (
     DossierGraph,
     DossierLinks,
     DossierTopic,
+    DossierView,
     Freshness,
     GraphEdge,
     GraphNode,
@@ -399,7 +401,7 @@ def make_overflowing_fixture_dossier() -> Dossier:
     n_chunks_per_section = 6
     for section_index in range(n_sections):
         section_id = f"sec{section_index}"
-        section_chunk_ids = []
+        section_chunk_ids: list[str] = []
         for chunk_index in range(n_chunks_per_section):
             chunk_id = f"{section_id}:{chunk_index}"
             chunk = Chunk(
@@ -599,6 +601,54 @@ def make_freshness(dossier: Dossier) -> Freshness:
     )
 
 
+def make_heading_map(view: DossierView) -> dict[str, str]:
+    """Map each section anchor of a view to its heading, as the revision HTML holds them.
+
+    Args:
+        view: a view of the fixture dossier.
+
+    Returns:
+        dict[str, str]: anchor -> heading text, the shape of validate.heading_map.
+    """
+    anchors = {c.id: c.anchor for c in view.citations}
+    return {
+        anchor: s.heading_path[-1]
+        for s in view.sections
+        if s.heading_path and (anchor := anchors.get(s.citation_id or ""))
+    }
+
+
+def make_fixture_view() -> DossierView:
+    """Build the whole fixture dossier as a served view, without packing it.
+
+    Returns:
+        DossierView: every chunk included; each summary cites its section, as
+        the served view sets it.
+    """
+    dossier = make_fixture_dossier()
+    sections = [
+        s.model_copy(
+            update={"summary": s.summary.model_copy(update={"citation_id": s.citation_id})}
+        )
+        if s.summary is not None
+        else s
+        for s in dossier.sections
+    ]
+    budget = Budget(
+        requested=32000,
+        used_est_tokens=sum(c.est_tokens for c in dossier.chunks),
+        included_chunk_ids=[c.id for c in dossier.chunks],
+        omitted_chunks=0,
+        complete=True,
+    )
+    return DossierView(
+        **dict(dossier.model_copy(update={"sections": sections})),
+        freshness=make_freshness(dossier),
+        budget=budget,
+        links=make_links(dossier),
+    )
+
+
 # The summary states a generated section may take (no_prose and withheld need no chunks
 # or a failed source check, which the strategy does not model).
 _DRAWN_SUMMARY_STATES: tuple[Literal["pending", "done", "skipped", "unavailable"], ...] = (
@@ -680,7 +730,7 @@ def dossiers(draw: st.DrawFn) -> Dossier:
     for section_index in range(n_sections):
         n_chunks = draw(st.integers(min_value=0, max_value=10))
         section_id = f"sec{section_index}"
-        section_chunk_ids = []
+        section_chunk_ids: list[str] = []
         for chunk_index in range(n_chunks):
             text = draw(chunk_text())
             relevance = draw(st.floats(min_value=0.0, max_value=1.0, allow_nan=False))
