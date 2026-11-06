@@ -1,0 +1,18 @@
+{
+ "batchcomplete": true,
+ "query": {
+  "searchinfo": {"suggestion": "lord of the rings"},
+  "pages": [
+   {"pageid": 300, "ns": 0, "title": "Lord Howe Island", "index": 3},
+   {"pageid": 100, "ns": 0, "title": "Lord", "index": 1},
+   {
+    "pageid": 200,
+    "ns": 0,
+    "title": "Lord (disambiguation)",
+    "index": 2,
+    "pageprops": {"disambiguation": ""}
+   },
+   {"pageid": 400, "ns": 0, "title": "Lord Byron", "index": 4}
+  ]
+ }
+}
