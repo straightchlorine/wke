@@ -1,0 +1,285 @@
+{
+ "source": "release-gate re-judgement of the summarised sections of the 2026-10-01 dossier review",
+ "note": "The 24 summarised sections re-judged by the release gate; ship summaries only at zero 'no' and under 2 percent truncation. Match sections by page_id and label (section_id is an index and can shift).",
+ "sections": [
+  {
+   "page_id": 9200779,
+   "title": "Pac (wrestler)",
+   "section_id": "4",
+   "label": "British independent circuit (2004\u20132012)",
+   "heading_path": [
+    "Professional wrestling career",
+    "British independent circuit (2004\u20132012)"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 9200779,
+   "title": "Pac (wrestler)",
+   "section_id": "7",
+   "label": "Dragon Gate and affiliates (2007\u20132012)",
+   "heading_path": [
+    "Professional wrestling career",
+    "Dragon Gate and affiliates (2007\u20132012)"
+   ],
+   "verdict_2026_10_01": "no",
+   "defect": "tag partner BxB Hulk presented as an opponent; invented tournament"
+  },
+  {
+   "page_id": 9200779,
+   "title": "Pac (wrestler)",
+   "section_id": "17",
+   "label": "Death Triangle (2020\u20132024)",
+   "heading_path": [
+    "Professional wrestling career",
+    "All Elite Wrestling (2019\u20132026)",
+    "Death Triangle (2020\u20132024)"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 44254295,
+   "title": "Avengers: Endgame",
+   "section_id": "1",
+   "label": "Plot",
+   "heading_path": [
+    "Plot"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 44254295,
+   "title": "Avengers: Endgame",
+   "section_id": "5",
+   "label": "Marketing",
+   "heading_path": [
+    "Marketing"
+   ],
+   "verdict_2026_10_01": "partly",
+   "defect": "invented sponsor Oppo, Opposoc, Opp"
+  },
+  {
+   "page_id": 44254295,
+   "title": "Avengers: Endgame",
+   "section_id": "15",
+   "label": "Critical response",
+   "heading_path": [
+    "Reception",
+    "Critical response"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 78384681,
+   "title": "Starship flight 14",
+   "section_id": "2",
+   "label": "Mission profile",
+   "heading_path": [
+    "Mission profile"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 78384681,
+   "title": "Starship flight 14",
+   "section_id": "3",
+   "label": "Significance",
+   "heading_path": [
+    "Significance"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 78384681,
+   "title": "Starship flight 14",
+   "section_id": "5",
+   "label": "Long-term objectives",
+   "heading_path": [
+    "Long-term objectives"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 42316516,
+   "title": "UEFA Nations League",
+   "section_id": "1",
+   "label": "Adoption",
+   "heading_path": [
+    "Adoption"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 42316516,
+   "title": "UEFA Nations League",
+   "section_id": "4",
+   "label": "Adjustment starting from 2020\u201321",
+   "heading_path": [
+    "Format",
+    "Adjustment starting from 2020\u201321"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 42316516,
+   "title": "UEFA Nations League",
+   "section_id": "8",
+   "label": "Post-2028 review and proposed format changes",
+   "heading_path": [
+    "Format",
+    "Post-2028 review and proposed format changes"
+   ],
+   "verdict_2026_10_01": "partly",
+   "defect": "revised format read as the UEFA-CONCACAF joint league"
+  },
+  {
+   "page_id": 4020685,
+   "title": "Orange Order",
+   "section_id": "5",
+   "label": "United Irishmen rebellion",
+   "heading_path": [
+    "History",
+    "Formation and early years",
+    "United Irishmen rebellion"
+   ],
+   "verdict_2026_10_01": "no",
+   "defect": "Order formed by the United Irishmen (reversed)"
+  },
+  {
+   "page_id": 4020685,
+   "title": "Orange Order",
+   "section_id": "25",
+   "label": "Politics",
+   "heading_path": [
+    "Beliefs and activities",
+    "Politics"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 4020685,
+   "title": "Orange Order",
+   "section_id": "30",
+   "label": "Relationship with loyalist paramilitaries",
+   "heading_path": [
+    "Beliefs and activities",
+    "Relationship with loyalist paramilitaries"
+   ],
+   "verdict_2026_10_01": "no",
+   "defect": "2011 spokesman quote credited to Jeffrey Donaldson in 2000"
+  },
+  {
+   "page_id": 24314875,
+   "title": "Historicity of the Gospels",
+   "section_id": "2",
+   "label": "Scope and genre",
+   "heading_path": [
+    "Methodology",
+    "Scope and genre"
+   ],
+   "verdict_2026_10_01": "no",
+   "defect": "Keener thesis credited to Alan Kirk"
+  },
+  {
+   "page_id": 24314875,
+   "title": "Historicity of the Gospels",
+   "section_id": "5",
+   "label": "From oral traditions to written gospels",
+   "heading_path": [
+    "Formation and sources",
+    "From oral traditions to written gospels"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 24314875,
+   "title": "Historicity of the Gospels",
+   "section_id": "11",
+   "label": "Texts",
+   "heading_path": [
+    "Texts"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 75344372,
+   "title": "Katseye",
+   "section_id": "0",
+   "label": "Katseye",
+   "heading_path": [],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 75344372,
+   "title": "Katseye",
+   "section_id": "3",
+   "label": "2007\u20132024: Pre-debut activities and formation through Dream Academy",
+   "heading_path": [
+    "History",
+    "2007\u20132024: Pre-debut activities and formation through Dream Academy"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 75344372,
+   "title": "Katseye",
+   "section_id": "5",
+   "label": "2026\u2013present: Manon's and Sophia's hiatuses and Wild",
+   "heading_path": [
+    "History",
+    "2026\u2013present: Manon's and Sophia's hiatuses and Wild"
+   ],
+   "verdict_2026_10_01": "partly",
+   "defect": "Lollapaleza/Lollapalaza; cancellation attached to Lollapalooza"
+  },
+  {
+   "page_id": 255964,
+   "title": "Mahathir Mohamad",
+   "section_id": "7",
+   "label": "Early years (1981\u20131987)",
+   "heading_path": [
+    "First term as prime minister (1981\u20132003)",
+    "Early years (1981\u20131987)"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 255964,
+   "title": "Mahathir Mohamad",
+   "section_id": "9",
+   "label": "Economic development to financial crisis (1990\u20131998)",
+   "heading_path": [
+    "First term as prime minister (1981\u20132003)",
+    "Economic development to financial crisis (1990\u20131998)"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  },
+  {
+   "page_id": 255964,
+   "title": "Mahathir Mohamad",
+   "section_id": "31",
+   "label": "Post-second term premiership (2020\u2013present)",
+   "heading_path": [
+    "Post-second term premiership (2020\u2013present)"
+   ],
+   "verdict_2026_10_01": "yes",
+   "defect": ""
+  }
+ ]
+}
