@@ -71,3 +71,55 @@ def test_slice_drops_a_span_that_crosses_its_edge() -> None:
 )
 def test_ends_sentence(passage: Passage, ends: bool) -> None:
     assert passage.ends_sentence() is ends
+
+
+# Whitespace a passage may carry after its last mark: ends_at_sentence_end
+# ignores all of it, so ends_sentence must ignore it too.
+WHITESPACE = [" ", "  ", "\t", "\n", "\n\n", "\r\n", "\u00a0", "\u2009", "\u3000"]
+
+
+@pytest.mark.parametrize(
+    "space",
+    WHITESPACE,
+    ids=["space", "spaces", "tab", "nl", "nls", "crlf", "nbsp", "thin", "ideographic"],
+)
+def test_ends_sentence_ignores_trailing_whitespace(space: str) -> None:
+    assert Passage(f"It holds.{space}").ends_sentence() is True
+    assert Passage(f'He said "no."{space}').ends_sentence() is True
+    assert Passage(f"It went on\u2026{space}").ends_sentence() is True
+    assert Passage(f"It holds.{space}Then").ends_sentence() is False
+
+
+def test_a_formula_at_the_end_counts_even_with_trailing_whitespace() -> None:
+    span = FormulaSpan(start=6, end=9)
+    assert Passage("It is x=1", formulas=(span,)).ends_sentence() is True
+    assert Passage("It is x=1 ", formulas=(span,)).ends_sentence() is True
+    assert Passage("It is x=1\n", formulas=(span,)).ends_sentence() is True
+
+
+def test_an_empty_passage_ends_at_nothing() -> None:
+    assert Passage("").ends_sentence() is False
+    assert Passage("   ").ends_sentence() is False
+
+
+@given(st.text(max_size=40), st.sampled_from(WHITESPACE))
+def test_trailing_whitespace_never_decides_how_a_passage_ends(text: str, space: str) -> None:
+    """Appending whitespace may not change either boundary verdict."""
+    assert Passage(text + space).ends_sentence() is Passage(text).ends_sentence()
+    assert Passage(text + space).ends_intro() is Passage(text).ends_intro()
+
+
+@pytest.mark.parametrize(
+    ("passage", "intro"),
+    [
+        (Passage("The parts are:"), True),
+        (Passage("The parts are: "), True),
+        (Passage("The parts are:\n"), True),
+        (Passage("The parts are"), False),
+        (Passage("The parts are;"), False),
+        (Passage(""), False),
+    ],
+    ids=["colon", "colon-space", "colon-newline", "no-colon", "semicolon", "empty"],
+)
+def test_ends_intro(passage: Passage, intro: bool) -> None:
+    assert passage.ends_intro() is intro

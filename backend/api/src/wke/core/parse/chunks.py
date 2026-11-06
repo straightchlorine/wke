@@ -130,7 +130,7 @@ class ChunkWriter:
 
             # An introduction stays with what it introduces, and a sentence
             # with its continuation ("where c is ..." after an equation).
-            joined = buffer.text.endswith(":") or piece.starts_mid_sentence()
+            joined = buffer.ends_intro() or piece.starts_mid_sentence()
             if joined and est_tokens(merged.text) <= INTRO_MERGE_MAX_TOKENS:
                 buffer = merged
             elif (

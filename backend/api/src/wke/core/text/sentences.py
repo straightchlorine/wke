@@ -41,6 +41,10 @@ _INITIALS = re.compile(r"^(?:[A-Z]\.)*[A-Z]$")
 def ends_at_sentence_end(text: str) -> bool:
     """Tell whether text stops at the end of a sentence.
 
+    This is the only implementation of the rule: Passage.ends_sentence adds
+    the display-formula case on top of it, and the summary checks call it
+    directly.
+
     Args:
         text: a passage or summary.
 

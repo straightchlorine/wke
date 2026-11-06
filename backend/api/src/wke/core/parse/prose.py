@@ -54,7 +54,7 @@ def prose_of_paragraph(node: LexborNode, keep_open: bool = False) -> tuple[Passa
     ]
     if not sentences:
         return EMPTY, EMPTY
-    if sentences[-1].text.endswith(":") and dropped_block_follows(node):
+    if sentences[-1].ends_intro() and dropped_block_follows(node):
         intro = join_passages(sentences)
         sentences.pop()
         if not sentences:

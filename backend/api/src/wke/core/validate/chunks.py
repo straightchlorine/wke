@@ -49,8 +49,9 @@ def _check_structured(chunk: Chunk, report: ValidationReport) -> None:
 def _check_prose(chunk: Chunk, report: ValidationReport) -> None:
     """Check that a passage ends at a sentence end and points nowhere.
 
-    Both ends use the parser's own rules (Passage.ends_sentence and
-    starts_mid_sentence), so the two cannot disagree.
+    Every edge uses the parser's own rules (Passage.ends_sentence,
+    Passage.ends_intro and Passage.starts_mid_sentence), so the validator and
+    the parser cannot disagree.
 
     Args:
         chunk: a prose chunk.
@@ -59,7 +60,7 @@ def _check_prose(chunk: Chunk, report: ValidationReport) -> None:
     report.counts["passages"] += 1
     text = chunk.text
     passage = Passage(text, formulas=tuple(chunk.formulas))
-    lead_intro = not chunk.heading_path and text.endswith(":")
+    lead_intro = not chunk.heading_path and passage.ends_intro()
 
     if (not passage.ends_sentence() and not lead_intro) or passage.starts_mid_sentence():
         report.fail("fragment_passages", f"{chunk.id}: {text[:60]!r}")

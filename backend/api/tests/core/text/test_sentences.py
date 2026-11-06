@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import pytest
+from hypothesis import given
+from hypothesis import strategies as st
 
 from wke.core.text.sentences import ends_at_sentence_end, split_sentences
 
@@ -42,3 +44,17 @@ def test_text_ending_with_a_sentence_end_mark_ends_at_a_sentence_end(text: str) 
 @pytest.mark.parametrize("text", ["He left", "It cost 5", "He said: ", "", "Lists:"])
 def test_text_without_a_final_mark_does_not(text: str) -> None:
     assert not ends_at_sentence_end(text)
+
+
+@given(st.text(max_size=60))
+def test_the_end_check_agrees_with_the_splitter(text: str) -> None:
+    """A text ends at a sentence end exactly when its last sentence does.
+
+    The two functions share one rule, so a text the splitter cuts short may
+    never be reported as complete, nor the other way round.
+    """
+    sentences = split_sentences(text)
+    if not sentences:
+        assert not ends_at_sentence_end(text)
+        return
+    assert ends_at_sentence_end(text) is ends_at_sentence_end(sentences[-1])

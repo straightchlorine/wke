@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 from wke.core.models import FormulaSpan, LinkSpan, TextSpan
 from wke.core.text.lexicon import FUNCTION_WORDS
-from wke.core.text.sentences import SENTENCE_FINAL, split_sentences
+from wke.core.text.sentences import ends_at_sentence_end, split_sentences
 
 JOINER = " "
 
@@ -54,16 +54,31 @@ class Passage:
     def ends_sentence(self) -> bool:
         """Tell whether the passage stops at the end of a sentence.
 
-        A formula at the very end counts: a display equation closes its
-        sentence whether or not its TeX carries the full stop.
+        The mark rule is ends_at_sentence_end and nothing else, so the parser
+        and the checks that reuse it cannot drift apart. A formula at the very
+        end counts too: a display equation closes its sentence whether or not
+        its TeX carries the full stop. Trailing whitespace is ignored, as in
+        ends_at_sentence_end.
 
         Returns:
             bool: True for a sentence-final mark at the end, or a formula
             span that reaches the end of the text.
         """
-        if SENTENCE_FINAL.search(self.text):
+        text = self.text.rstrip()
+        if not text:
+            return False
+        if ends_at_sentence_end(text):
             return True
-        return any(span.end == len(self.text) for span in self.formulas)
+        return any(span.end == len(text) for span in self.formulas)
+
+    def ends_intro(self) -> bool:
+        """Tell whether the passage introduces the block that follows it.
+
+        Returns:
+            bool: True when the text ends with a colon, as in "The parts are:".
+            Trailing whitespace is ignored.
+        """
+        return self.text.rstrip().endswith(":")
 
     def starts_mid_sentence(self) -> bool:
         """Tell whether the passage opens inside a sentence.
