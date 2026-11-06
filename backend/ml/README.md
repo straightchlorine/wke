@@ -1,13 +1,11 @@
 # wke-ml
 
-FastAPI inference service called by wke-api over HTTP (ADR 0004:
-wke-api ships no torch).
+FastAPI inference service called by wke-api over HTTP.
 
-- `POST /v1/analyze` -- MiniLM embed, cosine relevance to the lead,
-  KMeans clustering, related-article edges. Vectors never leave the pod.
-- `POST /v1/summarize` -- abstractive summary via distilbart-cnn-6-6.
-- `GET /healthz` (weights resident), `/readyz` (warm-up done),
-  `/metrics` (prometheus text exposition).
+- `POST /v1/analyze` - MiniLM embed, cosine relevance to the lead, KMeans clustering,
+    related-article edges. Vectors never leave the pod.
+- `POST /v1/summarize` - abstractive summary via distilbart-cnn-6-6.
+- `GET /healthz` (weights resident), `/readyz` (warm-up done), at `/metrics` prometheus metrics.
 
 ## Models
 | Model | Revision |
@@ -15,13 +13,9 @@ wke-api ships no torch).
 | `sentence-transformers/all-MiniLM-L6-v2` | `1110a243` |
 | `sshleifer/distilbart-cnn-6-6` | `d2fde4ca` |
 
-Weights are baked into the image (`fetch_models.py`), converted to
-safetensors and kept at the checkpoint's native fp16 on disk; the torch
-backend casts to fp32 at load (faster than fp16 on CPU). Inference is
-serialized to one slot at a time (`asyncio.Semaphore(1)`) behind a
-bounded wait queue (`QUEUE_MAX_WAIT`, default 4); once full, or a
-queued job's deadline/connection lapses, the caller gets 503 +
-`Retry-After`.
+Weights are bundled into the image (`fetch_models.py`), converted to safetensors and
+kept at the checkpoint's native fp16 on disk; the torch backend casts to fp32
+at load.
 
 ## Environment variables (no `.env.example`; all have defaults)
 | Var | Default | Meaning |
@@ -58,20 +52,10 @@ uv run uvicorn wke_ml.main:app --host 0.0.0.0 --port 8000
 cd backend/ml && uv run pytest
 ```
 
-Every test uses the stub backend by default (`tests/conftest.py` sets
-`WKE_ML_BACKEND=stub`), so the suite never imports torch. Real-model
-smoke tests are marked `model`, deselected by default; run them with
-`uv run pytest -m model`.
-
-Container image: multi-stage `python:3.13-slim` build; `fetch_models.py`
-pre-bakes both models (`--build-arg MINILM_REV`/`DISTILBART_REV`); the
-builder strips torch's test/build artifacts and pip/setuptools; runtime
-is offline (`HF_HUB_OFFLINE=1`, `TRANSFORMERS_OFFLINE=1`) as non-root
-`wkeml`. Built for linux/arm64 (OCI A1.Flex). Measured arm64 size:
-1413 MB (2026-09-28).
-
 ## Bench
-`bench/bench.py` times distilbart-cnn-6-6 `generate()` at a 512-token
-input, `num_beams` 1 and 2, ten runs each (median), plus peak RSS,
-fixed to 2 threads and fp32. Run inside the image: `python
-/app/bench/bench.py`; prints one JSON line.
+`bench/bench.py` times distilbart-cnn-6-6 `generate()` on a fixed input, greedy
+against beam-search decoding. It reports median wall and CPU seconds, generated
+tokens, cold start and peak RSS.
+
+Run it from `backend/ml` with `uv run python bench/bench.py`; it prints one JSON
+line.
