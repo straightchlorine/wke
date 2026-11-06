@@ -8,6 +8,7 @@ from hypothesis import HealthCheck, given, settings
 from tests.factories.dossier import (
     dossiers,
     make_budget_dossier,
+    make_fixture_dossier,
     make_freshness,
     make_lead_only_dossier,
     make_links,
@@ -18,8 +19,14 @@ from tests.factories.synthetic import dossier_of, prose, section
 from wke.core import pack, render
 from wke.core.models import Dossier, DossierView
 from wke.core.models.budgets import BudgetTokens
-from wke.core.pack.costs import SECTION_HEADING_OVERHEAD_TOKENS, TAG_TOKENS
+from wke.core.pack.costs import (
+    SECTION_HEADING_OVERHEAD_TOKENS,
+    SUMMARY_FRAME_TOKENS,
+    TAG_TOKENS,
+)
 from wke.core.pack.result import PackedDossier
+from wke.core.render.escape import escape_inline_markup, neutralise
+from wke.core.render.labels import SUMMARY_LABEL
 from wke.core.render.markdown import content_text
 from wke.core.text.tokens import est_tokens
 
@@ -183,3 +190,18 @@ def test_a_dossier_without_a_passage_cannot_be_viewed() -> None:
     dossier = make_overflowing_fixture_dossier().model_copy(update={"chunks": []})
     with pytest.raises(ValueError, match="no passage"):
         _build(dossier)
+
+
+def test_the_summary_frame_costs_no_more_than_the_packer_charges() -> None:
+    # The packer holds SUMMARY_FRAME_TOKENS plus TAG_TOKENS back around every
+    # summary, so the frame the render writes must stay within that.
+    dossier = make_fixture_dossier()
+    view = render.build_view(dossier, 32000, make_freshness(dossier), make_links(dossier), True)
+    lines = render.render_markdown(view, True).splitlines()
+    start = next(index for index, line in enumerate(lines) if line == f"**{SUMMARY_LABEL}**")
+    end = next(index for index in range(start, len(lines)) if lines[index].startswith("Model: "))
+    summarised = next(section for section in view.sections if section.summary is not None)
+    assert summarised.summary is not None
+    text_line = neutralise(escape_inline_markup(summarised.summary.text))
+    frame = [line for line in lines[start : end + 1] if line != text_line]
+    assert est_tokens("\n".join(frame)) <= SUMMARY_FRAME_TOKENS + TAG_TOKENS

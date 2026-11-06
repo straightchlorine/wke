@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from wke.core.citations import section_citation_id, seed_pin
 from wke.core.models import Chunk, DossierView, Section
-from wke.core.pack.header import PROVENANCE_NOTICE
 from wke.core.pack.layout import SectionLayout, section_layout
 from wke.core.pack.owners import chunk_kind
 from wke.core.render.budget import FLAT_NOTICE, budget_line, holds_whole_article, opening_note
 from wke.core.render.defaults import DEFAULT_INCLUDE_SUMMARIES
 from wke.core.render.escape import escape_inline_markup, neutralise
+from wke.core.render.header import PROVENANCE_NOTICE
 from wke.core.render.labels import SUMMARY_LABEL, heading_prefix
 from wke.core.render.leftout import left_out_header
 from wke.core.render.notes import summary_notice, tables_left_out_line

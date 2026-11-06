@@ -12,8 +12,8 @@ from tests.factories.synthetic import dossier_of, prose, section, sized
 from wke.core import render
 from wke.core.models import Dossier, DossierView, Section
 from wke.core.models.budgets import BudgetTokens
-from wke.core.pack.header import PROVENANCE_NOTICE
 from wke.core.render.budget import FLAT_NOTICE
+from wke.core.render.header import PROVENANCE_NOTICE
 
 CUT_NOTE = "more passage"
 

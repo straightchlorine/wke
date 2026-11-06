@@ -16,7 +16,7 @@ from tests.factories.dossier import (
 from wke.core import render
 from wke.core.errors import ApiException
 from wke.core.models import DossierView
-from wke.core.pack.header import PROVENANCE_NOTICE
+from wke.core.render.header import PROVENANCE_NOTICE
 from wke.core.render.markdown import SOURCES_HEADING, SourceList
 from wke.core.render.parts import (
     ALL_PARTS,
