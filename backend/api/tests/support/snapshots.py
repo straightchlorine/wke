@@ -14,7 +14,7 @@ def make_snapshot(
     views: int = 12345,
     rev_id: int = FIXTURE_REV_ID,
     **overrides: Any,
-) -> dict:
+) -> dict[str, Any]:
     """Build a JSON-ready trending snapshot with the recorded article as its one topic.
 
     Args:
