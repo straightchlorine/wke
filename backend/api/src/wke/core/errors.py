@@ -19,6 +19,9 @@ class ApiException(Exception):
         candidates: disambiguation candidates (code == "disambiguation" only).
     """
 
+    # Declared on the class so readers see the literal set, never a widened str.
+    code: ErrorCode
+
     def __init__(
         self,
         status_code: int,
