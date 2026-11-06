@@ -12,7 +12,6 @@ from wke.watcher.stream import (
     UserKind,
     build_edit_event,
     classify_user_kind,
-    minute_bucket,
     resolve_tracked_page_id,
 )
 
@@ -34,9 +33,9 @@ def test_classify_user_kind(event: RcEvent, kind: UserKind) -> None:
 
 
 def test_minute_bucket_is_the_utc_minute() -> None:
-    assert minute_bucket(1790595540.0) == "202609281139"
-    assert minute_bucket(1790595599.9) == "202609281139"
-    assert minute_bucket(1790595600.0) == "202609281140"
+    assert keys.minute_bucket(1790595540.0) == "202609281139"
+    assert keys.minute_bucket(1790595599.9) == "202609281139"
+    assert keys.minute_bucket(1790595600.0) == "202609281140"
 
 
 def test_build_edit_event_maps_the_stream_fields() -> None:

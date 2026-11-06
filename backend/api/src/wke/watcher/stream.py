@@ -55,14 +55,7 @@ EDIT_EVENT_TYPE = "edit"
 ENWIKI_WIKI = "enwiki"
 ENWIKI_SUBSTRING = f'"wiki":"{ENWIKI_WIKI}"'
 
-ENWIKI_RC_KIND = "enwiki"
-TRACKED_RC_KIND = "tracked"
-
 PAGEEDITS_MAX_MEMBERS = 200
-EDITS_RING_MAX_LENGTH = 500
-
-LAST_ID_KEY = "watcher:last_id"
-RESUME_MAX_AGE_SECONDS = 3600
 
 HEARTBEAT_INTERVAL_SECONDS = 10.0
 READ_TIMEOUT_SECONDS = 30.0
@@ -215,18 +208,6 @@ def classify_user_kind(event: RcEvent) -> UserKind:
     return "registered"
 
 
-def minute_bucket(epoch_seconds: float) -> str:
-    """Build the UTC minute bucket used by `rc:*` counter keys.
-
-    Args:
-        epoch_seconds: unix timestamp.
-
-    Returns:
-        str: minute timestamp in `YYYYMMDDHHMM` format.
-    """
-    return datetime.fromtimestamp(epoch_seconds, tz=UTC).strftime("%Y%m%d%H%M")
-
-
 async def resolve_tracked_page_id(redis: RedisClient, title: str) -> int | None:
     """Look up the cached page_id for a recentchange event's title.
 
@@ -313,15 +294,17 @@ async def process_kept_event(
         EditEvent: the event as appended to the ring buffer.
     """
     now = time.time() if now is None else now
-    minute = minute_bucket(now)
-    await _incr_counter(redis, keys.rc_counter(ENWIKI_RC_KIND, minute), keys.RC_COUNTER_TTL_SECONDS)
+    minute = keys.minute_bucket(now)
+    await _incr_counter(
+        redis, keys.rc_counter(keys.ENWIKI_RC_KIND, minute), keys.RC_COUNTER_TTL_SECONDS
+    )
 
     seq = await redis.incr(keys.EDITS_SEQ)
     page_id = await resolve_tracked_page_id(redis, str(event.get("title", "")))
     edit_event = build_edit_event(event, cursor=seq or 0, page_id=page_id)
 
     await redis.lpush(keys.EDITS_RING, edit_event.model_dump_json())
-    await redis.ltrim(keys.EDITS_RING, 0, EDITS_RING_MAX_LENGTH - 1)
+    await redis.ltrim(keys.EDITS_RING, 0, keys.EDITS_RING_MAX_LENGTH - 1)
 
     if page_id is not None and await redis.sismember(keys.TRACKED, str(page_id)):
         pageedits_key = keys.pageedits(page_id)
@@ -332,7 +315,7 @@ async def process_kept_event(
         await redis.expire(pageedits_key, keys.PAGEEDITS_TTL_SECONDS)
         await redis.zremrangebyrank(pageedits_key, 0, -(PAGEEDITS_MAX_MEMBERS + 1))
         await _incr_counter(
-            redis, keys.rc_counter(TRACKED_RC_KIND, minute), keys.RC_COUNTER_TTL_SECONDS
+            redis, keys.rc_counter(keys.TRACKED_RC_KIND, minute), keys.RC_COUNTER_TTL_SECONDS
         )
 
     WATCHER_LAST_EVENT_TIMESTAMP.set(now)
@@ -405,7 +388,7 @@ class Watcher:
             httpx.HTTPError: on a connection failure or a non-2xx response.
         """
         headers = dict(self._headers)
-        last_id = await self._redis.get(LAST_ID_KEY)
+        last_id = await self._redis.get(keys.WATCHER_LAST_ID)
         if last_id is not None:
             headers["Last-Event-ID"] = last_id
         parser = SSEParser()
@@ -421,7 +404,9 @@ class Watcher:
 
     async def _handle_sse_event(self, sse_event: SSEEvent) -> None:
         if sse_event.id is not None:
-            await self._redis.set(LAST_ID_KEY, sse_event.id, ex=RESUME_MAX_AGE_SECONDS)
+            await self._redis.set(
+                keys.WATCHER_LAST_ID, sse_event.id, ex=keys.WATCHER_LAST_ID_TTL_SECONDS
+            )
         parsed = parse_kept_event(sse_event.data)
         if parsed is None:
             return

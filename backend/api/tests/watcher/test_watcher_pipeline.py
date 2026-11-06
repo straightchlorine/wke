@@ -16,7 +16,7 @@ from wke.clients.redis import RedisClient
 from wke.core import keys
 from wke.core.titles import normalize_title
 from wke.watcher import stream as stream_module
-from wke.watcher.stream import LAST_ID_KEY, RcEvent, Watcher, minute_bucket, process_kept_event
+from wke.watcher.stream import RcEvent, Watcher, process_kept_event
 
 FIXED_NOW = 1790595540.0
 CHUNK_SIZE = 53
@@ -113,7 +113,7 @@ async def test_run_once_increments_enwiki_minute_counter(
     watcher, _ = _build_watcher(redis_client, sse_bytes, tmp_path)
     await watcher.run_once()
 
-    bucket = minute_bucket(FIXED_NOW)
+    bucket = keys.minute_bucket(FIXED_NOW)
     count = await redis_client.get(keys.rc_counter("enwiki", bucket))
     assert count == "4"
     ttl = await redis_client.ttl(keys.rc_counter("enwiki", bucket))
@@ -136,7 +136,7 @@ async def test_run_once_updates_tracked_page_pointers(
     assert keys.LATEST_REV_TTL_SECONDS - 60 < ttl <= keys.LATEST_REV_TTL_SECONDS
     assert await redis_client.zrevrange(keys.pageedits(5041), 0, -1) == ["1377229292"]
     assert await redis_client.zscore(keys.pageedits(5041), "1377229292") == FIXED_NOW
-    bucket = minute_bucket(FIXED_NOW)
+    bucket = keys.minute_bucket(FIXED_NOW)
     tracked_count = await redis_client.get(keys.rc_counter("tracked", bucket))
     assert tracked_count == "1"
 
@@ -156,7 +156,7 @@ async def test_run_once_skips_pointers_for_untracked_page(
 async def test_run_once_sends_last_event_id_when_fresh(
     redis_client: RedisClient, sse_bytes: bytes, tmp_path: Path
 ) -> None:
-    await redis_client.set(LAST_ID_KEY, "some-cursor", ex=60)
+    await redis_client.set(keys.WATCHER_LAST_ID, "some-cursor", ex=60)
     watcher, sent_headers = _build_watcher(redis_client, sse_bytes, tmp_path)
     await watcher.run_once()
 
@@ -187,9 +187,9 @@ async def test_run_once_saves_last_event_id_with_one_hour_ttl(
     watcher, _ = _build_watcher(redis_client, sse_bytes, tmp_path)
     await watcher.run_once()
 
-    saved = await redis_client.get(LAST_ID_KEY)
+    saved = await redis_client.get(keys.WATCHER_LAST_ID)
     assert saved is not None
-    ttl = await redis_client.ttl(LAST_ID_KEY)
+    ttl = await redis_client.ttl(keys.WATCHER_LAST_ID)
     assert 0 < ttl <= 3600
 
 
@@ -218,14 +218,14 @@ async def test_process_kept_event_sets_the_counter_ttl_on_the_first_increment(
 ) -> None:
     await process_kept_event(redis_client, _edit(1), now=FIXED_NOW)
 
-    ttl = await redis_client.ttl(keys.rc_counter("enwiki", minute_bucket(FIXED_NOW)))
+    ttl = await redis_client.ttl(keys.rc_counter("enwiki", keys.minute_bucket(FIXED_NOW)))
     assert 0 < ttl <= keys.RC_COUNTER_TTL_SECONDS
 
 
 async def test_process_kept_event_keeps_the_newest_edits_in_the_ring(
     redis_client: RedisClient, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    monkeypatch.setattr(stream_module, "EDITS_RING_MAX_LENGTH", 3)
+    monkeypatch.setattr(keys, "EDITS_RING_MAX_LENGTH", 3)
     for rev in range(1, 6):
         await process_kept_event(redis_client, _edit(rev), now=FIXED_NOW)
 

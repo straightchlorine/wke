@@ -14,7 +14,6 @@ returns immediately, before any HTTP call.
 from __future__ import annotations
 
 import asyncio
-import json
 import logging
 from datetime import UTC, datetime, timedelta
 from typing import Any
@@ -23,6 +22,7 @@ from wke.clients.ml import MLClient, MLUnavailable
 from wke.clients.redis import RedisClient
 from wke.clients.wikimedia import WikimediaClient
 from wke.core import keys
+from wke.core.dossiers import state_from_dossier_json
 from wke.core.errors import ApiException
 from wke.core.models import DossierState, GraphEdge, TrendingSnapshot, TrendingTopic
 from wke.core.titles import normalize_title
@@ -228,16 +228,8 @@ async def _dossier_state(
     Returns:
         DossierState: "ready", "partial", "building" or "none".
     """
-    state: DossierState = "none"
-    dossier_key = keys.dossier(page_id, rev_id, pipeline_version)
-    raw = await redis.get(dossier_key)
-    if raw is not None:
-        try:
-            data = json.loads(raw)
-            build_state = data.get("build", {}).get("state")
-            state = "ready" if build_state == "complete" else "partial"
-        except (ValueError, AttributeError):
-            state = "none"
+    raw = await redis.get(keys.dossier(page_id, rev_id, pipeline_version))
+    state = state_from_dossier_json(raw)
 
     if state == "none":
         job_id = await redis.get(keys.jobkey(page_id, rev_id))
