@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import re
-from collections.abc import Callable
 
 from wke.core.models import Chunk, Section
 
@@ -55,19 +54,6 @@ def _importance_weight(chunk: Chunk) -> int:
     return size if chunk.kind == "prose" else min(size, STRUCTURED_IMPORTANCE_TOKENS)
 
 
-def linear_position(index: int, count: int) -> float:
-    """Score a section's place in the article, earlier is higher.
-
-    Args:
-        index: zero-based position of the section.
-        count: number of sections.
-
-    Returns:
-        float: 1 for the first section down to 0 for the last.
-    """
-    return 1.0 - index / max(count - 1, 1)
-
-
 def u_position(index: int, count: int) -> float:
     """Score a section's place in the article, both ends high.
 
@@ -86,13 +72,7 @@ def u_position(index: int, count: int) -> float:
     return max(1.0 - far, far)
 
 
-def section_importance(
-    sections: list[Section],
-    chunks: list[Chunk],
-    mix: tuple[float, float, float] | None = None,
-    position: Callable[[int, int], float] | None = None,
-    bonus: float | None = None,
-) -> dict[str, float]:
+def section_importance(sections: list[Section], chunks: list[Chunk]) -> dict[str, float]:
     """Score how much each section matters to the article.
 
     The score is 0.5 * similarity to the lead (token-weighted mean of the
@@ -105,11 +85,6 @@ def section_importance(
     Args:
         sections: all sections in document order.
         chunks: the dossier's chunks.
-        mix: (similarity, size, position) weights; IMPORTANCE_WEIGHTS
-            when None.
-        position: function (index, section count) -> prior in [0, 1];
-            u_position when None.
-        bonus: added for an outcome heading; OUTCOME_BONUS when None.
 
     Returns:
         dict[str, float]: section id -> importance in [0, 1]; sections
@@ -125,9 +100,7 @@ def section_importance(
         weighted[section.id] = sum(w * c.relevance for w, c in zip(weights, members, strict=True))
 
     largest = max(tokens.values(), default=0)
-    w_sim, w_size, w_pos = mix or IMPORTANCE_WEIGHTS
-    position_of = position or u_position
-    outcome_bonus = OUTCOME_BONUS if bonus is None else bonus
+    w_sim, w_size, w_pos = IMPORTANCE_WEIGHTS
 
     scores: dict[str, float] = {}
     for index, section in enumerate(sections):
@@ -137,9 +110,9 @@ def section_importance(
 
         similarity = weighted[section.id] / tokens[section.id]
         size = tokens[section.id] / largest
-        score = w_sim * similarity + w_size * size + w_pos * position_of(index, len(sections))
+        score = w_sim * similarity + w_size * size + w_pos * u_position(index, len(sections))
         if OUTCOME_HEADING.search(section.label):
-            score += outcome_bonus
+            score += OUTCOME_BONUS
         scores[section.id] = min(score, 1.0)
 
     return scores
