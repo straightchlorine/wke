@@ -2,12 +2,16 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 
 from wke.core.models import FormulaSpan, LinkSpan, TextSpan
+from wke.core.text.lexicon import FUNCTION_WORDS
 from wke.core.text.sentences import SENTENCE_FINAL, split_sentences
 
 JOINER = " "
+
+_FIRST_WORD = re.compile(r"[^\W\d_]+")
 
 
 def _shifted[S: TextSpan](span: S, by: int) -> S:
@@ -60,6 +64,16 @@ class Passage:
         if SENTENCE_FINAL.search(self.text):
             return True
         return any(span.end == len(self.text) for span in self.formulas)
+
+    def starts_mid_sentence(self) -> bool:
+        """Tell whether the passage opens inside a sentence.
+
+        Returns:
+            bool: True when its first word is a lowercase function word, as in
+            "where c is the hypotenuse" after an equation.
+        """
+        match = _FIRST_WORD.match(self.text)
+        return bool(match and match.group().islower() and match.group() in FUNCTION_WORDS)
 
     def sentences(self) -> list[Passage]:
         """Split the passage at real sentence ends.

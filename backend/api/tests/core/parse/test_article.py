@@ -36,7 +36,7 @@ def test_boilerplate_dropped(article: ParsedArticle) -> None:
 def test_no_prose_chunk_over_the_split_threshold(article: ParsedArticle) -> None:
     prose = [chunk for chunk in article.chunks if chunk.kind == "prose"]
     assert all(chunk.est_tokens <= INTRO_MERGE_MAX_TOKENS for chunk in prose)
-    # Only an introduction kept together with its quotation may pass the threshold.
+    # In this article only an introduction kept with its quotation passes the threshold.
     assert all(chunk.est_tokens <= SPLIT_THRESHOLD_TOKENS or ":" in chunk.text for chunk in prose)
 
 

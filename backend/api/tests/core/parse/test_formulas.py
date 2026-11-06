@@ -149,6 +149,14 @@ def test_a_paragraph_ending_on_an_equation_without_a_full_stop_is_kept() -> None
     ]
 
 
+def test_the_sentence_an_equation_continues_stays_in_its_chunk() -> None:
+    # Both paragraphs are too long to merge by size or as a short tail.
+    opening = "A full sentence of ordinary prose. " * 8 + "The norm is"
+    rest = "where c is the hypotenuse. " + "Another full sentence of prose. " * 6
+    html = f"<p>{opening} {_block('c^2=a^2+b^2')}</p><p>{rest}</p>"
+    assert texts(parse_sections(LEAD, html))[1:] == [f"{opening} c^2=a^2+b^2 {rest.strip()}"]
+
+
 def test_an_equation_set_in_a_paragraph_is_spaced_off_the_word_before() -> None:
     reference = "<sup class='reference'><a href='#n'>[1]</a></sup>"
     html = f"<p>The value is therefore{reference}{_block('x=1')} for every x.</p>"

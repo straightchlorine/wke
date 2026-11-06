@@ -8,6 +8,8 @@ from wke.core.parse.passage import Passage, join_passages
 from wke.core.parse.state import ParseState
 from wke.core.text.tokens import est_tokens
 
+# Largest chunk an introduction and its quote, or a sentence and its
+# continuation, may make together; past it they are split as usual.
 INTRO_MERGE_MAX_TOKENS = 400
 
 MERGE_THRESHOLD_TOKENS = 40
@@ -125,7 +127,11 @@ class ChunkWriter:
                 continue
 
             merged = join_passages([buffer, piece])
-            if buffer.text.endswith(":") and est_tokens(merged.text) <= INTRO_MERGE_MAX_TOKENS:
+
+            # An introduction stays with what it introduces, and a sentence
+            # with its continuation ("where c is ..." after an equation).
+            joined = buffer.text.endswith(":") or piece.starts_mid_sentence()
+            if joined and est_tokens(merged.text) <= INTRO_MERGE_MAX_TOKENS:
                 buffer = merged
             elif (
                 est_tokens(buffer.text) < MERGE_THRESHOLD_TOKENS
