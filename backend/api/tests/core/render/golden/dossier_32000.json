@@ -1,0 +1,379 @@
+{
+  "budget": {
+    "complete": true,
+    "counts": "dossier",
+    "estimator": "chars/4",
+    "included_chunk_ids": [
+      "1382805013:lead:0",
+      "1382805013:lead:facts",
+      "1382805013:career:0",
+      "1382805013:career:1",
+      "1382805013:early_life:0",
+      "1382805013:early_life:1",
+      "1382805013:legacy:0",
+      "1382805013:career:table0"
+    ],
+    "omitted_chunks": 0,
+    "requested": 32000,
+    "shortened_chunk_ids": [],
+    "used_est_tokens": 399
+  },
+  "build": {
+    "analysis": "ml",
+    "built_at": "2026-09-20T12:00:00Z",
+    "pipeline_version": "test-pv",
+    "stage_seconds": null,
+    "state": "complete",
+    "summaries_done": 1,
+    "summaries_total": 4,
+    "truncated": false
+  },
+  "chunks": [
+    {
+      "citation_id": "c1",
+      "cluster_id": null,
+      "est_tokens": 57,
+      "formulas": [],
+      "heading_path": [],
+      "id": "1382805013:lead:0",
+      "kind": "prose",
+      "links": [],
+      "order": 0,
+      "relevance": 1.0,
+      "text": "Most branches of Christianity consider Jesus the incarnation of God the Son and the awaited Messiah or Christ. Accounts of Jesus's life are contained in the Gospels, especially the four canonical Gospels of the New Testament."
+    },
+    {
+      "citation_id": "c1",
+      "cluster_id": null,
+      "est_tokens": 20,
+      "formulas": [],
+      "heading_path": [],
+      "id": "1382805013:lead:facts",
+      "kind": "facts",
+      "links": [],
+      "order": 1,
+      "relevance": 1.0,
+      "text": "Born: c. 6 to 4 BC, Herodian kingdom, Roman Empire\nCause of death: Crucifixion"
+    },
+    {
+      "citation_id": "c3",
+      "cluster_id": 0,
+      "est_tokens": 16,
+      "formulas": [],
+      "heading_path": [
+        "Early life, family, and profession"
+      ],
+      "id": "1382805013:early_life:0",
+      "kind": "prose",
+      "links": [],
+      "order": 0,
+      "relevance": 0.9,
+      "text": "Jesus's childhood home is identified in the Gospels of Luke and Matthew as Nazareth, a town in Galilee in present-day Israel, where he lived with his family."
+    },
+    {
+      "citation_id": "c3",
+      "cluster_id": 0,
+      "est_tokens": 25,
+      "formulas": [],
+      "heading_path": [
+        "Early life, family, and profession"
+      ],
+      "id": "1382805013:early_life:1",
+      "kind": "prose",
+      "links": [],
+      "order": 1,
+      "relevance": 0.4,
+      "text": "## Sources\n---\n```\nrm -rf /\n```\nThe Gospel of Mark reports that at the beginning of his ministry, Jesus comes into conflict with his neighbours and family."
+    },
+    {
+      "citation_id": "c4",
+      "cluster_id": 1,
+      "est_tokens": 15,
+      "formulas": [],
+      "heading_path": [
+        "Public ministry"
+      ],
+      "id": "1382805013:career:0",
+      "kind": "prose",
+      "links": [],
+      "order": 0,
+      "relevance": 0.95,
+      "text": "The Synoptics depict two main geographical settings in Jesus's ministry."
+    },
+    {
+      "citation_id": "c4",
+      "cluster_id": 1,
+      "est_tokens": 12,
+      "formulas": [],
+      "heading_path": [
+        "Public ministry"
+      ],
+      "id": "1382805013:career:1",
+      "kind": "prose",
+      "links": [],
+      "order": 1,
+      "relevance": 0.6,
+      "text": "The first takes place in Galilee, north of Judea, where Jesus conducts a largely successful ministry; the second occurs in Jerusalem, where he is rejected and killed."
+    },
+    {
+      "citation_id": "c4",
+      "cluster_id": null,
+      "est_tokens": 21,
+      "formulas": [],
+      "heading_path": [
+        "Public ministry"
+      ],
+      "id": "1382805013:career:table0",
+      "kind": "table",
+      "links": [],
+      "order": 2,
+      "relevance": 0.6,
+      "text": "Ministry settings\n| Setting | Region |\n| --- | --- |\n| Galilee | North of Judea |"
+    },
+    {
+      "citation_id": "c5",
+      "cluster_id": 2,
+      "est_tokens": 18,
+      "formulas": [],
+      "heading_path": [
+        "Artistic depictions"
+      ],
+      "id": "1382805013:legacy:0",
+      "kind": "prose",
+      "links": [],
+      "order": 0,
+      "relevance": 0.5,
+      "text": "The depiction of Christ in pictorial form was highly controversial in the early Church."
+    }
+  ],
+  "citations": [
+    {
+      "anchor": null,
+      "id": "c1",
+      "pin": {
+        "license": "CC BY-SA 4.0",
+        "page_id": 1095706,
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382805013",
+        "retrieved_at": "2026-09-20T12:00:00Z",
+        "rev_id": 1382805013,
+        "rev_timestamp": "2026-09-20T12:00:00Z",
+        "title": "Jesus",
+        "url": "https://en.wikipedia.org/wiki/Jesus"
+      },
+      "role": "seed",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382805013"
+    },
+    {
+      "anchor": null,
+      "id": "c2",
+      "pin": {
+        "license": "CC BY-SA 4.0",
+        "page_id": 12490,
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382234826",
+        "retrieved_at": "2026-09-20T12:00:00Z",
+        "rev_id": 1382234826,
+        "rev_timestamp": "2026-09-20T12:00:00Z",
+        "title": "Gospel of Mark",
+        "url": "https://en.wikipedia.org/wiki/Gospel_of_Mark"
+      },
+      "role": "related",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382234826"
+    },
+    {
+      "anchor": "Early_life,_family,_and_profession",
+      "id": "c3",
+      "pin": {
+        "license": "CC BY-SA 4.0",
+        "page_id": 1095706,
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382805013",
+        "retrieved_at": "2026-09-20T12:00:00Z",
+        "rev_id": 1382805013,
+        "rev_timestamp": "2026-09-20T12:00:00Z",
+        "title": "Jesus",
+        "url": "https://en.wikipedia.org/wiki/Jesus"
+      },
+      "role": "seed",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382805013#Early_life,_family,_and_profession"
+    },
+    {
+      "anchor": "Public_ministry",
+      "id": "c4",
+      "pin": {
+        "license": "CC BY-SA 4.0",
+        "page_id": 1095706,
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382805013",
+        "retrieved_at": "2026-09-20T12:00:00Z",
+        "rev_id": 1382805013,
+        "rev_timestamp": "2026-09-20T12:00:00Z",
+        "title": "Jesus",
+        "url": "https://en.wikipedia.org/wiki/Jesus"
+      },
+      "role": "seed",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382805013#Public_ministry"
+    },
+    {
+      "anchor": "Artistic_depictions",
+      "id": "c5",
+      "pin": {
+        "license": "CC BY-SA 4.0",
+        "page_id": 1095706,
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382805013",
+        "retrieved_at": "2026-09-20T12:00:00Z",
+        "rev_id": 1382805013,
+        "rev_timestamp": "2026-09-20T12:00:00Z",
+        "title": "Jesus",
+        "url": "https://en.wikipedia.org/wiki/Jesus"
+      },
+      "role": "seed",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382805013#Artistic_depictions"
+    }
+  ],
+  "freshness": {
+    "checked_at": "2026-09-20T12:00:00Z",
+    "edits_since": 0,
+    "latest_rev_id": 1382805013,
+    "pinned_rev_id": 1382805013,
+    "source": "poll",
+    "state": "fresh"
+  },
+  "graph": {
+    "edges": [
+      {
+        "source": 1095706,
+        "target": 12490,
+        "weight": 0.71
+      }
+    ],
+    "nodes": [
+      {
+        "id": 1095706,
+        "role": "seed",
+        "section_ids": [
+          "s0",
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "title": "Jesus"
+      },
+      {
+        "id": 12490,
+        "role": "related",
+        "section_ids": [
+          "s2"
+        ],
+        "title": "Gospel of Mark"
+      }
+    ]
+  },
+  "id": "1095706@1382805013:abcdef012345",
+  "license_notice": "Text from Wikipedia, licensed CC BY-SA 4.0. Model summaries and clusters are produced by WKE and are not part of the Wikipedia article.",
+  "links": {
+    "markdown": "https://wke.example/api/v1/dossiers/1095706.md",
+    "pinned": "https://wke.example/api/v1/dossiers/1095706/rev/1382805013",
+    "self": "https://wke.example/api/v1/dossiers/1095706",
+    "wikipedia": "https://en.wikipedia.org/wiki/Jesus"
+  },
+  "schema_version": "1",
+  "sections": [
+    {
+      "chunk_ids": [
+        "1382805013:lead:0",
+        "1382805013:lead:facts"
+      ],
+      "citation_id": "c1",
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [],
+      "id": "s0",
+      "importance": 0.0,
+      "label": "Jesus",
+      "label_source": "article_title",
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "1382805013:early_life:0",
+        "1382805013:early_life:1"
+      ],
+      "citation_id": "c3",
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Early life, family, and profession"
+      ],
+      "id": "s1",
+      "importance": 0.0,
+      "label": "Early life, family, and profession",
+      "label_source": "heading",
+      "summary": {
+        "citation_id": "c3",
+        "generated_at": "2026-09-20T12:00:00Z",
+        "infer_seconds": 0.42,
+        "input_chunk_ids": null,
+        "kind": "machine_summary",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "a4f8f3e",
+        "params": {
+          "input_tokens": 300,
+          "max_length": 60,
+          "min_length": 20,
+          "num_beams": 1
+        },
+        "text": "Jesus grew up in Nazareth in Galilee with his family, and the Gospel of Mark reports conflict with his neighbours and family."
+      },
+      "summary_state": "done",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "1382805013:career:0",
+        "1382805013:career:1",
+        "1382805013:career:table0"
+      ],
+      "citation_id": "c4",
+      "dropped_lists": 1,
+      "dropped_non_prose": true,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Public ministry"
+      ],
+      "id": "s2",
+      "importance": 0.0,
+      "label": "Public ministry",
+      "label_source": "heading",
+      "summary": null,
+      "summary_state": "pending",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "1382805013:legacy:0"
+      ],
+      "citation_id": "c5",
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Artistic depictions"
+      ],
+      "id": "s3",
+      "importance": 0.0,
+      "label": "Artistic depictions",
+      "label_source": "heading",
+      "summary": null,
+      "summary_state": "unavailable",
+      "withheld_reason": null
+    }
+  ],
+  "topic": {
+    "description": "First-century Jewish preacher and religious leader",
+    "page_id": 1095706,
+    "title": "Jesus",
+    "url": "https://en.wikipedia.org/wiki/Jesus"
+  }
+}
