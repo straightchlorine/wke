@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from datetime import UTC, datetime
+from typing import Any
 
 
-def analyze_response_json() -> dict:
+def analyze_response_json() -> dict[str, Any]:
     return {
         "model": "all-MiniLM-L6-v2",
         "model_revision": "abc123",
@@ -17,7 +18,7 @@ def analyze_response_json() -> dict:
     }
 
 
-def summarize_response_json() -> dict:
+def summarize_response_json() -> dict[str, Any]:
     return {
         "kind": "machine_summary",
         "text": "A short machine summary.",

@@ -19,6 +19,7 @@ from tests.support.constants import (
     NEW_TITLE_REV_ID,
     REQUIRED_ENV,
 )
+from wke.clients.redis import RedisClient
 from wke.clients.user_agent import build_user_agent
 from wke.clients.wikimedia import WikimediaClient
 
@@ -160,7 +161,7 @@ class FakeClock:
 
 
 def make_wikimedia_client(
-    redis_client,
+    redis_client: RedisClient,
     handler: Handler,
     *,
     clock: Callable[[], float] = time.monotonic,
