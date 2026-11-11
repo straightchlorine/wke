@@ -1,0 +1,298 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+/* A window under 500px tall (a landscape phone): chrome gives up height. */
+@custom-variant short (@media (max-height: 500px));
+
+/* Primitive tokens. The values in :root are the light theme, and
+   [data-theme="dark"] below overrides the colors. */
+:root {
+  color-scheme: light;
+  --wke-paper: #eeece6;
+  --wke-sheet: #f7f6f2;
+  --wke-sunken: #e4e1d9;
+  --wke-wash: #dde7e1;
+  --wke-model: #e7e3d8;
+  --wke-stamp-wash: #f1ded8;
+  --wke-rule: #cfcbc0;
+  --wke-rule-strong: #8f8b80;
+  --wke-ink: #1c1b18;
+  --wke-ink-2: #4a4842;
+  --wke-ink-3: #66635a;
+  --wke-accent: #1f5a47;
+  --wke-accent-ink: #143d30;
+  --wke-on-accent: #ffffff;
+  --wke-stamp: #a82e1c;
+  --wke-c1: #3e5a78;
+  --wke-c2: #6b6b2e;
+  --wke-c3: #85602f;
+  --wke-c4: #6a4a6e;
+  --wke-c5: #2f6b66;
+  --wke-c6: #4f4f8c;
+  --wke-shadow-pop: 0 4px 14px rgba(28, 27, 24, 0.14);
+  --motion-fast: 120ms;
+  --motion-base: 220ms;
+  --motion-ping: 900ms;
+  --motion-stagger: 1400ms;
+  --motion-dot: 2400ms;
+  --control-h: 32px;
+  --header-h: 56px;
+  --toolbar-h: 56px;
+  --hud-h: 56px;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --wke-paper: #17191c;
+  --wke-sheet: #1f2225;
+  --wke-sunken: #121416;
+  --wke-wash: #1f3a31;
+  --wke-model: #24262a;
+  --wke-stamp-wash: #3a231f;
+  --wke-rule: #33373c;
+  --wke-rule-strong: #6b7178; /* Over 3:1 on paper (WCAG 1.4.11). */
+  --wke-ink: #eceae3;
+  --wke-ink-2: #b9b6ae;
+  --wke-ink-3: #8f8c85; /* Under 4.5:1 on wash: not for text there. */
+  --wke-accent: #7cc7a6;
+  --wke-accent-ink: #a9e0c6;
+  --wke-on-accent: #10201a;
+  --wke-stamp: #f08a7c;
+  --wke-c1: #8fb0d6;
+  --wke-c2: #bdbb6a;
+  --wke-c3: #d0a06a;
+  --wke-c4: #c39bc7;
+  --wke-c5: #7fc4bc;
+  --wke-c6: #a3a3e0;
+  --wke-shadow-pop: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+/* Controls grow to 44px under a coarse pointer so they are easy to tap. */
+@media (pointer: coarse) {
+  :root {
+    --control-h: 44px;
+  }
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-paper: var(--wke-paper);
+  --color-sheet: var(--wke-sheet);
+  --color-sunken: var(--wke-sunken);
+  --color-wash: var(--wke-wash);
+  --color-model: var(--wke-model);
+  --color-stamp-wash: var(--wke-stamp-wash);
+  --color-rule: var(--wke-rule);
+  --color-rule-strong: var(--wke-rule-strong);
+  --color-ink: var(--wke-ink);
+  --color-ink-2: var(--wke-ink-2);
+  --color-ink-3: var(--wke-ink-3);
+  --color-accent: var(--wke-accent);
+  --color-accent-ink: var(--wke-accent-ink);
+  --color-on-accent: var(--wke-on-accent);
+  --color-stamp: var(--wke-stamp);
+  --color-c1: var(--wke-c1);
+  --color-c2: var(--wke-c2);
+  --color-c3: var(--wke-c3);
+  --color-c4: var(--wke-c4);
+  --color-c5: var(--wke-c5);
+  --color-c6: var(--wke-c6);
+  --shadow-*: initial;
+  --shadow-pop: var(--wke-shadow-pop);
+}
+
+@theme {
+  --font-serif:
+    "Newsreader Variable", "Newsreader Fallback", "Newsreader Fallback Times", "Iowan Old Style",
+    "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --font-sans: "Archivo Variable", "Archivo Fallback", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --text-*: initial;
+  --text-11: 11px;
+  --text-11--line-height: 14px;
+  --text-12: 12px;
+  --text-12--line-height: 16px;
+  --text-13: 13px;
+  --text-13--line-height: 18px;
+  --text-14: 14px;
+  --text-14--line-height: 20px;
+  --text-15: 15px;
+  --text-15--line-height: 20px;
+  --text-16: 16px;
+  --text-16--line-height: 22px;
+  --text-prose: 17px;
+  --text-prose--line-height: 27px;
+  --text-18: 18px;
+  --text-18--line-height: 26px;
+  --text-22: 22px;
+  --text-22--line-height: 28px;
+  --text-32: 32px;
+  --text-32--line-height: 36px;
+  --text-36: 36px;
+  --text-36--line-height: 40px;
+  --text-44: 44px;
+  --text-44--line-height: 48px;
+  --ws-sans: 0.08em; /* Set on html for all text; font-serif resets it. */
+
+  /* The spacing unit is 4px, so a utility number n means 4n pixels. */
+  --spacing: 4px;
+
+  --radius-*: initial;
+  --radius-0: 0px; /* plates, records, panels, tables */
+  --radius-1: 0px;
+  --radius-2: 0px; /* every control and frame is square; round is reserved for glyphs and data points (--radius-full) */
+  --radius-full: 9999px; /* info dots, live dot, ping ring, nodes */
+
+  --ease-ping: cubic-bezier(0.1, 0.6, 0.3, 1);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --animate-ping-ring: ping-ring var(--motion-ping) var(--ease-ping) forwards;
+  --animate-dot-ring: dot-ring var(--motion-dot) ease-out infinite;
+
+  --breakpoint-*: initial;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1440px;
+
+  /* Minimum height of each example box on the machines page, set to the height
+     of the loaded example so the section does not grow when it arrives. */
+  --size-example-llms: 796px;
+  --size-example-json: 1930px;
+  --size-example-markdown: 796px;
+
+  --container-prose: 660px;
+  --container-page: 1376px;
+}
+
+:root {
+  /* The page gutter, applied as px-(--gutter) on the header row, the main
+     column and the footer.
+     One shared token keeps each page's h1 aligned with the header wordmark. */
+  --gutter: 16px;
+  /* The root zoom factor set in the media queries below, for dividing viewport
+     units. */
+  --ui-zoom: 1;
+  /* Width of a 1px rule such as the header, frame, section and table rules.
+     Under the root zoom below, each device pixel ratio with its own rule gets a
+     width that makes width x zoom x ratio a whole number of device pixels.
+     The browser then has nothing to round. */
+  --hairline: 1px;
+}
+@media (min-width: 600px) {
+  :root {
+    --gutter: 32px;
+  }
+}
+@media (min-width: 1200px) {
+  :root {
+    --gutter: 64px;
+  }
+}
+
+/* Every size in the app is in px, so changing the font size on html would
+   change nothing.
+   Zoom on the root scales the whole layout instead. */
+@media (min-width: 2400px) {
+  :root {
+    zoom: 1.25;
+    --ui-zoom: 1.25;
+  }
+}
+@media (min-width: 2400px) and (resolution: 1.5dppx) {
+  :root {
+    --hairline: 1.0667px;
+  }
+}
+@media (min-width: 2400px) and (resolution: 2dppx) {
+  :root {
+    --hairline: 0.8px;
+  }
+}
+/* From 3400px up the page is wider and zoomed further than at 2400px.
+   The content then takes a larger share of the screen, and small captions stay
+   legible. */
+@media (min-width: 3400px) {
+  :root {
+    zoom: 1.75;
+    --ui-zoom: 1.75;
+    --container-page: 1445px;
+  }
+}
+@media (min-width: 3400px) and (resolution: 1dppx) {
+  :root {
+    --hairline: 1.1429px;
+  }
+}
+@media (min-width: 3400px) and (resolution: 1.5dppx) {
+  :root {
+    --hairline: 0.7619px;
+  }
+}
+@media (min-width: 3400px) and (resolution: 2dppx) {
+  :root {
+    --hairline: 0.8571px;
+  }
+}
+
+@keyframes ping-ring {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+@keyframes dot-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    font-stretch: 92%;
+    font-variant-numeric: proportional-nums;
+    word-spacing: var(--ws-sans);
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+  .font-serif {
+    word-spacing: normal;
+  }
+  p a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  /* Routing and section jumps focus a heading from script, and some browsers
+     show the focus ring on it anyway.
+     These headings have tabindex -1, so keyboard users never tab to them and no
+     other focus ring is hidden. */
+  h1[tabindex="-1"]:focus,
+  h2[tabindex="-1"]:focus {
+    outline: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ping-ring,
+    .dot-ring {
+      animation: none;
+    }
+  }
+  @media (max-width: 599px) {
+    html {
+      scroll-padding-bottom: calc(3.5rem + env(safe-area-inset-bottom));
+    }
+  }
+}

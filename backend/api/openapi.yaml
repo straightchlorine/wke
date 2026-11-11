@@ -1,0 +1,1234 @@
+openapi: 3.1.0
+info:
+  title: Wikipedia Knowledge Explorer API
+  version: 1.0.0
+  description: |
+    Clean, cited context from Wikipedia for LLMs and people. A dossier is
+    built once per (page_id, rev_id, pipeline_version) and rendered per
+    request for a token budget (2000 | 8000 | 32000) as JSON or Markdown.
+    Building is asynchronous: POST /api/v1/dossiers answers 202 with a job
+    to poll. GET never builds. Every 4xx/5xx body is
+    application/problem+json (RFC 9457). Every response carries
+    X-Request-ID. Quoted text is Wikipedia content under CC BY-SA 4.0;
+    summaries are model output and labelled as such.
+    The wke-ml wire protocol is included under the "internal" tag with its
+    own server; the public server does not route it, and the frontend client
+    generator excludes that tag.
+servers:
+  - url: https://wke.piotrkrzysztof.dev
+    description: Production
+  - url: http://localhost:8000
+    description: >
+      Local development backend; the Vite dev and preview servers proxy
+      the API paths to it
+tags:
+  - name: search
+  - name: dossiers
+  - name: jobs
+  - name: trending
+  - name: live
+  - name: status
+  - name: machine
+    description: llms.txt and MCP surfaces
+  - name: internal
+    description: wke-api -> wke-ml only (ClusterIP, NetworkPolicy)
+
+paths:
+  /api/v1/search:
+    get:
+      tags: [search]
+      summary: Title search (typeahead)
+      operationId: searchTopics
+      description: >
+        One Action API `list=search` call on cache miss (cached 1 h), zero
+        on hit. When no result matches the query as typed, one more fuzzy
+        `list=search` call (also cached 1 h) looks for a nearby spelling;
+        `did_you_mean` carries the API's own suggestion or that title, and
+        is null when a result already is the query. Rate limit 30/min per
+        client IP.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema: { type: string, minLength: 1, maxLength: 200 }
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 10, default: 8 }
+      responses:
+        "200":
+          description: Candidates with dossier state
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [query, results]
+                properties:
+                  query: { type: string }
+                  results:
+                    type: array
+                    items: { $ref: "#/components/schemas/TopicCandidate" }
+                  did_you_mean:
+                    description: Suggested title for a misspelt query; null when none.
+                    oneOf:
+                      - { type: string }
+                      - { type: "null" }
+        "422": { $ref: "#/components/responses/ApiError" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+        "503": { $ref: "#/components/responses/Upstream" }
+
+  /api/v1/dossiers:
+    get:
+      tags: [dossiers]
+      summary: List built dossiers (the Dossiers page)
+      operationId: listDossiers
+      description: >
+        Pure read over the `built` ZSET (page_id scored by built_at), newest
+        build first; covers today's prebuilt list plus every dossier built
+        in the last 7 days. One row per page, its latest pin. Rate limit
+        120/min per IP (GET reads). The scan is cached in-process for 10 s;
+        ETag/304, Cache-Control public max-age=10.
+      parameters:
+        - name: q
+          in: query
+          description: Case-insensitive substring of the title
+          schema: { type: string, minLength: 1, maxLength: 200 }
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 100, default: 50 }
+        - name: cursor
+          in: query
+          description: next_cursor from the previous page
+          schema: { type: string }
+      responses:
+        "200":
+          description: One page of built dossiers
+          headers:
+            ETag: { schema: { type: string } }
+            Cache-Control: { schema: { type: string } }
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, next_cursor]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: "#/components/schemas/DossierListItem" }
+                  next_cursor:
+                    oneOf:
+                      - type: string
+                      - type: "null"
+        "304": { description: Not modified }
+        "422": { $ref: "#/components/responses/ApiError" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+    post:
+      tags: [dossiers]
+      summary: Get or build a dossier for a title
+      operationId: requestDossier
+      description: >
+        Resolves the title (redirects followed, 1 Action API call, cached
+        10 min). If a dossier for the current revision exists, returns it
+        (200). Otherwise enqueues a build (202) with Location and
+        Retry-After; concurrent requests for the same page share one job.
+        Cold build costs exactly 3 Wikimedia calls. Rate limit 6/min per
+        IP, 2 in-flight jobs per IP, 60 builds per IP per day.
+      parameters:
+        - $ref: "#/components/parameters/Parts"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title]
+              additionalProperties: false
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                  pattern: "^[^#<>\\[\\]|{}\\x00-\\x1f\\x7f]+$"
+                refresh:
+                  type: boolean
+                  default: false
+                  description: Force a rebuild of the current revision (2/h per IP).
+      responses:
+        "200":
+          description: >
+            Dossier already built for the current revision. The body equals
+            GET /api/v1/dossiers/{page_id} for the same parts at the default
+            budget (8000) and summaries off.
+          headers:
+            ETag: { schema: { type: string } }
+            WKE-Dossier-Tokens:
+              schema: { type: integer }
+              description: Budget.used_est_tokens, the counted dossier part (chars/4 of the content with its [cN] markers, never above the requested budget)
+            WKE-Total-Tokens:
+              schema: { type: integer }
+              description: chars/4 of the whole body as delivered, whatever parts were selected
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DossierResponse" }
+        "202":
+          description: Build enqueued or already running
+          headers:
+            Location:
+              schema: { type: string }
+              description: /api/v1/jobs/{job_id}
+            Retry-After:
+              schema: { type: integer }
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Job" }
+        "404": { $ref: "#/components/responses/ApiError" }
+        "409":
+          description: Disambiguation page; pick a candidate
+          content:
+            application/problem+json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+        "422": { $ref: "#/components/responses/ApiError" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+        "503": { $ref: "#/components/responses/Upstream" }
+
+  /api/v1/dossiers/{page_id}:
+    get:
+      tags: [dossiers]
+      summary: Latest built dossier for a page, packed to a token budget
+      operationId: getDossier
+      description: >
+        Pure read: never triggers a build. 404 not_built if nothing is
+        built yet. ETag "{rev_id}-{pv}-{budget}-{format}-{state}-{done}-{s0|s1}-{l0|l1}-{parts}" (build
+        state, summaries done, summaries on or off, parts as p plus d, m, s), Cache-Control
+        public max-age=60. Links: rel=alternate (text/markdown),
+        rel=describedby (/llms.txt). Freshness is computed at read time.
+      parameters:
+        - $ref: "#/components/parameters/PageId"
+        - $ref: "#/components/parameters/Budget"
+        - $ref: "#/components/parameters/Format"
+        - $ref: "#/components/parameters/Links"
+        - $ref: "#/components/parameters/Parts"
+        - name: summaries
+          in: query
+          description: >
+            Pack and render the stored machine summaries (default false).
+            Off, the Markdown has no summary block and no summary notice and
+            the budget goes to source text; on, summaries and their notices
+            are rendered. The ETag differs between the two.
+          schema: { type: boolean, default: false }
+        - name: If-None-Match
+          in: header
+          schema: { type: string }
+      responses:
+        "200":
+          description: Packed dossier
+          headers:
+            ETag: { schema: { type: string } }
+            Link: { schema: { type: string } }
+            WKE-Dossier-Tokens:
+              schema: { type: integer }
+              description: Budget.used_est_tokens, the counted dossier part (chars/4 of the content with its [cN] markers, never above the requested budget)
+            WKE-Total-Tokens:
+              schema: { type: integer }
+              description: chars/4 of the whole body as delivered, whatever parts were selected
+            WKE-Freshness:
+              schema: { type: string, enum: [fresh, stale, unknown] }
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DossierResponse" }
+            text/markdown:
+              schema: { type: string }
+        "304": { description: Not modified }
+        "404": { $ref: "#/components/responses/ApiError" }
+        "422": { $ref: "#/components/responses/ApiError" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /api/v1/dossiers/{page_id}.md:
+    get:
+      tags: [dossiers]
+      summary: Markdown dossier (llms.txt convention)
+      operationId: getDossierMarkdown
+      description: >
+        Same packing as the JSON route. Summaries are off by default;
+        `summaries=true` adds the model-written summaries, labelled as model
+        output, with their per-section notices.
+      parameters:
+        - $ref: "#/components/parameters/PageId"
+        - $ref: "#/components/parameters/Budget"
+        - $ref: "#/components/parameters/Links"
+        - $ref: "#/components/parameters/Parts"
+        - name: summaries
+          in: query
+          description: >
+            Render the stored machine summaries (default false); see the
+            JSON route.
+          schema: { type: boolean, default: false }
+      responses:
+        "200":
+          description: Markdown
+          headers:
+            WKE-Dossier-Tokens:
+              schema: { type: integer }
+              description: Budget.used_est_tokens, the counted dossier part (chars/4 of the content with its [cN] markers, never above the requested budget)
+            WKE-Total-Tokens:
+              schema: { type: integer }
+              description: chars/4 of the whole body as delivered, whatever parts were selected
+          content:
+            text/markdown:
+              schema: { type: string }
+        "404": { $ref: "#/components/responses/ApiError" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /api/v1/dossiers/{page_id}/rev/{rev_id}:
+    get:
+      tags: [dossiers]
+      summary: Immutable revision-pinned dossier view
+      operationId: getDossierRevision
+      description: Cache-Control public, max-age=31536000, immutable. 404 if that revision was never built.
+      parameters:
+        - $ref: "#/components/parameters/PageId"
+        - name: rev_id
+          in: path
+          required: true
+          schema: { type: integer, minimum: 1 }
+        - $ref: "#/components/parameters/Budget"
+        - $ref: "#/components/parameters/Format"
+        - $ref: "#/components/parameters/Links"
+        - $ref: "#/components/parameters/Parts"
+      responses:
+        "200":
+          description: Packed dossier
+          headers:
+            WKE-Dossier-Tokens:
+              schema: { type: integer }
+              description: Budget.used_est_tokens, the counted dossier part (chars/4 of the content with its [cN] markers, never above the requested budget)
+            WKE-Total-Tokens:
+              schema: { type: integer }
+              description: chars/4 of the whole body as delivered, whatever parts were selected
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DossierResponse" }
+            text/markdown:
+              schema: { type: string }
+        "404": { $ref: "#/components/responses/ApiError" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /api/v1/jobs/{job_id}:
+    get:
+      tags: [jobs]
+      summary: Build job status
+      operationId: getJob
+      description: "Poll every poll_after_ms (1000 default, 3000 when queue > 10). Jobs expire after 1 h; a 404 means re-POST. Rate limit 600/min per IP, its own bucket apart from the 120/min GET reads."
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema: { type: string, pattern: "^[0-9a-f]{16}$" }
+      responses:
+        "200":
+          description: Job
+          headers:
+            Retry-After:
+              description: Seconds until the next poll; sent only while the job is queued or running.
+              schema: { type: integer }
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Job" }
+        "404": { $ref: "#/components/responses/ApiError" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /api/v1/trending:
+    get:
+      tags: [trending]
+      summary: Most-read topics yesterday (UTC) with a similarity graph
+      operationId: getTrending
+      description: Pre-built nightly by the wke-trending CronJob. ETag/304. Cache-Control public max-age=60.
+      parameters:
+        - name: If-None-Match
+          in: header
+          schema: { type: string }
+      responses:
+        "200":
+          description: Snapshot
+          headers:
+            ETag: { schema: { type: string } }
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/TrendingSnapshot" }
+        "304": { description: Not modified }
+        "503":
+          description: No snapshot yet (cold Redis); Retry-After set
+          content:
+            application/problem+json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+  /api/v1/live:
+    get:
+      tags: [live]
+      summary: Recent edits on tracked pages and real counters
+      operationId: getLive
+      description: Poll every 20 s visible / 60 s hidden. Cache-Control no-store. Rate limit 12/min per IP.
+      parameters:
+        - name: since
+          in: query
+          schema: { type: integer, minimum: 0, default: 0 }
+          description: Cursor from the previous response
+      responses:
+        "200":
+          description: Events after the cursor
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/LiveResponse" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /api/v1/status:
+    get:
+      tags: [status]
+      summary: Dependency state for the UI banner and gatus
+      operationId: getStatus
+      responses:
+        "200":
+          description: Always 200; fields say what is degraded
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Status" }
+
+  /llms.txt:
+    get:
+      tags: [machine]
+      summary: llms.txt index
+      operationId: getLlmsTxt
+      description: Generated from trending:latest every 5 min; lists only ready dossiers.
+      responses:
+        "200":
+          description: Markdown per llmstxt.org
+          content:
+            text/markdown:
+              schema: { type: string }
+
+  /sitemap.xml:
+    get:
+      tags: [machine]
+      summary: XML sitemap
+      operationId: getSitemapXml
+      description: >-
+        Static pages plus one URL per built dossier (lastmod = pinned revision
+        timestamp), cached 5 min, capped at 50000 entries. Carries ETag and
+        Cache-Control public, max-age=300.
+      responses:
+        "200":
+          description: Sitemap per sitemaps.org 0.9
+          content:
+            application/xml:
+              schema: { type: string }
+        "304":
+          description: If-None-Match matched the current ETag
+
+  /mcp:
+    post:
+      tags: [machine]
+      summary: MCP Streamable HTTP endpoint (official Python SDK, stateless)
+      operationId: mcp
+      description: >
+        JSON-RPC 2.0 over Streamable HTTP. Tools: search_topics(query,
+        limit), get_dossier(title, budget, format), get_trending(limit).
+        get_dossier waits up to 20 s for a partial build, then returns a
+        structured building status. Host allow-list; 421 on a foreign
+        Host. Rate limit 30/min per IP.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        "200":
+          description: JSON-RPC response
+          content:
+            application/json:
+              schema: { type: object }
+        "421": { description: Host not allowed }
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /healthz:
+    get:
+      tags: [internal]
+      summary: Process alive (not routed by the public server)
+      operationId: healthz
+      responses:
+        "200": { description: OK }
+
+  /readyz:
+    get:
+      tags: [internal]
+      summary: Lifespan complete; does not check Redis or wke-ml
+      operationId: readyz
+      responses:
+        "200": { description: Ready }
+        "503": { description: Starting }
+
+  /v1/analyze:
+    servers:
+      - url: http://wke-ml:8000
+    post:
+      tags: [internal]
+      summary: Embed chunks, cluster, compute relevance and related edges (wke-ml)
+      operationId: mlAnalyze
+      description: >
+        Vectors never leave wke-ml. One inference at a time; queue 4, then 503 + Retry-After.
+        Two callers -- the dossier pipeline (lead + chunks + up to 8 related leads, edges capped at 20)
+        and the trending job (lead = top topic, chunks empty, the other topics as related_leads,
+        max_edges 80). Empty chunks skip clustering and relevance. Graph node ids are page ids;
+        page_id names the seed node.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [lead, chunks]
+              properties:
+                page_id: { type: integer, minimum: 1, description: Seed node id (the article or the top topic). }
+                lead: { type: string }
+                chunks:
+                  type: array
+                  maxItems: 400
+                  items:
+                    type: object
+                    required: [id, text]
+                    properties:
+                      id: { type: string }
+                      text: { type: string }
+                related_leads:
+                  type: array
+                  maxItems: 40
+                  items:
+                    type: object
+                    required: [page_id, text]
+                    properties:
+                      page_id: { type: integer }
+                      text: { type: string }
+                max_clusters: { type: integer, minimum: 2, maximum: 6, default: 6 }
+                max_edges: { type: integer, minimum: 1, maximum: 80, default: 20 }
+      responses:
+        "200":
+          description: Analysis
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [model, model_revision, relevance, cluster_ids, representatives, edges]
+                properties:
+                  model: { type: string }
+                  model_revision: { type: string }
+                  relevance:
+                    type: object
+                    additionalProperties: { type: number }
+                  cluster_ids:
+                    type: object
+                    additionalProperties: { type: integer }
+                  representatives:
+                    type: array
+                    items: { type: string }
+                  edges:
+                    type: array
+                    items: { $ref: "#/components/schemas/GraphEdge" }
+                  infer_seconds: { type: number }
+        "503":
+          description: Busy; Retry-After set
+          content:
+            application/problem+json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+  /v1/summarize:
+    servers:
+      - url: http://wke-ml:8000
+    post:
+      tags: [internal]
+      summary: Abstractive summary with distilbart-cnn-6-6 (wke-ml)
+      operationId: mlSummarize
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [text]
+              properties:
+                text: { type: string, minLength: 1, maxLength: 20000 }
+                num_beams: { type: integer, minimum: 1, maximum: 4, default: 1 }
+                min_length: { type: integer, minimum: 1, maximum: 256, default: 30 }
+                max_length: { type: integer, minimum: 1, maximum: 256, default: 96 }
+      responses:
+        "200":
+          description: Summary
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/MachineSummary" }
+        "503":
+          description: Busy; Retry-After set
+          content:
+            application/problem+json:
+              schema: { $ref: "#/components/schemas/ApiError" }
+
+components:
+  parameters:
+    PageId:
+      name: page_id
+      in: path
+      required: true
+      schema: { type: integer, minimum: 1 }
+    Budget:
+      name: budget
+      in: query
+      schema:
+        type: integer
+        enum: [2000, 8000, 32000]
+        default: 8000
+    Format:
+      name: format
+      in: query
+      schema:
+        type: string
+        enum: [json, md]
+        default: json
+    Links:
+      name: links
+      in: query
+      description: >
+        Markdown only. Writes the link spans of each passage as inline
+        Markdown links to the Wikipedia page. Off by default: passages are
+        plain verbatim text and links are never charged to the budget. With
+        links=true the Markdown can exceed the budget and the budget line
+        says so. The JSON keeps the spans (`Chunk.links`) either way.
+      schema: { type: boolean, default: false }
+
+    Parts:
+      name: parts
+      in: query
+      description: >
+        Comma list over dossier, metadata, sources; it must contain dossier
+        (422 validation_error otherwise, and for an unknown part). Order and
+        duplicates do not matter. Default `dossier`: the sections and
+        passages alone, with no [cN] markers, no revision pin, no budget line
+        and no truncation signal. `metadata` adds them (Markdown: the title,
+        pin line, budget line, notices and "Left out:" line; JSON: id, topic,
+        build, freshness, budget, links). `sources` adds the [cN] markers and
+        the Sources list (JSON: citations). `dossier,metadata,sources` is the
+        full document. The budget counts the dossier part only, markers
+        included; the passage selection never depends on parts. The licence
+        notice is always present and never counted.
+      schema: { type: string, default: dossier }
+
+  responses:
+    ApiError:
+      description: Error (RFC 9457)
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+    RateLimited:
+      description: Client rate limit hit; Retry-After set
+      headers:
+        Retry-After: { schema: { type: integer } }
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+    Upstream:
+      description: >
+        Wikimedia budget exhausted (upstream_budget), Wikimedia throttled us
+        (upstream_rate_limited, Retry-After passed through), Wikimedia
+        unavailable (upstream_unavailable) or queue full (queue_full).
+      headers:
+        Retry-After: { schema: { type: integer } }
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/ApiError" }
+
+  schemas:
+    ApiError:
+      type: object
+      required: [type, title, status, code, request_id]
+      properties:
+        type: { type: string, format: uri }
+        title: { type: string }
+        status: { type: integer }
+        detail: { type: string }
+        code:
+          type: string
+          enum: [not_found, not_article, disambiguation, validation_error,
+                 rate_limited, queue_full, upstream_rate_limited,
+                 upstream_budget, upstream_unavailable, not_built, internal]
+        request_id: { type: string }
+        retry_after: { type: integer }
+        candidates:
+          type: array
+          items: { $ref: "#/components/schemas/TopicCandidate" }
+
+    TopicCandidate:
+      type: object
+      required: [page_id, title, dossier_state]
+      properties:
+        page_id: { type: integer }
+        title: { type: string }
+        description: { type: string }
+        dossier_state: { type: string, enum: [ready, partial, building, none] }
+
+    RevisionPin:
+      type: object
+      required: [page_id, title, rev_id, rev_timestamp, url, permalink, license, retrieved_at]
+      properties:
+        page_id: { type: integer }
+        title: { type: string }
+        rev_id: { type: integer }
+        rev_timestamp: { type: string, format: date-time }
+        url: { type: string, format: uri }
+        permalink: { type: string, format: uri }
+        license: { type: string, const: "CC BY-SA 4.0" }
+        retrieved_at: { type: string, format: date-time }
+
+    Citation:
+      type: object
+      required: [id, pin, role]
+      properties:
+        id: { type: string, pattern: "^c[0-9]+$" }
+        pin: { $ref: "#/components/schemas/RevisionPin" }
+        role: { type: string, enum: [seed, related] }
+        anchor:
+          type: string
+          description: >-
+            The id attribute of the section's heading element in the Parsoid
+            HTML of the pinned revision, never a slug built from the label.
+            Absent for the revision-level citation (the lead, c1) and for
+            related-article citations.
+        url:
+          type: string
+          format: uri
+          description: >-
+            The exact place cited: `https://en.wikipedia.org/w/index.php?oldid=<rev>#<anchor>`
+            for a section, the plain revision permalink when there is no
+            anchor.
+
+    Chunk:
+      type: object
+      required: [id, citation_id, heading_path, order, text, est_tokens, relevance]
+      properties:
+        id: { type: string }
+        kind:
+          type: string
+          enum: [prose, facts, table, list]
+          default: prose
+          description: >-
+            prose is a run of whole sentences (it starts at a sentence start
+            and ends at a sentence end, and has no "see X" pointer sentences).
+            facts is the infobox as up to 12 "Label: value" lines, placed
+            right after the lead. table is one table as a caption line,
+            a header row and rows of compact Markdown table text; a cell that
+            a rowspan covers repeats its text in each row it covers. list is
+            one outermost list of a section that has little prose of its own,
+            as one "- item" line per item (a nested item is a further line
+            indented by two spaces). A table or list that does not fit the
+            budget is cut at a row or item boundary: its first rows or items,
+            the first "Total" row of a table when it lies past them, and a last
+            line "(N rows; M shown)" or "(N items; M shown)" (the same line
+            marks a parse-time cut at 200 rows or items). Cell and item text is
+            verbatim; est_tokens counts the stored text and the chunk's text in
+            a response is the shortened text when budget.shortened_chunk_ids
+            names the chunk.
+        citation_id:
+          type: string
+          description: The citation of the chunk's own section.
+        heading_path:
+          type: array
+          items: { type: string }
+        order: { type: integer }
+        text: { type: string }
+        est_tokens: { type: integer }
+        relevance: { type: number, minimum: 0, maximum: 1, description: Cosine similarity to the article lead, negatives clamped to 0 (never rescaled). }
+        cluster_id: { type: integer }
+        links:
+          type: array
+          default: []
+          description: >-
+            Links from the passage to other Wikipedia articles, live and not
+            citations (they carry no revision pin). Prose chunks only.
+            start and end are code-point offsets into text (end exclusive);
+            a JavaScript client indexes UTF-16, so use Array.from(text) when
+            text holds astral characters. Spans lie inside the text the
+            response carries: a passage cut at a sentence end keeps only the
+            spans that remain.
+          items: { $ref: '#/components/schemas/LinkSpan' }
+        formulas:
+          type: array
+          default: []
+          description: >-
+            Stretches of text that are TeX formula source, with the same
+            offsets as links. The text keeps the TeX verbatim; the Markdown
+            rendering shows each stretch as inline code.
+          items: { $ref: '#/components/schemas/FormulaSpan' }
+
+    LinkSpan:
+      type: object
+      required: [start, end, title]
+      properties:
+        start: { type: integer, minimum: 0 }
+        end: { type: integer, minimum: 1, description: Exclusive, greater than start. }
+        title: { type: string, description: Wikipedia article title, spaces not underscores. }
+
+    FormulaSpan:
+      type: object
+      required: [start, end]
+      properties:
+        start: { type: integer, minimum: 0 }
+        end: { type: integer, minimum: 1, description: Exclusive, greater than start. }
+
+    MachineSummary:
+      type: object
+      required: [kind, text, model, model_revision, params, generated_at]
+      properties:
+        kind: { type: string, const: machine_summary }
+        text: { type: string }
+        model: { type: string }
+        model_revision: { type: string }
+        params:
+          type: object
+          properties:
+            num_beams: { type: integer }
+            min_length: { type: integer }
+            max_length: { type: integer }
+            input_tokens: { type: integer }
+        input_chunk_ids:
+          type: array
+          items: { type: string }
+        citation_id:
+          type: string
+          description: Citation of the section the summary summarises.
+        generated_at: { type: string, format: date-time }
+        infer_seconds: { type: number }
+
+    Section:
+      type: object
+      description: >-
+        One section of the article. The JSON keeps every section, including
+        those with summary_state no_prose (machine contract, flagged). The
+        Markdown rendering (the .md endpoints and the MCP get_dossier
+        markdown format) leaves out a no_prose section unless a section
+        nested under it has prose, and names the left-out titles in one
+        header line.
+      required: [id, label, label_source, chunk_ids, summary_state]
+      properties:
+        id: { type: string }
+        label: { type: string }
+        label_source: { type: string, enum: [heading, article_title, structural] }
+        chunk_ids:
+          type: array
+          items: { type: string }
+        heading_path:
+          type: array
+          items: { type: string }
+          description: >-
+            Ancestor headings plus the section's own heading, outermost
+            first (the same shape every chunk of the section carries).
+            Empty for the lead. Its length is the heading depth: one for a
+            top-level section, two for its subsections.
+        citation_id:
+          type: string
+          description: >-
+            Citation of the section's heading in the pinned revision. Its
+            passages, tables and summary all cite it.
+        dropped_non_prose:
+          type: boolean
+          description: >-
+            True when the section's own text held a list or a table that no
+            chunk carries (after the infobox and the wikitables with a header
+            row were extracted). A client may say the source text is
+            complete only when this is false.
+        dropped_lists: { type: integer, minimum: 0, description: Content lists of the section that no chunk carries (the section has prose of its own, or the chunk cap was reached). }
+        dropped_tables: { type: integer, minimum: 0, description: Content tables of the section that no chunk carries (a table that cannot be read as header and rows, or the chunk cap was reached); navigation boxes, sidebars and metadata tables are not counted. }
+        summary:
+          oneOf:
+            - $ref: "#/components/schemas/MachineSummary"
+            - type: "null"
+        summary_state:
+          type: string
+          enum: [pending, done, skipped, unavailable, no_prose, withheld]
+          description: >-
+            no_prose means the section kept no chunk of its own (heading
+            only parent, or only lists). A section holding only a table has
+            its table chunk and is skipped. It is never selected for a
+            summary and is distinct from skipped, which means text exists but
+            the model was not asked to summarise it. withheld means the model
+            produced a summary that failed the source check (cut off, not
+            ending at a sentence end, pointing to another page, or naming a
+            capitalised name or number that is not in the passages it read,
+            a number without its context, dense novel phrases, swapped roles,
+            a quotation stated as fact, a sentence cut inside, or a repeated
+            sentence);
+            the text is not kept and withheld_reason says why.
+        withheld_reason:
+          type: string
+          description: Why the summary was withheld; set only with summary_state withheld.
+        importance:
+          type: number
+          minimum: 0
+          maximum: 1
+          default: 0
+          description: >-
+            How much the section matters to the article, 0 to 1: similarity to
+            the lead, size, a U-shaped position prior (first and last sections
+            high) and a bonus for outcome headings (arrest, trial, death,
+            legacy, aftermath, result, reception, outcome). The packer ranks sections
+            by it, and the build summarises the top ones. 0 on the lead and on
+            dossiers stored before the field existed.
+
+    GraphNode:
+      type: object
+      required: [id, title, role]
+      properties:
+        id: { type: integer }
+        title: { type: string }
+        role: { type: string, enum: [seed, related] }
+        section_ids:
+          type: array
+          items: { type: string }
+
+    GraphEdge:
+      type: object
+      required: [source, target, weight]
+      properties:
+        source: { type: integer }
+        target: { type: integer }
+        weight: { type: number, minimum: 0, maximum: 1 }
+
+    Freshness:
+      type: object
+      required: [state, pinned_rev_id, checked_at, source]
+      properties:
+        state: { type: string, enum: [fresh, stale, unknown] }
+        pinned_rev_id: { type: integer }
+        latest_rev_id: { type: integer }
+        edits_since: { type: integer }
+        checked_at:
+          description: >
+            When the watcher last observed an edit to this page. Null, with
+            source "none", while the watcher has no data for the page; never
+            the time of the request.
+          oneOf:
+            - { type: string, format: date-time }
+            - { type: "null" }
+        source: { type: string, enum: [watcher, poll, none] }
+
+    Budget:
+      type: object
+      required: [requested, counts, used_est_tokens, estimator, included_chunk_ids, omitted_chunks, complete]
+      properties:
+        requested: { type: integer, enum: [2000, 8000, 32000] }
+        counts:
+          type: string
+          const: dossier
+          description: What requested and used_est_tokens cover, the dossier part only.
+        used_est_tokens:
+          type: integer
+          description: >-
+            Measured est_tokens (chars/4) of the dossier part rendered as
+            Markdown with its [cN] markers: headings, passages, markers and
+            summaries. The metadata head, the Sources list, the licence
+            footer and inline links are not counted. Never above requested.
+        estimator: { type: string, const: "chars/4" }
+        included_chunk_ids:
+          type: array
+          items: { type: string }
+        omitted_chunks: { type: integer }
+        complete: { type: boolean }
+        shortened_chunk_ids:
+          type: array
+          items: { type: string }
+          description: >-
+            Chunks cut back to fit the budget: the lead's first passage at a
+            sentence end (only when it alone does not fit), and tables and
+            lists at a row or item boundary (a table or list takes at most
+            15 percent of a ladder step's budget).
+
+    BuildInfo:
+      type: object
+      required: [state, built_at, pipeline_version, analysis, summaries_done, summaries_total]
+      properties:
+        state: { type: string, enum: [partial, complete] }
+        built_at: { type: string, format: date-time }
+        pipeline_version: { type: string }
+        analysis: { type: string, enum: [ml, structural] }
+        summaries_done: { type: integer }
+        summaries_total: { type: integer }
+        truncated: { type: boolean }
+        stage_seconds:
+          type: object
+          additionalProperties: { type: number }
+
+    Dossier:
+      type: object
+      required: [schema_version, id, topic, build, citations, sections, chunks, graph, license_notice]
+      properties:
+        schema_version: { type: string, const: "1" }
+        id:
+          type: string
+          description: "{page_id}@{rev_id}:{build_hash[:12]}, e.g. 1208@1312477203:<12 hex>"
+          pattern: "^[0-9]+@[0-9]+:[0-9a-f]{12}$"
+        topic:
+          type: object
+          required: [page_id, title, url]
+          properties:
+            page_id: { type: integer }
+            title: { type: string }
+            description: { type: string }
+            url: { type: string, format: uri }
+        build: { $ref: "#/components/schemas/BuildInfo" }
+        citations:
+          type: array
+          items: { $ref: "#/components/schemas/Citation" }
+        sections:
+          type: array
+          items: { $ref: "#/components/schemas/Section" }
+        chunks:
+          type: array
+          items: { $ref: "#/components/schemas/Chunk" }
+        graph:
+          type: object
+          required: [nodes, edges]
+          properties:
+            nodes:
+              type: array
+              items: { $ref: "#/components/schemas/GraphNode" }
+            edges:
+              type: array
+              items: { $ref: "#/components/schemas/GraphEdge" }
+        license_notice: { type: string }
+
+    DossierContent:
+      type: object
+      required: [sections, chunks, graph]
+      properties:
+        sections:
+          type: array
+          items: { $ref: "#/components/schemas/Section" }
+        chunks:
+          type: array
+          items: { $ref: "#/components/schemas/Chunk" }
+        graph:
+          type: object
+          required: [nodes, edges]
+          properties:
+            nodes:
+              type: array
+              items: { $ref: "#/components/schemas/GraphNode" }
+            edges:
+              type: array
+              items: { $ref: "#/components/schemas/GraphEdge" }
+
+    DossierMetadata:
+      type: object
+      required: [id, topic, build, freshness, budget, links]
+      properties:
+        id:
+          type: string
+          description: "{page_id}@{rev_id}:{build_hash[:12]}"
+          pattern: "^[0-9]+@[0-9]+:[0-9a-f]{12}$"
+        topic:
+          type: object
+          required: [page_id, title, url]
+          properties:
+            page_id: { type: integer }
+            title: { type: string }
+            description: { type: string }
+            url: { type: string, format: uri }
+        build: { $ref: "#/components/schemas/BuildInfo" }
+        freshness: { $ref: "#/components/schemas/Freshness" }
+        budget: { $ref: "#/components/schemas/Budget" }
+        links:
+          type: object
+          required: [self, pinned, markdown, wikipedia]
+          properties:
+            self: { type: string, format: uri }
+            pinned: { type: string, format: uri }
+            markdown: { type: string, format: uri }
+            wikipedia: { type: string, format: uri }
+
+    DossierResponse:
+      type: object
+      description: >
+        The JSON body of a dossier read (schema 2; the flat schema 1 is no
+        longer served, a break for JSON clients). Parts that were not
+        selected are left out, never null. With the default parts
+        (`dossier`) the body has no revision pin, no budget line and no sign
+        that the article was cut: `parts=dossier,metadata` adds them
+        (metadata.budget.complete, omitted_chunks, build, freshness) and
+        `parts=dossier,metadata,sources` adds the citations.
+      required: [schema_version, license_notice, dossier]
+      properties:
+        schema_version: { type: string, const: "2" }
+        license_notice: { type: string }
+        dossier: { $ref: "#/components/schemas/DossierContent" }
+        metadata: { $ref: "#/components/schemas/DossierMetadata" }
+        sources:
+          type: array
+          items: { $ref: "#/components/schemas/Citation" }
+
+    DossierListItem:
+      type: object
+      required: [page_id, title, rev_id, pinned_at, freshness_state, edits_since_pin, largest_budget_filled, sections, built_at]
+      properties:
+        page_id: { type: integer }
+        title: { type: string }
+        rev_id: { type: integer }
+        pinned_at:
+          type: string
+          format: date-time
+          description: rev_timestamp of the pinned revision
+        freshness_state:
+          type: string
+          enum: [fresh, stale, unknown]
+          description: Same rule as Freshness.state, computed at read time
+        edits_since_pin:
+          type: integer
+          description: 0 means current; from the watcher's latest_rev pointer, also 0 when freshness_state is unknown (no watcher data)
+        largest_budget_filled:
+          type: integer
+          enum: [2000, 8000, 32000]
+          description: Smallest budget at which Budget.complete is true, or 32000 if none
+        sections: { type: integer }
+        built_at: { type: string, format: date-time }
+
+    Job:
+      type: object
+      required: [id, page_id, status, stage, progress, poll_after_ms, partial_available, created_at, updated_at]
+      properties:
+        id: { type: string, pattern: "^[0-9a-f]{16}$" }
+        page_id: { type: integer }
+        rev_id: { type: integer }
+        title: { type: string }
+        status: { type: string, enum: [queued, running, done, failed] }
+        stage:
+          type: string
+          enum: [resolve, fetch, parse, related, embed, cluster, summarize, persist]
+        progress:
+          type: object
+          required: [done, total]
+          properties:
+            done: { type: integer }
+            total: { type: integer }
+        queue_position:
+          type: integer
+          description: Place in the build queue; present only while status is queued.
+        poll_after_ms: { type: integer }
+        partial_available: { type: boolean }
+        result_url: { type: string, format: uri }
+        error:
+          oneOf:
+            - $ref: "#/components/schemas/ApiError"
+            - type: "null"
+        created_at: { type: string, format: date-time }
+        started_at:
+          type: string
+          format: date-time
+          description: When a worker picked the job up; absent while queued.
+        updated_at: { type: string, format: date-time }
+        finished_at:
+          type: string
+          format: date-time
+          description: When the job reached done or failed; absent before that.
+
+    TrendingTopic:
+      type: object
+      required: [rank, page_id, title, views, rev_id, dossier_state]
+      properties:
+        rank: { type: integer }
+        page_id: { type: integer }
+        title: { type: string }
+        description: { type: string }
+        views: { type: integer }
+        rev_id: { type: integer }
+        lead_excerpt: { type: string, maxLength: 280 }
+        dossier_state: { type: string, enum: [ready, partial, building, none] }
+        edits_last_hour:
+          oneOf:
+            - type: integer
+            - type: "null"
+
+    TrendingSnapshot:
+      type: object
+      required: [schema_version, date, source, generated_at, topics, edges]
+      properties:
+        schema_version: { type: string, const: "1" }
+        date: { type: string, format: date, description: "Yesterday UTC (pageviews day)" }
+        source: { type: string, enum: [wikifeeds_mostread, pageviews_top] }
+        source_url: { type: string, format: uri }
+        generated_at: { type: string, format: date-time }
+        next_refresh: { type: string, format: date-time }
+        topics:
+          type: array
+          maxItems: 40
+          items: { $ref: "#/components/schemas/TrendingTopic" }
+        edges:
+          type: array
+          items: { $ref: "#/components/schemas/GraphEdge" }
+
+    EditEvent:
+      type: object
+      required: [cursor, page_id, title, rev_new, ts, user_kind]
+      properties:
+        cursor: { type: integer }
+        page_id: { type: integer }
+        title: { type: string }
+        rev_new: { type: integer }
+        rev_old: { type: integer }
+        ts: { type: string, format: date-time }
+        user_kind: { type: string, enum: [registered, anonymous, bot] }
+        byte_delta: { type: integer }
+        diff_url: { type: string, format: uri }
+
+    LiveResponse:
+      type: object
+      required: [stream, server_time, cursor, edits, counters]
+      properties:
+        stream: { type: string, enum: [connected, reconnecting, down] }
+        server_time: { type: string, format: date-time }
+        cursor: { type: integer }
+        last_event_at:
+          oneOf:
+            - type: string
+              format: date-time
+            - type: "null"
+        edits:
+          type: array
+          maxItems: 50
+          items: { $ref: "#/components/schemas/EditEvent" }
+        counters:
+          type: object
+          required: [enwiki_edits_last_hour, tracked_edits_last_hour, window_complete, dossiers_built_today, topics_tracked]
+          properties:
+            enwiki_edits_last_hour: { type: integer }
+            tracked_edits_last_hour: { type: integer }
+            window_complete: { type: boolean }
+            window_since: { type: string, format: date-time }
+            dossiers_built_today: { type: integer }
+            topics_tracked: { type: integer }
+            index_date: { type: string, format: date }
+            next_refresh: { type: string, format: date-time }
+
+    Status:
+      type: object
+      required: [version, redis, ml_ready, watcher_connected, queue_depth]
+      properties:
+        version: { type: string }
+        pipeline_version: { type: string }
+        redis: { type: boolean }
+        ml_ready: { type: boolean }
+        watcher_connected: { type: boolean }
+        trending_date:
+          oneOf:
+            - type: string
+              format: date
+            - type: "null"
+        trending_age_seconds:
+          description: Seconds since the latest trending snapshot was generated; null when there is none.
+          oneOf:
+            - type: integer
+            - type: "null"
+        queue_depth: { type: integer }
+        wikimedia_budget_remaining: { type: integer }

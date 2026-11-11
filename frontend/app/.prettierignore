@@ -8,3 +8,11 @@ src/api/generated
 playwright-report
 test-results
 coverage
+e2e/fixtures/
+public/
+*.md
+.impeccable/
+.tanstack/
+undefined/
+*.log
+scripts/__pycache__/

@@ -1,9 +1,9 @@
 """The runtime OpenAPI document matches the contract file and the package metadata.
 
 `app.openapi()` must expose the same (path, method) pairs and the same
-component schema names as the OpenAPI contract file (skipped when that
-file is not in the checkout), outside its `internal` tag (that tag is the
-wke-api -> wke-ml wire protocol, served by wke-ml, not this app).
+component schema names as the OpenAPI contract file, outside its `internal`
+tag (that tag is the wke-api -> wke-ml wire protocol, served by wke-ml, not
+this app).
 """
 
 from __future__ import annotations
@@ -19,15 +19,13 @@ import yaml
 
 from wke.api.app import create_app
 
-OPENAPI_YAML = Path(__file__).parents[4] / "docs" / "internal" / "architecture" / "openapi.yaml"
+OPENAPI_YAML = Path(__file__).parents[2] / "openapi.yaml"
 PYPROJECT = Path(__file__).parents[2] / "pyproject.toml"
 HTTP_METHODS = {"get", "post", "put", "patch", "delete"}
 
 
 @pytest.fixture(scope="module")
 def spec() -> dict[str, Any]:
-    if not OPENAPI_YAML.is_file():
-        pytest.skip("OpenAPI contract file is not in this checkout")
     return yaml.safe_load(OPENAPI_YAML.read_text())
 
 

@@ -22,7 +22,7 @@ LABEL org.opencontainers.image.description="Wikipedia Knowledge Explorer - React
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# same uid the upstream image sets
+# 101 - unprivileged nginx user
 USER 101
 
 EXPOSE 8080

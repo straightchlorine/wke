@@ -10,7 +10,6 @@ export WKE_PORT := env("WKE_PORT", "8000")
 
 ML_PORT := env("ML_PORT", "8001")
 WEB_PORT := env("WEB_PORT", "8080")
-SHARE_PORT := env("SHARE_PORT", "8081")
 REDIS_PORT := env("REDIS_PORT", "6379")
 
 export WATCHER_METRICS_PORT := env("WATCHER_METRICS_PORT", "8002")
@@ -46,7 +45,7 @@ down:
     -pkill -f 'wke_ml[.]main'
 
 status:
-    @for p in {{REDIS_PORT}} {{ML_PORT}} {{WKE_PORT}} {{WEB_PORT}} {{SHARE_PORT}}; do ss -ltn | grep -q ":$p " && echo "$p up" || echo "$p down"; done
+    @for p in {{REDIS_PORT}} {{ML_PORT}} {{WKE_PORT}} {{WEB_PORT}}; do ss -ltn | grep -q ":$p " && echo "$p up" || echo "$p down"; done
 
 # api, ml, watcher or web
 logs svc="api":
@@ -74,19 +73,6 @@ restart svc="api":
         echo "unknown service '{{svc}}' (api|ml|watcher|web)"; exit 1 ;;
     esac
     echo "restarted {{svc}}; check with: just status"
-
-# share a frozen build on SHARE_PORT through ngrok; rebuilds on WEB_PORT never reach visitors.
-# restarts only the API, with links pointing at the tunnel: just share <name>.ngrok-free.dev
-share host:
-    mkdir -p .run
-    cd frontend/app && pnpm typecheck > /dev/null && pnpm run build > /dev/null
-    rm -rf .run/share-dist && cp -r frontend/app/dist .run/share-dist
-    p={{SHARE_PORT}}; pkill -f "vite preview --port ${p%?}[${p: -1}]" || true
-    cd frontend/app && WKE_API_ORIGIN={{API_ORIGIN}} setsid -f pnpm exec vite preview --port {{SHARE_PORT}} --outDir ../../.run/share-dist > ../../.run/share.log 2>&1
-    -pkill -f 'python[0-9]* -m wke[.]api'
-    sleep 2
-    cd backend/api && PUBLIC_HOST={{host}} PUBLIC_SCHEME=https setsid -f uv run python -m wke.api > ../../.run/api.log 2>&1
-    ngrok http {{SHARE_PORT}} --url https://{{host}}
 
 # pull a dossier through every channel and check it (just dossier "<topic>")
 dossier topic *args:
