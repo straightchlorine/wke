@@ -80,6 +80,8 @@ WORKDIR /app
 # copy files from the builder stage - venv and models
 COPY --from=builder --chown=wkeml:wkeml /app/.venv /app/.venv
 COPY --from=builder --chown=wkeml:wkeml /models /models
+# The model weights are Apache-2.0; their licence ships with them.
+COPY --chown=wkeml:wkeml licenses/ /models/licenses/
 COPY --chown=wkeml:wkeml src/ ./src/
 
 # set up the environment
