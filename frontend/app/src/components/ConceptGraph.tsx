@@ -55,8 +55,8 @@ export interface ConceptGraphProps {
    * narrow is treated as square.
    */
   squareFrame?: boolean;
-  /** Accessible name of the svg group. Defaults to a fixed name per variant. */
-  ariaLabel?: string;
+  /** Accessible name of the svg group: what the graph shows. */
+  ariaLabel: string;
   /**
    * True while the edit feed is disconnected. On the index variant, PlateBoard then says "no edit
    * data" instead of a count that would read as a measured 0.
@@ -257,9 +257,7 @@ export function ConceptGraph({
         }}
         // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role -- an inline svg graph has no semantic tag; role=group with aria-label is the required pattern
         role="group"
-        aria-label={
-          ariaLabel ?? (variant === "index" ? "Plate 1: concept graph" : "Plate 2: concept graph")
-        }
+        aria-label={ariaLabel}
         viewBox={`0 0 ${width} ${height}`}
         className="block h-auto w-full"
         style={{

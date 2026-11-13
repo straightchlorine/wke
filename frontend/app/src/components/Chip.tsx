@@ -15,12 +15,14 @@ export interface ChipProps {
   className?: string;
 }
 
+// Every variant draws a hairline border, transparent on the filled ones, so chips of different
+// states have the same box and line up in a row or a fixed slot.
 const VARIANT_CLASSES: Record<ChipVariant, string> = {
   built: "text-ink-2 border-(length:--hairline) border-rule-strong bg-transparent",
-  queued: "text-ink-2 bg-sunken border-0",
+  queued: "text-ink-2 bg-sunken border-(length:--hairline) border-transparent",
   model: "text-ink-2 bg-model border-(length:--hairline) border-rule-strong",
   stale: "text-ink-2 border-(length:--hairline) border-ink-2 bg-transparent",
-  current: "text-accent-ink bg-wash border-0",
+  current: "text-accent-ink bg-wash border-(length:--hairline) border-transparent",
   unknown: "text-ink-2 border-(length:--hairline) border-rule-strong bg-transparent",
   quiet: "text-ink-3 border-(length:--hairline) border-rule bg-transparent",
 };
@@ -45,13 +47,12 @@ export function Chip({ children, variant, control = false, info, className = "" 
 
 export type { DossierState };
 
-const DOSSIER_STATE_CHIP: Record<
-  Exclude<DossierState, "none">,
-  { variant: "built" | "queued"; text: string }
-> = {
+/** The chip of each dossier state, shared by every place that shows one. */
+export const DOSSIER_STATE_CHIP: Record<DossierState, { variant: ChipVariant; text: string }> = {
   ready: { variant: "built", text: "Ready" },
   partial: { variant: "built", text: "Partial" },
   building: { variant: "queued", text: "Building" },
+  none: { variant: "unknown", text: "Not built" },
 };
 
 export interface DossierStateChipProps {
@@ -67,12 +68,8 @@ export function DossierStateChip({
   showNone = false,
   className = "",
 }: DossierStateChipProps) {
-  if (state === "none") {
-    return showNone ? (
-      <Chip variant="unknown" className={className}>
-        Not built
-      </Chip>
-    ) : null;
+  if (state === "none" && !showNone) {
+    return null;
   }
   const mapped = DOSSIER_STATE_CHIP[state];
   return (

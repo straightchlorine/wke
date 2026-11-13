@@ -32,6 +32,7 @@ function draw(over: Partial<ConceptGraphProps> = {}) {
       nodes={nodes}
       edges={edges}
       variant="index"
+      ariaLabel="Most-read articles"
       width={774}
       height={710}
       onOpen={onOpen}
@@ -82,19 +83,11 @@ describe("ConceptGraph", () => {
     vi.unstubAllGlobals();
   });
 
-  it("draws a link to the dossier for each node, and names the graph for its variant", () => {
-    draw();
+  it("draws a link to the dossier for each node, inside a group named by its caller", () => {
+    draw({ ariaLabel: "Linked articles" });
     expect(screen.getAllByRole("button", { name: /^Article \d,/ })).toHaveLength(5);
     expect(node(2).getAttribute("href")).toBe("/t/Article_2?budget=8000");
-    expect(screen.getByRole("group", { name: "Plate 1: concept graph" })).toBeTruthy();
-  });
-
-  it("uses the given accessible name and the related variant's default", () => {
-    const { unmount } = draw({ ariaLabel: "Linked articles" });
     expect(screen.getByRole("group", { name: "Linked articles" })).toBeTruthy();
-    unmount();
-    draw({ variant: "related" });
-    expect(screen.getByRole("group", { name: "Plate 2: concept graph" })).toBeTruthy();
   });
 
   it("colours only linked groups: a node with no partner is drawn neutral", () => {
@@ -168,6 +161,7 @@ describe("ConceptGraph", () => {
           nodes={nodes}
           edges={edges}
           variant="index"
+          ariaLabel="Most-read articles"
           width={774}
           height={710}
           onOpen={() => {}}
@@ -288,6 +282,7 @@ describe("ConceptGraph", () => {
           nodes={nodes}
           edges={edges}
           variant="index"
+          ariaLabel="Most-read articles"
           width={774}
           height={710}
           onOpen={() => {}}

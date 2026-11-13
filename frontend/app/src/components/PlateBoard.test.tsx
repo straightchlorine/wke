@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
+import type { DossierState } from "../lib/dossierState";
 import { linkedValue, PlateBoard, type PlateBoardNode } from "./PlateBoard";
 
 const node: PlateBoardNode = {
@@ -18,7 +19,7 @@ function rowValue(label: string) {
 }
 
 /** The classes of the badge chip, which set its variant, for a node in `state`. */
-function badgeClass(state: "ready" | "building") {
+function badgeClass(state: DossierState) {
   const { unmount } = render(<PlateBoard node={{ ...node, state }} />);
   const chip = [...document.querySelectorAll("[data-plate-badge] span")].find((e) =>
     e.className.includes("w-17"),
@@ -94,9 +95,14 @@ describe("PlateBoard", () => {
     expect(screen.getByRole("link", { name: linkName })).toBeTruthy();
   });
 
-  it("draws a building dossier with the same hairline chip as a ready one", () => {
-    expect(badgeClass("building")).toBe(badgeClass("ready"));
+  it("draws each state with the chip every other page uses for it, in a box of one size", () => {
     expect(badgeClass("ready")).toContain("bg-transparent");
+    expect(badgeClass("partial")).toContain("bg-transparent");
+    expect(badgeClass("building")).toContain("bg-sunken");
+    expect(badgeClass("none")).toContain("bg-transparent");
+    for (const state of ["ready", "partial", "building", "none"] as const) {
+      expect(badgeClass(state)).toContain("border-(length:--hairline)");
+    }
   });
 
   it("gives the Linked to value a native tooltip with every neighbour while previewing, not once selected", () => {

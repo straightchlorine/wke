@@ -1,8 +1,7 @@
 import type { MouseEvent } from "react";
 import { isPlainLeftClick } from "../lib/clicks";
-import type { DossierState } from "../lib/dossierState";
 import type { PlateBoardNode } from "../lib/graphNodeInfo";
-import { Chip, type ChipVariant } from "./Chip";
+import { Chip, DOSSIER_STATE_CHIP } from "./Chip";
 import { InfoDot } from "./InfoDot";
 import { RecordRow } from "./Record";
 
@@ -18,14 +17,6 @@ export interface PlateBoardProps {
   /** Called when the badge link is clicked, in place of following its href. */
   onOpen?: () => void;
 }
-
-/** The badge of each state. A building dossier gets the same hairline chip as a ready one, and a missing one reads "Not built". */
-const BADGE: Record<DossierState, { variant: ChipVariant; text: string }> = {
-  ready: { variant: "built", text: "Ready" },
-  partial: { variant: "built", text: "Partial" },
-  building: { variant: "built", text: "Building" },
-  none: { variant: "unknown", text: "Not built" },
-};
 
 /** Returns the "Linked to" value: the first two titles, then "+n" for the rest, or "Not linked today" for none. */
 export function linkedValue(linkedTo: string[]): string {
@@ -77,7 +68,9 @@ export function PlateBoard({ node, selected = false, touch = false, onOpen }: Pl
         ? (node.editsMissing ?? "not measured")
         : node.editsLastHour.toLocaleString("en-US");
   const badge =
-    node.state == null ? { variant: "built" as const, text: "Open" } : BADGE[node.state];
+    node.state == null
+      ? { variant: "built" as const, text: "Open" }
+      : DOSSIER_STATE_CHIP[node.state];
   // The badge has a fixed width that fits the widest state text, so its words do not shift when
   // the node is selected.
   const badgeChip = (
