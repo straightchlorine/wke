@@ -611,6 +611,12 @@ test(
     await open("/");
     const hint = page.getByText("to search.").first();
     await expect(hint).toBeVisible();
-    expect(await hint.evaluate((el) => Array.from(el.getClientRects()).length)).toBe(1);
+    // Some Chromium builds give an inline element one rect per child even on a single line,
+    // so count lines by height: a wrap at least doubles it.
+    const { height, fontSize } = await hint.evaluate((el) => ({
+      height: el.getBoundingClientRect().height,
+      fontSize: Number.parseFloat(getComputedStyle(el).fontSize),
+    }));
+    expect(height).toBeLessThan(2 * fontSize);
   },
 );
