@@ -1,0 +1,83 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wke-web
+  labels:
+    app.kubernetes.io/name: wke-web
+    app.kubernetes.io/component: web
+  annotations:
+    # No ratelimit (avoids 429 on cold asset-parallel loads).
+    traefik.ingress.kubernetes.io/router.middlewares: wke-redirect-https@kubernetescrd,wke-security-headers@kubernetescrd
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - wke.piotrkrzysztof.dev
+      secretName: wke-tls
+  rules:
+    - host: wke.piotrkrzysztof.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wke-web
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wke-api
+  labels:
+    app.kubernetes.io/name: wke-api
+    app.kubernetes.io/component: api
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    traefik.ingress.kubernetes.io/router.middlewares: wke-redirect-https@kubernetescrd,wke-api-ratelimit@kubernetescrd,wke-security-headers@kubernetescrd
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - wke.piotrkrzysztof.dev
+      secretName: wke-tls
+  rules:
+    - host: wke.piotrkrzysztof.dev
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: wke-api
+                port:
+                  number: 8000
+          - path: /llms.txt
+            pathType: Exact
+            backend:
+              service:
+                name: wke-api
+                port:
+                  number: 8000
+          - path: /sitemap.xml
+            pathType: Exact
+            backend:
+              service:
+                name: wke-api
+                port:
+                  number: 8000
+          - path: /mcp
+            pathType: Prefix
+            backend:
+              service:
+                name: wke-api
+                port:
+                  number: 8000
+          - path: /openapi.json
+            pathType: Exact
+            backend:
+              service:
+                name: wke-api
+                port:
+                  number: 8000

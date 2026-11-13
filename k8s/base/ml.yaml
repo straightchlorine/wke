@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wke-ml
+  labels:
+    app.kubernetes.io/name: wke-ml
+    app.kubernetes.io/component: ml
+spec:
+  replicas: 1
+  # Single Guaranteed-QoS pod on a memory-constrained node; avoid two
+  # copies of both models resident at once during a rollout.
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: wke-ml
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: wke-ml
+        app.kubernetes.io/component: ml
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: /metrics
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: ml
+          image: ghcr.io/straightchlorine/wke-ml:0.1.0
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            # Both are read: libgomp takes the first, torch.set_num_threads
+            # takes the second via settings.omp_num_threads.
+            - name: OMP_NUM_THREADS
+              value: "2"
+            - name: WKE_ML_OMP_NUM_THREADS
+              value: "2"
+            - name: HF_HUB_OFFLINE
+              value: "1"
+            - name: TRANSFORMERS_OFFLINE
+              value: "1"
+            - name: TOKENIZERS_PARALLELISM
+              value: "false"
+          # uvicorn does not bind the socket until the lifespan has
+          # loaded weights and warmed up both models, so /healthz and
+          # /readyz both answer only after that finishes. The 300 s
+          # startup budget below covers process start, load and warm-up.
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 5
+            failureThreshold: 60
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 30
+            timeoutSeconds: 5
+          resources:
+            requests:
+              cpu: 2000m
+              memory: 3Gi
+            limits:
+              cpu: 2000m
+              memory: 3Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: tmp
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wke-ml
+  labels:
+    app.kubernetes.io/name: wke-ml
+    app.kubernetes.io/component: ml
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http
+  selector:
+    app.kubernetes.io/name: wke-ml

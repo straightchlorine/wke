@@ -1,0 +1,33 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: wke
+    includeSelectors: false
+
+resources:
+  - configmap.yaml
+  - api.yaml
+  - ml.yaml
+  - watcher.yaml
+  - redis.yaml
+  - web.yaml
+  - trending.yaml
+  - middleware.yaml
+  - ingress.yaml
+  - networkpolicy.yaml
+
+# Image Updater rewrites newTag of wke-api, wke-ml and wke-web to the newest.
+images:
+  - name: ghcr.io/straightchlorine/wke-api
+    newTag: 0.1.0
+  - name: ghcr.io/straightchlorine/wke-ml
+    newTag: 0.1.0
+  - name: ghcr.io/straightchlorine/wke-web
+    newTag: 0.1.0
+  # Multi-arch index digest for redis:7.4.11-alpine, from
+  # `docker buildx imagetools inspect redis:7.4.11-alpine`.
+  - name: redis
+    newTag: 7.4.11-alpine
+    digest: sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499
