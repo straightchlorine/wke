@@ -1,3 +1,4 @@
+import type { Budget } from "../lib/budget";
 import { getDossier, getDossierMarkdown, requestDossier } from "./generated";
 import type {
   ApiError,
@@ -72,11 +73,23 @@ export async function getDossierView(options: {
 }
 
 /** Fetches a dossier as Markdown with every part, the text behind Copy and Download. */
-export function getFullDossierMarkdown(options: {
+function getFullDossierMarkdown(options: {
   path: GetDossierMarkdownData["path"];
   query?: Omit<NonNullable<GetDossierMarkdownData["query"]>, "parts">;
 }) {
   return getDossierMarkdown({ ...options, query: { ...options.query, parts: FULL_PARTS } });
+}
+
+/**
+ * Fetches a dossier as Markdown with every part and returns the text, or null when the request
+ * failed or came back without a body.
+ */
+export async function fetchDossierMarkdownText(
+  pageId: number,
+  budget: Budget,
+): Promise<string | null> {
+  const result = await getFullDossierMarkdown({ path: { page_id: pageId }, query: { budget } });
+  return result.data ?? null;
 }
 
 /**

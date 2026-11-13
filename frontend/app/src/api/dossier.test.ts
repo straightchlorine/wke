@@ -1,24 +1,19 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { client } from "./client";
 import {
   FULL_PARTS,
+  fetchDossierMarkdownText,
   flattenDossier,
   getDossierView,
-  getFullDossierMarkdown,
   nestDossier,
   requestDossierView,
 } from "./dossier";
-import type { DossierView } from "./dossier";
 import type { DossierResponse, Job } from "./generated";
+import { fixtureText, loadDossier } from "../test/fixtures";
 
-const fixtureText = (name: string) =>
-  readFileSync(resolve(process.cwd(), "e2e/fixtures", name), "utf-8");
-const loadView = (): DossierView => JSON.parse(fixtureText("dossier_2000.json"));
 const loadJob = (): Job => JSON.parse(fixtureText("job_queued.json"));
 
-const flat = loadView();
+const flat = loadDossier("dossier_1095706_2000.json");
 const nested = nestDossier(flat);
 
 describe("flattenDossier and nestDossier", () => {
@@ -67,14 +62,24 @@ describe("dossier fetches", () => {
       "the JSON fetch",
       () => getDossierView({ path: { page_id: pageId }, query: { budget: 2000 } }),
     ],
-    [
-      "the Markdown fetch",
-      () => getFullDossierMarkdown({ path: { page_id: pageId }, query: { budget: 2000 } }),
-    ],
+    ["the Markdown fetch", () => fetchDossierMarkdownText(pageId, 2000)],
   ])("%s asks for every part and keeps the budget", async (_name, call) => {
     await call();
     expect(requested[0]?.searchParams.get("parts")).toBe(FULL_PARTS);
     expect(requested[0]?.searchParams.get("budget")).toBe("2000");
+  });
+
+  it("the Markdown text fetch returns the body", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => new Response("# Jesus", { headers: { "Content-Type": "text/markdown" } })),
+    );
+    expect(await fetchDossierMarkdownText(pageId, 2000)).toBe("# Jesus");
+  });
+
+  it("the Markdown text fetch returns null when the API answers with an error", async () => {
+    respondWith({ code: "not_built", status: 404, title: "Not built", request_id: "r" }, 404);
+    expect(await fetchDossierMarkdownText(pageId, 2000)).toBeNull();
   });
 
   it("the JSON fetch returns the flat view", async () => {

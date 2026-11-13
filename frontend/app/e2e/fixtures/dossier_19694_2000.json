@@ -1,0 +1,1699 @@
+{
+  "schema_version": "2",
+  "license_notice": "Quoted passages are CC BY-SA 4.0 Wikipedia content, cited to a pinned revision. Summaries are machine output, not a Wikipedia quotation.",
+  "sections": [
+    {
+      "id": "0",
+      "label": "Mercury (planet)",
+      "label_source": "article_title",
+      "chunk_ids": [
+        "1384573767:0:0",
+        "1384573767:0:1",
+        "1384573767:0:2",
+        "1384573767:0:3",
+        "1384573767:0:facts"
+      ],
+      "heading_path": [],
+      "citation_id": "c1",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.8096898338908354
+    },
+    {
+      "id": "1",
+      "label": "Nomenclature",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:1:0"
+      ],
+      "heading_path": [
+        "Nomenclature"
+      ],
+      "citation_id": "c10",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5208534150550281
+    },
+    {
+      "id": "2",
+      "label": "Physical characteristics",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:2:0"
+      ],
+      "heading_path": [
+        "Physical characteristics"
+      ],
+      "citation_id": "c11",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": {
+        "kind": "machine_summary",
+        "text": "Mercury is one of four terrestrial planets in the Solar System, with an equatorial radius of 2,439.7 kilometres (1,516.0 mi) Mercury is also smaller than the largest natural satellites in the solar system, Ganymede and Titan .",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "d2fde4ca",
+        "params": {
+          "num_beams": 1,
+          "min_length": 30,
+          "max_length": 96,
+          "input_tokens": 103
+        },
+        "input_chunk_ids": [
+          "1384573767:2:0"
+        ],
+        "citation_id": "c11",
+        "generated_at": "2026-11-11T19:25:40.892752Z",
+        "infer_seconds": 1.238559407996945
+      },
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.5807534035618724
+    },
+    {
+      "id": "3",
+      "label": "Internal structure",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:3:0",
+        "1384573767:3:1",
+        "1384573767:3:2",
+        "1384573767:3:3",
+        "1384573767:3:4"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Internal structure"
+      ],
+      "citation_id": "c12",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the text does not end at a sentence end",
+      "importance": 0.6739449890347046
+    },
+    {
+      "id": "4",
+      "label": "Surface geology",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:4:0",
+        "1384573767:4:1",
+        "1384573767:4:2"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology"
+      ],
+      "citation_id": "c13",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5040663985985743
+    },
+    {
+      "id": "5",
+      "label": "Impact basins and craters",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:5:0",
+        "1384573767:5:1",
+        "1384573767:5:2",
+        "1384573767:5:3",
+        "1384573767:5:4"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Impact basins and craters"
+      ],
+      "citation_id": "c14",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5332517082857929
+    },
+    {
+      "id": "6",
+      "label": "Plains",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:6:0",
+        "1384573767:6:1"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Plains"
+      ],
+      "citation_id": "c15",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4550969532770359
+    },
+    {
+      "id": "7",
+      "label": "Compressional features",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:7:0",
+        "1384573767:7:1"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Compressional features"
+      ],
+      "citation_id": "c16",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.43940610395235513
+    },
+    {
+      "id": "8",
+      "label": "Volcanism",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:8:0",
+        "1384573767:8:1"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Volcanism"
+      ],
+      "citation_id": "c17",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.33782221032657844
+    },
+    {
+      "id": "9",
+      "label": "Surface conditions and exosphere",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:9:0",
+        "1384573767:9:1",
+        "1384573767:9:2",
+        "1384573767:9:3",
+        "1384573767:9:4",
+        "1384573767:9:5",
+        "1384573767:9:6"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface conditions and exosphere"
+      ],
+      "citation_id": "c18",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the text does not end at a sentence end",
+      "importance": 0.5900572635661535
+    },
+    {
+      "id": "10",
+      "label": "Magnetic field and magnetosphere",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:10:0",
+        "1384573767:10:1",
+        "1384573767:10:2",
+        "1384573767:10:3"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Magnetic field and magnetosphere"
+      ],
+      "citation_id": "c19",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4681425563587449
+    },
+    {
+      "id": "11",
+      "label": "Orbit, rotation, and longitude",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:11:0",
+        "1384573767:11:1",
+        "1384573767:11:2",
+        "1384573767:11:3",
+        "1384573767:11:4",
+        "1384573767:11:5",
+        "1384573767:11:6",
+        "1384573767:11:7"
+      ],
+      "heading_path": [
+        "Orbit, rotation, and longitude"
+      ],
+      "citation_id": "c20",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the number '000' is not in the source passages",
+      "importance": 0.732089417718451
+    },
+    {
+      "id": "12",
+      "label": "Longitude convention",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:12:0"
+      ],
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Longitude convention"
+      ],
+      "citation_id": "c21",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.38775323122508953
+    },
+    {
+      "id": "13",
+      "label": "Spin-orbit resonance",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:13:0",
+        "1384573767:13:1",
+        "1384573767:13:2",
+        "1384573767:13:3",
+        "1384573767:13:4"
+      ],
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Spin-orbit resonance"
+      ],
+      "citation_id": "c22",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5724702164299365
+    },
+    {
+      "id": "14",
+      "label": "Advance of perihelion",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:14:0",
+        "1384573767:14:1",
+        "1384573767:14:2"
+      ],
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Advance of perihelion"
+      ],
+      "citation_id": "c23",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.49847403102428267
+    },
+    {
+      "id": "15",
+      "label": "Observation",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:15:0",
+        "1384573767:15:1",
+        "1384573767:15:2",
+        "1384573767:15:3",
+        "1384573767:15:4",
+        "1384573767:15:5"
+      ],
+      "heading_path": [
+        "Observation"
+      ],
+      "citation_id": "c24",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.6557517403671572
+    },
+    {
+      "id": "16",
+      "label": "Observation history",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "Observation history"
+      ],
+      "citation_id": "c25",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    },
+    {
+      "id": "17",
+      "label": "Ancient astronomers",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:17:0",
+        "1384573767:17:1",
+        "1384573767:17:2",
+        "1384573767:17:3",
+        "1384573767:17:4"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Ancient astronomers"
+      ],
+      "citation_id": "c26",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5300457136398968
+    },
+    {
+      "id": "18",
+      "label": "Ground-based telescopic research",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:18:0",
+        "1384573767:18:1",
+        "1384573767:18:2",
+        "1384573767:18:3",
+        "1384573767:18:4",
+        "1384573767:18:5"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Ground-based telescopic research"
+      ],
+      "citation_id": "c27",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.6515872561720846
+    },
+    {
+      "id": "19",
+      "label": "Research with space probes",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:19:0",
+        "1384573767:19:1"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Research with space probes"
+      ],
+      "citation_id": "c28",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5083086073475876
+    },
+    {
+      "id": "20",
+      "label": "Mariner 10",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:20:0",
+        "1384573767:20:1",
+        "1384573767:20:2"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "Mariner 10"
+      ],
+      "citation_id": "c29",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.521412901807819
+    },
+    {
+      "id": "21",
+      "label": "MESSENGER",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:21:0",
+        "1384573767:21:1"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "MESSENGER"
+      ],
+      "citation_id": "c30",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5715032410094957
+    },
+    {
+      "id": "22",
+      "label": "BepiColombo",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:22:0"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "BepiColombo"
+      ],
+      "citation_id": "c31",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.47067865780116197
+    }
+  ],
+  "chunks": [
+    {
+      "id": "1384573767:0:0",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 0,
+      "text": "Mercury is the first planet from the Sun and the smallest in the Solar System. It is a rocky planet with a trace atmosphere and a surface gravity slightly lower than that of Mars. The surface of Mercury is similar to Earth's Moon, being cratered, with an expansive rupes system generated from thrust faults, and bright ray systems, formed by ejecta. Its largest crater, Caloris Planitia, has a diameter of 1,550 km (960 mi), which is about one-third the diameter of the planet (4,880 km or 3,030 mi). Being the most inferior orbiting planet, it always appears close to the Sun in Earth's sky, as either a \"morning star\" or an \"evening star\". It is the planet with the highest delta-v required for travel from Earth, as well as to and from the other planets in the Solar System.",
+      "est_tokens": 195,
+      "relevance": 0.9157396554946899,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 21,
+          "end": 27,
+          "title": "Planet"
+        },
+        {
+          "start": 37,
+          "end": 40,
+          "title": "Sun"
+        },
+        {
+          "start": 49,
+          "end": 77,
+          "title": "List of Solar System objects by size"
+        },
+        {
+          "start": 87,
+          "end": 99,
+          "title": "Rocky planet"
+        },
+        {
+          "start": 107,
+          "end": 123,
+          "title": "Atmosphere of Mercury"
+        },
+        {
+          "start": 138,
+          "end": 145,
+          "title": "Gravity"
+        },
+        {
+          "start": 174,
+          "end": 178,
+          "title": "Mars"
+        },
+        {
+          "start": 225,
+          "end": 229,
+          "title": "Moon"
+        },
+        {
+          "start": 237,
+          "end": 245,
+          "title": "Impact crater"
+        },
+        {
+          "start": 265,
+          "end": 270,
+          "title": "Rupes"
+        },
+        {
+          "start": 293,
+          "end": 306,
+          "title": "Thrust fault"
+        },
+        {
+          "start": 319,
+          "end": 330,
+          "title": "Ray system"
+        },
+        {
+          "start": 342,
+          "end": 348,
+          "title": "Ejecta"
+        },
+        {
+          "start": 370,
+          "end": 386,
+          "title": "Caloris Planitia"
+        },
+        {
+          "start": 516,
+          "end": 524,
+          "title": "Inferior planet"
+        },
+        {
+          "start": 580,
+          "end": 585,
+          "title": "Earth"
+        },
+        {
+          "start": 676,
+          "end": 683,
+          "title": "Delta-v"
+        },
+        {
+          "start": 743,
+          "end": 756,
+          "title": "List of planets in the Solar System"
+        },
+        {
+          "start": 764,
+          "end": 776,
+          "title": "Solar System"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:0:1",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 1,
+      "text": "Mercury's sidereal year (88.0 Earth days) and sidereal day (58.65 Earth days) are in a 3:2 ratio, in a spin\u2013orbit resonance. Consequently, one solar day (sunrise to sunrise) on Mercury lasts for around 176 Earth days, or twice Mercury's sidereal year. This means that one side of Mercury will remain in sunlight for one Mercurian year of 88 Earth days; while during the next orbit, that side will be in darkness all the time until the next sunrise after another 88 Earth days. Above the planet's surface is an extremely tenuous exosphere and a faint magnetic field just strong enough to deflect the solar wind. Combined with its high orbital eccentricity, the planet's surface has widely varying sunlight intensity and temperature, with the equatorial regions ranging from \u2212170 \u00b0C (\u2212270 \u00b0F) at night to 420 \u00b0C (790 \u00b0F) during sunlight. Despite being the closest planet to the sun, it is the second hottest after Venus, lacking an atmosphere to trap heat.",
+      "est_tokens": 239,
+      "relevance": 0.784355640411377,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 10,
+          "end": 23,
+          "title": "Sidereal year"
+        },
+        {
+          "start": 46,
+          "end": 58,
+          "title": "Sidereal day"
+        },
+        {
+          "start": 103,
+          "end": 123,
+          "title": "Tidal locking"
+        },
+        {
+          "start": 528,
+          "end": 537,
+          "title": "Exosphere"
+        },
+        {
+          "start": 544,
+          "end": 564,
+          "title": "Mercury's magnetic field"
+        },
+        {
+          "start": 599,
+          "end": 609,
+          "title": "Solar wind"
+        },
+        {
+          "start": 634,
+          "end": 654,
+          "title": "Orbital eccentricity"
+        },
+        {
+          "start": 696,
+          "end": 704,
+          "title": "Sunlight"
+        },
+        {
+          "start": 741,
+          "end": 751,
+          "title": "Equator"
+        },
+        {
+          "start": 912,
+          "end": 917,
+          "title": "Venus"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:0:2",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 2,
+      "text": "Due to its very small axial tilt, the planet's poles are permanently shadowed. This strongly suggests that water ice could be present in the craters. Like the other planets in the Solar System, Mercury formed approximately 4.5 billion years ago. There are competing hypotheses about Mercury's origins and development, some of which incorporate collision with planetesimals and rock vaporization; as of the early 2020s, many broad details of Mercury's geological history are still under investigation or pending data from space probes. Its mantle is highly homogeneous, which suggests that Mercury had a magma ocean early in its history, like the Moon. According to current models, Mercury may have a solid silicate crust and mantle overlaying a solid outer core, a deeper liquid core layer, and a solid inner core. Mercury is expected to be destroyed, along with Venus, and possibly the Earth and the Moon, when the Sun becomes a red giant in approximately seven or eight billion years.",
+      "est_tokens": 247,
+      "relevance": 0.7007920742034912,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 22,
+          "end": 32,
+          "title": "Axial tilt"
+        },
+        {
+          "start": 57,
+          "end": 77,
+          "title": "Permanently shadowed crater"
+        },
+        {
+          "start": 107,
+          "end": 116,
+          "title": "Ice"
+        },
+        {
+          "start": 359,
+          "end": 372,
+          "title": "Planetesimal"
+        },
+        {
+          "start": 539,
+          "end": 545,
+          "title": "Mantle (geology)"
+        },
+        {
+          "start": 603,
+          "end": 614,
+          "title": "Magma ocean"
+        },
+        {
+          "start": 673,
+          "end": 679,
+          "title": "Scientific modelling"
+        },
+        {
+          "start": 706,
+          "end": 714,
+          "title": "Silicate"
+        },
+        {
+          "start": 757,
+          "end": 761,
+          "title": "Planetary core"
+        },
+        {
+          "start": 930,
+          "end": 939,
+          "title": "Red giant"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:0:3",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 3,
+      "text": "Mercury is a classical planet that has been observed and recognized throughout history as a planet (or wandering star). In English, it is named after the ancient Roman god Mercurius (Mercury), god of commerce and communication, and the messenger of the gods. The first successful flyby of Mercury was conducted by Mariner 10 in 1974, and it has since been visited and explored by the MESSENGER and BepiColombo orbiters.",
+      "est_tokens": 105,
+      "relevance": 0.623822033405304,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 13,
+          "end": 29,
+          "title": "Classical planet"
+        },
+        {
+          "start": 154,
+          "end": 167,
+          "title": "Ancient Roman"
+        },
+        {
+          "start": 183,
+          "end": 190,
+          "title": "Mercury (mythology)"
+        },
+        {
+          "start": 314,
+          "end": 324,
+          "title": "Mariner 10"
+        },
+        {
+          "start": 356,
+          "end": 376,
+          "title": "Exploration of Mercury"
+        },
+        {
+          "start": 384,
+          "end": 393,
+          "title": "MESSENGER (spacecraft)"
+        },
+        {
+          "start": 398,
+          "end": 409,
+          "title": "BepiColombo"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:0:facts",
+      "kind": "facts",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 4,
+      "text": "Pronunciation: /\u02c8m\u025c\u02d0rkj\u028ari/ \u24d8\nAlternative names: Hermes, Apollo\nAdjectives: Mercurian /m\u0259r\u02c8kj\u028a\u0259ri\u0259n/, Mercurial /m\u0259r\u02c8kj\u028a\u0259ri\u0259l/, Hermean /h\u025c\u02d0r\u02c8mi\u02d0\u0259n/\nAphelion: 0.466697 AU (69.8169 million km)\nPerihelion: 0.307499 AU (46.0012 million km)\nSemi-major axis: 0.387098 AU (57.9090 million km)\nEccentricity: 0.205630\nOrbital period (sidereal): 87.9691 d, 0.240846 yr, 0.5 Mercury synodic days\nOrbital period (synodic): 115.88 d\nAverage orbital speed: 47.36 km/s\nMean anomaly: 174.796\u00b0\nInclination: 7.005\u00b0 to ecliptic, 3.38\u00b0 to Sun's equator, 6.35\u00b0 to invariable plane",
+      "est_tokens": 140,
+      "relevance": 1.0,
+      "cluster_id": null,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:3:0",
+      "kind": "prose",
+      "citation_id": "c12",
+      "heading_path": [
+        "Physical characteristics",
+        "Internal structure"
+      ],
+      "order": 7,
+      "text": "Mercury appears to have a solid silicate crust and mantle overlying a solid, metallic outer core layer, a deeper liquid core layer, and a solid inner core. The composition of the iron-rich core remains uncertain, but it likely contains nickel, silicon and perhaps sulfur and carbon, plus trace amounts of other elements. The planet's density is the second highest in the Solar System at 5.427 g/cm3, only slightly less than Earth's density of 5.515 g/cm3. If the effect of gravitational compression were to be factored out from both planets, the materials of which Mercury is made would be denser than those of Earth, with an uncompressed density of 5.3 g/cm3 versus Earth's 4.4 g/cm3. Mercury's density can be used to infer details of its inner structure. Although Earth's high density results appreciably from gravitational compression, particularly at the core, Mercury is much smaller and its inner regions are not as compressed.",
+      "est_tokens": 234,
+      "relevance": 0.5965549349784851,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 41,
+          "end": 46,
+          "title": "Crust (geology)"
+        },
+        {
+          "start": 473,
+          "end": 498,
+          "title": "Gravitational compression"
+        },
+        {
+          "start": 859,
+          "end": 863,
+          "title": "Planetary core"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:11:0",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "Orbit, rotation, and longitude"
+      ],
+      "order": 37,
+      "text": "Mercury has the most eccentric orbit of all the planets in the Solar System; its eccentricity is 0.21 with its distance from the Sun ranging from 46,000,000 to 70,000,000 km (29,000,000 to 43,000,000 mi). It takes 87.969 Earth days to complete an orbit. The diagram illustrates the effects of the eccentricity, showing Mercury's orbit overlaid with a circular orbit having the same semi-major axis. Mercury's higher velocity when it is near perihelion is clear from the greater distance it covers in each 5-day interval. In the diagram, the varying distance of Mercury to the Sun is represented by the size of the planet, which is inversely proportional to Mercury's distance from the Sun.",
+      "est_tokens": 173,
+      "relevance": 0.7351382374763489,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 21,
+          "end": 30,
+          "title": "Orbital eccentricity"
+        },
+        {
+          "start": 382,
+          "end": 397,
+          "title": "Semi-major axis"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:14:2",
+      "kind": "prose",
+      "citation_id": "c23",
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Advance of perihelion"
+      ],
+      "order": 53,
+      "text": "Similar, but much smaller, effects exist for other Solar System bodies: 8.6247 arcseconds per century for Venus, 3.8387 for Earth, 1.351 for Mars, and 10.05 for 1566 Icarus.",
+      "est_tokens": 44,
+      "relevance": 0.46418389678001404,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 161,
+          "end": 172,
+          "title": "1566 Icarus"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:15:0",
+      "kind": "prose",
+      "citation_id": "c24",
+      "heading_path": [
+        "Observation"
+      ],
+      "order": 54,
+      "text": "Mercury's apparent magnitude is calculated to vary between \u22122.48 (brighter than Sirius) around superior conjunction and +7.25 (below the limit of naked-eye visibility) around inferior conjunction. The mean apparent magnitude is 0.23 while the standard deviation of 1.78 is the largest of any planet. The mean apparent magnitude at superior conjunction is \u22121.89 while that at inferior conjunction is +5.93. Observation of Mercury is complicated by its proximity to the Sun, as it is lost in the Sun's glare for much of the time. Mercury can be observed for only a brief period during either morning or evening twilight.",
+      "est_tokens": 155,
+      "relevance": 0.5934242606163025,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 10,
+          "end": 28,
+          "title": "Apparent magnitude"
+        },
+        {
+          "start": 80,
+          "end": 86,
+          "title": "Sirius"
+        },
+        {
+          "start": 95,
+          "end": 115,
+          "title": "Superior conjunction"
+        },
+        {
+          "start": 175,
+          "end": 195,
+          "title": "Inferior conjunction"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:18:0",
+      "kind": "prose",
+      "citation_id": "c27",
+      "heading_path": [
+        "Observation history",
+        "Ground-based telescopic research"
+      ],
+      "order": 65,
+      "text": "The first telescopic observations of Mercury were made by Thomas Harriot and Galileo from 1610. In 1612, Simon Marius observed the brightness of Mercury varied with the planet's orbital position and concluded it had phases \"in the same way as Venus and the Moon\". In 1631, Pierre Gassendi made the first telescopic observations of the transit of a planet across the Sun when he saw a transit of Mercury predicted by Johannes Kepler. In 1639, Giovanni Zupi used a telescope to discover that the planet had orbital phases similar to Venus and the Moon. The observation demonstrated conclusively that Mercury orbited the Sun.",
+      "est_tokens": 156,
+      "relevance": 0.4622766971588135,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 58,
+          "end": 72,
+          "title": "Thomas Harriot"
+        },
+        {
+          "start": 77,
+          "end": 84,
+          "title": "Galileo"
+        },
+        {
+          "start": 105,
+          "end": 117,
+          "title": "Simon Marius"
+        },
+        {
+          "start": 273,
+          "end": 288,
+          "title": "Pierre Gassendi"
+        },
+        {
+          "start": 416,
+          "end": 431,
+          "title": "Johannes Kepler"
+        },
+        {
+          "start": 442,
+          "end": 455,
+          "title": "Giovanni Zupi"
+        }
+      ],
+      "formulas": []
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": 19694,
+        "title": "Mercury (planet)",
+        "role": "seed",
+        "section_ids": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22"
+        ]
+      },
+      {
+        "id": 22915,
+        "title": "Planet",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 26903,
+        "title": "Solar System",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 32745,
+        "title": "Venus",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 451839,
+        "title": "MESSENGER",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 482586,
+        "title": "Vulcanoid",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 2090039,
+        "title": "Geology of Mercury",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 9125179,
+        "title": "Exploration of Mercury",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 26780222,
+        "title": "Earth analog",
+        "role": "related",
+        "section_ids": null
+      }
+    ],
+    "edges": [
+      {
+        "source": 19694,
+        "target": 2090039,
+        "weight": 0.8013246655464172
+      },
+      {
+        "source": 451839,
+        "target": 9125179,
+        "weight": 0.776714563369751
+      },
+      {
+        "source": 22915,
+        "target": 26903,
+        "weight": 0.6615104675292969
+      },
+      {
+        "source": 19694,
+        "target": 451839,
+        "weight": 0.6321985721588135
+      },
+      {
+        "source": 26903,
+        "target": 32745,
+        "weight": 0.5860133767127991
+      },
+      {
+        "source": 19694,
+        "target": 9125179,
+        "weight": 0.5797511339187622
+      },
+      {
+        "source": 22915,
+        "target": 26780222,
+        "weight": 0.5684531927108765
+      },
+      {
+        "source": 451839,
+        "target": 2090039,
+        "weight": 0.5361740589141846
+      },
+      {
+        "source": 19694,
+        "target": 482586,
+        "weight": 0.5190113186836243
+      },
+      {
+        "source": 482586,
+        "target": 2090039,
+        "weight": 0.47909849882125854
+      },
+      {
+        "source": 22915,
+        "target": 32745,
+        "weight": 0.4431719183921814
+      },
+      {
+        "source": 26903,
+        "target": 26780222,
+        "weight": 0.4000353515148163
+      }
+    ]
+  },
+  "id": "19694@1384573767:5f69989b1d89",
+  "topic": {
+    "page_id": 19694,
+    "title": "Mercury (planet)",
+    "description": null,
+    "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29"
+  },
+  "build": {
+    "state": "complete",
+    "built_at": "2026-11-12T08:25:17.675520Z",
+    "pipeline_version": "fixtures-2026-11-12",
+    "analysis": "ml",
+    "summaries_done": 3,
+    "summaries_total": 6,
+    "truncated": false,
+    "stage_seconds": {
+      "build": 2.4298590580001473,
+      "summarize": 1.60858,
+      "total": 4.038439058000147
+    }
+  },
+  "freshness": {
+    "state": "unknown",
+    "pinned_rev_id": 1384573767,
+    "latest_rev_id": null,
+    "edits_since": null,
+    "checked_at": null,
+    "source": "none"
+  },
+  "budget": {
+    "requested": 2000,
+    "counts": "dossier",
+    "used_est_tokens": 1899,
+    "estimator": "chars/4",
+    "included_chunk_ids": [
+      "1384573767:0:0",
+      "1384573767:0:1",
+      "1384573767:0:2",
+      "1384573767:0:3",
+      "1384573767:0:facts",
+      "1384573767:11:0",
+      "1384573767:3:0",
+      "1384573767:15:0",
+      "1384573767:18:0",
+      "1384573767:14:2"
+    ],
+    "omitted_chunks": 69,
+    "complete": false,
+    "shortened_chunk_ids": []
+  },
+  "links": {
+    "self": "http://localhost:8010/api/v1/dossiers/19694?budget=2000&format=json&parts=dossier,metadata,sources",
+    "pinned": "http://localhost:8010/api/v1/dossiers/19694/rev/1384573767?budget=2000&parts=dossier,metadata,sources",
+    "markdown": "http://localhost:8010/api/v1/dossiers/19694.md?budget=2000&parts=dossier,metadata,sources",
+    "wikipedia": "https://en.wikipedia.org/wiki/Mercury_%28planet%29"
+  },
+  "citations": [
+    {
+      "id": "c1",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": null,
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767"
+    },
+    {
+      "id": "c2",
+      "pin": {
+        "page_id": 22915,
+        "title": "Planet",
+        "rev_id": 1385036386,
+        "rev_timestamp": "2026-11-11T14:58:33Z",
+        "url": "https://en.wikipedia.org/wiki/Planet",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1385036386",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284894Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c3",
+      "pin": {
+        "page_id": 26903,
+        "title": "Solar System",
+        "rev_id": 1383321539,
+        "rev_timestamp": "2026-11-02T02:43:12Z",
+        "url": "https://en.wikipedia.org/wiki/Solar_System",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1383321539",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284934Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c4",
+      "pin": {
+        "page_id": 32745,
+        "title": "Venus",
+        "rev_id": 1384282462,
+        "rev_timestamp": "2026-11-07T14:09:50Z",
+        "url": "https://en.wikipedia.org/wiki/Venus",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384282462",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284951Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c5",
+      "pin": {
+        "page_id": 451839,
+        "title": "MESSENGER",
+        "rev_id": 1382038548,
+        "rev_timestamp": "2026-10-26T04:51:38Z",
+        "url": "https://en.wikipedia.org/wiki/MESSENGER",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382038548",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284964Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c6",
+      "pin": {
+        "page_id": 482586,
+        "title": "Vulcanoid",
+        "rev_id": 1382031486,
+        "rev_timestamp": "2026-10-26T03:42:41Z",
+        "url": "https://en.wikipedia.org/wiki/Vulcanoid",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382031486",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284977Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c7",
+      "pin": {
+        "page_id": 2090039,
+        "title": "Geology of Mercury",
+        "rev_id": 1377845291,
+        "rev_timestamp": "2026-10-01T13:35:30Z",
+        "url": "https://en.wikipedia.org/wiki/Geology_of_Mercury",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1377845291",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284991Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c8",
+      "pin": {
+        "page_id": 9125179,
+        "title": "Exploration of Mercury",
+        "rev_id": 1383250824,
+        "rev_timestamp": "2026-11-01T19:18:07Z",
+        "url": "https://en.wikipedia.org/wiki/Exploration_of_Mercury",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1383250824",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.285004Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c9",
+      "pin": {
+        "page_id": 26780222,
+        "title": "Earth analog",
+        "rev_id": 1384535452,
+        "rev_timestamp": "2026-11-08T19:06:43Z",
+        "url": "https://en.wikipedia.org/wiki/Earth_analog",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384535452",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.285017Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c10",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Nomenclature",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Nomenclature"
+    },
+    {
+      "id": "c11",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Physical_characteristics",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Physical_characteristics"
+    },
+    {
+      "id": "c12",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Internal_structure",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Internal_structure"
+    },
+    {
+      "id": "c13",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Surface_geology",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Surface_geology"
+    },
+    {
+      "id": "c14",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Impact_basins_and_craters",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Impact_basins_and_craters"
+    },
+    {
+      "id": "c15",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Plains",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Plains"
+    },
+    {
+      "id": "c16",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Compressional_features",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Compressional_features"
+    },
+    {
+      "id": "c17",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Volcanism",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Volcanism"
+    },
+    {
+      "id": "c18",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Surface_conditions_and_exosphere",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Surface_conditions_and_exosphere"
+    },
+    {
+      "id": "c19",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Magnetic_field_and_magnetosphere",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Magnetic_field_and_magnetosphere"
+    },
+    {
+      "id": "c20",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Orbit,_rotation,_and_longitude",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Orbit,_rotation,_and_longitude"
+    },
+    {
+      "id": "c21",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Longitude_convention",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Longitude_convention"
+    },
+    {
+      "id": "c22",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Spin-orbit_resonance",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Spin-orbit_resonance"
+    },
+    {
+      "id": "c23",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Advance_of_perihelion",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Advance_of_perihelion"
+    },
+    {
+      "id": "c24",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Observation",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Observation"
+    },
+    {
+      "id": "c25",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Observation_history",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Observation_history"
+    },
+    {
+      "id": "c26",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Ancient_astronomers",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Ancient_astronomers"
+    },
+    {
+      "id": "c27",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Ground-based_telescopic_research",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Ground-based_telescopic_research"
+    },
+    {
+      "id": "c28",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Research_with_space_probes",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Research_with_space_probes"
+    },
+    {
+      "id": "c29",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Mariner_10",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Mariner_10"
+    },
+    {
+      "id": "c30",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "MESSENGER",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#MESSENGER"
+    },
+    {
+      "id": "c31",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "BepiColombo",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#BepiColombo"
+    }
+  ]
+}

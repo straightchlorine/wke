@@ -1,0 +1,2253 @@
+{
+  "schema_version": "2",
+  "license_notice": "Quoted passages are CC BY-SA 4.0 Wikipedia content, cited to a pinned revision. Summaries are machine output, not a Wikipedia quotation.",
+  "sections": [
+    {
+      "id": "0",
+      "label": "G\u00f6del's incompleteness theorems",
+      "label_source": "article_title",
+      "chunk_ids": [
+        "1382685320:0:0",
+        "1382685320:0:1",
+        "1382685320:0:2"
+      ],
+      "heading_path": [],
+      "citation_id": "c1",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.7567191274654905
+    },
+    {
+      "id": "1",
+      "label": "Formal systems",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:1:0",
+        "1382685320:1:1"
+      ],
+      "heading_path": [
+        "Formal systems"
+      ],
+      "citation_id": "c10",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": {
+        "kind": "machine_summary",
+        "text": "The incompleteness theorems apply to formal systems that are of sufficient complexity to express the basic arithmetic of the natural numbers . The incomplespleteness is about formal provability within these systems, rather than about \"provability\" in an informal sense .",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "d2fde4ca",
+        "params": {
+          "num_beams": 1,
+          "min_length": 30,
+          "max_length": 96,
+          "input_tokens": 300
+        },
+        "input_chunk_ids": [
+          "1382685320:1:0",
+          "1382685320:1:1"
+        ],
+        "citation_id": "c10",
+        "generated_at": "2026-11-11T19:25:23.631886Z",
+        "infer_seconds": 1.3982526160034467
+      },
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.682743742654969
+    },
+    {
+      "id": "2",
+      "label": "Effective axiomatization",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:2:0",
+        "1382685320:2:1"
+      ],
+      "heading_path": [
+        "Formal systems",
+        "Effective axiomatization"
+      ],
+      "citation_id": "c11",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.57643180614365
+    },
+    {
+      "id": "3",
+      "label": "Completeness",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:3:0",
+        "1382685320:3:1",
+        "1382685320:3:2",
+        "1382685320:3:3"
+      ],
+      "heading_path": [
+        "Formal systems",
+        "Completeness"
+      ],
+      "citation_id": "c12",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.7009972094221638
+    },
+    {
+      "id": "4",
+      "label": "Consistency",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:4:0",
+        "1382685320:4:1",
+        "1382685320:4:2",
+        "1382685320:4:3"
+      ],
+      "heading_path": [
+        "Formal systems",
+        "Consistency"
+      ],
+      "citation_id": "c13",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5460410486821741
+    },
+    {
+      "id": "5",
+      "label": "Systems which contain arithmetic",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:5:0",
+        "1382685320:5:1",
+        "1382685320:5:2",
+        "1382685320:5:3"
+      ],
+      "heading_path": [
+        "Formal systems",
+        "Systems which contain arithmetic"
+      ],
+      "citation_id": "c14",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6795588721565663
+    },
+    {
+      "id": "6",
+      "label": "Conflicting goals",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:6:0",
+        "1382685320:6:1",
+        "1382685320:6:2"
+      ],
+      "heading_path": [
+        "Formal systems",
+        "Conflicting goals"
+      ],
+      "citation_id": "c15",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6304948550391807
+    },
+    {
+      "id": "7",
+      "label": "First incompleteness theorem",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:7:0",
+        "1382685320:7:1",
+        "1382685320:7:2"
+      ],
+      "heading_path": [
+        "First incompleteness theorem"
+      ],
+      "citation_id": "c16",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6464332582168534
+    },
+    {
+      "id": "8",
+      "label": "Syntactic form of the G\u00f6del sentence",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:8:0",
+        "1382685320:8:1",
+        "1382685320:8:2"
+      ],
+      "heading_path": [
+        "First incompleteness theorem",
+        "Syntactic form of the G\u00f6del sentence"
+      ],
+      "citation_id": "c17",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6680120749350811
+    },
+    {
+      "id": "9",
+      "label": "Truth of the G\u00f6del sentence",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:9:0",
+        "1382685320:9:1",
+        "1382685320:9:2"
+      ],
+      "heading_path": [
+        "First incompleteness theorem",
+        "Truth of the G\u00f6del sentence"
+      ],
+      "citation_id": "c18",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the text does not end at a sentence end",
+      "importance": 0.6920419078876536
+    },
+    {
+      "id": "10",
+      "label": "Relationship with the liar paradox",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:10:0",
+        "1382685320:10:1"
+      ],
+      "heading_path": [
+        "First incompleteness theorem",
+        "Relationship with the liar paradox"
+      ],
+      "citation_id": "c19",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5837819613305477
+    },
+    {
+      "id": "11",
+      "label": "Extensions of G\u00f6del's original result",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:11:0",
+        "1382685320:11:1",
+        "1382685320:11:2",
+        "1382685320:11:3"
+      ],
+      "heading_path": [
+        "First incompleteness theorem",
+        "Extensions of G\u00f6del's original result"
+      ],
+      "citation_id": "c20",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "7 of 8 short phrases of the text appear nowhere in the source",
+      "importance": 0.9881344081425011
+    },
+    {
+      "id": "12",
+      "label": "Second incompleteness theorem",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:12:0",
+        "1382685320:12:1"
+      ],
+      "heading_path": [
+        "Second incompleteness theorem"
+      ],
+      "citation_id": "c21",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6308115112377612
+    },
+    {
+      "id": "13",
+      "label": "Expressing consistency",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:13:0",
+        "1382685320:13:1"
+      ],
+      "heading_path": [
+        "Second incompleteness theorem",
+        "Expressing consistency"
+      ],
+      "citation_id": "c22",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5120232613278163
+    },
+    {
+      "id": "14",
+      "label": "The Hilbert\u2013Bernays conditions",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:14:0",
+        "1382685320:14:1"
+      ],
+      "heading_path": [
+        "Second incompleteness theorem",
+        "The Hilbert\u2013Bernays conditions"
+      ],
+      "citation_id": "c23",
+      "dropped_non_prose": true,
+      "dropped_lists": 1,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.488467921882447
+    },
+    {
+      "id": "15",
+      "label": "Implications for consistency proofs",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:15:0",
+        "1382685320:15:1",
+        "1382685320:15:2",
+        "1382685320:15:3"
+      ],
+      "heading_path": [
+        "Second incompleteness theorem",
+        "Implications for consistency proofs"
+      ],
+      "citation_id": "c24",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.7389128967207109
+    },
+    {
+      "id": "16",
+      "label": "Examples of undecidable statements",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:16:0",
+        "1382685320:16:1",
+        "1382685320:16:2",
+        "1382685320:16:3",
+        "1382685320:16:4"
+      ],
+      "heading_path": [
+        "Examples of undecidable statements"
+      ],
+      "citation_id": "c25",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6474235168106908
+    },
+    {
+      "id": "17",
+      "label": "Undecidable statements provable in larger systems",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:17:0",
+        "1382685320:17:1",
+        "1382685320:17:2"
+      ],
+      "heading_path": [
+        "Examples of undecidable statements",
+        "Undecidable statements provable in larger systems"
+      ],
+      "citation_id": "c26",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5030101679738608
+    },
+    {
+      "id": "18",
+      "label": "Relationship with computability",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:18:0",
+        "1382685320:18:1",
+        "1382685320:18:2",
+        "1382685320:18:3",
+        "1382685320:18:4"
+      ],
+      "heading_path": [
+        "Relationship with computability"
+      ],
+      "citation_id": "c27",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6580030757324369
+    },
+    {
+      "id": "19",
+      "label": "Proof sketch for the first theorem",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:19:0",
+        "1382685320:19:list0"
+      ],
+      "heading_path": [
+        "Proof sketch for the first theorem"
+      ],
+      "citation_id": "c28",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.35245808649537913
+    },
+    {
+      "id": "20",
+      "label": "Arithmetization of syntax",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:20:0",
+        "1382685320:20:1",
+        "1382685320:20:2"
+      ],
+      "heading_path": [
+        "Proof sketch for the first theorem",
+        "Arithmetization of syntax"
+      ],
+      "citation_id": "c29",
+      "dropped_non_prose": true,
+      "dropped_lists": 1,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5536999566124503
+    },
+    {
+      "id": "21",
+      "label": "Construction of a statement about \"provability\"",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:21:0",
+        "1382685320:21:1",
+        "1382685320:21:2",
+        "1382685320:21:3",
+        "1382685320:21:4",
+        "1382685320:21:5"
+      ],
+      "heading_path": [
+        "Proof sketch for the first theorem",
+        "Construction of a statement about \"provability\""
+      ],
+      "citation_id": "c30",
+      "dropped_non_prose": true,
+      "dropped_lists": 1,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5354539316468279
+    },
+    {
+      "id": "22",
+      "label": "Diagonalization",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:22:0",
+        "1382685320:22:1",
+        "1382685320:22:2",
+        "1382685320:22:3",
+        "1382685320:22:4",
+        "1382685320:22:5",
+        "1382685320:22:6"
+      ],
+      "heading_path": [
+        "Proof sketch for the first theorem",
+        "Diagonalization"
+      ],
+      "citation_id": "c31",
+      "dropped_non_prose": true,
+      "dropped_lists": 4,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5923290315391248
+    },
+    {
+      "id": "23",
+      "label": "Proof via Berry's paradox",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:23:0"
+      ],
+      "heading_path": [
+        "Proof sketch for the first theorem",
+        "Proof via Berry's paradox"
+      ],
+      "citation_id": "c32",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4990723533886579
+    },
+    {
+      "id": "24",
+      "label": "Computer verified proofs",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:24:0",
+        "1382685320:24:1"
+      ],
+      "heading_path": [
+        "Proof sketch for the first theorem",
+        "Computer verified proofs"
+      ],
+      "citation_id": "c33",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5210492928033305
+    },
+    {
+      "id": "25",
+      "label": "Proof sketch for the second theorem",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:25:0",
+        "1382685320:25:1",
+        "1382685320:25:2"
+      ],
+      "heading_path": [
+        "Proof sketch for the second theorem"
+      ],
+      "citation_id": "c34",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5699167723198821
+    },
+    {
+      "id": "26",
+      "label": "Discussion and implications",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:26:0"
+      ],
+      "heading_path": [
+        "Discussion and implications"
+      ],
+      "citation_id": "c35",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4637046089097443
+    },
+    {
+      "id": "27",
+      "label": "Consequences for logicism and Hilbert's second problem",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:27:0",
+        "1382685320:27:1"
+      ],
+      "heading_path": [
+        "Discussion and implications",
+        "Consequences for logicism and Hilbert's second problem"
+      ],
+      "citation_id": "c36",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6033205602318725
+    },
+    {
+      "id": "28",
+      "label": "Minds and machines",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:28:0",
+        "1382685320:28:1",
+        "1382685320:28:2",
+        "1382685320:28:3",
+        "1382685320:28:4",
+        "1382685320:28:5",
+        "1382685320:28:6"
+      ],
+      "heading_path": [
+        "Discussion and implications",
+        "Minds and machines"
+      ],
+      "citation_id": "c37",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.6796338199542326
+    },
+    {
+      "id": "29",
+      "label": "Paraconsistent logic",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:29:0"
+      ],
+      "heading_path": [
+        "Discussion and implications",
+        "Paraconsistent logic"
+      ],
+      "citation_id": "c38",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5802286065142752
+    },
+    {
+      "id": "30",
+      "label": "Appeals to the incompleteness theorems in other fields",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:30:0"
+      ],
+      "heading_path": [
+        "Discussion and implications",
+        "Appeals to the incompleteness theorems in other fields"
+      ],
+      "citation_id": "c39",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4664909679692667
+    },
+    {
+      "id": "31",
+      "label": "History",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:31:0",
+        "1382685320:31:1",
+        "1382685320:31:2"
+      ],
+      "heading_path": [
+        "History"
+      ],
+      "citation_id": "c40",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6597771803515413
+    },
+    {
+      "id": "32",
+      "label": "Announcement",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:32:0",
+        "1382685320:32:1",
+        "1382685320:32:2",
+        "1382685320:32:3",
+        "1382685320:32:4"
+      ],
+      "heading_path": [
+        "History",
+        "Announcement"
+      ],
+      "citation_id": "c41",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6104304530536914
+    },
+    {
+      "id": "33",
+      "label": "Generalization and acceptance",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:33:0",
+        "1382685320:33:1",
+        "1382685320:33:2"
+      ],
+      "heading_path": [
+        "History",
+        "Generalization and acceptance"
+      ],
+      "citation_id": "c42",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6334648426863381
+    },
+    {
+      "id": "34",
+      "label": "Criticisms",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "History",
+        "Criticisms"
+      ],
+      "citation_id": "c43",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    },
+    {
+      "id": "35",
+      "label": "Finsler",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:35:0"
+      ],
+      "heading_path": [
+        "History",
+        "Criticisms",
+        "Finsler"
+      ],
+      "citation_id": "c44",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5764524647509097
+    },
+    {
+      "id": "36",
+      "label": "Zermelo",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:36:0"
+      ],
+      "heading_path": [
+        "History",
+        "Criticisms",
+        "Zermelo"
+      ],
+      "citation_id": "c45",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5499817138090951
+    },
+    {
+      "id": "37",
+      "label": "Wittgenstein",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1382685320:37:0",
+        "1382685320:37:1",
+        "1382685320:37:2"
+      ],
+      "heading_path": [
+        "History",
+        "Criticisms",
+        "Wittgenstein"
+      ],
+      "citation_id": "c46",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.7204750335779553
+    }
+  ],
+  "chunks": [
+    {
+      "id": "1382685320:0:0",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 0,
+      "text": "G\u00f6del's incompleteness theorems are two theorems of mathematical logic that are concerned with the limits of provability in formal axiomatic theories. These results, published by Kurt G\u00f6del in 1931, are important both in mathematical logic and in philosophy of mathematics. The theorems are interpreted as showing that Hilbert's program to find a complete and consistent set of axioms for all mathematics is impossible.",
+      "est_tokens": 105,
+      "relevance": 0.8857704997062683,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 40,
+          "end": 48,
+          "title": "Theorem"
+        },
+        {
+          "start": 52,
+          "end": 70,
+          "title": "Mathematical logic"
+        },
+        {
+          "start": 179,
+          "end": 189,
+          "title": "Kurt G\u00f6del"
+        },
+        {
+          "start": 247,
+          "end": 272,
+          "title": "Philosophy of mathematics"
+        },
+        {
+          "start": 319,
+          "end": 336,
+          "title": "Hilbert's program"
+        },
+        {
+          "start": 378,
+          "end": 384,
+          "title": "Axiom"
+        },
+        {
+          "start": 393,
+          "end": 404,
+          "title": "Mathematics"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:0:1",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 1,
+      "text": "The first incompleteness theorem states that no consistent system of axioms whose theorems can be listed by an effective procedure (i.e. an algorithm) is capable of proving all truths about the arithmetic of natural numbers. For any such consistent formal system, there will always be statements about natural numbers that are true, but that are unprovable within the system. Equivalently, there will always be statements about natural numbers that are false, but that cannot be proved false within the system.",
+      "est_tokens": 128,
+      "relevance": 0.8185896873474121,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 48,
+          "end": 65,
+          "title": "Consistency"
+        },
+        {
+          "start": 69,
+          "end": 75,
+          "title": "Axiom"
+        },
+        {
+          "start": 111,
+          "end": 130,
+          "title": "Effective procedure"
+        },
+        {
+          "start": 140,
+          "end": 149,
+          "title": "Algorithm"
+        },
+        {
+          "start": 165,
+          "end": 172,
+          "title": "Mathematical proof"
+        },
+        {
+          "start": 208,
+          "end": 223,
+          "title": "Natural number"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:0:2",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 2,
+      "text": "The second incompleteness theorem, an extension of the first, shows that no such system can demonstrate its own consistency. Employing a diagonal argument, G\u00f6del's incompleteness theorems were among the first of several closely related theorems on the limitations of formal systems. They were followed by Tarski's undefinability theorem on the formal undefinability of truth, Church's proof that Hilbert's Entscheidungsproblem is unsolvable, and Turing's theorem that there is no algorithm to solve the halting problem.",
+      "est_tokens": 130,
+      "relevance": 0.8601665496826172,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 137,
+          "end": 154,
+          "title": "Diagonal lemma"
+        },
+        {
+          "start": 305,
+          "end": 336,
+          "title": "Tarski's undefinability theorem"
+        },
+        {
+          "start": 376,
+          "end": 382,
+          "title": "Alonzo Church"
+        },
+        {
+          "start": 406,
+          "end": 426,
+          "title": "Entscheidungsproblem"
+        },
+        {
+          "start": 446,
+          "end": 452,
+          "title": "Alan Turing"
+        },
+        {
+          "start": 503,
+          "end": 518,
+          "title": "Halting problem"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:3:0",
+      "kind": "prose",
+      "citation_id": "c12",
+      "heading_path": [
+        "Formal systems",
+        "Completeness"
+      ],
+      "order": 7,
+      "text": "A set of axioms is (syntactically, or negation-) complete if, for any statement in the axioms' language, that statement or its negation is provable from the axioms. This is the notion relevant for G\u00f6del's first Incompleteness theorem. It is not to be confused with semantic completeness, which means that the set of axioms proves all the semantic tautologies of the given language. In his completeness theorem (not to be confused with the incompleteness theorems described here), G\u00f6del proved that first-order logic is semantically complete. But it is not syntactically complete, since there are sentences expressible in the language of first-order logic that can be neither proved nor disproved from the axioms of logic alone.",
+      "est_tokens": 182,
+      "relevance": 0.6279637813568115,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 49,
+          "end": 57,
+          "title": "Complete theory"
+        },
+        {
+          "start": 389,
+          "end": 409,
+          "title": "G\u00f6del's completeness theorem"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:9:2",
+      "kind": "prose",
+      "citation_id": "c18",
+      "heading_path": [
+        "First incompleteness theorem",
+        "Truth of the G\u00f6del sentence"
+      ],
+      "order": 30,
+      "text": "Such a model must be \"nonstandard\" \u2013 it must contain elements that do not correspond to any standard natural number (Raatikainen 2020, Franz\u00e9n 2005, p. 135).",
+      "est_tokens": 40,
+      "relevance": 0.36238980293273926,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 117,
+          "end": 133,
+          "title": "G\u00f6del's incompleteness theorems"
+        },
+        {
+          "start": 135,
+          "end": 147,
+          "title": "G\u00f6del's incompleteness theorems"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:11:0",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "First incompleteness theorem",
+        "Extensions of G\u00f6del's original result"
+      ],
+      "order": 33,
+      "text": "Compared to the theorems stated in G\u00f6del's 1931 paper, many contemporary statements of the incompleteness theorems are more general in two ways. These generalized statements are phrased to apply to a broader class of systems, and they are phrased to incorporate weaker consistency assumptions.",
+      "est_tokens": 74,
+      "relevance": 0.805454671382904,
+      "cluster_id": 1,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:11:3",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "First incompleteness theorem",
+        "Extensions of G\u00f6del's original result"
+      ],
+      "order": 36,
+      "text": "This is mostly of technical interest, because all true formal theories of arithmetic (theories whose axioms are all true statements about natural numbers) are \u03c9-consistent, and thus G\u00f6del's theorem as originally stated applies to them. The stronger version of the incompleteness theorem that only assumes consistency, rather than \u03c9-consistency, has become commonly known as G\u00f6del's incompleteness theorem and as the G\u00f6del\u2013Rosser theorem.",
+      "est_tokens": 110,
+      "relevance": 0.8420429825782776,
+      "cluster_id": 1,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:15:0",
+      "kind": "prose",
+      "citation_id": "c24",
+      "heading_path": [
+        "Second incompleteness theorem",
+        "Implications for consistency proofs"
+      ],
+      "order": 43,
+      "text": "G\u00f6del's second incompleteness theorem also implies that a system F1 satisfying the technical conditions outlined above cannot prove the consistency of any system F2 that proves the consistency of F1. This is because such a system F1 can prove that if F2 proves the consistency of F1, then F1 is in fact consistent. For the claim that F1 is consistent has form \"for all numbers n, n has the decidable property of not being a code for a proof of contradiction in F1\". If F1 were in fact inconsistent, then F2 would prove for some n that n is the code of a contradiction in F1. But if F2 also proved that F1 is consistent (that is, that there is no such n), then it would itself be inconsistent. This reasoning can be formalized in F1 to show that if F2 is consistent, then F1 is consistent. Since, by second incompleteness theorem, F1 does not prove its consistency, it cannot prove the consistency of F2 either.",
+      "est_tokens": 228,
+      "relevance": 0.7816206216812134,
+      "cluster_id": 1,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:15:3",
+      "kind": "prose",
+      "citation_id": "c24",
+      "heading_path": [
+        "Second incompleteness theorem",
+        "Implications for consistency proofs"
+      ],
+      "order": 46,
+      "text": "The second incompleteness theorem does not rule out altogether the possibility of proving the consistency of a different system with different axioms. For example, Gerhard Gentzen proved the consistency of Peano arithmetic in a different system that includes an axiom asserting that the ordinal called \u03b50 is wellfounded; see Gentzen's consistency proof. Gentzen's theorem spurred the development of ordinal analysis in proof theory.",
+      "est_tokens": 108,
+      "relevance": 0.6852439641952515,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 164,
+          "end": 179,
+          "title": "Gerhard Gentzen"
+        },
+        {
+          "start": 287,
+          "end": 294,
+          "title": "Ordinal number"
+        },
+        {
+          "start": 308,
+          "end": 319,
+          "title": "Wellfounded"
+        },
+        {
+          "start": 325,
+          "end": 352,
+          "title": "Gentzen's consistency proof"
+        },
+        {
+          "start": 399,
+          "end": 415,
+          "title": "Ordinal analysis"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:16:1",
+      "kind": "prose",
+      "citation_id": "c25",
+      "heading_path": [
+        "Examples of undecidable statements"
+      ],
+      "order": 48,
+      "text": "Because of the two meanings of the word undecidable, the term independent is sometimes used instead of undecidable for the \"neither provable nor refutable\" sense.",
+      "est_tokens": 41,
+      "relevance": 0.3713962733745575,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 62,
+          "end": 73,
+          "title": "Independence (mathematical logic)"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:19:0",
+      "kind": "prose",
+      "citation_id": "c28",
+      "heading_path": [
+        "Proof sketch for the first theorem"
+      ],
+      "order": 60,
+      "text": "The proof by contradiction has three essential parts.",
+      "est_tokens": 14,
+      "relevance": 0.28635287284851074,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 4,
+          "end": 26,
+          "title": "Proof by contradiction"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:28:2",
+      "kind": "prose",
+      "citation_id": "c37",
+      "heading_path": [
+        "Discussion and implications",
+        "Minds and machines"
+      ],
+      "order": 89,
+      "text": "Wigderson (2010) has proposed that the concept of mathematical \"knowability\" should be based on computational complexity rather than logical decidability. He writes that \"when knowability is interpreted by modern standards, namely via computational complexity, the G\u00f6del phenomena are very much with us.\"",
+      "est_tokens": 76,
+      "relevance": 0.5720696449279785,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 0,
+          "end": 16,
+          "title": "G\u00f6del's incompleteness theorems"
+        },
+        {
+          "start": 96,
+          "end": 120,
+          "title": "Computational complexity theory"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:37:0",
+      "kind": "prose",
+      "citation_id": "c46",
+      "heading_path": [
+        "History",
+        "Criticisms",
+        "Wittgenstein"
+      ],
+      "order": 109,
+      "text": "Ludwig Wittgenstein wrote several passages about the incompleteness theorems that were published posthumously in his 1953 Remarks on the Foundations of Mathematics, particularly, one section sometimes called the \"notorious paragraph\" where he seems to confuse the notions of \"true\" and \"provable\" in Russell's system. G\u00f6del was a member of the Vienna Circle during the period in which Wittgenstein's early ideal language philosophy and Tractatus Logico-Philosophicus dominated the circle's thinking. There has been some controversy about whether Wittgenstein misunderstood the incompleteness theorem or just expressed himself unclearly. Writings in G\u00f6del's Nachlass express the belief that Wittgenstein misread his ideas.",
+      "est_tokens": 181,
+      "relevance": 0.5602067708969116,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 0,
+          "end": 19,
+          "title": "Ludwig Wittgenstein"
+        },
+        {
+          "start": 122,
+          "end": 163,
+          "title": "Remarks on the Foundations of Mathematics"
+        },
+        {
+          "start": 344,
+          "end": 357,
+          "title": "Vienna Circle"
+        },
+        {
+          "start": 406,
+          "end": 431,
+          "title": "Ideal language philosophy"
+        },
+        {
+          "start": 436,
+          "end": 466,
+          "title": "Tractatus Logico-Philosophicus"
+        },
+        {
+          "start": 657,
+          "end": 665,
+          "title": "Nachlass"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1382685320:37:2",
+      "kind": "prose",
+      "citation_id": "c46",
+      "heading_path": [
+        "History",
+        "Criticisms",
+        "Wittgenstein"
+      ],
+      "order": 111,
+      "text": "Since the publication of Wittgenstein's Nachlass in 2000, a series of papers in philosophy have sought to evaluate whether the original criticism of Wittgenstein's remarks was justified. Floyd & Putnam (2000) argue that Wittgenstein had a more complete understanding of the incompleteness theorem than was previously assumed. They are particularly concerned with the interpretation of a G\u00f6del sentence for an \u03c9-inconsistent system as saying \"I am not provable\", since the system has no models in which the provability predicate corresponds to actual provability. Rodych (2003) argues that their interpretation of Wittgenstein is not historically justified. Berto (2009) explores the relationship between Wittgenstein's writing and theories of paraconsistent logic.",
+      "est_tokens": 191,
+      "relevance": 0.5759643316268921,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 187,
+          "end": 208,
+          "title": "G\u00f6del's incompleteness theorems"
+        },
+        {
+          "start": 563,
+          "end": 576,
+          "title": "G\u00f6del's incompleteness theorems"
+        },
+        {
+          "start": 657,
+          "end": 669,
+          "title": "G\u00f6del's incompleteness theorems"
+        }
+      ],
+      "formulas": []
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "role": "seed",
+        "section_ids": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31",
+          "32",
+          "33",
+          "34",
+          "35",
+          "36",
+          "37"
+        ]
+      },
+      {
+        "id": 12450,
+        "title": "G\u00f6del's completeness theorem",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 19636,
+        "title": "Mathematical logic",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 75802,
+        "title": "Consistency",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 152759,
+        "title": "Hilbert's second problem",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 183478,
+        "title": "Proof theory",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 607286,
+        "title": "Hilbert's program",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 2544440,
+        "title": "Robinson arithmetic",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 15631055,
+        "title": "Undecidable problem",
+        "role": "related",
+        "section_ids": null
+      }
+    ],
+    "edges": [
+      {
+        "source": 58863,
+        "target": 12450,
+        "weight": 0.8238699436187744
+      },
+      {
+        "source": 58863,
+        "target": 607286,
+        "weight": 0.7899181842803955
+      },
+      {
+        "source": 152759,
+        "target": 607286,
+        "weight": 0.7530618906021118
+      },
+      {
+        "source": 19636,
+        "target": 607286,
+        "weight": 0.6999536752700806
+      },
+      {
+        "source": 58863,
+        "target": 19636,
+        "weight": 0.6434297561645508
+      },
+      {
+        "source": 58863,
+        "target": 152759,
+        "weight": 0.6333879828453064
+      },
+      {
+        "source": 12450,
+        "target": 607286,
+        "weight": 0.6277018785476685
+      },
+      {
+        "source": 58863,
+        "target": 75802,
+        "weight": 0.6163733601570129
+      },
+      {
+        "source": 19636,
+        "target": 183478,
+        "weight": 0.5950826406478882
+      },
+      {
+        "source": 12450,
+        "target": 75802,
+        "weight": 0.5478096008300781
+      },
+      {
+        "source": 58863,
+        "target": 15631055,
+        "weight": 0.5422725677490234
+      },
+      {
+        "source": 58863,
+        "target": 183478,
+        "weight": 0.5391051769256592
+      },
+      {
+        "source": 58863,
+        "target": 2544440,
+        "weight": 0.4866943657398224
+      },
+      {
+        "source": 607286,
+        "target": 15631055,
+        "weight": 0.42552635073661804
+      },
+      {
+        "source": 607286,
+        "target": 2544440,
+        "weight": 0.3863126337528229
+      }
+    ]
+  },
+  "id": "58863@1382685320:cfd1c9664fef",
+  "topic": {
+    "page_id": 58863,
+    "title": "G\u00f6del's incompleteness theorems",
+    "description": null,
+    "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"
+  },
+  "build": {
+    "state": "complete",
+    "built_at": "2026-11-12T08:25:12.724356Z",
+    "pipeline_version": "fixtures-2026-11-12",
+    "analysis": "ml",
+    "summaries_done": 5,
+    "summaries_total": 7,
+    "truncated": false,
+    "stage_seconds": {
+      "build": 2.930744063999555,
+      "summarize": 1.624283,
+      "total": 4.555027063999555
+    }
+  },
+  "freshness": {
+    "state": "unknown",
+    "pinned_rev_id": 1382685320,
+    "latest_rev_id": null,
+    "edits_since": null,
+    "checked_at": null,
+    "source": "none"
+  },
+  "budget": {
+    "requested": 2000,
+    "counts": "dossier",
+    "used_est_tokens": 1897,
+    "estimator": "chars/4",
+    "included_chunk_ids": [
+      "1382685320:0:0",
+      "1382685320:0:1",
+      "1382685320:0:2",
+      "1382685320:11:0",
+      "1382685320:11:3",
+      "1382685320:15:0",
+      "1382685320:15:3",
+      "1382685320:37:0",
+      "1382685320:37:2",
+      "1382685320:3:0",
+      "1382685320:9:2",
+      "1382685320:28:2",
+      "1382685320:16:1",
+      "1382685320:19:0"
+    ],
+    "omitted_chunks": 98,
+    "complete": false,
+    "shortened_chunk_ids": []
+  },
+  "links": {
+    "self": "http://localhost:8010/api/v1/dossiers/58863?budget=2000&format=json&parts=dossier,metadata,sources",
+    "pinned": "http://localhost:8010/api/v1/dossiers/58863/rev/1382685320?budget=2000&parts=dossier,metadata,sources",
+    "markdown": "http://localhost:8010/api/v1/dossiers/58863.md?budget=2000&parts=dossier,metadata,sources",
+    "wikipedia": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"
+  },
+  "citations": [
+    {
+      "id": "c1",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": null,
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320"
+    },
+    {
+      "id": "c2",
+      "pin": {
+        "page_id": 12450,
+        "title": "G\u00f6del's completeness theorem",
+        "rev_id": 1380734911,
+        "rev_timestamp": "2026-10-17T14:43:07Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_completeness_theorem",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1380734911",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.829347Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c3",
+      "pin": {
+        "page_id": 19636,
+        "title": "Mathematical logic",
+        "rev_id": 1382474018,
+        "rev_timestamp": "2026-10-28T22:01:17Z",
+        "url": "https://en.wikipedia.org/wiki/Mathematical_logic",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382474018",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.829382Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c4",
+      "pin": {
+        "page_id": 75802,
+        "title": "Consistency",
+        "rev_id": 1384358085,
+        "rev_timestamp": "2026-11-07T21:49:24Z",
+        "url": "https://en.wikipedia.org/wiki/Consistency",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384358085",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.829400Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c5",
+      "pin": {
+        "page_id": 152759,
+        "title": "Hilbert's second problem",
+        "rev_id": 1369235715,
+        "rev_timestamp": "2026-08-13T18:28:11Z",
+        "url": "https://en.wikipedia.org/wiki/Hilbert%27s_second_problem",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1369235715",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.829424Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c6",
+      "pin": {
+        "page_id": 183478,
+        "title": "Proof theory",
+        "rev_id": 1364766523,
+        "rev_timestamp": "2026-07-18T11:55:31Z",
+        "url": "https://en.wikipedia.org/wiki/Proof_theory",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1364766523",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.829440Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c7",
+      "pin": {
+        "page_id": 607286,
+        "title": "Hilbert's program",
+        "rev_id": 1368649311,
+        "rev_timestamp": "2026-08-10T07:57:39Z",
+        "url": "https://en.wikipedia.org/wiki/Hilbert%27s_program",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1368649311",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.829460Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c8",
+      "pin": {
+        "page_id": 2544440,
+        "title": "Robinson arithmetic",
+        "rev_id": 1344254905,
+        "rev_timestamp": "2026-03-19T08:20:05Z",
+        "url": "https://en.wikipedia.org/wiki/Robinson_arithmetic",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1344254905",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.829475Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c9",
+      "pin": {
+        "page_id": 15631055,
+        "title": "Undecidable problem",
+        "rev_id": 1361747761,
+        "rev_timestamp": "2026-06-29T20:54:48Z",
+        "url": "https://en.wikipedia.org/wiki/Undecidable_problem",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1361747761",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.829490Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c10",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Formal_systems",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Formal_systems"
+    },
+    {
+      "id": "c11",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Effective_axiomatization",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Effective_axiomatization"
+    },
+    {
+      "id": "c12",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Completeness",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Completeness"
+    },
+    {
+      "id": "c13",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Consistency",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Consistency"
+    },
+    {
+      "id": "c14",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Systems_which_contain_arithmetic",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Systems_which_contain_arithmetic"
+    },
+    {
+      "id": "c15",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Conflicting_goals",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Conflicting_goals"
+    },
+    {
+      "id": "c16",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "First_incompleteness_theorem",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#First_incompleteness_theorem"
+    },
+    {
+      "id": "c17",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Syntactic_form_of_the_G\u00f6del_sentence",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Syntactic_form_of_the_G%C3%B6del_sentence"
+    },
+    {
+      "id": "c18",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Truth_of_the_G\u00f6del_sentence",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Truth_of_the_G%C3%B6del_sentence"
+    },
+    {
+      "id": "c19",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Relationship_with_the_liar_paradox",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Relationship_with_the_liar_paradox"
+    },
+    {
+      "id": "c20",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Extensions_of_G\u00f6del's_original_result",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Extensions_of_G%C3%B6del's_original_result"
+    },
+    {
+      "id": "c21",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Second_incompleteness_theorem",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Second_incompleteness_theorem"
+    },
+    {
+      "id": "c22",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Expressing_consistency",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Expressing_consistency"
+    },
+    {
+      "id": "c23",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "The_Hilbert\u2013Bernays_conditions",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#The_Hilbert%E2%80%93Bernays_conditions"
+    },
+    {
+      "id": "c24",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Implications_for_consistency_proofs",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Implications_for_consistency_proofs"
+    },
+    {
+      "id": "c25",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Examples_of_undecidable_statements",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Examples_of_undecidable_statements"
+    },
+    {
+      "id": "c26",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Undecidable_statements_provable_in_larger_systems",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Undecidable_statements_provable_in_larger_systems"
+    },
+    {
+      "id": "c27",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Relationship_with_computability",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Relationship_with_computability"
+    },
+    {
+      "id": "c28",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Proof_sketch_for_the_first_theorem",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Proof_sketch_for_the_first_theorem"
+    },
+    {
+      "id": "c29",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Arithmetization_of_syntax",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Arithmetization_of_syntax"
+    },
+    {
+      "id": "c30",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Construction_of_a_statement_about_\"provability\"",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Construction_of_a_statement_about_%22provability%22"
+    },
+    {
+      "id": "c31",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Diagonalization",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Diagonalization"
+    },
+    {
+      "id": "c32",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Proof_via_Berry's_paradox",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Proof_via_Berry's_paradox"
+    },
+    {
+      "id": "c33",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Computer_verified_proofs",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Computer_verified_proofs"
+    },
+    {
+      "id": "c34",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Proof_sketch_for_the_second_theorem",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Proof_sketch_for_the_second_theorem"
+    },
+    {
+      "id": "c35",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Discussion_and_implications",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Discussion_and_implications"
+    },
+    {
+      "id": "c36",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Consequences_for_logicism_and_Hilbert's_second_problem",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Consequences_for_logicism_and_Hilbert's_second_problem"
+    },
+    {
+      "id": "c37",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Minds_and_machines",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Minds_and_machines"
+    },
+    {
+      "id": "c38",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Paraconsistent_logic",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Paraconsistent_logic"
+    },
+    {
+      "id": "c39",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Appeals_to_the_incompleteness_theorems_in_other_fields",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Appeals_to_the_incompleteness_theorems_in_other_fields"
+    },
+    {
+      "id": "c40",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "History",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#History"
+    },
+    {
+      "id": "c41",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Announcement",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Announcement"
+    },
+    {
+      "id": "c42",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Generalization_and_acceptance",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Generalization_and_acceptance"
+    },
+    {
+      "id": "c43",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Criticisms",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Criticisms"
+    },
+    {
+      "id": "c44",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Finsler",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Finsler"
+    },
+    {
+      "id": "c45",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Zermelo",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Zermelo"
+    },
+    {
+      "id": "c46",
+      "pin": {
+        "page_id": 58863,
+        "title": "G\u00f6del's incompleteness theorems",
+        "rev_id": 1382685320,
+        "rev_timestamp": "2026-10-29T20:03:10Z",
+        "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382685320",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:09.795467Z"
+      },
+      "role": "seed",
+      "anchor": "Wittgenstein",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1382685320#Wittgenstein"
+    }
+  ]
+}

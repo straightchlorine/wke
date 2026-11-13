@@ -1,0 +1,21 @@
+{
+  "id": "66d566a7b7690a67",
+  "page_id": 1095706,
+  "rev_id": 1385149975,
+  "title": "Jesus",
+  "status": "done",
+  "stage": "summarize",
+  "progress": {
+    "done": 16,
+    "total": 16
+  },
+  "queue_position": null,
+  "poll_after_ms": 1000,
+  "partial_available": true,
+  "result_url": "http://localhost:8010/api/v1/dossiers/1095706?budget=8000",
+  "error": null,
+  "created_at": "2026-11-12T08:24:59.447975Z",
+  "started_at": "2026-11-12T08:24:59.859024Z",
+  "updated_at": "2026-11-12T08:25:06.396842Z",
+  "finished_at": "2026-11-12T08:25:06.396842Z"
+}

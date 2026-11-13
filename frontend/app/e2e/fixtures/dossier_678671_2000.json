@@ -1,0 +1,1308 @@
+{
+  "schema_version": "2",
+  "license_notice": "Quoted passages are CC BY-SA 4.0 Wikipedia content, cited to a pinned revision. Summaries are machine output, not a Wikipedia quotation.",
+  "sections": [
+    {
+      "id": "0",
+      "label": "Kamchatka Peninsula",
+      "label_source": "article_title",
+      "chunk_ids": [
+        "1378316402:0:0",
+        "1378316402:0:1",
+        "1378316402:0:facts"
+      ],
+      "heading_path": [],
+      "citation_id": "c1",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.7091682074473906
+    },
+    {
+      "id": "1",
+      "label": "Geography",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1378316402:1:0",
+        "1378316402:1:1",
+        "1378316402:1:2",
+        "1378316402:1:3",
+        "1378316402:1:4"
+      ],
+      "heading_path": [
+        "Geography"
+      ],
+      "citation_id": "c10",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the name 'Kamchatkka' is not in the source passages",
+      "importance": 0.5636169130972793
+    },
+    {
+      "id": "2",
+      "label": "Climate",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1378316402:2:0",
+        "1378316402:2:1",
+        "1378316402:2:2",
+        "1378316402:2:3",
+        "1378316402:2:4",
+        "1378316402:2:5"
+      ],
+      "heading_path": [
+        "Geography",
+        "Climate"
+      ],
+      "citation_id": "c11",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5253483102024997
+    },
+    {
+      "id": "3",
+      "label": "Geology",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1378316402:3:0",
+        "1378316402:3:1",
+        "1378316402:3:2"
+      ],
+      "heading_path": [
+        "Geology"
+      ],
+      "citation_id": "c12",
+      "dropped_non_prose": true,
+      "dropped_lists": 0,
+      "dropped_tables": 1,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4764538989176639
+    },
+    {
+      "id": "4",
+      "label": "History and exploration",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1378316402:4:0",
+        "1378316402:4:1",
+        "1378316402:4:2",
+        "1378316402:4:3",
+        "1378316402:4:4",
+        "1378316402:4:5",
+        "1378316402:4:6",
+        "1378316402:4:7",
+        "1378316402:4:8",
+        "1378316402:4:9",
+        "1378316402:4:10",
+        "1378316402:4:11"
+      ],
+      "heading_path": [
+        "History and exploration"
+      ],
+      "citation_id": "c13",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": {
+        "kind": "machine_summary",
+        "text": "The southern tip of the peninsula was also the northernmost extent of Ainu settlement . The peninsula was inhabited by various Chukotko-Kamchatkan peoples .",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "d2fde4ca",
+        "params": {
+          "num_beams": 1,
+          "min_length": 30,
+          "max_length": 96,
+          "input_tokens": 455
+        },
+        "input_chunk_ids": [
+          "1378316402:4:0",
+          "1378316402:4:1",
+          "1378316402:4:2"
+        ],
+        "citation_id": "c13",
+        "generated_at": "2026-11-11T19:22:48.148029Z",
+        "infer_seconds": 1.1432551449979655
+      },
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.6754886762704612
+    },
+    {
+      "id": "5",
+      "label": "Fauna and flora",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1378316402:5:0",
+        "1378316402:5:1",
+        "1378316402:5:2",
+        "1378316402:5:3",
+        "1378316402:5:4",
+        "1378316402:5:5"
+      ],
+      "heading_path": [
+        "Fauna and flora"
+      ],
+      "citation_id": "c14",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": {
+        "kind": "machine_summary",
+        "text": "Kamchatka has diverse and abundant wildlife, including abundant trees and trees . The variable climate promotes different flora zones, including a wide range of climates and topography . The peninsula also boasts the southernmost expanse of Arctic tundra in the world .",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "d2fde4ca",
+        "params": {
+          "num_beams": 1,
+          "min_length": 30,
+          "max_length": 96,
+          "input_tokens": 299
+        },
+        "input_chunk_ids": [
+          "1378316402:5:0",
+          "1378316402:5:1"
+        ],
+        "citation_id": "c14",
+        "generated_at": "2026-11-11T19:22:49.715724Z",
+        "infer_seconds": 1.3535347479992197
+      },
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.613477762565747
+    },
+    {
+      "id": "6",
+      "label": "Tourism",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1378316402:6:0"
+      ],
+      "heading_path": [
+        "Tourism"
+      ],
+      "citation_id": "c15",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5345429351516131
+    }
+  ],
+  "chunks": [
+    {
+      "id": "1378316402:0:0",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 0,
+      "text": "The Kamchatka Peninsula is a 1,250-kilometre-long (777 mi) peninsula in the Russian Far East, with an area of about 270,000 km2 (100,000 sq mi). The Sea of Okhotsk bounds the peninsula's western coastline, immediately offshore of the peninsula and below the Bering Sea runs the 9,600-metre-deep (31,496 ft) Kuril\u2013Kamchatka Trench. Its eastern coastline is the Bering Sea, part of the Pacific Ocean.",
+      "est_tokens": 100,
+      "relevance": 0.8798335790634155,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 59,
+          "end": 68,
+          "title": "Peninsula"
+        },
+        {
+          "start": 76,
+          "end": 92,
+          "title": "Russian Far East"
+        },
+        {
+          "start": 149,
+          "end": 163,
+          "title": "Sea of Okhotsk"
+        },
+        {
+          "start": 307,
+          "end": 329,
+          "title": "Kuril\u2013Kamchatka Trench"
+        },
+        {
+          "start": 360,
+          "end": 370,
+          "title": "Bering Sea"
+        },
+        {
+          "start": 384,
+          "end": 397,
+          "title": "Pacific Ocean"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:0:1",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 1,
+      "text": "The Kamchatka Peninsula, the Commander Islands, and Karaginsky Island constitute Kamchatka Krai of the Russian Federation. The majority of the 322,079 inhabitants are ethnic Russians, with about 13,000 being Koryaks (2014). More than half of the population lives in Petropavlovsk-Kamchatsky (179,526 in 2010) and nearby Yelizovo (38,980). The Kamchatka Peninsula contains the volcanoes of Kamchatka, a UNESCO World Heritage Site, that form part of the Ring of Fire.",
+      "est_tokens": 117,
+      "relevance": 0.8734625577926636,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 29,
+          "end": 46,
+          "title": "Commander Islands"
+        },
+        {
+          "start": 52,
+          "end": 69,
+          "title": "Karaginsky Island"
+        },
+        {
+          "start": 81,
+          "end": 95,
+          "title": "Kamchatka Krai"
+        },
+        {
+          "start": 103,
+          "end": 121,
+          "title": "Russia"
+        },
+        {
+          "start": 174,
+          "end": 182,
+          "title": "Russians"
+        },
+        {
+          "start": 208,
+          "end": 215,
+          "title": "Koryaks"
+        },
+        {
+          "start": 266,
+          "end": 290,
+          "title": "Petropavlovsk-Kamchatsky"
+        },
+        {
+          "start": 320,
+          "end": 328,
+          "title": "Yelizovo"
+        },
+        {
+          "start": 376,
+          "end": 398,
+          "title": "Volcanoes of Kamchatka"
+        },
+        {
+          "start": 402,
+          "end": 408,
+          "title": "UNESCO"
+        },
+        {
+          "start": 409,
+          "end": 428,
+          "title": "World Heritage Site"
+        },
+        {
+          "start": 452,
+          "end": 464,
+          "title": "Ring of Fire"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:0:facts",
+      "kind": "facts",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 2,
+      "text": "Location: Far East\nCoordinates: 57\u00b0N 160\u00b0E\nAdjacent to: Sea of Okhotsk, Pacific Ocean\nArea: 270,000 km2 (100,000 sq mi)\nLength: 1,250 km (777 mi)\nHighest elevation: 4,750 m (15580 ft)\nHighest point: Klyuchevskaya Sopka\nFederal subject: Kamchatka Krai\nCapital city: Petropavlovsk-Kamchatsky\nPopulation: 289,033 (2023 estimate)\nPop. density: 0.62/km2 (1.61/sq mi)",
+      "est_tokens": 91,
+      "relevance": 1.0,
+      "cluster_id": null,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:1:0",
+      "kind": "prose",
+      "citation_id": "c10",
+      "heading_path": [
+        "Geography"
+      ],
+      "order": 3,
+      "text": "Politically, the peninsula forms part of Kamchatka Krai. The southern tip is called Cape Lopatka. (Lopatka is Russian for spade.) The circular bay to the north of this on the Pacific side is Avacha Bay, home to the capital, Petropavlovsk-Kamchatsky. Northward up the Pacific side, the four peninsulas are called Shipunsky Point, Kronotsky Point, Kamchatsky Point, and Ozernoy Point. North of Ozernoy Point is the large Karaginsky Bay, which features Karaginsky Island. Northeast of this (off the displayed map) lies Korfa Bay with the town of Tilichiki. On the opposite side is the Shelikhov Gulf.",
+      "est_tokens": 150,
+      "relevance": 0.7122551202774048,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 41,
+          "end": 55,
+          "title": "Kamchatka Krai"
+        },
+        {
+          "start": 84,
+          "end": 96,
+          "title": "Cape Lopatka"
+        },
+        {
+          "start": 191,
+          "end": 201,
+          "title": "Avacha Bay"
+        },
+        {
+          "start": 224,
+          "end": 248,
+          "title": "Petropavlovsk-Kamchatsky"
+        },
+        {
+          "start": 419,
+          "end": 433,
+          "title": "Karaginsky Bay"
+        },
+        {
+          "start": 450,
+          "end": 467,
+          "title": "Karaginsky Island"
+        },
+        {
+          "start": 516,
+          "end": 525,
+          "title": "Korfa Bay"
+        },
+        {
+          "start": 543,
+          "end": 552,
+          "title": "Tilichiki"
+        },
+        {
+          "start": 582,
+          "end": 596,
+          "title": "Shelikhov Gulf"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:1:4",
+      "kind": "prose",
+      "citation_id": "c10",
+      "heading_path": [
+        "Geography"
+      ],
+      "order": 7,
+      "text": "The obvious circular area in the central valley is the Klyuchevskaya Sopka, an isolated volcanic group southeast of the curve of the Kamchatka River. West of Kronotsky Point is the Kronotsky Biosphere Reserve with the Valley of Geysers. At the southern tip is the Southern Kamchatka Wildlife Refuge with Kurile Lake. There are several other protected areas on the peninsula.",
+      "est_tokens": 94,
+      "relevance": 0.6099352240562439,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 55,
+          "end": 74,
+          "title": "Klyuchevskaya Sopka"
+        },
+        {
+          "start": 181,
+          "end": 190,
+          "title": "Kronotsky"
+        },
+        {
+          "start": 218,
+          "end": 235,
+          "title": "Valley of Geysers"
+        },
+        {
+          "start": 304,
+          "end": 315,
+          "title": "Kurile Lake"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:2:0",
+      "kind": "prose",
+      "citation_id": "c11",
+      "heading_path": [
+        "Geography",
+        "Climate"
+      ],
+      "order": 8,
+      "text": "Kamchatka receives up to 2,700 mm (110 in) of precipitation per year. This is much higher than the rest of Eastern Russia. The increase in precipitation is due to prevailing westerly winds blowing over the Sea of Japan, which pick up moisture that rises as it hits the higher topography of the peninsula, and condenses into rain. The summers are moderately cool, and the winters are rather stormy; however, the storms rarely produce lightning.",
+      "est_tokens": 111,
+      "relevance": 0.6429065465927124,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 206,
+          "end": 218,
+          "title": "Sea of Japan"
+        },
+        {
+          "start": 433,
+          "end": 442,
+          "title": "Lightning"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:2:4",
+      "kind": "prose",
+      "citation_id": "c11",
+      "heading_path": [
+        "Geography",
+        "Climate"
+      ],
+      "order": 12,
+      "text": "The interior valley of the Kamchatka River, represented by Klyuchi, has much lower precipitation (at around 450 to 650 millimetres (18 to 26 in)) and significantly more continental temperatures, reaching 19 \u00b0C (66 \u00b0F) on a typical summer day and during extreme cold winter spells falling as low as \u221241 \u00b0C (\u221242 \u00b0F). Sporadic permafrost prevails over the lower part of this valley; however, it becomes more widespread at higher altitudes and glaciers, and continuous permafrost prevails north of 55\u02da\u00b0 N.",
+      "est_tokens": 126,
+      "relevance": 0.48985040187835693,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 27,
+          "end": 42,
+          "title": "Kamchatka River"
+        },
+        {
+          "start": 315,
+          "end": 334,
+          "title": "Sporadic permafrost"
+        },
+        {
+          "start": 494,
+          "end": 500,
+          "title": "55th parallel north"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:3:0",
+      "kind": "prose",
+      "citation_id": "c12",
+      "heading_path": [
+        "Geology"
+      ],
+      "order": 14,
+      "text": "The Kamchatka River and the surrounding central side valley are flanked by large volcanic belts containing around 160 volcanoes, 29 of them still active. The peninsula has a high density of volcanoes and associated volcanic phenomena, with 19 active volcanoes included in the six UNESCO World Heritage List sites in the Volcanoes of Kamchatka group, most of them on the Kamchatka Peninsula, the most volcanic area of the Eurasian continent, with many active cones. The Kamchatka Peninsula is also known as the \"land of fire and ice\".",
+      "est_tokens": 134,
+      "relevance": 0.7361236810684204,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 4,
+          "end": 19,
+          "title": "Kamchatka River"
+        },
+        {
+          "start": 81,
+          "end": 95,
+          "title": "Volcanic belt"
+        },
+        {
+          "start": 118,
+          "end": 127,
+          "title": "Volcano"
+        },
+        {
+          "start": 280,
+          "end": 286,
+          "title": "UNESCO"
+        },
+        {
+          "start": 287,
+          "end": 306,
+          "title": "World Heritage List"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:4:0",
+      "kind": "prose",
+      "citation_id": "c13",
+      "heading_path": [
+        "History and exploration"
+      ],
+      "order": 17,
+      "text": "Prior to Russian exploration, the peninsula was inhabited by various Chukotko-Kamchatkan peoples (specifically the Itelmen, Koryak, and Alyutor). The southern tip of the peninsula was also the northernmost extent of Ainu settlement.",
+      "est_tokens": 58,
+      "relevance": 0.550591230392456,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 69,
+          "end": 88,
+          "title": "Chukotko-Kamchatkan"
+        },
+        {
+          "start": 115,
+          "end": 122,
+          "title": "Itelmen"
+        },
+        {
+          "start": 124,
+          "end": 130,
+          "title": "Koryaks"
+        },
+        {
+          "start": 136,
+          "end": 143,
+          "title": "Alyutor"
+        },
+        {
+          "start": 216,
+          "end": 220,
+          "title": "Ainu in Russia"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:4:9",
+      "kind": "prose",
+      "citation_id": "c13",
+      "heading_path": [
+        "History and exploration"
+      ],
+      "order": 26,
+      "text": "The next 50 years were lean for Kamchatka. The naval port moved to Ust-Amur, and in 1867, Russia sold Alaska to the United States, making Petropavlovsk obsolete as a transit point for traders and explorers on their way to the American territories. In 1860, a Primorsky (Maritime) Region was established and Kamchatka was placed under its jurisdiction. In 1875, Russia ceded the Kuril Islands to Japan in return for Russian sovereignty over Sakhalin island. The Russian population of Kamchatka stayed at around 2,500 until the turn of the century, while the native population increased to 5,000. During the 19th century, scientific exploration of the peninsula continued. Karl von Ditmar made an important journey to the peninsula in 1851\u20131854.",
+      "est_tokens": 186,
+      "relevance": 0.6617636680603027,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 97,
+          "end": 101,
+          "title": "Alaska Purchase"
+        },
+        {
+          "start": 102,
+          "end": 108,
+          "title": "Alaska"
+        },
+        {
+          "start": 378,
+          "end": 391,
+          "title": "Kuril Islands"
+        },
+        {
+          "start": 440,
+          "end": 448,
+          "title": "Sakhalin"
+        },
+        {
+          "start": 671,
+          "end": 686,
+          "title": "Karl von Ditmar"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:5:0",
+      "kind": "prose",
+      "citation_id": "c14",
+      "heading_path": [
+        "Fauna and flora"
+      ],
+      "order": 29,
+      "text": "Kamchatka boasts abundant flora. The variable climate promotes different flora zones. Tundra and muskeg are dominant at higher elevations, with meadows and sparse forests with grasses, flowering shrubs, and forests of pine, birch, alder, and willow in the lowlands. Kamchatka Taiga of Yeddo spruce with Dahurian larch and Asian white birch grows in the Central Kamchatka Depression. The wide variety of plant forms spread throughout the Peninsula promotes a similar diversity in animal species that feed off the flora. Although Kamchatka is mostly tundra, deciduous and coniferous trees are abundant, and forests can be found throughout the peninsula.",
+      "est_tokens": 163,
+      "relevance": 0.5803409218788147,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 86,
+          "end": 92,
+          "title": "Kamchatka tundra"
+        },
+        {
+          "start": 97,
+          "end": 103,
+          "title": "Muskeg"
+        },
+        {
+          "start": 144,
+          "end": 170,
+          "title": "Kamchatka\u2013Kurile meadows and sparse forests"
+        },
+        {
+          "start": 218,
+          "end": 222,
+          "title": "Pine"
+        },
+        {
+          "start": 224,
+          "end": 229,
+          "title": "Birch"
+        },
+        {
+          "start": 231,
+          "end": 236,
+          "title": "Alder"
+        },
+        {
+          "start": 242,
+          "end": 248,
+          "title": "Willow"
+        },
+        {
+          "start": 266,
+          "end": 281,
+          "title": "Kamchatka Taiga"
+        },
+        {
+          "start": 285,
+          "end": 297,
+          "title": "Yeddo spruce"
+        },
+        {
+          "start": 303,
+          "end": 317,
+          "title": "Dahurian larch"
+        },
+        {
+          "start": 322,
+          "end": 339,
+          "title": "Asian white birch"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:5:4",
+      "kind": "prose",
+      "citation_id": "c14",
+      "heading_path": [
+        "Fauna and flora"
+      ],
+      "order": 33,
+      "text": "Cetaceans that frequent the highly productive waters of the northwestern Pacific and the Okhotsk Sea include orcas, Dall's and harbour porpoises, humpback whales, sperm whales, and fin whales. Less frequently, grey whales (from the eastern population), the critically endangered North Pacific right whale and bowhead whale, beaked whales, and minke whales are encountered. Blue whale are known to feed off of the southeastern shelf in summer. Among pinnipeds, Steller's sea lions, northern fur seals, spotted seals, harbor seals, and ringed seals are abundant along much of the peninsula. Further north, walruses and bearded seals can be encountered on the Pacific side, and ribbon seals reproduce on the ice of Karaginsky Bay. Sea otters are concentrated primarily on the southern end of the peninsula.",
+      "est_tokens": 201,
+      "relevance": 0.3915935158729553,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 89,
+          "end": 100,
+          "title": "Okhotsk Sea"
+        },
+        {
+          "start": 109,
+          "end": 114,
+          "title": "Orca"
+        },
+        {
+          "start": 116,
+          "end": 120,
+          "title": "Dall's porpoise"
+        },
+        {
+          "start": 127,
+          "end": 144,
+          "title": "Harbour porpoise"
+        },
+        {
+          "start": 146,
+          "end": 161,
+          "title": "Humpback whales"
+        },
+        {
+          "start": 163,
+          "end": 175,
+          "title": "Sperm whale"
+        },
+        {
+          "start": 181,
+          "end": 191,
+          "title": "Fin whale"
+        },
+        {
+          "start": 210,
+          "end": 221,
+          "title": "Grey whale"
+        },
+        {
+          "start": 279,
+          "end": 304,
+          "title": "North Pacific right whale"
+        },
+        {
+          "start": 309,
+          "end": 322,
+          "title": "Bowhead whale"
+        },
+        {
+          "start": 324,
+          "end": 337,
+          "title": "Beaked whale"
+        },
+        {
+          "start": 343,
+          "end": 355,
+          "title": "Minke whale"
+        },
+        {
+          "start": 373,
+          "end": 383,
+          "title": "Blue whale"
+        },
+        {
+          "start": 449,
+          "end": 458,
+          "title": "Pinniped"
+        },
+        {
+          "start": 460,
+          "end": 479,
+          "title": "Steller's sea lion"
+        },
+        {
+          "start": 481,
+          "end": 499,
+          "title": "Northern fur seal"
+        },
+        {
+          "start": 501,
+          "end": 514,
+          "title": "Spotted seal"
+        },
+        {
+          "start": 516,
+          "end": 528,
+          "title": "Harbor seal"
+        },
+        {
+          "start": 534,
+          "end": 546,
+          "title": "Ringed seal"
+        },
+        {
+          "start": 604,
+          "end": 612,
+          "title": "Walrus"
+        },
+        {
+          "start": 617,
+          "end": 630,
+          "title": "Bearded seal"
+        },
+        {
+          "start": 675,
+          "end": 687,
+          "title": "Ribbon seal"
+        },
+        {
+          "start": 712,
+          "end": 726,
+          "title": "Karaginsky Bay"
+        },
+        {
+          "start": 728,
+          "end": 738,
+          "title": "Sea otters"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1378316402:6:0",
+      "kind": "prose",
+      "citation_id": "c15",
+      "heading_path": [
+        "Tourism"
+      ],
+      "order": 35,
+      "text": "Points of interest on the Kamchatka Peninsula include thermal and mineral springs, volcanoes, glaciers, a diversity of plants and animals, and other natural features largely untouched by civilization. Activities include sport fishing, alpine tourism, heliskiing, snowboarding, dog sledding, and surfing.",
+      "est_tokens": 76,
+      "relevance": 0.643073320388794,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 220,
+          "end": 233,
+          "title": "Sport fishing"
+        },
+        {
+          "start": 251,
+          "end": 261,
+          "title": "Heliskiing"
+        },
+        {
+          "start": 263,
+          "end": 275,
+          "title": "Snowboarding"
+        },
+        {
+          "start": 277,
+          "end": 289,
+          "title": "Dog sledding"
+        },
+        {
+          "start": 295,
+          "end": 302,
+          "title": "Surfing"
+        }
+      ],
+      "formulas": []
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": 678671,
+        "title": "Kamchatka Peninsula",
+        "role": "seed",
+        "section_ids": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
+      },
+      {
+        "id": 17407,
+        "title": "Kamchatka Oblast",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 57930,
+        "title": "Petropavlovsk-Kamchatsky",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 57931,
+        "title": "Vitus Bering",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 1790733,
+        "title": "Kamchatka earthquakes",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 2985768,
+        "title": "Kamchatka Krai",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 3879432,
+        "title": "Avacha Bay",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 53672933,
+        "title": "Ossora",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 81324709,
+        "title": "Verkhoturov Island",
+        "role": "related",
+        "section_ids": null
+      }
+    ],
+    "edges": [
+      {
+        "source": 17407,
+        "target": 2985768,
+        "weight": 0.818813145160675
+      },
+      {
+        "source": 17407,
+        "target": 57930,
+        "weight": 0.7585957646369934
+      },
+      {
+        "source": 678671,
+        "target": 2985768,
+        "weight": 0.7580035328865051
+      },
+      {
+        "source": 678671,
+        "target": 17407,
+        "weight": 0.756000280380249
+      },
+      {
+        "source": 678671,
+        "target": 57930,
+        "weight": 0.7322295904159546
+      },
+      {
+        "source": 678671,
+        "target": 3879432,
+        "weight": 0.7241041660308838
+      },
+      {
+        "source": 678671,
+        "target": 1790733,
+        "weight": 0.6557619571685791
+      },
+      {
+        "source": 57930,
+        "target": 3879432,
+        "weight": 0.6555807590484619
+      },
+      {
+        "source": 17407,
+        "target": 53672933,
+        "weight": 0.6162903308868408
+      },
+      {
+        "source": 17407,
+        "target": 1790733,
+        "weight": 0.5808196067810059
+      },
+      {
+        "source": 678671,
+        "target": 81324709,
+        "weight": 0.5683566331863403
+      },
+      {
+        "source": 57930,
+        "target": 53672933,
+        "weight": 0.5635867118835449
+      },
+      {
+        "source": 3879432,
+        "target": 81324709,
+        "weight": 0.5189082622528076
+      },
+      {
+        "source": 678671,
+        "target": 57931,
+        "weight": 0.49594932794570923
+      },
+      {
+        "source": 57931,
+        "target": 3879432,
+        "weight": 0.4246813654899597
+      }
+    ]
+  },
+  "id": "678671@1378316402:52093e74d5a1",
+  "topic": {
+    "page_id": 678671,
+    "title": "Kamchatka Peninsula",
+    "description": null,
+    "url": "https://en.wikipedia.org/wiki/Kamchatka_Peninsula"
+  },
+  "build": {
+    "state": "complete",
+    "built_at": "2026-11-12T08:26:20.412343Z",
+    "pipeline_version": "fixtures-2026-11-12",
+    "analysis": "ml",
+    "summaries_done": 2,
+    "summaries_total": 3,
+    "truncated": false,
+    "stage_seconds": {
+      "build": 1.37468323199937,
+      "summarize": 0.709746,
+      "total": 2.08442923199937
+    }
+  },
+  "freshness": {
+    "state": "unknown",
+    "pinned_rev_id": 1378316402,
+    "latest_rev_id": null,
+    "edits_since": null,
+    "checked_at": null,
+    "source": "none"
+  },
+  "budget": {
+    "requested": 2000,
+    "counts": "dossier",
+    "used_est_tokens": 1871,
+    "estimator": "chars/4",
+    "included_chunk_ids": [
+      "1378316402:0:0",
+      "1378316402:0:1",
+      "1378316402:0:facts",
+      "1378316402:4:0",
+      "1378316402:4:9",
+      "1378316402:5:0",
+      "1378316402:5:4",
+      "1378316402:1:0",
+      "1378316402:1:4",
+      "1378316402:6:0",
+      "1378316402:2:0",
+      "1378316402:2:4",
+      "1378316402:3:0"
+    ],
+    "omitted_chunks": 23,
+    "complete": false,
+    "shortened_chunk_ids": []
+  },
+  "links": {
+    "self": "http://localhost:8010/api/v1/dossiers/678671?budget=2000&format=json&parts=dossier,metadata,sources",
+    "pinned": "http://localhost:8010/api/v1/dossiers/678671/rev/1378316402?budget=2000&parts=dossier,metadata,sources",
+    "markdown": "http://localhost:8010/api/v1/dossiers/678671.md?budget=2000&parts=dossier,metadata,sources",
+    "wikipedia": "https://en.wikipedia.org/wiki/Kamchatka_Peninsula"
+  },
+  "citations": [
+    {
+      "id": "c1",
+      "pin": {
+        "page_id": 678671,
+        "title": "Kamchatka Peninsula",
+        "rev_id": 1378316402,
+        "rev_timestamp": "2026-10-03T23:21:05Z",
+        "url": "https://en.wikipedia.org/wiki/Kamchatka_Peninsula",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1378316402",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.038977Z"
+      },
+      "role": "seed",
+      "anchor": null,
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378316402"
+    },
+    {
+      "id": "c2",
+      "pin": {
+        "page_id": 17407,
+        "title": "Kamchatka Oblast",
+        "rev_id": 1366194423,
+        "rev_timestamp": "2026-07-26T20:34:18Z",
+        "url": "https://en.wikipedia.org/wiki/Kamchatka_Oblast",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1366194423",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.059129Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c3",
+      "pin": {
+        "page_id": 57930,
+        "title": "Petropavlovsk-Kamchatsky",
+        "rev_id": 1383615849,
+        "rev_timestamp": "2026-11-03T18:31:25Z",
+        "url": "https://en.wikipedia.org/wiki/Petropavlovsk-Kamchatsky",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1383615849",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.059161Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c4",
+      "pin": {
+        "page_id": 57931,
+        "title": "Vitus Bering",
+        "rev_id": 1367038040,
+        "rev_timestamp": "2026-07-31T15:38:36Z",
+        "url": "https://en.wikipedia.org/wiki/Vitus_Bering",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1367038040",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.059174Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c5",
+      "pin": {
+        "page_id": 1790733,
+        "title": "Kamchatka earthquakes",
+        "rev_id": 1383586354,
+        "rev_timestamp": "2026-11-03T14:40:14Z",
+        "url": "https://en.wikipedia.org/wiki/Kamchatka_earthquakes",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1383586354",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.059185Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c6",
+      "pin": {
+        "page_id": 2985768,
+        "title": "Kamchatka Krai",
+        "rev_id": 1384469908,
+        "rev_timestamp": "2026-11-08T10:53:38Z",
+        "url": "https://en.wikipedia.org/wiki/Kamchatka_Krai",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384469908",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.059195Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c7",
+      "pin": {
+        "page_id": 3879432,
+        "title": "Avacha Bay",
+        "rev_id": 1348189651,
+        "rev_timestamp": "2026-04-11T06:18:33Z",
+        "url": "https://en.wikipedia.org/wiki/Avacha_Bay",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1348189651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.059205Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c8",
+      "pin": {
+        "page_id": 53672933,
+        "title": "Ossora",
+        "rev_id": 1375136970,
+        "rev_timestamp": "2026-09-16T01:49:16Z",
+        "url": "https://en.wikipedia.org/wiki/Ossora",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1375136970",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.059214Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c9",
+      "pin": {
+        "page_id": 81324709,
+        "title": "Verkhoturov Island",
+        "rev_id": 1364341484,
+        "rev_timestamp": "2026-07-16T00:48:57Z",
+        "url": "https://en.wikipedia.org/wiki/Verkhoturov_Island",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1364341484",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.059225Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c10",
+      "pin": {
+        "page_id": 678671,
+        "title": "Kamchatka Peninsula",
+        "rev_id": 1378316402,
+        "rev_timestamp": "2026-10-03T23:21:05Z",
+        "url": "https://en.wikipedia.org/wiki/Kamchatka_Peninsula",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1378316402",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.038977Z"
+      },
+      "role": "seed",
+      "anchor": "Geography",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378316402#Geography"
+    },
+    {
+      "id": "c11",
+      "pin": {
+        "page_id": 678671,
+        "title": "Kamchatka Peninsula",
+        "rev_id": 1378316402,
+        "rev_timestamp": "2026-10-03T23:21:05Z",
+        "url": "https://en.wikipedia.org/wiki/Kamchatka_Peninsula",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1378316402",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.038977Z"
+      },
+      "role": "seed",
+      "anchor": "Climate",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378316402#Climate"
+    },
+    {
+      "id": "c12",
+      "pin": {
+        "page_id": 678671,
+        "title": "Kamchatka Peninsula",
+        "rev_id": 1378316402,
+        "rev_timestamp": "2026-10-03T23:21:05Z",
+        "url": "https://en.wikipedia.org/wiki/Kamchatka_Peninsula",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1378316402",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.038977Z"
+      },
+      "role": "seed",
+      "anchor": "Geology",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378316402#Geology"
+    },
+    {
+      "id": "c13",
+      "pin": {
+        "page_id": 678671,
+        "title": "Kamchatka Peninsula",
+        "rev_id": 1378316402,
+        "rev_timestamp": "2026-10-03T23:21:05Z",
+        "url": "https://en.wikipedia.org/wiki/Kamchatka_Peninsula",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1378316402",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.038977Z"
+      },
+      "role": "seed",
+      "anchor": "History_and_exploration",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378316402#History_and_exploration"
+    },
+    {
+      "id": "c14",
+      "pin": {
+        "page_id": 678671,
+        "title": "Kamchatka Peninsula",
+        "rev_id": 1378316402,
+        "rev_timestamp": "2026-10-03T23:21:05Z",
+        "url": "https://en.wikipedia.org/wiki/Kamchatka_Peninsula",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1378316402",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.038977Z"
+      },
+      "role": "seed",
+      "anchor": "Fauna_and_flora",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378316402#Fauna_and_flora"
+    },
+    {
+      "id": "c15",
+      "pin": {
+        "page_id": 678671,
+        "title": "Kamchatka Peninsula",
+        "rev_id": 1378316402,
+        "rev_timestamp": "2026-10-03T23:21:05Z",
+        "url": "https://en.wikipedia.org/wiki/Kamchatka_Peninsula",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1378316402",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:26:19.038977Z"
+      },
+      "role": "seed",
+      "anchor": "Tourism",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378316402#Tourism"
+    }
+  ]
+}

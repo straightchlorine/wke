@@ -1,0 +1,48 @@
+{
+  "query": "Kamchatka",
+  "results": [
+    {
+      "page_id": 678671,
+      "title": "Kamchatka Peninsula",
+      "description": null,
+      "dossier_state": "ready"
+    },
+    {
+      "page_id": 2985768,
+      "title": "Kamchatka Krai",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 80571314,
+      "title": "2025 Kamchatka earthquake",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 11703100,
+      "title": "Kamchatka brown bear",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 22727132,
+      "title": "Kamchatka Time",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 46985626,
+      "title": "February 1923 Kamchatka earthquake",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 21166012,
+      "title": "Volcanoes of Kamchatka",
+      "description": null,
+      "dossier_state": "none"
+    }
+  ],
+  "did_you_mean": null
+}

@@ -1,0 +1,1542 @@
+{
+  "schema_version": "2",
+  "license_notice": "Quoted passages are CC BY-SA 4.0 Wikipedia content, cited to a pinned revision. Summaries are machine output, not a Wikipedia quotation.",
+  "sections": [
+    {
+      "id": "0",
+      "label": "Lizzie Borden",
+      "label_source": "article_title",
+      "chunk_ids": [
+        "1384380651:0:0",
+        "1384380651:0:1",
+        "1384380651:0:2",
+        "1384380651:0:facts"
+      ],
+      "heading_path": [],
+      "citation_id": "c1",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6784253025728078
+    },
+    {
+      "id": "1",
+      "label": "Early life",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:1:0",
+        "1384380651:1:1"
+      ],
+      "heading_path": [
+        "Early life"
+      ],
+      "citation_id": "c10",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5140267729338059
+    },
+    {
+      "id": "2",
+      "label": "Midlife",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:2:0",
+        "1384380651:2:1",
+        "1384380651:2:2",
+        "1384380651:2:3",
+        "1384380651:2:4",
+        "1384380651:2:5",
+        "1384380651:2:6",
+        "1384380651:2:7",
+        "1384380651:2:8"
+      ],
+      "heading_path": [
+        "Midlife"
+      ],
+      "citation_id": "c11",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6551156142766007
+    },
+    {
+      "id": "3",
+      "label": "Murders of Andrew and Abby",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "Murders of Andrew and Abby"
+      ],
+      "citation_id": "c12",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    },
+    {
+      "id": "4",
+      "label": "Thursday, August 4, 1892",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:4:0",
+        "1384380651:4:1",
+        "1384380651:4:2",
+        "1384380651:4:3",
+        "1384380651:4:4"
+      ],
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Thursday, August 4, 1892"
+      ],
+      "citation_id": "c13",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5382566768308146
+    },
+    {
+      "id": "5",
+      "label": "Investigation",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:5:0",
+        "1384380651:5:1",
+        "1384380651:5:2",
+        "1384380651:5:3",
+        "1384380651:5:4",
+        "1384380651:5:5"
+      ],
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Investigation"
+      ],
+      "citation_id": "c14",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6210828877667073
+    },
+    {
+      "id": "6",
+      "label": "Inquest",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:6:0",
+        "1384380651:6:1"
+      ],
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Inquest"
+      ],
+      "citation_id": "c15",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5106621283597881
+    },
+    {
+      "id": "7",
+      "label": "Trial and acquittal",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:7:0",
+        "1384380651:7:1",
+        "1384380651:7:2",
+        "1384380651:7:3",
+        "1384380651:7:4",
+        "1384380651:7:5",
+        "1384380651:7:6"
+      ],
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Trial and acquittal"
+      ],
+      "citation_id": "c16",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the number 1894 is attached to words that do not go with it in the source",
+      "importance": 0.8470953468191798
+    },
+    {
+      "id": "8",
+      "label": "Theories",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Theories"
+      ],
+      "citation_id": "c17",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    },
+    {
+      "id": "9",
+      "label": "Lizzie Borden",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:9:0",
+        "1384380651:9:1",
+        "1384380651:9:2"
+      ],
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Theories",
+        "Lizzie Borden"
+      ],
+      "citation_id": "c18",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4799506060355182
+    },
+    {
+      "id": "10",
+      "label": "John Morse",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:10:0"
+      ],
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Theories",
+        "John Morse"
+      ],
+      "citation_id": "c19",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.45394321149733957
+    },
+    {
+      "id": "11",
+      "label": "\"William Borden\"",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:11:0"
+      ],
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Theories",
+        "\"William Borden\""
+      ],
+      "citation_id": "c20",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.3913230585575709
+    },
+    {
+      "id": "12",
+      "label": "Emma Borden",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:12:0"
+      ],
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Theories",
+        "Emma Borden"
+      ],
+      "citation_id": "c21",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.42745773707387325
+    },
+    {
+      "id": "13",
+      "label": "Later life",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:13:0",
+        "1384380651:13:1"
+      ],
+      "heading_path": [
+        "Later life"
+      ],
+      "citation_id": "c22",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.519790479715564
+    },
+    {
+      "id": "14",
+      "label": "Death",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:14:0",
+        "1384380651:14:1"
+      ],
+      "heading_path": [
+        "Death"
+      ],
+      "citation_id": "c23",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.760725511558743
+    },
+    {
+      "id": "15",
+      "label": "In culture",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:15:0",
+        "1384380651:15:1"
+      ],
+      "heading_path": [
+        "In culture"
+      ],
+      "citation_id": "c24",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4534600321143495
+    },
+    {
+      "id": "16",
+      "label": "Folk rhyme",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:16:0",
+        "1384380651:16:1",
+        "1384380651:16:2"
+      ],
+      "heading_path": [
+        "In culture",
+        "Folk rhyme"
+      ],
+      "citation_id": "c25",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4283147748752121
+    },
+    {
+      "id": "17",
+      "label": "Depictions",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:17:0",
+        "1384380651:17:1",
+        "1384380651:17:2",
+        "1384380651:17:3",
+        "1384380651:17:4",
+        "1384380651:17:5",
+        "1384380651:17:6",
+        "1384380651:17:7",
+        "1384380651:17:8",
+        "1384380651:17:9",
+        "1384380651:17:10"
+      ],
+      "heading_path": [
+        "In culture",
+        "Depictions"
+      ],
+      "citation_id": "c26",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the text does not end at a sentence end",
+      "importance": 0.7105796697067873
+    },
+    {
+      "id": "18",
+      "label": "In literature",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384380651:18:list0"
+      ],
+      "heading_path": [
+        "In culture",
+        "In literature"
+      ],
+      "citation_id": "c27",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5169263520246399
+    },
+    {
+      "id": "22",
+      "label": "Works cited",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "Works cited"
+      ],
+      "citation_id": "c28",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    }
+  ],
+  "chunks": [
+    {
+      "id": "1384380651:0:0",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 0,
+      "text": "Lizzie Andrew Borden (July 19, 1860 \u2013 June 1, 1927) was an American woman who was tried and acquitted of the murders of her father and stepmother in Fall River, Massachusetts. No other individuals were charged with the murders.",
+      "est_tokens": 57,
+      "relevance": 0.8763121962547302,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 149,
+          "end": 174,
+          "title": "Fall River, Massachusetts"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:0:1",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 1,
+      "text": "After the trial, Borden and her older sister Emma bought a house in the wealthier Highlands, or Hill District, of Fall River, where Borden lived out her life. Emma moved away after twelve years and lived in New Hampshire. Borden died of pneumonia at age 66 on June 1, 1927, before her sister Emma who died 9 days later on June 10.",
+      "est_tokens": 83,
+      "relevance": 0.8025283813476562,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 114,
+          "end": 124,
+          "title": "Fall River, Massachusetts"
+        },
+        {
+          "start": 207,
+          "end": 220,
+          "title": "New Hampshire"
+        },
+        {
+          "start": 237,
+          "end": 246,
+          "title": "Pneumonia"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:0:2",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 2,
+      "text": "The Borden murders and 1893 trial received widespread publicity in the United States, and have remained a topic in American popular culture, inspiring numerous films, theatrical productions, literary works, and even folk rhymes.",
+      "est_tokens": 57,
+      "relevance": 0.6020380854606628,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 216,
+          "end": 227,
+          "title": "Skipping-rope rhyme"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:0:facts",
+      "kind": "facts",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 3,
+      "text": "Born: Lizzie Andrew Borden, July 19, 1860, Fall River, Massachusetts, U.S.\nDied: June 1, 1927 (aged 66), Fall River, Massachusetts, U.S.\nResting place: Oak Grove Cemetery\nOther name: Lizbeth Borden\nKnown for: Suspected homicide of father and stepmother",
+      "est_tokens": 63,
+      "relevance": 1.0,
+      "cluster_id": null,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:1:0",
+      "kind": "prose",
+      "citation_id": "c10",
+      "heading_path": [
+        "Early life"
+      ],
+      "order": 4,
+      "text": "Lizzie Andrew Borden was born on July 19, 1860, in Fall River, Massachusetts, to Sarah (Anthony) Borden (n\u00e9e Morse; 1823\u20131863) and Andrew Jackson Borden (1822\u20131892). She was the third child born to the couple; ahead of Lizzie were Emma Lenora and Alice Esther, who died of hydrocephalus at 22 months.",
+      "est_tokens": 75,
+      "relevance": 0.6493839025497437,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 51,
+          "end": 76,
+          "title": "Fall River, Massachusetts"
+        },
+        {
+          "start": 273,
+          "end": 286,
+          "title": "Hydrocephalus"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:2:0",
+      "kind": "prose",
+      "citation_id": "c11",
+      "heading_path": [
+        "Midlife"
+      ],
+      "order": 6,
+      "text": "Borden's father became a director of several textile mills and owned considerable commercial property. He was also president of the Union Savings Bank and a director of the Durfee Safe Deposit and Trust Co. At the time of his murder, his estate was valued at $300,000 (equivalent to $10.8 million in 2025).",
+      "est_tokens": 77,
+      "relevance": 0.4631894528865814,
+      "cluster_id": 0,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:2:6",
+      "kind": "prose",
+      "citation_id": "c11",
+      "heading_path": [
+        "Midlife"
+      ],
+      "order": 12,
+      "text": "Other tension had been growing within the Borden family during 1892; the grown daughters resented Andrew's gifts of real estate to various branches of Abby's family. After their stepmother's half-sister received a house, Lizzie and Emma demanded a rental property, the house which they had lived in until their mother died; they purchased it from their father for one dollar. In July, they sold the property back to their father for $5,000 (equivalent to $179,000 in 2025).",
+      "est_tokens": 119,
+      "relevance": 0.6377747058868408,
+      "cluster_id": 0,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:4:0",
+      "kind": "prose",
+      "citation_id": "c13",
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Thursday, August 4, 1892"
+      ],
+      "order": 15,
+      "text": "Morse arrived in the evening of August 3 and slept in the guest room that night. Andrew, Abby, Morse, and the maid Sullivan were present at breakfast the next morning, after which Andrew and Morse went to the sitting room, where they chatted for nearly an hour. Morse left around 8:48 am to buy a pair of oxen and visit a nephew and niece in Fall River. He planned to return to the Borden home for lunch at noon. Andrew left for his morning walk sometime after 9:00.",
+      "est_tokens": 117,
+      "relevance": 0.3970474600791931,
+      "cluster_id": 0,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:5:0",
+      "kind": "prose",
+      "citation_id": "c14",
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Investigation"
+      ],
+      "order": 20,
+      "text": "Lizzie's initial answers to the police officers' questions were at times strange and contradictory. Initially, she reported hearing a groan or a scraping noise or a distress call before entering the house. Two hours later, she told police that she had heard nothing and entered the house not realizing that anything was wrong. When they asked where her stepmother was, she recounted Abby receiving a note asking her to visit a sick friend. She also stated that she thought that Abby had returned and asked if someone could go upstairs and look for her. Sullivan and neighbor Mrs. Churchill were halfway up the stairs, their eyes level with the floor, when they looked into the guest room and saw Abby lying face down on the floor.",
+      "est_tokens": 183,
+      "relevance": 0.4445105791091919,
+      "cluster_id": 1,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:7:0",
+      "kind": "prose",
+      "citation_id": "c16",
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Trial and acquittal"
+      ],
+      "order": 28,
+      "text": "Lizzie's trial took place in New Bedford starting on June 5, 1893. Prosecuting attorneys were Hosea M. Knowlton and future United States Supreme Court Justice William Henry Moody; defending were Andrew V. Jennings, Melvin O. Adams, and former Massachusetts governor George D. Robinson.",
+      "est_tokens": 72,
+      "relevance": 0.5714640021324158,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 94,
+          "end": 111,
+          "title": "Hosea M. Knowlton"
+        },
+        {
+          "start": 159,
+          "end": 178,
+          "title": "William Henry Moody"
+        },
+        {
+          "start": 215,
+          "end": 230,
+          "title": "Melvin O. Adams"
+        },
+        {
+          "start": 266,
+          "end": 284,
+          "title": "George D. Robinson"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:7:5",
+      "kind": "prose",
+      "citation_id": "c16",
+      "heading_path": [
+        "Murders of Andrew and Abby",
+        "Trial and acquittal"
+      ],
+      "order": 33,
+      "text": "Presiding Associate Justice Justin Dewey had been appointed by Robinson as governor, and he delivered a lengthy summary supporting the defense before the jury was sent to deliberate on June 20, 1893. Contemporary newspaper accounts reported that the jury reached its verdict in just 40 minutes on a single ballot, though some later accounts put deliberations at an hour and a half; the jury acquitted Lizzie Borden of the murders. Upon exiting the courthouse, she told reporters that she was \"the happiest woman in the world\".",
+      "est_tokens": 132,
+      "relevance": 0.5172126293182373,
+      "cluster_id": 1,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:13:1",
+      "kind": "prose",
+      "citation_id": "c22",
+      "heading_path": [
+        "Later life"
+      ],
+      "order": 42,
+      "text": "Despite the acquittal, Lizbeth was ostracized by Fall River society. Her name was again brought into the public eye when she was accused of shoplifting in Providence, Rhode Island, in 1897. In 1905, shortly after an argument over a party that Lizbeth had given for actress Nance O'Neil, Emma moved out of the house and never saw her sister again.",
+      "est_tokens": 87,
+      "relevance": 0.5682579874992371,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 35,
+          "end": 45,
+          "title": "Ostracism"
+        },
+        {
+          "start": 140,
+          "end": 151,
+          "title": "Shoplifting"
+        },
+        {
+          "start": 155,
+          "end": 179,
+          "title": "Providence, Rhode Island"
+        },
+        {
+          "start": 273,
+          "end": 285,
+          "title": "Nance O'Neil"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:14:0",
+      "kind": "prose",
+      "citation_id": "c23",
+      "heading_path": [
+        "Death"
+      ],
+      "order": 43,
+      "text": "Following the removal of her gallbladder, Lizzie was ill the last year of her life. At age 66, she died of pneumonia on June 1, 1927, in Fall River. Funeral details were not published and few attended. Emma died nine days later at a nursing home in Newmarket, New Hampshire. She was 76, and had been suffering from chronic nephritis. Lizzie and Emma never married and were buried side by side in the family plot at Oak Grove Cemetery in Fall River.",
+      "est_tokens": 112,
+      "relevance": 0.6104182600975037,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 29,
+          "end": 40,
+          "title": "Gallbladder"
+        },
+        {
+          "start": 107,
+          "end": 116,
+          "title": "Pneumonia"
+        },
+        {
+          "start": 249,
+          "end": 273,
+          "title": "Newmarket, New Hampshire"
+        },
+        {
+          "start": 323,
+          "end": 332,
+          "title": "Glomerulonephritis"
+        },
+        {
+          "start": 415,
+          "end": 433,
+          "title": "Oak Grove Cemetery (Fall River, Massachusetts)"
+        },
+        {
+          "start": 437,
+          "end": 447,
+          "title": "Fall River, Massachusetts"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:14:1",
+      "kind": "prose",
+      "citation_id": "c23",
+      "heading_path": [
+        "Death"
+      ],
+      "order": 44,
+      "text": "At the time of her death in 1927, Borden was worth over $250,000 (equivalent to $6,200,000 in 2025). She owned a house on the corner of French Street and Belmont Street, several office buildings, shares in several utilities, two cars and a large amount of jewelry. She left $30,000 (equivalent to $750,000 in 2025) to the Fall River Animal Rescue League and $500 ($12,000) in trust for perpetual care of her father's grave. Her closest friend and a cousin each received $6,000 ($150,000 in 2025)\u2014substantial sums at the time of the estate's distribution in 1927\u2014and numerous friends and family members each received between $1,000 ($25,000 in 2025) and $5,000 ($120,000 in 2025).",
+      "est_tokens": 170,
+      "relevance": 0.5617896914482117,
+      "cluster_id": 0,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:16:1",
+      "kind": "prose",
+      "citation_id": "c25",
+      "heading_path": [
+        "In culture",
+        "Folk rhyme"
+      ],
+      "order": 48,
+      "text": "Folklore says that the rhyme was made up by an anonymous writer as a tune to sell newspapers. Others attribute it to the ubiquitous, but anonymous, \"Mother Goose\".",
+      "est_tokens": 41,
+      "relevance": 0.15527480840682983,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 149,
+          "end": 161,
+          "title": "Mother Goose"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:17:0",
+      "kind": "prose",
+      "citation_id": "c26",
+      "heading_path": [
+        "In culture",
+        "Depictions"
+      ],
+      "order": 50,
+      "text": "Lizzie Borden has been depicted in music, radio, film, theater, and television, often in association with the murders of which she was acquitted. Among the earlier portrayals on stage was John Colton and Carleton Miles's 1933 play Nine Pine Street, in which Lillian Gish played Effie Holden, a character who is based on Borden. The play was not a success and ran for only twenty-eight performances. In 1947 Lillian de la Torre wrote a one-act play, Goodbye, Miss Lizzie Borden.",
+      "est_tokens": 120,
+      "relevance": 0.36551907658576965,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 188,
+          "end": 199,
+          "title": "John Colton (screenwriter)"
+        },
+        {
+          "start": 258,
+          "end": 270,
+          "title": "Lillian Gish"
+        },
+        {
+          "start": 407,
+          "end": 426,
+          "title": "Lillian de la Torre"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:17:3",
+      "kind": "prose",
+      "citation_id": "c26",
+      "heading_path": [
+        "In culture",
+        "Depictions"
+      ],
+      "order": 53,
+      "text": "A January 21, 1956, episode of Alfred Hitchcock Presents, entitled \"The Older Sister\", presents a fictionalized account, occurring one year after the murders, where Emma is revealed as being the murderer.",
+      "est_tokens": 51,
+      "relevance": 0.5071637034416199,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 31,
+          "end": 56,
+          "title": "Alfred Hitchcock Presents"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384380651:17:8",
+      "kind": "prose",
+      "citation_id": "c26",
+      "heading_path": [
+        "In culture",
+        "Depictions"
+      ],
+      "order": 58,
+      "text": "The events of the murders and the trial have been reenacted on a number of documentary programs. In 1936, the radio program Unsolved Mysteries broadcast a 15-minute dramatization titled \"The Lizzie Borden Case\", which presented a possible scenario in which the murders were committed during a botched robbery attempt by a tramp, who then escaped. Television recreations have included episodes of Biography, Second Verdict, History's Mysteries, Case Reopened (1999), and Mysteries Decoded (2019). The Lizzie Borden case was partly dramatized on an episode of the 2022 BBC Radio podcast series Lucy Worsley's Lady Killers.",
+      "est_tokens": 155,
+      "relevance": 0.55643630027771,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 396,
+          "end": 405,
+          "title": "Biography (TV program)"
+        },
+        {
+          "start": 407,
+          "end": 421,
+          "title": "Second Verdict"
+        },
+        {
+          "start": 423,
+          "end": 442,
+          "title": "History's Mysteries"
+        },
+        {
+          "start": 567,
+          "end": 576,
+          "title": "BBC Radio"
+        },
+        {
+          "start": 592,
+          "end": 604,
+          "title": "Lucy Worsley"
+        }
+      ],
+      "formulas": []
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": 214796,
+        "title": "Lizzie Borden",
+        "role": "seed",
+        "section_ids": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "22"
+        ]
+      },
+      {
+        "id": 2260985,
+        "title": "The Legend of Lizzie Borden",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 17866494,
+        "title": "Oak Grove Cemetery (Fall River, Massachusetts)",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 17900065,
+        "title": "Blood Relations (Pollock play)",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 33006563,
+        "title": "Melvin O. Adams",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 41359271,
+        "title": "Lizzie Borden Took an Ax",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 45577594,
+        "title": "Lizzie Borden House",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 52624518,
+        "title": "Lizzie (2018 film)",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 83866394,
+        "title": "Monster: The Lizzie Borden Story",
+        "role": "related",
+        "section_ids": null
+      }
+    ],
+    "edges": [
+      {
+        "source": 41359271,
+        "target": 52624518,
+        "weight": 0.763533890247345
+      },
+      {
+        "source": 214796,
+        "target": 2260985,
+        "weight": 0.716713547706604
+      },
+      {
+        "source": 2260985,
+        "target": 52624518,
+        "weight": 0.7034485340118408
+      },
+      {
+        "source": 52624518,
+        "target": 83866394,
+        "weight": 0.6540886163711548
+      },
+      {
+        "source": 214796,
+        "target": 52624518,
+        "weight": 0.6395529508590698
+      },
+      {
+        "source": 214796,
+        "target": 45577594,
+        "weight": 0.6365678310394287
+      },
+      {
+        "source": 2260985,
+        "target": 41359271,
+        "weight": 0.6299034357070923
+      },
+      {
+        "source": 2260985,
+        "target": 83866394,
+        "weight": 0.6103200912475586
+      },
+      {
+        "source": 214796,
+        "target": 17900065,
+        "weight": 0.5583717823028564
+      },
+      {
+        "source": 214796,
+        "target": 33006563,
+        "weight": 0.5503419637680054
+      },
+      {
+        "source": 45577594,
+        "target": 52624518,
+        "weight": 0.5196971893310547
+      },
+      {
+        "source": 33006563,
+        "target": 45577594,
+        "weight": 0.49001795053482056
+      },
+      {
+        "source": 2260985,
+        "target": 17900065,
+        "weight": 0.4634048342704773
+      },
+      {
+        "source": 17866494,
+        "target": 45577594,
+        "weight": 0.40978822112083435
+      }
+    ]
+  },
+  "id": "214796@1384380651:de25b499e8f5",
+  "topic": {
+    "page_id": 214796,
+    "title": "Lizzie Borden",
+    "description": null,
+    "url": "https://en.wikipedia.org/wiki/Lizzie_Borden"
+  },
+  "build": {
+    "state": "complete",
+    "built_at": "2026-11-12T08:25:08.840485Z",
+    "pipeline_version": "fixtures-2026-11-12",
+    "analysis": "ml",
+    "summaries_done": 1,
+    "summaries_total": 3,
+    "truncated": false,
+    "stage_seconds": {
+      "build": 1.5472948440001346,
+      "summarize": 0.77148,
+      "total": 2.3187748440001346
+    }
+  },
+  "freshness": {
+    "state": "unknown",
+    "pinned_rev_id": 1384380651,
+    "latest_rev_id": null,
+    "edits_since": null,
+    "checked_at": null,
+    "source": "none"
+  },
+  "budget": {
+    "requested": 2000,
+    "counts": "dossier",
+    "used_est_tokens": 1912,
+    "estimator": "chars/4",
+    "included_chunk_ids": [
+      "1384380651:0:0",
+      "1384380651:0:1",
+      "1384380651:0:2",
+      "1384380651:0:facts",
+      "1384380651:7:0",
+      "1384380651:7:5",
+      "1384380651:14:0",
+      "1384380651:14:1",
+      "1384380651:17:0",
+      "1384380651:17:8",
+      "1384380651:2:0",
+      "1384380651:2:6",
+      "1384380651:5:0",
+      "1384380651:4:0",
+      "1384380651:13:1",
+      "1384380651:1:0",
+      "1384380651:16:1",
+      "1384380651:17:3"
+    ],
+    "omitted_chunks": 44,
+    "complete": false,
+    "shortened_chunk_ids": []
+  },
+  "links": {
+    "self": "http://localhost:8010/api/v1/dossiers/214796?budget=2000&format=json&parts=dossier,metadata,sources",
+    "pinned": "http://localhost:8010/api/v1/dossiers/214796/rev/1384380651?budget=2000&parts=dossier,metadata,sources",
+    "markdown": "http://localhost:8010/api/v1/dossiers/214796.md?budget=2000&parts=dossier,metadata,sources",
+    "wikipedia": "https://en.wikipedia.org/wiki/Lizzie_Borden"
+  },
+  "citations": [
+    {
+      "id": "c1",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": null,
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651"
+    },
+    {
+      "id": "c2",
+      "pin": {
+        "page_id": 2260985,
+        "title": "The Legend of Lizzie Borden",
+        "rev_id": 1376846560,
+        "rev_timestamp": "2026-09-26T15:57:36Z",
+        "url": "https://en.wikipedia.org/wiki/The_Legend_of_Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1376846560",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.316695Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c3",
+      "pin": {
+        "page_id": 17866494,
+        "title": "Oak Grove Cemetery (Fall River, Massachusetts)",
+        "rev_id": 1381740855,
+        "rev_timestamp": "2026-10-24T13:50:04Z",
+        "url": "https://en.wikipedia.org/wiki/Oak_Grove_Cemetery_%28Fall_River%2C_Massachusetts%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1381740855",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.316773Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c4",
+      "pin": {
+        "page_id": 17900065,
+        "title": "Blood Relations (Pollock play)",
+        "rev_id": 1335819992,
+        "rev_timestamp": "2026-01-31T10:59:44Z",
+        "url": "https://en.wikipedia.org/wiki/Blood_Relations_%28Pollock_play%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1335819992",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.316802Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c5",
+      "pin": {
+        "page_id": 33006563,
+        "title": "Melvin O. Adams",
+        "rev_id": 1373131084,
+        "rev_timestamp": "2026-09-04T05:36:24Z",
+        "url": "https://en.wikipedia.org/wiki/Melvin_O._Adams",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1373131084",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.316817Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c6",
+      "pin": {
+        "page_id": 41359271,
+        "title": "Lizzie Borden Took an Ax",
+        "rev_id": 1369154853,
+        "rev_timestamp": "2026-08-13T06:02:33Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden_Took_an_Ax",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1369154853",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.316828Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c7",
+      "pin": {
+        "page_id": 45577594,
+        "title": "Lizzie Borden House",
+        "rev_id": 1382292040,
+        "rev_timestamp": "2026-10-27T20:54:52Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden_House",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382292040",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.316838Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c8",
+      "pin": {
+        "page_id": 52624518,
+        "title": "Lizzie (2018 film)",
+        "rev_id": 1379608129,
+        "rev_timestamp": "2026-10-10T23:32:08Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_%282018_film%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1379608129",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.316851Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c9",
+      "pin": {
+        "page_id": 83866394,
+        "title": "Monster: The Lizzie Borden Story",
+        "rev_id": 1382972692,
+        "rev_timestamp": "2026-10-31T08:23:05Z",
+        "url": "https://en.wikipedia.org/wiki/Monster%3A_The_Lizzie_Borden_Story",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382972692",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.316864Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c10",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Early_life",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Early_life"
+    },
+    {
+      "id": "c11",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Midlife",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Midlife"
+    },
+    {
+      "id": "c12",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Murders_of_Andrew_and_Abby",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Murders_of_Andrew_and_Abby"
+    },
+    {
+      "id": "c13",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Thursday,_August_4,_1892",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Thursday,_August_4,_1892"
+    },
+    {
+      "id": "c14",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Investigation",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Investigation"
+    },
+    {
+      "id": "c15",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Inquest",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Inquest"
+    },
+    {
+      "id": "c16",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Trial_and_acquittal",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Trial_and_acquittal"
+    },
+    {
+      "id": "c17",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Theories",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Theories"
+    },
+    {
+      "id": "c18",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Lizzie_Borden",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Lizzie_Borden"
+    },
+    {
+      "id": "c19",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "John_Morse",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#John_Morse"
+    },
+    {
+      "id": "c20",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "\"William_Borden\"",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#%22William_Borden%22"
+    },
+    {
+      "id": "c21",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Emma_Borden",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Emma_Borden"
+    },
+    {
+      "id": "c22",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Later_life",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Later_life"
+    },
+    {
+      "id": "c23",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Death",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Death"
+    },
+    {
+      "id": "c24",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "In_culture",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#In_culture"
+    },
+    {
+      "id": "c25",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Folk_rhyme",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Folk_rhyme"
+    },
+    {
+      "id": "c26",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Depictions",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Depictions"
+    },
+    {
+      "id": "c27",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "In_literature",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#In_literature"
+    },
+    {
+      "id": "c28",
+      "pin": {
+        "page_id": 214796,
+        "title": "Lizzie Borden",
+        "rev_id": 1384380651,
+        "rev_timestamp": "2026-11-08T00:04:42Z",
+        "url": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384380651",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:07.295263Z"
+      },
+      "role": "seed",
+      "anchor": "Works_cited",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384380651#Works_cited"
+    }
+  ]
+}

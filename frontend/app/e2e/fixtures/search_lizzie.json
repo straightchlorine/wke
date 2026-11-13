@@ -1,0 +1,48 @@
+{
+  "query": "Lizzie Borden",
+  "results": [
+    {
+      "page_id": 214796,
+      "title": "Lizzie Borden",
+      "description": null,
+      "dossier_state": "ready"
+    },
+    {
+      "page_id": 83866394,
+      "title": "Monster: The Lizzie Borden Story",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 45577594,
+      "title": "Lizzie Borden House",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 46336440,
+      "title": "The Lizzie Borden Chronicles",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 2260985,
+      "title": "The Legend of Lizzie Borden",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 1110133,
+      "title": "Lizzie Borden (director)",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 41359271,
+      "title": "Lizzie Borden Took an Ax",
+      "description": null,
+      "dossier_state": "none"
+    }
+  ],
+  "did_you_mean": null
+}

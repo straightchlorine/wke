@@ -1,0 +1,298 @@
+{
+ "date": "2026-09-28",
+ "source": "wikifeeds_mostread",
+ "topics": [
+  {
+   "page_id": 9200779,
+   "title": "Pac (wrestler)",
+   "views": 806988
+  },
+  {
+   "page_id": 214796,
+   "title": "Lizzie Borden",
+   "views": 326311
+  },
+  {
+   "page_id": 18621887,
+   "title": "Ted Kaczynski",
+   "views": 287676
+  },
+  {
+   "page_id": 82893793,
+   "title": "2026 Asian Games medal table",
+   "views": 221798
+  },
+  {
+   "page_id": 82744644,
+   "title": "India at the 2026 Asian Games",
+   "views": 204445
+  },
+  {
+   "page_id": 31008752,
+   "title": "Kate Upton",
+   "views": 191395
+  },
+  {
+   "page_id": 15838471,
+   "title": "Christa Pike",
+   "views": 190062
+  },
+  {
+   "page_id": 3616702,
+   "title": "Justin Verlander",
+   "views": 168628
+  },
+  {
+   "page_id": 82993690,
+   "title": "2026 MTV Video Music Awards",
+   "views": 165246
+  },
+  {
+   "page_id": 51790406,
+   "title": "2026 Asian Games",
+   "views": 164566
+  },
+  {
+   "page_id": 142056,
+   "title": "Madonna",
+   "views": 151742
+  },
+  {
+   "page_id": 63005055,
+   "title": "Lanterns (TV series)",
+   "views": 142341
+  },
+  {
+   "page_id": 80682580,
+   "title": "The Paradise (2026 Indian film)",
+   "views": 123346
+  },
+  {
+   "page_id": 214928,
+   "title": "Aileen Wuornos",
+   "views": 113113
+  },
+  {
+   "page_id": 58035350,
+   "title": "Hunger stone",
+   "views": 111489
+  },
+  {
+   "page_id": 45985,
+   "title": "George Michael",
+   "views": 110276
+  },
+  {
+   "page_id": 1191021,
+   "title": "Siti Hasmah Mohamad Ali",
+   "views": 108027
+  },
+  {
+   "page_id": 79450412,
+   "title": "Primetime (film)",
+   "views": 106438
+  },
+  {
+   "page_id": 68645595,
+   "title": "J. J. McCarthy",
+   "views": 104397
+  },
+  {
+   "page_id": 20147376,
+   "title": "Neatsville, Kentucky",
+   "views": 93633
+  },
+  {
+   "page_id": 78384681,
+   "title": "Starship flight 14",
+   "views": 92167
+  },
+  {
+   "page_id": 4020685,
+   "title": "Orange Order",
+   "views": 90218
+  },
+  {
+   "page_id": 83866394,
+   "title": "Monster: The Lizzie Borden Story",
+   "views": 89338
+  },
+  {
+   "page_id": 78983091,
+   "title": "Resident Evil (2026 film)",
+   "views": 88024
+  },
+  {
+   "page_id": 59226766,
+   "title": "Lisa (rapper)",
+   "views": 79154
+  },
+  {
+   "page_id": 83869521,
+   "title": "Dorothy (film)",
+   "views": 78994
+  },
+  {
+   "page_id": 21231,
+   "title": "Nirvana (band)",
+   "views": 78711
+  },
+  {
+   "page_id": 47491342,
+   "title": ".xyz",
+   "views": 76413
+  },
+  {
+   "page_id": 1779163,
+   "title": "Limonene",
+   "views": 73464
+  },
+  {
+   "page_id": 255964,
+   "title": "Mahathir Mohamad",
+   "views": 71970
+  },
+  {
+   "page_id": 16707,
+   "title": "Kurt Cobain",
+   "views": 70217
+  },
+  {
+   "page_id": 84317,
+   "title": "Ansel Adams",
+   "views": 68840
+  },
+  {
+   "page_id": 44254295,
+   "title": "Avengers: Endgame",
+   "views": 68038
+  },
+  {
+   "page_id": 7574767,
+   "title": "Matthew Stafford",
+   "views": 67254
+  },
+  {
+   "page_id": 79211376,
+   "title": "Sienna Spiro",
+   "views": 65543
+  },
+  {
+   "page_id": 14808650,
+   "title": "Case Keenum",
+   "views": 63657
+  },
+  {
+   "page_id": 144936,
+   "title": "Jackie Chan",
+   "views": 63274
+  },
+  {
+   "page_id": 72961634,
+   "title": "Backrooms (film)",
+   "views": 62593
+  },
+  {
+   "page_id": 16017429,
+   "title": "Virat Kohli",
+   "views": 62473
+  },
+  {
+   "page_id": 76419267,
+   "title": "Heart of the Beast",
+   "views": 61741
+  }
+ ],
+ "edges": [
+  {
+   "source": 82893793,
+   "target": 51790406,
+   "weight": 0.9226774573326111
+  },
+  {
+   "source": 82744644,
+   "target": 51790406,
+   "weight": 0.7817506194114685
+  },
+  {
+   "source": 82893793,
+   "target": 82744644,
+   "weight": 0.7439875602722168
+  },
+  {
+   "source": 21231,
+   "target": 16707,
+   "weight": 0.7404956817626953
+  },
+  {
+   "source": 1191021,
+   "target": 255964,
+   "weight": 0.7300318479537964
+  },
+  {
+   "source": 214796,
+   "target": 83866394,
+   "weight": 0.5549272894859314
+  },
+  {
+   "source": 68645595,
+   "target": 7574767,
+   "weight": 0.553803563117981
+  },
+  {
+   "source": 7574767,
+   "target": 14808650,
+   "weight": 0.5107189416885376
+  },
+  {
+   "source": 15838471,
+   "target": 214928,
+   "weight": 0.41204458475112915
+  },
+  {
+   "source": 68645595,
+   "target": 14808650,
+   "weight": 0.41090646386146545
+  },
+  {
+   "source": 214796,
+   "target": 214928,
+   "weight": 0.40675634145736694
+  },
+  {
+   "source": 142056,
+   "target": 79211376,
+   "weight": 0.3823353946208954
+  },
+  {
+   "source": 79450412,
+   "target": 78983091,
+   "weight": 0.3650575578212738
+  },
+  {
+   "source": 142056,
+   "target": 45985,
+   "weight": 0.36390453577041626
+  },
+  {
+   "source": 31008752,
+   "target": 142056,
+   "weight": 0.35623541474342346
+  },
+  {
+   "source": 79450412,
+   "target": 76419267,
+   "weight": 0.356231153011322
+  },
+  {
+   "source": 80682580,
+   "target": 83869521,
+   "weight": 0.3558809459209442
+  },
+  {
+   "source": 78983091,
+   "target": 76419267,
+   "weight": 0.3523276448249817
+  }
+ ]
+}
