@@ -3,8 +3,7 @@ import type { DossierState } from "../lib/dossierState";
 import { staleLabel } from "../lib/format";
 import { InfoDot } from "./InfoDot";
 
-export type ChipVariant =
-  "built" | "queued" | "model" | "stale" | "current" | "unknown" | "selected" | "quiet";
+export type ChipVariant = "built" | "queued" | "model" | "stale" | "current" | "unknown" | "quiet";
 
 export interface ChipProps {
   children: ReactNode;
@@ -23,7 +22,6 @@ const VARIANT_CLASSES: Record<ChipVariant, string> = {
   stale: "text-ink-2 border-(length:--hairline) border-ink-2 bg-transparent",
   current: "text-accent-ink bg-wash border-0",
   unknown: "text-ink-2 border-(length:--hairline) border-rule-strong bg-transparent",
-  selected: "text-ink border-(length:--hairline) border-ink bg-sheet",
   quiet: "text-ink-3 border-(length:--hairline) border-rule bg-transparent",
 };
 
