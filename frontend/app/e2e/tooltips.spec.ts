@@ -119,7 +119,7 @@ eachTheme(() => {
       const viewport = page.viewportSize()!;
       for (const label of labels) {
         const dot = page
-          .locator(`button[aria-label="${label.replace(/"/g, '\\"')}"]:visible`)
+          .locator(`button[aria-label="${label.replace(/[\\"]/g, "\\$&")}"]:visible`)
           .first();
         await dot.evaluate((el) => el.scrollIntoView({ block: "center" }));
         const at = (await dot.boundingBox())!;
@@ -134,7 +134,9 @@ eachTheme(() => {
             right: window.innerWidth,
           };
           const dotBox = [
-            ...document.querySelectorAll(`button[aria-label="${btnLabel.replace(/"/g, '\\"')}"]`),
+            ...document.querySelectorAll(
+              `button[aria-label="${btnLabel.replace(/[\\"]/g, "\\$&")}"]`,
+            ),
           ]
             .find((b) => b.getBoundingClientRect().width > 0)!
             .getBoundingClientRect();

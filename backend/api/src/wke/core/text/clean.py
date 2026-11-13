@@ -6,7 +6,11 @@ import re
 import unicodedata
 
 WHITESPACE = re.compile(r"\s+")
-INVISIBLE = re.compile("[\u200b-\u200f\u2060\ufeff\u00ad\x00-\x08\x0e-\x1f\x7f]")
+# Code points clean_text deletes, as a str.translate table: zero-width characters,
+# the soft hyphen, DEL and the C0 controls except tab, LF, VT, FF and CR.
+INVISIBLE = dict.fromkeys(
+    [*range(0x200B, 0x2010), 0x2060, 0xFEFF, 0x00AD, *range(0x00, 0x09), *range(0x0E, 0x20), 0x7F]
+)
 
 
 def clean_text(raw: str) -> str:
@@ -21,5 +25,5 @@ def clean_text(raw: str) -> str:
     Returns:
         str: the cleaned single-line text.
     """
-    normalized = unicodedata.normalize("NFC", INVISIBLE.sub("", raw))
+    normalized = unicodedata.normalize("NFC", raw.translate(INVISIBLE))
     return WHITESPACE.sub(" ", normalized).strip()

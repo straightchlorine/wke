@@ -29,10 +29,11 @@ With --offline the dossiers are read from Redis (wke.offline, at --redis-url)
 and packed and rendered in this process by the current code, with no API call
 and no rebuild. --reparse implies --offline and also re-runs the current
 parser over the cached Parsoid HTML, so key facts and tables are scored on
-dossiers stored before they existed; a topic whose HTML cache is cold is
-scored as stored. --no-summary-standins packs without summaries, to measure
-what summary stand-ins add. --pulled-dir falls back to a pull.py folder for a
-topic Redis does not hold.
+dossiers stored before they existed; the HTML is the Redis cache at
+--redis-url, then the source-<rev>.html of the --pulled-dir folder, and a
+topic with neither is scored as stored. --no-summary-standins packs without
+summaries, to measure what summary stand-ins add. --pulled-dir falls back to a
+pull.py folder for a topic Redis does not hold.
 
 Usage, from backend/api:
 
@@ -58,7 +59,13 @@ from wke.core.citations import seed_pin
 from wke.core.models.budgets import BUDGETS, BudgetTokens
 from wke.core.text.tokens import est_tokens
 from wke.offline.reparse import reparse, view_and_markdown
-from wke.offline.store import connect, load_dossier, load_html, load_pulled
+from wke.offline.store import (
+    connect,
+    load_dossier,
+    load_html,
+    load_pulled,
+    load_pulled_html,
+)
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
@@ -383,6 +390,11 @@ def main() -> None:
     for key in keys:
         topic = spec["topics"][key]
         qs = [q for q in spec["questions"] if q["topic"] == key]
+        folder = (
+            next(Path(args.pulled_dir).glob(f"{topic['page_id']}-*"), None)
+            if args.pulled_dir
+            else None
+        )
         results[key] = {}
         for budget in budgets:
             if client is not None:
@@ -394,7 +406,8 @@ def main() -> None:
                 if dossier is None:
                     raise SystemExit(f"{key}: no stored dossier in Redis")
                 if args.reparse:
-                    html = load_html(client, seed_pin(dossier).rev_id)
+                    rev_id = seed_pin(dossier).rev_id
+                    html = load_html(client, rev_id) or load_pulled_html(folder, rev_id)
                     if html is None:
                         print(f"{key}: Parsoid HTML cache is cold, scoring the stored dossier")
                     else:

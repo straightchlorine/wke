@@ -14,6 +14,7 @@ from wke.core.text.clean import clean_text
         ("a\u2060b\ufeffc\x07d", "abcd"),
         ("a\u200cb\u200dc\x01d\x1fe\x7ff", "abcdef"),
         ("  two\n\tlines  ", "two lines"),
+        ("a\x08b\x0ec\x0bd", "abc d"),
         ("Baha\u0301\u02bc\u00ed", "Bah\u00e1\u02bc\u00ed"),
     ],
     ids=[
@@ -21,6 +22,7 @@ from wke.core.text.clean import clean_text
         "joiners-bom-and-controls",
         "non-joiners-c0-and-delete",
         "whitespace",
+        "c0-edges-keep-vertical-tab",
         "nfc",
     ],
 )

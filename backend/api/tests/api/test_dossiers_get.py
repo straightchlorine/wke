@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+from urllib.parse import urlsplit
 
 import pytest
 
@@ -19,7 +20,8 @@ async def test_get_dossier_link_header_uses_https_by_default(app, built_page) ->
         response = await client.get(f"/api/v1/dossiers/{built_page}")
 
     assert response.status_code == 200
-    assert "https://wke.piotrkrzysztof.dev" in response.headers["link"]
+    target = urlsplit(re.match(r"<([^>]+)>", response.headers["link"])[1])
+    assert (target.scheme, target.netloc) == ("https", "wke.piotrkrzysztof.dev")
 
 
 async def test_get_dossier_link_header_uses_public_scheme_http(
@@ -41,7 +43,8 @@ async def test_get_dossier_link_header_uses_public_scheme_http(
         response = await client.get(f"/api/v1/dossiers/{built_page}")
 
     assert response.status_code == 200
-    assert "http://wke.piotrkrzysztof.dev" in response.headers["link"]
+    target = urlsplit(re.match(r"<([^>]+)>", response.headers["link"])[1])
+    assert (target.scheme, target.netloc) == ("http", "wke.piotrkrzysztof.dev")
     assert "https://" not in response.headers["link"]
 
 
