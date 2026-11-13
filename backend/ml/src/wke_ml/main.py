@@ -83,7 +83,6 @@ class DisconnectCheck(Protocol):
         Returns:
             bool: True once the client disconnected.
         """
-        ...
 
 
 class InferenceGate:

@@ -47,7 +47,6 @@ class Embedder(Protocol):
         Returns:
             FloatArray: float32 array of shape (len(texts), dim), one L2-normalized row per text.
         """
-        ...
 
 
 class Summarizer(Protocol):
@@ -68,7 +67,6 @@ class Summarizer(Protocol):
             tuple[str, int, bool]: summary text, input token count after
             truncation, and whether generation stopped on max_length.
         """
-        ...
 
 
 class HashEmbedder:

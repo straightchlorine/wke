@@ -101,8 +101,9 @@ jobs:
       - name: Install Playwright browser
         run: pnpm exec playwright install --with-deps chromium
 
-      - name: E2E
-        run: pnpm exec playwright test
+      # A smoke subset at one viewport; the full suite runs locally with pnpm e2e.
+      - name: E2E smoke
+        run: pnpm run e2e:smoke
 
       - name: Upload Playwright traces
         if: failure()

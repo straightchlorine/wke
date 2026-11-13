@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "e2e": "playwright test",
+    "e2e:smoke": "playwright test --project=desktop-1440 home.spec.ts dossier.spec.ts dossiers.spec.ts machines.spec.ts seo.spec.ts noRuntimeErrors.spec.ts serverDown.spec.ts searchCombobox.spec.ts",
     "verify": "pnpm build && pnpm format:check && pnpm lint && pnpm check:hex && pnpm check:contrast && pnpm typecheck && pnpm test --coverage",
     "verify:e2e": "pnpm build && pnpm e2e"
   },

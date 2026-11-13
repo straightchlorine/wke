@@ -55,9 +55,11 @@ def _instruction_lines(base: str) -> list[str]:
     return [
         "## Get a dossier for any topic",
         "",
-        "Any Wikipedia article can have a dossier. Find the page id, then read "
-        "the dossier; if it is not built yet the API builds it and you read it "
-        "again when the job is done.",
+        (
+            "Any Wikipedia article can have a dossier. Find the page id, then read "
+            "the dossier; if it is not built yet the API builds it and you read it "
+            "again when the job is done."
+        ),
         "",
         f"1. Search: `GET {base}/api/v1/search?q={{title}}` returns candidates "
         "with `page_id` and `dossier_state`.",
@@ -72,21 +74,25 @@ def _instruction_lines(base: str) -> list[str]:
         "",
         "## Parts",
         "",
-        "`parts` picks what a response carries, as a comma list of `dossier`, "
-        "`metadata` and `sources`. The default is `dossier`: the sections and "
-        "passages only, with no `[cN]` markers, no Sources list, no revision "
-        "pin and no note on what was left out. Add `metadata` for the title, "
-        "the revision pin, the budget line and the truncation note "
-        "(`parts=dossier,metadata`); add `sources` for the `[cN]` citations "
-        "and the Sources list (`parts=dossier,metadata,sources`). The "
-        "CC BY-SA licence line is always last.",
+        (
+            "`parts` picks what a response carries, as a comma list of `dossier`, "
+            "`metadata` and `sources`. The default is `dossier`: the sections and "
+            "passages only, with no `[cN]` markers, no Sources list, no revision "
+            "pin and no note on what was left out. Add `metadata` for the title, "
+            "the revision pin, the budget line and the truncation note "
+            "(`parts=dossier,metadata`); add `sources` for the `[cN]` citations "
+            "and the Sources list (`parts=dossier,metadata,sources`). The "
+            "CC BY-SA licence line is always last."
+        ),
         "",
-        'JSON is `{"schema_version": "2", "license_notice": ..., '
-        '"dossier": {sections, chunks, graph}, "metadata": ..., '
-        '"sources": ...}`; parts you did not ask for are absent. The '
-        "earlier flat JSON shape is no longer served. `WKE-Dossier-Tokens` "
-        "and `WKE-Total-Tokens` response headers give the counted and the "
-        "delivered size.",
+        (
+            'JSON is `{"schema_version": "2", "license_notice": ..., '
+            '"dossier": {sections, chunks, graph}, "metadata": ..., '
+            '"sources": ...}`; parts you did not ask for are absent. The '
+            "earlier flat JSON shape is no longer served. `WKE-Dossier-Tokens` "
+            "and `WKE-Total-Tokens` response headers give the counted and the "
+            "delivered size."
+        ),
         "",
         "## Budgets",
         "",
@@ -112,12 +118,14 @@ def _instruction_lines(base: str) -> list[str]:
         "",
         "## Citations",
         "",
-        "Quoted text is Wikipedia content (CC BY-SA 4.0), pinned to one "
-        "revision. Cite a passage by the exact section URL of its `[cN]` marker, "
-        "as `[Title, section](permalink)`: ask for `parts=dossier,metadata,sources`; "
-        "the default response has no markers, no Sources list and no revision pin. "
-        "Summaries are model output and labelled as such; never cite them as "
-        "Wikipedia text.",
+        (
+            "Quoted text is Wikipedia content (CC BY-SA 4.0), pinned to one "
+            "revision. Cite a passage by the exact section URL of its `[cN]` marker, "
+            "as `[Title, section](permalink)`: ask for `parts=dossier,metadata,sources`; "
+            "the default response has no markers, no Sources list and no revision pin. "
+            "Summaries are model output and labelled as such; never cite them as "
+            "Wikipedia text."
+        ),
         "",
         f"OpenAPI: {base}/openapi.json",
         "",
@@ -164,9 +172,11 @@ async def render_llms_txt(service: DossierService, limit: int = 40) -> str:
     lines = [
         "# Wikipedia Knowledge Explorer",
         "",
-        "> Cited context from Wikipedia, for people and for LLMs. "
-        "Every passage is cited to an exact revision; every summary is "
-        "labelled as model output.",
+        (
+            "> Cited context from Wikipedia, for people and for LLMs. "
+            "Every passage is cited to an exact revision; every summary is "
+            "labelled as model output."
+        ),
         "",
         *_instruction_lines(base),
     ]
