@@ -1,98 +1,109 @@
-# Wikipedia Knowledge Explorer
+<p align="center">
+  <img src="https://wke.docs.codextechnologies.org/github/banner.svg" alt="Wikipedia Knowledge Explorer" width="517">
+</p>
 
-A prototype that retrieves Wikipedia articles, clusters them based on content similarity, generates summaries, and visualizes the results on a front-end web interface.
+<div align="center">
 
----
+[Live application](https://wke.piotrkrzysztof.dev) &middot; [Source](https://github.com/straightchlorine/wke)
 
-## Description
+[![Release](https://img.shields.io/github/v/release/straightchlorine/wke)](https://github.com/straightchlorine/wke/releases)
+[![CI](https://img.shields.io/github/actions/workflow/status/straightchlorine/wke/ci.yml?branch=master&label=CI)](https://github.com/straightchlorine/wke/actions/workflows/ci.yml)
+<br>
+[![ghcr.io](https://img.shields.io/badge/ghcr.io-api%20%7C%20ml%20%7C%20web-blue?logo=github)](https://github.com/straightchlorine?tab=packages&repo_name=wke)
+<br>
+[![api pulls](https://img.shields.io/docker/pulls/straightchlorine/wke-api?label=api%20pulls&logo=docker)](https://hub.docker.com/r/straightchlorine/wke-api)
+[![ml pulls](https://img.shields.io/docker/pulls/straightchlorine/wke-ml?label=ml%20pulls&logo=docker)](https://hub.docker.com/r/straightchlorine/wke-ml)
+[![web pulls](https://img.shields.io/docker/pulls/straightchlorine/wke-web?label=web%20pulls&logo=docker)](https://hub.docker.com/r/straightchlorine/wke-web)
 
-This project allows users to:
-1. Enter a search term.
-2. Fetch relevant article titles from Wikipedia.
-3. Group these articles using a clustering algorithm (K-Means).
-4. Generate a short summary for each article.
-5. Display results and visualize clusters on a webpage.
+Turns a Wikipedia topic into a dossier pinned to one article revision, cut to a token budget.
 
----
+<img src="frontend/app/public/og.png" alt="WKE social preview image" width="800">
 
-## Basic Features
+</div>
 
-- [x] User can type in a keyword to search Wikipedia.
-- [x] Articles are retrieved via the Wikipedia API.
-- [x] Simple K-Means clustering groups the articles by content similarity.
-- [x] Articles are summarized using a text summarization library (e.g., sumy).
-- [x] Frontend displays article titles, summaries, and indicates cluster labels.
-- [x] Basic static graph visualization with D3.js (nodes colored by cluster).
+## Architecture
 
----
+```mermaid
+graph LR
+    Client[Browser, script or<br/>MCP client] --> Web[wke-web<br/>static SPA, nginx]
+    Client -->|REST, /llms.txt, /mcp| API
+    Web -->|/api| API[wke-api<br/>FastAPI, job worker]
+    API --> Redis[(Redis<br/>cache, queue,<br/>call budget)]
+    API -->|/v1/analyze<br/>/v1/summarize| ML[wke-ml<br/>MiniLM, K-Means,<br/>distilbart]
+    API -->|3 calls per cold build| WM[Wikipedia APIs]
+    Watcher[watcher] -->|recentchange| Redis
+    Trending[trending job] -->|most-read topics| Redis
+```
 
-## Additional Features (Optional / Future Enhancements)
+- `wke-api` serves REST, MCP and `/llms.txt` and runs the job worker, the watcher and the
+  trending job. It does not import torch.
+- `wke-ml` embeds and clusters sections and, on request, summarises. Without it the API
+  groups sections by article structure instead.
+- `wke-web` is a React single-page app served by nginx.
+- Redis holds the job queue, the dossier cache and the Wikimedia call budget.
 
-- [x] Use BART or other advanced models for more sophisticated summarization.
-- [x] Support dynamic or interactive graph layouts (e.g., force-directed graphs with dragging).
-- [ ] Add topic labeling to clusters (e.g., detect a phrase that describes each cluster).
-- [ ] Implement advanced search and filtering (e.g., search by date, popularity).
-- [ ] Provide interactive tooltips with larger previews or images.
+A cold build costs three Wikimedia calls and a warm read costs none.
 
----
+## What it does
 
-## Project Roles and Tasks
+- Builds a dossier from an article title, pinned to the revision current at build time
+- Clusters sections by embedding similarity and cites every passage to that revision
+- Packs the result to 2000, 8000 or 32000 tokens
+- Serves a web page, Markdown, JSON, `/llms.txt` and an MCP server
+- Shows yesterday's most-read topics as a concept graph on the home page
+- Adds model summaries only with `?summaries=true`, each labelled as model output
 
-### Backend Developer 1
-1. **FastAPI Setup & Configuration**
-   - Create a FastAPI application to handle incoming requests.
-   - Ensure the server can run (e.g., uvicorn main:app --reload).
+## Running locally
 
-2. **Wikipedia API Integration**
-   - Retrieve article titles and content based on user search terms.
-   - Handle any pagination or error-checking from the Wikipedia API.
+You need Docker with Compose; without Docker also [uv](https://docs.astral.sh/uv/),
+[pnpm](https://pnpm.io/) and [just](https://github.com/casey/just).
 
-3. **Clustering**
-   - Convert article text into a vector form (e.g., TF-IDF).
-   - Implement basic K-Means clustering using scikit-learn.
-   - Store the cluster labels for each article.
+```bash
+cp backend/api/.env.example backend/api/.env
+# set WKE_CONTACT_EMAIL: a mailbox or an https URL, sent in the Wikimedia User-Agent
+docker compose -f docker-compose.dev.yml --profile ml up --build
+```
 
----
+Open <http://localhost:8080>, not `:5173` or a container address: the CORS settings name
+`localhost:8080`. Leave `--profile ml` out to run without wke-ml.
 
-### Backend Developer 2
-1. **Text Summarization**
-   - Use sumy (or GPT-based) summarization to generate concise summaries for each article.
-   - Validate the length and quality of each summary.
+```bash
+curl -s -X POST http://localhost:8080/api/v1/dossiers \
+  -H 'content-type: application/json' -d '{"title": "Alan Turing"}'
+curl -s 'http://localhost:8080/api/v1/dossiers/1208.md?budget=8000'   # once built
+```
 
-2. **Combine and Return Results**
-   - Consolidate data (titles, summaries, cluster labels) into a JSON response.
-   - Structure the output as needed for the frontend (e.g., { "articles": [...], "searchTerm": "..." }).
+Without Docker, `just up` starts Redis, wke-ml, wke-api, the watcher and a web preview
+(Linux; run `pnpm install` in `frontend/app` once), and `just down` stops them. The
+per-service commands are in the READMEs under `backend/` and `frontend/app/`.
 
-3. **Documentation & Integration**
-   - Provide clear documentation on API endpoints and JSON formats.
-   - Ensure the integration with Developer 1’s clustering results is seamless.
+## Tests
 
----
+```bash
+cd backend/api && uv run pytest --cov=wke --cov-fail-under=85
+cd backend/ml && uv run pytest
+cd frontend/app && pnpm run verify && pnpm run verify:e2e
+```
 
-### Frontend Developer 1
-1. **UI & Layout**
-   - Create a simple HTML page with a text input and “Search” button.
-   - Use CSS to style the form, buttons, and general layout.
+The backend tests replay recorded Wikimedia responses and run offline.
 
-2. **API Requests & Data Handling**
-   - Use Axios (or fetch) to send the user’s query to the backend.
-   - Display the returned article list with basic cluster info or labels.
+## API and MCP
 
-3. **User Interaction**
-   - Provide feedback during loading (e.g., “Fetching articles…”).
-   - Handle errors gracefully (e.g., no articles found, server not responding).
+The REST contract is [backend/api/openapi.yaml](backend/api/openapi.yaml); endpoints and
+settings are in [backend/api/README.md](backend/api/README.md).
 
----
+| Entry point | Path |
+|---|---|
+| Build or read a dossier | `POST /api/v1/dossiers`, `GET /api/v1/dossiers/{page_id}[.md]` |
+| Poll a build | `GET /api/v1/jobs/{job_id}` |
+| Models | `GET /llms.txt`, `/mcp` with `search_topics`, `get_dossier`, `get_trending` |
 
-### Frontend Developer 2
-1. **D3.js Graph Visualization**
-   - Implement a (static) graph layout where each article is a node.
-   - Different colors indicate different cluster labels.
 
-2. **Tooltip & Hover Effects**
-   - Show the article’s title (and possibly summary) on hover.
-   - Maintain readability and responsive design.
+## Licence
 
-3. **Integration & Updates**
-    - Ensure visualization updates or re-renders when new articles are fetched.
-   - Coordinate with Developer 1’s UI components to share data seamlessly.
+Code: MIT, see [LICENSE](LICENSE).
+
+Third-party material keeps its own licence (fonts, model weights, Wikipedia text);
+see [NOTICE](NOTICE).
+
+Article text served through WKE is from English Wikipedia under CC BY-SA 4.0.

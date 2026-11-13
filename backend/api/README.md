@@ -1,6 +1,7 @@
 # wke-api
 
-FastAPI service: REST API, MCP server, `/llms.txt`, the job worker, and watcher/trending entrypoints.
+FastAPI service: REST API, MCP server, `/llms.txt`, the job worker, and the watcher and
+trending entrypoints.
 
 ## Endpoints
 
@@ -18,7 +19,10 @@ FastAPI service: REST API, MCP server, `/llms.txt`, the job worker, and watcher/
 - `python -m wke.watcher` - EventStreams `recentchange` consumer.
 - `python -m wke.trending` - nightly snapshot + prebuild drain (CronJob).
 
-## Environment variables (see `.env.example`; no default = required)
+## Environment variables
+
+See `.env.example`; a variable with no default is required.
+
 | Var | Default | Meaning |
 |---|---|---|
 | `WIKIPEDIA_API_URL` | required | Action API endpoint |
@@ -32,6 +36,8 @@ FastAPI service: REST API, MCP server, `/llms.txt`, the job worker, and watcher/
 | `POD_CIDR` | required | Trusted proxy CIDR for uvicorn |
 | `PIPELINE_VERSION` | required | Version tag in dossier/job keys |
 | `WKE_PORT` | 8000 | uvicorn listen port |
+| `WATCHER_METRICS_PORT` | 8000 | Port the watcher serves `/metrics` on |
+| `LOG_FORMAT` | json | `json` (one object per line) or `console` |
 | `CORS_ORIGINS` | empty | Comma-separated allowed origins |
 | `SUMMARY_SECTIONS` | 8 | Most sections summarized per build (3 to 8 by article size) |
 | `NUM_BEAMS` | 1 | Beam count for wke-ml `/v1/summarize` |
@@ -45,11 +51,17 @@ FastAPI service: REST API, MCP server, `/llms.txt`, the job worker, and watcher/
 ```
 docker compose -f docker-compose.dev.yml up --build
 ```
+
 or
+
 ```
 cd backend/api && cp .env.example .env && uv sync && uv run python -m wke.api
 ```
-wke-ml is optional (`profiles: ["ml"]`); without it the API still serves, degraded (`structural` mode).
+
+By hand this needs Redis at `REDIS_URL` (for example
+`docker run -d -p 6379:6379 redis:7-alpine`); start wke-ml separately or run without it.
+wke-ml is optional (`profiles: ["ml"]`); without it the API still serves, degraded
+(`structural` mode).
 
 ## Test
 
@@ -60,12 +72,15 @@ uv run pytest --cov   # gate: >=85% on wke/
 
 ## Wikimedia policy
 
-`wke/clients/wikimedia.py` sends a compliant User-Agent (`wke/<version>
+`src/wke/clients/` sends a compliant User-Agent (`wke/<version>
 (https://wke.piotrkrzysztof.dev; <WKE_CONTACT_EMAIL>) httpx/<version>`),
 serializes calls cluster-wide to concurrency 1 via a Redis lock, and
 sends `maxlag=5` on every Action API call.
 
 Cold dossier build = 3 Wikimedia calls; warm GET = 0. `Retry-After`
-(429, or `maxlag`/ `ratelimited` on HTTP 200) is honoured before any retry.
+(429, or `maxlag` or `ratelimited` on HTTP 200) is honoured before any retry.
+
+Article text is served as Wikipedia wrote it; clustering and summaries are WKE's own and
+are labelled as such.
 
 Container image: two-stage `python:3.13-slim` build. Measured size as of 28-09-2026: 209MB.

@@ -52,6 +52,11 @@ async def test_llms_txt_cold_document() -> None:
     assert "http://localhost:8010/openapi.json" in body
     assert "https://localhost:8010" not in body
     assert "## Optional" in body
+    assert "- For machines: http://localhost:8010/machines" in body
+    assert "- Source repository: https://github.com/straightchlorine/wke" in body
+    assert "codeberg" not in body.lower()
+    assert "/docs/decisions" not in body
+    assert "/about" not in body
 
 
 async def test_llms_txt_lists_only_ready_topics() -> None:

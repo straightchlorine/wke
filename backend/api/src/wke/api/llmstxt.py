@@ -193,10 +193,8 @@ async def render_llms_txt(service: DossierService, limit: int = 40) -> str:
         [
             "## Optional",
             "",
-            "- About: " + base + "/about",
-            "- Decision log: " + base + "/docs/decisions",
-            "- Primary repo: https://codeberg.org/piotrkrzysztof/wikipedia-knowledge-explorer",
-            "- Mirror: https://github.com/straightchlorine/wikipedia-knowledge-explorer",
+            "- For machines: " + base + "/machines",
+            "- Source repository: https://github.com/straightchlorine/wke",
             "",
         ]
     )
