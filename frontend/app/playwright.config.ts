@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import { PROJECT_NAMES, VIEWPORTS, projectGrep } from "./e2e/support";
 
 const PORT = 4173;
 const baseURL = `http://localhost:${PORT}`;
@@ -18,26 +19,10 @@ export default defineConfig({
     url: baseURL,
     reuseExistingServer: !process.env["CI"],
   },
-  projects: [
-    {
-      name: "mobile-390",
-      use: { ...devices["Desktop Chrome"], viewport: { width: 390, height: 844 } },
-    },
-    {
-      name: "tablet-768",
-      use: { ...devices["Desktop Chrome"], viewport: { width: 768, height: 1024 } },
-    },
-    {
-      name: "tablet-1024",
-      use: { ...devices["Desktop Chrome"], viewport: { width: 1024, height: 768 } },
-    },
-    {
-      name: "desktop-1440",
-      use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } },
-    },
-    {
-      name: "desktop-1920",
-      use: { ...devices["Desktop Chrome"], viewport: { width: 1920, height: 1080 } },
-    },
-  ],
+  // A test tagged with only(...) runs on the projects it names; an untagged test runs on all of them.
+  projects: PROJECT_NAMES.map((name) => ({
+    name,
+    grep: projectGrep(name),
+    use: { ...devices["Desktop Chrome"], viewport: VIEWPORTS[name] },
+  })),
 });
