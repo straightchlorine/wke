@@ -46,6 +46,7 @@ export const LABEL_FONT_PX = 12;
  * Padding on every side of a label box for its halo, the outline drawn around the text, which
  * paints wider than the glyphs. It also absorbs the small error in the canvas-based width estimate.
  */
+// TODO: re-measure against the drawn halo and the positive word spacing, after the frontend review.
 export const LABEL_HALO_PAD = 3;
 
 /** A label box is this much wider than its text, on top of the halo padding on each side. */
@@ -55,6 +56,7 @@ const LABEL_EXTRA_WIDTH_PX = 4;
  * The page narrows its sans text with `font-stretch`, which a canvas measurement does not apply.
  * This ratio scales the measurement toward the drawn width.
  */
+// TODO: re-measure against the drawn text width, after the frontend review.
 const PAGE_STRETCH_RATIO = 0.93;
 
 /** Returns the width of the box of a label whose text is `textWidth` px wide. */
