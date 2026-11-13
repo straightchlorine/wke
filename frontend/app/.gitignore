@@ -6,6 +6,7 @@
 # testing
 /coverage
 /test-results
+/e2e-live/test-results
 /playwright-report
 /blob-report
 

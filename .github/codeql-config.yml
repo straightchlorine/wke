@@ -1,0 +1,21 @@
+name: CodeQL Configuration
+
+queries:
+  - uses: security-and-quality
+
+paths:
+  - backend/api/src
+  - backend/ml/src
+  - frontend/app/src
+  # The workflow files, for the actions language.
+  - .github/workflows
+
+paths-ignore:
+  - "**/tests/"
+  - "**/test_*.py"
+  - "**/*.test.ts"
+  - "**/*.test.tsx"
+  - "frontend/app/src/test/"
+  - "frontend/app/src/api/generated/"
+  - "frontend/app/src/routeTree.gen.ts"
+  - "**/node_modules/"
