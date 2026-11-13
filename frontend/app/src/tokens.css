@@ -38,7 +38,6 @@
   --control-h: 32px;
   --header-h: 56px;
   --toolbar-h: 56px;
-  --hud-h: 56px;
 }
 [data-theme="dark"] {
   color-scheme: dark;
