@@ -77,10 +77,6 @@ export function Colophon({ article, announce = true }: ColophonProps = {}) {
         <a href="https://www.linkedin.com/in/piotr-krzysztof-lis" className="hit-44 text-accent">
           LinkedIn
         </a>
-        ,{" "}
-        <a href="https://codeberg.org/straightchlorine" className="hit-44 text-accent">
-          Codeberg
-        </a>
         .
       </p>
     </div>

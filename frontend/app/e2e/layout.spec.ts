@@ -80,7 +80,7 @@ test.describe("Layout", only("desktop-1440"), () => {
       });
     }
 
-    test("a landscape phone has one 56px header row: wordmark, three links and the icons on one line", async ({
+    test("a landscape phone has one 56px header row: wordmark, three links and the icon on one line", async ({
       page,
       open,
     }) => {
@@ -92,7 +92,7 @@ test.describe("Layout", only("desktop-1440"), () => {
           centres: [
             header.querySelector('a[aria-label^="WKE"]')!,
             ...header.querySelectorAll('nav[aria-label="Primary"] a'),
-            ...header.querySelectorAll("button, a[aria-label$='GitHub'], a[aria-label^='Mirror']"),
+            ...header.querySelectorAll("button, a[aria-label$='GitHub']"),
           ].map((el) => {
             const r = el.getBoundingClientRect();
             return Math.round(r.top + r.height / 2);
@@ -100,7 +100,7 @@ test.describe("Layout", only("desktop-1440"), () => {
         };
       });
       expect(rows.height).toBe(56);
-      expect(rows.centres.length).toBeGreaterThanOrEqual(7);
+      expect(rows.centres.length).toBeGreaterThanOrEqual(6);
       expect(Math.max(...rows.centres) - Math.min(...rows.centres)).toBeLessThanOrEqual(2);
     });
 
@@ -121,7 +121,7 @@ test.describe("Layout", only("desktop-1440"), () => {
     });
 
     eachTheme(() => {
-      test("the header has icon links to GitHub and Codeberg and no Source nav item", async ({
+      test("the header has an icon link to GitHub and no Source nav item", async ({
         page,
         open,
       }) => {
@@ -130,22 +130,17 @@ test.describe("Layout", only("desktop-1440"), () => {
           page.locator('header nav[aria-label="Primary"] a', { hasText: "Source" }),
         ).toHaveCount(0);
         const gh = page.locator("header").getByRole("link", { name: "Source on GitHub" });
-        const cb = page.locator("header").getByRole("link", { name: "Mirror on Codeberg" });
         const ghHref = (await gh.getAttribute("href")) ?? "";
         expect(ghHref).toMatch(/^https:\/\/github\.com\//);
-        expect(await cb.getAttribute("href")).toBe(ghHref.replace("github.com", "codeberg.org"));
-        for (const link of [gh, cb]) {
-          expect(await link.evaluate((el) => getComputedStyle(el.querySelector("svg")!).fill)).toBe(
-            await link.evaluate((el) => getComputedStyle(el).color),
-          );
-        }
-        const toggle = page.locator("header").getByRole("button", { name: /Switch to/ });
-        // From the right edge inwards the order is GitHub, Codeberg, then the theme toggle.
-        const [toggleBox, cbBox, ghBox] = await Promise.all(
-          [toggle, cb, gh].map((link) => link.boundingBox()),
+        expect(await gh.evaluate((el) => getComputedStyle(el.querySelector("svg")!).fill)).toBe(
+          await gh.evaluate((el) => getComputedStyle(el).color),
         );
-        expect(toggleBox!.x + toggleBox!.width).toBeLessThanOrEqual(cbBox!.x + 0.5);
-        expect(cbBox!.x + cbBox!.width).toBeLessThanOrEqual(ghBox!.x + 0.5);
+        const toggle = page.locator("header").getByRole("button", { name: /Switch to/ });
+        // From the right edge inwards the order is GitHub, then the theme toggle.
+        const [toggleBox, ghBox] = await Promise.all(
+          [toggle, gh].map((link) => link.boundingBox()),
+        );
+        expect(toggleBox!.x + toggleBox!.width).toBeLessThanOrEqual(ghBox!.x + 0.5);
       });
 
       test("the theme toggle carries its state in its label only", async ({ page, open }) => {
@@ -161,7 +156,7 @@ test.describe("Layout", only("desktop-1440"), () => {
         test.describe(`on a touch screen at ${width}x${height}`, () => {
           test.use({ hasTouch: true, viewport: { width, height } });
 
-          test("the wordmark, icon links and theme toggle share a row and never overlap", async ({
+          test("the wordmark, icon link and theme toggle share a row and never overlap", async ({
             page,
             open,
           }) => {
@@ -171,7 +166,6 @@ test.describe("Layout", only("desktop-1440"), () => {
               const items = [
                 "a[href='/']",
                 "a[aria-label='Source on GitHub']",
-                "a[aria-label='Mirror on Codeberg']",
                 "button[aria-label^='Switch to']",
               ].map((selector) => {
                 const r = header.querySelector(selector)!.getBoundingClientRect();
@@ -188,8 +182,7 @@ test.describe("Layout", only("desktop-1440"), () => {
             expect(boxes.docOverflow).toBe(false);
             const wordmark = boxes.items[0]!;
             const gh = boxes.items[1]!;
-            const cb = boxes.items[2]!;
-            const toggle = boxes.items[3]!;
+            const toggle = boxes.items[2]!;
             for (const item of boxes.items) {
               expect(Math.abs(centre(item) - centre(wordmark)), "one row").toBeLessThanOrEqual(1);
             }
@@ -197,13 +190,11 @@ test.describe("Layout", only("desktop-1440"), () => {
               for (const b of boxes.items.slice(i + 1)) {
                 expect(a.x + a.w <= b.x + 0.5 || b.x + b.w <= a.x + 0.5, "no overlap").toBe(true);
               }
-              // Touch: every target is 44 px tall and the icon links are 44 px wide.
+              // Touch: every target is 44 px tall and the icon link is 44 px wide.
               expect(a.h).toBeGreaterThanOrEqual(43.5);
             }
             expect(gh.w).toBeGreaterThanOrEqual(43.5);
-            expect(cb.w).toBeGreaterThanOrEqual(43.5);
-            expect(gh.x, "GitHub is right of Codeberg").toBeGreaterThan(cb.x + cb.w - 0.5);
-            expect(cb.x, "Codeberg is right of the theme toggle").toBeGreaterThan(
+            expect(gh.x, "GitHub is right of the theme toggle").toBeGreaterThan(
               toggle.x + toggle.w - 0.5,
             );
           });

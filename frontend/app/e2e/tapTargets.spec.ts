@@ -76,7 +76,7 @@ test.describe("44 px hit height at 390", only("mobile-390"), () => {
         await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
         const footerLinks = page.getByRole("contentinfo").locator("a");
         const count = await footerLinks.count();
-        expect(count).toBeGreaterThanOrEqual(6);
+        expect(count).toBeGreaterThanOrEqual(5);
         for (let i = 0; i < count; i++) {
           expect(await hitExtent(footerLinks.nth(i)), `footer link ${i}`).toBeGreaterThanOrEqual(
             MIN_HIT,
@@ -115,10 +115,6 @@ test.describe("44 px hit height at 390", only("mobile-390"), () => {
         await both(
           page.locator("header").getByRole("link", { name: "Source on GitHub" }),
           "GitHub link",
-        );
-        await both(
-          page.locator("header").getByRole("link", { name: "Mirror on Codeberg" }),
-          "Codeberg link",
         );
         const toggle = page.locator("header").getByRole("button", { name: /Switch to/ });
         await both(toggle, "theme toggle");
@@ -235,7 +231,7 @@ test.describe(
     test.use({ hasTouch: true });
 
     eachTheme(() => {
-      test("the wordmark, For machines and the icon links keep a 44 px strip on every page", async ({
+      test("the wordmark, For machines and the icon link keep a 44 px strip on every page", async ({
         page,
         open,
       }) => {
@@ -253,10 +249,6 @@ test.describe(
           expect(
             await hitExtent(header.getByRole("link", { name: "Source on GitHub" })),
             `${path} GitHub`,
-          ).toBeGreaterThanOrEqual(MIN_HIT);
-          expect(
-            await hitExtent(header.getByRole("link", { name: "Mirror on Codeberg" })),
-            `${path} Codeberg`,
           ).toBeGreaterThanOrEqual(MIN_HIT);
         }
       });
