@@ -25,7 +25,7 @@ dev = [
     "pytest-cov>=7.1,<8",
     "fakeredis[lua]>=2.40,<3",
     "hypothesis>=6.170,<7",
-    "ruff==0.17.3",
+    "ruff==0.17.4",
 ]
 
 [build-system]
