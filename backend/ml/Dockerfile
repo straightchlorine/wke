@@ -50,6 +50,7 @@ RUN MINILM_REV=${MINILM_REV} DISTILBART_REV=${DISTILBART_REV} \
     /app/.venv/bin/python fetch_models.py
 
 # cleanup step, before the runtime
+# ensure cleanup step does not remove directories find was about to walk into
 RUN VENV=$(echo /app/.venv/lib/python3.*/site-packages); \
     rm -rf /models/hub/.locks /models/xet; \
     find /models/hub -depth -type d -name .no_exist -exec rm -rf {} +; \
@@ -59,7 +60,7 @@ RUN VENV=$(echo /app/.venv/lib/python3.*/site-packages); \
     rm -rf "$VENV"/pip "$VENV"/pip-*.dist-info \
            "$VENV"/setuptools "$VENV"/setuptools-*.dist-info \
            "$VENV"/pkg_resources; \
-    find /app/.venv \( -name '__pycache__' -o -name tests \) -type d \
+    find /app/.venv \( -name '__pycache__' -o -name tests \) -type d -prune \
         -exec rm -rf {} +
 
 FROM ${PYTHON_BASE} AS runtime
