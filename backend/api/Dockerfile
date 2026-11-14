@@ -1,5 +1,5 @@
 # Multi-arch index digest
-ARG PYTHON_BASE=python:3.13.18-slim-trixie@sha256:76baad6037690d6e8c4397fbcaef17bca6f19eecef822b708fe8fa3417d30bb5
+ARG PYTHON_BASE=python:3.13.18-slim-trixie@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90
 
 FROM ${PYTHON_BASE} AS builder
 
@@ -24,6 +24,11 @@ LABEL org.opencontainers.image.source="https://github.com/straightchlorine/wke"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.title="wke-api"
 LABEL org.opencontainers.image.description="Wikipedia Knowledge Explorer - REST, MCP, job worker, watcher and trending entrypoints"
+
+# Debian security updates published after the base image was built.
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade \
+    && rm -rf /var/lib/apt/lists/*
 
 # dropping the base image pip:
 # the venv is uv-managed, nothing calls pip at runtime
