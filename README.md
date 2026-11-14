@@ -4,7 +4,7 @@
 
 <div align="center">
 
-[Live application](https://wke.piotrkrzysztof.dev) &middot; [Source](https://github.com/straightchlorine/wke)
+[Live application](https://wke.piotrkrzysztof.dev)
 
 [![Release](https://img.shields.io/github/v/release/straightchlorine/wke)](https://github.com/straightchlorine/wke/releases)
 [![CI](https://img.shields.io/github/actions/workflow/status/straightchlorine/wke/ci.yml?branch=master&label=CI)](https://github.com/straightchlorine/wke/actions/workflows/ci.yml)

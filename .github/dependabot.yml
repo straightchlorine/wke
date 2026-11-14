@@ -28,6 +28,9 @@ updates:
     labels:
       - dependencies
     open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
       npm-minor-patch:
         patterns: ["*"]
@@ -62,6 +65,9 @@ updates:
     labels:
       - docker
     open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: node
+        update-types: ["version-update:semver-major"]
     groups:
       docker-minor-patch:
         patterns: ["*"]
@@ -71,6 +77,9 @@ updates:
 
   - package-ecosystem: docker-compose
     directory: /
+    ignore:
+      - dependency-name: redis
+        update-types: ["version-update:semver-major"]
     schedule:
       interval: weekly
       day: monday
