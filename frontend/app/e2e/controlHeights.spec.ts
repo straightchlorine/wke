@@ -1,5 +1,5 @@
 import type { Locator } from "@playwright/test";
-import { test, expect, eachTheme, only } from "./support";
+import { test, expect, lightOnly, only, VIEWPORTS } from "./support";
 
 async function heights(locators: Locator[]): Promise<number[]> {
   return Promise.all(locators.map((l) => l.evaluate((el) => el.getBoundingClientRect().height)));
@@ -15,13 +15,13 @@ function expectOneHeight(label: string, values: number[], expected?: number) {
   }
 }
 
-const DESKTOP = { width: 1440, height: 900 };
-const PHONE = { width: 390, height: 844 };
+const DESKTOP = VIEWPORTS["desktop-1440"];
+const PHONE = VIEWPORTS["mobile-390"];
 
 // Every control in a row has the same visual height. The tests set their own
 // viewport and pointer, so they run once, on the 1440 project.
 test.describe("Control heights", only("desktop-1440"), () => {
-  eachTheme(() => {
+  lightOnly(() => {
     test("Dossiers: the title filter equals the filter segments at 1440", async ({
       page,
       open,

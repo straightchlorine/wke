@@ -1,7 +1,7 @@
 import type { Page } from "@playwright/test";
 import { assertNoErrors, trackErrors } from "./errorTracking";
 import { waitForBudget } from "./readingSection";
-import { eachTheme, expect, only, settleScroll, test } from "./support";
+import { expect, lightOnly, only, settleScroll, test } from "./support";
 
 // Returning to a budget already visited, with no scroll in between, puts the
 // page back at the exact spot it had there; a scroll by the reader forgets it.
@@ -12,7 +12,7 @@ async function pressBudgetKey(page: Page, key: string, budget: number) {
   await waitForBudget(page, budget);
 }
 
-eachTheme(() => {
+lightOnly(() => {
   test(
     "1 then 3 then 2 restores the exact scroll position",
     only("desktop-1440"),

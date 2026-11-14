@@ -1,6 +1,6 @@
 import { devices } from "@playwright/test";
 import { contrastOf } from "./contrast";
-import { eachTheme, expect, only, settleScroll, test } from "./support";
+import { eachTheme, expect, lightOnly, only, settleScroll, test } from "./support";
 
 const DOSSIER_READY = 'section[id^="s"] [data-section-heading]';
 
@@ -102,6 +102,53 @@ test.describe("Dossier rail and data panel", () => {
       },
     );
 
+    test(
+      "the code block Copy is a quiet text control",
+      only("desktop-1440"),
+      async ({ page, open }) => {
+        await open("/machines");
+        const copy = page.locator("button[data-copy]").first();
+        await copy.scrollIntoViewIfNeeded();
+        const style = await copy.evaluate((el) => {
+          const s = getComputedStyle(el);
+          return {
+            border: s.borderTopStyle,
+            borderW: s.borderTopWidth,
+            bg: s.backgroundColor,
+            name: el.getAttribute("aria-label"),
+          };
+        });
+        expect(style.border).toBe("none");
+        expect(style.bg).toMatch(/rgba\(0, 0, 0, 0\)|transparent/);
+        expect(style.name).toBeTruthy();
+        expect(await contrastOf(page, "button[data-copy]")).toBeGreaterThanOrEqual(4.5);
+        await copy.hover();
+        expect(await copy.evaluate((el) => getComputedStyle(el).textDecorationLine)).toContain(
+          "underline",
+        );
+        // A mouse click draws no focus ring. A keyboard focus draws a 2px ring.
+        await copy.click();
+        expect(await copy.evaluate((el) => getComputedStyle(el).outlineStyle)).toBe("none");
+        // The click's own clipboard fallback moves focus once it settles.
+        await expect(page.getByRole("status")).not.toBeEmpty();
+        await page.mouse.move(0, 0);
+        await page.keyboard.press("Shift");
+        await copy.focus();
+        const ring = await copy.evaluate((el) => {
+          const s = getComputedStyle(el);
+          return {
+            width: s.outlineWidth,
+            style: s.outlineStyle,
+            focused: el === document.activeElement,
+            visible: el.matches(":focus-visible"),
+          };
+        });
+        expect(ring).toEqual({ width: "2px", style: "solid", focused: true, visible: true });
+      },
+    );
+  });
+
+  lightOnly(() => {
     test("This dossier as data: one row shape and one button column", async ({ page, open }) => {
       await open("/t/Jesus", { ready: page.locator(DOSSIER_READY).first() });
       const names = [
@@ -138,47 +185,6 @@ test.describe("Dossier rail and data panel", () => {
       );
       expect(call!.y).toBeGreaterThanOrEqual(mcp.y + mcp.height - 1);
       expect(await row.locator("span.font-mono").innerText()).toContain("get_dossier(");
-    });
-
-    test("the code block Copy is a quiet text control", async ({ page, open }) => {
-      await open("/machines");
-      const copy = page.locator("button[data-copy]").first();
-      await copy.scrollIntoViewIfNeeded();
-      const style = await copy.evaluate((el) => {
-        const s = getComputedStyle(el);
-        return {
-          border: s.borderTopStyle,
-          borderW: s.borderTopWidth,
-          bg: s.backgroundColor,
-          name: el.getAttribute("aria-label"),
-        };
-      });
-      expect(style.border).toBe("none");
-      expect(style.bg).toMatch(/rgba\(0, 0, 0, 0\)|transparent/);
-      expect(style.name).toBeTruthy();
-      expect(await contrastOf(page, "button[data-copy]")).toBeGreaterThanOrEqual(4.5);
-      await copy.hover();
-      expect(await copy.evaluate((el) => getComputedStyle(el).textDecorationLine)).toContain(
-        "underline",
-      );
-      // A mouse click draws no focus ring. A keyboard focus draws a 2px ring.
-      await copy.click();
-      expect(await copy.evaluate((el) => getComputedStyle(el).outlineStyle)).toBe("none");
-      // The click's own clipboard fallback moves focus once it settles.
-      await expect(page.getByRole("status")).not.toBeEmpty();
-      await page.mouse.move(0, 0);
-      await page.keyboard.press("Shift");
-      await copy.focus();
-      const ring = await copy.evaluate((el) => {
-        const s = getComputedStyle(el);
-        return {
-          width: s.outlineWidth,
-          style: s.outlineStyle,
-          focused: el === document.activeElement,
-          visible: el.matches(":focus-visible"),
-        };
-      });
-      expect(ring).toEqual({ width: "2px", style: "solid", focused: true, visible: true });
     });
   });
 

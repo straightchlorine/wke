@@ -1,14 +1,13 @@
 import type { Locator, Page } from "@playwright/test";
-import { test, expect, eachTheme, only, settleScroll } from "./support";
+import { test, expect, eachTheme, lightOnly, only, settleScroll, VIEWPORTS, UHD } from "./support";
 import { trackErrors, assertNoErrors } from "./errorTracking";
 
 type Item = { x: number; y: number; w: number; h: number };
 
 const centre = (b: Item) => b.y + b.h / 2;
 
-const DESKTOP = { width: 1440, height: 900 };
-const PHONE = { width: 390, height: 844 };
-const UHD = { width: 3840, height: 2160 };
+const DESKTOP = VIEWPORTS["desktop-1440"];
+const PHONE = VIEWPORTS["mobile-390"];
 
 function sectionHeading(page: Page): Locator {
   return page.locator('section[id^="s"] [data-section-heading]').first();
@@ -143,12 +142,6 @@ test.describe("Layout", only("desktop-1440"), () => {
         expect(toggleBox!.x + toggleBox!.width).toBeLessThanOrEqual(ghBox!.x + 0.5);
       });
 
-      test("the theme toggle carries its state in its label only", async ({ page, open }) => {
-        await open("/");
-        const toggle = page.getByRole("button", { name: /^Switch to (light|dark) theme$/ });
-        await expect(toggle).not.toHaveAttribute("aria-pressed", /.*/);
-      });
-
       for (const [width, height] of [
         [390, 844],
         [844, 390],
@@ -200,7 +193,9 @@ test.describe("Layout", only("desktop-1440"), () => {
           });
         });
       }
+    });
 
+    lightOnly(() => {
       test("Dossiers is marked current on /t and under it", async ({ page, open }) => {
         await open("/t", { viewport: DESKTOP });
         const dossiers = page

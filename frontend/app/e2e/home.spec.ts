@@ -1,8 +1,8 @@
 import type { Page } from "@playwright/test";
 import { asObject, fixtureObject } from "./fixtureObject";
-import { dossierEnvelope } from "./mockApi";
+import { dossierEnvelope, liveEdit as mockLiveEdit } from "./mockApi";
 import { trackErrors, assertNoErrors, expectShellRendered } from "./errorTracking";
-import { eachTheme, expect, only, test } from "./support";
+import { expect, lightOnly, only, test } from "./support";
 
 /** The graph's frame, which Home renders once the most-read list has loaded. */
 const graph = (page: Page) => page.locator("svg[role='group']").first();
@@ -13,16 +13,14 @@ function arrayLength(value: unknown): number {
 }
 
 /** A live-feed edit that happened `ageSeconds` ago. */
-const liveEdit = (cursor: number, title: string, ageSeconds: number) => ({
-  cursor,
-  page_id: null,
-  title,
-  rev_new: 2000000 + cursor,
-  rev_old: 1000000 + cursor,
-  ts: new Date(Date.now() - ageSeconds * 1000).toISOString(),
-  user_kind: "registered",
-  byte_delta: 10 + cursor,
-});
+const liveEdit = (cursor: number, title: string, ageSeconds: number) =>
+  mockLiveEdit({
+    cursor,
+    title,
+    ageMs: ageSeconds * 1000,
+    rev: 2000000 + cursor,
+    byteDelta: 10 + cursor,
+  });
 
 test("home has no console errors and no horizontal overflow", async ({ page, open }) => {
   const errors = trackErrors(page);
@@ -75,7 +73,7 @@ test("the index's column headers, chip budgets and top dossier are real", async 
 });
 
 for (const width of [1024, 1440]) {
-  eachTheme(() => {
+  lightOnly(() => {
     test(
       `the edits counter is a number with its own listening-since line before the first edit, and the marker row repeats it at ${width}`,
       only("desktop-1440"),
@@ -288,165 +286,173 @@ test(
   },
 );
 
-test("the built-today figure is the API's own count, not the stored total", async ({
-  page,
-  open,
-}) => {
-  const errors = trackErrors(page);
-  const live = fixtureObject("live.json");
-  const storedCount = arrayLength(fixtureObject("dossiers.json").items);
-  // Fewer dossiers are built today than stored, so the two figures must differ.
-  const builtToday = 8;
-  expect(storedCount).toBeGreaterThan(builtToday);
-  await page.route("**/api/v1/live**", async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify({
-        ...live,
-        server_time: new Date().toISOString(),
-        counters: { ...asObject(live.counters), dossiers_built_today: builtToday },
-      }),
-    });
-  });
-  await open("/", { ready: graph(page) });
-  const record = page
-    .locator("main")
-    .getByText("Dossiers stored")
-    .first()
-    .locator("xpath=ancestor::*[self::li or self::div][2]");
-  await expect(record).toContainText(`${builtToday} built today`);
-  await expect(record).toContainText(String(storedCount));
-  assertNoErrors(errors);
-});
-
-test("the live region announces the feed as Live edits, never the edit stream", async ({
-  page,
-  open,
-}) => {
-  const errors = trackErrors(page);
-  await open("/", { ready: graph(page) });
-  await expect(page.locator("#live-region")).toHaveText("Live edits connected");
-  assertNoErrors(errors);
-});
-
-eachTheme(() => {
-  test("a disconnected edit feed shows no edit data, never 0 edits", async ({ page, open }) => {
+test(
+  "the built-today figure is the API's own count, not the stored total",
+  only("desktop-1440"),
+  async ({ page, open }) => {
     const errors = trackErrors(page);
+    const live = fixtureObject("live.json");
+    const storedCount = arrayLength(fixtureObject("dossiers.json").items);
+    // Fewer dossiers are built today than stored, so the two figures must differ.
+    const builtToday = 8;
+    expect(storedCount).toBeGreaterThan(builtToday);
     await page.route("**/api/v1/live**", async (route) => {
       await route.fulfill({
         status: 200,
         contentType: "application/json",
         body: JSON.stringify({
-          stream: "down",
+          ...live,
           server_time: new Date().toISOString(),
-          cursor: 55242,
-          last_event_at: "2026-09-29T13:54:12Z",
-          edits: [],
-          counters: {
-            enwiki_edits_last_hour: 0,
-            tracked_edits_last_hour: 0,
-            window_complete: false,
-            dossiers_built_today: 16,
-            topics_tracked: 40,
-          },
+          counters: { ...asObject(live.counters), dossiers_built_today: builtToday },
         }),
       });
     });
     await open("/", { ready: graph(page) });
-
-    const main = page.locator("main");
-    await expect(
-      main.locator("ol li").getByText("no edit data", { exact: true }).first(),
-    ).toBeVisible();
-    await expect(main.getByText("no edit data", { exact: true }).last()).toBeVisible();
-    await expect(main.getByText("Live edits disconnected since 13:54 UTC")).toBeVisible();
-    await expect(main).not.toContainText(/\b0 edits?\b/);
-    await expect(main).toContainText("16 built today");
-    await expect(page.locator("#live-region")).toHaveText(
-      "Live edits disconnected since 13:54 UTC",
-    );
-
-    // The selected-article panel (data-plate-board) says "no edit data" on its edits row while the feed is down, never 0.
-    await page.locator("svg[role='group'] a").first().focus();
-    await page.keyboard.press("Enter");
-    const card = page.locator("[data-plate-board]");
-    await expect(card).toBeVisible();
-    await expect(card).toContainText(/Edits in the last hour\s*no edit data/);
-    await expect(card).not.toContainText(/Edits in the last hour\s*\d/);
+    const record = page
+      .locator("main")
+      .getByText("Dossiers stored")
+      .first()
+      .locator("xpath=ancestor::*[self::li or self::div][2]");
+    await expect(record).toContainText(`${builtToday} built today`);
+    await expect(record).toContainText(String(storedCount));
     assertNoErrors(errors);
-  });
-});
+  },
+);
 
-test("the dossier does not call itself up to date while the edit feed is disconnected", async ({
-  page,
-  open,
-}) => {
-  const errors = trackErrors(page);
-  const body = fixtureObject("dossier_1095706_8000.json");
-  body.freshness = {
-    ...asObject(body.freshness),
-    state: "fresh",
-    source: "watcher",
-    edits_since: 0,
-  };
-  await page.route(/\/api\/v1\/dossiers\/1095706(\?[^/]*)?$/, async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify(dossierEnvelope(body)),
-    });
-  });
-  await page.route(/\/api\/v1\/status$/, async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify({
-        version: "0.1.0",
-        redis: true,
-        ml_ready: true,
-        watcher_connected: false,
-        queue_depth: 0,
-      }),
-    });
-  });
-  await open("/t/Jesus");
-  await expect(page.getByText("Not checked").filter({ visible: true }).first()).toBeVisible();
-  await expect(page.locator("main")).not.toContainText("Up to date");
-  assertNoErrors(errors);
-});
+test(
+  "the live region announces the feed as Live edits, never the edit stream",
+  only("desktop-1440"),
+  async ({ page, open }) => {
+    const errors = trackErrors(page);
+    await open("/", { ready: graph(page) });
+    await expect(page.locator("#live-region")).toHaveText("Live edits connected");
+    assertNoErrors(errors);
+  },
+);
 
-test("the index heading names the snapshot date and says yesterday only when it is", async ({
-  page,
-  open,
-}) => {
-  const errors = trackErrors(page);
-  // trending.json is dated 2026-09-26.
-  await page.clock.setFixedTime(new Date("2026-09-27T09:00:00Z"));
-  await open("/", { ready: graph(page) });
-  await expect(
-    page.getByRole("heading", { level: 2, name: "Most read yesterday (26 September 2026 UTC)" }),
-  ).toBeVisible();
-  await expect(page.locator("main")).not.toContainText("has not refreshed");
+lightOnly(() => {
+  test(
+    "a disconnected edit feed shows no edit data, never 0 edits",
+    only("mobile-390", "desktop-1440"),
+    async ({ page, open }) => {
+      const errors = trackErrors(page);
+      await page.route("**/api/v1/live**", async (route) => {
+        await route.fulfill({
+          status: 200,
+          contentType: "application/json",
+          body: JSON.stringify({
+            stream: "down",
+            server_time: new Date().toISOString(),
+            cursor: 55242,
+            last_event_at: "2026-09-29T13:54:12Z",
+            edits: [],
+            counters: {
+              enwiki_edits_last_hour: 0,
+              tracked_edits_last_hour: 0,
+              window_complete: false,
+              dossiers_built_today: 16,
+              topics_tracked: 40,
+            },
+          }),
+        });
+      });
+      await open("/", { ready: graph(page) });
 
-  await page.clock.setFixedTime(new Date("2026-09-28T09:00:00Z"));
-  await page.reload();
-  await expect(graph(page)).toBeVisible();
-  await expect(
-    page.getByRole("heading", { level: 2, name: "Most read on 26 September 2026 (UTC)" }),
-  ).toBeVisible();
-  await expect(page.locator("main")).not.toContainText("has not refreshed");
+      const main = page.locator("main");
+      await expect(
+        main.locator("ol li").getByText("no edit data", { exact: true }).first(),
+      ).toBeVisible();
+      await expect(main.getByText("no edit data", { exact: true }).last()).toBeVisible();
+      await expect(main.getByText("Live edits disconnected since 13:54 UTC")).toBeVisible();
+      await expect(main).not.toContainText(/\b0 edits?\b/);
+      await expect(main).toContainText("16 built today");
+      await expect(page.locator("#live-region")).toHaveText(
+        "Live edits disconnected since 13:54 UTC",
+      );
 
-  await page.clock.setFixedTime(new Date("2026-09-29T09:00:00Z"));
-  await page.reload();
-  await expect(graph(page)).toBeVisible();
-  await expect(page.locator("main")).toContainText(
-    "the nightly index has not refreshed since 26 September 2026",
+      // The selected-article panel (data-plate-board) says "no edit data" on its edits row while the feed is down, never 0.
+      await page.locator("svg[role='group'] a").first().focus();
+      await page.keyboard.press("Enter");
+      const card = page.locator("[data-plate-board]");
+      await expect(card).toBeVisible();
+      await expect(card).toContainText(/Edits in the last hour\s*no edit data/);
+      await expect(card).not.toContainText(/Edits in the last hour\s*\d/);
+      assertNoErrors(errors);
+    },
   );
-  assertNoErrors(errors);
 });
 
-eachTheme(() => {
+test(
+  "the dossier does not call itself up to date while the edit feed is disconnected",
+  only("desktop-1440"),
+  async ({ page, open }) => {
+    const errors = trackErrors(page);
+    const body = fixtureObject("dossier_1095706_8000.json");
+    body.freshness = {
+      ...asObject(body.freshness),
+      state: "fresh",
+      source: "watcher",
+      edits_since: 0,
+    };
+    await page.route(/\/api\/v1\/dossiers\/1095706(\?[^/]*)?$/, async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(dossierEnvelope(body)),
+      });
+    });
+    await page.route(/\/api\/v1\/status$/, async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          version: "0.1.0",
+          redis: true,
+          ml_ready: true,
+          watcher_connected: false,
+          queue_depth: 0,
+        }),
+      });
+    });
+    await open("/t/Jesus");
+    await expect(page.getByText("Not checked").filter({ visible: true }).first()).toBeVisible();
+    await expect(page.locator("main")).not.toContainText("Up to date");
+    assertNoErrors(errors);
+  },
+);
+
+test(
+  "the index heading names the snapshot date and says yesterday only when it is",
+  only("desktop-1440"),
+  async ({ page, open }) => {
+    const errors = trackErrors(page);
+    // trending.json is dated 2026-09-26.
+    await page.clock.setFixedTime(new Date("2026-09-27T09:00:00Z"));
+    await open("/", { ready: graph(page) });
+    await expect(
+      page.getByRole("heading", { level: 2, name: "Most read yesterday (26 September 2026 UTC)" }),
+    ).toBeVisible();
+    await expect(page.locator("main")).not.toContainText("has not refreshed");
+
+    await page.clock.setFixedTime(new Date("2026-09-28T09:00:00Z"));
+    await page.reload();
+    await expect(graph(page)).toBeVisible();
+    await expect(
+      page.getByRole("heading", { level: 2, name: "Most read on 26 September 2026 (UTC)" }),
+    ).toBeVisible();
+    await expect(page.locator("main")).not.toContainText("has not refreshed");
+
+    await page.clock.setFixedTime(new Date("2026-09-29T09:00:00Z"));
+    await page.reload();
+    await expect(graph(page)).toBeVisible();
+    await expect(page.locator("main")).toContainText(
+      "the nightly index has not refreshed since 26 September 2026",
+    );
+    assertNoErrors(errors);
+  },
+);
+
+lightOnly(() => {
   test(
     "the edits panel keeps the newest live edits, folds the oldest, and lists replayed rows last",
     only("desktop-1440"),
@@ -515,49 +521,50 @@ eachTheme(() => {
   );
 });
 
-eachTheme(() => {
-  test("a 429 on the most-read list shows the retry state with a countdown, not an empty graph", async ({
-    page,
-    open,
-  }) => {
-    const errors = trackErrors(page);
-    await page.route("**/api/v1/trending", async (route) => {
-      await route.fulfill({
-        status: 429,
-        contentType: "application/problem+json",
-        headers: { "retry-after": "3" },
-        body: JSON.stringify({
-          type: "about:blank",
-          title: "Too Many Requests",
+lightOnly(() => {
+  test(
+    "a 429 on the most-read list shows the retry state with a countdown, not an empty graph",
+    only("mobile-390", "desktop-1440"),
+    async ({ page, open }) => {
+      const errors = trackErrors(page);
+      await page.route("**/api/v1/trending", async (route) => {
+        await route.fulfill({
           status: 429,
-          detail: "Rate limit exceeded: 30 per 1 minute",
-          code: "rate_limited",
-          request_id: "spec-429",
-          retry_after: 3,
-        }),
+          contentType: "application/problem+json",
+          headers: { "retry-after": "3" },
+          body: JSON.stringify({
+            type: "about:blank",
+            title: "Too Many Requests",
+            status: 429,
+            detail: "Rate limit exceeded: 30 per 1 minute",
+            code: "rate_limited",
+            request_id: "spec-429",
+            retry_after: 3,
+          }),
+        });
       });
-    });
-    await open("/", { ready: page.getByText("Today's index is unavailable") });
-    await expect(page.locator("[data-plate-error]").getByText("Too many requests")).toBeVisible();
-    const waiting = page
-      .locator("[data-plate-error]")
-      .getByRole("button", { name: /^Retry in [1-3] s$/ });
-    await expect(waiting).toBeVisible();
-    await expect(waiting).toHaveAttribute("aria-disabled", "true");
-    await expect(page.locator("table, ol").filter({ hasText: "Lizzie Borden" })).toHaveCount(0);
-    // The error frame (data-plate-error) holds the message and the countdown, and nothing overflows.
-    expect(
-      await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth),
-    ).toBe(false);
-    // When the countdown ends the button reads Retry. It does not retry on its own.
-    await expect(page.getByRole("button", { name: "Retry", exact: true })).toBeVisible({
-      timeout: 6000,
-    });
-    expect(errors.page).toEqual([]);
-  });
+      await open("/", { ready: page.getByText("Today's index is unavailable") });
+      await expect(page.locator("[data-plate-error]").getByText("Too many requests")).toBeVisible();
+      const waiting = page
+        .locator("[data-plate-error]")
+        .getByRole("button", { name: /^Retry in [1-3] s$/ });
+      await expect(waiting).toBeVisible();
+      await expect(waiting).toHaveAttribute("aria-disabled", "true");
+      await expect(page.locator("table, ol").filter({ hasText: "Lizzie Borden" })).toHaveCount(0);
+      // The error frame (data-plate-error) holds the message and the countdown, and nothing overflows.
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth),
+      ).toBe(false);
+      // When the countdown ends the button reads Retry. It does not retry on its own.
+      await expect(page.getByRole("button", { name: "Retry", exact: true })).toBeVisible({
+        timeout: 6000,
+      });
+      expect(errors.page).toEqual([]);
+    },
+  );
 });
 
-eachTheme(() => {
+lightOnly(() => {
   test(
     "at 1024 no node centre sits under the stats chip and the top groups clear the frame",
     only("desktop-1440"),

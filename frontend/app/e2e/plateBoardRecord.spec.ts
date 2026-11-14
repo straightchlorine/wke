@@ -1,6 +1,6 @@
 import type { Locator, Page } from "@playwright/test";
 import { BOARD, HOME_GRAPH, RELATED_GRAPH, reachableNodes } from "./plateLocators";
-import { eachTheme, expect, only, test } from "./support";
+import { eachTheme, expect, lightOnly, only, test } from "./support";
 
 type Open = (
   path: string,
@@ -255,7 +255,7 @@ test.describe("Board record", only("desktop-1440"), () => {
     }
   });
 
-  eachTheme(() => {
+  lightOnly(() => {
     for (const [label, path, graph] of [
       ["Home graph", "/", HOME_GRAPH],
       ["Related graph", "/t/Lizzie_Borden", RELATED_GRAPH],

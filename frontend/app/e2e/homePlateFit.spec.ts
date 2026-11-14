@@ -1,5 +1,5 @@
 import type { Locator, Page } from "@playwright/test";
-import { eachTheme, expect, only, test } from "./support";
+import { expect, lightOnly, only, test } from "./support";
 
 const HOME_SIZES = [
   [1024, 768],
@@ -68,7 +68,7 @@ function geometry(page: Page) {
 // centred in its column, with the two columns ending on one line. It sets its own viewport,
 // so it runs only on the desktop-1440 project.
 test.describe("Home graph fit", only("desktop-1440"), () => {
-  eachTheme(() => {
+  lightOnly(() => {
     for (const [width, height] of HOME_SIZES) {
       test(`Home at ${width}x${height}: the square graph frame and its selected-article panel are on screen, the columns end together`, async ({
         page,

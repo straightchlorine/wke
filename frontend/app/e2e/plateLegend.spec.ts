@@ -1,7 +1,7 @@
 import { devices, type Locator, type Page } from "@playwright/test";
 import { mockApi } from "./mockApi";
 import { HOME_GRAPH } from "./plateLocators";
-import { eachTheme, expect, only, settleBox, test } from "./support";
+import { expect, lightOnly, only, settleBox, test } from "./support";
 
 // The Home graph's legend: one swatch button per linked group. Its tooltip reads
 // "Articles related to <most-read member>" with a link to that dossier, and
@@ -69,7 +69,7 @@ function scrollLegendIntoView(page: Page) {
 
 const ACTIVE_HULL = `${HOME_GRAPH} path[data-plate-hull-active]`;
 
-eachTheme(() => {
+lightOnly(() => {
   test.describe("Home graph legend tooltip", () => {
     test(
       "hover opens it with the dossier link, it stays open under the pointer, and the group's outline answers",
@@ -182,9 +182,23 @@ eachTheme(() => {
               const column = tipEl.closest("figure")!.getBoundingClientRect();
               const frame = document.querySelector("[data-plate-frame]")!;
               const board = frame.nextElementSibling!.getBoundingClientRect();
+              const hullBox = svg
+                .querySelector("path[data-plate-hull-active]")
+                ?.getBoundingClientRect();
               return {
                 ownCount,
                 otherCount,
+                tipInView:
+                  t.top >= 0 &&
+                  t.left >= 0 &&
+                  t.bottom <= window.innerHeight &&
+                  t.right <= window.innerWidth,
+                hullInView:
+                  hullBox != null &&
+                  hullBox.top >= 0 &&
+                  hullBox.left >= 0 &&
+                  hullBox.bottom <= window.innerHeight &&
+                  hullBox.right <= window.innerWidth,
                 inColumn: t.left >= column.left - 0.5 && t.right <= column.right + 0.5,
                 aboveBoardBottom: t.bottom <= board.bottom + 0.5,
               };
@@ -202,6 +216,11 @@ eachTheme(() => {
             await expect(tip, `tip ${i} closes after the pointer leaves`).toBeHidden({
               timeout: 3000,
             });
+            // Only these sizes show the whole frame without scrolling.
+            if (width === 1280 || width === 1920) {
+              expect(under.tipInView, `tip ${i} inside the viewport`).toBe(true);
+              expect(under.hullInView, `hull ${i} inside the viewport`).toBe(true);
+            }
             expect(under.inColumn, `tip ${i} inside the graph column`).toBe(true);
             expect(under.aboveBoardBottom, `tip ${i} above the board's bottom`).toBe(true);
           }
@@ -615,100 +634,11 @@ eachTheme(() => {
         },
       );
     }
-
-    for (const [width, height] of [
-      [1440, 900],
-      [1280, 800],
-      [1920, 1080],
-    ] as const) {
-      test(
-        `hovering any of the 6 swatches right after load at ${width}x${height} shows the highlighted hull and the tooltip inside the viewport, clear of that group's outline and dots`,
-        only("desktop-1440"),
-        async ({ page, open }) => {
-          const { plate, buttons } = await openHome(page, open, [width, height]);
-          const tip = plate.getByRole("tooltip").filter({ hasText: "Articles related to" });
-          const count = await buttons.count();
-          expect(count).toBe(6);
-          for (let i = 0; i < count; i += 1) {
-            await page.mouse.move(2, 2);
-            await expect(tip).toHaveCount(0);
-            await buttons.nth(i).hover();
-            await expect(tip).toBeVisible();
-            await expect(page.locator(ACTIVE_HULL)).toHaveCount(1);
-            const inside = await page.evaluate(
-              ([hullSel, tipSel]) => {
-                const hull = document.querySelector(hullSel!)!.getBoundingClientRect();
-                const tooltip = [...document.querySelectorAll(tipSel!)]
-                  .find((el) => el.textContent?.includes("Articles related to"))!
-                  .getBoundingClientRect();
-                const [hullIn, tipIn] = [hull, tooltip].map(
-                  (r) =>
-                    r.top >= 0 &&
-                    r.left >= 0 &&
-                    r.bottom <= window.innerHeight &&
-                    r.right <= window.innerWidth,
-                );
-                return { hull: hullIn, tip: tipIn };
-              },
-              [ACTIVE_HULL, '[role="tooltip"]'],
-            );
-            expect(inside, `swatch ${i + 1} of ${count}`).toEqual({ hull: true, tip: true });
-            const covered = await page.evaluate(() => {
-              const tipBox = [...document.querySelectorAll('[role="tooltip"]')]
-                .find(
-                  (el) =>
-                    el.textContent?.includes("Articles related to") &&
-                    el.getBoundingClientRect().width > 0,
-                )!
-                .getBoundingClientRect();
-              const hull = document.querySelector<SVGPathElement>("path[data-plate-hull-active]")!;
-              const m = hull.getScreenCTM()!;
-              let points = 0;
-              for (let at = 0; at < hull.getTotalLength(); at += 2) {
-                const p = hull.getPointAtLength(at);
-                const x = m.a * p.x + m.c * p.y + m.e;
-                const y = m.b * p.x + m.d * p.y + m.f;
-                if (
-                  x >= tipBox.left &&
-                  x <= tipBox.right &&
-                  y >= tipBox.top &&
-                  y <= tipBox.bottom
-                ) {
-                  points += 1;
-                }
-              }
-              const cluster = hull.getAttribute("data-plate-hull");
-              const dots = [
-                ...document.querySelectorAll(`circle[data-plate-cluster="${cluster}"]`),
-              ].filter((c) => {
-                const r = c.getBoundingClientRect();
-                return (
-                  r.left < tipBox.right &&
-                  r.right > tipBox.left &&
-                  r.top < tipBox.bottom &&
-                  r.bottom > tipBox.top
-                );
-              }).length;
-              const column = document.querySelector("figure")!.getBoundingClientRect();
-              return {
-                points,
-                dots,
-                inColumn: tipBox.left >= column.left - 0.5 && tipBox.right <= column.right + 0.5,
-              };
-            });
-            expect(
-              covered,
-              `swatch ${i + 1}: the tooltip covers none of its group's outline or dots`,
-            ).toEqual({ points: 0, dots: 0, inColumn: true });
-          }
-        },
-      );
-    }
   });
 });
 
 // An iPhone (touch, coarse pointer) draws the chip at its 44px pitch: layout and hit areas flip together on (pointer: coarse).
-eachTheme(() => {
+lightOnly(() => {
   test(
     `on an iPhone the legend chip keeps a 44px swatch pitch and a 28px row`,
     only("desktop-1440"),

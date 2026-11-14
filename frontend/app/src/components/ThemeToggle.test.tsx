@@ -51,6 +51,7 @@ describe("ThemeToggle", () => {
     stubSystemDark(false);
     render(<ThemeToggle />);
     expect(screen.getByRole("button", { name: "Switch to dark theme" }).textContent).toBe("Dark");
+    expect(screen.getByRole("button").hasAttribute("aria-pressed")).toBe(false);
 
     fireEvent.click(screen.getByRole("button"));
     expect(theme()).toBe("dark");

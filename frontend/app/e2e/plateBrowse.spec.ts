@@ -2,7 +2,7 @@ import type { Locator, Page } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { PLATE_BOARD_PX } from "../src/lib/plateSide";
 import { BOARD, HOME_GRAPH, RELATED_GRAPH, reachableNodes } from "./plateLocators";
-import { eachTheme, expect, only, test } from "./support";
+import { eachTheme, expect, lightOnly, only, test } from "./support";
 
 // The board is the panel under the graph that describes the node the pointer is on or that is selected.
 
@@ -99,8 +99,21 @@ eachTheme(() => {
     expect(selected.frameTop).toBe(idle.frameTop);
     expect(selected.frameBottom).toBe(idle.frameBottom);
     expect(selected.scrollY).toBe(idle.scrollY);
-    const axe = await new AxeBuilder({ page }).include("figure").analyze();
+    // axe 4.14 drops parentheses from the name but not from a cut label like "Film (2026 Indian...", so that rule is replaced by a direct check below.
+    const axe = await new AxeBuilder({ page })
+      .include("figure")
+      .disableRules(["label-content-name-mismatch"])
+      .analyze();
     expect(axe.violations).toEqual([]);
+    const names = await page.locator(`${HOME_GRAPH} a`).evaluateAll((nodes) =>
+      nodes.map((a) => ({
+        name: a.getAttribute("aria-label") ?? "",
+        shown: (a.querySelector("text tspan")?.textContent ?? "").replace(/\.{3}$/, ""),
+      })),
+    );
+    for (const { name, shown } of names) {
+      expect(name.startsWith(shown), `"${name}" starts with its shown text "${shown}"`).toBe(true);
+    }
 
     const other = await pickNode(page, HOME_GRAPH, 3);
     expect(other).toBeGreaterThanOrEqual(0);
@@ -117,57 +130,138 @@ eachTheme(() => {
     await expect(page).toHaveURL(/\/t\/[^/?]+\?budget=8000$/);
   });
 
-  test(`Home graph: the board link opens the dossier`, async ({ page, open }) => {
-    await openGraph(page, open, "/", HOME_GRAPH);
-    const index = await pickNode(page, HOME_GRAPH);
-    await nodeCircle(page, HOME_GRAPH, index).click();
-    await page
-      .locator(BOARD)
-      .getByRole("link", { name: /Open dossier|Build dossier/ })
-      .click();
-    await expect(page).toHaveURL(/\/t\/[^/?]+\?budget=8000$/);
-  });
-
-  test(`Home graph: Tab, arrows, Enter selects, Enter opens, Esc clears and keeps focus`, async ({
-    page,
-    open,
-  }) => {
-    await openGraph(page, open, "/", HOME_GRAPH);
-    await expect(page.locator(`${HOME_GRAPH} a[tabindex="0"]`)).toHaveCount(1);
-    const anchor = page.locator(`${HOME_GRAPH} a[tabindex="0"]`);
-    const url = page.url();
-    await anchor.focus();
-    // Keyboard focus previews a node as hover does: the ring and the board follow.
-    await page.keyboard.press("ArrowRight");
-    await expect(page.locator(`${HOME_GRAPH} a[tabindex="0"]`)).toHaveCount(1);
-    await expect(page.locator("[data-plate-hover-ring]")).toHaveCount(1);
-    await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "preview");
-    await page.keyboard.press("ArrowLeft");
-    await page.keyboard.press("Enter");
-    expect(page.url()).toBe(url);
-    await expect(page.locator("[data-plate-ring]")).toHaveCount(1);
-    await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "selected");
-    // Tab leaves the node for the legend chip, then continues on to the dossier link in the board.
-    const boardLink = page.locator(BOARD).getByRole("link");
-    await page.keyboard.press("Tab");
-    await expect(page.locator("[data-plate-legend] button").first()).toBeFocused();
-    for (let stop = 0; stop < 20; stop += 1) {
-      if (await boardLink.evaluate((el) => el === document.activeElement)) {
-        break;
+  test(
+    "the board is one fixed slot under the frame and never overflows, whichever node is selected",
+    only("mobile-390", "desktop-1440"),
+    async ({ page, open }) => {
+      await openGraph(page, open, "/", HOME_GRAPH);
+      const idle = await metrics(page, HOME_GRAPH);
+      expect(idle.boardHeight).toBe(PLATE_BOARD_PX);
+      const gap = await page.evaluate((sel) => {
+        const frame = document
+          .querySelector(sel)!
+          .closest("figure")!
+          .firstElementChild!.getBoundingClientRect();
+        const board = document.querySelector("[data-plate-board]")!.getBoundingClientRect();
+        // The legend chip is inside the frame, so the board follows the frame directly.
+        return board.top - frame.bottom;
+      }, HOME_GRAPH);
+      expect(gap).toBeCloseTo(8, 0);
+      const style = await page.locator(BOARD).evaluate((el) => {
+        const cs = getComputedStyle(el);
+        return { border: cs.borderTopWidth, shadow: cs.boxShadow, radius: cs.borderTopLeftRadius };
+      });
+      expect(style).toEqual({ border: "1px", shadow: "none", radius: "0px" });
+      for (let pick = 0; pick < 5; pick += 1) {
+        const index = await pickNode(page, HOME_GRAPH, pick * 4);
+        if (index < 0) {
+          break;
+        }
+        const title = (await page
+          .locator(`${HOME_GRAPH} a`)
+          .nth(index)
+          .getAttribute("aria-label"))!.split(/, [\d,]+ views/)[0]!;
+        await nodeCircle(page, HOME_GRAPH, index).click();
+        await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "selected");
+        expect(await boardTitle(page)).toBe(title);
+        await expect(
+          page.locator(BOARD).getByRole("link", { name: /Open dossier|Build dossier/ }),
+        ).toBeVisible();
+        const now = await metrics(page, HOME_GRAPH);
+        expect(now.boardHeight).toBe(idle.boardHeight);
+        expect(now.frameBottom).toBe(idle.frameBottom);
+        const overflow = await page
+          .locator(BOARD)
+          .evaluate((el) => el.scrollHeight > el.clientHeight + 1);
+        expect(overflow).toBe(false);
       }
+    },
+  );
+});
+
+lightOnly(() => {
+  test(
+    `Home graph: the board link opens the dossier`,
+    only("mobile-390", "desktop-1440"),
+    async ({ page, open }) => {
+      await openGraph(page, open, "/", HOME_GRAPH);
+      const index = await pickNode(page, HOME_GRAPH);
+      await nodeCircle(page, HOME_GRAPH, index).click();
+      await page
+        .locator(BOARD)
+        .getByRole("link", { name: /Open dossier|Build dossier/ })
+        .click();
+      await expect(page).toHaveURL(/\/t\/[^/?]+\?budget=8000$/);
+    },
+  );
+
+  test(
+    `Home graph: Tab, arrows, Enter selects, Enter opens, Esc clears and keeps focus`,
+    only("desktop-1440"),
+    async ({ page, open }) => {
+      await openGraph(page, open, "/", HOME_GRAPH);
+      await expect(page.locator(`${HOME_GRAPH} a[tabindex="0"]`)).toHaveCount(1);
+      const anchor = page.locator(`${HOME_GRAPH} a[tabindex="0"]`);
+      const url = page.url();
+      await anchor.focus();
+      // Keyboard focus previews a node as hover does: the ring and the board follow.
+      await page.keyboard.press("ArrowRight");
+      await expect(page.locator(`${HOME_GRAPH} a[tabindex="0"]`)).toHaveCount(1);
+      await expect(page.locator("[data-plate-hover-ring]")).toHaveCount(1);
+      await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "preview");
+      await page.keyboard.press("ArrowLeft");
+      await page.keyboard.press("Enter");
+      expect(page.url()).toBe(url);
+      await expect(page.locator("[data-plate-ring]")).toHaveCount(1);
+      await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "selected");
+      // Tab leaves the node for the legend chip, then continues on to the dossier link in the board.
+      const boardLink = page.locator(BOARD).getByRole("link");
       await page.keyboard.press("Tab");
-    }
-    await expect(boardLink).toBeFocused();
-    await page.keyboard.press("Escape");
-    await expect(page.locator("[data-plate-ring]")).toHaveCount(0);
-    // Focus stays on the node, so the board previews it instead of showing it as selected.
-    await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "preview");
-    await expect(anchor).toBeFocused();
-    await page.keyboard.press("Enter");
-    await expect(page.locator("[data-plate-ring]")).toHaveCount(1);
-    await page.keyboard.press("Enter");
-    await expect(page).toHaveURL(/\/t\/[^/?]+\?budget=8000$/);
-  });
+      await expect(page.locator("[data-plate-legend] button").first()).toBeFocused();
+      for (let stop = 0; stop < 20; stop += 1) {
+        if (await boardLink.evaluate((el) => el === document.activeElement)) {
+          break;
+        }
+        await page.keyboard.press("Tab");
+      }
+      await expect(boardLink).toBeFocused();
+      await page.keyboard.press("Escape");
+      await expect(page.locator("[data-plate-ring]")).toHaveCount(0);
+      // Focus stays on the node, so the board previews it instead of showing it as selected.
+      await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "preview");
+      await expect(anchor).toBeFocused();
+      await page.keyboard.press("Enter");
+      await expect(page.locator("[data-plate-ring]")).toHaveCount(1);
+      await page.keyboard.press("Enter");
+      await expect(page).toHaveURL(/\/t\/[^/?]+\?budget=8000$/);
+    },
+  );
+
+  test(
+    `Home graph: a modified click is left to the browser`,
+    only("desktop-1440"),
+    async ({ page, open }) => {
+      await openGraph(page, open, "/", HOME_GRAPH);
+      const result = await page.evaluate((plate) => {
+        const anchor = document.querySelector(`${plate} a`)!;
+        let prevented: boolean | null = null;
+        document.addEventListener(
+          "click",
+          (event) => {
+            prevented = event.defaultPrevented;
+            event.preventDefault();
+          },
+          { once: true },
+        );
+        anchor.dispatchEvent(
+          new MouseEvent("click", { bubbles: true, cancelable: true, ctrlKey: true }),
+        );
+        return prevented;
+      }, HOME_GRAPH);
+      expect(result).toBe(false);
+      await expect(page.locator("[data-plate-ring]")).toHaveCount(0);
+    },
+  );
 
   test(`Home graph: a click on an empty spot clears the selection, every node has a 24px hit area`, async ({
     page,
@@ -204,28 +298,6 @@ eachTheme(() => {
     await page.mouse.click(empty!.x, empty!.y);
     await expect(page.locator("[data-plate-ring]")).toHaveCount(0);
     await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "idle");
-  });
-
-  test(`Home graph: a modified click is left to the browser`, async ({ page, open }) => {
-    await openGraph(page, open, "/", HOME_GRAPH);
-    const result = await page.evaluate((plate) => {
-      const anchor = document.querySelector(`${plate} a`)!;
-      let prevented: boolean | null = null;
-      document.addEventListener(
-        "click",
-        (event) => {
-          prevented = event.defaultPrevented;
-          event.preventDefault();
-        },
-        { once: true },
-      );
-      anchor.dispatchEvent(
-        new MouseEvent("click", { bubbles: true, cancelable: true, ctrlKey: true }),
-      );
-      return prevented;
-    }, HOME_GRAPH);
-    expect(result).toBe(false);
-    await expect(page.locator("[data-plate-ring]")).toHaveCount(0);
   });
 
   test(`Related graph: the board sits under the frame and speaks of similarity`, async ({
@@ -278,54 +350,6 @@ eachTheme(() => {
     await circle.click();
     await expect(page).toHaveURL(/\/t\/[^/?]+\?budget=8000$/);
   });
-
-  test(
-    "the board is one fixed slot under the frame and never overflows, whichever node is selected",
-    only("mobile-390", "desktop-1440"),
-    async ({ page, open }) => {
-      await openGraph(page, open, "/", HOME_GRAPH);
-      const idle = await metrics(page, HOME_GRAPH);
-      expect(idle.boardHeight).toBe(PLATE_BOARD_PX);
-      const gap = await page.evaluate((sel) => {
-        const frame = document
-          .querySelector(sel)!
-          .closest("figure")!
-          .firstElementChild!.getBoundingClientRect();
-        const board = document.querySelector("[data-plate-board]")!.getBoundingClientRect();
-        // The legend chip is inside the frame, so the board follows the frame directly.
-        return board.top - frame.bottom;
-      }, HOME_GRAPH);
-      expect(gap).toBeCloseTo(8, 0);
-      const style = await page.locator(BOARD).evaluate((el) => {
-        const cs = getComputedStyle(el);
-        return { border: cs.borderTopWidth, shadow: cs.boxShadow, radius: cs.borderTopLeftRadius };
-      });
-      expect(style).toEqual({ border: "1px", shadow: "none", radius: "0px" });
-      for (let pick = 0; pick < 5; pick += 1) {
-        const index = await pickNode(page, HOME_GRAPH, pick * 4);
-        if (index < 0) {
-          break;
-        }
-        const title = (await page
-          .locator(`${HOME_GRAPH} a`)
-          .nth(index)
-          .getAttribute("aria-label"))!.split(/, [\d,]+ views/)[0]!;
-        await nodeCircle(page, HOME_GRAPH, index).click();
-        await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "selected");
-        expect(await boardTitle(page)).toBe(title);
-        await expect(
-          page.locator(BOARD).getByRole("link", { name: /Open dossier|Build dossier/ }),
-        ).toBeVisible();
-        const now = await metrics(page, HOME_GRAPH);
-        expect(now.boardHeight).toBe(idle.boardHeight);
-        expect(now.frameBottom).toBe(idle.frameBottom);
-        const overflow = await page
-          .locator(BOARD)
-          .evaluate((el) => el.scrollHeight > el.clientHeight + 1);
-        expect(overflow).toBe(false);
-      }
-    },
-  );
 });
 
 test.describe("pointer sweep", only("desktop-1440"), () => {
@@ -394,7 +418,7 @@ test.describe("dwelling on nodes", only("desktop-1440"), () => {
 test.describe("on touch", only("mobile-390"), () => {
   test.use({ hasTouch: true });
 
-  eachTheme(() => {
+  lightOnly(() => {
     test("Home graph: the first tap selects and the second tap opens", async ({ page, open }) => {
       await openGraph(page, open, "/", HOME_GRAPH);
       const index = await pickNode(page, HOME_GRAPH);

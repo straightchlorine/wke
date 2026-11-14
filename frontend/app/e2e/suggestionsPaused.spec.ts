@@ -1,6 +1,6 @@
-import { eachTheme, expect, test } from "./support";
+import { expect, lightOnly, test } from "./support";
 
-eachTheme(() => {
+lightOnly(() => {
   test("the not-built page says suggestions are paused when the search is rate limited", async ({
     page,
     open,

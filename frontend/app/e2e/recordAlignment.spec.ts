@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { eachTheme, expect, only, test } from "./support";
+import { expect, lightOnly, only, test } from "./support";
 
 /**
  * Measures every visible record row in `scope` (default: all records) and
@@ -79,7 +79,7 @@ async function audit(page: Page, scope?: string): Promise<{ rows: number; issues
   }, scope ?? null);
 }
 
-eachTheme(() => {
+lightOnly(() => {
   for (const [path, ready] of [
     ["/", "Cited context"],
     // A title narrower than the 44px tap target (Jesus) is clipped by its value box and reads as a clipped value, so this uses a longer one.

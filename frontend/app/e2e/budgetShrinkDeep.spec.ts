@@ -1,12 +1,12 @@
 import { assertNoErrors, trackErrors } from "./errorTracking";
 import { nearestHeading, stickyBottom, waitForBudget } from "./readingSection";
-import { eachTheme, expect, only, settleScroll, test } from "./support";
+import { expect, lightOnly, only, settleScroll, test } from "./support";
 
 // Switching to 2k from deep inside a long section keeps the reader in that section.
 // If the section is shorter than the reader's depth, its heading lands on the landing line, 16px under the sticky bars.
 // The Contents mark then names that section.
 
-eachTheme(() => {
+lightOnly(() => {
   test(
     "a 2k shrink from deep in a section lands its heading",
     only("desktop-1440"),

@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { test, expect, eachTheme } from "./support";
+import { test, expect, lightOnly, only } from "./support";
 import { freeze } from "./buildFixture";
 
 interface Problems {
@@ -51,20 +51,24 @@ const VISITS: {
   },
 ];
 
-eachTheme(() => {
+lightOnly(() => {
   for (const visit of VISITS) {
-    test(`${visit.name} raises no runtime error`, async ({ page, open }) => {
-      // The fake clock lets the timers scheduled after first paint run at once.
-      await page.clock.install();
-      const problems = watch(page);
-      await visit.prepare?.(page);
-      await open(visit.path, {
-        ready: page.getByRole("heading", { level: 1 }).filter({ hasText: visit.ready }).first(),
-      });
-      await page.clock.runFor(800);
-      expect(problems.page).toEqual([]);
-      expect(problems.console).toEqual([]);
-    });
+    test(
+      `${visit.name} raises no runtime error`,
+      only("mobile-390", "tablet-768", "desktop-1440"),
+      async ({ page, open }) => {
+        // The fake clock lets the timers scheduled after first paint run at once.
+        await page.clock.install();
+        const problems = watch(page);
+        await visit.prepare?.(page);
+        await open(visit.path, {
+          ready: page.getByRole("heading", { level: 1 }).filter({ hasText: visit.ready }).first(),
+        });
+        await page.clock.runFor(800);
+        expect(problems.page).toEqual([]);
+        expect(problems.console).toEqual([]);
+      },
+    );
   }
 });
 

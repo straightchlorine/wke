@@ -417,3 +417,68 @@ export async function mockApi(page: Page): Promise<void> {
     });
   });
 }
+
+/** The 429 problem response the live feed answers with when it asks the client to wait 30 s. */
+export function rateLimitedResponse(requestId: string) {
+  return {
+    status: 429,
+    contentType: "application/problem+json",
+    headers: { "retry-after": "30" },
+    body: JSON.stringify({
+      type: "about:blank",
+      title: "Too many requests",
+      status: 429,
+      code: "rate_limited",
+      request_id: requestId,
+      detail: "12 per 1 minute",
+    }),
+  };
+}
+
+/** The live-feed counters of a connected feed, with the given count of dossiers built today. */
+export function liveCounters(builtToday: number) {
+  return {
+    enwiki_edits_last_hour: 14,
+    tracked_edits_last_hour: 0,
+    window_complete: true,
+    dossiers_built_today: builtToday,
+    topics_tracked: 40,
+  };
+}
+
+/** A live-feed edit that happened `ageMs` ago, read from the clock when called; `rev` is the new revision and the old one is 1,000,000 below it. */
+export function liveEdit(edit: {
+  cursor: number;
+  title: string;
+  ageMs: number;
+  rev: number;
+  byteDelta: number;
+}) {
+  return {
+    cursor: edit.cursor,
+    page_id: null,
+    title: edit.title,
+    rev_new: edit.rev,
+    rev_old: edit.rev - 1_000_000,
+    ts: new Date(Date.now() - edit.ageMs).toISOString(),
+    user_kind: "registered",
+    byte_delta: edit.byteDelta,
+  };
+}
+
+/** The JSON body of a connected live feed, with `last_event_at` set to now unless `lastEventAt` is given. */
+export function liveFeedBody(feed: {
+  cursor: number;
+  builtToday: number;
+  edits: object[];
+  lastEventAt?: string | null;
+}): string {
+  return JSON.stringify({
+    stream: "connected",
+    server_time: new Date().toISOString(),
+    cursor: feed.cursor,
+    last_event_at: feed.lastEventAt === undefined ? new Date().toISOString() : feed.lastEventAt,
+    counters: liveCounters(feed.builtToday),
+    edits: feed.edits,
+  });
+}

@@ -1,5 +1,6 @@
 import type { Page } from "@playwright/test";
-import { eachTheme, expect, only, test } from "./support";
+import { liveEdit, liveFeedBody } from "./mockApi";
+import { expect, lightOnly, only, test } from "./support";
 
 // The edits panel: "last N" reads inline after the title, the rows start right
 // under the marker row and fill the slots, and a slot is blank only when there
@@ -7,16 +8,14 @@ import { eachTheme, expect, only, test } from "./support";
 // viewport, so it runs only on the desktop-1440 project.
 
 /** A replayed edit, `cursor` seconds older than the 30 s base. */
-const replay = (cursor: number) => ({
-  cursor,
-  page_id: null,
-  title: `Replay ${cursor}`,
-  rev_new: 3000000 + cursor,
-  rev_old: 2000000 + cursor,
-  ts: new Date(Date.now() - 30_000 - cursor * 1000).toISOString(),
-  user_kind: "registered",
-  byte_delta: 12,
-});
+const replay = (cursor: number) =>
+  liveEdit({
+    cursor,
+    title: `Replay ${cursor}`,
+    ageMs: 30_000 + cursor * 1000,
+    rev: 3000000 + cursor,
+    byteDelta: 12,
+  });
 
 /** Serves a live feed with `edits` replayed edits and clears the stored session state. */
 async function serveFeed(page: Page, edits: number) {
@@ -25,18 +24,9 @@ async function serveFeed(page: Page, edits: number) {
     route.fulfill({
       status: 200,
       contentType: "application/json",
-      body: JSON.stringify({
-        stream: "connected",
-        server_time: new Date().toISOString(),
+      body: liveFeedBody({
         cursor: edits,
-        last_event_at: new Date().toISOString(),
-        counters: {
-          enwiki_edits_last_hour: 14,
-          tracked_edits_last_hour: 0,
-          window_complete: true,
-          dossiers_built_today: 7,
-          topics_tracked: 40,
-        },
+        builtToday: 7,
         edits: Array.from({ length: edits }, (_, i) => replay(edits - i)),
       }),
     }),
@@ -71,7 +61,7 @@ function panel(page: Page) {
 }
 
 test.describe("Edits panel rows", only("desktop-1440"), () => {
-  eachTheme(() => {
+  lightOnly(() => {
     for (const [width, height] of [
       [1440, 900],
       [1920, 1080],

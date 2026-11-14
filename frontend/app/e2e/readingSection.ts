@@ -1,4 +1,6 @@
-import type { Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
+import { withFreshness } from "./buildFixture";
+import { dossierBody } from "./mockApi";
 import { expect, settleScroll } from "./support";
 
 const STICKY_BARS = '[data-dossier-toolbar], nav[aria-label="Sections"]';
@@ -51,4 +53,42 @@ export async function waitForBudget(page: Page, budget: number): Promise<void> {
     `of ${budget.toLocaleString("en-US")} tokens`,
   );
   await settleScroll(page);
+}
+
+/** Opens the Jesus dossier and waits until `count` section headings are on the page. */
+export async function openJesus(
+  page: Page,
+  open: (path: string) => Promise<void>,
+  count: number,
+): Promise<void> {
+  await open("/t/Jesus");
+  await expect(page.locator('section[id^="s"] [data-section-heading]')).toHaveCount(count);
+}
+
+/** Returns the visible Freshness row of the source record. */
+export function freshnessRow(page: Page): Locator {
+  return page
+    .locator("[data-record-row]")
+    .filter({ hasText: /^Freshness/ })
+    .filter({ visible: true });
+}
+
+/** Returns the button of the visible Freshness row. */
+export function freshnessChip(page: Page): Locator {
+  return freshnessRow(page).locator("button");
+}
+
+/**
+ * Serves the 1095706 dossier from fixture `name` with its freshness block patched.
+ * The body is built when each request arrives, so a `patch` function is read again on every load.
+ */
+export async function mockFreshness(
+  page: Page,
+  name: string,
+  patch: Record<string, unknown> | (() => Record<string, unknown>),
+): Promise<void> {
+  await page.route(/\/api\/v1\/dossiers\/1095706(\?[^/]*)?$/, async (route) => {
+    const body = dossierBody(name, withFreshness(typeof patch === "function" ? patch() : patch));
+    await route.fulfill({ status: 200, contentType: "application/json", body });
+  });
 }

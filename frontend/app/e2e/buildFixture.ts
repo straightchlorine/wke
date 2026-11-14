@@ -93,3 +93,100 @@ export async function freeze(page: Page, progress = { done: 3, total: 8 }, delay
     });
   });
 }
+
+/** Options for `routeBuildJob`. */
+interface BuildJobOptions {
+  /** Id of the job the POST answers with and the GET serves. */
+  jobId: string;
+  /** The `poll_after_ms` every response carries. */
+  pollAfterMs: number;
+  /** The `request_id` of the not-built 404. */
+  requestId: string;
+  /** The poll at which the job reports done; absent keeps it running for good. */
+  doneAtPoll?: number;
+  /** The `progress.done` of the job reported at the given poll count. */
+  progressDone: (polls: number) => number;
+}
+
+/**
+ * Routes a not-built Jesus dossier, the 202 POST and the job GET, and counts the job polls.
+ * The mocked API already holds this dossier, so the 404 is what starts the build flow.
+ * Once the job reports done the 404 falls through to the mocked API's own dossier.
+ */
+export async function routeBuildJob(
+  page: Page,
+  { jobId, pollAfterMs, requestId, doneAtPoll, progressDone }: BuildJobOptions,
+): Promise<{ polls: () => number }> {
+  let polls = 0;
+  let dossierReady = false;
+  const base = {
+    id: jobId,
+    page_id: 1095706,
+    rev_id: 1385149975,
+    title: "Jesus",
+    queue_position: 1,
+    poll_after_ms: pollAfterMs,
+    result_url: null,
+    error: null,
+    created_at: "2026-09-28T16:15:41Z",
+    started_at: null,
+    updated_at: "2026-09-28T16:15:41Z",
+  };
+  await page.route(/\/api\/v1\/dossiers\/(\d+)(\?[^/]*)?$/, async (route) => {
+    if (route.request().method() !== "GET" || dossierReady) {
+      await route.fallback();
+      return;
+    }
+    await route.fulfill({
+      status: 404,
+      contentType: "application/problem+json",
+      body: JSON.stringify({
+        type: "about:blank",
+        title: "Not Found",
+        status: 404,
+        detail: "No dossier has been built for page 1095706.",
+        code: "not_built",
+        request_id: requestId,
+      }),
+    });
+  });
+  await page.route(/\/api\/v1\/dossiers(\?[^/]*)?$/, async (route) => {
+    if (route.request().method() !== "POST") {
+      await route.fallback();
+      return;
+    }
+    await route.fulfill({
+      status: 202,
+      contentType: "application/json",
+      headers: { location: `/api/v1/jobs/${jobId}` },
+      body: JSON.stringify({
+        ...base,
+        status: "queued",
+        stage: "resolve",
+        progress: { done: 0, total: 8 },
+        partial_available: false,
+        finished_at: null,
+      }),
+    });
+  });
+  await page.route(new RegExp(`/api/v1/jobs/${jobId}(\\?[^/]*)?$`), async (route) => {
+    polls += 1;
+    const status = doneAtPoll !== undefined && polls >= doneAtPoll ? "done" : "running";
+    if (status === "done") {
+      dossierReady = true;
+    }
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        ...base,
+        status,
+        stage: "summarize",
+        progress: { done: progressDone(polls), total: 8 },
+        partial_available: status === "running",
+        finished_at: status === "done" ? "2026-09-28T16:15:50Z" : null,
+      }),
+    });
+  });
+  return { polls: () => polls };
+}

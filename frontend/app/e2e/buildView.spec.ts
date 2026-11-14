@@ -2,7 +2,7 @@ import type { Page } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { freeze, readFixtureJson } from "./buildFixture";
 import { mockApi } from "./mockApi";
-import { eachTheme, expect, settleLayout, test } from "./support";
+import { eachTheme, expect, lightOnly, settleLayout, test } from "./support";
 
 async function h1Box(page: Page) {
   const box = await page.getByRole("heading", { level: 1 }).boundingBox();
@@ -95,7 +95,9 @@ eachTheme(() => {
     const axe = await new AxeBuilder({ page }).analyze();
     expect(axe.violations).toEqual([]);
   });
+});
 
+lightOnly(() => {
   test("the building head sits where the finished head sits", async ({ page, open }) => {
     await freeze(page);
     await open("/t/Jesus", { ready: page.getByText("Building this dossier now.") });

@@ -28,6 +28,12 @@ export const VIEWPORTS: Record<ProjectName, { width: number; height: number }> =
   "desktop-1920": { width: 1920, height: 1080 },
 };
 
+/** A phone held sideways. */
+export const LANDSCAPE_PHONE = { width: 844, height: 390 };
+
+/** A 4K screen. */
+export const UHD = { width: 3840, height: 2160 };
+
 /**
  * Limits a test or describe to the named projects: `test("...", only("desktop-1440"), async ...)`.
  * A test without it runs on every project; playwright.config.ts routes the tags through each project's grep.
@@ -111,6 +117,14 @@ export function eachTheme(define: (theme: Theme) => void): void {
       define(theme);
     });
   }
+}
+
+/** Defines the tests once, in a describe named "light" with the light theme stored, for tests that read no colour. */
+export function lightOnly(define: (theme: Theme) => void): void {
+  test.describe("light", () => {
+    test.use({ theme: "light" });
+    define("light");
+  });
 }
 
 function twoFrames(page: Page): Promise<void> {

@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { eachTheme, expect, only, settleLayout, test } from "./support";
+import { expect, lightOnly, only, settleLayout, test } from "./support";
 
 // Inline links in running text keep their line height, so on a phone a tap at the centre or at either end of a link must still land on it.
 // Links on adjacent lines share the gap between them, so no reach beyond the line is asserted here.
@@ -63,7 +63,7 @@ async function misses(page: Page, scope: string): Promise<string[]> {
   }, scope);
 }
 
-eachTheme(() => {
+lightOnly(() => {
   for (const [width, height] of SIZES) {
     test.describe(`${width}x${height}`, only("desktop-1440"), () => {
       test.use({ viewport: { width, height }, hasTouch: true, isMobile: true });

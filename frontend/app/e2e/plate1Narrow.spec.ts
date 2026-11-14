@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { eachTheme, expect, only, settleLayout, test } from "./support";
+import { expect, lightOnly, only, settleLayout, test } from "./support";
 
 // At 1024px and at 1440px the Home graph must keep group outlines whole inside the frame,
 // show at least 10 names, and put a dot in every horizontal band.
@@ -36,7 +36,7 @@ function stub(name: { text: string }) {
 
 // Every test here sets its own viewport, so it runs only on the desktop-1440 project.
 test.describe("Home graph at several widths", only("desktop-1440"), () => {
-  eachTheme(() => {
+  lightOnly(() => {
     for (const width of [1024, 1440, 1920]) {
       test(`Home graph at ${width}: hulls inside the frame, at least the 10 most-read named, all ${BANDS} bands`, async ({
         page,
@@ -91,28 +91,49 @@ test.describe("Home graph at several widths", only("desktop-1440"), () => {
       [1024, 768],
       [1440, 1000],
       [1920, 1080],
+      [3840, 2160],
     ] as const) {
-      test(`Home graph at ${width}: every dot keeps 12px from the frame`, async ({
+      test(`Home graph at ${width}: every dot keeps 12px and every label 6px from the frame`, async ({
         page,
         open,
       }) => {
         await open("/", { viewport: { width, height }, ready: page.locator(DOTS).first() });
-        const inset = await page.evaluate(() => {
+        if (width !== 3840) {
+          const inset = await page.evaluate(() => {
+            const svg = document.querySelector("svg[role='group']")!;
+            const f = svg.getBoundingClientRect();
+            return Math.min(
+              ...[...svg.querySelectorAll("a > circle:first-of-type")].map((c) => {
+                const b = c.getBoundingClientRect();
+                return Math.min(
+                  b.left - f.left,
+                  b.top - f.top,
+                  f.right - b.right,
+                  f.bottom - b.bottom,
+                );
+              }),
+            );
+          });
+          expect(inset).toBeGreaterThanOrEqual(12);
+        }
+        const m = await page.evaluate(() => {
           const svg = document.querySelector("svg[role='group']")!;
           const f = svg.getBoundingClientRect();
-          return Math.min(
-            ...[...svg.querySelectorAll("a > circle:first-of-type")].map((c) => {
-              const b = c.getBoundingClientRect();
-              return Math.min(
-                b.left - f.left,
-                b.top - f.top,
-                f.right - b.right,
-                f.bottom - b.bottom,
-              );
-            }),
-          );
+          const gaps = [...svg.querySelectorAll("text[data-plate-label]")].map((t) => {
+            const b = t.getBoundingClientRect();
+            return {
+              text: t.textContent ?? "",
+              gap: Math.min(b.left - f.left, b.top - f.top, f.right - b.right, f.bottom - b.bottom),
+            };
+          });
+          return gaps;
         });
-        expect(inset).toBeGreaterThanOrEqual(12);
+        expect(m.length).toBeGreaterThanOrEqual(10);
+        for (const l of m) {
+          expect(l.gap, `${l.text} is ${l.gap.toFixed(1)}px from the frame`).toBeGreaterThanOrEqual(
+            6,
+          );
+        }
       });
     }
 
@@ -169,39 +190,6 @@ test.describe("Home graph at several widths", only("desktop-1440"), () => {
           expect(stub(n).length, `"${n.text}"`).toBeGreaterThanOrEqual(width < 1280 ? 18 : 8);
           const twin = m.names.find((o) => o.title !== n.title && o.title.startsWith(stub(n)));
           expect(twin, `"${n.text}" is the prefix of "${twin?.title}"`).toBeUndefined();
-        }
-      });
-    }
-
-    for (const [width, height] of [
-      [390, 844],
-      [1024, 768],
-      [1440, 1000],
-      [1920, 1080],
-      [3840, 2160],
-    ] as const) {
-      test(`Home graph at ${width}: every label keeps 6px from the frame rule`, async ({
-        page,
-        open,
-      }) => {
-        await open("/", { viewport: { width, height }, ready: page.locator(DOTS).first() });
-        const m = await page.evaluate(() => {
-          const svg = document.querySelector("svg[role='group']")!;
-          const f = svg.getBoundingClientRect();
-          const gaps = [...svg.querySelectorAll("text[data-plate-label]")].map((t) => {
-            const b = t.getBoundingClientRect();
-            return {
-              text: t.textContent ?? "",
-              gap: Math.min(b.left - f.left, b.top - f.top, f.right - b.right, f.bottom - b.bottom),
-            };
-          });
-          return gaps;
-        });
-        expect(m.length).toBeGreaterThanOrEqual(10);
-        for (const l of m) {
-          expect(l.gap, `${l.text} is ${l.gap.toFixed(1)}px from the frame`).toBeGreaterThanOrEqual(
-            6,
-          );
         }
       });
     }

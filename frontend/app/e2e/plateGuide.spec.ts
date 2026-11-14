@@ -1,4 +1,4 @@
-import { eachTheme, expect, test } from "./support";
+import { expect, lightOnly, only, test } from "./support";
 
 // The caption says what the graph shows. The "How to read the plate" tooltip lists the encodings, one short row each.
 
@@ -37,48 +37,49 @@ const GUIDES = [
   },
 ] as const;
 
-eachTheme(() => {
+lightOnly(() => {
   for (const guide of GUIDES) {
-    test(`On ${guide.page}, the graph caption is one sentence and the (i) lists one line per encoding`, async ({
-      page,
-      open,
-    }, info) => {
-      await open(guide.path, { ready: page.locator('svg[role="group"] a').first() });
-      const figure = page.locator("figure", { hasText: guide.lead });
-      const caption = figure.locator("figcaption");
-      await expect(caption).toHaveText(guide.caption);
-      await expect(figure).not.toContainText("square root).");
-      const dot = figure.getByRole("button", { name: "How to read the plate" });
-      await dot.scrollIntoViewIfNeeded();
-      await dot.focus();
-      const tip = figure.getByRole("tooltip").filter({ hasText: guide.rows[0][0] });
-      await expect(tip).toBeVisible();
-      const rows = tip.locator("dl > div");
-      await expect(rows).toHaveCount(guide.rows.length);
-      for (const [index, [label, value]] of guide.rows.entries()) {
-        await expect(rows.nth(index).locator("dt")).toHaveText(label);
-        await expect(rows.nth(index).locator("dd")).toHaveText(value);
-        expect(value.split(" ").length, `${label} is at most 8 words`).toBeLessThanOrEqual(8);
-      }
-      const look = await tip.evaluate((el) => {
-        const row = el.querySelector("dl > div")!;
-        const rects = [...el.querySelectorAll("dl > div")].map((r) => r.getBoundingClientRect());
-        return {
-          width: el.getBoundingClientRect().width,
-          font: getComputedStyle(row).fontSize,
-          step: rects[1]!.top - rects[0]!.top,
-          dtColor: getComputedStyle(row.querySelector("dt")!).color,
-          ddColor: getComputedStyle(row.querySelector("dd")!).color,
-          leader: getComputedStyle(row.querySelector("span")!).borderBottomStyle,
-        };
-      });
-      expect(look.width).toBeLessThanOrEqual(info.project.name === "mobile-390" ? 358 : 320.5);
-      expect(look.font).toBe("12px");
-      expect(look.step).toBe(20);
-      expect(look.leader).toBe("dotted");
-      expect(look.dtColor).not.toBe(look.ddColor);
-      await page.keyboard.press("Escape");
-      await expect(tip).toBeHidden();
-    });
+    test(
+      `On ${guide.page}, the graph caption is one sentence and the (i) lists one line per encoding`,
+      only("mobile-390", "desktop-1440"),
+      async ({ page, open }, info) => {
+        await open(guide.path, { ready: page.locator('svg[role="group"] a').first() });
+        const figure = page.locator("figure", { hasText: guide.lead });
+        const caption = figure.locator("figcaption");
+        await expect(caption).toHaveText(guide.caption);
+        await expect(figure).not.toContainText("square root).");
+        const dot = figure.getByRole("button", { name: "How to read the plate" });
+        await dot.scrollIntoViewIfNeeded();
+        await dot.focus();
+        const tip = figure.getByRole("tooltip").filter({ hasText: guide.rows[0][0] });
+        await expect(tip).toBeVisible();
+        const rows = tip.locator("dl > div");
+        await expect(rows).toHaveCount(guide.rows.length);
+        for (const [index, [label, value]] of guide.rows.entries()) {
+          await expect(rows.nth(index).locator("dt")).toHaveText(label);
+          await expect(rows.nth(index).locator("dd")).toHaveText(value);
+          expect(value.split(" ").length, `${label} is at most 8 words`).toBeLessThanOrEqual(8);
+        }
+        const look = await tip.evaluate((el) => {
+          const row = el.querySelector("dl > div")!;
+          const rects = [...el.querySelectorAll("dl > div")].map((r) => r.getBoundingClientRect());
+          return {
+            width: el.getBoundingClientRect().width,
+            font: getComputedStyle(row).fontSize,
+            step: rects[1]!.top - rects[0]!.top,
+            dtColor: getComputedStyle(row.querySelector("dt")!).color,
+            ddColor: getComputedStyle(row.querySelector("dd")!).color,
+            leader: getComputedStyle(row.querySelector("span")!).borderBottomStyle,
+          };
+        });
+        expect(look.width).toBeLessThanOrEqual(info.project.name === "mobile-390" ? 358 : 320.5);
+        expect(look.font).toBe("12px");
+        expect(look.step).toBe(20);
+        expect(look.leader).toBe("dotted");
+        expect(look.dtColor).not.toBe(look.ddColor);
+        await page.keyboard.press("Escape");
+        await expect(tip).toBeHidden();
+      },
+    );
   }
 });

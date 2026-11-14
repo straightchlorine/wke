@@ -1,12 +1,12 @@
 import type { Page } from "@playwright/test";
-import { eachTheme, expect, test } from "./support";
+import { expect, lightOnly, test } from "./support";
 
 /** The first h1 containing `text`. */
 function titled(page: Page, text: string) {
   return page.getByRole("heading", { level: 1 }).filter({ hasText: text }).first();
 }
 
-eachTheme(() => {
+lightOnly(() => {
   test("Dossiers has no freshness key beside the title; the chips carry the counts", async ({
     page,
     open,

@@ -1,6 +1,6 @@
-import { eachTheme, expect, only, test } from "./support";
+import { expect, lightOnly, only, test } from "./support";
 
-eachTheme(() => {
+lightOnly(() => {
   test(
     "Home most-read index: three columns per entry (title with its edits line, one-width Fits in badge, views), badge and views centred in the row",
     only("mobile-390", "desktop-1440"),

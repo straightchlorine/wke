@@ -1,5 +1,5 @@
 import { readFixture } from "./mockApi";
-import { eachTheme, expect, only, test } from "./support";
+import { expect, lightOnly, only, test } from "./support";
 
 const LONG =
   "Chairman of the Standing Committee of the National People's Congress of the People's Republic of China";
@@ -19,7 +19,7 @@ function trendingWithLongTitle(): string {
 }
 
 test.describe("Phone edit titles", only("desktop-1440"), () => {
-  eachTheme(() => {
+  lightOnly(() => {
     for (const [width, height] of [
       [390, 844],
       [360, 800],

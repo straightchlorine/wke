@@ -1,7 +1,7 @@
 import type { Page } from "@playwright/test";
 import { assertNoErrors, trackErrors } from "./errorTracking";
-import { nearestHeading, stickyBottom, waitForBudget } from "./readingSection";
-import { eachTheme, expect, only, settleScroll, test } from "./support";
+import { nearestHeading, openJesus, stickyBottom, waitForBudget } from "./readingSection";
+import { expect, lightOnly, only, settleScroll, test } from "./support";
 
 // A Contents click or a chip tap leaves #sN in the URL. A budget change
 // afterwards rewrites only the search param and must hold the reader's
@@ -14,10 +14,7 @@ const VIEWPORTS = [
 
 const SECTION_HEADINGS = 'section[id^="s"] [data-section-heading]';
 
-async function openJesus(page: Page, open: (path: string) => Promise<void>) {
-  await open("/t/Jesus");
-  await expect(page.locator(SECTION_HEADINGS)).toHaveCount(46);
-}
+const openAll = (page: Page, open: (path: string) => Promise<void>) => openJesus(page, open, 46);
 
 // Scrolls section `id` to the top of the viewport and returns scrollY.
 async function readOnTo(page: Page, id: string): Promise<number> {
@@ -75,7 +72,7 @@ async function expectAnchored(
   );
 }
 
-eachTheme(() => {
+lightOnly(() => {
   for (const vp of VIEWPORTS) {
     test.describe(`budget change after a section jump (${vp.name})`, only("desktop-1440"), () => {
       test.use({ viewport: { width: vp.width, height: vp.height } });
@@ -86,7 +83,7 @@ eachTheme(() => {
       }) => {
         const errors = trackErrors(page);
         await page.clock.install();
-        await openJesus(page, open);
+        await openAll(page, open);
 
         await page.locator(`${vp.jump} a[href$="#s7"]`).click();
         await expect(page).toHaveURL(/#s7$/);
@@ -124,7 +121,7 @@ eachTheme(() => {
         open,
       }) => {
         const errors = trackErrors(page);
-        await openJesus(page, open);
+        await openAll(page, open);
 
         await readOnTo(page, "s5");
         const readingFive = await nearestHeading(page);
@@ -157,7 +154,7 @@ eachTheme(() => {
         open,
       }) => {
         const errors = trackErrors(page);
-        await openJesus(page, open);
+        await openAll(page, open);
 
         await page.locator(`${vp.jump} a[href$="#s13"]`).click();
         await expect(page).toHaveURL(/#s13$/);
@@ -186,7 +183,7 @@ eachTheme(() => {
         page,
         open,
       }) => {
-        await openJesus(page, open);
+        await openAll(page, open);
         await page.locator(`${vp.jump} a[href$="#s9"]`).click();
         await expect(page).toHaveURL(/#s9$/);
         await settleScroll(page);

@@ -1,52 +1,16 @@
 import type { Page } from "@playwright/test";
-import { eachTheme, expect, only, test } from "./support";
+import { liveEdit, liveFeedBody, rateLimitedResponse } from "./mockApi";
+import { expect, lightOnly, only, test } from "./support";
 
-/** The 429 the live feed answers with when it asks the client to wait 30 s. */
-const rateLimited = {
-  status: 429,
-  contentType: "application/problem+json",
-  headers: { "retry-after": "30" },
-  body: JSON.stringify({
-    type: "about:blank",
-    title: "Too many requests",
-    status: 429,
-    code: "rate_limited",
-    request_id: "spec-live-429",
-    detail: "12 per 1 minute",
-  }),
-};
-
-/** The live-feed counters, with the given count of dossiers built today. */
-const counters = (builtToday: number) => ({
-  enwiki_edits_last_hour: 14,
-  tracked_edits_last_hour: 0,
-  window_complete: true,
-  dossiers_built_today: builtToday,
-  topics_tracked: 40,
-});
+const rateLimited = rateLimitedResponse("spec-live-429");
 
 /** A live-feed edit 30 s old. */
-const edit = (cursor: number, title: string) => ({
-  cursor,
-  page_id: null,
-  title,
-  rev_new: 3000000 + cursor,
-  rev_old: 2000000 + cursor,
-  ts: new Date(Date.now() - 30_000).toISOString(),
-  user_kind: "registered",
-  byte_delta: 12,
-});
+const edit = (cursor: number, title: string) =>
+  liveEdit({ cursor, title, ageMs: 30_000, rev: 3000000 + cursor, byteDelta: 12 });
 
 /** The body of a connected live feed with these edits. */
 const feed = (cursor: number, builtToday: number, edits: object[]) =>
-  JSON.stringify({
-    stream: "connected",
-    server_time: new Date().toISOString(),
-    cursor,
-    last_event_at: new Date().toISOString(),
-    counters: counters(builtToday),
-    edits,
-  });
+  liveFeedBody({ cursor, builtToday, edits });
 
 /** Answers every live-feed request with a 429. */
 function refuseLive(page: Page) {
@@ -55,7 +19,7 @@ function refuseLive(page: Page) {
 
 // Every test here runs only on the desktop-1440 project.
 test.describe("Live feed rate limits", only("desktop-1440"), () => {
-  eachTheme(() => {
+  lightOnly(() => {
     test("a 429 from the live feed reads as paused, keeps the counts and rows, and retries after Retry-After", async ({
       page,
       open,
@@ -116,14 +80,7 @@ test.describe("Live feed rate limits", only("desktop-1440"), () => {
       route.fulfill({
         status: 200,
         contentType: "application/json",
-        body: JSON.stringify({
-          stream: "connected",
-          server_time: new Date().toISOString(),
-          cursor: 1,
-          last_event_at: null,
-          counters: counters(9),
-          edits: [],
-        }),
+        body: liveFeedBody({ cursor: 1, builtToday: 9, edits: [], lastEventAt: null }),
       }),
     );
     await open("/");
@@ -136,7 +93,7 @@ test.describe("Live feed rate limits", only("desktop-1440"), () => {
     await expect(page.locator("main")).toContainText("9 built today");
   });
 
-  eachTheme(() => {
+  lightOnly(() => {
     test("Home keeps its counts and edit rows through a 429 after leaving and returning, and after a reload", async ({
       page,
       open,

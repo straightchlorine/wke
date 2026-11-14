@@ -2,7 +2,7 @@ import type { Page } from "@playwright/test";
 import type { DossierView } from "../src/api/dossier";
 import { readFixtureJson } from "./buildFixture";
 import { dossierEnvelope } from "./mockApi";
-import { eachTheme, expect, only, test } from "./support";
+import { expect, lightOnly, only, test } from "./support";
 
 const WIDTHS = [1440, 390] as const;
 
@@ -25,7 +25,7 @@ async function openAnchored(page: Page, open: (path: string) => Promise<void>) {
   await expect(page.locator("[data-section-heading]").first()).toBeVisible();
 }
 
-eachTheme(() => {
+lightOnly(() => {
   for (const width of WIDTHS) {
     test.describe(`Section-anchored citations, ${width}`, only("desktop-1440"), () => {
       test.use({ viewport: { width, height: 900 } });

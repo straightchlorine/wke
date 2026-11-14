@@ -1,6 +1,6 @@
 import type { Locator, Page } from "@playwright/test";
 import { BOARD, HOME_GRAPH, RELATED_GRAPH, reachableNodes } from "./plateLocators";
-import { eachTheme, expect, only, test } from "./support";
+import { eachTheme, expect, lightOnly, only, test } from "./support";
 
 type Open = (path: string, options?: { ready?: Locator }) => Promise<void>;
 
@@ -185,11 +185,13 @@ function overlappingNames(named: Array<{ title: string; box: Box | null }>): str
   return pairs;
 }
 
+const GRAPHS = [
+  [HOME_GRAPH, "/", "Home graph"],
+  [RELATED_GRAPH, "/t/Lizzie_Borden", "Related graph"],
+] as const;
+
 eachTheme(() => {
-  for (const [graph, path, name] of [
-    [HOME_GRAPH, "/", "Home graph"],
-    [RELATED_GRAPH, "/t/Lizzie_Borden", "Related graph"],
-  ] as const) {
+  for (const [graph, path, name] of GRAPHS) {
     test(
       `${name}: the names follow the naming rule, keep off lines and outlines, stay near their dot, and the rule is stated`,
       PHONE_TABLET_DESKTOP,
@@ -322,7 +324,11 @@ eachTheme(() => {
         }
       },
     );
+  }
+});
 
+lightOnly(() => {
+  for (const [graph, path, name] of GRAPHS) {
     if (graph === HOME_GRAPH) {
       // The desktop label rules add finer directions, an outer ring of spots with longer leaders, and a smaller grid cell. The collision rules stay.
       // The minimums are for the recorded Wikimedia day in mockApi, so a layout or frame-height change moves them.
@@ -356,30 +362,6 @@ eachTheme(() => {
         },
       );
     }
-
-    test(
-      `${name}: the set of names does not change on hover or selection`,
-      PHONE_TABLET_DESKTOP,
-      async ({ page, open }) => {
-        await openGraph(page, open, path, graph);
-        const idle = (await geometry(page, graph)).names;
-        const all = await dotStates(page, graph);
-        const reachable = all.filter((d) => d.reachable);
-        expect(reachable.length).toBeGreaterThan(2);
-        for (const dot of [reachable[0]!, reachable[reachable.length - 1]!]) {
-          const hit = page.locator(`${graph} a`).nth(dot.index).locator("[data-plate-hit]");
-          await hit.hover();
-          await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "preview");
-          expect((await geometry(page, graph)).names).toEqual(idle);
-          await hit.click();
-          await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "selected");
-          expect((await geometry(page, graph)).names).toEqual(idle);
-          await page.mouse.move(2, 2);
-          expect((await geometry(page, graph)).names).toEqual(idle);
-          await page.keyboard.press("Escape");
-        }
-      },
-    );
 
     if (graph === HOME_GRAPH) {
       test(

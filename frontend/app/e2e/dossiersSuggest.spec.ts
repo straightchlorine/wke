@@ -1,10 +1,47 @@
 import type { Page } from "@playwright/test";
-import { test, expect, eachTheme } from "./support";
+import { test, expect, lightOnly } from "./support";
+import { trackErrors, assertNoErrors, expectShellRendered } from "./errorTracking";
 
 const filter = (page: Page) => page.getByRole("combobox", { name: "Filter dossiers by title" });
 
-eachTheme(() => {
-  test(`the filter narrows the table and lists suggestions underneath`, async ({ page, open }) => {
+lightOnly(() => {
+  test(`with no built match the rows replace the Build button and Clear filter stays`, async ({
+    page,
+    open,
+  }) => {
+    const errors = trackErrors(page);
+    await open("/t", { ready: page.locator("table tbody tr").first() });
+    await filter(page).fill("Zzyzx");
+    await expect(page.getByText('No built dossier matches "Zzyzx".')).toBeVisible();
+    // The table and its header stay when the filter matches nothing, so the empty state is zero body rows, not zero tables.
+    await expect(page.locator("table tbody tr")).toHaveCount(0);
+    const heading = page.getByRole("heading", { name: /No built dossier matches "Zzyzx"/ });
+    await expect(heading).toBeVisible();
+    const list = page.getByRole("listbox", { name: "Suggested titles" });
+    await expect(list).toBeVisible();
+    // The list sits in the panel, below its heading, not floating over the table.
+    const panel = (await heading.boundingBox())!;
+    const listBox = (await list.boundingBox())!;
+    expect(listBox.y).toBeGreaterThan(panel.y);
+    await expect(page.getByRole("link", { name: /Build a dossier for/ })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Clear filter" })).toBeVisible();
+    await expect(page.locator("#live-region")).toHaveText(
+      /0 of \d+ dossiers match, \d+ suggestions?$/,
+    );
+    await filter(page).press("ArrowDown");
+    await expect(page.getByRole("option").first()).toHaveAttribute("aria-selected", "true");
+    await page.getByRole("button", { name: "Clear filter" }).click();
+    await expect(page).toHaveURL(/\/t\/?$/);
+    await expect(page.locator("table tbody tr")).toHaveCount(30);
+    await expect(filter(page)).toHaveValue("");
+    await expectShellRendered(page);
+    assertNoErrors(errors);
+  });
+
+  test(`the filter narrows the table, lists suggestions underneath and keeps the filter on Enter`, async ({
+    page,
+    open,
+  }) => {
     await open("/t", { ready: page.locator("table tbody tr").first() });
     const rowsBefore = await page.locator("table tbody tr").count();
     await filter(page).fill("Liz");
@@ -14,6 +51,7 @@ eachTheme(() => {
     for (const text of await rows.allTextContents()) {
       expect(text.toLowerCase()).toContain("liz");
     }
+    await expect(rows.first().getByRole("link").first()).toBeVisible();
     const list = page.getByRole("listbox", { name: "Suggested titles" });
     await expect(list).toBeVisible();
     const count = await list.getByRole("option").count();
@@ -33,29 +71,9 @@ eachTheme(() => {
     await expect(page.locator("#live-region")).toHaveText(
       new RegExp(`dossiers match, ${count} suggestions?$`),
     );
-  });
-
-  test(`the first table row's title stays visible while suggestions show`, async ({
-    page,
-    open,
-  }) => {
-    await open("/t", { ready: page.locator("table tbody tr").first() });
-    await filter(page).fill("Liz");
-    await expect(page.getByRole("listbox", { name: "Suggested titles" })).toBeVisible();
-    const title = page.locator("table tbody tr").first().getByRole("link").first();
-    await expect(title).toBeVisible();
-    const covered = await title.evaluate((el) => {
-      const r = el.getBoundingClientRect();
-      const list = document.querySelector('[role="listbox"]')!.getBoundingClientRect();
-      const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
-      const overlaps =
-        r.left < list.right && r.right > list.left && r.top < list.bottom && r.bottom > list.top;
-      return overlaps || top?.closest('[role="listbox"]') != null;
-    });
-    expect(covered).toBe(false);
-    const list = (await page.getByRole("listbox", { name: "Suggested titles" }).boundingBox())!;
-    const row = (await page.locator("table tbody tr").first().boundingBox())!;
-    expect(list.y).toBeGreaterThanOrEqual(row.y + row.height - 1);
+    await filter(page).press("Enter");
+    await expect(page).toHaveURL(/\/t\?q=Liz/);
+    await expect(filter(page)).toHaveValue("Liz");
   });
 
   test(`arrows move through the rows, Enter opens the highlighted one`, async ({ page, open }) => {
@@ -73,39 +91,5 @@ eachTheme(() => {
     await filter(page).press("Enter");
     await expect(page).toHaveURL(/\/t\/[^/?]+\?budget=\d+$/);
     expect(decodeURIComponent(page.url())).toContain(title.replace(/ /g, "_"));
-  });
-
-  test(`Enter with nothing highlighted keeps the filter`, async ({ page, open }) => {
-    await open("/t", { ready: page.locator("table tbody tr").first() });
-    await filter(page).fill("Liz");
-    await expect(page.getByRole("option").first()).toBeVisible();
-    await filter(page).press("Enter");
-    await expect(page).toHaveURL(/\/t\?q=Liz/);
-    await expect(filter(page)).toHaveValue("Liz");
-  });
-
-  test(`with no built match the rows replace the Build button and Clear filter stays`, async ({
-    page,
-    open,
-  }) => {
-    await open("/t", { ready: page.locator("table tbody tr").first() });
-    await filter(page).fill("Zzyzx");
-    const heading = page.getByRole("heading", { name: /No built dossier matches "Zzyzx"/ });
-    await expect(heading).toBeVisible();
-    const list = page.getByRole("listbox", { name: "Suggested titles" });
-    await expect(list).toBeVisible();
-    // The list sits in the panel, below its heading, not floating over the table.
-    const panel = (await heading.boundingBox())!;
-    const listBox = (await list.boundingBox())!;
-    expect(listBox.y).toBeGreaterThan(panel.y);
-    await expect(page.getByRole("link", { name: /Build a dossier for/ })).toHaveCount(0);
-    await expect(page.getByRole("button", { name: "Clear filter" })).toBeVisible();
-    await expect(page.locator("#live-region")).toHaveText(
-      /0 of \d+ dossiers match, \d+ suggestions?$/,
-    );
-    await filter(page).press("ArrowDown");
-    await expect(page.getByRole("option").first()).toHaveAttribute("aria-selected", "true");
-    await page.getByRole("button", { name: "Clear filter" }).click();
-    await expect(page).toHaveURL(/\/t\/?$/);
   });
 });

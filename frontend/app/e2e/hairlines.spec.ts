@@ -113,20 +113,44 @@ test.describe(
     for (const screen of SCREENS) {
       const { width, height, dppx, zoom } = screen;
       for (const theme of THEMES) {
-        test(`${width}x${height} at ${dppx} dppx (${theme})`, async ({ baseURL }) => {
+        test(`painted rule rows and border widths at ${width}x${height} at ${dppx} dppx (${theme})`, async ({
+          baseURL,
+        }) => {
           await withScreen(screen, theme, baseURL, async (page) => {
+            await page.goto("/");
+            const frame = page.locator("[data-plate-frame]");
+            await expect(frame).toBeVisible();
+            await settleLayout(page);
+            await settleBox(frame);
+            expect(await page.evaluate(() => window.devicePixelRatio)).toBe(dppx);
+            expect(
+              parseFloat(
+                await page.evaluate(() => getComputedStyle(document.documentElement).zoom),
+              ),
+            ).toBe(zoom);
+            for (const [name, selector, side] of [
+              ["header bottom", "header", "bottom"],
+              ["graph frame top", "[data-plate-frame]", "top"],
+            ] as const) {
+              const rows = await ruleRows(page, selector, side);
+              expect.soft(rows, `${name} at ${width}x${height} @${dppx}`).toEqual({
+                run: 2,
+                before: "flat",
+                after: "flat",
+              });
+            }
             const rules: Record<string, number> = {};
             for (const path of ["/", "/t/"]) {
-              await page.goto(path);
+              if (path !== "/") await page.goto(path);
               await expect(page.locator("header")).toBeVisible();
               expect(await page.evaluate(() => window.devicePixelRatio)).toBe(dppx);
               const found = await page.evaluate(() => {
                 const rootZoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
-                const frame = document.querySelector("[data-plate-frame]");
+                const plate = document.querySelector("[data-plate-frame]");
                 const targets: Array<[string, Element | null, "Top" | "Bottom"]> = [
                   ["header", document.querySelector("header"), "Bottom"],
-                  ["graph frame", frame, "Top"],
-                  ["graph inner frame", frame?.firstElementChild ?? null, "Top"],
+                  ["graph frame", plate, "Top"],
+                  ["graph inner frame", plate?.firstElementChild ?? null, "Top"],
                   ["record", document.querySelector("[data-record]"), "Top"],
                   ["table", document.querySelector("table"), "Top"],
                   ["table row", document.querySelector("tbody tr"), "Bottom"],
@@ -154,40 +178,6 @@ test.describe(
               }
             }
             expect(Object.keys(rules).length).toBeGreaterThanOrEqual(5);
-          });
-        });
-      }
-    }
-
-    for (const screen of SCREENS) {
-      const { width, height, dppx, zoom } = screen;
-      for (const theme of THEMES) {
-        test(`painted rule rows: header and graph frame at ${width}x${height} at ${dppx} dppx (${theme})`, async ({
-          baseURL,
-        }) => {
-          await withScreen(screen, theme, baseURL, async (page) => {
-            await page.goto("/");
-            const frame = page.locator("[data-plate-frame]");
-            await expect(frame).toBeVisible();
-            await settleLayout(page);
-            await settleBox(frame);
-            expect(await page.evaluate(() => window.devicePixelRatio)).toBe(dppx);
-            expect(
-              parseFloat(
-                await page.evaluate(() => getComputedStyle(document.documentElement).zoom),
-              ),
-            ).toBe(zoom);
-            for (const [name, selector, side] of [
-              ["header bottom", "header", "bottom"],
-              ["graph frame top", "[data-plate-frame]", "top"],
-            ] as const) {
-              const rows = await ruleRows(page, selector, side);
-              expect(rows, `${name} at ${width}x${height} @${dppx}`).toEqual({
-                run: 2,
-                before: "flat",
-                after: "flat",
-              });
-            }
           });
         });
       }

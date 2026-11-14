@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { test, expect, eachTheme, only } from "./support";
+import { test, expect, lightOnly, only } from "./support";
 
 type Failure = "502" | "abort";
 
@@ -33,7 +33,7 @@ const ALL_CALLS = /\/api\/v1\//;
 
 // The failure modes are not width dependent, so the tests run on the narrowest and one wide project.
 test.describe("server down", only("mobile-390", "desktop-1440"), () => {
-  eachTheme(() => {
+  lightOnly(() => {
     for (const failure of ["502", "abort"] as const) {
       test.describe(failure, () => {
         test("Home: the graph frame carries the message and Retry, the counters say unknown, Retry recovers", async ({
@@ -87,7 +87,7 @@ test.describe("server down", only("mobile-390", "desktop-1440"), () => {
           await expect(page.getByText("Could not load dossiers.")).toHaveCount(0);
         });
 
-        test("the dossier page says the server is unavailable and its detail fits", async ({
+        test("the dossier page says the server is unavailable and its detail fits; an unbuilt topic and machines do not blame Wikipedia", async ({
           page,
           open,
         }) => {
@@ -98,13 +98,7 @@ test.describe("server down", only("mobile-390", "desktop-1440"), () => {
           expect(await detail.evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
           await expect(page.getByText("Wikipedia is unavailable")).toHaveCount(0);
           await expect(page.getByRole("button", { name: "Retry" })).toBeVisible();
-        });
 
-        test("a topic with no dossier yet and the machines page do not blame Wikipedia", async ({
-          page,
-          open,
-        }) => {
-          await failApi(page, ALL_CALLS, failure);
           await open("/t/No_Such_Article_Xyz", {
             ready: page.getByText("The server is unavailable"),
           });

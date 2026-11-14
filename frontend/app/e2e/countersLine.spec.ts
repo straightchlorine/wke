@@ -1,28 +1,12 @@
 import type { Locator, Page } from "@playwright/test";
-import { mockApi, readFixture } from "./mockApi";
-import { eachTheme, expect, only, test } from "./support";
+import { mockApi, rateLimitedResponse, readFixture } from "./mockApi";
+import { expect, lightOnly, only, test } from "./support";
 
 // Each state routes the API itself, so the shared routes are not installed.
 test.use({ mocked: false });
 
 type State = "counts" | "disconnected" | "rate limited" | "no top dossier";
 const STATES: State[] = ["counts", "disconnected", "rate limited", "no top dossier"];
-
-function limited() {
-  return {
-    status: 429,
-    contentType: "application/problem+json",
-    headers: { "retry-after": "30" },
-    body: JSON.stringify({
-      type: "about:blank",
-      title: "Too many requests",
-      status: 429,
-      code: "rate_limited",
-      request_id: "r1",
-      detail: "12 per 1 minute",
-    }),
-  };
-}
 
 async function openIn(
   page: Page,
@@ -53,7 +37,7 @@ async function openIn(
       }),
     );
   } else if (state === "rate limited") {
-    await page.route("**/api/v1/live**", (route) => route.fulfill(limited()));
+    await page.route("**/api/v1/live**", (route) => route.fulfill(rateLimitedResponse("r1")));
   } else if (state === "no top dossier") {
     // Every topic's dossier_state becomes "none", so no dossier is built yet.
     const trending: unknown = JSON.parse(readFixture("trending.json"), (key, value: unknown) =>
@@ -132,7 +116,7 @@ function measure(page: Page) {
   });
 }
 
-eachTheme(() => {
+lightOnly(() => {
   test(
     "home counters are three one-line rows on one right edge in every state",
     only("mobile-390", "tablet-1024", "desktop-1440"),

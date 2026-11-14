@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { test, expect } from "./support";
+import { test, expect, only } from "./support";
 
 async function themeColors(page: Page): Promise<string[]> {
   return page
@@ -65,7 +65,7 @@ async function readHead(page: Page): Promise<Head> {
   });
 }
 
-test.describe("Per-route metadata", () => {
+test.describe("Per-route metadata", only("desktop-1440"), () => {
   test("Home is a WebPage of the site, and the site node carries the SearchAction", async ({
     page,
     open,
@@ -178,34 +178,37 @@ test.describe("Per-route metadata", () => {
 });
 
 test.describe("Shell metadata", () => {
-  test("the shell has no hard-coded canonical and links the SVG icon first", async ({
-    request,
-  }) => {
-    const html = await (await request.get("/")).text();
-    expect(html).not.toContain('rel="canonical"');
-    expect(html).not.toContain('property="og:url"');
-    expect(html.indexOf('href="/favicon.svg"')).toBeGreaterThan(0);
-    expect(html.indexOf('href="/favicon.svg"')).toBeLessThan(html.indexOf('href="/favicon.ico"'));
-    expect(html).toContain("<noscript>");
-    expect(html).toContain('href="/llms.txt"');
-  });
+  test(
+    "the shell has no hard-coded canonical and links the SVG icon first",
+    only("desktop-1440"),
+    async ({ request }) => {
+      const html = await (await request.get("/")).text();
+      expect(html).not.toContain('rel="canonical"');
+      expect(html).not.toContain('property="og:url"');
+      expect(html.indexOf('href="/favicon.svg"')).toBeGreaterThan(0);
+      expect(html.indexOf('href="/favicon.svg"')).toBeLessThan(html.indexOf('href="/favicon.ico"'));
+      expect(html).toContain("<noscript>");
+      expect(html).toContain('href="/llms.txt"');
+    },
+  );
 
   test.describe("with the light theme stored", () => {
     test.use({ theme: "light" });
 
-    test("the theme toggle moves both theme-color metas to the paper color", async ({
-      page,
-      open,
-    }) => {
-      await open("/machines");
-      const light = await paper(page);
-      expect(light).not.toBe("");
-      await expect.poll(() => themeColors(page)).toEqual([light, light]);
+    test(
+      "the theme toggle moves both theme-color metas to the paper color",
+      only("desktop-1440"),
+      async ({ page, open }) => {
+        await open("/machines");
+        const light = await paper(page);
+        expect(light).not.toBe("");
+        await expect.poll(() => themeColors(page)).toEqual([light, light]);
 
-      await page.getByRole("button", { name: "Switch to dark theme" }).click();
-      const dark = await paper(page);
-      expect(dark).not.toBe(light);
-      await expect.poll(() => themeColors(page)).toEqual([dark, dark]);
-    });
+        await page.getByRole("button", { name: "Switch to dark theme" }).click();
+        const dark = await paper(page);
+        expect(dark).not.toBe(light);
+        await expect.poll(() => themeColors(page)).toEqual([dark, dark]);
+      },
+    );
   });
 });

@@ -1,5 +1,5 @@
 import type { Locator, Page } from "@playwright/test";
-import { test, expect, eachTheme, only, settleLayout } from "./support";
+import { test, expect, eachTheme, lightOnly, only, settleLayout } from "./support";
 
 const PAGES = [
   { path: "/", ready: "Cited context" },
@@ -193,7 +193,11 @@ eachTheme(() => {
         await expect(tip).toHaveCount(0);
       }
     });
+  }
+});
 
+lightOnly(() => {
+  for (const { path, ready } of PAGES) {
     test(`every (i) sits on the x-height centre of its text, ${path}`, async ({ page, open }) => {
       await openPage(page, open, path, ready);
       const offsets = await dotOffsets(page);
@@ -217,7 +221,7 @@ eachTheme(() => {
 
 // The test sets its own viewport widths, so it runs once, on the 1440 project.
 test.describe("info glyph size on Home", only("desktop-1440"), () => {
-  eachTheme(() => {
+  lightOnly(() => {
     for (const width of [1024, 1280, 1440, 1920]) {
       test(`every (i) glyph is at least 14 by 14, the Fits in header included, at ${width}`, async ({
         page,

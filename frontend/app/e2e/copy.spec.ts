@@ -1,7 +1,6 @@
 import type { Page } from "@playwright/test";
 import { test, expect, only } from "./support";
-import { dossierBody } from "./mockApi";
-import { withFreshness } from "./buildFixture";
+import { freshnessRow, mockFreshness } from "./readingSection";
 import { trackErrors, assertNoErrors } from "./errorTracking";
 
 // Words that must not appear in the page's text, tooltips or aria-labels.
@@ -39,7 +38,10 @@ async function readerText(page: Page): Promise<string> {
 
 // The copy does not vary with width, so these run once, on the 1440 project.
 test.describe("Reader-facing copy", only("desktop-1440"), () => {
-  test("Home shows none of the banned words", async ({ page, open }) => {
+  test("Home shows none of the banned words and dates its caption by day", async ({
+    page,
+    open,
+  }) => {
     const errors = trackErrors(page);
     await open("/", { ready: page.locator("svg[role='group']").first() });
     const text = await readerText(page);
@@ -47,33 +49,61 @@ test.describe("Reader-facing copy", only("desktop-1440"), () => {
       expect(text, String(word)).not.toMatch(word);
     }
     await expect(page.locator("main")).toContainText("Dossiers stored");
+    await expect(page.locator("main")).not.toContainText("packed chunks");
+    await expect(page.locator("main")).toContainText("sections, citations and passages");
+    await expect(page.locator("main")).toContainText("sections grouped by topic");
+    const caption = page.locator("figcaption").first();
+    await expect(caption).toContainText("Plate 1.");
+    await expect(caption).not.toContainText(/\d{4}/);
+    await expect(
+      page.getByRole("heading", { level: 2 }).filter({ hasText: /^Most read/ }),
+    ).toContainText(/\d{4}/);
+    assertNoErrors(errors);
+  });
+
+  test("dossier: no leaked words, one contentinfo landmark outside main, in both states", async ({
+    page,
+    open,
+  }) => {
+    const errors = trackErrors(page);
+    await open("/t/Jesus", {
+      ready: page.locator('section[id^="s"] [data-section-heading]').first(),
+    });
+    const navs = page.locator('nav[aria-label="Contents"], nav[aria-label="Sections"]');
+    await expect(navs).toHaveCount(2);
+    await expect(page.locator('nav[aria-label="Contents"] a').first()).toBeVisible();
+    const body = page.locator("main");
+    await expect(body).not.toContainText("seed article");
+    await expect(body).not.toContainText("the lead is its own");
+    await expect(body).not.toContainText(
+      "Wikipedia Knowledge Explorer turns one Wikipedia article",
+    );
+    await expect(navs.getByText("heading", { exact: true })).toHaveCount(0);
+    await expect(page.locator("section#s1")).toContainText("the lead has no model summary");
+    await expect(
+      page.locator('figure:has-text("Plate 1.") [role="tooltip"]').filter({ hasText: "Method" }),
+    ).toContainText("similarity to this article");
+    const footer = page.getByRole("contentinfo");
+    await expect(footer).toHaveCount(1);
+    await expect(footer).toContainText("Jesus");
+    expect(await footer.evaluate((el) => el.closest("main") === null)).toBe(true);
+    await page.getByRole("link", { name: "Dossiers", exact: true }).first().click();
+    await expect(page.getByRole("contentinfo")).toHaveCount(1);
     assertNoErrors(errors);
   });
 
   test("the dossier shows none of the banned words and says Up to date", async ({ page, open }) => {
     const errors = trackErrors(page);
-    await page.route(/\/api\/v1\/dossiers\/1095706(\?[^/]*)?$/, async (route) => {
-      const body = dossierBody(
-        "dossier_1095706_2000.json",
-        withFreshness({
-          state: "fresh",
-          source: "poll",
-          edits_since: 0,
-          checked_at: "2026-09-29T12:00:00Z",
-        }),
-      );
-      await route.fulfill({ status: 200, contentType: "application/json", body });
+    await mockFreshness(page, "dossier_1095706_2000.json", {
+      state: "fresh",
+      source: "poll",
+      edits_since: 0,
+      checked_at: "2026-09-29T12:00:00Z",
     });
     await open("/t/Jesus?budget=2000", {
       ready: page.locator('section[id^="s"] [data-section-heading]').first(),
     });
-    await expect(
-      page
-        .locator("[data-record-row]")
-        .filter({ hasText: /^Freshness/ })
-        .filter({ visible: true })
-        .getByRole("button", { name: "Up to date" }),
-    ).toBeVisible();
+    await expect(freshnessRow(page).getByRole("button", { name: "Up to date" })).toBeVisible();
     const text = await readerText(page);
     for (const word of RETIRED) {
       expect(text, String(word)).not.toMatch(word);
@@ -82,16 +112,20 @@ test.describe("Reader-facing copy", only("desktop-1440"), () => {
     assertNoErrors(errors);
   });
 
-  test("the dossier says no packer, no 0-of-0 and no range of one value", async ({
+  test("the dossier says no packer, no 0-of-0, no range of one value and no build time in the contents", async ({
     page,
     open,
   }) => {
     await open("/t/Lizzie_Borden", { ready: page.locator("article section[id]").first() });
+    await expect(page.getByRole("heading", { level: 1 }).first()).toContainText("Lizzie Borden");
     const text = (await page.locator("main").textContent()) ?? "";
     expect(text).not.toMatch(/packer/i);
     expect(text).not.toMatch(/Passages\s*0 of 0/);
     expect(text).not.toMatch(/(\d\.\d\d) to \1\b/);
     expect(text).not.toMatch(/this 1 link/);
+    await expect(page.getByText(/^built \d/)).toHaveCount(0);
+    await expect(page.getByText(/\d+ of \d+ sections at \d+k/)).toHaveCount(0);
+    await expect(page.getByText("About build log times")).toHaveCount(0);
     await expect(page.getByRole("button", { name: "About the token count" })).toHaveCount(1);
   });
 

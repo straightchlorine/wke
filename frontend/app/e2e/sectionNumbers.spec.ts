@@ -1,15 +1,14 @@
 import { readFixtureJson } from "./buildFixture";
 import { dossierBody } from "./mockApi";
-import { eachTheme, expect, test } from "./support";
+import { expect, only, test } from "./support";
 
 // Jesus with its Manichaeism section emptied of prose: a hidden section
 // in the middle of the list must leave no gap in the numbers a reader sees.
 
-eachTheme(() => {
-  test("visible sections, chips and Contents are numbered 1..N with a hidden section in the middle", async ({
-    page,
-    open,
-  }) => {
+test(
+  "visible sections, chips and Contents are numbered 1..N with a hidden section in the middle",
+  only("mobile-390", "desktop-1440"),
+  async ({ page, open }) => {
     const dossier = readFixtureJson<{
       sections: Array<{
         label: string;
@@ -64,5 +63,5 @@ eachTheme(() => {
       });
       await expect(nav).not.toContainText("Manichaeism");
     }
-  });
-});
+  },
+);

@@ -1,7 +1,6 @@
 import type { Page } from "@playwright/test";
-import { withFreshness } from "./buildFixture";
-import { dossierBody } from "./mockApi";
-import { eachTheme, expect, only, test } from "./support";
+import { freshnessChip, freshnessRow, mockFreshness } from "./readingSection";
+import { expect, lightOnly, only, test } from "./support";
 
 // A freshness chip that carries an explanation holds its (i) inside, at the
 // right end, and the whole chip is the tooltip trigger. No separate (i) sits
@@ -65,7 +64,7 @@ function chips(page: Page) {
 
 test.describe("freshness chips", only("desktop-1440"), () => {
   test.use({ paused: true });
-  eachTheme(() => {
+  lightOnly(() => {
     test("Dossiers table: the column header explains Not checked once, so a row's chip is plain and has no (i) beside it", async ({
       page,
       open,
@@ -91,23 +90,14 @@ test.describe("freshness chips", only("desktop-1440"), () => {
       page,
       open,
     }) => {
-      const body = dossierBody(
-        "dossier_1095706_8000.json",
-        withFreshness({
-          state: "fresh",
-          source: "poll",
-          edits_since: 0,
-          checked_at: "2026-09-28T16:18:40Z",
-        }),
-      );
-      await page.route(/\/api\/v1\/dossiers\/1095706(\?[^/]*)?$/, async (route) => {
-        await route.fulfill({ status: 200, contentType: "application/json", body });
+      await mockFreshness(page, "dossier_1095706_8000.json", {
+        state: "fresh",
+        source: "poll",
+        edits_since: 0,
+        checked_at: "2026-09-28T16:18:40Z",
       });
       await open("/t/Jesus");
-      const row = page
-        .locator("[data-record-row]")
-        .filter({ hasText: /^Freshness/ })
-        .filter({ visible: true });
+      const row = freshnessRow(page);
       await expect(row).toHaveCount(1);
       const found = await chips(page);
       expect(found).toHaveLength(1);
@@ -118,7 +108,7 @@ test.describe("freshness chips", only("desktop-1440"), () => {
         glyphAtRightEnd: true,
         siblingInfoDots: 0,
       });
-      const chip = row.locator("button");
+      const chip = freshnessChip(page);
       await chip.hover();
       await expect(page.getByRole("tooltip").filter({ visible: true })).toContainText(
         /Checked 2026-09-28, 16:18 UTC\. WKE asks Wikipedia for the newest revision/,

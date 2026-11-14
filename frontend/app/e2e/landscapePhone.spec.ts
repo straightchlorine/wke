@@ -1,5 +1,5 @@
 import { RELATED_GRAPH } from "./plateLocators";
-import { eachTheme, expect, only, test } from "./support";
+import { expect, lightOnly, only, test } from "./support";
 
 // On a landscape phone (the `short` height variant) the window height, not the column width, caps the size of
 // the Home concept graph and of the related-articles graph on a dossier page. The header fits on one row.
@@ -14,7 +14,7 @@ const SIZES = [
 
 // Every test here sets its own viewport, so it runs only on the desktop-1440 project.
 test.describe("Landscape phone", only("desktop-1440"), () => {
-  eachTheme(() => {
+  lightOnly(() => {
     for (const [width, height] of SIZES) {
       test(`Home at ${width}x${height}: graph side is the window height less 96px (under 320 at 844x390), centred in its column, header one 56px row`, async ({
         page,

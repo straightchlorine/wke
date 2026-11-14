@@ -1,72 +1,15 @@
 import type { Locator, Page } from "@playwright/test";
-import { test, expect, eachTheme, only } from "./support";
+import { hitExtent, hitWidth } from "./hitAreas";
+import { test, expect, lightOnly, only, VIEWPORTS, LANDSCAPE_PHONE as LANDSCAPE } from "./support";
+
+const PHONE = VIEWPORTS["mobile-390"];
 
 const MIN_HIT = 44;
-const PHONE = { width: 390, height: 844 };
-const LANDSCAPE = { width: 844, height: 390 };
-
-/**
- * The height of the clickable strip around a control: from its vertical
- * centre, the contiguous run of points where a click still lands on the
- * control (or something inside it), at a horizontal point `dx` from its left edge.
- */
-async function hitExtent(target: Locator, dx = 6): Promise<number> {
-  await target.scrollIntoViewIfNeeded();
-  return target.evaluate((el, offset) => {
-    el.scrollIntoView({ block: "center" });
-    const box = el.getBoundingClientRect();
-    const x = box.left + Math.min(offset, Math.max(box.width - 1, 1));
-    const mid = box.top + box.height / 2;
-    const lands = (y: number) => {
-      const hit = document.elementFromPoint(x, y);
-      return hit != null && (hit === el || el.contains(hit));
-    };
-    let up = 0;
-    while (up < 80 && lands(mid - up - 1)) up += 1;
-    let down = 0;
-    while (down < 80 && lands(mid + down)) down += 1;
-    return up + down;
-  }, dx);
-}
-
-/** The width of the clickable strip, measured the way `hitExtent` measures height. */
-async function hitWidth(target: Locator): Promise<number> {
-  await target.scrollIntoViewIfNeeded();
-  return target.evaluate((el) => {
-    el.scrollIntoView({ block: "center" });
-    const box = el.getBoundingClientRect();
-    const mid = box.left + box.width / 2;
-    const y = box.top + box.height / 2;
-    const lands = (x: number) => {
-      const hit = document.elementFromPoint(x, y);
-      return hit != null && (hit === el || el.contains(hit));
-    };
-    let left = 0;
-    while (left < 80 && lands(mid - left - 1)) left += 1;
-    let right = 0;
-    while (right < 80 && lands(mid + right)) right += 1;
-    return left + right;
-  });
-}
 
 test.describe("44 px hit height at 390", only("mobile-390"), () => {
-  eachTheme(() => {
+  lightOnly(() => {
     test.describe("on a touch screen", () => {
       test.use({ hasTouch: true, viewport: PHONE });
-
-      test("header nav links", async ({ page, open }) => {
-        await open("/");
-        expect(await page.evaluate(() => window.matchMedia("(pointer: coarse)").matches)).toBe(
-          true,
-        );
-        const nav = 'header nav[aria-label="Primary"] a';
-        await expect(page.locator(nav)).toHaveCount(3);
-        for (let i = 0; i < 3; i++) {
-          expect(await hitExtent(page.locator(nav).nth(i)), `nav link ${i}`).toBeGreaterThanOrEqual(
-            MIN_HIT,
-          );
-        }
-      });
 
       test("footer links on a dossier stay clear of the bottom bar and keep a 44 px strip", async ({
         page,
@@ -168,29 +111,6 @@ test.describe("44 px hit height at 390", only("mobile-390"), () => {
       });
     });
 
-    test("the dossier breadcrumb link", async ({ page, open }) => {
-      await open("/t/Jesus", { ready: page.locator('section[id^="s"] h2').first() });
-      await expect(page.locator('nav[aria-label="Breadcrumb"] a')).toBeVisible();
-      expect(
-        await hitExtent(page.locator('nav[aria-label="Breadcrumb"] a').first()),
-      ).toBeGreaterThanOrEqual(MIN_HIT);
-    });
-
-    test("Dossiers rows: the title link and the revision link", async ({ page, open }) => {
-      await open("/t/");
-      await expect(page.locator("table tbody tr")).toHaveCount(30);
-      for (let i = 0; i < 3; i++) {
-        expect(
-          await hitExtent(page.locator("table tbody tr td:first-child a").nth(i), 250),
-          `row ${i}`,
-        ).toBeGreaterThanOrEqual(MIN_HIT);
-        expect(
-          await hitExtent(page.locator("table tbody tr a[href*='oldid']").nth(i)),
-          `revision ${i}`,
-        ).toBeGreaterThanOrEqual(MIN_HIT);
-      }
-    });
-
     test("the not-built page: Did you mean links and the plain 404 links", async ({
       page,
       open,
@@ -214,74 +134,29 @@ test.describe("44 px hit height at 390", only("mobile-390"), () => {
         ).toBeGreaterThanOrEqual(MIN_HIT);
       }
     });
-
-    test("For machines: the details link", async ({ page, open }) => {
-      await open("/machines");
-      expect(await hitExtent(page.locator("a[href='#limits']").first())).toBeGreaterThanOrEqual(
-        MIN_HIT,
-      );
-    });
   });
 });
 
-test.describe(
-  "coarse-pointer hit areas of the header and the section list",
-  only("mobile-390"),
-  () => {
-    test.use({ hasTouch: true });
+test.describe("coarse-pointer hit areas of the section list", only("mobile-390"), () => {
+  test.use({ hasTouch: true });
 
-    eachTheme(() => {
-      test("the wordmark, For machines and the icon link keep a 44 px strip on every page", async ({
-        page,
-        open,
-      }) => {
-        for (const path of ["/", "/t/", "/machines", "/t/Lizzie_Borden"]) {
-          await open(path);
-          const header = page.locator("header");
-          expect(
-            await hitExtent(header.getByRole("link", { name: /^WKE/ })),
-            `${path} wordmark`,
-          ).toBeGreaterThanOrEqual(MIN_HIT);
-          expect(
-            await hitExtent(header.getByRole("link", { name: "For machines" })),
-            `${path} For machines`,
-          ).toBeGreaterThanOrEqual(MIN_HIT);
-          expect(
-            await hitExtent(header.getByRole("link", { name: "Source on GitHub" })),
-            `${path} GitHub`,
-          ).toBeGreaterThanOrEqual(MIN_HIT);
+  lightOnly(() => {
+    test.describe("on a wide touch screen", () => {
+      test.use({ viewport: { width: 1366, height: 900 } });
+
+      test("the Contents list keeps a 44 px strip", async ({ page, open }) => {
+        await open("/t/Apollo_11");
+        const links = page.locator('nav[aria-label="Contents"] a');
+        await expect(links.nth(2)).toBeVisible();
+        for (let i = 0; i < 3; i++) {
+          expect(await hitExtent(links.nth(i), 60), `Contents link ${i}`).toBeGreaterThanOrEqual(
+            MIN_HIT,
+          );
         }
       });
-
-      test("the section chips on a phone keep a 44 px strip", async ({ page, open }) => {
-        await open("/t/Apollo_11");
-        const chips = page.locator('nav[aria-label="Sections"] a');
-        await expect(chips.first()).toBeVisible();
-        expect(await hitExtent(chips.first()), "section chip").toBeGreaterThanOrEqual(MIN_HIT);
-      });
-
-      test.describe("on a wide touch screen", () => {
-        test.use({ viewport: { width: 1366, height: 900 } });
-
-        test("the Contents list keeps a 44 px strip", async ({ page, open }) => {
-          await open("/t/Apollo_11");
-          const links = page.locator('nav[aria-label="Contents"] a');
-          await expect(links.nth(2)).toBeVisible();
-          for (let i = 0; i < 3; i++) {
-            expect(await hitExtent(links.nth(i), 60), `Contents link ${i}`).toBeGreaterThanOrEqual(
-              MIN_HIT,
-            );
-          }
-        });
-      });
     });
-  },
-);
-
-interface SmallTarget {
-  name: string;
-  hit: string;
-}
+  });
+});
 
 interface SmallTarget {
   name: string;
@@ -352,52 +227,69 @@ async function smallTargets(page: Page): Promise<SmallTarget[]> {
   }, MIN_HIT);
 }
 
-test.describe("no link or button under 44 px on a touch screen", only("mobile-390"), () => {
-  const PAGES: Array<[string, string, string]> = [
-    ["Home", "/", "[data-entry-views]"],
-    ["a dossier", "/t/Lizzie_Borden", 'section[id^="s"] h2'],
-    ["Dossiers", "/t/", "table tbody tr"],
-    ["For machines", "/machines", "h1"],
-  ];
-  eachTheme(() => {
-    for (const [name, viewport] of [
-      ["390x844", PHONE],
-      ["844x390", LANDSCAPE],
-    ] as const) {
-      test.describe(name, () => {
-        test.use({ hasTouch: true, isMobile: true, viewport });
+test.describe(
+  "no link or button under 44 px on a touch screen, and a tap 20 px off centre lands",
+  only("mobile-390"),
+  () => {
+    const PAGES: Array<[string, string, string]> = [
+      ["Home", "/", "[data-entry-views]"],
+      ["a dossier", "/t/Lizzie_Borden", 'section[id^="s"] h2'],
+      ["Dossiers", "/t/", "table tbody tr"],
+      ["For machines", "/machines", "h1"],
+    ];
+    lightOnly(() => {
+      for (const [name, viewport] of [
+        ["390x844", PHONE],
+        ["844x390", LANDSCAPE],
+      ] as const) {
+        test.describe(name, () => {
+          test.use({ hasTouch: true, isMobile: true, viewport });
 
-        for (const [label, path, ready] of PAGES) {
-          test(label, async ({ page, open }) => {
-            await open(path, { ready: page.locator(ready).first() });
-            expect(await page.evaluate(() => window.matchMedia("(pointer: coarse)").matches)).toBe(
-              true,
-            );
-            expect(await smallTargets(page)).toEqual([]);
-          });
-        }
+          for (const [label, path, ready] of PAGES) {
+            test(label, async ({ page, open }) => {
+              await open(path, { ready: page.locator(ready).first() });
+              expect(
+                await page.evaluate(() => window.matchMedia("(pointer: coarse)").matches),
+              ).toBe(true);
+              expect.soft(await smallTargets(page)).toEqual([]);
+              // Opening every details comes after the sweep, which skips closed ones.
+              await page.evaluate(() =>
+                document.querySelectorAll("details").forEach((d) => (d.open = true)),
+              );
+              expect.soft(await threePointMisses(page, false)).toEqual([]);
+              if (path === "/") {
+                const swatch = page
+                  .locator('[role="group"] button[aria-label^="Articles related to"]')
+                  .first();
+                await swatch.tap();
+                await expect(page.locator("[popover]:popover-open a[href]").first()).toBeVisible();
+                expect.soft(await threePointMisses(page, true)).toEqual([]);
+              }
+            });
+          }
+        });
+      }
+    });
+
+    for (const [touch, expected] of [
+      [true, 44],
+      [false, 36],
+    ] as const) {
+      test.describe(touch ? "with a touch screen" : "with a mouse", () => {
+        test.use({ hasTouch: touch, isMobile: touch, viewport: PHONE });
+
+        test(`the header nav links are ${expected} px tall boxes`, async ({ page, open }) => {
+          await open("/");
+          await expect(page.locator('header nav[aria-label="Primary"] a')).toHaveCount(3);
+          const heights = await page
+            .locator('header nav[aria-label="Primary"] a')
+            .evaluateAll((els) => els.map((el) => Math.round(el.getBoundingClientRect().height)));
+          expect(heights).toEqual([expected, expected, expected]);
+        });
       });
     }
-  });
-
-  for (const [touch, expected] of [
-    [true, 44],
-    [false, 36],
-  ] as const) {
-    test.describe(touch ? "with a touch screen" : "with a mouse", () => {
-      test.use({ hasTouch: touch, isMobile: touch, viewport: PHONE });
-
-      test(`the header nav links are ${expected} px tall boxes`, async ({ page, open }) => {
-        await open("/");
-        await expect(page.locator('header nav[aria-label="Primary"] a')).toHaveCount(3);
-        const heights = await page
-          .locator('header nav[aria-label="Primary"] a')
-          .evaluateAll((els) => els.map((el) => Math.round(el.getBoundingClientRect().height)));
-        expect(heights).toEqual([expected, expected, expected]);
-      });
-    });
-  }
-});
+  },
+);
 
 /**
  * Taps the way a thumb does: at an element's centre and 20 px above and below
@@ -447,40 +339,3 @@ async function threePointMisses(page: Page, tip: boolean): Promise<string[]> {
     { selector: tip ? "[popover]:popover-open a[href]" : "a[href], button, [role='button']" },
   );
 }
-
-test.describe("a tap 20 px off an element's centre still lands on it", only("mobile-390"), () => {
-  const PAGES: Array<[string, string, string]> = [
-    ["Home", "/", "[data-entry-views]"],
-    ["Dossiers", "/t/", "table tbody tr"],
-    ["a dossier", "/t/Lizzie_Borden", 'section[id^="s"] h2'],
-    ["For machines", "/machines", "h1"],
-  ];
-  eachTheme(() => {
-    for (const [name, viewport] of [
-      ["390x844", PHONE],
-      ["844x390", LANDSCAPE],
-    ] as const) {
-      test.describe(name, () => {
-        test.use({ hasTouch: true, isMobile: true, viewport });
-
-        for (const [label, path, ready] of PAGES) {
-          test(label, async ({ page, open }) => {
-            await open(path, { ready: page.locator(ready).first() });
-            await page.evaluate(() =>
-              document.querySelectorAll("details").forEach((d) => (d.open = true)),
-            );
-            expect(await threePointMisses(page, false)).toEqual([]);
-            if (path === "/") {
-              const swatch = page
-                .locator('[role="group"] button[aria-label^="Articles related to"]')
-                .first();
-              await swatch.tap();
-              await expect(page.locator("[popover]:popover-open a[href]").first()).toBeVisible();
-              expect(await threePointMisses(page, true)).toEqual([]);
-            }
-          });
-        }
-      });
-    }
-  });
-});

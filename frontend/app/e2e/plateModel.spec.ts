@@ -1,7 +1,7 @@
 import type { Locator, Page } from "@playwright/test";
 import { PLATE_BOARD_PX } from "../src/lib/plateSide";
 import { BOARD, HOME_GRAPH, RELATED_GRAPH, reachableNodes } from "./plateLocators";
-import { eachTheme, expect, only, test } from "./support";
+import { eachTheme, expect, lightOnly, only, test } from "./support";
 
 type Open = (path: string, options?: { ready?: Locator }) => Promise<void>;
 
@@ -40,7 +40,7 @@ function hitOf(page: Page, graph: string, index: number) {
 async function snapshot(page: Page, graph: string) {
   return page.evaluate((sel) => {
     const labels = [...document.querySelectorAll(`${sel} text[data-plate-label]`)].map(
-      (t) => t.textContent ?? "",
+      (t) => `${t.textContent ?? ""}@${t.getAttribute("x")},${t.getAttribute("y")}`,
     );
     const leaders = document.querySelectorAll(`${sel} line[data-plate-leader]`).length;
     const figure = document.querySelector("figure")!.getBoundingClientRect();
@@ -54,11 +54,13 @@ async function snapshot(page: Page, graph: string) {
   }, graph);
 }
 
+const GRAPHS = [
+  [HOME_GRAPH, "/", "Home graph"],
+  [RELATED_GRAPH, "/t/Lizzie_Borden", "Related graph"],
+] as const;
+
 eachTheme(() => {
-  for (const [graph, path, name] of [
-    [HOME_GRAPH, "/", "Home graph"],
-    [RELATED_GRAPH, "/t/Lizzie_Borden", "Related graph"],
-  ] as const) {
+  for (const [graph, path, name] of GRAPHS) {
     test(
       `${name}: page, figure and label set hold across idle, hover, selected, selected plus hover`,
       PHONE_TABLET_DESKTOP,
@@ -98,6 +100,8 @@ eachTheme(() => {
         await expect(page.locator(BOARD)).toHaveAttribute("data-plate-board", "selected");
         await expect(page.locator("[data-plate-ring]")).toHaveCount(1);
         expect(await snapshot(page, graph)).toEqual(idle);
+        await page.mouse.move(2, 2);
+        expect(await snapshot(page, graph)).toEqual(idle);
 
         await hitOf(page, graph, second).hover();
         await expect(page.locator("[data-plate-hover-ring]")).toHaveCount(1);
@@ -115,7 +119,11 @@ eachTheme(() => {
         expect(await snapshot(page, graph)).toEqual(idle);
       },
     );
+  }
+});
 
+lightOnly(() => {
+  for (const [graph, path, name] of GRAPHS) {
     test(
       `${name}: every label's nearest dot is its own unless a leader joins them`,
       PHONE_TABLET_DESKTOP,
@@ -206,7 +214,7 @@ test.describe("leader lines", only("mobile-390"), () => {
 });
 
 test.describe("the board strip", () => {
-  eachTheme(() => {
+  lightOnly(() => {
     test(
       "serif title, one description line and four record rows, the badge the dossier link, one height and never overflowing",
       PHONE_TABLET_DESKTOP,

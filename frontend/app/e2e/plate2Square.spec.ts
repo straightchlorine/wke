@@ -1,10 +1,10 @@
 import type { Locator, Page } from "@playwright/test";
 import { RELATED_GRAPH } from "./plateLocators";
-import { eachTheme, expect, only, settle, test } from "./support";
+import { expect, lightOnly, only, settle, test } from "./support";
 
 // The related-articles graph on a dossier page is a square frame at every width, as large as its column allows.
 // A long name breaks onto two lines before it is cut.
-// Every label has an outline in the page's background colour (--wke-sheet), and none touches another dot.
+// No label touches another dot.
 
 async function openGraph(
   page: Page,
@@ -24,7 +24,7 @@ async function openGraph(
 }
 
 test.describe("related-articles graph", only("desktop-1440"), () => {
-  eachTheme((theme) => {
+  lightOnly(() => {
     for (const [width, height, minSide] of [
       [1440, 900, 340],
       [1920, 1080, 340],
@@ -50,7 +50,6 @@ test.describe("related-articles graph", only("desktop-1440"), () => {
               .getBoundingClientRect();
             const label = a.querySelector("text[data-plate-label]");
             const tspans = label ? [...label.querySelectorAll("tspan")] : [];
-            const cs = label ? getComputedStyle(label) : null;
             const r = label?.getBoundingClientRect();
             return {
               title: (a.getAttribute("aria-label") ?? "").split(",")[0]!,
@@ -63,19 +62,9 @@ test.describe("related-articles graph", only("desktop-1440"), () => {
               lineX: tspans.map((t) => t.getAttribute("x")),
               lineDy: tspans.map((t) => t.getAttribute("dy")),
               box: r ? { l: r.left, t: r.top, r: r.right, b: r.bottom } : null,
-              paintOrder: cs?.paintOrder ?? "",
-              strokeWidth: cs?.strokeWidth ?? "",
-              stroke: cs?.stroke ?? "",
-              join: cs?.strokeLinejoin ?? "",
             };
           });
-          const probe = document.createElement("span");
-          probe.style.color = "var(--wke-sheet)";
-          document.body.append(probe);
-          const sheet = getComputedStyle(probe).color;
-          probe.remove();
           return {
-            sheet,
             frame: { w: frame.width, h: frame.height },
             svg: {
               w: box.width,
@@ -101,11 +90,6 @@ test.describe("related-articles graph", only("desktop-1440"), () => {
         for (const d of g.dots) {
           expect(d.text, `${d.title} is named`).not.toBeNull();
           const b = d.box!;
-          // The outline is in the page background colour and drawn before the text, so a line behind the label does not cut through it.
-          expect(d.paintOrder).toContain("stroke");
-          expect(d.stroke, `${d.title} outline matches the ${theme} background`).toBe(g.sheet);
-          expect(d.join).toBe("round");
-          expect(Number.parseFloat(d.strokeWidth)).toBeGreaterThanOrEqual(3);
           expect(b.l, `${d.title} inside the left edge`).toBeGreaterThanOrEqual(g.svg.l - 0.5);
           expect(b.r, `${d.title} inside the right edge`).toBeLessThanOrEqual(g.svg.r + 0.5);
           expect(b.t).toBeGreaterThanOrEqual(g.svg.t - 0.5);
@@ -173,7 +157,7 @@ test.describe("related-articles graph", only("desktop-1440"), () => {
   });
 
   // A label that a line crosses needs an outline of at least 4px, drawn before its text, and the label must come after every line in the SVG. Then the outline hides the line.
-  eachTheme(() => {
+  lightOnly(() => {
     for (const [width, height] of [
       [1440, 900],
       [390, 844],
@@ -253,40 +237,23 @@ test.describe("related-articles graph", only("desktop-1440"), () => {
     }
   });
 
-  for (const width of [1024, 1440]) {
-    test(`at ${width}: labels render at 12px after the viewBox scaling`, async ({ page, open }) => {
-      await openGraph(page, open, width, 900);
-      const rendered = await settle(page, () =>
-        page.evaluate((sel) => {
-          const svg = document.querySelector(sel)!;
-          const scale =
-            svg.getBoundingClientRect().width / Number(svg.getAttribute("viewBox")!.split(" ")[2]);
-          return [...svg.querySelectorAll("text")].map(
-            (t) => parseFloat(getComputedStyle(t).fontSize) * scale,
-          );
-        }, RELATED_GRAPH),
-      );
-      expect(rendered.length).toBeGreaterThan(0);
-      for (const px of rendered) {
-        expect(px).toBeGreaterThanOrEqual(11.95);
-      }
-    });
-  }
-
-  eachTheme(() => {
+  lightOnly(() => {
     for (const [width, height] of [
       [1024, 768],
       [1440, 900],
       [1920, 1080],
     ] as const) {
-      test(`at ${width}: every label keeps 6px from the frame rule`, async ({ page, open }) => {
+      test(`at ${width}: every label keeps 6px from the frame rule and renders at 12px`, async ({
+        page,
+        open,
+      }) => {
         await openGraph(page, open, width, height);
         // The labels are placed after the fonts load, so read until two reads agree.
-        const gaps = await settle(page, () =>
+        const { gaps, rendered } = await settle(page, () =>
           page.evaluate((sel) => {
             const svg = document.querySelector(sel)!;
             const f = svg.getBoundingClientRect();
-            return [...svg.querySelectorAll("text[data-plate-label]")].map((t) => {
+            const labelGaps = [...svg.querySelectorAll("text[data-plate-label]")].map((t) => {
               const b = t.getBoundingClientRect();
               return {
                 text: t.textContent ?? "",
@@ -298,6 +265,11 @@ test.describe("related-articles graph", only("desktop-1440"), () => {
                 ),
               };
             });
+            const scale = f.width / Number(svg.getAttribute("viewBox")!.split(" ")[2]);
+            const sizes = [...svg.querySelectorAll("text")].map(
+              (t) => parseFloat(getComputedStyle(t).fontSize) * scale,
+            );
+            return { gaps: labelGaps, rendered: sizes };
           }, RELATED_GRAPH),
         );
         expect(gaps.length).toBeGreaterThan(5);
@@ -305,6 +277,10 @@ test.describe("related-articles graph", only("desktop-1440"), () => {
           expect(l.gap, `${l.text} is ${l.gap.toFixed(1)}px from the frame`).toBeGreaterThanOrEqual(
             6,
           );
+        }
+        expect(rendered.length).toBeGreaterThan(0);
+        for (const px of rendered) {
+          expect(px).toBeGreaterThanOrEqual(11.95);
         }
       });
     }

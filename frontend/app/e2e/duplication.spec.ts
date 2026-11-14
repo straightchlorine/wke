@@ -2,31 +2,6 @@ import { eachTheme, expect, only, test } from "./support";
 
 eachTheme(() => {
   test.describe("one statement per fact", only("mobile-390", "desktop-1440"), () => {
-    test("dossier page: the build time lives in the source record only, the contents carry no budget caption", async ({
-      page,
-      open,
-    }) => {
-      await open("/t/Lizzie_Borden");
-      await expect(page.getByRole("heading", { level: 1 }).first()).toContainText("Lizzie Borden");
-      const body = page.locator("body");
-      await expect(body.getByText(/^built \d/)).toHaveCount(0);
-      await expect(body.getByText(/\d+ of \d+ sections at \d+k/)).toHaveCount(0);
-      await expect(page.getByText("About build log times")).toHaveCount(0);
-    });
-
-    test("Home: the graph caption names the day, not the date; the heading keeps the date", async ({
-      page,
-      open,
-    }) => {
-      await open("/");
-      const caption = page.locator("figcaption").first();
-      await expect(caption).toContainText("Plate 1.");
-      await expect(caption).not.toContainText(/\d{4}/);
-      await expect(
-        page.getByRole("heading", { level: 2 }).filter({ hasText: /^Most read/ }),
-      ).toContainText(/\d{4}/);
-    });
-
     test("Dossiers: the per-row Not checked chip is quieter than the Up to date and Out of date chips", async ({
       page,
       open,

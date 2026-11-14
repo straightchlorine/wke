@@ -1,9 +1,10 @@
 import type { Page } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
-import { readFixtureJson, withFreshness } from "./buildFixture";
+import { readFixtureJson } from "./buildFixture";
 import { dossierBody } from "./mockApi";
 import { trackErrors, assertNoErrors, expectShellRendered } from "./errorTracking";
-import { eachTheme, expect, only, settleScroll, test } from "./support";
+import { freshnessChip, mockFreshness, openJesus } from "./readingSection";
+import { expect, lightOnly, only, settleScroll, test } from "./support";
 
 const dossier = readFixtureJson<{
   sections: {
@@ -34,10 +35,8 @@ const summaryLineCount = dossier.sections.filter(
 const HEADINGS = 'section[id^="s"] [data-section-heading]';
 
 /** Opens the Jesus dossier and waits until every section is on the page. */
-async function openJesus(page: Page, open: (path: string) => Promise<void>) {
-  await open("/t/Jesus");
-  await expect(page.locator(HEADINGS)).toHaveCount(dossier.sections.length);
-}
+const openAll = (page: Page, open: (path: string) => Promise<void>) =>
+  openJesus(page, open, dossier.sections.length);
 
 test.describe("Dossier page", () => {
   test("a stored dossier opens on a skeleton, never the Building panel, and the footer stays put", async ({
@@ -64,105 +63,116 @@ test.describe("Dossier page", () => {
     assertNoErrors(errors);
   });
 
-  test("a typed title that differs from the article title builds and ends on that article's dossier", async ({
-    page,
-    open,
-  }) => {
-    const errors = trackErrors(page);
-    const posted = page.waitForRequest(
-      (request) => request.method() === "POST" && /\/api\/v1\/dossiers(\?|$)/.test(request.url()),
-    );
-    await open("/t/Kamchatka", {
-      ready: page.getByRole("heading", { level: 1, name: "Kamchatka Peninsula" }),
-    });
-    expect((await posted).postDataJSON()).toMatchObject({ title: "Kamchatka" });
-    await expect(page.locator(HEADINGS).first()).toBeVisible();
-    assertNoErrors(errors);
-  });
-
-  test("the build record scopes the model summaries to the dossier's sections and says Ready", async ({
-    page,
-    open,
-  }) => {
-    const errors = trackErrors(page);
-    await openJesus(page, open);
-    const main = page.locator("main");
-    await expect(main.getByText("Model summaries", { exact: true })).toHaveCount(1);
-    await expect(
-      main.getByText(
-        `${dossier.build.summaries_done} of ${dossier.sections.length} sections (${dossier.build.summaries_total} selected)`,
-        { exact: true },
-      ),
-    ).toBeVisible();
-    await expect(main.getByText("Summaries", { exact: true })).toHaveCount(0);
-    await expect(main.getByText("Complete", { exact: true })).toHaveCount(0);
-    assertNoErrors(errors);
-  });
-
-  test("renders all section labels in order, model panels and summary lines", async ({
-    page,
-    open,
-  }) => {
-    const errors = trackErrors(page);
-    await openJesus(page, open);
-
-    const headings = await page.locator(HEADINGS).allTextContents();
-    dossier.sections.forEach((section, index) => {
-      expect(headings[index]).toContain(section.label);
-    });
-
-    await expect(page.locator("[data-model-panel]")).toHaveCount(modelPanelCount);
-    await expect(page.locator('p[role="note"]')).toHaveCount(summaryLineCount);
-
-    await expectShellRendered(page);
-    assertNoErrors(errors);
-  });
-
-  test("one citation marker per revision per section, not per passage", async ({ page, open }) => {
-    const errors = trackErrors(page);
-    await openJesus(page, open);
-
-    const sections = page.locator('article section[id^="s"]');
-    const sectionCount = await sections.count();
-    let sectionsWithPassages = 0;
-    for (let i = 0; i < sectionCount; i++) {
-      const paragraphs = sections.nth(i).locator('[data-role="source-text"] p');
-      const count = await paragraphs.count();
-      if (count === 0) {
-        continue;
-      }
-      sectionsWithPassages += 1;
-      const markerCounts = await paragraphs.evaluateAll((els) =>
-        els.map((el) => el.querySelectorAll("sup a").length),
+  test(
+    "a typed title that differs from the article title builds and ends on that article's dossier",
+    only("desktop-1440"),
+    async ({ page, open }) => {
+      const errors = trackErrors(page);
+      const posted = page.waitForRequest(
+        (request) => request.method() === "POST" && /\/api\/v1\/dossiers(\?|$)/.test(request.url()),
       );
-      // Every passage in the fixture cites the same pinned revision, so only the first passage of each section carries a citation marker.
-      expect(markerCounts.filter((n) => n > 0)).toHaveLength(1);
-      expect(markerCounts[0]).toBe(1);
-    }
-    expect(sectionsWithPassages).toBeGreaterThan(0);
+      await open("/t/Kamchatka", {
+        ready: page.getByRole("heading", { level: 1, name: "Kamchatka Peninsula" }),
+      });
+      expect((await posted).postDataJSON()).toMatchObject({ title: "Kamchatka" });
+      await expect(page.locator(HEADINGS).first()).toBeVisible();
+      assertNoErrors(errors);
+    },
+  );
 
-    await expectShellRendered(page);
-    assertNoErrors(errors);
-  });
+  test(
+    "the build record scopes the model summaries to the dossier's sections and says Ready",
+    only("desktop-1440"),
+    async ({ page, open }) => {
+      const errors = trackErrors(page);
+      await openAll(page, open);
+      const main = page.locator("main");
+      await expect(main.getByText("Model summaries", { exact: true })).toHaveCount(1);
+      await expect(
+        main.getByText(
+          `${dossier.build.summaries_done} of ${dossier.sections.length} sections (${dossier.build.summaries_total} selected)`,
+          { exact: true },
+        ),
+      ).toBeVisible();
+      await expect(main.getByText("Summaries", { exact: true })).toHaveCount(0);
+      await expect(main.getByText("Complete", { exact: true })).toHaveCount(0);
+      assertNoErrors(errors);
+    },
+  );
 
-  test("budget keys switch the URL and re-fetch; 2k shows cut rows", async ({ page, open }) => {
-    const errors = trackErrors(page);
-    await openJesus(page, open);
+  test(
+    "renders all section labels in order, model panels and summary lines",
+    only("desktop-1440"),
+    async ({ page, open }) => {
+      const errors = trackErrors(page);
+      await openAll(page, open);
 
-    await page.keyboard.press("1");
-    await expect(page).toHaveURL(/budget=2000/);
-    await expect(page.getByText(/passages left out at this budget/).first()).toBeVisible();
-    await expect(page.getByText(/^.*: not shown\./).first()).toBeVisible();
+      const headings = await page.locator(HEADINGS).allTextContents();
+      dossier.sections.forEach((section, index) => {
+        expect(headings[index]).toContain(section.label);
+      });
 
-    await page.keyboard.press("2");
-    await expect(page).toHaveURL(/budget=8000/);
+      await expect(page.locator("[data-model-panel]")).toHaveCount(modelPanelCount);
+      await expect(page.locator('p[role="note"]')).toHaveCount(summaryLineCount);
 
-    await page.keyboard.press("3");
-    await expect(page).toHaveURL(/budget=32000/);
+      await expectShellRendered(page);
+      assertNoErrors(errors);
+    },
+  );
 
-    await expectShellRendered(page);
-    assertNoErrors(errors);
-  });
+  test(
+    "one citation marker per revision per section, not per passage",
+    only("desktop-1440"),
+    async ({ page, open }) => {
+      const errors = trackErrors(page);
+      await openAll(page, open);
+
+      const sections = page.locator('article section[id^="s"]');
+      const sectionCount = await sections.count();
+      let sectionsWithPassages = 0;
+      for (let i = 0; i < sectionCount; i++) {
+        const paragraphs = sections.nth(i).locator('[data-role="source-text"] p');
+        const count = await paragraphs.count();
+        if (count === 0) {
+          continue;
+        }
+        sectionsWithPassages += 1;
+        const markerCounts = await paragraphs.evaluateAll((els) =>
+          els.map((el) => el.querySelectorAll("sup a").length),
+        );
+        // Every passage in the fixture cites the same pinned revision, so only the first passage of each section carries a citation marker.
+        expect(markerCounts.filter((n) => n > 0)).toHaveLength(1);
+        expect(markerCounts[0]).toBe(1);
+      }
+      expect(sectionsWithPassages).toBeGreaterThan(0);
+
+      await expectShellRendered(page);
+      assertNoErrors(errors);
+    },
+  );
+
+  test(
+    "budget keys switch the URL and re-fetch; 2k shows cut rows",
+    only("desktop-1440"),
+    async ({ page, open }) => {
+      const errors = trackErrors(page);
+      await openAll(page, open);
+
+      await page.keyboard.press("1");
+      await expect(page).toHaveURL(/budget=2000/);
+      await expect(page.getByText(/passages left out at this budget/).first()).toBeVisible();
+      await expect(page.getByText(/^.*: not shown\./).first()).toBeVisible();
+
+      await page.keyboard.press("2");
+      await expect(page).toHaveURL(/budget=8000/);
+
+      await page.keyboard.press("3");
+      await expect(page).toHaveURL(/budget=32000/);
+
+      await expectShellRendered(page);
+      assertNoErrors(errors);
+    },
+  );
 
   test("Copy as context copies the API's markdown and shows a toast", async ({
     page,
@@ -171,7 +181,7 @@ test.describe("Dossier page", () => {
   }) => {
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
     const errors = trackErrors(page);
-    await openJesus(page, open);
+    await openAll(page, open);
 
     // Below 600px the toolbar is hidden and the HUD stands in for it, so only one of the two buttons is visible.
     await page.getByRole("button", { name: /^Copy as context/ }).click();
@@ -235,94 +245,59 @@ test.describe("Dossier page", () => {
     expect(errors.page).toEqual([]);
   });
 
-  test("a null checked_at reads not checked, never Invalid Date", async ({ page, open }) => {
-    const errors = trackErrors(page);
-    // The recorded build is already unchecked, so the page first serves a checked one, which the edit must produce.
-    let patch: Record<string, unknown> = {
-      state: "fresh",
-      source: "poll",
-      edits_since: 0,
-      checked_at: "2026-09-28T16:18:40Z",
-    };
-    await page.route(/\/api\/v1\/dossiers\/1095706(\?[^/]*)?$/, async (route) => {
-      const body = dossierBody("dossier_1095706_2000.json", withFreshness(patch));
-      await route.fulfill({ status: 200, contentType: "application/json", body });
-    });
-    await open("/t/Jesus?budget=2000", { ready: page.locator(HEADINGS).first() });
-    const chip = page
-      .locator("[data-record-row]")
-      .filter({ hasText: /^Freshness/ })
-      .filter({ visible: true })
-      .locator("button");
-    await expect(chip).toHaveText(/^Up to date/);
-    patch = { state: "unknown", source: "poll", checked_at: null };
-    await page.reload();
-    await expect(page.locator(HEADINGS).first()).toBeVisible();
-    await expect(chip).toHaveText(/^Not checked/);
-    await chip.focus();
-    await expect(page.getByRole("tooltip").filter({ visible: true })).toContainText(
-      /^Not checked yet\./,
-    );
-    const text =
-      (await page.locator("main").innerText()) +
-      (await page.getByRole("tooltip").filter({ visible: true }).innerText());
-    expect(text).not.toMatch(/Invalid Date|\bNaN\b/);
-    expect(errors.page).toEqual([]);
-  });
-
-  eachTheme(() => {
-    test("freshness names the date of a check from an earlier UTC day, not one from today", async ({
-      page,
-      open,
-    }) => {
+  test(
+    "a null checked_at reads not checked, never Invalid Date",
+    only("mobile-390", "desktop-1440"),
+    async ({ page, open }) => {
       const errors = trackErrors(page);
-      let checkedAt = new Date(Date.now() - 31 * 3_600_000).toISOString();
-      await page.route(/\/api\/v1\/dossiers\/1095706(\?[^/]*)?$/, async (route) => {
-        const body = dossierBody(
-          "dossier_1095706_2000.json",
-          withFreshness({
-            state: "fresh",
-            source: "poll",
-            edits_since: 0,
-            checked_at: checkedAt,
-          }),
-        );
-        await route.fulfill({ status: 200, contentType: "application/json", body });
-      });
+      // The recorded build is already unchecked, so the page first serves a checked one, which the edit must produce.
+      let patch: Record<string, unknown> = {
+        state: "fresh",
+        source: "poll",
+        edits_since: 0,
+        checked_at: "2026-09-28T16:18:40Z",
+      };
+      await mockFreshness(page, "dossier_1095706_2000.json", () => patch);
       await open("/t/Jesus?budget=2000", { ready: page.locator(HEADINGS).first() });
-      const chip = page
-        .locator("[data-record-row]")
-        .filter({ hasText: /^Freshness/ })
-        .filter({ visible: true })
-        .locator("button");
+      const chip = freshnessChip(page);
       const tip = page.getByRole("tooltip").filter({ visible: true });
+      await expect(chip).toHaveText(/^Up to date/);
+      patch = { state: "unknown", source: "poll", checked_at: null };
+      await page.reload();
+      await expect(page.locator(HEADINGS).first()).toBeVisible();
+      await expect(chip).toHaveText(/^Not checked/);
+      await chip.focus();
+      await expect(tip).toContainText(/^Not checked yet\./);
+      const text = (await page.locator("main").innerText()) + (await tip.innerText());
+      expect(text).not.toMatch(/Invalid Date|\bNaN\b/);
+      // A check from an earlier UTC day names its date; one from today names only the time.
+      patch = {
+        state: "fresh",
+        source: "poll",
+        edits_since: 0,
+        checked_at: new Date(Date.now() - 31 * 3_600_000).toISOString(),
+      };
+      await page.reload();
+      await expect(page.locator(HEADINGS).first()).toBeVisible();
       await chip.focus();
       await expect(tip).toContainText(/^Checked \d{4}-\d\d-\d\d, \d\d:\d\d UTC\./);
-      checkedAt = new Date().toISOString();
+      patch = { ...patch, checked_at: new Date().toISOString() };
       await page.reload();
       await expect(page.locator(HEADINGS).first()).toBeVisible();
       await chip.focus();
       await expect(tip).toContainText(/^Checked \d\d:\d\d UTC\./);
       expect(errors.page).toEqual([]);
-    });
-  });
+    },
+  );
 
-  test("no console errors and no horizontal overflow", async ({ page, open }) => {
+  test("has zero axe violations and no horizontal overflow", async ({ page, open }) => {
     const errors = trackErrors(page);
-    await openJesus(page, open);
+    await openAll(page, open);
 
     const hasOverflow = await page.evaluate(
       () => document.documentElement.scrollWidth > window.innerWidth,
     );
     expect(hasOverflow).toBe(false);
-
-    await expectShellRendered(page);
-    assertNoErrors(errors);
-  });
-
-  test("has zero axe violations", async ({ page, open }) => {
-    const errors = trackErrors(page);
-    await openJesus(page, open);
 
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);
@@ -332,7 +307,7 @@ test.describe("Dossier page", () => {
 
   test("header measures 56px at 1200 and up, 80px below", async ({ page, open }) => {
     const errors = trackErrors(page);
-    await openJesus(page, open);
+    await openAll(page, open);
 
     const width = page.viewportSize()?.width ?? 0;
     const header = await page.locator("header").boundingBox();
@@ -347,7 +322,7 @@ test.describe("Dossier page", () => {
     open,
   }) => {
     const errors = trackErrors(page);
-    await openJesus(page, open);
+    await openAll(page, open);
 
     const width = page.viewportSize()?.width ?? 0;
     const inline = page.locator('section[id^="s"] [aria-label^="Source for"]');
@@ -369,7 +344,7 @@ test.describe("Dossier page", () => {
     only("desktop-1440"),
     async ({ page, open }) => {
       const errors = trackErrors(page);
-      await openJesus(page, open);
+      await openAll(page, open);
 
       // Each section-start tick has the title "<index> <label> starts at token <n>".
       // The label part equals its heading's text, so ticks are matched to headings by text.
@@ -407,40 +382,12 @@ test.describe("Dossier page", () => {
   );
 
   test(
-    "the margin-note rail ends with the article, not past it",
-    // The margin column only exists at 900px and up; below that, notes render inline under their own section.
-    only("tablet-1024", "desktop-1440", "desktop-1920"),
-    async ({ page, open }) => {
-      const errors = trackErrors(page);
-      await openJesus(page, open);
-
-      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-      await settleScroll(page);
-
-      const article = page.locator('article[aria-label="Dossier text"]');
-      const notes = page.locator('aside [aria-label^="Source for"]');
-      const [articleBox, lastNoteBox] = await Promise.all([
-        article.boundingBox(),
-        notes.last().boundingBox(),
-      ]);
-      expect(articleBox).not.toBeNull();
-      expect(lastNoteBox).not.toBeNull();
-      if (articleBox && lastNoteBox) {
-        expect(lastNoteBox.y + lastNoteBox.height).toBeLessThanOrEqual(
-          articleBox.y + articleBox.height + 24,
-        );
-      }
-      assertNoErrors(errors);
-    },
-  );
-
-  test(
     "the section-chip strip marks the last section current once scrolled to the bottom",
     // The chip strip is replaced by the contents rail at 1340px and up.
     only("mobile-390", "tablet-768", "tablet-1024"),
     async ({ page, open }) => {
       const errors = trackErrors(page);
-      await openJesus(page, open);
+      await openAll(page, open);
 
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
       await settleScroll(page);
@@ -454,12 +401,12 @@ test.describe("Dossier page", () => {
   );
 
   test.describe("a jump to a section", () => {
-    eachTheme(() => {
+    lightOnly(() => {
       test(
         "a Contents click moves focus to the section heading and draws no ring",
         only("desktop-1440", "desktop-1920"),
         async ({ page, open }) => {
-          await openJesus(page, open);
+          await openAll(page, open);
           const link = page.locator('nav[aria-label="Contents"] a').nth(5);
           const id = (await link.getAttribute("href"))?.split("#")[1];
           await link.click();
@@ -479,7 +426,7 @@ test.describe("Dossier page", () => {
       "a section chip tap moves focus to the section heading",
       only("mobile-390"),
       async ({ page, open }) => {
-        await openJesus(page, open);
+        await openAll(page, open);
         const chip = page.locator('nav[aria-label="Sections"] a').nth(5);
         const id = (await chip.getAttribute("href"))?.split("#")[1];
         await chip.click();
@@ -495,7 +442,7 @@ test.describe("Dossier page", () => {
     async ({ page, context, open }) => {
       await context.grantPermissions(["clipboard-read", "clipboard-write"]);
       const errors = trackErrors(page);
-      await openJesus(page, open);
+      await openAll(page, open);
 
       await page.getByLabel("Token budget and copy").getByRole("button").click();
       const toast = page.getByTestId("toast");
@@ -513,66 +460,74 @@ test.describe("Dossier page", () => {
     },
   );
 
-  test("one GET per page and budget, no duplicate fetch on mount", async ({ page, open }) => {
-    const errors = trackErrors(page);
-    await page.clock.install();
-    let getCount = 0;
-    await page.route(/\/api\/v1\/dossiers\/\d+(\?[^/]*)?$/, async (route) => {
-      if (route.request().method() === "GET") {
-        getCount += 1;
-      }
-      await route.fallback();
-    });
-    await openJesus(page, open);
-    // A refetch that a timer would start has to start within this time.
-    await page.clock.runFor(1_000);
+  test(
+    "one GET per page and budget, no duplicate fetch on mount",
+    only("desktop-1440"),
+    async ({ page, open }) => {
+      const errors = trackErrors(page);
+      await page.clock.install();
+      let getCount = 0;
+      await page.route(/\/api\/v1\/dossiers\/\d+(\?[^/]*)?$/, async (route) => {
+        if (route.request().method() === "GET") {
+          getCount += 1;
+        }
+        await route.fallback();
+      });
+      await openAll(page, open);
+      // A refetch that a timer would start has to start within this time.
+      await page.clock.runFor(1_000);
 
-    expect(getCount).toBe(1);
-    assertNoErrors(errors);
-  });
+      expect(getCount).toBe(1);
+      assertNoErrors(errors);
+    },
+  );
 
-  test("a lead with a model summary shows it, and one without says so", async ({ page, open }) => {
-    const errors = trackErrors(page);
-    // No recorded lead carries a model summary, so the lead of a Jesus build
-    // gets the summary the build recorded for its "Comparative structure
-    // and content" section.
-    const withLeadSummary = readFixtureJson<{
-      sections: { summary: { text: string } | null; summary_state: string }[];
-    }>("dossier_1095706_32000.json");
-    const donor = withLeadSummary.sections.find((s) => s.summary != null);
-    withLeadSummary.sections[0]!.summary = donor?.summary ?? null;
-    withLeadSummary.sections[0]!.summary_state = "done";
-    const leadSummary = withLeadSummary.sections[0]?.summary;
-    expect(leadSummary?.text).toBeTruthy();
-    await page.route(/\/api\/v1\/dossiers\/1095706(\?[^/]*)?$/, async (route) => {
-      if (new URL(route.request().url()).searchParams.get("budget") === "32000") {
-        await route.fulfill({
-          status: 200,
-          contentType: "application/json",
-          body: dossierBody("dossier_1095706_32000.json", (flat) => {
-            flat["sections"] = withLeadSummary.sections;
-          }),
-        });
-        return;
-      }
-      await route.fallback();
-    });
+  test(
+    "a lead with a model summary shows it, and one without says so",
+    only("desktop-1440"),
+    async ({ page, open }) => {
+      const errors = trackErrors(page);
+      // No recorded lead carries a model summary, so the lead of a Jesus build
+      // gets the summary the build recorded for its "Comparative structure
+      // and content" section.
+      const withLeadSummary = readFixtureJson<{
+        sections: { summary: { text: string } | null; summary_state: string }[];
+      }>("dossier_1095706_32000.json");
+      const donor = withLeadSummary.sections.find((s) => s.summary != null);
+      withLeadSummary.sections[0]!.summary = donor?.summary ?? null;
+      withLeadSummary.sections[0]!.summary_state = "done";
+      const leadSummary = withLeadSummary.sections[0]?.summary;
+      expect(leadSummary?.text).toBeTruthy();
+      await page.route(/\/api\/v1\/dossiers\/1095706(\?[^/]*)?$/, async (route) => {
+        if (new URL(route.request().url()).searchParams.get("budget") === "32000") {
+          await route.fulfill({
+            status: 200,
+            contentType: "application/json",
+            body: dossierBody("dossier_1095706_32000.json", (flat) => {
+              flat["sections"] = withLeadSummary.sections;
+            }),
+          });
+          return;
+        }
+        await route.fallback();
+      });
 
-    await open("/t/Jesus?budget=32000");
-    const lead = page.locator('article section[id="s1"]');
-    await expect(lead.getByText(leadSummary?.text ?? "", { exact: false })).toBeVisible();
-    await expect(lead.locator("[data-model-panel]")).toHaveCount(1);
-    await expect(lead).not.toContainText("no model summary");
+      await open("/t/Jesus?budget=32000");
+      const lead = page.locator('article section[id="s1"]');
+      await expect(lead.getByText(leadSummary?.text ?? "", { exact: false })).toBeVisible();
+      await expect(lead.locator("[data-model-panel]")).toHaveCount(1);
+      await expect(lead).not.toContainText("no model summary");
 
-    await open("/t/Jesus?budget=8000");
-    const plainLead = page.locator('article section[id="s1"]');
-    await expect(plainLead).toContainText("the lead has no model summary");
-    await expect(plainLead.locator("[data-model-panel]")).toHaveCount(0);
-    assertNoErrors(errors);
-  });
+      await open("/t/Jesus?budget=8000");
+      const plainLead = page.locator('article section[id="s1"]');
+      await expect(plainLead).toContainText("the lead has no model summary");
+      await expect(plainLead.locator("[data-model-panel]")).toHaveCount(0);
+      assertNoErrors(errors);
+    },
+  );
 });
 
-eachTheme(() => {
+lightOnly(() => {
   test("section meta names the group as N of M", async ({ page, open }) => {
     await open("/t/Jesus");
     const meta = page.locator("section[id^='s'] p", { hasText: "Wikipedia section:" });

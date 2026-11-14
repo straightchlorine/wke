@@ -1,5 +1,5 @@
 import { fixtureObject } from "./fixtureObject";
-import { eachTheme, expect, only, test } from "./support";
+import { expect, lightOnly, only, test } from "./support";
 
 // At every desktop width a group of three or more dots keeps a two-dimensional outline instead of collapsing to a line under the stats chip.
 // A two-dot group is drawn as a capsule, and no outline's short side may fall below MIN_HULL_SIDE_PX.
@@ -14,7 +14,7 @@ const SIZES = [
 
 // Every test here sets its own viewport, so it runs only on the desktop-1440 project.
 test.describe("Home graph outlines", only("desktop-1440"), () => {
-  eachTheme(() => {
+  lightOnly(() => {
     for (const { width, height } of SIZES) {
       test(`Home graph at ${width}: no group outline flatter than ${MIN_HULL_SIDE_PX} px`, async ({
         page,
