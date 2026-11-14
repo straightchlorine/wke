@@ -105,9 +105,9 @@ test.describe("Dossier rail and data panel", () => {
     test("This dossier as data: one row shape and one button column", async ({ page, open }) => {
       await open("/t/Jesus", { ready: page.locator(DOSSIER_READY).first() });
       const names = [
-        "Copy JSON URL",
-        "Copy Markdown URL",
-        "Copy llms.txt URL",
+        "Copy URL: JSON",
+        "Copy URL: Markdown",
+        "Copy URL: llms.txt",
         "Copy MCP tool call",
       ];
       const boxes = [];

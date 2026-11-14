@@ -584,7 +584,7 @@ Retry-After: 1
               id: "cursor",
               label: "Copy config",
               message: "Copied MCP config for Cursor",
-              ariaLabel: "Copy Cursor config",
+              ariaLabel: "Copy config: Cursor",
             }}
             onCopy={setToast}
           />
@@ -602,7 +602,7 @@ Retry-After: 1
               id: "claude",
               label: "Copy config",
               message: "Copied MCP config for Claude Desktop",
-              ariaLabel: "Copy Claude Desktop config",
+              ariaLabel: "Copy config: Claude Desktop",
             }}
             onCopy={setToast}
           />

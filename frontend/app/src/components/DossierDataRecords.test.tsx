@@ -25,10 +25,10 @@ describe("DossierDataRecords", () => {
   });
 
   it.each([
-    ["Copy JSON URL", "Copy URL", dossier.links.self, "Copied JSON URL"],
-    ["Copy Markdown URL", "Copy URL", dossier.links.markdown, "Copied Markdown URL"],
+    ["Copy URL: JSON", "Copy URL", dossier.links.self, "Copied JSON URL"],
+    ["Copy URL: Markdown", "Copy URL", dossier.links.markdown, "Copied Markdown URL"],
     [
-      "Copy llms.txt URL",
+      "Copy URL: llms.txt",
       "Copy URL",
       `${new URL(dossier.links.self).origin}/llms.txt`,
       "Copied llms.txt URL",
