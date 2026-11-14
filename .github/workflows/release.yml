@@ -216,6 +216,7 @@ jobs:
 
       # Fails unless every new tag resolves to the digest that was signed.
       # The version tag goes on every image in both registries before latest moves anywhere.
+      # --prefer-index=false copies the plain manifest as is; the default wraps it in a new index.
       - name: Add the version tag and latest
         run: |
           set -eu
@@ -224,7 +225,7 @@ jobs:
               digest=$(cat "digests/$name.txt")
               case "$digest" in sha256:*) ;; *) echo "::error::no digest for $name: $digest"; exit 1 ;; esac
               for prefix in "$IMAGE_PREFIX" "$HUB_PREFIX"; do
-                docker buildx imagetools create \
+                docker buildx imagetools create --prefer-index=false \
                   --tag "$prefix-$name:$tag" \
                   "$prefix-$name@$digest"
                 got=$(docker buildx imagetools inspect "$prefix-$name:$tag" \
