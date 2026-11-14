@@ -19,6 +19,11 @@ LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.title="wke-web"
 LABEL org.opencontainers.image.description="Wikipedia Knowledge Explorer - React SPA served by nginx"
 
+# Apply the Alpine security updates published after the base image was built.
+# The USER line below returns to the unprivileged nginx user.
+USER root
+RUN apk upgrade --no-cache
+
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
