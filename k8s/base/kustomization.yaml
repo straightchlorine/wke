@@ -21,9 +21,9 @@ resources:
 # Image Updater rewrites newTag of wke-api, wke-ml and wke-web to the newest.
 images:
   - name: ghcr.io/straightchlorine/wke-api
-    newTag: 0.1.2
+    newTag: 0.1.3
   - name: ghcr.io/straightchlorine/wke-ml
-    newTag: 0.1.2
+    newTag: 0.1.3
   - name: ghcr.io/straightchlorine/wke-web
     newTag: 0.1.2
   # Multi-arch index digest for redis:7.4.11-alpine, from
