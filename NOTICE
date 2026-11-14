@@ -1,0 +1,39 @@
+WKE (Wikipedia Knowledge Explorer)
+Copyright (c) 2025 Piotr Krzysztof, under the MIT licence in LICENSE.
+
+The MIT licence covers this project's own code. The third-party material
+below keeps its own licence.
+
+Fonts
+  frontend/app/public/fonts/ holds Archivo and Newsreader, copied from the
+  @fontsource-variable packages, version 5.3.0. They are licensed under the
+  SIL Open Font License 1.1, not MIT. The licence of each font is in the same
+  folder: LICENSE-archivo.txt and LICENSE-newsreader.txt.
+
+JavaScript libraries
+  The built site bundles React, TanStack Router and Query, d3, Lucide and
+  their dependencies, under the MIT, ISC and Unlicense licences.
+  `pnpm build` writes their licence texts to dist/third-party-licenses.txt,
+  which the site serves at /third-party-licenses.txt.
+
+Model weights
+  The wke-ml image contains sentence-transformers/all-MiniLM-L6-v2 and
+  sshleifer/distilbart-cnn-6-6, licensed under the Apache License 2.0.
+  backend/ml/licenses/ holds the licence and the details, and the image
+  carries them in /models/licenses/.
+
+Wikipedia content
+  Text from English Wikipedia is licensed under CC BY-SA 4.0
+  (https://creativecommons.org/licenses/by-sa/4.0/). Its authors are listed
+  in each article's history. It appears in:
+  - backend/api/tests/fixtures/wm/: the article "Jesus", revision 1382808793
+    (attribution in its README.md);
+  - backend/api/tests/core/render/golden/: rendered dossiers of "Jesus",
+    each with its revision links and licence line;
+  - backend/api/scripts/eval/ and frontend/app/e2e/fixtures/: excerpts and
+    dossiers of several articles, each identified by title and revision in
+    the file;
+  - frontend/app/public/og.png: one sentence of "Jesus", revision
+    1382808793, credited on the image.
+  Wikimedia's pageview and recent-changes data in the same fixtures comes
+  from the same source under the same terms.

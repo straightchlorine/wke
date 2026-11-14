@@ -1,0 +1,48 @@
+{
+  "query": "Apollo 11",
+  "results": [
+    {
+      "page_id": 662,
+      "title": "Apollo 11",
+      "description": null,
+      "dossier_state": "ready"
+    },
+    {
+      "page_id": 1461,
+      "title": "Apollo program",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 80740,
+      "title": "Moon landing conspiracy theories",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 6549167,
+      "title": "Apollo 11 missing tapes",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 1967,
+      "title": "Apollo 12",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 59817401,
+      "title": "Apollo 11 (2019 film)",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 9299479,
+      "title": "Third-party evidence for Apollo Moon landings",
+      "description": null,
+      "dossier_state": "none"
+    }
+  ],
+  "did_you_mean": null
+}

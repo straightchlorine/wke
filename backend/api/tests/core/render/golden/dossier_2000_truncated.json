@@ -1,0 +1,574 @@
+{
+  "budget": {
+    "complete": false,
+    "counts": "dossier",
+    "estimator": "chars/4",
+    "included_chunk_ids": [
+      "7000000:lead:0",
+      "sec0:0",
+      "sec0:4",
+      "sec9:0",
+      "sec9:4",
+      "sec1:0",
+      "sec8:0"
+    ],
+    "omitted_chunks": 54,
+    "requested": 2000,
+    "shortened_chunk_ids": [],
+    "used_est_tokens": 1759
+  },
+  "build": {
+    "analysis": "structural",
+    "built_at": "2026-09-20T12:00:00Z",
+    "pipeline_version": "test-pv",
+    "stage_seconds": null,
+    "state": "complete",
+    "summaries_done": 0,
+    "summaries_total": 10,
+    "truncated": null
+  },
+  "chunks": [
+    {
+      "citation_id": "c1",
+      "cluster_id": null,
+      "est_tokens": 18,
+      "formulas": [],
+      "heading_path": [],
+      "id": "7000000:lead:0",
+      "kind": "prose",
+      "links": [],
+      "order": 0,
+      "relevance": 1.0,
+      "text": "Overflow Topic is a fixture article built to exceed the pack budget."
+    },
+    {
+      "citation_id": "c1",
+      "cluster_id": 0,
+      "est_tokens": 223,
+      "formulas": [],
+      "heading_path": [
+        "Section 0"
+      ],
+      "id": "sec0:0",
+      "kind": "prose",
+      "links": [],
+      "order": 0,
+      "relevance": 1.0,
+      "text": "Sentence number 1 about the topic. Sentence number 2 about the topic. Sentence number 3 about the topic. Sentence number 4 about the topic. Sentence number 5 about the topic. Sentence number 6 about the topic. Sentence number 7 about the topic. Sentence number 8 about the topic. Sentence number 9 about the topic. Sentence number 10 about the topic. Sentence number 11 about the topic. Sentence number 12 about the topic. Sentence number 13 about the topic. Sentence number 14 about the topic. Sentence number 15 about the topic. Sentence number 16 about the topic. Sentence number 17 about the topic. Sentence number 18 about the topic. Sentence number 19 about the topic. Sentence number 20 about the topic. Sentence number 21 about the topic. Sentence number 22 about the topic. Sentence number 23 about the topic. Sentence number 24 about the topic. Sentence number 25 about the topic."
+    },
+    {
+      "citation_id": "c1",
+      "cluster_id": 0,
+      "est_tokens": 223,
+      "formulas": [],
+      "heading_path": [
+        "Section 0"
+      ],
+      "id": "sec0:4",
+      "kind": "prose",
+      "links": [],
+      "order": 4,
+      "relevance": 0.996,
+      "text": "Sentence number 1 about the topic. Sentence number 2 about the topic. Sentence number 3 about the topic. Sentence number 4 about the topic. Sentence number 5 about the topic. Sentence number 6 about the topic. Sentence number 7 about the topic. Sentence number 8 about the topic. Sentence number 9 about the topic. Sentence number 10 about the topic. Sentence number 11 about the topic. Sentence number 12 about the topic. Sentence number 13 about the topic. Sentence number 14 about the topic. Sentence number 15 about the topic. Sentence number 16 about the topic. Sentence number 17 about the topic. Sentence number 18 about the topic. Sentence number 19 about the topic. Sentence number 20 about the topic. Sentence number 21 about the topic. Sentence number 22 about the topic. Sentence number 23 about the topic. Sentence number 24 about the topic. Sentence number 25 about the topic."
+    },
+    {
+      "citation_id": "c1",
+      "cluster_id": 1,
+      "est_tokens": 223,
+      "formulas": [],
+      "heading_path": [
+        "Section 1"
+      ],
+      "id": "sec1:0",
+      "kind": "prose",
+      "links": [],
+      "order": 0,
+      "relevance": 0.994,
+      "text": "Sentence number 1 about the topic. Sentence number 2 about the topic. Sentence number 3 about the topic. Sentence number 4 about the topic. Sentence number 5 about the topic. Sentence number 6 about the topic. Sentence number 7 about the topic. Sentence number 8 about the topic. Sentence number 9 about the topic. Sentence number 10 about the topic. Sentence number 11 about the topic. Sentence number 12 about the topic. Sentence number 13 about the topic. Sentence number 14 about the topic. Sentence number 15 about the topic. Sentence number 16 about the topic. Sentence number 17 about the topic. Sentence number 18 about the topic. Sentence number 19 about the topic. Sentence number 20 about the topic. Sentence number 21 about the topic. Sentence number 22 about the topic. Sentence number 23 about the topic. Sentence number 24 about the topic. Sentence number 25 about the topic."
+    },
+    {
+      "citation_id": "c1",
+      "cluster_id": 8,
+      "est_tokens": 223,
+      "formulas": [],
+      "heading_path": [
+        "Section 8"
+      ],
+      "id": "sec8:0",
+      "kind": "prose",
+      "links": [],
+      "order": 0,
+      "relevance": 0.952,
+      "text": "Sentence number 1 about the topic. Sentence number 2 about the topic. Sentence number 3 about the topic. Sentence number 4 about the topic. Sentence number 5 about the topic. Sentence number 6 about the topic. Sentence number 7 about the topic. Sentence number 8 about the topic. Sentence number 9 about the topic. Sentence number 10 about the topic. Sentence number 11 about the topic. Sentence number 12 about the topic. Sentence number 13 about the topic. Sentence number 14 about the topic. Sentence number 15 about the topic. Sentence number 16 about the topic. Sentence number 17 about the topic. Sentence number 18 about the topic. Sentence number 19 about the topic. Sentence number 20 about the topic. Sentence number 21 about the topic. Sentence number 22 about the topic. Sentence number 23 about the topic. Sentence number 24 about the topic. Sentence number 25 about the topic."
+    },
+    {
+      "citation_id": "c1",
+      "cluster_id": 9,
+      "est_tokens": 223,
+      "formulas": [],
+      "heading_path": [
+        "Section 9"
+      ],
+      "id": "sec9:0",
+      "kind": "prose",
+      "links": [],
+      "order": 0,
+      "relevance": 0.946,
+      "text": "Sentence number 1 about the topic. Sentence number 2 about the topic. Sentence number 3 about the topic. Sentence number 4 about the topic. Sentence number 5 about the topic. Sentence number 6 about the topic. Sentence number 7 about the topic. Sentence number 8 about the topic. Sentence number 9 about the topic. Sentence number 10 about the topic. Sentence number 11 about the topic. Sentence number 12 about the topic. Sentence number 13 about the topic. Sentence number 14 about the topic. Sentence number 15 about the topic. Sentence number 16 about the topic. Sentence number 17 about the topic. Sentence number 18 about the topic. Sentence number 19 about the topic. Sentence number 20 about the topic. Sentence number 21 about the topic. Sentence number 22 about the topic. Sentence number 23 about the topic. Sentence number 24 about the topic. Sentence number 25 about the topic."
+    },
+    {
+      "citation_id": "c1",
+      "cluster_id": 9,
+      "est_tokens": 223,
+      "formulas": [],
+      "heading_path": [
+        "Section 9"
+      ],
+      "id": "sec9:4",
+      "kind": "prose",
+      "links": [],
+      "order": 4,
+      "relevance": 0.942,
+      "text": "Sentence number 1 about the topic. Sentence number 2 about the topic. Sentence number 3 about the topic. Sentence number 4 about the topic. Sentence number 5 about the topic. Sentence number 6 about the topic. Sentence number 7 about the topic. Sentence number 8 about the topic. Sentence number 9 about the topic. Sentence number 10 about the topic. Sentence number 11 about the topic. Sentence number 12 about the topic. Sentence number 13 about the topic. Sentence number 14 about the topic. Sentence number 15 about the topic. Sentence number 16 about the topic. Sentence number 17 about the topic. Sentence number 18 about the topic. Sentence number 19 about the topic. Sentence number 20 about the topic. Sentence number 21 about the topic. Sentence number 22 about the topic. Sentence number 23 about the topic. Sentence number 24 about the topic. Sentence number 25 about the topic."
+    }
+  ],
+  "citations": [
+    {
+      "anchor": null,
+      "id": "c1",
+      "pin": {
+        "license": "CC BY-SA 4.0",
+        "page_id": 42,
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=7000000",
+        "retrieved_at": "2026-09-20T12:00:00Z",
+        "rev_id": 7000000,
+        "rev_timestamp": "2026-09-20T12:00:00Z",
+        "title": "Overflow Topic",
+        "url": "https://en.wikipedia.org/wiki/Overflow_Topic"
+      },
+      "role": "seed",
+      "url": null
+    }
+  ],
+  "freshness": {
+    "checked_at": "2026-09-20T12:00:00Z",
+    "edits_since": 0,
+    "latest_rev_id": 7000000,
+    "pinned_rev_id": 7000000,
+    "source": "poll",
+    "state": "fresh"
+  },
+  "graph": {
+    "edges": [],
+    "nodes": []
+  },
+  "id": "42@7000000:000000000000",
+  "license_notice": "Text from Wikipedia, licensed CC BY-SA 4.0.",
+  "links": {
+    "markdown": "https://wke.example/api/v1/dossiers/42.md",
+    "pinned": "https://wke.example/api/v1/dossiers/42/rev/7000000",
+    "self": "https://wke.example/api/v1/dossiers/42",
+    "wikipedia": "https://en.wikipedia.org/wiki/Overflow_Topic"
+  },
+  "schema_version": "1",
+  "sections": [
+    {
+      "chunk_ids": [
+        "7000000:lead:0"
+      ],
+      "citation_id": null,
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [],
+      "id": "s0",
+      "importance": 0.0,
+      "label": "Overflow Topic",
+      "label_source": "article_title",
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "sec0:0",
+        "sec0:1",
+        "sec0:2",
+        "sec0:3",
+        "sec0:4",
+        "sec0:5"
+      ],
+      "citation_id": null,
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Section 0"
+      ],
+      "id": "sec0",
+      "importance": 0.0,
+      "label": "Section 0",
+      "label_source": "heading",
+      "summary": {
+        "citation_id": null,
+        "generated_at": "2026-09-20T12:00:00Z",
+        "infer_seconds": 0.42,
+        "input_chunk_ids": null,
+        "kind": "machine_summary",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "a4f8f3e",
+        "params": {
+          "input_tokens": 300,
+          "max_length": 60,
+          "min_length": 20,
+          "num_beams": 1
+        },
+        "text": "Section 0 is summarised here."
+      },
+      "summary_state": "done",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "sec1:0",
+        "sec1:1",
+        "sec1:2",
+        "sec1:3",
+        "sec1:4",
+        "sec1:5"
+      ],
+      "citation_id": null,
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Section 1"
+      ],
+      "id": "sec1",
+      "importance": 0.0,
+      "label": "Section 1",
+      "label_source": "heading",
+      "summary": {
+        "citation_id": null,
+        "generated_at": "2026-09-20T12:00:00Z",
+        "infer_seconds": 0.42,
+        "input_chunk_ids": null,
+        "kind": "machine_summary",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "a4f8f3e",
+        "params": {
+          "input_tokens": 300,
+          "max_length": 60,
+          "min_length": 20,
+          "num_beams": 1
+        },
+        "text": "Section 1 is summarised here."
+      },
+      "summary_state": "done",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "sec2:0",
+        "sec2:1",
+        "sec2:2",
+        "sec2:3",
+        "sec2:4",
+        "sec2:5"
+      ],
+      "citation_id": null,
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Section 2"
+      ],
+      "id": "sec2",
+      "importance": 0.0,
+      "label": "Section 2",
+      "label_source": "heading",
+      "summary": {
+        "citation_id": null,
+        "generated_at": "2026-09-20T12:00:00Z",
+        "infer_seconds": 0.42,
+        "input_chunk_ids": null,
+        "kind": "machine_summary",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "a4f8f3e",
+        "params": {
+          "input_tokens": 300,
+          "max_length": 60,
+          "min_length": 20,
+          "num_beams": 1
+        },
+        "text": "Section 2 is summarised here."
+      },
+      "summary_state": "done",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "sec3:0",
+        "sec3:1",
+        "sec3:2",
+        "sec3:3",
+        "sec3:4",
+        "sec3:5"
+      ],
+      "citation_id": null,
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Section 3"
+      ],
+      "id": "sec3",
+      "importance": 0.0,
+      "label": "Section 3",
+      "label_source": "heading",
+      "summary": {
+        "citation_id": null,
+        "generated_at": "2026-09-20T12:00:00Z",
+        "infer_seconds": 0.42,
+        "input_chunk_ids": null,
+        "kind": "machine_summary",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "a4f8f3e",
+        "params": {
+          "input_tokens": 300,
+          "max_length": 60,
+          "min_length": 20,
+          "num_beams": 1
+        },
+        "text": "Section 3 is summarised here."
+      },
+      "summary_state": "done",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "sec4:0",
+        "sec4:1",
+        "sec4:2",
+        "sec4:3",
+        "sec4:4",
+        "sec4:5"
+      ],
+      "citation_id": null,
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Section 4"
+      ],
+      "id": "sec4",
+      "importance": 0.0,
+      "label": "Section 4",
+      "label_source": "heading",
+      "summary": {
+        "citation_id": null,
+        "generated_at": "2026-09-20T12:00:00Z",
+        "infer_seconds": 0.42,
+        "input_chunk_ids": null,
+        "kind": "machine_summary",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "a4f8f3e",
+        "params": {
+          "input_tokens": 300,
+          "max_length": 60,
+          "min_length": 20,
+          "num_beams": 1
+        },
+        "text": "Section 4 is summarised here."
+      },
+      "summary_state": "done",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "sec5:0",
+        "sec5:1",
+        "sec5:2",
+        "sec5:3",
+        "sec5:4",
+        "sec5:5"
+      ],
+      "citation_id": null,
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Section 5"
+      ],
+      "id": "sec5",
+      "importance": 0.0,
+      "label": "Section 5",
+      "label_source": "heading",
+      "summary": {
+        "citation_id": null,
+        "generated_at": "2026-09-20T12:00:00Z",
+        "infer_seconds": 0.42,
+        "input_chunk_ids": null,
+        "kind": "machine_summary",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "a4f8f3e",
+        "params": {
+          "input_tokens": 300,
+          "max_length": 60,
+          "min_length": 20,
+          "num_beams": 1
+        },
+        "text": "Section 5 is summarised here."
+      },
+      "summary_state": "done",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "sec6:0",
+        "sec6:1",
+        "sec6:2",
+        "sec6:3",
+        "sec6:4",
+        "sec6:5"
+      ],
+      "citation_id": null,
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Section 6"
+      ],
+      "id": "sec6",
+      "importance": 0.0,
+      "label": "Section 6",
+      "label_source": "heading",
+      "summary": {
+        "citation_id": null,
+        "generated_at": "2026-09-20T12:00:00Z",
+        "infer_seconds": 0.42,
+        "input_chunk_ids": null,
+        "kind": "machine_summary",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "a4f8f3e",
+        "params": {
+          "input_tokens": 300,
+          "max_length": 60,
+          "min_length": 20,
+          "num_beams": 1
+        },
+        "text": "Section 6 is summarised here."
+      },
+      "summary_state": "done",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "sec7:0",
+        "sec7:1",
+        "sec7:2",
+        "sec7:3",
+        "sec7:4",
+        "sec7:5"
+      ],
+      "citation_id": null,
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Section 7"
+      ],
+      "id": "sec7",
+      "importance": 0.0,
+      "label": "Section 7",
+      "label_source": "heading",
+      "summary": {
+        "citation_id": null,
+        "generated_at": "2026-09-20T12:00:00Z",
+        "infer_seconds": 0.42,
+        "input_chunk_ids": null,
+        "kind": "machine_summary",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "a4f8f3e",
+        "params": {
+          "input_tokens": 300,
+          "max_length": 60,
+          "min_length": 20,
+          "num_beams": 1
+        },
+        "text": "Section 7 is summarised here."
+      },
+      "summary_state": "done",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "sec8:0",
+        "sec8:1",
+        "sec8:2",
+        "sec8:3",
+        "sec8:4",
+        "sec8:5"
+      ],
+      "citation_id": null,
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Section 8"
+      ],
+      "id": "sec8",
+      "importance": 0.0,
+      "label": "Section 8",
+      "label_source": "heading",
+      "summary": null,
+      "summary_state": "done",
+      "withheld_reason": null
+    },
+    {
+      "chunk_ids": [
+        "sec9:0",
+        "sec9:1",
+        "sec9:2",
+        "sec9:3",
+        "sec9:4",
+        "sec9:5"
+      ],
+      "citation_id": null,
+      "dropped_lists": 0,
+      "dropped_non_prose": false,
+      "dropped_tables": 0,
+      "heading_path": [
+        "Section 9"
+      ],
+      "id": "sec9",
+      "importance": 0.0,
+      "label": "Section 9",
+      "label_source": "heading",
+      "summary": {
+        "citation_id": null,
+        "generated_at": "2026-09-20T12:00:00Z",
+        "infer_seconds": 0.42,
+        "input_chunk_ids": null,
+        "kind": "machine_summary",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "a4f8f3e",
+        "params": {
+          "input_tokens": 300,
+          "max_length": 60,
+          "min_length": 20,
+          "num_beams": 1
+        },
+        "text": "Section 9 is summarised here."
+      },
+      "summary_state": "done",
+      "withheld_reason": null
+    }
+  ],
+  "topic": {
+    "description": null,
+    "page_id": 42,
+    "title": "Overflow Topic",
+    "url": "https://en.wikipedia.org/wiki/Overflow_Topic"
+  }
+}

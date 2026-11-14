@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link
+      rel="preload"
+      href="/fonts/archivo-latin-wdth-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/newsreader-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/newsreader-latin-wght-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <meta name="theme-color" content="#EEECE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#17191C" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="description"
+      content="Cited context from Wikipedia for people and LLMs: pick a topic, get a dossier pinned to one revision, cut to your token budget, as Markdown, JSON or MCP."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="WKE" />
+    <meta property="og:title" content="WKE: Wikipedia Knowledge Explorer" />
+    <meta
+      property="og:description"
+      content="Cited context from Wikipedia for people and LLMs: pick a topic, get a dossier pinned to one revision, cut to your token budget, as Markdown, JSON or MCP."
+    />
+    <meta property="og:image" content="https://wke.piotrkrzysztof.dev/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="WKE: a Wikipedia topic as a cited dossier pinned to one revision"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WKE: Wikipedia Knowledge Explorer" />
+    <meta
+      name="twitter:description"
+      content="Cited context from Wikipedia for people and LLMs: pick a topic, get a dossier pinned to one revision, cut to your token budget, as Markdown, JSON or MCP."
+    />
+    <meta name="twitter:image" content="https://wke.piotrkrzysztof.dev/og.png" />
+    <meta
+      name="twitter:image:alt"
+      content="WKE: a Wikipedia topic as a cited dossier pinned to one revision"
+    />
+    <title>WKE: Wikipedia Knowledge Explorer</title>
+    <!-- This script is external because the production Content-Security-Policy
+         allows only script-src 'self'.
+         It loads before the stylesheet so the theme is set before the first
+         paint. -->
+    <script src="/theme-boot.js"></script>
+  </head>
+  <body>
+    <noscript>
+      <h1>WKE: Wikipedia Knowledge Explorer</h1>
+      <p>
+        Cited context from Wikipedia for people and LLMs: pick a topic, get a dossier pinned to one
+        revision, cut to your token budget, as Markdown, JSON or MCP. This app needs JavaScript; the
+        same data is at <a href="/llms.txt">/llms.txt</a>,
+        <a href="/sitemap.xml">/sitemap.xml</a> and <a href="/machines">/machines</a>.
+      </p>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

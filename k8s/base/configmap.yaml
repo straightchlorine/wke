@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wke-config
+data:
+  WIKIPEDIA_API_URL: https://en.wikipedia.org/w/api.php
+  WIKIPEDIA_REST_URL: https://en.wikipedia.org/w/rest.php/v1
+  WIKIMEDIA_EVENTSTREAMS_URL: https://stream.wikimedia.org/v2/stream/recentchange
+  WIKIFEEDS_URL: https://en.wikipedia.org/api/rest_v1/feed/featured
+  ML_URL: http://wke-ml:8000
+  REDIS_URL: redis://wke-redis:6379/0
+  PUBLIC_HOST: wke.piotrkrzysztof.dev
+  PUBLIC_SCHEME: https
+  WKE_CONTACT_EMAIL: https://github.com/straightchlorine/wke
+  POD_CIDR: 10.42.0.0/16
+  PIPELINE_VERSION: "0.1.0"
+  SUMMARY_SECTIONS: "3"
+  NUM_BEAMS: "1"
+  LOG_LEVEL: info
+  QUEUE_CAP: "20"
+  BACKGROUND_QUEUE_CAP: "50"
+  WM_BUDGET_PER_MINUTE: "150"

@@ -1,0 +1,242 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-web
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: wke-web
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          # Admits only the ingress controller pods, selected by their
+          # app.kubernetes.io/name label.
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: rke2-traefik
+      ports:
+        - protocol: TCP
+          port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-api
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: wke-api
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          # Admits only the ingress controller pods, selected by their
+          # app.kubernetes.io/name label.
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: rke2-traefik
+      ports:
+        - protocol: TCP
+          port: 8000
+---
+# Answers the HTTP-01 challenge for wke-tls: cert-manager schedules a
+# short-lived solver pod (labelled acme.cert-manager.io/http01-solver)
+# per challenge, reachable only from Traefik under default-deny.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-acme-solver
+spec:
+  podSelector:
+    matchLabels:
+      acme.cert-manager.io/http01-solver: "true"
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: rke2-traefik
+      ports:
+        - protocol: TCP
+          port: 8089
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-ml
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: wke-ml
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: wke-api
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: wke-trending
+      ports:
+        - protocol: TCP
+          port: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-redis
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: wke-redis
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: wke-api
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: wke-watcher
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: wke-trending
+      ports:
+        - protocol: TCP
+          port: 6379
+---
+# Shared by api/watcher/trending: DNS, and outbound HTTPS excluding RFC1918,
+# link-local and carrier-grade-NAT ranges (100.64.0.0/10, used by Tailscale)
+# so 0.0.0.0/0:443 cannot reach in-cluster or tailnet peers, only the public
+# internet.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-egress-dns-https
+spec:
+  podSelector:
+    matchExpressions:
+      - key: app.kubernetes.io/name
+        operator: In
+        values:
+          - wke-api
+          - wke-watcher
+          - wke-trending
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except:
+              - 10.0.0.0/8
+              - 172.16.0.0/12
+              - 192.168.0.0/16
+              - 169.254.0.0/16
+              - 100.64.0.0/10
+      ports:
+        - protocol: TCP
+          port: 443
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-egress-api
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: wke-api
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: wke-redis
+      ports:
+        - protocol: TCP
+          port: 6379
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: wke-ml
+      ports:
+        - protocol: TCP
+          port: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-egress-watcher
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: wke-watcher
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: wke-redis
+      ports:
+        - protocol: TCP
+          port: 6379
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-egress-trending
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: wke-trending
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: wke-redis
+      ports:
+        - protocol: TCP
+          port: 6379
+    - to:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: wke-ml
+      ports:
+        - protocol: TCP
+          port: 8000

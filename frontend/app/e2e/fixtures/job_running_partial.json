@@ -1,0 +1,21 @@
+{
+  "id": "ffdef313cfc8c3ef",
+  "page_id": 662,
+  "rev_id": 1384203118,
+  "title": "Apollo 11",
+  "status": "running",
+  "stage": "summarize",
+  "progress": {
+    "done": 7,
+    "total": 16
+  },
+  "queue_position": null,
+  "poll_after_ms": 1000,
+  "partial_available": true,
+  "result_url": "http://localhost:8010/api/v1/dossiers/662?budget=8000",
+  "error": null,
+  "created_at": "2026-11-12T08:25:19.478423Z",
+  "started_at": "2026-11-12T08:25:19.479427Z",
+  "updated_at": "2026-11-12T08:25:22.693560Z",
+  "finished_at": null
+}

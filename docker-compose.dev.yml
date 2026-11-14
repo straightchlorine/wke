@@ -1,26 +1,51 @@
 services:
-  frontend:
-    build: 
-      context: ./frontend
+  api:
+    extends:
+      file: docker-compose.yml
+      service: api
+    image: !reset null
+
+  watcher:
+    extends:
+      file: docker-compose.yml
+      service: watcher
+    image: !reset null
+
+  ml:
+    extends:
+      file: docker-compose.yml
+      service: ml
+    image: !reset null
+
+  redis:
+    extends:
+      file: docker-compose.yml
+      service: redis
+
+  web:
+    build:
+      context: ./frontend/app
       dockerfile: Dockerfile.dev
-      args:
-        REACT_APP_API_BASE_URL: http://localhost:8000
+    environment:
+      WKE_API_ORIGIN: http://api:8000
     ports:
-      - "8080:3000"
+      - "8080:5173"
     volumes:
-      - ./frontend/app:/app # Mount source code for hot-reloading
+      - ./frontend/app:/app
       - /app/node_modules
     depends_on:
-      - backend
+      api:
+        condition: service_healthy
     networks:
       - app-network
-
-  backend:
-    build: ./backend
-    ports:
-      - "8000:8000"
-    networks:
-      - app-network
+    restart: unless-stopped
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://127.0.0.1:5173/ || exit 1"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 15s
 
 networks:
   app-network:

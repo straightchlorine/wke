@@ -1,0 +1,3363 @@
+{
+ "articles": [
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Lizzie_Borden?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+     "revisions": "https://en.wikipedia.org/wiki/Lizzie_Borden?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Lizzie_Borden"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Lizzie_Borden?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Lizzie_Borden",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Lizzie_Borden",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Lizzie_Borden"
+    }
+   },
+   "description": "American woman acquitted of murder (1860\u20131927)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Lizzie Borden</span></span>",
+   "extract": "Lizzie Andrew Borden was an American woman who was tried and acquitted of the murders of her father and stepmother in Fall River, Massachusetts. No other individuals were charged with the murders.",
+   "extract_html": "<p><b>Lizzie Andrew Borden</b> was an American woman who was tried and acquitted of the murders of her father and stepmother in Fall River, Massachusetts. No other individuals were charged with the murders.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Lizzie Borden",
+   "originalimage": {
+    "height": 748,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/7/71/Lizzie_Borden_1890.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 640
+   },
+   "pageid": 214796,
+   "rank": 4,
+   "revision": "1381651443",
+   "thumbnail": {
+    "height": 386,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Lizzie_Borden_1890.jpg/330px-Lizzie_Borden_1890.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "f02b2360-cf2e-11f1-8464-00734aa79c6c",
+   "timestamp": "2026-10-23T22:13:13Z",
+   "title": "Lizzie_Borden",
+   "titles": {
+    "canonical": "Lizzie_Borden",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Lizzie Borden</span></span>",
+    "normalized": "Lizzie Borden"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 679382
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 586575
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 479143
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 402780
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 421359
+    }
+   ],
+   "views": 421359,
+   "wikibase_item": "Q240496"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Ted_Kaczynski?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Ted_Kaczynski",
+     "revisions": "https://en.wikipedia.org/wiki/Ted_Kaczynski?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Ted_Kaczynski"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Ted_Kaczynski?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Ted_Kaczynski",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Ted_Kaczynski",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Ted_Kaczynski"
+    }
+   },
+   "description": "American domestic terrorist (1942\u20132023)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Ted Kaczynski</span></span>",
+   "extract": "Theodore John Kaczynski, also known as the Unabomber, was an American mathematician and domestic terrorist. A mathematics prodigy, he abandoned his academic career to pursue a reclusive primitive lifestyle and lone wolf terrorism campaign.",
+   "extract_html": "<p><b>Theodore John Kaczynski</b>, also known as the <b>Unabomber</b>, was an American mathematician and domestic terrorist. A mathematics prodigy, he abandoned his academic career to pursue a reclusive primitive lifestyle and lone wolf terrorism campaign.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Ted Kaczynski",
+   "originalimage": {
+    "height": 1376,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/9/90/Ted_Kaczynski_2_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 1031
+   },
+   "pageid": 18621887,
+   "rank": 5,
+   "revision": "1381445671",
+   "thumbnail": {
+    "height": 440,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/Ted_Kaczynski_2_%28cropped%29.jpg/330px-Ted_Kaczynski_2_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "55e2b881-ce2c-11f1-8ffa-6a8d86c9a855",
+   "timestamp": "2026-10-22T15:22:04Z",
+   "title": "Ted_Kaczynski",
+   "titles": {
+    "canonical": "Ted_Kaczynski",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Ted Kaczynski</span></span>",
+    "normalized": "Ted Kaczynski"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 11922
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 14447
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 17655
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 169244
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 376033
+    }
+   ],
+   "views": 376033,
+   "wikibase_item": "Q222134"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Roblox?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Roblox",
+     "revisions": "https://en.wikipedia.org/wiki/Roblox?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Roblox"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Roblox?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Roblox",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Roblox",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Roblox"
+    }
+   },
+   "description": "Multiplayer game creation platform",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Roblox</span></span>",
+   "extract": "Roblox is an online game platform and game creation system developed by Roblox Corporation that allows users to program and play games created by themselves or other users. It was developed by David Baszucki and Erik Cassel in 2004, and released to the public in 2006. As of February 2025, the platform has reported an average of 85.3\u00a0million daily active users. According to the company, its monthly player base includes half of all American children under the age of 16.",
+   "extract_html": "<p><b>Roblox</b> is an online game platform and game creation system developed by Roblox Corporation that allows users to program and play games created by themselves or other users. It was developed by David Baszucki and Erik Cassel in 2004, and released to the public in 2006. As of February 2025, the platform has reported an average of 85.3<span class=\"nowrap\">\u00a0</span>million daily active users. According to the company, its monthly player base includes half of all American children under the age of 16.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Roblox",
+   "pageid": 18514671,
+   "rank": 6,
+   "revision": "1379420136",
+   "tid": "7a9f5ea1-c42e-11f1-a862-b30fb0d27e5d",
+   "timestamp": "2026-10-09T22:12:13Z",
+   "title": "Roblox",
+   "titles": {
+    "canonical": "Roblox",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Roblox</span></span>",
+    "normalized": "Roblox"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 8345
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 8278
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 9627
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 9985
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 370335
+    }
+   ],
+   "views": 370335,
+   "wikibase_item": "Q692989"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/India_at_the_2026_Asian_Games?action=edit",
+     "page": "https://en.wikipedia.org/wiki/India_at_the_2026_Asian_Games",
+     "revisions": "https://en.wikipedia.org/wiki/India_at_the_2026_Asian_Games?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:India_at_the_2026_Asian_Games"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/India_at_the_2026_Asian_Games?action=edit",
+     "page": "https://en.wikipedia.org/wiki/India_at_the_2026_Asian_Games",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/India_at_the_2026_Asian_Games",
+     "talk": "https://en.wikipedia.org/wiki/Talk:India_at_the_2026_Asian_Games"
+    }
+   },
+   "description": "",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">India at the 2026 Asian Games</span></span>",
+   "extract": "India competed at the 2026 Asian Games in Nagoya, Aichi Prefecture, Japan from 19 September to 4 October 2026. This was the country's 20th consecutive appearance in the competition, having made its debut at the inaugural 1951 Asian Games. The Indian contingent consisted of 495 athletes competing in 36 sports. Sports shooter Manu Bhaker and kabaddi player Pawan Sehrawat were the nation's flag-bearers during the opening ceremony. Shooter Neeru Dhanda was the flag-bearer for the closing ceremony. India finished fourth in the medal table with 85 medals including 21 gold, 27 silver, and 37 bronze medals. It was India's second highest medal tally at the Asian Games after the 2022 edition.",
+   "extract_html": "<p>India competed at the 2026 Asian Games in Nagoya, Aichi Prefecture, Japan from 19 September to 4 October 2026. This was the country's 20th consecutive appearance in the competition, having made its debut at the inaugural 1951 Asian Games. The Indian contingent consisted of 495 athletes competing in 36 sports. Sports shooter Manu Bhaker and kabaddi player Pawan Sehrawat were the nation's flag-bearers during the opening ceremony. Shooter Neeru Dhanda was the flag-bearer for the closing ceremony. India finished fourth in the medal table with 85 medals including 21 gold, 27 silver, and 37 bronze medals. It was India's second highest medal tally at the Asian Games after the 2022 edition.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "India at the 2026 Asian Games",
+   "originalimage": {
+    "height": 600,
+    "source": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/960px-Flag_of_India.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 900
+   },
+   "pageid": 82744644,
+   "rank": 7,
+   "revision": "1382204809",
+   "thumbnail": {
+    "height": 220,
+    "source": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/330px-Flag_of_India.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "745504f5-d1da-11f1-af75-556ecb907efa",
+   "timestamp": "2026-10-27T07:46:01Z",
+   "title": "India_at_the_2026_Asian_Games",
+   "titles": {
+    "canonical": "India_at_the_2026_Asian_Games",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">India at the 2026 Asian Games</span></span>",
+    "normalized": "India at the 2026 Asian Games"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 137927
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 145207
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 147487
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 183850
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 260257
+    }
+   ],
+   "views": 260257,
+   "wikibase_item": "Q138751099"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/2026_Asian_Games_medal_table?action=edit",
+     "page": "https://en.wikipedia.org/wiki/2026_Asian_Games_medal_table",
+     "revisions": "https://en.wikipedia.org/wiki/2026_Asian_Games_medal_table?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:2026_Asian_Games_medal_table"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/2026_Asian_Games_medal_table?action=edit",
+     "page": "https://en.wikipedia.org/wiki/2026_Asian_Games_medal_table",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/2026_Asian_Games_medal_table",
+     "talk": "https://en.wikipedia.org/wiki/Talk:2026_Asian_Games_medal_table"
+    }
+   },
+   "description": "",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">2026 Asian Games medal table</span></span>",
+   "extract": "The 2026 Asian Games, officially known as the XX Asian Games or Aichi\u2013Nagoya 2026, was the largest sporting event in Asia governed by Olympic Council of Asia (OCA). They were held from 19 September to 4 October 2026 in Aichi Prefecture and Nagoya, Japan, with 469 events in 43 sports and disciplines featured in the Games.",
+   "extract_html": "<p>The 2026 Asian Games, officially known as the <b>XX Asian Games</b> or <b>Aichi\u2013Nagoya 2026</b>, was the largest sporting event in Asia governed by Olympic Council of Asia (OCA). They were held from 19 September to 4 October 2026 in Aichi Prefecture and Nagoya, Japan, with 469 events in 43 sports and disciplines featured in the Games.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "2026 Asian Games medal table",
+   "pageid": 82893793,
+   "rank": 8,
+   "revision": "1381823306",
+   "tid": "aa458c8e-d00e-11f1-84a7-c980fdc46d24",
+   "timestamp": "2026-10-25T00:54:43Z",
+   "title": "2026_Asian_Games_medal_table",
+   "titles": {
+    "canonical": "2026_Asian_Games_medal_table",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">2026 Asian Games medal table</span></span>",
+    "normalized": "2026 Asian Games medal table"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 121924
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 117681
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 152884
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 142386
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 259696
+    }
+   ],
+   "views": 259696,
+   "wikibase_item": "Q141508709"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/2026_Asian_Games?action=edit",
+     "page": "https://en.wikipedia.org/wiki/2026_Asian_Games",
+     "revisions": "https://en.wikipedia.org/wiki/2026_Asian_Games?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:2026_Asian_Games"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/2026_Asian_Games?action=edit",
+     "page": "https://en.wikipedia.org/wiki/2026_Asian_Games",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/2026_Asian_Games",
+     "talk": "https://en.wikipedia.org/wiki/Talk:2026_Asian_Games"
+    }
+   },
+   "description": "Multi-sport event in Aichi and Nagoya, Japan",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">2026 Asian Games</span></span>",
+   "extract": "The 2026 Asian Games , officially the XX Asian Games (\u7b2c\u4e8c\u5341\u56de\u30a2\u30b8\u30a2\u7af6\u6280\u5927\u4f1a) and also known as Aichi\u2013Nagoya 2026 (\u611b\u77e5\u30fb\u540d\u53e4\u5c4b2026), was a multi-sport event held in Aichi Prefecture in Japan from 19 September to 4 October 2026 though several competitions started from 10 September. Nagoya, the capital city of Aichi Prefecture, is the third Japanese city to host the Asian Games, after Tokyo in 1958 and Hiroshima in 1994. Though Aichi Prefecture was the primary host, the competitions took place in three other prefectures and Tokyo Metropolis as well. The event returned to its traditional four-year cycle, after the postponement of 2022 edition to 2023 due to the COVID-19 pandemic. The Games marked the 75th anniversary of the 1951 Asian Games held in New Delhi, India.",
+   "extract_html": "<p>The <b>2026 Asian Games</b><span style=\"font-weight:normal\"> </span>, officially the <b>XX Asian Games</b><span style=\"font-weight:normal\"> (\u7b2c\u4e8c\u5341\u56de\u30a2\u30b8\u30a2\u7af6\u6280\u5927\u4f1a)</span> and also known as <b>Aichi\u2013Nagoya 2026</b><span style=\"font-weight:normal\"> (\u611b\u77e5\u30fb\u540d\u53e4\u5c4b2026)</span>, was a multi-sport event held in Aichi Prefecture in Japan from 19 September to 4 October 2026 though several competitions started from 10 September. Nagoya, the capital city of Aichi Prefecture, is the third Japanese city to host the Asian Games, after Tokyo in 1958 and Hiroshima in 1994. Though Aichi Prefecture was the primary host, the competitions took place in three other prefectures and Tokyo Metropolis as well. The event returned to its traditional four-year cycle, after the postponement of 2022 edition to 2023 due to the COVID-19 pandemic. The Games marked the 75th anniversary of the 1951 Asian Games held in New Delhi, India.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "2026 Asian Games",
+   "originalimage": {
+    "height": 256,
+    "source": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/4d/2026_Asian_Games_logo.svg/250px-2026_Asian_Games_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 193
+   },
+   "pageid": 51790406,
+   "rank": 9,
+   "revision": "1382011954",
+   "thumbnail": {
+    "height": 438,
+    "source": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/4d/2026_Asian_Games_logo.svg/330px-2026_Asian_Games_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "31f8cc31-d0db-11f1-a3f7-5b5a45bdbe67",
+   "timestamp": "2026-10-26T01:18:48Z",
+   "title": "2026_Asian_Games",
+   "titles": {
+    "canonical": "2026_Asian_Games",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">2026 Asian Games</span></span>",
+    "normalized": "2026 Asian Games"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 188420
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 163446
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 161196
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 180326
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 229525
+    }
+   ],
+   "views": 229525,
+   "wikibase_item": "Q27016751"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/The_Paradise_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/The_Paradise_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/The_Paradise_(film)?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:The_Paradise_(film)"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/The_Paradise_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/The_Paradise_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/The_Paradise_(film)",
+     "talk": "https://en.wikipedia.org/wiki/Talk:The_Paradise_(film)"
+    }
+   },
+   "description": "2026 Indian film by Srikanth Odela",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>The Paradise</i> (film)",
+   "extract": "The Paradise is a 2026 Indian Telugu-language action film directed by Srikanth Odela and produced by Sudhakar Cherukuri under SLV Cinemas. The film stars Nani, Mohan Babu, Kayadu Lohar, Sonali Kulkarni and Raghav Juyal in the lead roles. In the film, Nani plays the leader of a struggling tribe in 1980s Secunderabad as they battle discrimination and fight for citizenship, challenging systemic oppression.",
+   "extract_html": "<p><i><b>The Paradise</b></i> is a 2026 Indian Telugu-language action film directed by Srikanth Odela and produced by Sudhakar Cherukuri under SLV Cinemas. The film stars Nani, Mohan Babu, Kayadu Lohar, Sonali Kulkarni and Raghav Juyal in the lead roles. In the film, Nani plays the leader of a struggling tribe in 1980s Secunderabad as they battle discrimination and fight for citizenship, challenging systemic oppression.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "The Paradise (film)",
+   "originalimage": {
+    "height": 387,
+    "source": "https://upload.wikimedia.org/wikipedia/en/b/bb/The_Paradise_%282026_Indian_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 258
+   },
+   "pageid": 80682580,
+   "rank": 10,
+   "revision": "1382075306",
+   "thumbnail": {
+    "height": 387,
+    "source": "https://upload.wikimedia.org/wikipedia/en/b/bb/The_Paradise_%282026_Indian_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 258
+   },
+   "tid": "d6aaf680-d13b-11f1-93e7-b143694ffa97",
+   "timestamp": "2026-10-26T12:50:36Z",
+   "title": "The_Paradise_(film)",
+   "titles": {
+    "canonical": "The_Paradise_(film)",
+    "display": "<i>The Paradise</i> (film)",
+    "normalized": "The Paradise (film)"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-23Z",
+     "views": 12617
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 273229
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 260271
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 210483
+    }
+   ],
+   "views": 210483,
+   "wikibase_item": "Q133172723"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Justin_Verlander?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Justin_Verlander",
+     "revisions": "https://en.wikipedia.org/wiki/Justin_Verlander?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Justin_Verlander"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Justin_Verlander?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Justin_Verlander",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Justin_Verlander",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Justin_Verlander"
+    }
+   },
+   "description": "American baseball player (born 1983)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Justin Verlander</span></span>",
+   "extract": "Justin Brooks Verlander is an American former professional baseball pitcher. He played 21 seasons in Major League Baseball (MLB) for the Detroit Tigers, Houston Astros, New York Mets, and San Francisco Giants from 2005 to 2026. A three-time Cy Young Award winner, an American League Most Valuable Player Award recipient, and a two-time World Series champion, Verlander is considered one of the greatest pitchers in baseball history.",
+   "extract_html": "<p><b>Justin Brooks Verlander</b> is an American former professional baseball pitcher. He played 21 seasons in Major League Baseball (MLB) for the Detroit Tigers, Houston Astros, New York Mets, and San Francisco Giants from 2005 to 2026. A three-time Cy Young Award winner, an American League Most Valuable Player Award recipient, and a two-time World Series champion, Verlander is considered one of the greatest pitchers in baseball history.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Justin Verlander",
+   "originalimage": {
+    "height": 1958,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Justin_Verlander_in_2016.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 1631
+   },
+   "pageid": 3616702,
+   "rank": 11,
+   "revision": "1381228608",
+   "thumbnail": {
+    "height": 396,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Justin_Verlander_in_2016.jpg/330px-Justin_Verlander_in_2016.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "4cd8d59d-ccc8-11f1-a0b0-29bdd1ff7b3b",
+   "timestamp": "2026-10-20T20:53:28Z",
+   "title": "Justin_Verlander",
+   "titles": {
+    "canonical": "Justin_Verlander",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Justin Verlander</span></span>",
+    "normalized": "Justin Verlander"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 3171
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 8495
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 6286
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 10183
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 204136
+    }
+   ],
+   "views": 204136,
+   "wikibase_item": "Q981788"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Primetime_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Primetime_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/Primetime_(film)?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Primetime_(film)"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Primetime_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Primetime_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Primetime_(film)",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Primetime_(film)"
+    }
+   },
+   "description": "2026 film by Lance Oppenheim",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>Primetime</i> (film)",
+   "extract": "Primetime is a 2026 American psychological thriller film written by Ajon Singh and directed by Lance Oppenheim. It dramatizes the production of the reality television series To Catch a Predator (2004\u20132007); Robert Pattinson portrays its host Chris Hansen, an NBC journalist who works with the vigilante group Perverted-Justice to catch child predators in sting operations. Merritt Wever, Skyler Gisondo, and Phoebe Bridgers appear in supporting roles.",
+   "extract_html": "<p><i><b>Primetime</b></i> is a 2026 American psychological thriller film written by Ajon Singh and directed by Lance Oppenheim. It dramatizes the production of the reality television series <i>To Catch a Predator</i> (2004\u20132007); Robert Pattinson portrays its host Chris Hansen, an NBC journalist who works with the vigilante group Perverted-Justice to catch child predators in sting operations. Merritt Wever, Skyler Gisondo, and Phoebe Bridgers appear in supporting roles.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Primetime (film)",
+   "originalimage": {
+    "height": 384,
+    "source": "https://upload.wikimedia.org/wikipedia/en/f/f2/Primetime_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 259
+   },
+   "pageid": 79450412,
+   "rank": 13,
+   "revision": "1382765215",
+   "thumbnail": {
+    "height": 384,
+    "source": "https://upload.wikimedia.org/wikipedia/en/f/f2/Primetime_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 259
+   },
+   "tid": "08fa7580-d41c-11f1-8d21-8679d3995e27",
+   "timestamp": "2026-10-30T04:40:30Z",
+   "title": "Primetime_(film)",
+   "titles": {
+    "canonical": "Primetime_(film)",
+    "display": "<i>Primetime</i> (film)",
+    "normalized": "Primetime (film)"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 40350
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 53413
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 59076
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 134102
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 159635
+    }
+   ],
+   "views": 159635,
+   "wikibase_item": "Q133273688"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Christa_Pike?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Christa_Pike",
+     "revisions": "https://en.wikipedia.org/wiki/Christa_Pike?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Christa_Pike"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Christa_Pike?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Christa_Pike",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Christa_Pike",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Christa_Pike"
+    }
+   },
+   "description": "American murderer on death row (born 1976)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Christa Pike</span></span>",
+   "extract": "Christa Gail Pike is a convicted American murderer on death row in Tennessee. In 1995, when she was 18, Pike and her boyfriend lured their 19-year-old classmate Colleen Slemmer into a wooded area in Knoxville where they tortured and killed her. Slemmer was beaten, slashed, and had a pentagram carved in her chest before Pike killed her by crushing her skull. Pike was arrested within two days and sentenced to death in 1996 at the age of 20, making her one of the youngest women to receive a death sentence in the United States during the post-Furman period.",
+   "extract_html": "<p><b>Christa Gail Pike</b> is a convicted American murderer on death row in Tennessee. In 1995, when she was 18, Pike and her boyfriend lured their 19-year-old classmate Colleen Slemmer into a wooded area in Knoxville where they tortured and killed her. Slemmer was beaten, slashed, and had a pentagram carved in her chest before Pike killed her by crushing her skull. Pike was arrested within two days and sentenced to death in 1996 at the age of 20, making her one of the youngest women to receive a death sentence in the United States during the post-<i>Furman</i> period.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Christa Pike",
+   "originalimage": {
+    "height": 366,
+    "source": "https://upload.wikimedia.org/wikipedia/en/1/16/Christa_Pike_Mugshot.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 274
+   },
+   "pageid": 15838471,
+   "rank": 14,
+   "revision": "1382821005",
+   "thumbnail": {
+    "height": 366,
+    "source": "https://upload.wikimedia.org/wikipedia/en/1/16/Christa_Pike_Mugshot.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 274
+   },
+   "tid": "20f7e6f8-d468-11f1-8695-f8de544de52a",
+   "timestamp": "2026-10-30T13:45:12Z",
+   "title": "Christa_Pike",
+   "titles": {
+    "canonical": "Christa_Pike",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Christa Pike</span></span>",
+    "normalized": "Christa Pike"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 55927
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 77584
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 70756
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 85070
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 131276
+    }
+   ],
+   "views": 131276,
+   "wikibase_item": "Q5109030"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Deaths_in_2026?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Deaths_in_2026",
+     "revisions": "https://en.wikipedia.org/wiki/Deaths_in_2026?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Deaths_in_2026"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Deaths_in_2026?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Deaths_in_2026",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Deaths_in_2026",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Deaths_in_2026"
+    }
+   },
+   "description": "",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Deaths in 2026</span></span>",
+   "extract": "The following notable deaths occurred in 2026. Names are reported under the date of death, in alphabetical order. A typical entry reports information in the following sequence:Name, age, country of citizenship at birth, subsequent nationality, what subject was noted for, cause of death, and a reference.",
+   "extract_html": "<p>The following notable deaths occurred in 2026. Names are reported under the date of death, in alphabetical order. A typical entry reports information in the following sequence:</p><ul><li>Name, age, country of citizenship at birth, subsequent nationality, what subject was noted for, cause of death, and a reference.</li></ul>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Deaths in 2026",
+   "pageid": 81858235,
+   "rank": 15,
+   "revision": "1382829734",
+   "tid": "083ffd1f-d471-11f1-9721-3ea4481d7ba4",
+   "timestamp": "2026-10-30T14:48:56Z",
+   "title": "Deaths_in_2026",
+   "titles": {
+    "canonical": "Deaths_in_2026",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Deaths in 2026</span></span>",
+    "normalized": "Deaths in 2026"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 137453
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 139569
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 137396
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 133091
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 124353
+    }
+   ],
+   "views": 124353,
+   "wikibase_item": "Q134185145"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Aileen_Wuornos?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Aileen_Wuornos",
+     "revisions": "https://en.wikipedia.org/wiki/Aileen_Wuornos?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Aileen_Wuornos"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Aileen_Wuornos?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Aileen_Wuornos",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Aileen_Wuornos",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Aileen_Wuornos"
+    }
+   },
+   "description": "American serial killer (1956\u20132002)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Aileen Wuornos</span></span>",
+   "extract": "Aileen Carol Wuornos was an American serial killer. Between 1989 and 1990, while engaging in street prostitution along highways in Florida, Wuornos shot, killed, and robbed seven of her male clients. She initially claimed that her victims had either raped or attempted to rape her, and that the homicides were committed in self-defense, but later abandoned this defense. Wuornos was sentenced to death for six of the murders and was executed in 2002 after spending more than ten years on Florida's death row.",
+   "extract_html": "<p><b>Aileen Carol Wuornos</b> was an American serial killer. Between 1989 and 1990, while engaging in street prostitution along highways in Florida, Wuornos shot, killed, and robbed seven of her male clients. She initially claimed that her victims had either raped or attempted to rape her, and that the homicides were committed in self-defense, but later abandoned this defense. Wuornos was sentenced to death for six of the murders and was executed in 2002 after spending more than ten years on Florida's death row.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Aileen Wuornos",
+   "originalimage": {
+    "height": 322,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Aileen_Wuornos_%284x5_cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 265
+   },
+   "pageid": 214928,
+   "rank": 16,
+   "revision": "1382648941",
+   "thumbnail": {
+    "height": 322,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Aileen_Wuornos_%284x5_cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 265
+   },
+   "tid": "96f1447c-d3b9-11f1-b93c-781211bf1fbb",
+   "timestamp": "2026-10-29T16:55:48Z",
+   "title": "Aileen_Wuornos",
+   "titles": {
+    "canonical": "Aileen_Wuornos",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Aileen Wuornos</span></span>",
+    "normalized": "Aileen Wuornos"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 176132
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 160292
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 138738
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 121979
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 119893
+    }
+   ],
+   "views": 119893,
+   "wikibase_item": "Q264849"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Monster%3A_The_Lizzie_Borden_Story?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Monster%3A_The_Lizzie_Borden_Story",
+     "revisions": "https://en.wikipedia.org/wiki/Monster%3A_The_Lizzie_Borden_Story?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Monster%3A_The_Lizzie_Borden_Story"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Monster%3A_The_Lizzie_Borden_Story?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Monster%3A_The_Lizzie_Borden_Story",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Monster%3A_The_Lizzie_Borden_Story",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Monster%3A_The_Lizzie_Borden_Story"
+    }
+   },
+   "description": "Season of television series",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>Monster: The Lizzie Borden Story</i>",
+   "extract": "Monster: The Lizzie Borden Story is the fourth season of the American crime drama television series Monster, created by Ian Brennan for Netflix. The season centers on murder suspect Lizzie Borden who was tried and acquitted of the 1892 axe murders of her father and stepmother in Fall River, Massachusetts. It also stars Vicky Krieps, Charlie Hunnam, and Rebecca Hall, alongside Jessica Barden, Joey Pollari, Billie Lourd, and Sarah Paulson in recurring roles.",
+   "extract_html": "<p><i><b>Monster: The Lizzie Borden Story</b></i> is the fourth season of the American crime drama television series <span><i>Monster</i></span>, created by Ian Brennan for Netflix. The season centers on murder suspect Lizzie Borden who was tried and acquitted of the 1892 axe murders of her father and stepmother in Fall River, Massachusetts. It also stars Vicky Krieps, Charlie Hunnam, and Rebecca Hall, alongside Jessica Barden, Joey Pollari, Billie Lourd, and Sarah Paulson in recurring roles.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Monster: The Lizzie Borden Story",
+   "originalimage": {
+    "height": 384,
+    "source": "https://upload.wikimedia.org/wikipedia/en/0/07/Monster_The_Lizzie_Borden_Story_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 259
+   },
+   "pageid": 83866394,
+   "rank": 17,
+   "revision": "1380130796",
+   "thumbnail": {
+    "height": 384,
+    "source": "https://upload.wikimedia.org/wikipedia/en/0/07/Monster_The_Lizzie_Borden_Story_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 259
+   },
+   "tid": "03393903-c762-11f1-9a37-193f707cdae8",
+   "timestamp": "2026-10-13T23:58:40Z",
+   "title": "Monster:_The_Lizzie_Borden_Story",
+   "titles": {
+    "canonical": "Monster:_The_Lizzie_Borden_Story",
+    "display": "<i>Monster: The Lizzie Borden Story</i>",
+    "normalized": "Monster: The Lizzie Borden Story"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 170793
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 151075
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 128680
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 113660
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 118794
+    }
+   ],
+   "views": 118794,
+   "wikibase_item": "Q135745692"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Resident_Evil_(2026_film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Resident_Evil_(2026_film)",
+     "revisions": "https://en.wikipedia.org/wiki/Resident_Evil_(2026_film)?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Resident_Evil_(2026_film)"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Resident_Evil_(2026_film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Resident_Evil_(2026_film)",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Resident_Evil_(2026_film)",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Resident_Evil_(2026_film)"
+    }
+   },
+   "description": "Film by Zach Cregger",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>Resident Evil</i> (2026 film)",
+   "extract": "Resident Evil is a 2026 horror film directed by Zach Cregger and written by Cregger and Shay Hatten. It is the eighth live-action film of the Resident Evil film series, based on the video game franchise of the same name by Capcom. Austin Abrams stars as Bryan Hodukavich, a medical courier who must fight through an outbreak of infected monsters in Raccoon City. Zach Cherry, Kali Reis, and Paul Walter Hauser feature in supporting roles.",
+   "extract_html": "<p><i><b>Resident Evil</b></i> is a 2026 horror film directed by Zach Cregger and written by Cregger and Shay Hatten. It is the eighth live-action film of the <span><i>Resident Evil</i> film series</span>, based on the video game franchise of the same name by Capcom. Austin Abrams stars as Bryan Hodukavich, a medical courier who must fight through an outbreak of infected monsters in Raccoon City. Zach Cherry, Kali Reis, and Paul Walter Hauser feature in supporting roles.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Resident Evil (2026 film)",
+   "originalimage": {
+    "height": 385,
+    "source": "https://upload.wikimedia.org/wikipedia/en/3/3c/Resident_Evil_2026_film_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 260
+   },
+   "pageid": 78983091,
+   "rank": 18,
+   "revision": "1382814449",
+   "thumbnail": {
+    "height": 385,
+    "source": "https://upload.wikimedia.org/wikipedia/en/3/3c/Resident_Evil_2026_film_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 260
+   },
+   "tid": "16861e9c-d461-11f1-b070-caa8df368b04",
+   "timestamp": "2026-10-30T12:54:48Z",
+   "title": "Resident_Evil_(2026_film)",
+   "titles": {
+    "canonical": "Resident_Evil_(2026_film)",
+    "display": "<i>Resident Evil</i> (2026 film)",
+    "normalized": "Resident Evil (2026 film)"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 166913
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 141482
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 110701
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 101848
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 113703
+    }
+   ],
+   "views": 113703,
+   "wikibase_item": "Q136565785"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Ansel_Adams?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Ansel_Adams",
+     "revisions": "https://en.wikipedia.org/wiki/Ansel_Adams?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Ansel_Adams"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Ansel_Adams?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Ansel_Adams",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Ansel_Adams",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Ansel_Adams"
+    }
+   },
+   "description": "American photographer and environmentalist (1902\u20131984)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Ansel Adams</span></span>",
+   "extract": "Ansel Easton Adams was an American landscape photographer and environmentalist known for his black-and-white images of the American West. He helped found Group f/64, an association of photographers advocating \"pure\" photography which favored sharp focus and the use of the full tonal range of a photograph. He and Fred Archer developed a system of image-making called the Zone System, a method of achieving a desired final print through a technical understanding of how the tonal range of an image is the result of choices made in exposure, negative development, and printing.",
+   "extract_html": "<p><b>Ansel Easton Adams</b> was an American landscape photographer and environmentalist known for his black-and-white images of the American West. He helped found Group f/64, an association of photographers advocating \"pure\" photography which favored sharp focus and the use of the full tonal range of a photograph. He and Fred Archer developed a system of image-making called the Zone System, a method of achieving a desired final print through a technical understanding of how the tonal range of an image is the result of choices made in exposure, negative development, and printing.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Ansel Adams",
+   "originalimage": {
+    "height": 3799,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/0/05/Ansel_Adams_and_camera.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 3003
+   },
+   "pageid": 84317,
+   "rank": 19,
+   "revision": "1382715158",
+   "thumbnail": {
+    "height": 417,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Ansel_Adams_and_camera.jpg/330px-Ansel_Adams_and_camera.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "ec9214c6-d3ea-11f1-b674-a2e96e585f81",
+   "timestamp": "2026-10-29T22:48:57Z",
+   "title": "Ansel_Adams",
+   "titles": {
+    "canonical": "Ansel_Adams",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Ansel Adams</span></span>",
+    "normalized": "Ansel Adams"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 80256
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 74839
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 71265
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 79056
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 108140
+    }
+   ],
+   "views": 108140,
+   "wikibase_item": "Q60809"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Kate_Upton?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Kate_Upton",
+     "revisions": "https://en.wikipedia.org/wiki/Kate_Upton?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Kate_Upton"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Kate_Upton?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Kate_Upton",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Kate_Upton",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Kate_Upton"
+    }
+   },
+   "description": "American model and actress (born 1992)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Kate Upton</span></span>",
+   "extract": "Katherine Elizabeth Upton is an American model and actress. She first appeared in the Sports Illustrated Swimsuit Issue in 2011, and was the cover model for the 2012, 2013, and 2017 issues. In addition, she was the subject of the 100th-anniversary Vanity Fair cover. Upton has also appeared in the films Tower Heist (2011), The Other Woman (2014), and The Layover (2017).",
+   "extract_html": "<p><b>Katherine Elizabeth Upton</b> is an American model and actress. She first appeared in the <span><i>Sports Illustrated</i> Swimsuit Issue</span> in 2011, and was the cover model for the 2012, 2013, and 2017 issues. In addition, she was the subject of the 100th-anniversary <i>Vanity Fair</i> cover. Upton has also appeared in the films <i>Tower Heist</i> (2011), <i>The Other Woman</i> (2014), and <i>The Layover</i> (2017).</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Kate Upton",
+   "originalimage": {
+    "height": 820,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Kate_Upton_in_2021.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 685
+   },
+   "pageid": 31008752,
+   "rank": 20,
+   "revision": "1378670232",
+   "thumbnail": {
+    "height": 395,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Kate_Upton_in_2021.jpg/330px-Kate_Upton_in_2021.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "5bbf6518-c0d6-11f1-ba7e-747b2ec440ff",
+   "timestamp": "2026-10-05T16:03:52Z",
+   "title": "Kate_Upton",
+   "titles": {
+    "canonical": "Kate_Upton",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Kate Upton</span></span>",
+    "normalized": "Kate Upton"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 1772
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 4744
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 4616
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 4983
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 101512
+    }
+   ],
+   "views": 101512,
+   "wikibase_item": "Q231536"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Arch_Manning?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Arch_Manning",
+     "revisions": "https://en.wikipedia.org/wiki/Arch_Manning?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Arch_Manning"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Arch_Manning?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Arch_Manning",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Arch_Manning",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Arch_Manning"
+    }
+   },
+   "description": "American football player (born 2004)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Arch Manning</span></span>",
+   "extract": "Archibald Charles Manning is an American college football quarterback for the Texas Longhorns. He is a member of the Manning family of football players.",
+   "extract_html": "<p><b>Archibald Charles Manning</b> is an American college football quarterback for the Texas Longhorns. He is a member of the Manning family of football players.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Arch Manning",
+   "originalimage": {
+    "height": 1080,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/3/33/2024-09-14_Arch_Manning_Texas_Longhorn.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 691
+   },
+   "pageid": 65490215,
+   "rank": 21,
+   "revision": "1382472634",
+   "thumbnail": {
+    "height": 516,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/2024-09-14_Arch_Manning_Texas_Longhorn.jpg/330px-2024-09-14_Arch_Manning_Texas_Longhorn.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "031c6aed-d31a-11f1-9e31-05056d16c403",
+   "timestamp": "2026-10-28T21:53:30Z",
+   "title": "Arch_Manning",
+   "titles": {
+    "canonical": "Arch_Manning",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Arch Manning</span></span>",
+    "normalized": "Arch Manning"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 7306
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 6858
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 5823
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 6343
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 94955
+    }
+   ],
+   "views": 94955,
+   "wikibase_item": "Q99925317"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Chris_Hansen?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Chris_Hansen",
+     "revisions": "https://en.wikipedia.org/wiki/Chris_Hansen?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Chris_Hansen"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Chris_Hansen?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Chris_Hansen",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Chris_Hansen",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Chris_Hansen"
+    }
+   },
+   "description": "American television journalist (born 1959)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Chris Hansen</span></span>",
+   "extract": "Christopher Edward Hansen is an American television presenter, journalist, and YouTube personality. During his tenure as a correspondent for Dateline NBC, he hosted the program's segment To Catch a Predator (2004\u20132007), in which online predators would be caught using sting operations.",
+   "extract_html": "<p><b>Christopher Edward Hansen</b> is an American television presenter, journalist, and YouTube personality. During his tenure as a correspondent for <i>Dateline NBC</i>, he hosted the program's segment <i>To Catch a Predator</i> (2004\u20132007), in which online predators would be caught using sting operations.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Chris Hansen",
+   "originalimage": {
+    "height": 1500,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Chris_Hansen.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 1000
+   },
+   "pageid": 5138199,
+   "rank": 22,
+   "revision": "1382535018",
+   "thumbnail": {
+    "height": 495,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Chris_Hansen.jpg/330px-Chris_Hansen.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "06c8e483-d34c-11f1-807d-570bdfb0eb74",
+   "timestamp": "2026-10-29T03:51:31Z",
+   "title": "Chris_Hansen",
+   "titles": {
+    "canonical": "Chris_Hansen",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Chris Hansen</span></span>",
+    "normalized": "Chris Hansen"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 21423
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 34892
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 29801
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 72832
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 93167
+    }
+   ],
+   "views": 93167,
+   "wikibase_item": "Q562448"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Delta_Goodrem?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Delta_Goodrem",
+     "revisions": "https://en.wikipedia.org/wiki/Delta_Goodrem?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Delta_Goodrem"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Delta_Goodrem?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Delta_Goodrem",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Delta_Goodrem",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Delta_Goodrem"
+    }
+   },
+   "description": "Australian singer-songwriter (born 1984)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Delta Goodrem</span></span>",
+   "extract": "Delta Lea Goodrem AM is an Australian singer, songwriter and actress. She has a total of nine number-one singles and 17 top-ten hits on the ARIA Singles Chart. She has sold over eight million albums globally and overall has won three World Music Awards, 12 ARIA Music Awards, an MTV Video Music Award and several other awards.",
+   "extract_html": "<p><b>Delta Lea Goodrem</b> AM is an Australian singer, songwriter and actress. She has a total of nine number-one singles and 17 top-ten hits on the ARIA Singles Chart. She has sold over eight million albums globally and overall has won three World Music Awards, 12 ARIA Music Awards, an MTV Video Music Award and several other awards.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Delta Goodrem",
+   "originalimage": {
+    "height": 1363,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/9/90/ESC_2026_Delta_Goodrem_014_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 910
+   },
+   "pageid": 308193,
+   "rank": 23,
+   "revision": "1382134718",
+   "thumbnail": {
+    "height": 494,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/ESC_2026_Delta_Goodrem_014_%28cropped%29.jpg/330px-ESC_2026_Delta_Goodrem_014_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "6160166b-d17d-11f1-8fdb-36856f4e8884",
+   "timestamp": "2026-10-26T20:39:46Z",
+   "title": "Delta_Goodrem",
+   "titles": {
+    "canonical": "Delta_Goodrem",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Delta Goodrem</span></span>",
+    "normalized": "Delta Goodrem"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 3612
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 2693
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 2024
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 2115
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 90972
+    }
+   ],
+   "views": 90972,
+   "wikibase_item": "Q228818"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Nigella_Lawson?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Nigella_Lawson",
+     "revisions": "https://en.wikipedia.org/wiki/Nigella_Lawson?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Nigella_Lawson"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Nigella_Lawson?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Nigella_Lawson",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Nigella_Lawson",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Nigella_Lawson"
+    }
+   },
+   "description": "English food writer and TV cook (born 1960)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Nigella Lawson</span></span>",
+   "extract": "Nigella Lawson is a food writer, television cook, and former journalist. Known for her relaxed and indulgent approach to cooking and food writing, she has sold more than 12 million cookery books worldwide to date, and has appeared on numerous television programmes in the United Kingdom and internationally.",
+   "extract_html": "<p><b>Nigella Lawson</b> is a food writer, television cook, and former journalist. Known for her relaxed and indulgent approach to cooking and food writing, she has sold more than 12 million cookery books worldwide to date, and has appeared on numerous television programmes in the United Kingdom and internationally.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Nigella Lawson",
+   "originalimage": {
+    "height": 920,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Nigella_Lawson_4_in_2020.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 675
+   },
+   "pageid": 153232,
+   "rank": 24,
+   "revision": "1382320665",
+   "thumbnail": {
+    "height": 450,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Nigella_Lawson_4_in_2020.jpg/330px-Nigella_Lawson_4_in_2020.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "c4c772ca-d269-11f1-a758-de405d164af3",
+   "timestamp": "2026-10-28T00:51:54Z",
+   "title": "Nigella_Lawson",
+   "titles": {
+    "canonical": "Nigella_Lawson",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Nigella Lawson</span></span>",
+    "normalized": "Nigella Lawson"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 47744
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 49640
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 23728
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 40064
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 90964
+    }
+   ],
+   "views": 90964,
+   "wikibase_item": "Q264724"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Dorothy_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Dorothy_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/Dorothy_(film)?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Dorothy_(film)"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Dorothy_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Dorothy_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Dorothy_(film)",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Dorothy_(film)"
+    }
+   },
+   "description": "2026 Indian film by Karthik Subbaraj",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>Dorothy</i> (film)",
+   "extract": "Dorothy is a 2026 Indian Tamil-language crime drama film written and directed by Karthik Subbaraj and produced by Guneet Monga Kapoor, Achin Jain and Jyoti Deshpande. The film stars Sananth, Rishikanth, and Keerthy Suresh in the lead roles. It follows two inseparable friends whose lives are transformed by the arrival of the title character (Keerthy).",
+   "extract_html": "<p><i><b>Dorothy</b></i> is a 2026 Indian Tamil-language crime drama film written and directed by Karthik Subbaraj and produced by Guneet Monga Kapoor, Achin Jain and Jyoti Deshpande. The film stars Sananth, Rishikanth, and Keerthy Suresh in the lead roles. It follows two inseparable friends whose lives are transformed by the arrival of the title character (Keerthy).</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Dorothy (film)",
+   "originalimage": {
+    "height": 330,
+    "source": "https://upload.wikimedia.org/wikipedia/en/2/22/Dorothy_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 220
+   },
+   "pageid": 83869521,
+   "rank": 25,
+   "revision": "1382730400",
+   "thumbnail": {
+    "height": 330,
+    "source": "https://upload.wikimedia.org/wikipedia/en/2/22/Dorothy_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 220
+   },
+   "tid": "549a26d2-d3f6-11f1-9d1d-bf09a93cc151",
+   "timestamp": "2026-10-30T00:10:36Z",
+   "title": "Dorothy_(film)",
+   "titles": {
+    "canonical": "Dorothy_(film)",
+    "display": "<i>Dorothy</i> (film)",
+    "normalized": "Dorothy (film)"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 9335
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 12318
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 22034
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 75360
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 90286
+    }
+   ],
+   "views": 90286,
+   "wikibase_item": "Q140897986"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Elizabeth_Holmes?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Elizabeth_Holmes",
+     "revisions": "https://en.wikipedia.org/wiki/Elizabeth_Holmes?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Elizabeth_Holmes"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Elizabeth_Holmes?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Elizabeth_Holmes",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Elizabeth_Holmes",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Elizabeth_Holmes"
+    }
+   },
+   "description": "American businesswoman (born 1984)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Elizabeth Holmes</span></span>",
+   "extract": "Elizabeth Anne Holmes is an American businesswoman convicted of fraud in connection with her health technology company Theranos. Holmes founded Theranos in 2003, and its valuation soared in the early 2010s after it claimed to have revolutionized blood testing by developing methods that needed only very small volumes of blood, such as from a fingerprick. In 2015, Forbes named Holmes the youngest and wealthiest self-made female billionaire in the United States on the basis of a $9 billion valuation of Theranos. In the following year, as accusations of fraud about Theranos's claims began to surface, Forbes revised its estimate of Holmes's net worth to zero, and Fortune named her in its feature article on \"The World's 19 Most Disappointing Leaders\".",
+   "extract_html": "<p><b>Elizabeth Anne Holmes</b> is an American businesswoman convicted of fraud in connection with her health technology company Theranos. Holmes founded Theranos in 2003, and its valuation soared in the early 2010s after it claimed to have revolutionized blood testing by developing methods that needed only very small volumes of blood, such as from a fingerprick. In 2015, <i>Forbes</i> named Holmes the youngest and wealthiest self-made female billionaire in the United States on the basis of a $9 billion valuation of Theranos. In the following year, as accusations of fraud about Theranos's claims began to surface, <i>Forbes</i> revised its estimate of Holmes's net worth to zero, and <i>Fortune</i> named her in its feature article on \"The World's 19 Most Disappointing Leaders\".</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Elizabeth Holmes",
+   "originalimage": {
+    "height": 791,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/4/47/Elizabeth_Holmes_2014_%28cropped_2%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 593
+   },
+   "pageid": 43573275,
+   "rank": 26,
+   "revision": "1382764906",
+   "thumbnail": {
+    "height": 440,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Elizabeth_Holmes_2014_%28cropped_2%29.jpg/330px-Elizabeth_Holmes_2014_%28cropped_2%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "b456f90b-d41b-11f1-a891-22d6e3c0cc5a",
+   "timestamp": "2026-10-30T04:38:08Z",
+   "title": "Elizabeth_Holmes",
+   "titles": {
+    "canonical": "Elizabeth_Holmes",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Elizabeth Holmes</span></span>",
+    "normalized": "Elizabeth Holmes"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 26953
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 184994
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 220098
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 130591
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 88434
+    }
+   ],
+   "views": 88434,
+   "wikibase_item": "Q17503525"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Johnny_Knoxville?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Johnny_Knoxville",
+     "revisions": "https://en.wikipedia.org/wiki/Johnny_Knoxville?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Johnny_Knoxville"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Johnny_Knoxville?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Johnny_Knoxville",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Johnny_Knoxville",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Johnny_Knoxville"
+    }
+   },
+   "description": "American stunt performer and actor (born 1971)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Johnny Knoxville</span></span>",
+   "extract": "Philip John Clapp, known professionally as Johnny Knoxville, is an American stunt performer, actor, producer, and screenwriter. He is best known as a co-creator and star of the MTV reality slapstick comedy stunt show Jackass (2000\u20132001) and its subsequent movie franchise (2002\u20132026).",
+   "extract_html": "<p><b>Philip John Clapp</b>, known professionally as <b>Johnny Knoxville</b>, is an American stunt performer, actor, producer, and screenwriter. He is best known as a co-creator and star of the MTV reality slapstick comedy stunt show <i>Jackass</i> (2000\u20132001) and its subsequent movie franchise (2002\u20132026).</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Johnny Knoxville",
+   "originalimage": {
+    "height": 3141,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/4/47/Johnny-Knoxville.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 2347
+   },
+   "pageid": 22112821,
+   "rank": 27,
+   "revision": "1381618445",
+   "thumbnail": {
+    "height": 442,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Johnny-Knoxville.jpg/330px-Johnny-Knoxville.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "7a638f36-cf0f-11f1-a61d-1f459eb9bf5c",
+   "timestamp": "2026-10-23T18:28:01Z",
+   "title": "Johnny_Knoxville",
+   "titles": {
+    "canonical": "Johnny_Knoxville",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Johnny Knoxville</span></span>",
+    "normalized": "Johnny Knoxville"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 1813
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 1987
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 16535
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 14134
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 87319
+    }
+   ],
+   "views": 87319,
+   "wikibase_item": "Q295034"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Avengers%3A_Endgame?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Avengers%3A_Endgame",
+     "revisions": "https://en.wikipedia.org/wiki/Avengers%3A_Endgame?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Avengers%3A_Endgame"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Avengers%3A_Endgame?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Avengers%3A_Endgame",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Avengers%3A_Endgame",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Avengers%3A_Endgame"
+    }
+   },
+   "description": "2019 Marvel Studios film",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>Avengers: Endgame</i>",
+   "extract": "Avengers: Endgame is a 2019 American superhero film based on the Marvel Comics superhero team the Avengers. Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the direct sequel to Avengers: Infinity War (2018) and the 22nd film in the Marvel Cinematic Universe (MCU). Directed by Anthony and Joe Russo and written by Christopher Markus and Stephen McFeely, the film features an ensemble cast that includes Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth, Scarlett Johansson, Jeremy Renner, Don Cheadle, Paul Rudd, Brie Larson, Karen Gillan, Danai Gurira, Benedict Wong, Jon Favreau, Bradley Cooper, Gwyneth Paltrow, and Josh Brolin. In the film, the surviving members of the Avengers and their allies attempt to reverse Thanos's actions in Infinity War, which erased half of all life in the universe.",
+   "extract_html": "<p><i><b>Avengers: Endgame</b></i> is a 2019 American superhero film based on the Marvel Comics superhero team the Avengers. Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the direct sequel to <i>Avengers: Infinity War</i> (2018) and the 22nd film in the Marvel Cinematic Universe (MCU). Directed by Anthony and Joe Russo and written by Christopher Markus and Stephen McFeely, the film features an ensemble cast that includes Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth, Scarlett Johansson, Jeremy Renner, Don Cheadle, Paul Rudd, Brie Larson, Karen Gillan, Danai Gurira, Benedict Wong, Jon Favreau, Bradley Cooper, Gwyneth Paltrow, and Josh Brolin. In the film, the surviving members of the Avengers and their allies attempt to reverse Thanos's actions in <i>Infinity War</i>, which erased half of all life in the universe.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Avengers: Endgame",
+   "originalimage": {
+    "height": 326,
+    "source": "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 220
+   },
+   "pageid": 44254295,
+   "rank": 28,
+   "revision": "1382180413",
+   "thumbnail": {
+    "height": 326,
+    "source": "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 220
+   },
+   "tid": "7eafd700-d1b3-11f1-aed1-c6459b9cd117",
+   "timestamp": "2026-10-27T03:07:08Z",
+   "title": "Avengers:_Endgame",
+   "titles": {
+    "canonical": "Avengers:_Endgame",
+    "display": "<i>Avengers: Endgame</i>",
+    "normalized": "Avengers: Endgame"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 12295
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 36608
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 46755
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 81502
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 83201
+    }
+   ],
+   "views": 83201,
+   "wikibase_item": "Q23781155"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Tom_Bateman_(actor)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Tom_Bateman_(actor)",
+     "revisions": "https://en.wikipedia.org/wiki/Tom_Bateman_(actor)?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Tom_Bateman_(actor)"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Tom_Bateman_(actor)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Tom_Bateman_(actor)",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Tom_Bateman_(actor)",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Tom_Bateman_(actor)"
+    }
+   },
+   "description": "British actor (born 1989)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Tom Bateman (actor)</span></span>",
+   "extract": "Thomas Jonathan Bateman is a British actor best known for his roles as Giuliano de' Medici in the Starz historical fantasy drama series Da Vinci's Demons (2013\u20132015), as Bouc in the mystery films Murder on the Orient Express (2017) and Death on the Nile (2022), and as Matt Pierce in the Peacock comedy thriller Based on a True Story (2023\u20132024).",
+   "extract_html": "<p><b>Thomas Jonathan Bateman</b> is a British actor best known for his roles as Giuliano de' Medici in the Starz historical fantasy drama series <i>Da Vinci's Demons</i> (2013\u20132015), as Bouc in the mystery films <i>Murder on the Orient Express</i> (2017) and <i>Death on the Nile</i> (2022), and as Matt Pierce in the Peacock comedy thriller <i>Based on a True Story</i> (2023\u20132024).</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Tom Bateman (actor)",
+   "originalimage": {
+    "height": 5464,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Tom_Bateman_at_the_2025_Toronto_International_Film_Festival._01.jpg/3840px-Tom_Bateman_at_the_2025_Toronto_International_Film_Festival._01.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 5317
+   },
+   "pageid": 52359676,
+   "rank": 29,
+   "revision": "1382185504",
+   "thumbnail": {
+    "height": 339,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Tom_Bateman_at_the_2025_Toronto_International_Film_Festival._01.jpg/330px-Tom_Bateman_at_the_2025_Toronto_International_Film_Festival._01.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "372d4bc2-d1bb-11f1-aec8-c0007bb54ce2",
+   "timestamp": "2026-10-27T04:02:24Z",
+   "title": "Tom_Bateman_(actor)",
+   "titles": {
+    "canonical": "Tom_Bateman_(actor)",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Tom Bateman (actor)</span></span>",
+    "normalized": "Tom Bateman (actor)"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 8696
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 52867
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 104125
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 80429
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 80382
+    }
+   ],
+   "views": 80382,
+   "wikibase_item": "Q11721652"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Backrooms_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Backrooms_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/Backrooms_(film)?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Backrooms_(film)"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Backrooms_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Backrooms_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Backrooms_(film)",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Backrooms_(film)"
+    }
+   },
+   "description": "2026 film by Kane Parsons",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>Backrooms</i> (film)",
+   "extract": "Backrooms is a 2026 American psychological horror film directed and co-scored by Kane Parsons in his feature directorial debut, and written by Will Soodik. It is based on Parsons's web series which was inspired by the \"Backrooms\" creepypasta. In the film, furniture store owner Clark and his therapist Mary discover a dimension of seemingly endless liminal spaces accessed through the store's basement. Mark Duplass, Finn Bennett, and Lukita Maxwell also star.",
+   "extract_html": "<p><i><b>Backrooms</b></i> is a 2026 American psychological horror film directed and co-scored by Kane Parsons in his feature directorial debut, and written by Will Soodik. It is based on Parsons's web series which was inspired by the \"Backrooms\" creepypasta. In the film, furniture store owner Clark and his therapist Mary discover a dimension of seemingly endless liminal spaces accessed through the store's basement. Mark Duplass, Finn Bennett, and Lukita Maxwell also star.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Backrooms (film)",
+   "originalimage": {
+    "height": 385,
+    "source": "https://upload.wikimedia.org/wikipedia/en/3/3d/Backrooms_%28film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 260
+   },
+   "pageid": 72961634,
+   "rank": 30,
+   "revision": "1382810609",
+   "thumbnail": {
+    "height": 385,
+    "source": "https://upload.wikimedia.org/wikipedia/en/3/3d/Backrooms_%28film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 260
+   },
+   "tid": "fbfd74c6-d45b-11f1-9228-768458ef3728",
+   "timestamp": "2026-10-30T12:18:16Z",
+   "title": "Backrooms_(film)",
+   "titles": {
+    "canonical": "Backrooms_(film)",
+    "display": "<i>Backrooms</i> (film)",
+    "normalized": "Backrooms (film)"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 14460
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 13584
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 13793
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 28570
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 80335
+    }
+   ],
+   "views": 80335,
+   "wikibase_item": "Q125131076"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Kylie_Minogue?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Kylie_Minogue",
+     "revisions": "https://en.wikipedia.org/wiki/Kylie_Minogue?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Kylie_Minogue"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Kylie_Minogue?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Kylie_Minogue",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Kylie_Minogue",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Kylie_Minogue"
+    }
+   },
+   "description": "Australian singer and actress (born 1968)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Kylie Minogue</span></span>",
+   "extract": "Kylie Ann Minogue is an Australian singer, songwriter, and actress. Frequently referred to as the \"Princess of Pop\", she has achieved recognition in both the music industry and the fashion world as a major style icon. Her accolades include two Grammy Awards, four Brit Awards and eighteen ARIA Music Awards. Minogue is the highest-selling Australian-born female artist of all time, with sales surpassing 80 million records worldwide. Minogue received two Guinness World Records. In 2024, Time included her in its annual list of the 100 most influential people in the world.",
+   "extract_html": "<p><b>Kylie Ann Minogue</b> is an Australian singer, songwriter, and actress. Frequently referred to as the \"Princess of Pop\", she has achieved recognition in both the music industry and the fashion world as a major style icon. Her accolades include two Grammy Awards, four Brit Awards and eighteen ARIA Music Awards. Minogue is the highest-selling Australian-born female artist of all time, with sales surpassing 80 million records worldwide. Minogue received two <i>Guinness World Records</i>. In 2024, <i>Time</i> included her in its annual list of the 100 most influential people in the world.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Kylie Minogue",
+   "originalimage": {
+    "height": 6048,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/KylieMinogue-byPhilipRomano.jpg/3840px-KylieMinogue-byPhilipRomano.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 4024
+   },
+   "pageid": 16894,
+   "rank": 31,
+   "revision": "1381977722",
+   "thumbnail": {
+    "height": 496,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/KylieMinogue-byPhilipRomano.jpg/330px-KylieMinogue-byPhilipRomano.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "023bcce6-d0bf-11f1-bb0f-5ad97ff2a05d",
+   "timestamp": "2026-10-25T21:57:02Z",
+   "title": "Kylie_Minogue",
+   "titles": {
+    "canonical": "Kylie_Minogue",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Kylie Minogue</span></span>",
+    "normalized": "Kylie Minogue"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 5015
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 7377
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 10990
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 8618
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 79366
+    }
+   ],
+   "views": 79366,
+   "wikibase_item": "Q11998"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/American_Horror_Story%3A_13?action=edit",
+     "page": "https://en.wikipedia.org/wiki/American_Horror_Story%3A_13",
+     "revisions": "https://en.wikipedia.org/wiki/American_Horror_Story%3A_13?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:American_Horror_Story%3A_13"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/American_Horror_Story%3A_13?action=edit",
+     "page": "https://en.wikipedia.org/wiki/American_Horror_Story%3A_13",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/American_Horror_Story%3A_13",
+     "talk": "https://en.wikipedia.org/wiki/Talk:American_Horror_Story%3A_13"
+    }
+   },
+   "description": "Thirteenth season of American Horror Story",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>American Horror Story: 13</i>",
+   "extract": "The thirteenth season of the American horror anthology television series American Horror Story, subtitled 13, takes place primarily in New York City, and follows Ben DeSoto, a hospice caretaker suffering from triskaidekaphobia, who takes a strange job at The Apollyon, an eerie residential building inhabited by characters from seasons past. The season also features the return of regular actors Sarah Paulson, Evan Peters, Emma Roberts, Billie Lourd, Kathy Bates, Angela Bassett, Gabourey Sidibe, Leslie Grossman, Frances Conroy, Jamie Brewer, John Carroll Lynch, Mena Suvari, Mat Fraser and Jessica Lange.",
+   "extract_html": "<p>The thirteenth season of the American horror anthology television series <i>American Horror Story</i>, subtitled <i><b>13</b></i>, takes place primarily in New York City, and follows Ben DeSoto, a hospice caretaker suffering from triskaidekaphobia, who takes a strange job at The Apollyon, an eerie residential building inhabited by characters from seasons past. The season also features the return of regular actors Sarah Paulson, Evan Peters, Emma Roberts, Billie Lourd, Kathy Bates, Angela Bassett, Gabourey Sidibe, Leslie Grossman, Frances Conroy, Jamie Brewer, John Carroll Lynch, Mena Suvari, Mat Fraser and Jessica Lange.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "American Horror Story: 13",
+   "originalimage": {
+    "height": 353,
+    "source": "https://upload.wikimedia.org/wikipedia/en/e/ec/American_Horror_Story_Season_13.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 282
+   },
+   "pageid": 83207016,
+   "rank": 32,
+   "revision": "1382825663",
+   "thumbnail": {
+    "height": 353,
+    "source": "https://upload.wikimedia.org/wikipedia/en/e/ec/American_Horror_Story_Season_13.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 282
+   },
+   "tid": "ffe5c5ce-d46c-11f1-bd04-ed901c4ab566",
+   "timestamp": "2026-10-30T14:20:04Z",
+   "title": "American_Horror_Story:_13",
+   "titles": {
+    "canonical": "American_Horror_Story:_13",
+    "display": "<i>American Horror Story: 13</i>",
+    "normalized": "American Horror Story: 13"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 11223
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 14368
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 31856
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 111405
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 75963
+    }
+   ],
+   "views": 75963,
+   "wikibase_item": "Q139888354"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Jaime_Winstone?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Jaime_Winstone",
+     "revisions": "https://en.wikipedia.org/wiki/Jaime_Winstone?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Jaime_Winstone"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Jaime_Winstone?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Jaime_Winstone",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Jaime_Winstone",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Jaime_Winstone"
+    }
+   },
+   "description": "English actress (born 1985)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Jaime Winstone</span></span>",
+   "extract": "Jaime Margaret Winstone is an English actress. With a career spanning over two decades, she is best known for her work in television and film, with her roles including Kidulthood (2006), Goldplated (2006), Dead Set (2008), Donkey Punch (2008), Boogie Woogie (2009), Made in Dagenham (2010), Anuvahood (2011), Wild Bill (2011), Mad Dogs (2013), Love, Rosie (2014), After Hours (2015), The Last Photograph (2017), Tomb Raider (2018), Knuckledust (2020), A Brixton Tale (2021), and Sumotherhood (2023). She has also appeared on stage in productions of The Fastest Clock in the Universe (2009) and 2:22 A Ghost Story (2023), as well as in various music videos.",
+   "extract_html": "<p><b>Jaime Margaret Winstone</b> is an English actress. With a career spanning over two decades, she is best known for her work in television and film, with her roles including <i>Kidulthood</i> (2006), <i>Goldplated</i> (2006), <i>Dead Set</i> (2008), <i>Donkey Punch</i> (2008), <i>Boogie Woogie</i> (2009), <i>Made in Dagenham</i> (2010), <i>Anuvahood</i> (2011), <i>Wild Bill</i> (2011), <i>Mad Dogs</i> (2013), <i>Love, Rosie</i> (2014), <i>After Hours</i> (2015), <i>The Last Photograph</i> (2017), <i>Tomb Raider</i> (2018), <i>Knuckledust</i> (2020), <i>A Brixton Tale</i> (2021), and <i>Sumotherhood</i> (2023). She has also appeared on stage in productions of <i>The Fastest Clock in the Universe</i> (2009) and <i>2:22 A Ghost Story</i> (2023), as well as in various music videos.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Jaime Winstone",
+   "originalimage": {
+    "height": 954,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/6/69/Jaime_Winstone_by_Alex_Hannam_cropped_to_neck.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 570
+   },
+   "pageid": 4331409,
+   "rank": 33,
+   "revision": "1379899550",
+   "thumbnail": {
+    "height": 552,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Jaime_Winstone_by_Alex_Hannam_cropped_to_neck.jpg/330px-Jaime_Winstone_by_Alex_Hannam_cropped_to_neck.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "52db1022-c64f-11f1-ae1c-c923fec6d6ca",
+   "timestamp": "2026-10-12T15:12:22Z",
+   "title": "Jaime_Winstone",
+   "titles": {
+    "canonical": "Jaime_Winstone",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Jaime Winstone</span></span>",
+    "normalized": "Jaime Winstone"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 3717
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 2901
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 2398
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 2443
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 75248
+    }
+   ],
+   "views": 75248,
+   "wikibase_item": "Q900719"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Heart_of_the_Beast?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Heart_of_the_Beast",
+     "revisions": "https://en.wikipedia.org/wiki/Heart_of_the_Beast?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Heart_of_the_Beast"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Heart_of_the_Beast?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Heart_of_the_Beast",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Heart_of_the_Beast",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Heart_of_the_Beast"
+    }
+   },
+   "description": "2026 film by David Ayer",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>Heart of the Beast</i>",
+   "extract": "Heart of the Beast is a 2026 American survival thriller film directed by David Ayer and written by Cameron Alexander. The film stars Brad Pitt as a retired Special Forces veteran navigating a grueling 58-mile (93-kilometer) trek to safety with his traumatized combat German Shepherd after their seaplane crashes in the Alaskan wilderness.",
+   "extract_html": "<p><i><b>Heart of the Beast</b></i> is a 2026 American survival thriller film directed by David Ayer and written by Cameron Alexander. The film stars Brad Pitt as a retired Special Forces veteran navigating a grueling 58-mile (93-kilometer) trek to safety with his traumatized combat German Shepherd after their seaplane crashes in the Alaskan wilderness.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Heart of the Beast",
+   "originalimage": {
+    "height": 370,
+    "source": "https://upload.wikimedia.org/wikipedia/en/4/49/Heart_of_the_Beast_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 250
+   },
+   "pageid": 76419267,
+   "rank": 34,
+   "revision": "1382810425",
+   "thumbnail": {
+    "height": 370,
+    "source": "https://upload.wikimedia.org/wikipedia/en/4/49/Heart_of_the_Beast_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 250
+   },
+   "tid": "c8224f67-d45b-11f1-9ed8-4e0132090afe",
+   "timestamp": "2026-10-30T12:16:49Z",
+   "title": "Heart_of_the_Beast",
+   "titles": {
+    "canonical": "Heart_of_the_Beast",
+    "display": "<i>Heart of the Beast</i>",
+    "normalized": "Heart of the Beast"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 32583
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 35764
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 43862
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 60301
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 75183
+    }
+   ],
+   "views": 75183,
+   "wikibase_item": "Q131900904"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Unabomber_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Unabomber_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/Unabomber_(film)?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Unabomber_(film)"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Unabomber_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Unabomber_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Unabomber_(film)",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Unabomber_(film)"
+    }
+   },
+   "description": "2026 film by Janus Metz Pedersen",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>Unabomber</i> (film)",
+   "extract": "Unabomber is a 2026 American crime drama film directed by Janus Metz Pedersen and written by Sam Chalsen and Nelson Greaves. Based on the domestic terrorist Ted Kaczynski, the film stars Russell Crowe, Jacob Tremblay, Annabelle Wallis, and Shailene Woodley.",
+   "extract_html": "<p><i><b>Unabomber</b></i> is a 2026 American crime drama film directed by Janus Metz Pedersen and written by Sam Chalsen and Nelson Greaves. Based on the domestic terrorist Ted Kaczynski, the film stars Russell Crowe, Jacob Tremblay, Annabelle Wallis, and Shailene Woodley.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Unabomber (film)",
+   "originalimage": {
+    "height": 354,
+    "source": "https://upload.wikimedia.org/wikipedia/en/2/20/Unabomber_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 283
+   },
+   "pageid": 83043290,
+   "rank": 35,
+   "revision": "1382680357",
+   "thumbnail": {
+    "height": 354,
+    "source": "https://upload.wikimedia.org/wikipedia/en/2/20/Unabomber_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 283
+   },
+   "tid": "0a9e4b21-d3d0-11f1-8045-1da4a55563df",
+   "timestamp": "2026-10-29T19:36:31Z",
+   "title": "Unabomber_(film)",
+   "titles": {
+    "canonical": "Unabomber_(film)",
+    "display": "<i>Unabomber</i> (film)",
+    "normalized": "Unabomber (film)"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 2483
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 3082
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 3950
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 42153
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 74973
+    }
+   ],
+   "views": 74973,
+   "wikibase_item": "Q139596561"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Ella_Beatty?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Ella_Beatty",
+     "revisions": "https://en.wikipedia.org/wiki/Ella_Beatty?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Ella_Beatty"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Ella_Beatty?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Ella_Beatty",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Ella_Beatty",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Ella_Beatty"
+    }
+   },
+   "description": "American actress (born 2000)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Ella Beatty</span></span>",
+   "extract": "Ella Beatty is an American actress. An alumna of the Juilliard School, she is best known for her breakthrough role as the titular character in Monster: The Lizzie Borden Story (2026). She has also starred in the films If I Had Legs I'd Kick You (2025) and Act One (2026).",
+   "extract_html": "<p><b>Ella Beatty</b> is an American actress. An alumna of the Juilliard School, she is best known for her breakthrough role as the titular character in <i>Monster: The Lizzie Borden Story</i> (2026). She has also starred in the films <i>If I Had Legs I'd Kick You</i> (2025) and <i>Act One</i> (2026).</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Ella Beatty",
+   "originalimage": {
+    "height": 6048,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/EllaBeatty-byPhilipRomano.jpg/3840px-EllaBeatty-byPhilipRomano.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 4024
+   },
+   "pageid": 77431649,
+   "rank": 36,
+   "revision": "1381520499",
+   "thumbnail": {
+    "height": 496,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/EllaBeatty-byPhilipRomano.jpg/330px-EllaBeatty-byPhilipRomano.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "cbc73dec-ce85-11f1-8891-a0ae735f71bc",
+   "timestamp": "2026-10-23T02:02:27Z",
+   "title": "Ella_Beatty",
+   "titles": {
+    "canonical": "Ella_Beatty",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Ella Beatty</span></span>",
+    "normalized": "Ella Beatty"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 107028
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 91240
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 73955
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 67175
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 74601
+    }
+   ],
+   "views": 74601,
+   "wikibase_item": "Q78302484"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/The_Vvaan%3A_Force_of_the_Forrest?action=edit",
+     "page": "https://en.wikipedia.org/wiki/The_Vvaan%3A_Force_of_the_Forrest",
+     "revisions": "https://en.wikipedia.org/wiki/The_Vvaan%3A_Force_of_the_Forrest?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:The_Vvaan%3A_Force_of_the_Forrest"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/The_Vvaan%3A_Force_of_the_Forrest?action=edit",
+     "page": "https://en.wikipedia.org/wiki/The_Vvaan%3A_Force_of_the_Forrest",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/The_Vvaan%3A_Force_of_the_Forrest",
+     "talk": "https://en.wikipedia.org/wiki/Talk:The_Vvaan%3A_Force_of_the_Forrest"
+    }
+   },
+   "description": "2026 Indian film by Deepak Kumar Mishra",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>The Vvaan: Force of the Forrest</i>",
+   "extract": "The Vvaan: Force of the Forrest is a 2026 Indian Hindi-language fantasy thriller film directed by Deepak Kumar Mishra and produced by Shobha Kapoor, Ekta Kapoor, Niraj Kothari, and Arunabh Kumar under Balaji Motion Pictures, TVF Motion Pictures and 11:11 Productions. The film stars Sidharth Malhotra, Tamannaah Bhatia, Anup Soni, Sunil Grover, Shweta Tiwari and Maniesh Paul. It is inspired by Van Devi Temple and its folklore.",
+   "extract_html": "<p><i><b>The Vvaan: Force of the Forrest</b></i> is a 2026 Indian Hindi-language fantasy thriller film directed by Deepak Kumar Mishra and produced by Shobha Kapoor, Ekta Kapoor, Niraj Kothari, and Arunabh Kumar under Balaji Motion Pictures, TVF Motion Pictures and 11:11 Productions. The film stars Sidharth Malhotra, Tamannaah Bhatia, Anup Soni, Sunil Grover, Shweta Tiwari and Maniesh Paul. It is inspired by Van Devi Temple and its folklore.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "The Vvaan: Force of the Forrest",
+   "originalimage": {
+    "height": 354,
+    "source": "https://upload.wikimedia.org/wikipedia/en/f/f1/The_Vvaan_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 283
+   },
+   "pageid": 84192445,
+   "rank": 37,
+   "revision": "1382616525",
+   "thumbnail": {
+    "height": 354,
+    "source": "https://upload.wikimedia.org/wikipedia/en/f/f1/The_Vvaan_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 283
+   },
+   "tid": "97c9aa40-d3a0-11f1-8b24-e3b3593cc4d5",
+   "timestamp": "2026-10-29T13:56:52Z",
+   "title": "The_Vvaan:_Force_of_the_Forrest",
+   "titles": {
+    "canonical": "The_Vvaan:_Force_of_the_Forrest",
+    "display": "<i>The Vvaan: Force of the Forrest</i>",
+    "normalized": "The Vvaan: Force of the Forrest"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 4776
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 7371
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 12788
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 54965
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 69918
+    }
+   ],
+   "views": 69918,
+   "wikibase_item": "Q131102878"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/.xyz?action=edit",
+     "page": "https://en.wikipedia.org/wiki/.xyz",
+     "revisions": "https://en.wikipedia.org/wiki/.xyz?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:.xyz"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/.xyz?action=edit",
+     "page": "https://en.wikipedia.org/wiki/.xyz",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/.xyz",
+     "talk": "https://en.wikipedia.org/wiki/Talk:.xyz"
+    }
+   },
+   "description": "Internet top-level domain",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">.xyz</span></span>",
+   "extract": ".xyz is a top-level domain name introduced through ICANN's new generic top-level domain (gTLD) Program. Its name consists of the last three letters of the Latin-script alphabet. XYZ.com and CentralNic are the registries for the domain, which was created by entrepreneur Daniel Negari. It became available to the general public on June 2, 2014, thereafter becoming widely used by tech startups, creators, and Web3 projects.",
+   "extract_html": "<p><b>.xyz</b> is a top-level domain name introduced through ICANN's new generic top-level domain (gTLD) Program. Its name consists of the last three letters of the Latin-script alphabet. XYZ.com and CentralNic are the registries for the domain, which was created by entrepreneur Daniel Negari. It became available to the general public on June 2, 2014, thereafter becoming widely used by tech startups, creators, and Web3 projects.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": ".xyz",
+   "originalimage": {
+    "height": 174,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/.xyz_logo.svg/330px-.xyz_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 298
+   },
+   "pageid": 47491342,
+   "rank": 38,
+   "revision": "1382089482",
+   "thumbnail": {
+    "height": 193,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/.xyz_logo.svg/330px-.xyz_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "06fb9167-d14e-11f1-982f-35c63fe10994",
+   "timestamp": "2026-10-26T15:00:48Z",
+   "title": ".xyz",
+   "titles": {
+    "canonical": ".xyz",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">.xyz</span></span>",
+    "normalized": ".xyz"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 126011
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 66781
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 34892
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 48109
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 65899
+    }
+   ],
+   "views": 65899,
+   "wikibase_item": "Q16049593"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Neatsville%2C_Kentucky?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Neatsville%2C_Kentucky",
+     "revisions": "https://en.wikipedia.org/wiki/Neatsville%2C_Kentucky?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Neatsville%2C_Kentucky"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Neatsville%2C_Kentucky?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Neatsville%2C_Kentucky",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Neatsville%2C_Kentucky",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Neatsville%2C_Kentucky"
+    }
+   },
+   "coordinates": {
+    "lat": 37.19722222,
+    "lon": -85.12555556
+   },
+   "description": "Unincorporated community in Kentucky, US",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Neatsville, Kentucky</span></span>",
+   "extract": "Neatsville is an unincorporated community in Adair County, located in the U.S. state of Kentucky. It is located at the junction of Kentucky Route 206 and Kentucky Route 76. Its elevation is 705\u00a0feet (215\u00a0m). For unknown reasons, the town's name was spelled as Neetsville from 1876 until 1886, when the town's post office closed. In its early history from around the 1810s to 1900, Neatsville progressively grew to become a well-established, incorporated town. It has been relocated twice through the years, once due to flooding c.\u20091900\u00a0\u2013 c.\u20091902, which destroyed much of the town, and once in the 1960s when the Green River was impounded to make way for the Green River Reservoir State Park.",
+   "extract_html": "<p><b>Neatsville</b> is an unincorporated community in Adair County, located in the U.S. state of Kentucky. It is located at the junction of Kentucky Route 206 and Kentucky Route 76. Its elevation is 705\u00a0feet (215\u00a0m). For unknown reasons, the town's name was spelled as <b>Neetsville</b> from 1876 until 1886, when the town's post office closed. In its early history from around the 1810s to 1900, Neatsville progressively grew to become a well-established, incorporated town. It has been relocated twice through the years, once due to flooding <abbr>c.</abbr><span>\u20091900</span>\u00a0\u2013 c.<span>\u20091902</span>, which destroyed much of the town, and once in the 1960s when the Green River was impounded to make way for the Green River Reservoir State Park.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Neatsville, Kentucky",
+   "pageid": 20147376,
+   "rank": 39,
+   "revision": "1382070226",
+   "tid": "a5c6c524-d133-11f1-80ad-6dcf07f09967",
+   "timestamp": "2026-10-26T11:51:58Z",
+   "title": "Neatsville,_Kentucky",
+   "titles": {
+    "canonical": "Neatsville,_Kentucky",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Neatsville, Kentucky</span></span>",
+    "normalized": "Neatsville, Kentucky"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 105605
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 94599
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 82020
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 80017
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 65864
+    }
+   ],
+   "views": 65864,
+   "wikibase_item": "Q6984524"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Chrissie_Hynde?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Chrissie_Hynde",
+     "revisions": "https://en.wikipedia.org/wiki/Chrissie_Hynde?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Chrissie_Hynde"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Chrissie_Hynde?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Chrissie_Hynde",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Chrissie_Hynde",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Chrissie_Hynde"
+    }
+   },
+   "description": "American musician (born 1951)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Chrissie Hynde</span></span>",
+   "extract": "Christine Ellen Hynde is an American-British singer, songwriter, and musician. She is a founding member of the rock band the Pretenders and is the band's lead vocalist, guitarist, and primary songwriter. Hynde is the band's only original member and is the only continuous member of the Pretenders, having appeared on every studio album released by the band.",
+   "extract_html": "<p><b>Christine Ellen Hynde</b> is an American-British singer, songwriter, and musician. She is a founding member of the rock band the Pretenders and is the band's lead vocalist, guitarist, and primary songwriter. Hynde is the band's only original member and is the only continuous member of the Pretenders, having appeared on every studio album released by the band.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Chrissie Hynde",
+   "originalimage": {
+    "height": 800,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/7/79/Chrissie_Hynde_2013.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 533
+   },
+   "pageid": 411839,
+   "rank": 40,
+   "revision": "1382101834",
+   "thumbnail": {
+    "height": 495,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Chrissie_Hynde_2013.jpg/330px-Chrissie_Hynde_2013.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "978c9db6-d15b-11f1-bf5f-c92e970bd871",
+   "timestamp": "2026-10-26T16:37:54Z",
+   "title": "Chrissie_Hynde",
+   "titles": {
+    "canonical": "Chrissie_Hynde",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Chrissie Hynde</span></span>",
+    "normalized": "Chrissie Hynde"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 1650
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 1898
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 1884
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 1968
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 65809
+    }
+   ],
+   "views": 65809,
+   "wikibase_item": "Q239202"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Forgotten_Island?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Forgotten_Island",
+     "revisions": "https://en.wikipedia.org/wiki/Forgotten_Island?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Forgotten_Island"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Forgotten_Island?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Forgotten_Island",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Forgotten_Island",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Forgotten_Island"
+    }
+   },
+   "description": "2026 DreamWorks Animation film",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>Forgotten Island</i>",
+   "extract": "Forgotten Island is a 2026 American animated fantasy comedy film written and directed by Joel Crawford and Januel Mercado. Produced by DreamWorks Animation, the film features the voices of H.E.R., Liza Soberano, Dave Franco, Jenny Slate, Manny Jacinto, Dolly de Leon, Jo Koy, Ronny Chieng, Kevin McCann, and Lea Salonga. Set during the 1990s in the Philippines, the story follows two best friends, Jo (H.E.R) and Raissa (Soberano), who are trapped in the mystical world of Nakali, which they have grown up hearing stories of.",
+   "extract_html": "<p><i><b>Forgotten Island</b></i> is a 2026 American animated fantasy comedy film written and directed by Joel Crawford and Januel Mercado. Produced by DreamWorks Animation, the film features the voices of H.E.R., Liza Soberano, Dave Franco, Jenny Slate, Manny Jacinto, Dolly de Leon, Jo Koy, Ronny Chieng, Kevin McCann, and Lea Salonga. Set during the 1990s in the Philippines, the story follows two best friends, Jo (H.E.R) and Raissa (Soberano), who are trapped in the mystical world of Nakali, which they have grown up hearing stories of.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Forgotten Island",
+   "originalimage": {
+    "height": 396,
+    "source": "https://upload.wikimedia.org/wikipedia/en/6/65/Forgotten_Island_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 250
+   },
+   "pageid": 79717568,
+   "rank": 41,
+   "revision": "1382728340",
+   "thumbnail": {
+    "height": 396,
+    "source": "https://upload.wikimedia.org/wikipedia/en/6/65/Forgotten_Island_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 250
+   },
+   "tid": "be193680-d3f4-11f1-9609-1f719b32ec48",
+   "timestamp": "2026-10-29T23:59:14Z",
+   "title": "Forgotten_Island",
+   "titles": {
+    "canonical": "Forgotten_Island",
+    "display": "<i>Forgotten Island</i>",
+    "normalized": "Forgotten Island"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 29687
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 32855
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 38680
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 55769
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 65400
+    }
+   ],
+   "views": 65400,
+   "wikibase_item": "Q138335503"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/UEFA_Nations_League?action=edit",
+     "page": "https://en.wikipedia.org/wiki/UEFA_Nations_League",
+     "revisions": "https://en.wikipedia.org/wiki/UEFA_Nations_League?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:UEFA_Nations_League"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/UEFA_Nations_League?action=edit",
+     "page": "https://en.wikipedia.org/wiki/UEFA_Nations_League",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/UEFA_Nations_League",
+     "talk": "https://en.wikipedia.org/wiki/Talk:UEFA_Nations_League"
+    }
+   },
+   "description": "European football competition",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">UEFA Nations League</span></span>",
+   "extract": "The UEFA Nations League is an international European football competition played by the senior men's national teams of the member associations of UEFA, the sport's European governing body. The competition was devised to minimise friendlies and give nations competitive encounters with equally ranked teams. Teams from all the European associations compete in a league structure featuring promotion and relegation.",
+   "extract_html": "<p>The <b>UEFA Nations League</b> is an international European football competition played by the senior men's national teams of the member associations of UEFA, the sport's European governing body. The competition was devised to minimise friendlies and give nations competitive encounters with equally ranked teams. Teams from all the European associations compete in a league structure featuring promotion and relegation.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "UEFA Nations League",
+   "originalimage": {
+    "height": 383,
+    "source": "https://thumb.wikimedia.org/wikipedia/en/thumb/8/80/UEFA_Nations_League.svg/330px-UEFA_Nations_League.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 260
+   },
+   "pageid": 42316516,
+   "rank": 42,
+   "revision": "1381183552",
+   "thumbnail": {
+    "height": 486,
+    "source": "https://thumb.wikimedia.org/wikipedia/en/thumb/8/80/UEFA_Nations_League.svg/330px-UEFA_Nations_League.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "28fb9bbc-cc94-11f1-ab59-02b65c0dae10",
+   "timestamp": "2026-10-20T14:40:14Z",
+   "title": "UEFA_Nations_League",
+   "titles": {
+    "canonical": "UEFA_Nations_League",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">UEFA Nations League</span></span>",
+    "normalized": "UEFA Nations League"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 12424
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 15622
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 43386
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 40683
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 65315
+    }
+   ],
+   "views": 65315,
+   "wikibase_item": "Q15980635"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Hanuman_Ansh?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Hanuman_Ansh",
+     "revisions": "https://en.wikipedia.org/wiki/Hanuman_Ansh?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Hanuman_Ansh"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Hanuman_Ansh?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Hanuman_Ansh",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Hanuman_Ansh",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Hanuman_Ansh"
+    }
+   },
+   "description": "2026 Indian film by Vishal Chaturvedi",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>Hanuman Ansh</i>",
+   "extract": "Hanuman Ansh is a 2026 Indian Hindi-language biographical film written, directed and produced by Vishal Chaturvedi under his banner, Swambhu Media Network. Serving as the first instalment of a trilogy, it is based on his book Divine Detour: That Changed My Life, based on the life of Neem Karoli Baba. It stars Shobhinaw Satyaa and Chandan Anand in the lead roles while Anil Rastogi, Purnima Tiwwari, Sugandha Malhotra, Bhagvandas Patel, and Neha Paranjpe. The first film follows the early life of young boy Lakshmi Narayan, in pre-Independence India, who leaves home after the death of his mother in search of God, and his subsequent journey through Northern India and transformation into Neem Karoli Baba.",
+   "extract_html": "<p><i><b>Hanuman Ansh</b></i> is a 2026 Indian Hindi-language biographical film written, directed and produced by Vishal Chaturvedi under his banner, Swambhu Media Network. Serving as the first instalment of a trilogy, it is based on his book <i>Divine Detour: That Changed My Life</i>, based on the life of Neem Karoli Baba. It stars Shobhinaw Satyaa and Chandan Anand in the lead roles while Anil Rastogi, Purnima Tiwwari, Sugandha Malhotra, Bhagvandas Patel, and Neha Paranjpe. The first film follows the early life of young boy Lakshmi Narayan, in pre-Independence India, who leaves home after the death of his mother in search of God, and his subsequent journey through Northern India and transformation into Neem Karoli Baba.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Hanuman Ansh",
+   "originalimage": {
+    "height": 353,
+    "source": "https://upload.wikimedia.org/wikipedia/en/0/0e/Official_poster_for_the_Hanuman_Ansh_%282026%29_film.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 282
+   },
+   "pageid": 83375714,
+   "rank": 43,
+   "revision": "1382789523",
+   "thumbnail": {
+    "height": 353,
+    "source": "https://upload.wikimedia.org/wikipedia/en/0/0e/Official_poster_for_the_Hanuman_Ansh_%282026%29_film.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 282
+   },
+   "tid": "ce5603b5-d43e-11f1-8470-c5c33f3592ca",
+   "timestamp": "2026-10-30T08:49:24Z",
+   "title": "Hanuman_Ansh",
+   "titles": {
+    "canonical": "Hanuman_Ansh",
+    "display": "<i>Hanuman Ansh</i>",
+    "normalized": "Hanuman Ansh"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 65653
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 61149
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 58069
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 57812
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 60794
+    }
+   ],
+   "views": 60794,
+   "wikibase_item": "Q138527176"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Limonene?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Limonene",
+     "revisions": "https://en.wikipedia.org/wiki/Limonene?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Limonene"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Limonene?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Limonene",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Limonene",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Limonene"
+    }
+   },
+   "description": "Chemical compound",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Limonene</span></span>",
+   "extract": "Limonene is a slightly yellow-green liquid aliphatic hydrocarbon classified as a cyclic monoterpene, and is the major component in the fragrance and essential oil of citrus fruit peels, taking its name from Italian limone 'lemon'.",
+   "extract_html": "<p><b>Limonene</b> is a slightly yellow-green liquid aliphatic hydrocarbon classified as a cyclic monoterpene, and is the major component in the fragrance and essential oil of citrus fruit peels, taking its name from Italian <i>limone</i> 'lemon'.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Limonene",
+   "originalimage": {
+    "height": 3248,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Limonene.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 2912
+   },
+   "pageid": 1779163,
+   "rank": 44,
+   "revision": "1380356398",
+   "thumbnail": {
+    "height": 368,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Limonene.jpg/330px-Limonene.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "3b73708d-c861-11f1-b6ef-66b5cfa34419",
+   "timestamp": "2026-10-15T06:25:36Z",
+   "title": "Limonene",
+   "titles": {
+    "canonical": "Limonene",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Limonene</span></span>",
+    "normalized": "Limonene"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 77074
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 70106
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 64763
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 73912
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 59436
+    }
+   ],
+   "views": 59436,
+   "wikibase_item": "Q278809"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Cooper_Manning?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Cooper_Manning",
+     "revisions": "https://en.wikipedia.org/wiki/Cooper_Manning?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Cooper_Manning"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Cooper_Manning?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Cooper_Manning",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Cooper_Manning",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Cooper_Manning"
+    }
+   },
+   "description": "American entrepreneur and TV personality (born 1974)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Cooper Manning</span></span>",
+   "extract": "Cooper Archibald Manning is an American entrepreneur and television personality who is the host of the television show The Manning Hour for Fox Sports as well as principal and senior managing director of investor relations for AJ Capital Partners. He is the eldest son of former professional football quarterback Archie Manning, the older brother of former professional football quarterbacks Peyton Manning and Eli Manning, and the father of Texas Longhorns quarterback Arch Manning.",
+   "extract_html": "<p><b>Cooper Archibald Manning</b> is an American entrepreneur and television personality who is the host of the television show <i>The Manning Hour</i> for Fox Sports as well as principal and senior managing director of investor relations for AJ Capital Partners. He is the eldest son of former professional football quarterback Archie Manning, the older brother of former professional football quarterbacks Peyton Manning and Eli Manning, and the father of Texas Longhorns quarterback Arch Manning.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Cooper Manning",
+   "originalimage": {
+    "height": 487,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Cooper_Manning.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 496
+   },
+   "pageid": 5211271,
+   "rank": 45,
+   "revision": "1379572495",
+   "thumbnail": {
+    "height": 324,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Cooper_Manning.png/330px-Cooper_Manning.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "82223e1b-c4e6-11f1-8f9c-787dc4622d6b",
+   "timestamp": "2026-10-10T20:09:33Z",
+   "title": "Cooper_Manning",
+   "titles": {
+    "canonical": "Cooper_Manning",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Cooper Manning</span></span>",
+    "normalized": "Cooper Manning"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 4339
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 3477
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 3078
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 3099
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 56994
+    }
+   ],
+   "views": 56994,
+   "wikibase_item": "Q16214793"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Suicide_of_Bill_Conradt?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Suicide_of_Bill_Conradt",
+     "revisions": "https://en.wikipedia.org/wiki/Suicide_of_Bill_Conradt?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Suicide_of_Bill_Conradt"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Suicide_of_Bill_Conradt?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Suicide_of_Bill_Conradt",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Suicide_of_Bill_Conradt",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Suicide_of_Bill_Conradt"
+    }
+   },
+   "description": "2006 death of American assistant district attorney",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Suicide of Bill Conradt</span></span>",
+   "extract": "Louis William Conradt Jr., an American local assistant district attorney in the Dallas\u2013Fort Worth metroplex, died by suicide via gunshot on Sunday, November 5, 2006, when Texas police served him with search and arrest warrants stemming from a Dateline NBC\u00a0\u2013 Perverted-Justice online sting of men soliciting sex with underage teenagers.",
+   "extract_html": "<p><b>Louis William Conradt Jr.</b>, an American local assistant district attorney in the Dallas\u2013Fort Worth metroplex, died by suicide via gunshot on Sunday, November 5, 2006, when Texas police served him with search and arrest warrants stemming from a <i>Dateline NBC</i>\u00a0\u2013 Perverted-Justice online sting of men soliciting sex with underage teenagers.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Suicide of Bill Conradt",
+   "pageid": 72682434,
+   "rank": 46,
+   "revision": "1381074001",
+   "tid": "75e26190-cc01-11f1-b984-21fb7cf0f41f",
+   "timestamp": "2026-10-19T21:10:07Z",
+   "title": "Suicide_of_Bill_Conradt",
+   "titles": {
+    "canonical": "Suicide_of_Bill_Conradt",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Suicide of Bill Conradt</span></span>",
+    "normalized": "Suicide of Bill Conradt"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 6963
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 9776
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 11891
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 32436
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 56532
+    }
+   ],
+   "views": 56532,
+   "wikibase_item": "Q116052295"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/The_Love_Hypothesis_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/The_Love_Hypothesis_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/The_Love_Hypothesis_(film)?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:The_Love_Hypothesis_(film)"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/The_Love_Hypothesis_(film)?action=edit",
+     "page": "https://en.wikipedia.org/wiki/The_Love_Hypothesis_(film)",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/The_Love_Hypothesis_(film)",
+     "talk": "https://en.wikipedia.org/wiki/Talk:The_Love_Hypothesis_(film)"
+    }
+   },
+   "description": "2026 film by Claire Scanlon",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<i>The Love Hypothesis</i> (film)",
+   "extract": "The Love Hypothesis is a 2026 American romantic comedy film directed by Claire Scanlon from a screenplay by Sarah Rothschild, based on the 2021 novel by Ali Hazelwood, in turn based off of a Rey/Kylo Ren fanfiction. The film stars Tom Bateman and Lili Reinhart and follows professor Dr. Adam Carlsen and PhD student Olive Smith as they enter a fake relationship to put their theories about love to the test while simultaneously endeavoring to alleviate social pressure from the university and her friends, respectively. It was released on Prime Video on September 23, 2026 and received mixed to positive reviews from critics.",
+   "extract_html": "<p><i><b>The Love Hypothesis</b></i> is a 2026 American romantic comedy film directed by Claire Scanlon from a screenplay by Sarah Rothschild, based on the 2021 novel by Ali Hazelwood, in turn based off of a Rey/Kylo Ren fanfiction. The film stars Tom Bateman and Lili Reinhart and follows professor Dr. Adam Carlsen and PhD student Olive Smith as they enter a fake relationship to put their theories about love to the test while simultaneously endeavoring to alleviate social pressure from the university and her friends, respectively. It was released on Prime Video on September 23, 2026 and received mixed to positive reviews from critics.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "The Love Hypothesis (film)",
+   "originalimage": {
+    "height": 387,
+    "source": "https://upload.wikimedia.org/wikipedia/en/2/25/The_Love_Hypothesis_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 258
+   },
+   "pageid": 81382583,
+   "rank": 47,
+   "revision": "1381132828",
+   "thumbnail": {
+    "height": 387,
+    "source": "https://upload.wikimedia.org/wikipedia/en/2/25/The_Love_Hypothesis_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 258
+   },
+   "tid": "2c1d6a7a-cc49-11f1-9756-c81d68735432",
+   "timestamp": "2026-10-20T05:43:27Z",
+   "title": "The_Love_Hypothesis_(film)",
+   "titles": {
+    "canonical": "The_Love_Hypothesis_(film)",
+    "display": "<i>The Love Hypothesis</i> (film)",
+    "normalized": "The Love Hypothesis (film)"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 7203
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 47427
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 74717
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 56764
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 56242
+    }
+   ],
+   "views": 56242,
+   "wikibase_item": "Q136540069"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Lili_Reinhart?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Lili_Reinhart",
+     "revisions": "https://en.wikipedia.org/wiki/Lili_Reinhart?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Lili_Reinhart"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Lili_Reinhart?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Lili_Reinhart",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Lili_Reinhart",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Lili_Reinhart"
+    }
+   },
+   "description": "American actress (born 1996)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Lili Reinhart</span></span>",
+   "extract": "Lili Pauline Reinhart is an American actress. She portrayed Betty Cooper on the CW teen drama series Riverdale (2017\u20132023) earning seven Teen Choice Awards as well as nominations for a Critics' Choice Award and three People's Choice Awards.",
+   "extract_html": "<p><b>Lili Pauline Reinhart</b> is an American actress. She portrayed Betty Cooper on the CW teen drama series <i>Riverdale</i> (2017\u20132023) earning seven Teen Choice Awards as well as nominations for a Critics' Choice Award and three People's Choice Awards.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Lili Reinhart",
+   "originalimage": {
+    "height": 2000,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Lili_Reinhart_-_Forbidden_Fruits.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 1600
+   },
+   "pageid": 53224902,
+   "rank": 48,
+   "revision": "1380775118",
+   "thumbnail": {
+    "height": 413,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/Lili_Reinhart_-_Forbidden_Fruits.jpg/330px-Lili_Reinhart_-_Forbidden_Fruits.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "d473d958-ca67-11f1-b343-33d7841a1ca8",
+   "timestamp": "2026-10-17T20:17:52Z",
+   "title": "Lili_Reinhart",
+   "titles": {
+    "canonical": "Lili_Reinhart",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Lili Reinhart</span></span>",
+    "normalized": "Lili Reinhart"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 11828
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 34797
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 58264
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 53876
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 55990
+    }
+   ],
+   "views": 55990,
+   "wikibase_item": "Q28653501"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Death_of_Nolan_Wells?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Death_of_Nolan_Wells",
+     "revisions": "https://en.wikipedia.org/wiki/Death_of_Nolan_Wells?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Death_of_Nolan_Wells"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Death_of_Nolan_Wells?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Death_of_Nolan_Wells",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Death_of_Nolan_Wells",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Death_of_Nolan_Wells"
+    }
+   },
+   "coordinates": {
+    "lat": 30.23333333,
+    "lon": -88.66666667
+   },
+   "description": "2026 death in Mississippi",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Death of Nolan Wells</span></span>",
+   "extract": "On July 4, 2026, 18-year-old Nolan Wells went missing after attending an Independence Day gathering on Horn Island, a barrier island off the Mississippi Gulf Coast, with a group of friends. His body was discovered on the shoreline of the island two days later. Investigators initially reported that there was no evidence of foul play and that drowning was suspected. In September 2026, a grand jury declined to bring criminal charges in the case, deeming Wells' death consistent with drowning and finding no evidence of criminal conduct.",
+   "extract_html": "<p>On July 4, 2026, 18-year-old <b>Nolan Wells</b> went missing after attending an Independence Day gathering on Horn Island, a barrier island off the Mississippi Gulf Coast, with a group of friends. His body was discovered on the shoreline of the island two days later. Investigators initially reported that there was no evidence of foul play and that drowning was suspected. In September 2026, a grand jury declined to bring criminal charges in the case, deeming Wells' death consistent with drowning and finding no evidence of criminal conduct.</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Death of Nolan Wells",
+   "originalimage": {
+    "height": 258,
+    "source": "https://upload.wikimedia.org/wikipedia/en/e/e3/Nolan_Wells_Group_Photo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 387
+   },
+   "pageid": 83694726,
+   "rank": 49,
+   "revision": "1382634879",
+   "thumbnail": {
+    "height": 220,
+    "source": "https://thumb.wikimedia.org/wikipedia/en/thumb/e/e3/Nolan_Wells_Group_Photo.jpg/330px-Nolan_Wells_Group_Photo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "876cfc33-d3af-11f1-bff0-8ea0c03b0a18",
+   "timestamp": "2026-10-29T15:43:47Z",
+   "title": "Death_of_Nolan_Wells",
+   "titles": {
+    "canonical": "Death_of_Nolan_Wells",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Death of Nolan Wells</span></span>",
+    "normalized": "Death of Nolan Wells"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 52444
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 43145
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 38473
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 69826
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 54547
+    }
+   ],
+   "views": 54547,
+   "wikibase_item": "Q140817948"
+  },
+  {
+   "content_urls": {
+    "desktop": {
+     "edit": "https://en.wikipedia.org/wiki/Woody_Harrelson?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Woody_Harrelson",
+     "revisions": "https://en.wikipedia.org/wiki/Woody_Harrelson?action=history",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Woody_Harrelson"
+    },
+    "mobile": {
+     "edit": "https://en.wikipedia.org/wiki/Woody_Harrelson?action=edit",
+     "page": "https://en.wikipedia.org/wiki/Woody_Harrelson",
+     "revisions": "https://en.wikipedia.org/wiki/Special:History/Woody_Harrelson",
+     "talk": "https://en.wikipedia.org/wiki/Talk:Woody_Harrelson"
+    }
+   },
+   "description": "American actor (born 1961)",
+   "description_source": "local",
+   "dir": "ltr",
+   "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Woody Harrelson</span></span>",
+   "extract": "Woodrow Tracy Harrelson is an American actor. He first became known for his role as charmingly naive bartender Woody Boyd on the NBC sitcom Cheers (1985\u20131993), for which he won a Primetime Emmy Award for Outstanding Supporting Actor in a Comedy Series from five nominations. Harrelson has received three Academy Award nominations: Best Actor for The People vs. Larry Flynt (1996), and Best Supporting Actor for The Messenger (2009) and Three Billboards Outside Ebbing, Missouri (2017).",
+   "extract_html": "<p><b>Woodrow Tracy Harrelson</b> is an American actor. He first became known for his role as charmingly naive bartender Woody Boyd on the NBC sitcom <i>Cheers</i> (1985\u20131993), for which he won a Primetime Emmy Award for Outstanding Supporting Actor in a Comedy Series from five nominations. Harrelson has received three Academy Award nominations: Best Actor for <i>The People vs. Larry Flynt</i> (1996), and Best Supporting Actor for <i>The Messenger</i> (2009) and <i>Three Billboards Outside Ebbing, Missouri</i> (2017).</p>",
+   "lang": "en",
+   "namespace": {
+    "id": 0,
+    "text": ""
+   },
+   "normalizedtitle": "Woody Harrelson",
+   "originalimage": {
+    "height": 1992,
+    "source": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Woody_Harrelson_191020-N-NU281-1028_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "width": 1328
+   },
+   "pageid": 171528,
+   "rank": 50,
+   "revision": "1379123225",
+   "thumbnail": {
+    "height": 495,
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Woody_Harrelson_191020-N-NU281-1028_%28cropped%29.jpg/330px-Woody_Harrelson_191020-N-NU281-1028_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "width": 330
+   },
+   "tid": "d0f08d98-c2c4-11f1-a4cc-17a4e2ef71d2",
+   "timestamp": "2026-10-08T03:03:20Z",
+   "title": "Woody_Harrelson",
+   "titles": {
+    "canonical": "Woody_Harrelson",
+    "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Woody Harrelson</span></span>",
+    "normalized": "Woody Harrelson"
+   },
+   "type": "standard",
+   "view_history": [
+    {
+     "date": "2026-09-22Z",
+     "views": 26142
+    },
+    {
+     "date": "2026-09-23Z",
+     "views": 61278
+    },
+    {
+     "date": "2026-09-24Z",
+     "views": 72924
+    },
+    {
+     "date": "2026-09-25Z",
+     "views": 54435
+    },
+    {
+     "date": "2026-09-26Z",
+     "views": 54378
+    }
+   ],
+   "views": 54378,
+   "wikibase_item": "Q201279"
+  }
+ ],
+ "date": "2026-09-26Z"
+}

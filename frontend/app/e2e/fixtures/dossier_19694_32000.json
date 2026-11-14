@@ -1,0 +1,4251 @@
+{
+  "schema_version": "2",
+  "license_notice": "Quoted passages are CC BY-SA 4.0 Wikipedia content, cited to a pinned revision. Summaries are machine output, not a Wikipedia quotation.",
+  "sections": [
+    {
+      "id": "0",
+      "label": "Mercury (planet)",
+      "label_source": "article_title",
+      "chunk_ids": [
+        "1384573767:0:0",
+        "1384573767:0:1",
+        "1384573767:0:2",
+        "1384573767:0:3",
+        "1384573767:0:facts"
+      ],
+      "heading_path": [],
+      "citation_id": "c1",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.8096898338908354
+    },
+    {
+      "id": "1",
+      "label": "Nomenclature",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:1:0"
+      ],
+      "heading_path": [
+        "Nomenclature"
+      ],
+      "citation_id": "c10",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5208534150550281
+    },
+    {
+      "id": "2",
+      "label": "Physical characteristics",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:2:0"
+      ],
+      "heading_path": [
+        "Physical characteristics"
+      ],
+      "citation_id": "c11",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": {
+        "kind": "machine_summary",
+        "text": "Mercury is one of four terrestrial planets in the Solar System, with an equatorial radius of 2,439.7 kilometres (1,516.0 mi) Mercury is also smaller than the largest natural satellites in the solar system, Ganymede and Titan .",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "d2fde4ca",
+        "params": {
+          "num_beams": 1,
+          "min_length": 30,
+          "max_length": 96,
+          "input_tokens": 103
+        },
+        "input_chunk_ids": [
+          "1384573767:2:0"
+        ],
+        "citation_id": "c11",
+        "generated_at": "2026-11-11T19:25:40.892752Z",
+        "infer_seconds": 1.238559407996945
+      },
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.5807534035618724
+    },
+    {
+      "id": "3",
+      "label": "Internal structure",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:3:0",
+        "1384573767:3:1",
+        "1384573767:3:2",
+        "1384573767:3:3",
+        "1384573767:3:4"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Internal structure"
+      ],
+      "citation_id": "c12",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the text does not end at a sentence end",
+      "importance": 0.6739449890347046
+    },
+    {
+      "id": "4",
+      "label": "Surface geology",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:4:0",
+        "1384573767:4:1",
+        "1384573767:4:2"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology"
+      ],
+      "citation_id": "c13",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5040663985985743
+    },
+    {
+      "id": "5",
+      "label": "Impact basins and craters",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:5:0",
+        "1384573767:5:1",
+        "1384573767:5:2",
+        "1384573767:5:3",
+        "1384573767:5:4"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Impact basins and craters"
+      ],
+      "citation_id": "c14",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5332517082857929
+    },
+    {
+      "id": "6",
+      "label": "Plains",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:6:0",
+        "1384573767:6:1"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Plains"
+      ],
+      "citation_id": "c15",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4550969532770359
+    },
+    {
+      "id": "7",
+      "label": "Compressional features",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:7:0",
+        "1384573767:7:1"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Compressional features"
+      ],
+      "citation_id": "c16",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.43940610395235513
+    },
+    {
+      "id": "8",
+      "label": "Volcanism",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:8:0",
+        "1384573767:8:1"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Volcanism"
+      ],
+      "citation_id": "c17",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.33782221032657844
+    },
+    {
+      "id": "9",
+      "label": "Surface conditions and exosphere",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:9:0",
+        "1384573767:9:1",
+        "1384573767:9:2",
+        "1384573767:9:3",
+        "1384573767:9:4",
+        "1384573767:9:5",
+        "1384573767:9:6"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Surface conditions and exosphere"
+      ],
+      "citation_id": "c18",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the text does not end at a sentence end",
+      "importance": 0.5900572635661535
+    },
+    {
+      "id": "10",
+      "label": "Magnetic field and magnetosphere",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:10:0",
+        "1384573767:10:1",
+        "1384573767:10:2",
+        "1384573767:10:3"
+      ],
+      "heading_path": [
+        "Physical characteristics",
+        "Magnetic field and magnetosphere"
+      ],
+      "citation_id": "c19",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4681425563587449
+    },
+    {
+      "id": "11",
+      "label": "Orbit, rotation, and longitude",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:11:0",
+        "1384573767:11:1",
+        "1384573767:11:2",
+        "1384573767:11:3",
+        "1384573767:11:4",
+        "1384573767:11:5",
+        "1384573767:11:6",
+        "1384573767:11:7"
+      ],
+      "heading_path": [
+        "Orbit, rotation, and longitude"
+      ],
+      "citation_id": "c20",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the number '000' is not in the source passages",
+      "importance": 0.732089417718451
+    },
+    {
+      "id": "12",
+      "label": "Longitude convention",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:12:0"
+      ],
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Longitude convention"
+      ],
+      "citation_id": "c21",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.38775323122508953
+    },
+    {
+      "id": "13",
+      "label": "Spin-orbit resonance",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:13:0",
+        "1384573767:13:1",
+        "1384573767:13:2",
+        "1384573767:13:3",
+        "1384573767:13:4"
+      ],
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Spin-orbit resonance"
+      ],
+      "citation_id": "c22",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5724702164299365
+    },
+    {
+      "id": "14",
+      "label": "Advance of perihelion",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:14:0",
+        "1384573767:14:1",
+        "1384573767:14:2"
+      ],
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Advance of perihelion"
+      ],
+      "citation_id": "c23",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.49847403102428267
+    },
+    {
+      "id": "15",
+      "label": "Observation",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:15:0",
+        "1384573767:15:1",
+        "1384573767:15:2",
+        "1384573767:15:3",
+        "1384573767:15:4",
+        "1384573767:15:5"
+      ],
+      "heading_path": [
+        "Observation"
+      ],
+      "citation_id": "c24",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": {
+        "kind": "machine_summary",
+        "text": "Mercury's apparent magnitude is calculated to vary between \u22122.48 (brighter than Sirius) around superior conjunction and +7.25 (below the limit of naked-eye visibility) around inferior conjunction . Mercury can be observed for only a brief period during either morning or evening twilight .",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "d2fde4ca",
+        "params": {
+          "num_beams": 1,
+          "min_length": 30,
+          "max_length": 96,
+          "input_tokens": 454
+        },
+        "input_chunk_ids": [
+          "1384573767:15:0",
+          "1384573767:15:1",
+          "1384573767:15:2"
+        ],
+        "citation_id": "c24",
+        "generated_at": "2026-11-11T19:25:35.799097Z",
+        "infer_seconds": 1.58161250899866
+      },
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.6557517403671572
+    },
+    {
+      "id": "16",
+      "label": "Observation history",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "Observation history"
+      ],
+      "citation_id": "c25",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    },
+    {
+      "id": "17",
+      "label": "Ancient astronomers",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:17:0",
+        "1384573767:17:1",
+        "1384573767:17:2",
+        "1384573767:17:3",
+        "1384573767:17:4"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Ancient astronomers"
+      ],
+      "citation_id": "c26",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5300457136398968
+    },
+    {
+      "id": "18",
+      "label": "Ground-based telescopic research",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:18:0",
+        "1384573767:18:1",
+        "1384573767:18:2",
+        "1384573767:18:3",
+        "1384573767:18:4",
+        "1384573767:18:5"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Ground-based telescopic research"
+      ],
+      "citation_id": "c27",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": {
+        "kind": "machine_summary",
+        "text": "Mercury and Venus occult each other every few centuries . The next occultation of Mercury by Venus will be on December 3, 2133 . The difficulties inherent in observing Mercury meant that it was far less studied than the other planets .",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "d2fde4ca",
+        "params": {
+          "num_beams": 1,
+          "min_length": 30,
+          "max_length": 96,
+          "input_tokens": 464
+        },
+        "input_chunk_ids": [
+          "1384573767:18:0",
+          "1384573767:18:1",
+          "1384573767:18:2"
+        ],
+        "citation_id": "c27",
+        "generated_at": "2026-11-11T19:25:37.337189Z",
+        "infer_seconds": 1.3077564440027345
+      },
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.6515872561720846
+    },
+    {
+      "id": "19",
+      "label": "Research with space probes",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:19:0",
+        "1384573767:19:1"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Research with space probes"
+      ],
+      "citation_id": "c28",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5083086073475876
+    },
+    {
+      "id": "20",
+      "label": "Mariner 10",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:20:0",
+        "1384573767:20:1",
+        "1384573767:20:2"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "Mariner 10"
+      ],
+      "citation_id": "c29",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.521412901807819
+    },
+    {
+      "id": "21",
+      "label": "MESSENGER",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:21:0",
+        "1384573767:21:1"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "MESSENGER"
+      ],
+      "citation_id": "c30",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5715032410094957
+    },
+    {
+      "id": "22",
+      "label": "BepiColombo",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384573767:22:0"
+      ],
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "BepiColombo"
+      ],
+      "citation_id": "c31",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.47067865780116197
+    }
+  ],
+  "chunks": [
+    {
+      "id": "1384573767:0:0",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 0,
+      "text": "Mercury is the first planet from the Sun and the smallest in the Solar System. It is a rocky planet with a trace atmosphere and a surface gravity slightly lower than that of Mars. The surface of Mercury is similar to Earth's Moon, being cratered, with an expansive rupes system generated from thrust faults, and bright ray systems, formed by ejecta. Its largest crater, Caloris Planitia, has a diameter of 1,550 km (960 mi), which is about one-third the diameter of the planet (4,880 km or 3,030 mi). Being the most inferior orbiting planet, it always appears close to the Sun in Earth's sky, as either a \"morning star\" or an \"evening star\". It is the planet with the highest delta-v required for travel from Earth, as well as to and from the other planets in the Solar System.",
+      "est_tokens": 195,
+      "relevance": 0.9157396554946899,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 21,
+          "end": 27,
+          "title": "Planet"
+        },
+        {
+          "start": 37,
+          "end": 40,
+          "title": "Sun"
+        },
+        {
+          "start": 49,
+          "end": 77,
+          "title": "List of Solar System objects by size"
+        },
+        {
+          "start": 87,
+          "end": 99,
+          "title": "Rocky planet"
+        },
+        {
+          "start": 107,
+          "end": 123,
+          "title": "Atmosphere of Mercury"
+        },
+        {
+          "start": 138,
+          "end": 145,
+          "title": "Gravity"
+        },
+        {
+          "start": 174,
+          "end": 178,
+          "title": "Mars"
+        },
+        {
+          "start": 225,
+          "end": 229,
+          "title": "Moon"
+        },
+        {
+          "start": 237,
+          "end": 245,
+          "title": "Impact crater"
+        },
+        {
+          "start": 265,
+          "end": 270,
+          "title": "Rupes"
+        },
+        {
+          "start": 293,
+          "end": 306,
+          "title": "Thrust fault"
+        },
+        {
+          "start": 319,
+          "end": 330,
+          "title": "Ray system"
+        },
+        {
+          "start": 342,
+          "end": 348,
+          "title": "Ejecta"
+        },
+        {
+          "start": 370,
+          "end": 386,
+          "title": "Caloris Planitia"
+        },
+        {
+          "start": 516,
+          "end": 524,
+          "title": "Inferior planet"
+        },
+        {
+          "start": 580,
+          "end": 585,
+          "title": "Earth"
+        },
+        {
+          "start": 676,
+          "end": 683,
+          "title": "Delta-v"
+        },
+        {
+          "start": 743,
+          "end": 756,
+          "title": "List of planets in the Solar System"
+        },
+        {
+          "start": 764,
+          "end": 776,
+          "title": "Solar System"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:0:1",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 1,
+      "text": "Mercury's sidereal year (88.0 Earth days) and sidereal day (58.65 Earth days) are in a 3:2 ratio, in a spin\u2013orbit resonance. Consequently, one solar day (sunrise to sunrise) on Mercury lasts for around 176 Earth days, or twice Mercury's sidereal year. This means that one side of Mercury will remain in sunlight for one Mercurian year of 88 Earth days; while during the next orbit, that side will be in darkness all the time until the next sunrise after another 88 Earth days. Above the planet's surface is an extremely tenuous exosphere and a faint magnetic field just strong enough to deflect the solar wind. Combined with its high orbital eccentricity, the planet's surface has widely varying sunlight intensity and temperature, with the equatorial regions ranging from \u2212170 \u00b0C (\u2212270 \u00b0F) at night to 420 \u00b0C (790 \u00b0F) during sunlight. Despite being the closest planet to the sun, it is the second hottest after Venus, lacking an atmosphere to trap heat.",
+      "est_tokens": 239,
+      "relevance": 0.784355640411377,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 10,
+          "end": 23,
+          "title": "Sidereal year"
+        },
+        {
+          "start": 46,
+          "end": 58,
+          "title": "Sidereal day"
+        },
+        {
+          "start": 103,
+          "end": 123,
+          "title": "Tidal locking"
+        },
+        {
+          "start": 528,
+          "end": 537,
+          "title": "Exosphere"
+        },
+        {
+          "start": 544,
+          "end": 564,
+          "title": "Mercury's magnetic field"
+        },
+        {
+          "start": 599,
+          "end": 609,
+          "title": "Solar wind"
+        },
+        {
+          "start": 634,
+          "end": 654,
+          "title": "Orbital eccentricity"
+        },
+        {
+          "start": 696,
+          "end": 704,
+          "title": "Sunlight"
+        },
+        {
+          "start": 741,
+          "end": 751,
+          "title": "Equator"
+        },
+        {
+          "start": 912,
+          "end": 917,
+          "title": "Venus"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:0:2",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 2,
+      "text": "Due to its very small axial tilt, the planet's poles are permanently shadowed. This strongly suggests that water ice could be present in the craters. Like the other planets in the Solar System, Mercury formed approximately 4.5 billion years ago. There are competing hypotheses about Mercury's origins and development, some of which incorporate collision with planetesimals and rock vaporization; as of the early 2020s, many broad details of Mercury's geological history are still under investigation or pending data from space probes. Its mantle is highly homogeneous, which suggests that Mercury had a magma ocean early in its history, like the Moon. According to current models, Mercury may have a solid silicate crust and mantle overlaying a solid outer core, a deeper liquid core layer, and a solid inner core. Mercury is expected to be destroyed, along with Venus, and possibly the Earth and the Moon, when the Sun becomes a red giant in approximately seven or eight billion years.",
+      "est_tokens": 247,
+      "relevance": 0.7007920742034912,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 22,
+          "end": 32,
+          "title": "Axial tilt"
+        },
+        {
+          "start": 57,
+          "end": 77,
+          "title": "Permanently shadowed crater"
+        },
+        {
+          "start": 107,
+          "end": 116,
+          "title": "Ice"
+        },
+        {
+          "start": 359,
+          "end": 372,
+          "title": "Planetesimal"
+        },
+        {
+          "start": 539,
+          "end": 545,
+          "title": "Mantle (geology)"
+        },
+        {
+          "start": 603,
+          "end": 614,
+          "title": "Magma ocean"
+        },
+        {
+          "start": 673,
+          "end": 679,
+          "title": "Scientific modelling"
+        },
+        {
+          "start": 706,
+          "end": 714,
+          "title": "Silicate"
+        },
+        {
+          "start": 757,
+          "end": 761,
+          "title": "Planetary core"
+        },
+        {
+          "start": 930,
+          "end": 939,
+          "title": "Red giant"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:0:3",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 3,
+      "text": "Mercury is a classical planet that has been observed and recognized throughout history as a planet (or wandering star). In English, it is named after the ancient Roman god Mercurius (Mercury), god of commerce and communication, and the messenger of the gods. The first successful flyby of Mercury was conducted by Mariner 10 in 1974, and it has since been visited and explored by the MESSENGER and BepiColombo orbiters.",
+      "est_tokens": 105,
+      "relevance": 0.623822033405304,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 13,
+          "end": 29,
+          "title": "Classical planet"
+        },
+        {
+          "start": 154,
+          "end": 167,
+          "title": "Ancient Roman"
+        },
+        {
+          "start": 183,
+          "end": 190,
+          "title": "Mercury (mythology)"
+        },
+        {
+          "start": 314,
+          "end": 324,
+          "title": "Mariner 10"
+        },
+        {
+          "start": 356,
+          "end": 376,
+          "title": "Exploration of Mercury"
+        },
+        {
+          "start": 384,
+          "end": 393,
+          "title": "MESSENGER (spacecraft)"
+        },
+        {
+          "start": 398,
+          "end": 409,
+          "title": "BepiColombo"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:0:facts",
+      "kind": "facts",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 4,
+      "text": "Pronunciation: /\u02c8m\u025c\u02d0rkj\u028ari/ \u24d8\nAlternative names: Hermes, Apollo\nAdjectives: Mercurian /m\u0259r\u02c8kj\u028a\u0259ri\u0259n/, Mercurial /m\u0259r\u02c8kj\u028a\u0259ri\u0259l/, Hermean /h\u025c\u02d0r\u02c8mi\u02d0\u0259n/\nAphelion: 0.466697 AU (69.8169 million km)\nPerihelion: 0.307499 AU (46.0012 million km)\nSemi-major axis: 0.387098 AU (57.9090 million km)\nEccentricity: 0.205630\nOrbital period (sidereal): 87.9691 d, 0.240846 yr, 0.5 Mercury synodic days\nOrbital period (synodic): 115.88 d\nAverage orbital speed: 47.36 km/s\nMean anomaly: 174.796\u00b0\nInclination: 7.005\u00b0 to ecliptic, 3.38\u00b0 to Sun's equator, 6.35\u00b0 to invariable plane",
+      "est_tokens": 140,
+      "relevance": 1.0,
+      "cluster_id": null,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:1:0",
+      "kind": "prose",
+      "citation_id": "c10",
+      "heading_path": [
+        "Nomenclature"
+      ],
+      "order": 5,
+      "text": "Historically, humans knew Mercury by different names depending on whether it was seen as an evening star or a morning star. By about 350 BC, the ancient Greeks had realized the two \"stars\" were the same. They knew the planet as \u03a3\u03c4\u03af\u03bb\u03b2\u03c9\u03bd Stilb\u014dn, meaning \"twinkling\", and \u1f19\u03c1\u03bc\u03ae\u03c2 Herm\u0113s, for its fleeting motion, a name that is retained in modern Greek (\u0395\u03c1\u03bc\u03ae\u03c2 Ermis). The Romans named the planet after the swift-footed Roman messenger god, Mercury (Latin Mercurius), whom they equated with the Greek Hermes, because it moves across the sky faster than any other planet, though some associated the planet with Apollo instead, as detailed by Pliny the Elder. The astronomical symbol for Mercury is a stylized version of Hermes' caduceus; a Christian cross was added in the 16th century: \u263f.",
+      "est_tokens": 196,
+      "relevance": 0.57199627161026,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 145,
+          "end": 159,
+          "title": "Ancient Greeks"
+        },
+        {
+          "start": 276,
+          "end": 282,
+          "title": "Hermes"
+        },
+        {
+          "start": 343,
+          "end": 348,
+          "title": "Greek language"
+        },
+        {
+          "start": 436,
+          "end": 443,
+          "title": "Mercury (mythology)"
+        },
+        {
+          "start": 605,
+          "end": 611,
+          "title": "Apollo"
+        },
+        {
+          "start": 636,
+          "end": 651,
+          "title": "Pliny the Elder"
+        },
+        {
+          "start": 657,
+          "end": 676,
+          "title": "Astronomical symbol"
+        },
+        {
+          "start": 722,
+          "end": 730,
+          "title": "Caduceus"
+        },
+        {
+          "start": 734,
+          "end": 749,
+          "title": "Christian cross"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:2:0",
+      "kind": "prose",
+      "citation_id": "c11",
+      "heading_path": [
+        "Physical characteristics"
+      ],
+      "order": 6,
+      "text": "Mercury is one of four terrestrial planets in the Solar System, which means it is a rocky body like Earth. It is the smallest planet in the Solar System, with an equatorial radius of 2,439.7 kilometres (1,516.0 mi). Mercury is also smaller\u2014albeit more massive\u2014than the largest natural satellites in the Solar System, Ganymede and Titan. Mercury consists of approximately 70% metallic and 30% silicate material.",
+      "est_tokens": 103,
+      "relevance": 0.7516821026802063,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 23,
+          "end": 42,
+          "title": "Terrestrial planet"
+        },
+        {
+          "start": 50,
+          "end": 62,
+          "title": "Solar System"
+        },
+        {
+          "start": 162,
+          "end": 172,
+          "title": "Equator"
+        },
+        {
+          "start": 173,
+          "end": 179,
+          "title": "Radius"
+        },
+        {
+          "start": 232,
+          "end": 239,
+          "title": "List of Solar System objects by radius"
+        },
+        {
+          "start": 277,
+          "end": 295,
+          "title": "Natural satellite"
+        },
+        {
+          "start": 317,
+          "end": 325,
+          "title": "Ganymede (moon)"
+        },
+        {
+          "start": 330,
+          "end": 335,
+          "title": "Titan (moon)"
+        },
+        {
+          "start": 392,
+          "end": 400,
+          "title": "Silicate"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:3:0",
+      "kind": "prose",
+      "citation_id": "c12",
+      "heading_path": [
+        "Physical characteristics",
+        "Internal structure"
+      ],
+      "order": 7,
+      "text": "Mercury appears to have a solid silicate crust and mantle overlying a solid, metallic outer core layer, a deeper liquid core layer, and a solid inner core. The composition of the iron-rich core remains uncertain, but it likely contains nickel, silicon and perhaps sulfur and carbon, plus trace amounts of other elements. The planet's density is the second highest in the Solar System at 5.427 g/cm3, only slightly less than Earth's density of 5.515 g/cm3. If the effect of gravitational compression were to be factored out from both planets, the materials of which Mercury is made would be denser than those of Earth, with an uncompressed density of 5.3 g/cm3 versus Earth's 4.4 g/cm3. Mercury's density can be used to infer details of its inner structure. Although Earth's high density results appreciably from gravitational compression, particularly at the core, Mercury is much smaller and its inner regions are not as compressed.",
+      "est_tokens": 234,
+      "relevance": 0.5965549349784851,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 41,
+          "end": 46,
+          "title": "Crust (geology)"
+        },
+        {
+          "start": 473,
+          "end": 498,
+          "title": "Gravitational compression"
+        },
+        {
+          "start": 859,
+          "end": 863,
+          "title": "Planetary core"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:3:1",
+      "kind": "prose",
+      "citation_id": "c12",
+      "heading_path": [
+        "Physical characteristics",
+        "Internal structure"
+      ],
+      "order": 8,
+      "text": "Therefore, for it to have such a high density, its core must be large and rich in iron. The radius of Mercury's core is estimated to be 2,020 \u00b1 30 km (1,255 \u00b1 19 mi), based on interior models constrained to be consistent with a moment of inertia factor of 0.346\u00b10.014. Hence, Mercury's core occupies about 57% of its volume; for Earth this proportion is 17%. Research published in 2007 suggests that Mercury has a molten core. The mantle-crust layer is in total 420 km (260 mi) thick. Projections differ as to the size of the crust specifically; data from the Mariner 10 and MESSENGER probes suggests a thickness of 35 km (22 mi), whereas an Airy isostacy model suggests a thickness of 26 \u00b1 11 km (16.2 \u00b1 6.8 mi). One distinctive feature of Mercury's surface is the presence of numerous narrow ridges, extending up to several hundred kilometers in length. It is thought that these were formed as Mercury's core and mantle cooled and contracted at a time when the crust had already solidified.",
+      "est_tokens": 248,
+      "relevance": 0.5679603815078735,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 228,
+          "end": 252,
+          "title": "Moment of inertia factor"
+        },
+        {
+          "start": 642,
+          "end": 655,
+          "title": "Airy isostacy"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:3:2",
+      "kind": "prose",
+      "citation_id": "c12",
+      "heading_path": [
+        "Physical characteristics",
+        "Internal structure"
+      ],
+      "order": 9,
+      "text": "Mercury's core has a higher iron content than that of any other planet in the Solar System, and several theories have been proposed to explain this. The most widely accepted theory is that Mercury originally had a metal\u2013silicate ratio similar to common chondrite meteorites, thought to be typical of the Solar System's rocky matter, and a mass approximately 2.25 times its current mass. Early in the Solar System's history, Mercury may have been struck by a planetesimal of approximately 1\u20446 Mercury's mass and several thousand kilometers across. The impact would have stripped away much of the original crust and mantle, leaving the core behind as a relatively major component. A similar process, known as the giant impact hypothesis, has been proposed to explain the formation of Earth's Moon.",
+      "est_tokens": 199,
+      "relevance": 0.6015307903289795,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 253,
+          "end": 262,
+          "title": "Chondrite"
+        },
+        {
+          "start": 458,
+          "end": 470,
+          "title": "Planetesimal"
+        },
+        {
+          "start": 711,
+          "end": 734,
+          "title": "Giant impact hypothesis"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:3:3",
+      "kind": "prose",
+      "citation_id": "c12",
+      "heading_path": [
+        "Physical characteristics",
+        "Internal structure"
+      ],
+      "order": 10,
+      "text": "Alternatively, Mercury may have formed from the solar nebula before the Sun's energy output had stabilized. It would initially have had twice its present mass, but as the protosun contracted, temperatures near Mercury could have been between 2,500 and 3,500 K and possibly even as high as 10,000 K. Much of Mercury's surface rock could have been vaporized at such temperatures, forming an atmosphere of \"rock vapor\" that could have been carried away by the solar wind. A third hypothesis proposes that the solar nebula caused drag on the particles from which Mercury was accreting, which meant that lighter particles were lost from the accreting material and not gathered by Mercury.",
+      "est_tokens": 171,
+      "relevance": 0.4761463403701782,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 48,
+          "end": 60,
+          "title": "Solar nebula"
+        },
+        {
+          "start": 171,
+          "end": 179,
+          "title": "Protostar"
+        },
+        {
+          "start": 457,
+          "end": 467,
+          "title": "Solar wind"
+        },
+        {
+          "start": 526,
+          "end": 530,
+          "title": "Drag (physics)"
+        },
+        {
+          "start": 571,
+          "end": 580,
+          "title": "Accretion (astrophysics)"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:3:4",
+      "kind": "prose",
+      "citation_id": "c12",
+      "heading_path": [
+        "Physical characteristics",
+        "Internal structure"
+      ],
+      "order": 11,
+      "text": "Each hypothesis predicts a different surface composition, and two space missions have been tasked with making observations of this composition. The first MESSENGER, which ended in 2015, found higher-than-expected potassium and sulfur levels on the surface, suggesting that the giant impact hypothesis and vaporization of the crust and mantle did not occur because said potassium and sulfur would have been driven off by the extreme heat of these events. BepiColombo, which will arrive at Mercury in 2026, will make observations to test these hypotheses. The findings so far would seem to favor the third hypothesis; however, further analysis of the data is needed.",
+      "est_tokens": 166,
+      "relevance": 0.4469054639339447,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 154,
+          "end": 163,
+          "title": "MESSENGER"
+        },
+        {
+          "start": 454,
+          "end": 465,
+          "title": "BepiColombo"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:4:0",
+      "kind": "prose",
+      "citation_id": "c13",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology"
+      ],
+      "order": 12,
+      "text": "Mercury's surface is similar in appearance to that of the Moon, showing extensive mare-like plains and heavy cratering, indicating that it has been geologically inactive for billions of years. It is more heterogeneous than the surface of Mars or the Moon, both of which contain significant stretches of similar geology, such as maria and plateaus. Albedo features are areas of markedly different reflectivity, which include impact craters, the resulting ejecta, and ray systems. Larger albedo features correspond to higher reflectivity plains. Mercury has \"wrinkle-ridges\" (dorsa), Moon-like highlands, mountains (montes), plains (planitiae), escarpments (rupes), and valleys (valles).",
+      "est_tokens": 172,
+      "relevance": 0.621083676815033,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 82,
+          "end": 86,
+          "title": "Lunar mare"
+        },
+        {
+          "start": 204,
+          "end": 217,
+          "title": "Heterogeneous"
+        },
+        {
+          "start": 238,
+          "end": 242,
+          "title": "Mars"
+        },
+        {
+          "start": 328,
+          "end": 333,
+          "title": "Lunar mare"
+        },
+        {
+          "start": 348,
+          "end": 354,
+          "title": "Albedo"
+        },
+        {
+          "start": 466,
+          "end": 477,
+          "title": "Ray system"
+        },
+        {
+          "start": 557,
+          "end": 571,
+          "title": "Wrinkle-ridge"
+        },
+        {
+          "start": 592,
+          "end": 601,
+          "title": "Highland"
+        },
+        {
+          "start": 677,
+          "end": 683,
+          "title": "Vallis (planetary geology)"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:4:1",
+      "kind": "prose",
+      "citation_id": "c13",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology"
+      ],
+      "order": 13,
+      "text": "The planet's mantle is chemically heterogeneous, suggesting the planet went through a magma ocean phase early in its history. Crystallization of minerals and convective overturn resulted in a layered, chemically heterogeneous crust with large-scale variations in chemical composition observed on the surface. The crust is low in iron but high in sulfur, resulting from the stronger early chemically reducing conditions than is found on other terrestrial planets. The surface is dominated by iron-poor pyroxene and olivine, as represented by enstatite and forsterite, respectively, along with sodium-rich plagioclase and minerals of mixed magnesium, calcium, and iron-sulfide. The less reflective regions of the crust are high in carbon, most likely in the form of graphite.",
+      "est_tokens": 194,
+      "relevance": 0.378761351108551,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 86,
+          "end": 97,
+          "title": "Magma ocean"
+        },
+        {
+          "start": 388,
+          "end": 407,
+          "title": "Chemical reduction"
+        },
+        {
+          "start": 501,
+          "end": 509,
+          "title": "Pyroxene"
+        },
+        {
+          "start": 514,
+          "end": 521,
+          "title": "Olivine"
+        },
+        {
+          "start": 541,
+          "end": 550,
+          "title": "Enstatite"
+        },
+        {
+          "start": 555,
+          "end": 565,
+          "title": "Forsterite"
+        },
+        {
+          "start": 604,
+          "end": 615,
+          "title": "Plagioclase"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:4:2",
+      "kind": "prose",
+      "citation_id": "c13",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology"
+      ],
+      "order": 14,
+      "text": "Names for features on Mercury come from a variety of sources and are set according to the IAU planetary nomenclature system. Names coming from people are limited to the deceased. Craters are named for artists, musicians, painters, and authors who have made outstanding or fundamental contributions to their field. Ridges, or dorsa, are named for scientists who have contributed to the study of Mercury. Depressions or fossae are named for works of architecture. Montes are named for the word \"hot\" in a variety of languages. Plains or planitiae are named for Mercury in various languages. Escarpments or rup\u0113s are named for ships of scientific expeditions. Valleys or valles are named for abandoned cities, towns, or settlements of antiquity.",
+      "est_tokens": 186,
+      "relevance": 0.31661343574523926,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 90,
+          "end": 93,
+          "title": "IAU"
+        },
+        {
+          "start": 94,
+          "end": 116,
+          "title": "Planetary nomenclature"
+        },
+        {
+          "start": 418,
+          "end": 424,
+          "title": "Fossa (geology)"
+        },
+        {
+          "start": 525,
+          "end": 531,
+          "title": "Plain"
+        },
+        {
+          "start": 559,
+          "end": 566,
+          "title": "Mercury (god)"
+        },
+        {
+          "start": 589,
+          "end": 600,
+          "title": "Escarpment"
+        },
+        {
+          "start": 604,
+          "end": 609,
+          "title": "Rup\u0113s"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:5:0",
+      "kind": "prose",
+      "citation_id": "c14",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Impact basins and craters"
+      ],
+      "order": 15,
+      "text": "Mercury was heavily bombarded by comets and asteroids during and shortly following its formation 4.6 billion years ago, as well as during a possibly separate subsequent episode called the Late Heavy Bombardment that ended 3.8 billion years ago. Mercury received impacts over its entire surface during this period of intense crater formation, facilitated by the lack of any atmosphere to slow impactors down. During this time Mercury was volcanically active; basins were filled by magma, producing smooth plains similar to the maria found on the Moon. One of the most unusual craters is Apollodorus, or \"the Spider\", which hosts a series of radiating troughs extending outwards from its impact site.",
+      "est_tokens": 175,
+      "relevance": 0.5259782075881958,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 44,
+          "end": 53,
+          "title": "Asteroid"
+        },
+        {
+          "start": 188,
+          "end": 210,
+          "title": "Late Heavy Bombardment"
+        },
+        {
+          "start": 373,
+          "end": 383,
+          "title": "Atmosphere"
+        },
+        {
+          "start": 437,
+          "end": 449,
+          "title": "Volcano"
+        },
+        {
+          "start": 480,
+          "end": 485,
+          "title": "Magma"
+        },
+        {
+          "start": 586,
+          "end": 597,
+          "title": "Apollodorus (crater)"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:5:1",
+      "kind": "prose",
+      "citation_id": "c14",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Impact basins and craters"
+      ],
+      "order": 16,
+      "text": "Craters on Mercury range in diameter from small bowl-shaped cavities to multi-ringed impact basins hundreds of kilometers across. They appear in all states of degradation, from relatively fresh rayed craters to highly degraded crater remnants. Mercurian craters differ subtly from lunar craters in that the area blanketed by their ejecta is much smaller, a consequence of Mercury's stronger surface gravity. According to International Astronomical Union rules, each new crater must be named after an artist who was famous for more than fifty years, and dead for more than three years, before the date the crater is named.",
+      "est_tokens": 156,
+      "relevance": 0.5732969045639038,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 0,
+          "end": 18,
+          "title": "Craters on Mercury"
+        },
+        {
+          "start": 72,
+          "end": 98,
+          "title": "Multi-ringed impact basin"
+        },
+        {
+          "start": 421,
+          "end": 453,
+          "title": "International Astronomical Union"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:5:2",
+      "kind": "prose",
+      "citation_id": "c14",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Impact basins and craters"
+      ],
+      "order": 17,
+      "text": "The largest known crater is Caloris Planitia, or Caloris Basin, with a diameter of 1,550 km (960 mi). The impact that created the Caloris Basin was so powerful that it caused lava eruptions and left a concentric mountainous ring ~2 km (1.2 mi) tall surrounding the impact crater. The floor of the Caloris Basin is filled by a geologically distinct flat plain, broken up by ridges and fractures in a roughly polygonal pattern. It is not clear whether they were volcanic lava flows induced by the impact or a large sheet of impact melt.",
+      "est_tokens": 134,
+      "relevance": 0.32772326469421387,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 28,
+          "end": 44,
+          "title": "Caloris Planitia"
+        },
+        {
+          "start": 175,
+          "end": 179,
+          "title": "Lava"
+        },
+        {
+          "start": 265,
+          "end": 278,
+          "title": "Impact crater"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:5:3",
+      "kind": "prose",
+      "citation_id": "c14",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Impact basins and craters"
+      ],
+      "order": 18,
+      "text": "At the antipode of the Caloris Basin is a large region of unusual, hilly terrain known as the \"Weird Terrain\". One hypothesis for its origin is that shock waves generated during the Caloris impact traveled around Mercury, converging at the basin's antipode (180 degrees away). The resulting high stresses fractured the surface. Alternatively, it has been suggested that this terrain formed as a result of the convergence of ejecta at this basin's antipode.",
+      "est_tokens": 114,
+      "relevance": 0.29212087392807007,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 7,
+          "end": 15,
+          "title": "Antipodes on Earth"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:5:4",
+      "kind": "prose",
+      "citation_id": "c14",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Impact basins and craters"
+      ],
+      "order": 19,
+      "text": "Overall, 46 impact basins have been identified. A notable basin is the 400 km (250 mi)-wide, multi-ring Tolstoj Basin that has an ejecta blanket extending up to 500 km (310 mi) from its rim and a floor that has been filled by smooth plains materials. Beethoven Basin has a similar-sized ejecta blanket and a 625 km (388 mi)-diameter rim. Like the Moon, the surface of Mercury has likely incurred the effects of space weathering processes, including solar wind and micrometeorite impacts.",
+      "est_tokens": 122,
+      "relevance": 0.42532601952552795,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 104,
+          "end": 117,
+          "title": "Tolstoj Basin"
+        },
+        {
+          "start": 251,
+          "end": 266,
+          "title": "Beethoven Basin"
+        },
+        {
+          "start": 411,
+          "end": 427,
+          "title": "Space weathering"
+        },
+        {
+          "start": 464,
+          "end": 478,
+          "title": "Micrometeorite"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:6:0",
+      "kind": "prose",
+      "citation_id": "c15",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Plains"
+      ],
+      "order": 20,
+      "text": "There are two geologically distinct plains regions on Mercury. Gently rolling, hilly plains in the regions between craters are Mercury's oldest visible surfaces, predating the heavily cratered terrain. These inter-crater plains appear to have obliterated many earlier craters, and show a general paucity of smaller craters below about 30 km (19 mi) in diameter.",
+      "est_tokens": 91,
+      "relevance": 0.5663207769393921,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 85,
+          "end": 122,
+          "title": "Inter-crater plains on Mercury"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:6:1",
+      "kind": "prose",
+      "citation_id": "c15",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Plains"
+      ],
+      "order": 21,
+      "text": "Smooth plains are widespread flat areas that fill depressions of various sizes and bear a strong resemblance to lunar maria. Unlike lunar maria, the smooth plains of Mercury have the same albedo as the older inter-crater plains. Despite a lack of unequivocally volcanic characteristics, the localization and rounded, lobate shape of these plains strongly support volcanic origins. All the smooth plains of Mercury formed significantly later than the Caloris basin, as evidenced by appreciably smaller crater densities than on the Caloris ejecta blanket.",
+      "est_tokens": 139,
+      "relevance": 0.4832974374294281,
+      "cluster_id": 0,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:7:0",
+      "kind": "prose",
+      "citation_id": "c16",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Compressional features"
+      ],
+      "order": 22,
+      "text": "An unusual feature of Mercury's surface is the numerous compression folds, or rupes, that crisscross the plains. These exist on the Moon, but are much more prominent on Mercury. As Mercury's interior cooled, it contracted and its surface began to deform, creating wrinkle ridges and lobate scarps associated with thrust faults. The scarps can reach lengths of 1,000 km (620 mi) and heights of 3 km (1.9 mi). These compressional features can be seen on top of other features, such as craters and smooth plains, indicating they are more recent. Mapping of the features has suggested a total shrinkage of Mercury's radius in the range of ~1\u20137 km (0.62\u20134.35 mi). Most activity along the major thrust systems probably ended about 3.6\u20133.7 billion years ago.",
+      "est_tokens": 188,
+      "relevance": 0.6169100999832153,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 78,
+          "end": 83,
+          "title": "Rupes"
+        },
+        {
+          "start": 264,
+          "end": 278,
+          "title": "Wrinkle ridge"
+        },
+        {
+          "start": 283,
+          "end": 296,
+          "title": "Lobate scarp"
+        },
+        {
+          "start": 313,
+          "end": 326,
+          "title": "Thrust fault"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:7:1",
+      "kind": "prose",
+      "citation_id": "c16",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Compressional features"
+      ],
+      "order": 23,
+      "text": "Small-scale thrust fault scarps have been found, tens of meters in height and with lengths in the range of a few kilometers, that appear to be less than 50 million years old, indicating that compression of the interior and consequent surface geological activity continue to the present.",
+      "est_tokens": 72,
+      "relevance": 0.15679281949996948,
+      "cluster_id": 0,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:8:0",
+      "kind": "prose",
+      "citation_id": "c17",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Volcanism"
+      ],
+      "order": 24,
+      "text": "There is evidence for pyroclastic flows on Mercury from low-profile shield volcanoes. Fifty-one pyroclastic deposits have been identified, where 90% of them are found within impact craters. A study of the degradation state of the impact craters that host pyroclastic deposits suggests that pyroclastic activity occurred on Mercury over a prolonged interval.",
+      "est_tokens": 90,
+      "relevance": 0.41675788164138794,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 22,
+          "end": 39,
+          "title": "Pyroclastic flow"
+        },
+        {
+          "start": 68,
+          "end": 84,
+          "title": "Shield volcano"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:8:1",
+      "kind": "prose",
+      "citation_id": "c17",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface geology",
+        "Volcanism"
+      ],
+      "order": 25,
+      "text": "A \"rimless depression\" inside the southwest rim of the Caloris Basin consists of at least nine overlapping volcanic vents, each individually up to 8 km (5.0 mi) in diameter. It is thus a \"compound volcano\". The vent floors are at least 1 km (0.62 mi) below their brinks and they bear a closer resemblance to volcanic craters sculpted by explosive eruptions or modified by collapse into void spaces created by magma withdrawal back down into a conduit. Scientists could not quantify the age of the volcanic complex system but reported that it could be on the order of a billion years.",
+      "est_tokens": 146,
+      "relevance": 0.25270795822143555,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 188,
+          "end": 204,
+          "title": "Compound volcano"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:9:0",
+      "kind": "prose",
+      "citation_id": "c18",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface conditions and exosphere"
+      ],
+      "order": 26,
+      "text": "The surface temperature of Mercury ranges from 100 to 700 K (\u2212173 to 427 \u00b0C; \u2212280 to 800 \u00b0F). It never rises above 180 K (\u221293 \u00b0C) at the poles, due to the absence of an atmosphere and a steep temperature gradient between the equator and the poles. At perihelion, the equatorial subsolar point is located at longitude 0\u00b0W or 180\u00b0W, and it climbs to a temperature of about 700 K. During aphelion, this occurs at 90\u00b0 or 270\u00b0W and reaches only 550 K. On the dark side of the planet, temperatures average 110 K, 110 K (\u2212163 \u00b0C). The intensity of sunlight on Mercury's surface ranges between 4.59 and 10.61 times the solar constant (1,370 W\u00b7m\u22122).",
+      "est_tokens": 160,
+      "relevance": 0.6211825013160706,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 251,
+          "end": 261,
+          "title": "Perihelion"
+        },
+        {
+          "start": 278,
+          "end": 292,
+          "title": "Subsolar point"
+        },
+        {
+          "start": 385,
+          "end": 393,
+          "title": "Aphelion"
+        },
+        {
+          "start": 541,
+          "end": 549,
+          "title": "Sunlight"
+        },
+        {
+          "start": 611,
+          "end": 625,
+          "title": "Solar constant"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:9:1",
+      "kind": "prose",
+      "citation_id": "c18",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface conditions and exosphere"
+      ],
+      "order": 27,
+      "text": "Although daylight temperatures at the surface of Mercury are generally extremely high, observations strongly suggest that ice (frozen water) exists on Mercury. The floors of deep craters at the poles are never exposed to direct sunlight, and temperatures there remain below 102 K, far lower than the global average. This creates a cold trap where ice can accumulate. Water ice strongly reflects radar, and observations by the 70-meter Goldstone Solar System Radar and the VLA in the early 1990s revealed that there are patches of high radar reflection near the poles. Although ice was not the only possible cause of these reflective regions, astronomers thought it to be the most likely explanation. The presence of water ice was confirmed using MESSENGER images of craters at the north pole.",
+      "est_tokens": 198,
+      "relevance": 0.4974122643470764,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 331,
+          "end": 340,
+          "title": "Cold trap (astronomy)"
+        },
+        {
+          "start": 395,
+          "end": 400,
+          "title": "Radar"
+        },
+        {
+          "start": 435,
+          "end": 463,
+          "title": "Goldstone Solar System Radar"
+        },
+        {
+          "start": 472,
+          "end": 475,
+          "title": "Very Large Array"
+        },
+        {
+          "start": 541,
+          "end": 551,
+          "title": "Reflection (physics)"
+        },
+        {
+          "start": 716,
+          "end": 725,
+          "title": "Ice"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:9:2",
+      "kind": "prose",
+      "citation_id": "c18",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface conditions and exosphere"
+      ],
+      "order": 28,
+      "text": "The icy crater regions are estimated to contain about 1014\u20131015 kg of ice, and may be covered by a layer of regolith that inhibits sublimation. By comparison, the Antarctic ice sheet on Earth has a mass of about 4\u00d71018 kg, and Mars's south polar cap contains about 1016 kg of water. The origin of the ice on Mercury is not yet known, but the two most likely sources are from outgassing of water from the planet's interior and deposition by impacts of comets.",
+      "est_tokens": 115,
+      "relevance": 0.48625004291534424,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 108,
+          "end": 116,
+          "title": "Regolith"
+        },
+        {
+          "start": 131,
+          "end": 142,
+          "title": "Sublimation (phase transition)"
+        },
+        {
+          "start": 163,
+          "end": 172,
+          "title": "Antarctica"
+        },
+        {
+          "start": 375,
+          "end": 385,
+          "title": "Outgassing"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:9:3",
+      "kind": "prose",
+      "citation_id": "c18",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface conditions and exosphere"
+      ],
+      "order": 29,
+      "text": "Mercury is too small and hot for its gravity to retain any significant atmosphere over long periods of time; it does have a tenuous surface-bounded exosphere at a surface pressure of less than approximately 0.5 nPa (0.005 picobars). It includes hydrogen, helium, oxygen, sodium, calcium, potassium, magnesium, silicon, and hydroxide, among others. This exosphere is not stable\u2014atoms are continuously lost and replenished from a variety of sources. Hydrogen atoms and helium atoms probably come from the solar wind, diffusing into Mercury's magnetosphere before later escaping back into space. The radioactive decay of elements within Mercury's crust is another source of helium, as well as sodium and potassium. Water vapor is present, released by a combination of processes such as comets striking its surface, sputtering creating water out of hydrogen from the solar wind and oxygen from rock, and sublimation from reservoirs of water ice in the permanently shadowed polar craters.",
+      "est_tokens": 246,
+      "relevance": 0.5127579569816589,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 37,
+          "end": 44,
+          "title": "Gravity"
+        },
+        {
+          "start": 71,
+          "end": 81,
+          "title": "Atmosphere"
+        },
+        {
+          "start": 148,
+          "end": 157,
+          "title": "Exosphere"
+        },
+        {
+          "start": 245,
+          "end": 253,
+          "title": "Hydrogen"
+        },
+        {
+          "start": 255,
+          "end": 261,
+          "title": "Helium"
+        },
+        {
+          "start": 263,
+          "end": 269,
+          "title": "Oxygen"
+        },
+        {
+          "start": 271,
+          "end": 277,
+          "title": "Sodium"
+        },
+        {
+          "start": 279,
+          "end": 286,
+          "title": "Calcium"
+        },
+        {
+          "start": 288,
+          "end": 297,
+          "title": "Potassium"
+        },
+        {
+          "start": 299,
+          "end": 308,
+          "title": "Magnesium"
+        },
+        {
+          "start": 310,
+          "end": 317,
+          "title": "Silicon"
+        },
+        {
+          "start": 323,
+          "end": 332,
+          "title": "Hydroxide"
+        },
+        {
+          "start": 448,
+          "end": 462,
+          "title": "Hydrogen atom"
+        },
+        {
+          "start": 467,
+          "end": 479,
+          "title": "Helium atom"
+        },
+        {
+          "start": 515,
+          "end": 524,
+          "title": "Diffusion"
+        },
+        {
+          "start": 540,
+          "end": 553,
+          "title": "Magnetosphere"
+        },
+        {
+          "start": 597,
+          "end": 614,
+          "title": "Radioactive decay"
+        },
+        {
+          "start": 812,
+          "end": 822,
+          "title": "Sputtering"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:9:4",
+      "kind": "prose",
+      "citation_id": "c18",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface conditions and exosphere"
+      ],
+      "order": 30,
+      "text": "The detection of high amounts of water-related ions such as O+, OH\u2212, and H3O+ was a surprise. Because of the quantities of these ions detected in Mercury's space environment, scientists surmise that these molecules were blasted from the surface or exosphere by the solar wind.",
+      "est_tokens": 69,
+      "relevance": 0.33697232604026794,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 73,
+          "end": 77,
+          "title": "Hydronium"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:9:5",
+      "kind": "prose",
+      "citation_id": "c18",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface conditions and exosphere"
+      ],
+      "order": 31,
+      "text": "Sodium, potassium, and calcium were discovered in the atmosphere during the 1980s\u20131990s, and are thought to result primarily from the vaporization of surface rock struck by micrometeorite impacts including presently from Comet Encke. In 2008, magnesium was discovered by MESSENGER. Studies indicate that, at times, sodium emissions are localized at points that correspond to the planet's magnetic poles. This would indicate an interaction between the magnetosphere and the planet's surface.",
+      "est_tokens": 123,
+      "relevance": 0.2836846113204956,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 221,
+          "end": 232,
+          "title": "Comet Encke"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:9:6",
+      "kind": "prose",
+      "citation_id": "c18",
+      "heading_path": [
+        "Physical characteristics",
+        "Surface conditions and exosphere"
+      ],
+      "order": 32,
+      "text": "According to NASA, Mercury is not a suitable planet for Earth-like life. It has a surface boundary exosphere instead of a layered atmosphere, extreme temperatures, and high solar radiation. It is unlikely that any living beings can withstand those conditions. Some parts of the subsurface of Mercury may have been habitable, and perhaps life forms, albeit likely primitive microorganisms, may have existed on the planet.",
+      "est_tokens": 105,
+      "relevance": 0.5512142777442932,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 82,
+          "end": 108,
+          "title": "Exosphere"
+        },
+        {
+          "start": 314,
+          "end": 323,
+          "title": "Planetary habitability"
+        },
+        {
+          "start": 337,
+          "end": 347,
+          "title": "Life form"
+        },
+        {
+          "start": 373,
+          "end": 387,
+          "title": "Microorganism"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:10:0",
+      "kind": "prose",
+      "citation_id": "c19",
+      "heading_path": [
+        "Physical characteristics",
+        "Magnetic field and magnetosphere"
+      ],
+      "order": 33,
+      "text": "Despite its small size and slow 59-day-long rotation, Mercury has a significant, and apparently global, magnetic field. According to measurements taken by Mariner 10, it is about 1.1% the strength of Earth's. The magnetic-field strength at Mercury's equator is about 300 nT. Like that of Earth, Mercury's magnetic field is dipolar and nearly aligned with the planet's spin axis (10\u00b0 dipolar tilt, compared to 11\u00b0 for Earth). Measurements from both the Mariner 10 and MESSENGER space probes have indicated that the strength and shape of the magnetic field are stable.",
+      "est_tokens": 142,
+      "relevance": 0.5526744723320007,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 104,
+          "end": 118,
+          "title": "Magnetic field"
+        },
+        {
+          "start": 200,
+          "end": 207,
+          "title": "Earth's magnetic field"
+        },
+        {
+          "start": 271,
+          "end": 273,
+          "title": "Tesla (unit)"
+        },
+        {
+          "start": 323,
+          "end": 330,
+          "title": "Dipolar"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:10:1",
+      "kind": "prose",
+      "citation_id": "c19",
+      "heading_path": [
+        "Physical characteristics",
+        "Magnetic field and magnetosphere"
+      ],
+      "order": 34,
+      "text": "It is likely that this magnetic field is generated by a dynamo effect, in a manner similar to the magnetic field of Earth. This dynamo effect would result from the circulation of the planet's iron-rich liquid core. Particularly strong tidal heating effects caused by the planet's high orbital eccentricity would serve to keep part of the core in the liquid state necessary for this dynamo effect.",
+      "est_tokens": 99,
+      "relevance": 0.3037424087524414,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 56,
+          "end": 62,
+          "title": "Dynamo theory"
+        },
+        {
+          "start": 235,
+          "end": 248,
+          "title": "Tidal heating"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:10:2",
+      "kind": "prose",
+      "citation_id": "c19",
+      "heading_path": [
+        "Physical characteristics",
+        "Magnetic field and magnetosphere"
+      ],
+      "order": 35,
+      "text": "Mercury's magnetic field is strong enough to deflect the solar wind around the planet, creating a magnetosphere. The planet's magnetosphere, though small enough to fit within Earth, is strong enough to trap solar wind plasma. This contributes to the space weathering of the planet's surface. Observations taken by the Mariner 10 spacecraft detected this low energy plasma in the magnetosphere of the planet's nightside. Bursts of energetic particles in the planet's magnetotail indicate a dynamic quality to the planet's magnetosphere.",
+      "est_tokens": 134,
+      "relevance": 0.475946307182312,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 218,
+          "end": 224,
+          "title": "Plasma (physics)"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:10:3",
+      "kind": "prose",
+      "citation_id": "c19",
+      "heading_path": [
+        "Physical characteristics",
+        "Magnetic field and magnetosphere"
+      ],
+      "order": 36,
+      "text": "During its second flyby of the planet on October 6, 2008, MESSENGER discovered that Mercury's magnetic field can be extremely \"leaky\". The spacecraft encountered magnetic \"tornadoes\"\u2014twisted bundles of magnetic fields connecting the planetary magnetic field to interplanetary space\u2014that were up to 800 km wide or a third of the radius of the planet. These twisted magnetic flux tubes, technically known as flux transfer events, form open windows in the planet's magnetic shield through which the solar wind may enter and directly impact Mercury's surface via magnetic reconnection. This also occurs in Earth's magnetic field. The MESSENGER observations showed the reconnection rate was ten times higher at Mercury, but its proximity to the Sun only accounts for about a third of the reconnection rate observed by MESSENGER.",
+      "est_tokens": 206,
+      "relevance": 0.4539722800254822,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 406,
+          "end": 426,
+          "title": "Flux transfer event"
+        },
+        {
+          "start": 559,
+          "end": 580,
+          "title": "Magnetic reconnection"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:11:0",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "Orbit, rotation, and longitude"
+      ],
+      "order": 37,
+      "text": "Mercury has the most eccentric orbit of all the planets in the Solar System; its eccentricity is 0.21 with its distance from the Sun ranging from 46,000,000 to 70,000,000 km (29,000,000 to 43,000,000 mi). It takes 87.969 Earth days to complete an orbit. The diagram illustrates the effects of the eccentricity, showing Mercury's orbit overlaid with a circular orbit having the same semi-major axis. Mercury's higher velocity when it is near perihelion is clear from the greater distance it covers in each 5-day interval. In the diagram, the varying distance of Mercury to the Sun is represented by the size of the planet, which is inversely proportional to Mercury's distance from the Sun.",
+      "est_tokens": 173,
+      "relevance": 0.7351382374763489,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 21,
+          "end": 30,
+          "title": "Orbital eccentricity"
+        },
+        {
+          "start": 382,
+          "end": 397,
+          "title": "Semi-major axis"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:11:1",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "Orbit, rotation, and longitude"
+      ],
+      "order": 38,
+      "text": "This varying distance to the Sun leads to Mercury's surface being flexed by tidal bulges raised by the Sun that are about 17 times stronger than the Moon's on Earth. Combined with a 3:2 spin\u2013orbit resonance of the planet's rotation around its axis, it also results in complex variations of the surface temperature. The resonance makes a single solar day (the length between two meridian transits of the Sun) on Mercury last exactly two Mercury years, or about 176 Earth days.",
+      "est_tokens": 119,
+      "relevance": 0.7278849482536316,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 76,
+          "end": 88,
+          "title": "Tidal bulge"
+        },
+        {
+          "start": 103,
+          "end": 106,
+          "title": "Sun"
+        },
+        {
+          "start": 186,
+          "end": 206,
+          "title": "Mercury (planet)"
+        },
+        {
+          "start": 344,
+          "end": 353,
+          "title": "Solar day"
+        },
+        {
+          "start": 378,
+          "end": 386,
+          "title": "Meridian (astronomy)"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:11:2",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "Orbit, rotation, and longitude"
+      ],
+      "order": 39,
+      "text": "Mercury's orbit is inclined by 7 degrees to the plane of Earth's orbit (the ecliptic), the largest of all eight known solar planets. As a result, transits of Mercury across the face of the Sun can only occur when the planet is crossing the plane of the ecliptic at the time it lies between Earth and the Sun, which is in May or November. This occurs about every seven years on average.",
+      "est_tokens": 97,
+      "relevance": 0.7299234867095947,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 76,
+          "end": 84,
+          "title": "Ecliptic"
+        },
+        {
+          "start": 146,
+          "end": 165,
+          "title": "Transits of Mercury"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:11:3",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "Orbit, rotation, and longitude"
+      ],
+      "order": 40,
+      "text": "Mercury's axial tilt is almost zero, with the best measured value as low as 0.027 degrees. This is significantly smaller than that of Jupiter, which has the second smallest axial tilt of all planets at 3.1 degrees. This means that to an observer at Mercury's poles, the center of the Sun never rises more than 2.1 arcminutes above the horizon. By comparison, the angular size of the Sun as seen from Mercury ranges from 1+1\u20444 to 2 degrees across.",
+      "est_tokens": 112,
+      "relevance": 0.6102724075317383,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 10,
+          "end": 20,
+          "title": "Axial tilt"
+        },
+        {
+          "start": 134,
+          "end": 141,
+          "title": "Jupiter"
+        },
+        {
+          "start": 314,
+          "end": 324,
+          "title": "Arcminutes"
+        },
+        {
+          "start": 363,
+          "end": 375,
+          "title": "Angular size"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:11:4",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "Orbit, rotation, and longitude"
+      ],
+      "order": 41,
+      "text": "At certain points on Mercury's surface, an observer would be able to see the Sun peek up a little more than two-thirds of the way over the horizon, then reverse and set before rising again, all within the same Mercurian day. This is because approximately four Earth days before perihelion, Mercury's angular orbital velocity equals its angular rotational velocity so that the Sun's apparent motion ceases; closer to perihelion, Mercury's angular orbital velocity then exceeds the angular rotational velocity. Thus, to a hypothetical observer on Mercury, the Sun appears to move in a retrograde direction. Four Earth days after perihelion, the Sun's normal apparent motion resumes. A similar effect would have occurred if Mercury had been in synchronous rotation: the alternating gain and loss of rotation over a revolution would have caused a libration of 23.65\u00b0 in longitude.",
+      "est_tokens": 219,
+      "relevance": 0.6258349418640137,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 210,
+          "end": 223,
+          "title": "Extraterrestrial skies"
+        },
+        {
+          "start": 308,
+          "end": 324,
+          "title": "Orbital speed"
+        },
+        {
+          "start": 344,
+          "end": 363,
+          "title": "Rotational velocity"
+        },
+        {
+          "start": 382,
+          "end": 397,
+          "title": "Improper motion"
+        },
+        {
+          "start": 583,
+          "end": 593,
+          "title": "Apparent retrograde motion"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:11:5",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "Orbit, rotation, and longitude"
+      ],
+      "order": 42,
+      "text": "For the same reason, there are two points on Mercury's equator, 180 degrees apart in longitude, at either of which, around perihelion in alternate Mercurian years (once a Mercurian day), the Sun passes overhead, then reverses its apparent motion and passes overhead again, then reverses a second time and passes overhead a third time, taking a total of about 16 Earth-days for this entire process. In the other alternate Mercurian years, the same thing happens at the other of these two points. The amplitude of the retrograde motion is small, so the overall effect is that, for two or three weeks, the Sun is almost stationary overhead, and is at its most brilliant because Mercury is at perihelion, its closest to the Sun. This prolonged exposure to the Sun at its brightest makes these two points the hottest places on Mercury.",
+      "est_tokens": 208,
+      "relevance": 0.6280664205551147,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 85,
+          "end": 94,
+          "title": "Longitude"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:11:6",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "Orbit, rotation, and longitude"
+      ],
+      "order": 43,
+      "text": "Maximum temperature occurs when the Sun is at an angle of about 25 degrees past noon due to diurnal temperature lag, at 0.4 Mercury days and 0.8 Mercury years past sunrise. Conversely, there are two other points on the equator, 90 degrees of longitude apart from the first ones, where the Sun passes overhead only when the planet is at aphelion in alternate years, when the apparent motion of the Sun in Mercury's sky is relatively rapid. These points, which are the ones on the equator where the apparent retrograde motion of the Sun happens when it is crossing the horizon as described in the preceding paragraph, receive much less solar heat than the first ones described above.",
+      "est_tokens": 171,
+      "relevance": 0.5049825310707092,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 92,
+          "end": 115,
+          "title": "Diurnal temperature variation"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:11:7",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "Orbit, rotation, and longitude"
+      ],
+      "order": 44,
+      "text": "Mercury attains an inferior conjunction (nearest approach to Earth) every 116 Earth days on average, but this interval can range from 105 days to 129 days due to the planet's eccentric orbit. Mercury can come as near as 82,200,000 km (0.549 astronomical units; 51.1 million miles) to Earth, and that is slowly declining: The next approach to within 82,100,000 km (51 million mi) is in 2679, and to within 82,000,000 km (51 million mi) in 4487, but it will not be closer to Earth than 80,000,000 km (50 million mi) until 28,622. Its period of retrograde motion as seen from Earth can vary from 8 to 15 days on either side of an inferior conjunction. This large range arises from the planet's high orbital eccentricity. Essentially, because Mercury is closest to the Sun, when taking an average over time, Mercury is most often the closest planet to the Earth, and\u2014in that measure\u2014it is the closest planet to each of the other planets in the Solar System.",
+      "est_tokens": 239,
+      "relevance": 0.7601392865180969,
+      "cluster_id": 1,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:12:0",
+      "kind": "prose",
+      "citation_id": "c21",
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Longitude convention"
+      ],
+      "order": 45,
+      "text": "The longitude convention for Mercury puts the zero of longitude at one of the two hottest points on the surface, as described above. However, when this area was first visited, by Mariner 10, this zero meridian was in darkness, so it was impossible to select a feature on the surface to define the exact position of the meridian. Therefore, a small crater further west was chosen, called Hun Kal, which provides the exact reference point for measuring longitude. The center of Hun Kal defines the 20\u00b0 west meridian. A 1970 International Astronomical Union resolution suggests that longitudes be measured positively in the westerly direction on Mercury. The two hottest places on the equator are therefore at longitudes 0\u00b0 W and 180\u00b0 W, and the coolest points on the equator are at longitudes 90\u00b0 W and 270\u00b0 W. However, the MESSENGER project uses an east-positive convention.",
+      "est_tokens": 219,
+      "relevance": 0.4591183662414551,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 387,
+          "end": 394,
+          "title": "Hun Kal"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:13:0",
+      "kind": "prose",
+      "citation_id": "c22",
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Spin-orbit resonance"
+      ],
+      "order": 46,
+      "text": "For many years it was thought that Mercury was synchronously tidally locked with the Sun, rotating once for each orbit and always keeping the same face directed towards the Sun, in the same way that the same side of the Moon always faces Earth. Radar observations in 1965 proved that the planet has a 3:2 spin-orbit resonance, rotating three times for every two revolutions around the Sun. The eccentricity of Mercury's orbit makes this resonance stable\u2014at perihelion, when the solar tide is strongest, the Sun is nearly stationary in Mercury's sky.",
+      "est_tokens": 138,
+      "relevance": 0.5706984996795654,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 61,
+          "end": 75,
+          "title": "Tidally locked"
+        },
+        {
+          "start": 90,
+          "end": 98,
+          "title": "Rotating"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:13:1",
+      "kind": "prose",
+      "citation_id": "c22",
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Spin-orbit resonance"
+      ],
+      "order": 47,
+      "text": "The 3:2 resonant tidal locking is stabilized by the variance of the tidal force along Mercury's eccentric orbit, acting on a permanent dipole component of Mercury's mass distribution. In a circular orbit there is no such variance, so the only resonance stabilized in such an orbit is at 1:1 (e.g., Earth\u2013Moon), when the tidal force, stretching a body along the \"center-body\" line, exerts a torque that aligns the body's axis of least inertia (the \"longest\" axis, and the axis of the aforementioned dipole) to always point at the center. However, with noticeable eccentricity, like that of Mercury's orbit, the tidal force has a maximum at perihelion and therefore stabilizes resonances, like 3:2, ensuring that the planet points its axis of least inertia roughly at the Sun when passing through perihelion.",
+      "est_tokens": 202,
+      "relevance": 0.5663498044013977,
+      "cluster_id": 1,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:13:2",
+      "kind": "prose",
+      "citation_id": "c22",
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Spin-orbit resonance"
+      ],
+      "order": 48,
+      "text": "The original reason astronomers thought it was synchronously locked was that, whenever Mercury was best placed for observation, it was always nearly at the same point in its 3:2 resonance, hence showing the same face. This is because, coincidentally, Mercury's rotation period is almost exactly half of its synodic period with respect to Earth. Due to Mercury's 3:2 spin-orbit resonance, a solar day lasts about 176 Earth days. A sidereal day (the period of rotation) lasts about 58.7 Earth days.",
+      "est_tokens": 124,
+      "relevance": 0.6168372631072998,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 430,
+          "end": 442,
+          "title": "Sidereal day"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:13:3",
+      "kind": "prose",
+      "citation_id": "c22",
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Spin-orbit resonance"
+      ],
+      "order": 49,
+      "text": "Simulations indicate that the orbital eccentricity of Mercury varies chaotically from nearly zero (circular) to more than 0.45 over millions of years due to perturbations from the other planets. This was thought to explain Mercury's 3:2 spin-orbit resonance (rather than the more usual 1:1), because this state is more likely to arise during a period of high eccentricity. However, accurate modeling based on a realistic model of tidal response has demonstrated that Mercury was captured into the 3:2 spin-orbit state at a very early stage of its history, within 20 (more likely, 10) million years after its formation.",
+      "est_tokens": 155,
+      "relevance": 0.6178956031799316,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 69,
+          "end": 80,
+          "title": "Chaos theory"
+        },
+        {
+          "start": 157,
+          "end": 170,
+          "title": "Perturbation (astronomy)"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:13:4",
+      "kind": "prose",
+      "citation_id": "c22",
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Spin-orbit resonance"
+      ],
+      "order": 50,
+      "text": "Numerical simulations show that a future secular orbital resonant interaction with the perihelion of Jupiter may cause the eccentricity of Mercury's orbit to increase to the point where there is a 1% chance that the orbit will be destabilized in the next five billion years. If this happens, Mercury may fall into the Sun, collide with Venus, be ejected from the Solar System, or even disrupt the rest of the inner Solar System.",
+      "est_tokens": 107,
+      "relevance": 0.5406458973884583,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 41,
+          "end": 48,
+          "title": "Secular resonance"
+        },
+        {
+          "start": 49,
+          "end": 65,
+          "title": "Orbital resonance"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:14:0",
+      "kind": "prose",
+      "citation_id": "c23",
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Advance of perihelion"
+      ],
+      "order": 51,
+      "text": "In 1859, the French mathematician and astronomer Urbain Le Verrier reported that the slow precession of Mercury's orbit around the Sun could not be completely explained by Newtonian mechanics and perturbations by the known planets. He suggested, among possible explanations, that another planet (or perhaps instead a series of smaller \"corpuscules\") might exist in an orbit even closer to the Sun than that of Mercury, to account for this perturbation. Other explanations considered included a slight oblateness of the Sun. The success of the search for Neptune based on its perturbations of the orbit of Uranus led astronomers to place faith in this possible explanation, and the hypothetical planet was named Vulcan, but no such planet was ever found.",
+      "est_tokens": 189,
+      "relevance": 0.45830899477005005,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 49,
+          "end": 66,
+          "title": "Urbain Le Verrier"
+        },
+        {
+          "start": 90,
+          "end": 100,
+          "title": "Precession"
+        },
+        {
+          "start": 172,
+          "end": 191,
+          "title": "Newtonian mechanics"
+        },
+        {
+          "start": 554,
+          "end": 561,
+          "title": "Neptune"
+        },
+        {
+          "start": 605,
+          "end": 611,
+          "title": "Uranus"
+        },
+        {
+          "start": 711,
+          "end": 717,
+          "title": "Vulcan (hypothetical planet)"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:14:1",
+      "kind": "prose",
+      "citation_id": "c23",
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Advance of perihelion"
+      ],
+      "order": 52,
+      "text": "The observed perihelion precession of Mercury is 5,600 arcseconds (1.5556\u00b0) per century relative to Earth, or 574.10\u00b10.65 arcseconds per century relative to the inertial ICRF. Newtonian mechanics, taking into account all the effects from the other planets and including 0.0254 arcseconds per century due to the oblateness of the Sun, predicts a precession of 5,557 arcseconds (1.5436\u00b0) per century relative to Earth, or 531.63\u00b10.69 arcseconds per century relative to ICRF. In the early 20th century, Albert Einstein's general theory of relativity provided the explanation for the observed precession, by formalizing gravitation as being mediated by the curvature of spacetime. The effect is small: just 42.980\u00b10.001 arcseconds per century (or 0.43 arcsecond per year, or 0.1035 arcsecond per orbital period) for Mercury; it therefore requires a little over 12.5 million orbits, or 3 million years, for a full excess turn.",
+      "est_tokens": 231,
+      "relevance": 0.6098918914794922,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 13,
+          "end": 34,
+          "title": "Perihelion precession"
+        },
+        {
+          "start": 55,
+          "end": 65,
+          "title": "Arcseconds"
+        },
+        {
+          "start": 170,
+          "end": 174,
+          "title": "International Celestial Reference Frame"
+        },
+        {
+          "start": 500,
+          "end": 515,
+          "title": "Albert Einstein"
+        },
+        {
+          "start": 518,
+          "end": 546,
+          "title": "General theory of relativity"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:14:2",
+      "kind": "prose",
+      "citation_id": "c23",
+      "heading_path": [
+        "Orbit, rotation, and longitude",
+        "Advance of perihelion"
+      ],
+      "order": 53,
+      "text": "Similar, but much smaller, effects exist for other Solar System bodies: 8.6247 arcseconds per century for Venus, 3.8387 for Earth, 1.351 for Mars, and 10.05 for 1566 Icarus.",
+      "est_tokens": 44,
+      "relevance": 0.46418389678001404,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 161,
+          "end": 172,
+          "title": "1566 Icarus"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:15:0",
+      "kind": "prose",
+      "citation_id": "c24",
+      "heading_path": [
+        "Observation"
+      ],
+      "order": 54,
+      "text": "Mercury's apparent magnitude is calculated to vary between \u22122.48 (brighter than Sirius) around superior conjunction and +7.25 (below the limit of naked-eye visibility) around inferior conjunction. The mean apparent magnitude is 0.23 while the standard deviation of 1.78 is the largest of any planet. The mean apparent magnitude at superior conjunction is \u22121.89 while that at inferior conjunction is +5.93. Observation of Mercury is complicated by its proximity to the Sun, as it is lost in the Sun's glare for much of the time. Mercury can be observed for only a brief period during either morning or evening twilight.",
+      "est_tokens": 155,
+      "relevance": 0.5934242606163025,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 10,
+          "end": 28,
+          "title": "Apparent magnitude"
+        },
+        {
+          "start": 80,
+          "end": 86,
+          "title": "Sirius"
+        },
+        {
+          "start": 95,
+          "end": 115,
+          "title": "Superior conjunction"
+        },
+        {
+          "start": 175,
+          "end": 195,
+          "title": "Inferior conjunction"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:15:1",
+      "kind": "prose",
+      "citation_id": "c24",
+      "heading_path": [
+        "Observation"
+      ],
+      "order": 55,
+      "text": "Ground-based telescope observations of Mercury reveal only an illuminated partial disk with limited detail. The Hubble Space Telescope cannot observe Mercury at all, due to safety procedures that prevent its pointing too close to the Sun. Because the shift of 0.15 revolutions of Earth in a Mercurian year makes up a seven-Mercurian-year cycle (0.15 \u00d7 7 \u2248 1.0), in the seventh Mercurian year, Mercury follows almost exactly (earlier by 7 days) the sequence of phenomena it showed seven Mercurian years before.",
+      "est_tokens": 128,
+      "relevance": 0.602989912033081,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 112,
+          "end": 134,
+          "title": "Hubble Space Telescope"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:15:2",
+      "kind": "prose",
+      "citation_id": "c24",
+      "heading_path": [
+        "Observation"
+      ],
+      "order": 56,
+      "text": "Like the Moon and Venus, Mercury exhibits phases as seen from Earth. It is \"new\" at inferior conjunction and \"full\" at superior conjunction. The planet is rendered invisible from Earth on both of these occasions because of its being obscured by the Sun, except at its new phase during a transit. Mercury is technically brightest as seen from Earth when it is at a full phase. Although Mercury is farthest from Earth when it is full, the greater illuminated area that is visible and the opposition brightness surge more than compensates for the distance. The opposite is true for Venus, which appears brightest when it is a crescent, because it is much closer to Earth than when gibbous.",
+      "est_tokens": 172,
+      "relevance": 0.6015344858169556,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 42,
+          "end": 48,
+          "title": "Lunar phase"
+        },
+        {
+          "start": 84,
+          "end": 104,
+          "title": "Inferior conjunction"
+        },
+        {
+          "start": 486,
+          "end": 513,
+          "title": "Opposition effect"
+        },
+        {
+          "start": 623,
+          "end": 631,
+          "title": "Crescent"
+        },
+        {
+          "start": 678,
+          "end": 685,
+          "title": "Gibbous"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:15:3",
+      "kind": "prose",
+      "citation_id": "c24",
+      "heading_path": [
+        "Observation"
+      ],
+      "order": 57,
+      "text": "Mercury is best observed at the first and last quarter, although they are phases of lesser brightness. The first and last quarter phases occur at greatest elongation east and west of the Sun, respectively. At both of these times, Mercury's separation from the Sun ranges anywhere from 17.9\u00b0 at perihelion to 27.8\u00b0 at aphelion. At greatest western elongation, Mercury rises at its earliest before sunrise, and at greatest eastern elongation, it sets at its latest after sunset.",
+      "est_tokens": 119,
+      "relevance": 0.6335529685020447,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 155,
+          "end": 165,
+          "title": "Elongation (astronomy)"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:15:4",
+      "kind": "prose",
+      "citation_id": "c24",
+      "heading_path": [
+        "Observation"
+      ],
+      "order": 58,
+      "text": "Mercury is more often and easily visible from the Southern Hemisphere than from the Northern. This is because Mercury's maximum western elongation occurs only during early autumn in the Southern Hemisphere, whereas its greatest eastern elongation happens only during late winter in the Southern Hemisphere. In both of these cases, the angle at which the planet's orbit intersects the horizon is maximized, allowing it to rise several hours before sunrise in the former instance and not set until several hours after sundown in the latter from southern mid-latitudes, such as Argentina and South Africa.",
+      "est_tokens": 151,
+      "relevance": 0.6520551443099976,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 50,
+          "end": 69,
+          "title": "Southern Hemisphere"
+        },
+        {
+          "start": 84,
+          "end": 92,
+          "title": "Northern Hemisphere"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:15:5",
+      "kind": "prose",
+      "citation_id": "c24",
+      "heading_path": [
+        "Observation"
+      ],
+      "order": 59,
+      "text": "An alternate method for viewing Mercury involves observing the planet with a telescope during daylight hours when conditions are clear, ideally when it is at its greatest elongation. This allows the planet to be found easily, even when using telescopes with 8 cm (3.1 in) apertures. However, great care must be taken to obstruct the Sun from sight because of the extreme risk for eye damage. This method bypasses the limitation of twilight observing when the ecliptic is located at a low elevation (e.g. on autumn evenings). The planet is higher in the sky and fewer atmospheric effects affect the view of the planet. Mercury can be viewed as close as 4\u00b0 to the Sun near superior conjunction when it is almost at its brightest. Mercury can, like several other planets and the brightest stars, be seen during a total solar eclipse.",
+      "est_tokens": 208,
+      "relevance": 0.6362685561180115,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 77,
+          "end": 86,
+          "title": "Telescope"
+        },
+        {
+          "start": 816,
+          "end": 829,
+          "title": "Solar eclipse"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:17:0",
+      "kind": "prose",
+      "citation_id": "c26",
+      "heading_path": [
+        "Observation history",
+        "Ancient astronomers"
+      ],
+      "order": 60,
+      "text": "The earliest known recorded observations of Mercury are from the MUL.APIN tablets. These observations were most likely made by an Assyrian astronomer around the 14th century BC. The cuneiform name used to designate Mercury on the MUL.APIN tablets is transcribed as UDU.IDIM.GU\\U4.UD (\"the jumping planet\"). Babylonian records of Mercury date back to the 1st millennium BC. The Babylonians called the planet Nabu after the messenger to the gods in their mythology.",
+      "est_tokens": 116,
+      "relevance": 0.4833829402923584,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 65,
+          "end": 73,
+          "title": "MUL.APIN"
+        },
+        {
+          "start": 130,
+          "end": 138,
+          "title": "Assyria"
+        },
+        {
+          "start": 182,
+          "end": 191,
+          "title": "Cuneiform"
+        },
+        {
+          "start": 307,
+          "end": 325,
+          "title": "Babylonian astronomy"
+        },
+        {
+          "start": 377,
+          "end": 388,
+          "title": "Babylonia"
+        },
+        {
+          "start": 407,
+          "end": 411,
+          "title": "Nabu"
+        },
+        {
+          "start": 447,
+          "end": 462,
+          "title": "Babylonian mythology"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:17:1",
+      "kind": "prose",
+      "citation_id": "c26",
+      "heading_path": [
+        "Observation history",
+        "Ancient astronomers"
+      ],
+      "order": 61,
+      "text": "The Greco-Egyptian astronomer Ptolemy wrote about the possibility of planetary transits across the face of the Sun in his work Planetary Hypotheses. He suggested that no transits had been observed either because planets such as Mercury were too small to see, or because transits were too infrequent.",
+      "est_tokens": 75,
+      "relevance": 0.37897202372550964,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 4,
+          "end": 9,
+          "title": "Greeks in Egypt"
+        },
+        {
+          "start": 10,
+          "end": 18,
+          "title": "Ancient Egypt"
+        },
+        {
+          "start": 30,
+          "end": 37,
+          "title": "Ptolemy"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:17:2",
+      "kind": "prose",
+      "citation_id": "c26",
+      "heading_path": [
+        "Observation history",
+        "Ancient astronomers"
+      ],
+      "order": 62,
+      "text": "In ancient China, Mercury was known as \"the Hour Star\" (Chen-xing \u8fb0\u661f). It was associated with the direction north and the phase of water in the Five Phases system of metaphysics. Modern Chinese, Korean, Japanese and Vietnamese cultures refer to the planet literally as the \"water star\" (\u6c34\u661f), based on the Five elements. Hindu mythology used the name Budha for Mercury, and this god was thought to preside over Wednesday. The god Odin (or Woden) of Germanic paganism was associated with the planet Mercury and Wednesday. The Maya may have represented Mercury as an owl (or possibly four owls; two for the morning aspect and two for the evening) that served as a messenger to the underworld. Mercury was sometimes known as Stilbon (Greek: \u03a3\u03c4\u03af\u03bb\u03b2\u03c9\u03bd) meaning 'the shining, glittering'.",
+      "est_tokens": 195,
+      "relevance": 0.5282422304153442,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 3,
+          "end": 16,
+          "title": "Ancient China"
+        },
+        {
+          "start": 144,
+          "end": 155,
+          "title": "Five Phases"
+        },
+        {
+          "start": 186,
+          "end": 193,
+          "title": "Chinese culture"
+        },
+        {
+          "start": 195,
+          "end": 201,
+          "title": "Korean culture"
+        },
+        {
+          "start": 203,
+          "end": 211,
+          "title": "Japanese culture"
+        },
+        {
+          "start": 216,
+          "end": 226,
+          "title": "Vietnamese culture"
+        },
+        {
+          "start": 305,
+          "end": 318,
+          "title": "Five elements (Chinese philosophy)"
+        },
+        {
+          "start": 320,
+          "end": 335,
+          "title": "Hindu mythology"
+        },
+        {
+          "start": 350,
+          "end": 355,
+          "title": "Budha"
+        },
+        {
+          "start": 429,
+          "end": 433,
+          "title": "Odin"
+        },
+        {
+          "start": 448,
+          "end": 465,
+          "title": "Germanic paganism"
+        },
+        {
+          "start": 524,
+          "end": 528,
+          "title": "Maya civilization"
+        },
+        {
+          "start": 678,
+          "end": 688,
+          "title": "Underworld"
+        },
+        {
+          "start": 721,
+          "end": 728,
+          "title": "Stilbon (mythology)"
+        },
+        {
+          "start": 730,
+          "end": 735,
+          "title": "Greek language"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:17:3",
+      "kind": "prose",
+      "citation_id": "c26",
+      "heading_path": [
+        "Observation history",
+        "Ancient astronomers"
+      ],
+      "order": 63,
+      "text": "In medieval Islamic astronomy, the Andalusian astronomer Ab\u016b Ish\u0101q Ibr\u0101h\u012bm al-Zarq\u0101l\u012b in the 11th century described the deferent of Mercury's geocentric orbit, known under the name \u02bfU\u1e6d\u0101rid (Arabic: \u0639\u064f\u0637\u064e\u0627\u0631\u0650\u062f), as being oval, like an egg or a pignon, although this insight did not influence his astronomical theory or his astronomical calculations. In the 12th century, Ibn Bajjah observed \"two planets as black spots on the face of the Sun\", which was later suggested as the transit of Mercury (\u02bfU\u1e6d\u0101rid, \u0639\u064f\u0637\u064e\u0627\u0631\u0650\u062f) and/or Venus (az-Zuharah, \u0627\u0644\u0632\u064f\u0651\u0647\u064e\u0631\u064e\u0629) by the Maragha astronomer Qotb al-Din Shirazi in the 13th century. Most such medieval reports of transits were later taken as observations of sunspots.",
+      "est_tokens": 176,
+      "relevance": 0.4192844033241272,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 3,
+          "end": 29,
+          "title": "Medieval Islamic astronomy"
+        },
+        {
+          "start": 35,
+          "end": 45,
+          "title": "Al-Andalus"
+        },
+        {
+          "start": 57,
+          "end": 85,
+          "title": "Ab\u016b Ish\u0101q Ibr\u0101h\u012bm al-Zarq\u0101l\u012b"
+        },
+        {
+          "start": 120,
+          "end": 128,
+          "title": "Deferent"
+        },
+        {
+          "start": 142,
+          "end": 158,
+          "title": "Geocentric orbit"
+        },
+        {
+          "start": 190,
+          "end": 196,
+          "title": "Arabic"
+        },
+        {
+          "start": 241,
+          "end": 247,
+          "title": "Pine nut"
+        },
+        {
+          "start": 368,
+          "end": 378,
+          "title": "Ibn Bajjah"
+        },
+        {
+          "start": 558,
+          "end": 565,
+          "title": "Maragheh observatory"
+        },
+        {
+          "start": 577,
+          "end": 596,
+          "title": "Qotb al-Din Shirazi"
+        },
+        {
+          "start": 693,
+          "end": 701,
+          "title": "Sunspot"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:17:4",
+      "kind": "prose",
+      "citation_id": "c26",
+      "heading_path": [
+        "Observation history",
+        "Ancient astronomers"
+      ],
+      "order": 64,
+      "text": "In India, the Kerala school astronomer Nilakantha Somayaji in the 15th century developed a partially heliocentric planetary model in which Mercury orbits the Sun, which in turn orbits Earth, similar to the Tychonic system later proposed by Tycho Brahe in the late 16th century.",
+      "est_tokens": 70,
+      "relevance": 0.48888304829597473,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 14,
+          "end": 27,
+          "title": "Kerala school of astronomy and mathematics"
+        },
+        {
+          "start": 39,
+          "end": 58,
+          "title": "Nilakantha Somayaji"
+        },
+        {
+          "start": 206,
+          "end": 221,
+          "title": "Tychonic system"
+        },
+        {
+          "start": 240,
+          "end": 251,
+          "title": "Tycho Brahe"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:18:0",
+      "kind": "prose",
+      "citation_id": "c27",
+      "heading_path": [
+        "Observation history",
+        "Ground-based telescopic research"
+      ],
+      "order": 65,
+      "text": "The first telescopic observations of Mercury were made by Thomas Harriot and Galileo from 1610. In 1612, Simon Marius observed the brightness of Mercury varied with the planet's orbital position and concluded it had phases \"in the same way as Venus and the Moon\". In 1631, Pierre Gassendi made the first telescopic observations of the transit of a planet across the Sun when he saw a transit of Mercury predicted by Johannes Kepler. In 1639, Giovanni Zupi used a telescope to discover that the planet had orbital phases similar to Venus and the Moon. The observation demonstrated conclusively that Mercury orbited the Sun.",
+      "est_tokens": 156,
+      "relevance": 0.4622766971588135,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 58,
+          "end": 72,
+          "title": "Thomas Harriot"
+        },
+        {
+          "start": 77,
+          "end": 84,
+          "title": "Galileo"
+        },
+        {
+          "start": 105,
+          "end": 117,
+          "title": "Simon Marius"
+        },
+        {
+          "start": 273,
+          "end": 288,
+          "title": "Pierre Gassendi"
+        },
+        {
+          "start": 416,
+          "end": 431,
+          "title": "Johannes Kepler"
+        },
+        {
+          "start": 442,
+          "end": 455,
+          "title": "Giovanni Zupi"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:18:1",
+      "kind": "prose",
+      "citation_id": "c27",
+      "heading_path": [
+        "Observation history",
+        "Ground-based telescopic research"
+      ],
+      "order": 66,
+      "text": "A rare event in astronomy is the passage of one planet in front of another (occultation), as seen from Earth. Mercury and Venus occult each other every few centuries, and the event of May 28, 1737, is the only one historically observed, having been seen by John Bevis at the Royal Greenwich Observatory. The next occultation of Mercury by Venus will be on December 3, 2133.",
+      "est_tokens": 94,
+      "relevance": 0.4266589879989624,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 76,
+          "end": 87,
+          "title": "Occultation"
+        },
+        {
+          "start": 257,
+          "end": 267,
+          "title": "John Bevis"
+        },
+        {
+          "start": 275,
+          "end": 302,
+          "title": "Royal Greenwich Observatory"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:18:2",
+      "kind": "prose",
+      "citation_id": "c27",
+      "heading_path": [
+        "Observation history",
+        "Ground-based telescopic research"
+      ],
+      "order": 67,
+      "text": "The difficulties inherent in observing Mercury meant that it was far less studied than the other planets. In 1800, Johann Schr\u00f6ter made observations of surface features, claiming to have observed 20-kilometre-high (12 mi) mountains. Friedrich Bessel used Schr\u00f6ter's drawings to erroneously estimate the rotation period as 24 hours and an axial tilt of 70\u00b0. In the 1880s, Giovanni Schiaparelli mapped the planet more accurately, and suggested that Mercury's rotational period was 88 days, the same as its orbital period due to tidal locking. This phenomenon is known as synchronous rotation. The effort to map the surface of Mercury was continued by Eugenios Antoniadi, who published a book in 1934 that included both maps and his own observations. Many of the planet's surface features, particularly the albedo features, take their names from Antoniadi's map.",
+      "est_tokens": 215,
+      "relevance": 0.48184704780578613,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 115,
+          "end": 130,
+          "title": "Johann Schr\u00f6ter"
+        },
+        {
+          "start": 233,
+          "end": 249,
+          "title": "Friedrich Bessel"
+        },
+        {
+          "start": 371,
+          "end": 392,
+          "title": "Giovanni Schiaparelli"
+        },
+        {
+          "start": 569,
+          "end": 589,
+          "title": "Synchronous rotation"
+        },
+        {
+          "start": 649,
+          "end": 667,
+          "title": "Eugenios Antoniadi"
+        },
+        {
+          "start": 804,
+          "end": 819,
+          "title": "List of albedo features on Mercury"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:18:3",
+      "kind": "prose",
+      "citation_id": "c27",
+      "heading_path": [
+        "Observation history",
+        "Ground-based telescopic research"
+      ],
+      "order": 68,
+      "text": "In June 1962, Soviet scientists at the Institute of Radio-engineering and Electronics of the USSR Academy of Sciences, led by Vladimir Kotelnikov, became the first to bounce a radar signal off Mercury and receive it, starting radar observations of the planet. Three years later, radar observations by Americans Gordon H. Pettengill and Rolf B. Dyce, using the 300-metre-wide (330 yd) Arecibo radio telescope in Puerto Rico, showed conclusively that the planet's rotational period was about 59 days. The theory that Mercury's rotation was synchronous had become widely held, and it was a surprise to astronomers when these radio observations were announced. If Mercury were tidally locked, its dark face would be extremely cold, but measurements of radio emission revealed that it was much hotter than expected. Astronomers were reluctant to drop the synchronous rotation theory and proposed alternative mechanisms such as powerful heat-distributing winds to explain the observations.",
+      "est_tokens": 246,
+      "relevance": 0.4670118987560272,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 39,
+          "end": 85,
+          "title": "Institute of Radio-engineering and Electronics"
+        },
+        {
+          "start": 93,
+          "end": 117,
+          "title": "USSR Academy of Sciences"
+        },
+        {
+          "start": 126,
+          "end": 145,
+          "title": "Vladimir Kotelnikov"
+        },
+        {
+          "start": 311,
+          "end": 331,
+          "title": "Gordon H. Pettengill"
+        },
+        {
+          "start": 384,
+          "end": 407,
+          "title": "Arecibo radio telescope"
+        },
+        {
+          "start": 411,
+          "end": 422,
+          "title": "Puerto Rico"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:18:4",
+      "kind": "prose",
+      "citation_id": "c27",
+      "heading_path": [
+        "Observation history",
+        "Ground-based telescopic research"
+      ],
+      "order": 69,
+      "text": "In 1965, Italian astronomer Giuseppe Colombo noted that the rotation value was about two-thirds of Mercury's orbital period, and proposed that the planet's orbital and rotational periods were locked into a 3:2 rather than a 1:1 resonance. Data from Mariner 10 subsequently confirmed this view. This means that Schiaparelli's and Antoniadi's maps were not \"wrong\". Instead, the astronomers saw the same features during every second orbit and recorded them, but disregarded those seen in the meantime, when Mercury's other face was toward the Sun, because the orbital geometry meant that these observations were made under poor viewing conditions.",
+      "est_tokens": 162,
+      "relevance": 0.5062901973724365,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 28,
+          "end": 44,
+          "title": "Giuseppe Colombo"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:18:5",
+      "kind": "prose",
+      "citation_id": "c27",
+      "heading_path": [
+        "Observation history",
+        "Ground-based telescopic research"
+      ],
+      "order": 70,
+      "text": "Ground-based optical observations did not shed much further light on Mercury, but radio astronomers using interferometry at microwave wavelengths, a technique that enables removal of the solar radiation, were able to discern physical and chemical characteristics of the subsurface layers to a depth of several meters. Not until the first space probe flew past Mercury did many of its most fundamental morphological properties become known. Moreover, technological advances have led to improved ground-based observations. In 2000, high-resolution lucky imaging observations were conducted by the Mount Wilson Observatory 1.5-metre (4.9 ft) Hale telescope. They provided the first views that resolved surface features on the parts of Mercury that were not imaged in the Mariner 10 mission. Most of the planet has been mapped by the Arecibo radar telescope, with 5 km (3.1 mi) resolution, including polar deposits in shadowed craters of what may be water ice.",
+      "est_tokens": 239,
+      "relevance": 0.4936258792877197,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 546,
+          "end": 559,
+          "title": "Lucky imaging"
+        },
+        {
+          "start": 595,
+          "end": 619,
+          "title": "Mount Wilson Observatory"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:19:0",
+      "kind": "prose",
+      "citation_id": "c28",
+      "heading_path": [
+        "Observation history",
+        "Research with space probes"
+      ],
+      "order": 71,
+      "text": "Reaching Mercury from Earth poses significant technical challenges, because it orbits so much closer to the Sun than Earth. A Mercury-bound spacecraft launched from Earth must travel over 91 million kilometres (57 million miles) into the Sun's gravitational potential well. Mercury has an orbital speed of 47.4 km/s (29.5 mi/s), whereas Earth's orbital speed is 29.8 km/s (18.5 mi/s). Therefore, the spacecraft must make a larger change in velocity (delta-v) to get to Mercury and then enter orbit, as compared to the delta-v required for, say, Mars planetary missions.",
+      "est_tokens": 143,
+      "relevance": 0.6247048377990723,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 258,
+          "end": 272,
+          "title": "Potential well"
+        },
+        {
+          "start": 289,
+          "end": 302,
+          "title": "Orbital speed"
+        },
+        {
+          "start": 440,
+          "end": 448,
+          "title": "Velocity"
+        },
+        {
+          "start": 450,
+          "end": 457,
+          "title": "Delta-v"
+        },
+        {
+          "start": 545,
+          "end": 568,
+          "title": "Exploration of Mars"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:19:1",
+      "kind": "prose",
+      "citation_id": "c28",
+      "heading_path": [
+        "Observation history",
+        "Research with space probes"
+      ],
+      "order": 72,
+      "text": "The potential energy liberated by moving down the Sun's potential well becomes kinetic energy, requiring a delta-v change to do anything other than pass by Mercury. Some portion of this delta-v budget can be provided from a gravity assist during one or more fly-bys of Venus. To land safely or enter a stable orbit the spacecraft would rely entirely on rocket motors. Aerobraking is ruled out because Mercury has a negligible atmosphere. A trip to Mercury requires more rocket fuel than that required to escape the Solar System completely. As a result, only three space probes have visited it so far. A proposed alternative approach would use a solar sail to attain a Mercury-synchronous orbit around the Sun.",
+      "est_tokens": 178,
+      "relevance": 0.44889718294143677,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 4,
+          "end": 20,
+          "title": "Potential energy"
+        },
+        {
+          "start": 79,
+          "end": 93,
+          "title": "Kinetic energy"
+        },
+        {
+          "start": 186,
+          "end": 200,
+          "title": "Delta-v budget"
+        },
+        {
+          "start": 224,
+          "end": 238,
+          "title": "Gravity assist"
+        },
+        {
+          "start": 368,
+          "end": 379,
+          "title": "Aerobraking"
+        },
+        {
+          "start": 504,
+          "end": 510,
+          "title": "Escape velocity"
+        },
+        {
+          "start": 645,
+          "end": 655,
+          "title": "Solar sail"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:20:0",
+      "kind": "prose",
+      "citation_id": "c29",
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "Mariner 10"
+      ],
+      "order": 73,
+      "text": "The first spacecraft to visit Mercury was NASA's Mariner 10 (1974\u20131975). The spacecraft used the gravity of Venus to adjust its orbital velocity so that it could approach Mercury, making it both the first spacecraft to use this gravitational \"slingshot\" effect and the first NASA mission to visit multiple planets. Mariner 10 provided the first close-up images of Mercury's surface, which immediately showed its heavily cratered nature, and revealed many other types of geological features, such as the giant scarps that were later ascribed to the effect of the planet shrinking slightly as its iron core cools. Unfortunately, the same face of the planet was lit at each of Mariner 10's close approaches. This made close observation of both sides of the planet impossible, and resulted in the mapping of less than 45% of the planet's surface.",
+      "est_tokens": 211,
+      "relevance": 0.5222480297088623,
+      "cluster_id": 1,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:20:1",
+      "kind": "prose",
+      "citation_id": "c29",
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "Mariner 10"
+      ],
+      "order": 74,
+      "text": "The spacecraft made three close approaches to Mercury, the closest of which took it to within 327 km (203 mi) of the surface. At the first close approach, instruments detected a magnetic field, to the great surprise of planetary geologists\u2014Mercury's rotation was expected to be much too slow to generate a significant dynamo effect. The second close approach was primarily used for imaging, but at the third approach, extensive magnetic data were obtained. The data revealed that the planet's magnetic field is much like Earth's, which deflects the solar wind around the planet. For many years after the Mariner 10 encounters, the origin of Mercury's magnetic field remained the subject of several competing theories.",
+      "est_tokens": 180,
+      "relevance": 0.4981812834739685,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 318,
+          "end": 324,
+          "title": "Dynamo"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:20:2",
+      "kind": "prose",
+      "citation_id": "c29",
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "Mariner 10"
+      ],
+      "order": 75,
+      "text": "On March 24, 1975, just eight days after its final close approach, Mariner 10 ran out of fuel. Because its orbit could no longer be accurately controlled, mission controllers instructed the probe to shut down. Mariner 10 is thought to be still orbiting the Sun, passing close to Mercury every few months.",
+      "est_tokens": 76,
+      "relevance": 0.25679928064346313,
+      "cluster_id": 1,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:21:0",
+      "kind": "prose",
+      "citation_id": "c30",
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "MESSENGER"
+      ],
+      "order": 76,
+      "text": "A second NASA mission to Mercury, named MESSENGER (MErcury Surface, Space ENvironment, GEochemistry, and Ranging), was launched on August 3, 2004. It made a fly-by of Earth in August 2005, and of Venus in October 2006 and June 2007 to place it onto the correct trajectory to reach an orbit around Mercury. A first fly-by of Mercury occurred on January 14, 2008, a second on October 6, 2008, and a third on September 29, 2009. Most of the hemisphere not imaged by Mariner 10 was mapped during these fly-bys. The probe entered an elliptical orbit around the planet on March 18, 2011. The first orbital image of Mercury was obtained on March 29, 2011. The probe finished a one-year mapping mission and then entered a one-year extended mission into 2013. With more observation and mapping of Mercury, MESSENGER observed the 2012 solar maximum.",
+      "est_tokens": 210,
+      "relevance": 0.6191843152046204,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 825,
+          "end": 838,
+          "title": "Solar maximum"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:21:1",
+      "kind": "prose",
+      "citation_id": "c30",
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "MESSENGER"
+      ],
+      "order": 77,
+      "text": "The mission was designed to clear up six key issues: Mercury's high density, its geological history, the nature of its magnetic field, the structure of its core, whether it has ice at its poles, and where its tenuous atmosphere comes from. To this end, the probe carried imaging devices that gathered much-higher-resolution images of much more of Mercury than Mariner 10, assorted spectrometers to determine the abundances of elements in the crust, and magnetometers and devices to measure velocities of charged particles. Measurements of changes in the probe's orbital velocity were expected to be used to infer details of the planet's interior structure. MESSENGER's final maneuver was on April 24, 2015, and it crashed into Mercury's surface on April 30, 2015. The spacecraft's impact with Mercury occurred at 3:26:01 p.m. EDT on April 30, 2015, leaving a crater estimated to be 16 m (52 ft) in diameter.",
+      "est_tokens": 227,
+      "relevance": 0.5153051018714905,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 381,
+          "end": 394,
+          "title": "Spectrometer"
+        },
+        {
+          "start": 453,
+          "end": 466,
+          "title": "Magnetometer"
+        },
+        {
+          "start": 826,
+          "end": 829,
+          "title": "Eastern Time Zone"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384573767:22:0",
+      "kind": "prose",
+      "citation_id": "c31",
+      "heading_path": [
+        "Observation history",
+        "Research with space probes",
+        "BepiColombo"
+      ],
+      "order": 78,
+      "text": "The European Space Agency and the Japanese Space Agency developed and launched a joint mission called BepiColombo, which will orbit Mercury with two probes: one to map the planet and the other to study its magnetosphere. BepiColombo was launched on October 20, 2018. It will release a magnetometer probe into an elliptical orbit, then chemical rockets will fire to deposit the mapper probe into a circular orbit. Both probes will operate for one terrestrial year. The mapper probe carries an array of spectrometers similar to those on MESSENGER, and will study the planet at many different wavelengths including infrared, ultraviolet, X-ray and gamma ray. BepiColombo conducted the first of its six planned Mercury flybys on October 1, 2021, and the sixth was completed on January 9, 2025. The spacecraft will enter the planet's orbit in 2026.",
+      "est_tokens": 211,
+      "relevance": 0.44673848152160645,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 4,
+          "end": 25,
+          "title": "European Space Agency"
+        },
+        {
+          "start": 34,
+          "end": 55,
+          "title": "Japanese Space Agency"
+        },
+        {
+          "start": 612,
+          "end": 620,
+          "title": "Infrared"
+        },
+        {
+          "start": 622,
+          "end": 633,
+          "title": "Ultraviolet"
+        },
+        {
+          "start": 635,
+          "end": 640,
+          "title": "X-ray"
+        },
+        {
+          "start": 645,
+          "end": 654,
+          "title": "Gamma ray"
+        }
+      ],
+      "formulas": []
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": 19694,
+        "title": "Mercury (planet)",
+        "role": "seed",
+        "section_ids": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22"
+        ]
+      },
+      {
+        "id": 22915,
+        "title": "Planet",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 26903,
+        "title": "Solar System",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 32745,
+        "title": "Venus",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 451839,
+        "title": "MESSENGER",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 482586,
+        "title": "Vulcanoid",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 2090039,
+        "title": "Geology of Mercury",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 9125179,
+        "title": "Exploration of Mercury",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 26780222,
+        "title": "Earth analog",
+        "role": "related",
+        "section_ids": null
+      }
+    ],
+    "edges": [
+      {
+        "source": 19694,
+        "target": 2090039,
+        "weight": 0.8013246655464172
+      },
+      {
+        "source": 451839,
+        "target": 9125179,
+        "weight": 0.776714563369751
+      },
+      {
+        "source": 22915,
+        "target": 26903,
+        "weight": 0.6615104675292969
+      },
+      {
+        "source": 19694,
+        "target": 451839,
+        "weight": 0.6321985721588135
+      },
+      {
+        "source": 26903,
+        "target": 32745,
+        "weight": 0.5860133767127991
+      },
+      {
+        "source": 19694,
+        "target": 9125179,
+        "weight": 0.5797511339187622
+      },
+      {
+        "source": 22915,
+        "target": 26780222,
+        "weight": 0.5684531927108765
+      },
+      {
+        "source": 451839,
+        "target": 2090039,
+        "weight": 0.5361740589141846
+      },
+      {
+        "source": 19694,
+        "target": 482586,
+        "weight": 0.5190113186836243
+      },
+      {
+        "source": 482586,
+        "target": 2090039,
+        "weight": 0.47909849882125854
+      },
+      {
+        "source": 22915,
+        "target": 32745,
+        "weight": 0.4431719183921814
+      },
+      {
+        "source": 26903,
+        "target": 26780222,
+        "weight": 0.4000353515148163
+      }
+    ]
+  },
+  "id": "19694@1384573767:5f69989b1d89",
+  "topic": {
+    "page_id": 19694,
+    "title": "Mercury (planet)",
+    "description": null,
+    "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29"
+  },
+  "build": {
+    "state": "complete",
+    "built_at": "2026-11-12T08:25:17.675520Z",
+    "pipeline_version": "fixtures-2026-11-12",
+    "analysis": "ml",
+    "summaries_done": 3,
+    "summaries_total": 6,
+    "truncated": false,
+    "stage_seconds": {
+      "build": 2.4298590580001473,
+      "summarize": 1.60858,
+      "total": 4.038439058000147
+    }
+  },
+  "freshness": {
+    "state": "unknown",
+    "pinned_rev_id": 1384573767,
+    "latest_rev_id": null,
+    "edits_since": null,
+    "checked_at": null,
+    "source": "none"
+  },
+  "budget": {
+    "requested": 32000,
+    "counts": "dossier",
+    "used_est_tokens": 13340,
+    "estimator": "chars/4",
+    "included_chunk_ids": [
+      "1384573767:0:0",
+      "1384573767:0:1",
+      "1384573767:0:2",
+      "1384573767:0:3",
+      "1384573767:0:facts",
+      "1384573767:11:0",
+      "1384573767:3:0",
+      "1384573767:15:0",
+      "1384573767:18:0",
+      "1384573767:14:2",
+      "1384573767:11:7",
+      "1384573767:3:3",
+      "1384573767:15:4",
+      "1384573767:18:4",
+      "1384573767:9:0",
+      "1384573767:9:6",
+      "1384573767:2:0",
+      "1384573767:13:0",
+      "1384573767:21:0",
+      "1384573767:5:0",
+      "1384573767:17:0",
+      "1384573767:20:0",
+      "1384573767:1:0",
+      "1384573767:19:0",
+      "1384573767:4:0",
+      "1384573767:22:0",
+      "1384573767:10:0",
+      "1384573767:6:0",
+      "1384573767:7:0",
+      "1384573767:12:0",
+      "1384573767:8:0",
+      "1384573767:11:2",
+      "1384573767:11:1",
+      "1384573767:11:5",
+      "1384573767:11:4",
+      "1384573767:11:3",
+      "1384573767:15:5",
+      "1384573767:15:3",
+      "1384573767:3:2",
+      "1384573767:15:1",
+      "1384573767:15:2",
+      "1384573767:3:1",
+      "1384573767:11:6",
+      "1384573767:13:3",
+      "1384573767:3:4",
+      "1384573767:18:5",
+      "1384573767:9:4",
+      "1384573767:13:2",
+      "1384573767:13:1",
+      "1384573767:18:2",
+      "1384573767:18:3",
+      "1384573767:13:4",
+      "1384573767:14:1",
+      "1384573767:5:1",
+      "1384573767:9:3",
+      "1384573767:9:1",
+      "1384573767:21:1",
+      "1384573767:18:1",
+      "1384573767:9:2",
+      "1384573767:17:2",
+      "1384573767:20:1",
+      "1384573767:17:4",
+      "1384573767:5:4",
+      "1384573767:19:1",
+      "1384573767:14:0",
+      "1384573767:17:3",
+      "1384573767:10:2",
+      "1384573767:6:1",
+      "1384573767:10:3",
+      "1384573767:17:1",
+      "1384573767:4:1",
+      "1384573767:9:5",
+      "1384573767:5:2",
+      "1384573767:5:3",
+      "1384573767:4:2",
+      "1384573767:20:2",
+      "1384573767:10:1",
+      "1384573767:7:1",
+      "1384573767:8:1"
+    ],
+    "omitted_chunks": 0,
+    "complete": true,
+    "shortened_chunk_ids": []
+  },
+  "links": {
+    "self": "http://localhost:8010/api/v1/dossiers/19694?budget=32000&format=json&parts=dossier,metadata,sources",
+    "pinned": "http://localhost:8010/api/v1/dossiers/19694/rev/1384573767?budget=32000&parts=dossier,metadata,sources",
+    "markdown": "http://localhost:8010/api/v1/dossiers/19694.md?budget=32000&parts=dossier,metadata,sources",
+    "wikipedia": "https://en.wikipedia.org/wiki/Mercury_%28planet%29"
+  },
+  "citations": [
+    {
+      "id": "c1",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": null,
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767"
+    },
+    {
+      "id": "c2",
+      "pin": {
+        "page_id": 22915,
+        "title": "Planet",
+        "rev_id": 1385036386,
+        "rev_timestamp": "2026-11-11T14:58:33Z",
+        "url": "https://en.wikipedia.org/wiki/Planet",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1385036386",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284894Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c3",
+      "pin": {
+        "page_id": 26903,
+        "title": "Solar System",
+        "rev_id": 1383321539,
+        "rev_timestamp": "2026-11-02T02:43:12Z",
+        "url": "https://en.wikipedia.org/wiki/Solar_System",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1383321539",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284934Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c4",
+      "pin": {
+        "page_id": 32745,
+        "title": "Venus",
+        "rev_id": 1384282462,
+        "rev_timestamp": "2026-11-07T14:09:50Z",
+        "url": "https://en.wikipedia.org/wiki/Venus",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384282462",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284951Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c5",
+      "pin": {
+        "page_id": 451839,
+        "title": "MESSENGER",
+        "rev_id": 1382038548,
+        "rev_timestamp": "2026-10-26T04:51:38Z",
+        "url": "https://en.wikipedia.org/wiki/MESSENGER",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382038548",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284964Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c6",
+      "pin": {
+        "page_id": 482586,
+        "title": "Vulcanoid",
+        "rev_id": 1382031486,
+        "rev_timestamp": "2026-10-26T03:42:41Z",
+        "url": "https://en.wikipedia.org/wiki/Vulcanoid",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382031486",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284977Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c7",
+      "pin": {
+        "page_id": 2090039,
+        "title": "Geology of Mercury",
+        "rev_id": 1377845291,
+        "rev_timestamp": "2026-10-01T13:35:30Z",
+        "url": "https://en.wikipedia.org/wiki/Geology_of_Mercury",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1377845291",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.284991Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c8",
+      "pin": {
+        "page_id": 9125179,
+        "title": "Exploration of Mercury",
+        "rev_id": 1383250824,
+        "rev_timestamp": "2026-11-01T19:18:07Z",
+        "url": "https://en.wikipedia.org/wiki/Exploration_of_Mercury",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1383250824",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.285004Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c9",
+      "pin": {
+        "page_id": 26780222,
+        "title": "Earth analog",
+        "rev_id": 1384535452,
+        "rev_timestamp": "2026-11-08T19:06:43Z",
+        "url": "https://en.wikipedia.org/wiki/Earth_analog",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384535452",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.285017Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c10",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Nomenclature",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Nomenclature"
+    },
+    {
+      "id": "c11",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Physical_characteristics",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Physical_characteristics"
+    },
+    {
+      "id": "c12",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Internal_structure",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Internal_structure"
+    },
+    {
+      "id": "c13",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Surface_geology",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Surface_geology"
+    },
+    {
+      "id": "c14",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Impact_basins_and_craters",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Impact_basins_and_craters"
+    },
+    {
+      "id": "c15",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Plains",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Plains"
+    },
+    {
+      "id": "c16",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Compressional_features",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Compressional_features"
+    },
+    {
+      "id": "c17",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Volcanism",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Volcanism"
+    },
+    {
+      "id": "c18",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Surface_conditions_and_exosphere",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Surface_conditions_and_exosphere"
+    },
+    {
+      "id": "c19",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Magnetic_field_and_magnetosphere",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Magnetic_field_and_magnetosphere"
+    },
+    {
+      "id": "c20",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Orbit,_rotation,_and_longitude",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Orbit,_rotation,_and_longitude"
+    },
+    {
+      "id": "c21",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Longitude_convention",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Longitude_convention"
+    },
+    {
+      "id": "c22",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Spin-orbit_resonance",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Spin-orbit_resonance"
+    },
+    {
+      "id": "c23",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Advance_of_perihelion",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Advance_of_perihelion"
+    },
+    {
+      "id": "c24",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Observation",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Observation"
+    },
+    {
+      "id": "c25",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Observation_history",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Observation_history"
+    },
+    {
+      "id": "c26",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Ancient_astronomers",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Ancient_astronomers"
+    },
+    {
+      "id": "c27",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Ground-based_telescopic_research",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Ground-based_telescopic_research"
+    },
+    {
+      "id": "c28",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Research_with_space_probes",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Research_with_space_probes"
+    },
+    {
+      "id": "c29",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "Mariner_10",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#Mariner_10"
+    },
+    {
+      "id": "c30",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "MESSENGER",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#MESSENGER"
+    },
+    {
+      "id": "c31",
+      "pin": {
+        "page_id": 19694,
+        "title": "Mercury (planet)",
+        "rev_id": 1384573767,
+        "rev_timestamp": "2026-11-08T23:10:24Z",
+        "url": "https://en.wikipedia.org/wiki/Mercury_%28planet%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384573767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:15.250179Z"
+      },
+      "role": "seed",
+      "anchor": "BepiColombo",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384573767#BepiColombo"
+    }
+  ]
+}

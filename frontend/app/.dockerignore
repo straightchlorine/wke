@@ -1,0 +1,16 @@
+node_modules
+**/node_modules
+dist
+.vite
+.pnpm-store
+coverage
+.git
+.gitignore
+.dockerignore
+Dockerfile*
+README.md
+*.log
+.env
+.env.*
+.vscode
+.idea

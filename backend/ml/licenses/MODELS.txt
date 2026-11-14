@@ -1,0 +1,12 @@
+The wke-ml image contains the weights of two models, downloaded from Hugging
+Face at build time at the revisions pinned by MINILM_REV and DISTILBART_REV in
+the Dockerfile:
+
+- sentence-transformers/all-MiniLM-L6-v2
+  https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+- sshleifer/distilbart-cnn-6-6
+  https://huggingface.co/sshleifer/distilbart-cnn-6-6
+
+Both are licensed under the Apache License, Version 2.0, included here as
+Apache-2.0.txt. The build converts the distilbart weights from
+pytorch_model.bin to model.safetensors; the weight values are not changed.

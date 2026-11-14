@@ -1,0 +1,42 @@
+{
+  "query": "API",
+  "results": [
+    {
+      "page_id": 27697009,
+      "title": "API",
+      "description": null,
+      "dossier_state": "ready"
+    },
+    {
+      "page_id": 43545213,
+      "title": "Metal (API)",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 2915176,
+      "title": "Web API",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 22336270,
+      "title": "API key",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 81601,
+      "title": "Windows API",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 74061180,
+      "title": "Reddit API controversy",
+      "description": null,
+      "dossier_state": "none"
+    }
+  ],
+  "did_you_mean": null
+}

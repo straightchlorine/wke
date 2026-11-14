@@ -1,0 +1,2343 @@
+{
+  "schema_version": "2",
+  "license_notice": "Quoted passages are CC BY-SA 4.0 Wikipedia content, cited to a pinned revision. Summaries are machine output, not a Wikipedia quotation.",
+  "sections": [
+    {
+      "id": "0",
+      "label": "Apollo 11",
+      "label_source": "article_title",
+      "chunk_ids": [
+        "1384203118:0:0",
+        "1384203118:0:1",
+        "1384203118:0:2",
+        "1384203118:0:3",
+        "1384203118:0:4",
+        "1384203118:0:facts"
+      ],
+      "heading_path": [],
+      "citation_id": "c1",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.6896367022311731
+    },
+    {
+      "id": "1",
+      "label": "Background",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:1:0",
+        "1384203118:1:1",
+        "1384203118:1:2",
+        "1384203118:1:3",
+        "1384203118:1:4",
+        "1384203118:1:5",
+        "1384203118:1:6",
+        "1384203118:1:7",
+        "1384203118:1:8",
+        "1384203118:1:9"
+      ],
+      "heading_path": [
+        "Background"
+      ],
+      "citation_id": "c10",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the name 'Sputnick' is not in the source passages",
+      "importance": 0.6477094966744129
+    },
+    {
+      "id": "2",
+      "label": "Personnel",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "Personnel"
+      ],
+      "citation_id": "c11",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    },
+    {
+      "id": "3",
+      "label": "Prime crew",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:3:0",
+        "1384203118:3:1",
+        "1384203118:3:2",
+        "1384203118:3:3",
+        "1384203118:3:table0"
+      ],
+      "heading_path": [
+        "Personnel",
+        "Prime crew"
+      ],
+      "citation_id": "c12",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.5387566652426131
+    },
+    {
+      "id": "4",
+      "label": "Backup crew",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:4:0",
+        "1384203118:4:1",
+        "1384203118:4:table0"
+      ],
+      "heading_path": [
+        "Personnel",
+        "Backup crew"
+      ],
+      "citation_id": "c13",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4652311542025428
+    },
+    {
+      "id": "5",
+      "label": "Support crew",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:5:0"
+      ],
+      "heading_path": [
+        "Personnel",
+        "Support crew"
+      ],
+      "citation_id": "c14",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4490287490777868
+    },
+    {
+      "id": "6",
+      "label": "Capsule communicators",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:6:0"
+      ],
+      "heading_path": [
+        "Personnel",
+        "Capsule communicators"
+      ],
+      "citation_id": "c15",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4242238194841852
+    },
+    {
+      "id": "7",
+      "label": "Flight directors",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:7:table0"
+      ],
+      "heading_path": [
+        "Personnel",
+        "Flight directors"
+      ],
+      "citation_id": "c16",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4238252291168058
+    },
+    {
+      "id": "8",
+      "label": "Other key personnel",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:8:0",
+        "1384203118:8:table0"
+      ],
+      "heading_path": [
+        "Personnel",
+        "Other key personnel"
+      ],
+      "citation_id": "c17",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.48794062631740215
+    },
+    {
+      "id": "9",
+      "label": "Preparations",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "Preparations"
+      ],
+      "citation_id": "c18",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    },
+    {
+      "id": "10",
+      "label": "Insignia",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:10:0",
+        "1384203118:10:1",
+        "1384203118:10:2"
+      ],
+      "heading_path": [
+        "Preparations",
+        "Insignia"
+      ],
+      "citation_id": "c19",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.37229190286912456
+    },
+    {
+      "id": "11",
+      "label": "Call signs",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:11:0",
+        "1384203118:11:1"
+      ],
+      "heading_path": [
+        "Preparations",
+        "Call signs"
+      ],
+      "citation_id": "c20",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.34863192532363835
+    },
+    {
+      "id": "12",
+      "label": "Mementos",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:12:0",
+        "1384203118:12:1"
+      ],
+      "heading_path": [
+        "Preparations",
+        "Mementos"
+      ],
+      "citation_id": "c21",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.3712277245659287
+    },
+    {
+      "id": "13",
+      "label": "Site selection",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:13:0",
+        "1384203118:13:1",
+        "1384203118:13:2"
+      ],
+      "heading_path": [
+        "Preparations",
+        "Site selection"
+      ],
+      "citation_id": "c22",
+      "dropped_non_prose": true,
+      "dropped_lists": 1,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.37397466395504086
+    },
+    {
+      "id": "14",
+      "label": "First-step decision",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:14:0",
+        "1384203118:14:1",
+        "1384203118:14:2",
+        "1384203118:14:3"
+      ],
+      "heading_path": [
+        "Preparations",
+        "First-step decision"
+      ],
+      "citation_id": "c23",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4826577362544573
+    },
+    {
+      "id": "15",
+      "label": "Pre-launch",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:15:0",
+        "1384203118:15:1",
+        "1384203118:15:2"
+      ],
+      "heading_path": [
+        "Preparations",
+        "Pre-launch"
+      ],
+      "citation_id": "c24",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.46781619220806164
+    },
+    {
+      "id": "16",
+      "label": "Mission",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "Mission"
+      ],
+      "citation_id": "c25",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    },
+    {
+      "id": "17",
+      "label": "Launch and flight to lunar orbit",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:17:0",
+        "1384203118:17:1",
+        "1384203118:17:2",
+        "1384203118:17:3"
+      ],
+      "heading_path": [
+        "Mission",
+        "Launch and flight to lunar orbit"
+      ],
+      "citation_id": "c26",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.48388461274929556
+    },
+    {
+      "id": "18",
+      "label": "Lunar descent",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:18:0",
+        "1384203118:18:1",
+        "1384203118:18:2",
+        "1384203118:18:3"
+      ],
+      "heading_path": [
+        "Mission",
+        "Lunar descent"
+      ],
+      "citation_id": "c27",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.43511315357798214
+    },
+    {
+      "id": "19",
+      "label": "Landing",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:19:0",
+        "1384203118:19:1",
+        "1384203118:19:2",
+        "1384203118:19:3",
+        "1384203118:19:4",
+        "1384203118:19:5",
+        "1384203118:19:6",
+        "1384203118:19:7"
+      ],
+      "heading_path": [
+        "Mission",
+        "Landing"
+      ],
+      "citation_id": "c28",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": {
+        "kind": "machine_summary",
+        "text": "Eagle's landing system was targeting a boulder-strewn area just north and east of a 300-foot-diameter (91 m) crater . The computer's landing systems were targeting a boulders-strengwn area . The spacecraft was able to land at the first possible landing site .",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "d2fde4ca",
+        "params": {
+          "num_beams": 1,
+          "min_length": 30,
+          "max_length": 96,
+          "input_tokens": 488
+        },
+        "input_chunk_ids": [
+          "1384203118:19:0",
+          "1384203118:19:1",
+          "1384203118:19:2"
+        ],
+        "citation_id": "c28",
+        "generated_at": "2026-11-11T19:23:42.926332Z",
+        "infer_seconds": 1.7069702389999293
+      },
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.49759129164425436
+    },
+    {
+      "id": "20",
+      "label": "Lunar surface operations",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:20:0",
+        "1384203118:20:1",
+        "1384203118:20:2",
+        "1384203118:20:3",
+        "1384203118:20:4",
+        "1384203118:20:5",
+        "1384203118:20:6",
+        "1384203118:20:7",
+        "1384203118:20:8",
+        "1384203118:20:9",
+        "1384203118:20:10",
+        "1384203118:20:11",
+        "1384203118:20:12",
+        "1384203118:20:13",
+        "1384203118:20:14",
+        "1384203118:20:15"
+      ],
+      "heading_path": [
+        "Mission",
+        "Lunar surface operations"
+      ],
+      "citation_id": "c29",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "9 of 18 short phrases of the text appear nowhere in the source",
+      "importance": 0.6147654042375964
+    },
+    {
+      "id": "21",
+      "label": "Lunar ascent",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:21:0",
+        "1384203118:21:1",
+        "1384203118:21:2",
+        "1384203118:21:3",
+        "1384203118:21:4",
+        "1384203118:21:5"
+      ],
+      "heading_path": [
+        "Mission",
+        "Lunar ascent"
+      ],
+      "citation_id": "c30",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the name 'President' is not in the source passages",
+      "importance": 0.5085897921017357
+    },
+    {
+      "id": "22",
+      "label": "Columbia in lunar orbit",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:22:0",
+        "1384203118:22:1",
+        "1384203118:22:2",
+        "1384203118:22:3"
+      ],
+      "heading_path": [
+        "Mission",
+        "Columbia in lunar orbit"
+      ],
+      "citation_id": "c31",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.3914566140802105
+    },
+    {
+      "id": "23",
+      "label": "Return",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:23:0",
+        "1384203118:23:1",
+        "1384203118:23:2",
+        "1384203118:23:3"
+      ],
+      "heading_path": [
+        "Mission",
+        "Return"
+      ],
+      "citation_id": "c32",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.44183609617531494
+    },
+    {
+      "id": "24",
+      "label": "Splashdown and quarantine",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:24:0",
+        "1384203118:24:1",
+        "1384203118:24:2",
+        "1384203118:24:3",
+        "1384203118:24:4",
+        "1384203118:24:5",
+        "1384203118:24:6",
+        "1384203118:24:7",
+        "1384203118:24:8",
+        "1384203118:24:9",
+        "1384203118:24:10"
+      ],
+      "heading_path": [
+        "Mission",
+        "Splashdown and quarantine"
+      ],
+      "citation_id": "c33",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": {
+        "kind": "machine_summary",
+        "text": "USS Hornet was selected as the primary recovery ship for Apollo 11 on June 5 . Hornet departed Pearl Harbor for the recovery area in the central Pacific .",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "d2fde4ca",
+        "params": {
+          "num_beams": 1,
+          "min_length": 30,
+          "max_length": 96,
+          "input_tokens": 373
+        },
+        "input_chunk_ids": [
+          "1384203118:24:0",
+          "1384203118:24:1"
+        ],
+        "citation_id": "c33",
+        "generated_at": "2026-11-11T19:23:38.142641Z",
+        "infer_seconds": 0.9911616620011046
+      },
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.5766271416463318
+    },
+    {
+      "id": "25",
+      "label": "Celebrations",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:25:0",
+        "1384203118:25:1",
+        "1384203118:25:2",
+        "1384203118:25:3",
+        "1384203118:25:4",
+        "1384203118:25:5"
+      ],
+      "heading_path": [
+        "Celebrations"
+      ],
+      "citation_id": "c34",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4118388461084256
+    },
+    {
+      "id": "26",
+      "label": "World tour",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:26:0",
+        "1384203118:26:1"
+      ],
+      "heading_path": [
+        "Celebrations",
+        "World tour"
+      ],
+      "citation_id": "c35",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.33023004571363057
+    },
+    {
+      "id": "27",
+      "label": "Legacy",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "Legacy"
+      ],
+      "citation_id": "c36",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    },
+    {
+      "id": "28",
+      "label": "Cultural significance",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:28:0",
+        "1384203118:28:1",
+        "1384203118:28:2",
+        "1384203118:28:3",
+        "1384203118:28:4",
+        "1384203118:28:5"
+      ],
+      "heading_path": [
+        "Legacy",
+        "Cultural significance"
+      ],
+      "citation_id": "c37",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4824376398618694
+    },
+    {
+      "id": "29",
+      "label": "Spacecraft",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:29:0",
+        "1384203118:29:1",
+        "1384203118:29:2",
+        "1384203118:29:3",
+        "1384203118:29:4",
+        "1384203118:29:5"
+      ],
+      "heading_path": [
+        "Legacy",
+        "Spacecraft"
+      ],
+      "citation_id": "c38",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4817792527927934
+    },
+    {
+      "id": "30",
+      "label": "Moon rocks",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:30:0",
+        "1384203118:30:1"
+      ],
+      "heading_path": [
+        "Legacy",
+        "Moon rocks"
+      ],
+      "citation_id": "c39",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.390261626984112
+    },
+    {
+      "id": "31",
+      "label": "Experiment results",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:31:0"
+      ],
+      "heading_path": [
+        "Legacy",
+        "Experiment results"
+      ],
+      "citation_id": "c40",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "the name 'LaserRanging' is not in the source passages",
+      "importance": 0.5835253468442733
+    },
+    {
+      "id": "32",
+      "label": "Moonwalk camera",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:32:0"
+      ],
+      "heading_path": [
+        "Legacy",
+        "Moonwalk camera"
+      ],
+      "citation_id": "c41",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.3455936617412094
+    },
+    {
+      "id": "33",
+      "label": "Lunar Module Eagle memorabilia",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:33:0"
+      ],
+      "heading_path": [
+        "Legacy",
+        "Lunar Module Eagle memorabilia"
+      ],
+      "citation_id": "c42",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4006663411291696
+    },
+    {
+      "id": "34",
+      "label": "Anniversary events",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "Legacy",
+        "Anniversary events"
+      ],
+      "citation_id": "c43",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    },
+    {
+      "id": "35",
+      "label": "40th anniversary",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:35:0",
+        "1384203118:35:1",
+        "1384203118:35:2"
+      ],
+      "heading_path": [
+        "Legacy",
+        "Anniversary events",
+        "40th anniversary"
+      ],
+      "citation_id": "c44",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.47025262035111276
+    },
+    {
+      "id": "36",
+      "label": "50th anniversary",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:36:0",
+        "1384203118:36:1",
+        "1384203118:36:2",
+        "1384203118:36:3",
+        "1384203118:36:4"
+      ],
+      "heading_path": [
+        "Legacy",
+        "Anniversary events",
+        "50th anniversary"
+      ],
+      "citation_id": "c45",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4455291467330059
+    },
+    {
+      "id": "37",
+      "label": "Films and documentaries",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384203118:37:list0"
+      ],
+      "heading_path": [
+        "Films and documentaries"
+      ],
+      "citation_id": "c46",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.4800647948164147
+    }
+  ],
+  "chunks": [
+    {
+      "id": "1384203118:0:0",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 0,
+      "text": "Apollo 11 (July 16\u201324, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. The mission was crewed by Commander Neil Armstrong, Command Module Pilot Michael Collins, and Lunar Module Pilot Edwin \"Buzz\" Aldrin, all of whom were on their second and final spaceflight.",
+      "est_tokens": 85,
+      "relevance": 0.8114317655563354,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 46,
+          "end": 57,
+          "title": "Spaceflight"
+        },
+        {
+          "start": 76,
+          "end": 82,
+          "title": "Human"
+        },
+        {
+          "start": 90,
+          "end": 94,
+          "title": "Moon"
+        },
+        {
+          "start": 110,
+          "end": 124,
+          "title": "Crewed mission"
+        },
+        {
+          "start": 128,
+          "end": 132,
+          "title": "NASA"
+        },
+        {
+          "start": 135,
+          "end": 149,
+          "title": "Apollo program"
+        },
+        {
+          "start": 187,
+          "end": 201,
+          "title": "Neil Armstrong"
+        },
+        {
+          "start": 224,
+          "end": 239,
+          "title": "Michael Collins (astronaut)"
+        },
+        {
+          "start": 264,
+          "end": 283,
+          "title": "Buzz Aldrin"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384203118:0:1",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 1,
+      "text": "Launched atop a Saturn V rocket from Kennedy Space Center in Florida on July 16 at 13:32 UTC, the Apollo spacecraft consisted of three parts: the command module (CM), which housed the three astronauts and was the only part to return to Earth; the service module (SM), which provided propulsion, electrical power, oxygen, and water to the command module; and the Lunar Module (LM), which had two stages\u2014a descent stage with a large engine and fuel tanks for landing on the Moon, and a lighter ascent stage containing a cabin for two astronauts and a small engine to return them to lunar orbit. After a three-day transit, Armstrong and Aldrin descended to the surface aboard the LM Eagle, landing in the Sea of Tranquility (Mare Tranquillitatis) on July 20 at 20:17 UTC while Collins remained in lunar orbit aboard the CM Columbia. Armstrong became the first human to walk on the Moon approximately six hours after landing, followed by Aldrin nineteen minutes later.",
+      "est_tokens": 241,
+      "relevance": 0.8943948745727539,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 16,
+          "end": 24,
+          "title": "Saturn V"
+        },
+        {
+          "start": 37,
+          "end": 57,
+          "title": "Kennedy Space Center"
+        },
+        {
+          "start": 61,
+          "end": 68,
+          "title": "Florida"
+        },
+        {
+          "start": 89,
+          "end": 92,
+          "title": "Coordinated Universal Time"
+        },
+        {
+          "start": 146,
+          "end": 160,
+          "title": "Apollo command and service module"
+        },
+        {
+          "start": 247,
+          "end": 261,
+          "title": "Service module"
+        },
+        {
+          "start": 362,
+          "end": 374,
+          "title": "Lunar Module"
+        },
+        {
+          "start": 580,
+          "end": 591,
+          "title": "Lunar orbit"
+        },
+        {
+          "start": 680,
+          "end": 685,
+          "title": "Apollo Lunar Module Eagle"
+        },
+        {
+          "start": 722,
+          "end": 742,
+          "title": "Mare Tranquillitatis"
+        },
+        {
+          "start": 820,
+          "end": 828,
+          "title": "Command module Columbia"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384203118:0:2",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 2,
+      "text": "Together they spent around two and a half hours walking on the surface, planting an American flag, speaking with President Richard Nixon who was in the White House, deploying scientific instruments, and collecting 21.5 kg (47.5 lb) of lunar material. After more than 21 hours on the surface, they rejoined Collins in lunar orbit, and the crew returned safely to Earth on July 24, splashing down in the Pacific Ocean.",
+      "est_tokens": 104,
+      "relevance": 0.552026093006134,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 84,
+          "end": 97,
+          "title": "Lunar Flag Assembly"
+        },
+        {
+          "start": 123,
+          "end": 136,
+          "title": "Richard Nixon"
+        },
+        {
+          "start": 152,
+          "end": 163,
+          "title": "White House"
+        },
+        {
+          "start": 362,
+          "end": 367,
+          "title": "Earth"
+        },
+        {
+          "start": 402,
+          "end": 415,
+          "title": "Pacific Ocean"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384203118:0:3",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 3,
+      "text": "Apollo 11 was the culmination of the Space Race, a geopolitical competition between the United States and the Soviet Union rooted in Cold War rivalry. It fulfilled a national goal set by President John F. Kennedy in May 1961, who had challenged the United States to land a man on the Moon and return him safely before the end of the decade. The program overcame a severe setback with the fatal Apollo 1 launchpad fire in January 1967 and drew on technologies developed through the preceding Mercury and Gemini programs. The Soviet Union, despite early leads in spaceflight, was unable to match the Saturn V rocket, and its uncrewed lunar probe Luna 15 crashed on the Moon on July 21, while Neil Armstrong and Buzz Aldrin were still on the lunar surface.",
+      "est_tokens": 189,
+      "relevance": 0.6524451971054077,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 37,
+          "end": 47,
+          "title": "Space Race"
+        },
+        {
+          "start": 110,
+          "end": 122,
+          "title": "Soviet Union"
+        },
+        {
+          "start": 133,
+          "end": 141,
+          "title": "Cold War"
+        },
+        {
+          "start": 197,
+          "end": 212,
+          "title": "John F. Kennedy"
+        },
+        {
+          "start": 234,
+          "end": 244,
+          "title": "We choose to go to the Moon"
+        },
+        {
+          "start": 394,
+          "end": 402,
+          "title": "Apollo 1"
+        },
+        {
+          "start": 491,
+          "end": 498,
+          "title": "Project Mercury"
+        },
+        {
+          "start": 503,
+          "end": 509,
+          "title": "Project Gemini"
+        },
+        {
+          "start": 644,
+          "end": 651,
+          "title": "Luna 15"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384203118:0:4",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 4,
+      "text": "Armstrong's moonwalk was broadcast live to an estimated 600 million viewers, roughly one-fifth of the world's population, making it among the most-watched television events in history. Stepping onto the lunar surface, Armstrong declared: \"That's one small step for [a] man, one giant leap for mankind.\" Lunar samples returned by the mission led to the identification of three previously unrecognized minerals, and scientific instruments deployed on the surface continued returning data for years afterwards. The crew were honoured with ticker-tape parades, a world goodwill tour, and the Presidential Medal of Freedom. The command module Columbia is preserved at the National Air and Space Museum in Washington, D.C., while the descent stage of Eagle remains on the lunar surface.",
+      "est_tokens": 195,
+      "relevance": 0.5271585583686829,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 155,
+          "end": 165,
+          "title": "Television"
+        },
+        {
+          "start": 239,
+          "end": 300,
+          "title": "One small step"
+        },
+        {
+          "start": 303,
+          "end": 316,
+          "title": "Lunar sample"
+        },
+        {
+          "start": 536,
+          "end": 555,
+          "title": "Ticker-tape parade"
+        },
+        {
+          "start": 588,
+          "end": 617,
+          "title": "Presidential Medal of Freedom"
+        },
+        {
+          "start": 667,
+          "end": 696,
+          "title": "National Air and Space Museum"
+        },
+        {
+          "start": 700,
+          "end": 716,
+          "title": "Washington, D.C."
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384203118:0:facts",
+      "kind": "facts",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 5,
+      "text": "Mission type: Crewed lunar landing (G)\nOperator: NASA\nCOSPAR ID: CSM: 1969-059A, LM: 1969-059C\nSATCAT no.: CSM: 4039, LM: 4041\nMission duration: 8 days, 3 hours, 18 minutes, 35 seconds\nSpacecraft: Apollo CSM-107, Apollo LM-5\nManufacturer: CSM: North American Rockwell, LM: Grumman\nLaunch mass: 109,646 lb (49,735 kg)\nLanding mass: 10,873 lb (4,932 kg)\nCrew size: 3\nMembers: Neil Armstrong, Michael Collins, Buzz Aldrin\nCallsign: CSM: Columbia, LM: Eagle, On surface: Tranquility Base",
+      "est_tokens": 121,
+      "relevance": 1.0,
+      "cluster_id": null,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384203118:1:0",
+      "kind": "prose",
+      "citation_id": "c10",
+      "heading_path": [
+        "Background"
+      ],
+      "order": 6,
+      "text": "In the late 1950s and early 1960s, the United States was engaged in the Cold War, a geopolitical rivalry with the Soviet Union. On October 4, 1957, the Soviet Union launched Sputnik 1, the first artificial satellite, surprising the world and fueling fears about Soviet technological and military capabilities. Its success demonstrated that the USSR could potentially deliver nuclear weapons over intercontinental distances, challenging American claims of military, economic, and technological superiority.",
+      "est_tokens": 127,
+      "relevance": 0.13190622627735138,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 72,
+          "end": 80,
+          "title": "Cold War"
+        },
+        {
+          "start": 114,
+          "end": 126,
+          "title": "Soviet Union"
+        },
+        {
+          "start": 174,
+          "end": 183,
+          "title": "Sputnik 1"
+        },
+        {
+          "start": 195,
+          "end": 215,
+          "title": "Satellite"
+        },
+        {
+          "start": 375,
+          "end": 390,
+          "title": "Nuclear weapon"
+        },
+        {
+          "start": 396,
+          "end": 422,
+          "title": "Intercontinental ballistic missile"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384203118:1:6",
+      "kind": "prose",
+      "citation_id": "c10",
+      "heading_path": [
+        "Background"
+      ],
+      "order": 12,
+      "text": "An early and crucial decision was choosing lunar orbit rendezvous over both direct ascent and Earth orbit rendezvous. A space rendezvous is an orbital maneuver in which two spacecraft navigate through space and meet up. In July 1962, NASA head James Webb announced that lunar orbit rendezvous would be used and that the Apollo spacecraft would have three major parts: a command module (CM) with a cabin for the three astronauts, and the only part that returned to Earth; a service module (SM), which supported the command module with propulsion, electrical power, oxygen, and water; and a lunar module (LM) that had two stages\u2014a descent stage for landing on the Moon, and an ascent stage to place the astronauts back into lunar orbit. This design meant the spacecraft could be launched by a single Saturn V rocket that was then under development.",
+      "est_tokens": 212,
+      "relevance": 0.6902819871902466,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 43,
+          "end": 65,
+          "title": "Lunar orbit rendezvous"
+        },
+        {
+          "start": 76,
+          "end": 89,
+          "title": "Direct ascent"
+        },
+        {
+          "start": 94,
+          "end": 116,
+          "title": "Earth orbit rendezvous"
+        },
+        {
+          "start": 120,
+          "end": 136,
+          "title": "Space rendezvous"
+        },
+        {
+          "start": 143,
+          "end": 159,
+          "title": "Orbital maneuver"
+        },
+        {
+          "start": 244,
+          "end": 254,
+          "title": "James E. Webb"
+        },
+        {
+          "start": 320,
+          "end": 337,
+          "title": "Apollo (spacecraft)"
+        },
+        {
+          "start": 798,
+          "end": 806,
+          "title": "Saturn V"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384203118:3:0",
+      "kind": "prose",
+      "citation_id": "c12",
+      "heading_path": [
+        "Personnel",
+        "Prime crew"
+      ],
+      "order": 16,
+      "text": "The initial crew assignment of Commander Neil Armstrong, Command Module Pilot (CMP) Jim Lovell, and Lunar Module Pilot (LMP) Buzz Aldrin on the backup crew for Apollo 9 was officially announced on November 20, 1967. Lovell and Aldrin had previously flown together as the crew of Gemini 12. Due to design and manufacturing delays in the LM, Apollo 8 and Apollo 9 swapped prime and backup crews, and Armstrong's crew became the backup for Apollo 8. Based on the normal crew rotation scheme, Armstrong was then expected to command Apollo 11.",
+      "est_tokens": 135,
+      "relevance": 0.655982494354248,
+      "cluster_id": 0,
+      "links": [
+        {
+          "start": 41,
+          "end": 55,
+          "title": "Neil Armstrong"
+        },
+        {
+          "start": 84,
+          "end": 94,
+          "title": "Jim Lovell"
+        },
+        {
+          "start": 125,
+          "end": 136,
+          "title": "Buzz Aldrin"
+        },
+        {
+          "start": 279,
+          "end": 288,
+          "title": "Gemini 12"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384203118:8:0",
+      "kind": "prose",
+      "citation_id": "c17",
+      "heading_path": [
+        "Personnel",
+        "Other key personnel"
+      ],
+      "order": 27,
+      "text": "Other key personnel who played important roles in the Apollo 11 mission include the following.",
+      "est_tokens": 24,
+      "relevance": 0.597572922706604,
+      "cluster_id": 0,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384203118:20:0",
+      "kind": "prose",
+      "citation_id": "c29",
+      "heading_path": [
+        "Mission",
+        "Lunar surface operations"
+      ],
+      "order": 62,
+      "text": "Preparations for Neil Armstrong and Buzz Aldrin to walk on the Moon began at 23:43 UTC. These took longer than expected; three and a half hours instead of two. During training on Earth, everything required had been neatly laid out in advance, but on the Moon the cabin contained a large number of other items as well, such as checklists, food packets, and tools. Six hours and thirty-nine minutes after landing, Armstrong and Aldrin were ready to go outside, and Eagle was depressurized.",
+      "est_tokens": 122,
+      "relevance": 0.6332350373268127,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 17,
+          "end": 31,
+          "title": "Neil Armstrong"
+        },
+        {
+          "start": 36,
+          "end": 47,
+          "title": "Buzz Aldrin"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384203118:31:0",
+      "kind": "prose",
+      "citation_id": "c40",
+      "heading_path": [
+        "Legacy",
+        "Experiment results"
+      ],
+      "order": 125,
+      "text": "The Passive Seismic Experiment ran until the command uplink failed on August 25, 1969. The downlink failed on December 14, 1969. As of 2025, the Lunar Laser Ranging experiment remains operational.",
+      "est_tokens": 49,
+      "relevance": 0.3192157745361328,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 145,
+          "end": 175,
+          "title": "Laser Ranging Retroflector"
+        }
+      ],
+      "formulas": []
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": 662,
+        "title": "Apollo 11",
+        "role": "seed",
+        "section_ids": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30",
+          "31",
+          "32",
+          "33",
+          "34",
+          "35",
+          "36",
+          "37"
+        ]
+      },
+      {
+        "id": 1966,
+        "title": "Apollo 10",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 65777,
+        "title": "Buzz Aldrin",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 129540,
+        "title": "List of Apollo astronauts",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 151932,
+        "title": "Apollo Lunar Module",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 201573,
+        "title": "Mare Tranquillitatis",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 1346879,
+        "title": "Tranquility Base",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 9481400,
+        "title": "List of Apollo missions",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 63345123,
+        "title": "Lunar Module Eagle",
+        "role": "related",
+        "section_ids": null
+      }
+    ],
+    "edges": [
+      {
+        "source": 662,
+        "target": 9481400,
+        "weight": 0.7595062255859375
+      },
+      {
+        "source": 1346879,
+        "target": 63345123,
+        "weight": 0.724571943283081
+      },
+      {
+        "source": 1966,
+        "target": 9481400,
+        "weight": 0.7162303924560547
+      },
+      {
+        "source": 662,
+        "target": 63345123,
+        "weight": 0.7069032788276672
+      },
+      {
+        "source": 662,
+        "target": 1966,
+        "weight": 0.7018216848373413
+      },
+      {
+        "source": 662,
+        "target": 1346879,
+        "weight": 0.7011349201202393
+      },
+      {
+        "source": 129540,
+        "target": 9481400,
+        "weight": 0.6974303722381592
+      },
+      {
+        "source": 662,
+        "target": 65777,
+        "weight": 0.6934220194816589
+      },
+      {
+        "source": 1966,
+        "target": 151932,
+        "weight": 0.6924043893814087
+      },
+      {
+        "source": 151932,
+        "target": 9481400,
+        "weight": 0.665086030960083
+      },
+      {
+        "source": 65777,
+        "target": 9481400,
+        "weight": 0.6443673372268677
+      },
+      {
+        "source": 1966,
+        "target": 129540,
+        "weight": 0.6150686740875244
+      },
+      {
+        "source": 201573,
+        "target": 1346879,
+        "weight": 0.48473891615867615
+      }
+    ]
+  },
+  "id": "662@1384203118:629f8570997f",
+  "topic": {
+    "page_id": 662,
+    "title": "Apollo 11",
+    "description": null,
+    "url": "https://en.wikipedia.org/wiki/Apollo_11"
+  },
+  "build": {
+    "state": "complete",
+    "built_at": "2026-11-12T08:25:22.689699Z",
+    "pipeline_version": "fixtures-2026-11-12",
+    "analysis": "ml",
+    "summaries_done": 4,
+    "summaries_total": 8,
+    "truncated": false,
+    "stage_seconds": {
+      "build": 3.2095399879999604,
+      "summarize": 2.036533,
+      "total": 5.246072987999961
+    }
+  },
+  "freshness": {
+    "state": "unknown",
+    "pinned_rev_id": 1384203118,
+    "latest_rev_id": null,
+    "edits_since": null,
+    "checked_at": null,
+    "source": "none"
+  },
+  "budget": {
+    "requested": 2000,
+    "counts": "dossier",
+    "used_est_tokens": 1953,
+    "estimator": "chars/4",
+    "included_chunk_ids": [
+      "1384203118:0:0",
+      "1384203118:0:1",
+      "1384203118:0:2",
+      "1384203118:0:3",
+      "1384203118:0:facts",
+      "1384203118:0:4",
+      "1384203118:1:0",
+      "1384203118:1:6",
+      "1384203118:20:0",
+      "1384203118:31:0",
+      "1384203118:3:0",
+      "1384203118:8:0"
+    ],
+    "omitted_chunks": 125,
+    "complete": false,
+    "shortened_chunk_ids": []
+  },
+  "links": {
+    "self": "http://localhost:8010/api/v1/dossiers/662?budget=2000&format=json&parts=dossier,metadata,sources",
+    "pinned": "http://localhost:8010/api/v1/dossiers/662/rev/1384203118?budget=2000&parts=dossier,metadata,sources",
+    "markdown": "http://localhost:8010/api/v1/dossiers/662.md?budget=2000&parts=dossier,metadata,sources",
+    "wikipedia": "https://en.wikipedia.org/wiki/Apollo_11"
+  },
+  "citations": [
+    {
+      "id": "c1",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": null,
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118"
+    },
+    {
+      "id": "c2",
+      "pin": {
+        "page_id": 1966,
+        "title": "Apollo 10",
+        "rev_id": 1381031134,
+        "rev_timestamp": "2026-10-19T15:38:43Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_10",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1381031134",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.535621Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c3",
+      "pin": {
+        "page_id": 65777,
+        "title": "Buzz Aldrin",
+        "rev_id": 1382650498,
+        "rev_timestamp": "2026-10-29T17:04:32Z",
+        "url": "https://en.wikipedia.org/wiki/Buzz_Aldrin",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382650498",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.535649Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c4",
+      "pin": {
+        "page_id": 129540,
+        "title": "List of Apollo astronauts",
+        "rev_id": 1383385991,
+        "rev_timestamp": "2026-11-02T12:06:18Z",
+        "url": "https://en.wikipedia.org/wiki/List_of_Apollo_astronauts",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1383385991",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.535662Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c5",
+      "pin": {
+        "page_id": 151932,
+        "title": "Apollo Lunar Module",
+        "rev_id": 1384476756,
+        "rev_timestamp": "2026-11-08T11:55:51Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_Lunar_Module",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384476756",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.535672Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c6",
+      "pin": {
+        "page_id": 201573,
+        "title": "Mare Tranquillitatis",
+        "rev_id": 1382583089,
+        "rev_timestamp": "2026-10-29T10:13:25Z",
+        "url": "https://en.wikipedia.org/wiki/Mare_Tranquillitatis",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382583089",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.535681Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c7",
+      "pin": {
+        "page_id": 1346879,
+        "title": "Tranquility Base",
+        "rev_id": 1365747200,
+        "rev_timestamp": "2026-07-24T05:44:37Z",
+        "url": "https://en.wikipedia.org/wiki/Tranquility_Base",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1365747200",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.535691Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c8",
+      "pin": {
+        "page_id": 9481400,
+        "title": "List of Apollo missions",
+        "rev_id": 1368063617,
+        "rev_timestamp": "2026-08-06T20:23:25Z",
+        "url": "https://en.wikipedia.org/wiki/List_of_Apollo_missions",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1368063617",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.535700Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c9",
+      "pin": {
+        "page_id": 63345123,
+        "title": "Lunar Module Eagle",
+        "rev_id": 1370208767,
+        "rev_timestamp": "2026-08-19T19:26:43Z",
+        "url": "https://en.wikipedia.org/wiki/Lunar_Module_Eagle",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1370208767",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.535711Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c10",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Background",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Background"
+    },
+    {
+      "id": "c11",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Personnel",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Personnel"
+    },
+    {
+      "id": "c12",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Prime_crew",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Prime_crew"
+    },
+    {
+      "id": "c13",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Backup_crew",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Backup_crew"
+    },
+    {
+      "id": "c14",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Support_crew",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Support_crew"
+    },
+    {
+      "id": "c15",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Capsule_communicators",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Capsule_communicators"
+    },
+    {
+      "id": "c16",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Flight_directors",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Flight_directors"
+    },
+    {
+      "id": "c17",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Other_key_personnel",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Other_key_personnel"
+    },
+    {
+      "id": "c18",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Preparations",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Preparations"
+    },
+    {
+      "id": "c19",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Insignia",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Insignia"
+    },
+    {
+      "id": "c20",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Call_signs",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Call_signs"
+    },
+    {
+      "id": "c21",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Mementos",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Mementos"
+    },
+    {
+      "id": "c22",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Site_selection",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Site_selection"
+    },
+    {
+      "id": "c23",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "First-step_decision",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#First-step_decision"
+    },
+    {
+      "id": "c24",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Pre-launch",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Pre-launch"
+    },
+    {
+      "id": "c25",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Mission",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Mission"
+    },
+    {
+      "id": "c26",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Launch_and_flight_to_lunar_orbit",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Launch_and_flight_to_lunar_orbit"
+    },
+    {
+      "id": "c27",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Lunar_descent",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Lunar_descent"
+    },
+    {
+      "id": "c28",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Landing",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Landing"
+    },
+    {
+      "id": "c29",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Lunar_surface_operations",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Lunar_surface_operations"
+    },
+    {
+      "id": "c30",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Lunar_ascent",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Lunar_ascent"
+    },
+    {
+      "id": "c31",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Columbia_in_lunar_orbit",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Columbia_in_lunar_orbit"
+    },
+    {
+      "id": "c32",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Return",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Return"
+    },
+    {
+      "id": "c33",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Splashdown_and_quarantine",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Splashdown_and_quarantine"
+    },
+    {
+      "id": "c34",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Celebrations",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Celebrations"
+    },
+    {
+      "id": "c35",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "World_tour",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#World_tour"
+    },
+    {
+      "id": "c36",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Legacy",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Legacy"
+    },
+    {
+      "id": "c37",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Cultural_significance",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Cultural_significance"
+    },
+    {
+      "id": "c38",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Spacecraft",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Spacecraft"
+    },
+    {
+      "id": "c39",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Moon_rocks",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Moon_rocks"
+    },
+    {
+      "id": "c40",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Experiment_results",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Experiment_results"
+    },
+    {
+      "id": "c41",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Moonwalk_camera",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Moonwalk_camera"
+    },
+    {
+      "id": "c42",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Lunar_Module_Eagle_memorabilia",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Lunar_Module_Eagle_memorabilia"
+    },
+    {
+      "id": "c43",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Anniversary_events",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Anniversary_events"
+    },
+    {
+      "id": "c44",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "40th_anniversary",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#40th_anniversary"
+    },
+    {
+      "id": "c45",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "50th_anniversary",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#50th_anniversary"
+    },
+    {
+      "id": "c46",
+      "pin": {
+        "page_id": 662,
+        "title": "Apollo 11",
+        "rev_id": 1384203118,
+        "rev_timestamp": "2026-11-07T03:19:58Z",
+        "url": "https://en.wikipedia.org/wiki/Apollo_11",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384203118",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:19.484708Z"
+      },
+      "role": "seed",
+      "anchor": "Films_and_documentaries",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384203118#Films_and_documentaries"
+    }
+  ]
+}

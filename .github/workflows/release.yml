@@ -1,0 +1,252 @@
+name: Release
+
+on:
+  push:
+    # Wider than MAJOR.MINOR.PATCH on purpose: validate-tag fails on 0.1.0-rc1 visibly.
+    tags: ["[0-9]*.[0-9]*.[0-9]*"]
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  IMAGE_PREFIX: ghcr.io/straightchlorine/wke
+
+permissions:
+  contents: read
+
+jobs:
+  validate-tag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check the tag is MAJOR.MINOR.PATCH
+        run: |
+          if ! echo "$GITHUB_REF_NAME" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::not a MAJOR.MINOR.PATCH tag: $GITHUB_REF_NAME"
+            exit 1
+          fi
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # Full history is checked out, so origin/master is available to compare.
+      - name: Check the tagged commit is on master
+        run: |
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/master; then
+            echo "::error::$GITHUB_REF_NAME ($GITHUB_SHA) is not on master"
+            exit 1
+          fi
+
+  # Pushes only the commit-sha tag, to ghcr.io and Docker Hub from one build, so
+  # both registries hold the same digest. The version tag and latest are added by
+  # promote after every image passed every gate, so a red run leaves neither behind.
+  # The docker environment supplies the Docker Hub secrets; each matrix leg is one
+  # deployment of it.
+  image:
+    name: image (${{ matrix.image }})
+    needs: [validate-tag]
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 60
+    environment: docker
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { image: api, dir: backend/api, max_mb: 300 }
+          - { image: ml, dir: backend/ml, max_mb: 1500 }
+          - { image: web, dir: frontend/app, max_mb: 0 }
+    env:
+      IMAGE: ghcr.io/straightchlorine/wke-${{ matrix.image }}
+      HUB_IMAGE: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/wke-${{ matrix.image }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069
+
+      - name: Log into GHCR
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log into Docker Hub
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        id: build
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc
+        with:
+          context: ${{ matrix.dir }}
+          platforms: linux/arm64
+          push: true
+          tags: |
+            ${{ env.IMAGE }}:${{ github.sha }}
+            ${{ env.HUB_IMAGE }}:${{ github.sha }}
+          # The SBOM comes from the next step and cosign signs the plain manifest.
+          provenance: false
+          sbom: false
+          cache-from: type=gha,scope=${{ matrix.image }}
+          cache-to: type=gha,scope=${{ matrix.image }},mode=max
+
+      # Both registries must serve the digest that is scanned and signed.
+      - name: Check both registries hold the same digest
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          set -eu
+          for ref in "$IMAGE" "$HUB_IMAGE"; do
+            got=$(docker buildx imagetools inspect "$ref:$GITHUB_SHA" \
+              --format '{{json .Manifest.Digest}}' | tr -d '"')
+            if [ "$got" != "$DIGEST" ]; then
+              echo "::error::$ref:$GITHUB_SHA is $got, build digest is $DIGEST"
+              exit 1
+            fi
+          done
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c
+        with:
+          image: ${{ env.IMAGE }}@${{ steps.build.outputs.digest }}
+          format: spdx-json
+          output-file: sbom.spdx.json
+          upload-artifact: false
+
+      - name: Scan with Trivy
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25
+        with:
+          image-ref: ${{ env.IMAGE }}@${{ steps.build.outputs.digest }}
+          severity: CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+
+      - name: Size gate
+        if: matrix.max_mb != 0
+        run: |
+          docker pull "$IMAGE:$GITHUB_SHA"
+          size_mb=$(docker image inspect "$IMAGE:$GITHUB_SHA" --format='{{.Size}}' | awk '{print int($1/1048576)}')
+          echo "$IMAGE: $size_mb MB (gate ${{ matrix.max_mb }} MB)"
+          [ "$size_mb" -le "${{ matrix.max_mb }}" ]
+
+      - name: Model smoke test
+        if: matrix.image == 'ml'
+        env:
+          ML_IMAGE: ${{ env.IMAGE }}:${{ github.sha }}
+        run: sh scripts/ci/ml-smoke.sh
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6
+
+      # Keyless: the signature is bound to this workflow's OIDC identity, no stored key.
+      # Both references are signed by digest, so a pull from either registry verifies.
+      - name: Sign the image and attest the SBOM
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          set -eu
+          for ref in "$IMAGE@$DIGEST" "$HUB_IMAGE@$DIGEST"; do
+            cosign sign --yes "$ref"
+            cosign attest --yes --type spdxjson --predicate sbom.spdx.json "$ref"
+          done
+
+      # Promote tags exactly these digests, so the version tag cannot land on an unsigned image.
+      - name: Persist digest
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          case "$DIGEST" in sha256:*) ;; *) echo "::error::no digest: $DIGEST"; exit 1 ;; esac
+          mkdir -p digests
+          printf '%s' "$DIGEST" > "digests/${{ matrix.image }}.txt"
+
+      - name: Upload digest artifact
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: digest-${{ matrix.image }}
+          path: digests/${{ matrix.image }}.txt
+          if-no-files-found: error
+          retention-days: 3
+          overwrite: true
+
+  # Adds the version tag and latest to the signed digests in both registries;
+  # nothing is rebuilt. A registry can only tag a digest it already holds, so each
+  # registry is tagged from its own copy.
+  promote:
+    needs: [image]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: docker
+    permissions:
+      contents: read
+      packages: write
+    env:
+      HUB_PREFIX: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/wke
+    steps:
+      - name: Log into GHCR
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log into Docker Hub
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Download digest artifacts
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          pattern: digest-*
+          path: digests
+          merge-multiple: true
+
+      # Fails unless every new tag resolves to the digest that was signed.
+      # The version tag goes on every image in both registries before latest moves anywhere.
+      - name: Add the version tag and latest
+        run: |
+          set -eu
+          for tag in "$GITHUB_REF_NAME" latest; do
+            for name in api ml web; do
+              digest=$(cat "digests/$name.txt")
+              case "$digest" in sha256:*) ;; *) echo "::error::no digest for $name: $digest"; exit 1 ;; esac
+              for prefix in "$IMAGE_PREFIX" "$HUB_PREFIX"; do
+                docker buildx imagetools create \
+                  --tag "$prefix-$name:$tag" \
+                  "$prefix-$name@$digest"
+                got=$(docker buildx imagetools inspect "$prefix-$name:$tag" \
+                  --format '{{json .Manifest.Digest}}' | tr -d '"')
+                if [ "$got" != "$digest" ]; then
+                  echo "::error::$prefix-$name:$tag is $got, signed digest is $digest"
+                  exit 1
+                fi
+              done
+            done
+          done
+
+  # Runs only when promote succeeded; the version tag is on the signed images by then.
+  release:
+    needs: [promote]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release create "$GITHUB_REF_NAME" --verify-tag --generate-notes

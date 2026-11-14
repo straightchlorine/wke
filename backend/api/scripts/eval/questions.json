@@ -1,0 +1,4285 @@
+{
+ "note": "Ground truth is the pinned revision per topic. Answers are accepted strings matched case-insensitively after normalising whitespace, dashes, quotes and diacritics; a string starting with re: is a regular expression over the normalised text. tag: prose, infobox, or table (table includes lists). Headings and the dossier header are not scored unless headings_count is true; set it on a question whose answer is a section title (G2). The medal table is a live page: counts are matched by row shape, not by value. importance: key (what a reader must get even at 2000 tokens: who or what, when, what happened, the main outcome) or detail (everything else); key questions must be answered at every budget (dossier-control rule C7), detail ones are expected at 8000 and 32000 only.",
+ "topics": {
+  "lizzie": {
+   "page_id": 214796,
+   "title": "Lizzie Borden",
+   "rev_id": 1377603611,
+   "kind": "biography"
+  },
+  "gospel": {
+   "page_id": 12627,
+   "title": "Gospel",
+   "rev_id": 1377974260,
+   "kind": "concept"
+  },
+  "madonna": {
+   "page_id": 142056,
+   "title": "Madonna",
+   "rev_id": 1377547947,
+   "kind": "long article"
+  },
+  "asian-games": {
+   "page_id": 82893793,
+   "title": "2026 Asian Games medal table",
+   "rev_id": 1377977539,
+   "kind": "table page (live)"
+  },
+  "kaczynski": {
+   "page_id": 18621887,
+   "title": "Ted Kaczynski",
+   "rev_id": 1377522069,
+   "kind": "biography"
+  },
+  "pac": {
+   "page_id": 9200779,
+   "title": "Pac (wrestler)",
+   "rev_id": 1377929793,
+   "kind": "biography (recent death)"
+  },
+  "dorothy": {
+   "page_id": 83869521,
+   "title": "Dorothy (film)",
+   "rev_id": 1377952651,
+   "kind": "film"
+  },
+  "starship": {
+   "page_id": 78384681,
+   "title": "Starship flight 14",
+   "rev_id": 1377936462,
+   "kind": "event"
+  },
+  "p7576966": {
+   "page_id": 7576966,
+   "title": "Pierre de Fermat",
+   "rev_id": 1378515798,
+   "kind": "reading set"
+  },
+  "p50189309": {
+   "page_id": 50189309,
+   "title": "L\u00e9opold Chandezon",
+   "rev_id": 1370606629,
+   "kind": "reading set"
+  },
+  "p43436462": {
+   "page_id": 43436462,
+   "title": "Geoff Richards (rugby union)",
+   "rev_id": 1360133672,
+   "kind": "reading set"
+  },
+  "p20405": {
+   "page_id": 20405,
+   "title": "Miles Davis",
+   "rev_id": 1378944594,
+   "kind": "reading set"
+  },
+  "p60832": {
+   "page_id": 60832,
+   "title": "Hatshepsut",
+   "rev_id": 1378704249,
+   "kind": "reading set"
+  },
+  "p16603": {
+   "page_id": 16603,
+   "title": "Keanu Reeves",
+   "rev_id": 1378211485,
+   "kind": "reading set"
+  },
+  "p4284": {
+   "page_id": 4284,
+   "title": "Battle of Stalingrad",
+   "rev_id": 1376542984,
+   "kind": "reading set"
+  },
+  "p352339": {
+   "page_id": 352339,
+   "title": "1755 Lisbon earthquake",
+   "rev_id": 1378145316,
+   "kind": "reading set"
+  },
+  "p59568546": {
+   "page_id": 59568546,
+   "title": "2024 United States presidential election",
+   "rev_id": 1378684984,
+   "kind": "reading set"
+  },
+  "p36581929": {
+   "page_id": 36581929,
+   "title": "2026 FIFA World Cup",
+   "rev_id": 1379441172,
+   "kind": "reading set"
+  },
+  "p646612": {
+   "page_id": 646612,
+   "title": "Selma to Montgomery marches",
+   "rev_id": 1378500529,
+   "kind": "reading set"
+  },
+  "p4479530": {
+   "page_id": 4479530,
+   "title": "Chistopol",
+   "rev_id": 1374970537,
+   "kind": "reading set"
+  },
+  "p2367020": {
+   "page_id": 2367020,
+   "title": "Blue Mountains (Jamaica)",
+   "rev_id": 1368618169,
+   "kind": "reading set"
+  },
+  "p2421391": {
+   "page_id": 2421391,
+   "title": "Bhutan",
+   "rev_id": 1376397604,
+   "kind": "reading set"
+  },
+  "p2110211": {
+   "page_id": 2110211,
+   "title": "Stari Most",
+   "rev_id": 1361225087,
+   "kind": "reading set"
+  },
+  "p12024": {
+   "page_id": 12024,
+   "title": "General relativity",
+   "rev_id": 1377998321,
+   "kind": "reading set"
+  },
+  "p22228064": {
+   "page_id": 22228064,
+   "title": "Parkinson's disease",
+   "rev_id": 1378550948,
+   "kind": "reading set"
+  },
+  "p45809": {
+   "page_id": 45809,
+   "title": "Dijkstra's algorithm",
+   "rev_id": 1378301409,
+   "kind": "reading set"
+  },
+  "p407734": {
+   "page_id": 407734,
+   "title": "Mercury(II) chloride",
+   "rev_id": 1374823784,
+   "kind": "reading set"
+  },
+  "p372063": {
+   "page_id": 372063,
+   "title": "Coase theorem",
+   "rev_id": 1375043616,
+   "kind": "reading set"
+  },
+  "p70091": {
+   "page_id": 70091,
+   "title": "Spirited Away",
+   "rev_id": 1378275530,
+   "kind": "reading set"
+  },
+  "p17253525": {
+   "page_id": 17253525,
+   "title": "Flowers for Algernon",
+   "rev_id": 1379220520,
+   "kind": "reading set"
+  },
+  "p77212825": {
+   "page_id": 77212825,
+   "title": "Six of One (Evan Parker album)",
+   "rev_id": 1311067154,
+   "kind": "reading set"
+  },
+  "p18029866": {
+   "page_id": 18029866,
+   "title": "Dirt Track Racing (video game)",
+   "rev_id": 1359106128,
+   "kind": "reading set"
+  },
+  "p21242": {
+   "page_id": 21242,
+   "title": "Nokia",
+   "rev_id": 1376455766,
+   "kind": "reading set"
+  },
+  "p31797": {
+   "page_id": 31797,
+   "title": "University of Oxford",
+   "rev_id": 1379320952,
+   "kind": "reading set"
+  },
+  "p38252": {
+   "page_id": 38252,
+   "title": "Radiohead",
+   "rev_id": 1379461741,
+   "kind": "reading set"
+  },
+  "p380845": {
+   "page_id": 380845,
+   "title": "List of countries by GDP (nominal)",
+   "rev_id": 1376452483,
+   "kind": "reading set"
+  },
+  "p52456392": {
+   "page_id": 52456392,
+   "title": "2024 Indian general election",
+   "rev_id": 1377716368,
+   "kind": "reading set"
+  },
+  "p14173586": {
+   "page_id": 14173586,
+   "title": "Joy Division discography",
+   "rev_id": 1376036093,
+   "kind": "reading set"
+  }
+ },
+ "questions": [
+  {
+   "id": "L1",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was Lizzie Borden born?",
+   "answers": [
+    "July 19, 1860",
+    "19 July 1860"
+   ]
+  },
+  {
+   "id": "L2",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What did Lizzie Borden die of?",
+   "answers": [
+    "pneumonia"
+   ]
+  },
+  {
+   "id": "L3",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Where did the murders happen?",
+   "answers": [
+    "Fall River, Massachusetts",
+    "Fall River"
+   ]
+  },
+  {
+   "id": "L4",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which victim was her stepmother?",
+   "answers": [
+    "Abby Borden",
+    "Abby Durfee Gray",
+    "stepmother Abby",
+    "Abby"
+   ]
+  },
+  {
+   "id": "L5",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "On what date were the murders found?",
+   "answers": [
+    "August 4, 1892",
+    "4 August 1892"
+   ],
+   "headings_count": true
+  },
+  {
+   "id": "L6",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What was the alleged murder weapon?",
+   "answers": [
+    "hatchet"
+   ]
+  },
+  {
+   "id": "L7",
+   "topic": "lizzie",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Which Angela Carter collection holds the Lizzie story (In literature list)?",
+   "answers": [
+    "American Ghosts and Old World Wonders",
+    "American Ghosts"
+   ]
+  },
+  {
+   "id": "L8",
+   "topic": "lizzie",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Which 2016 novel by Sarah Miller covers the case (footnote)?",
+   "answers": [
+    "Sarah Miller",
+    "Miller 2016",
+    "Miller (2016)"
+   ]
+  },
+  {
+   "id": "L9",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who was the Bordens' maid?",
+   "answers": [
+    "Bridget Sullivan"
+   ]
+  },
+  {
+   "id": "L10",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What was the name of her later house?",
+   "answers": [
+    "Maplecroft"
+   ]
+  },
+  {
+   "id": "G1",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What does euangelion mean?",
+   "answers": [
+    "good news"
+   ]
+  },
+  {
+   "id": "G2",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which four gospels are canonical?",
+   "answers": [
+    "Matthew, Mark, Luke, and John",
+    "Matthew, Mark, Luke and John",
+    "Matthew, Mark, Luke"
+   ],
+   "headings_count": true
+  },
+  {
+   "id": "G3",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What are the first three gospels called?",
+   "answers": [
+    "synoptic"
+   ]
+  },
+  {
+   "id": "G4",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which gospel was written first?",
+   "answers": [
+    "Mark was the first to be written",
+    "Mark was written first",
+    "Mark was the first gospel",
+    "Mark was the first"
+   ]
+  },
+  {
+   "id": "G5",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When were the gospels written?",
+   "answers": [
+    "between AD 70 and 100",
+    "AD 70"
+   ]
+  },
+  {
+   "id": "G6",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What is the hypothesised Q source?",
+   "answers": [
+    "Q source",
+    "Q document"
+   ]
+  },
+  {
+   "id": "G7",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which non-canonical gospels exist (Thomas)?",
+   "answers": [
+    "gospels of Thomas",
+    "Gospel of Thomas"
+   ]
+  },
+  {
+   "id": "G8",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What is the Islamic Injil?",
+   "answers": [
+    "Injil"
+   ]
+  },
+  {
+   "id": "G9",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What genre do scholars assign to the gospels?",
+   "answers": [
+    "Greco-Roman biograph",
+    "Graeco-Roman biograph"
+   ]
+  },
+  {
+   "id": "G10",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What is the Diatessaron?",
+   "answers": [
+    "Diatessaron"
+   ]
+  },
+  {
+   "id": "M1",
+   "topic": "madonna",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What is Madonna's full name?",
+   "answers": [
+    "Madonna Louise Ciccone"
+   ]
+  },
+  {
+   "id": "M2",
+   "topic": "madonna",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was Madonna born?",
+   "answers": [
+    "August 16, 1958",
+    "16 August 1958"
+   ]
+  },
+  {
+   "id": "M3",
+   "topic": "madonna",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Where was Madonna born?",
+   "answers": [
+    "Bay City, Michigan",
+    "Bay City"
+   ]
+  },
+  {
+   "id": "M4",
+   "topic": "madonna",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "When did her mother die?",
+   "answers": [
+    "mother died of breast cancer",
+    "mother died",
+    "December 1, 1963"
+   ]
+  },
+  {
+   "id": "M5",
+   "topic": "madonna",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "When did she move to New York City?",
+   "answers": [
+    "New York City in 1978",
+    "moved to New York City"
+   ]
+  },
+  {
+   "id": "M6",
+   "topic": "madonna",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was her debut album?",
+   "answers": [
+    "debut album, Madonna",
+    "debut album Madonna",
+    "Madonna (1983)"
+   ]
+  },
+  {
+   "id": "M7",
+   "topic": "madonna",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Which 1995 film appears in the filmography (Four Rooms)?",
+   "answers": [
+    "Four Rooms"
+   ]
+  },
+  {
+   "id": "M8",
+   "topic": "madonna",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Which 1989 film appears in the filmography (Bloodhounds of Broadway)?",
+   "answers": [
+    "Bloodhounds of Broadway"
+   ]
+  },
+  {
+   "id": "M9",
+   "topic": "madonna",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which halftime show did she headline?",
+   "answers": [
+    "Super Bowl XLVI halftime",
+    "Super Bowl XLVI"
+   ]
+  },
+  {
+   "id": "M10",
+   "topic": "madonna",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "When was she inducted into the Rock and Roll Hall of Fame?",
+   "answers": [
+    "re:2008\\W[^.]{0,80}rock and roll hall of fame",
+    "re:rock and roll hall of fame[^.]{0,80}2008"
+   ]
+  },
+  {
+   "id": "A1",
+   "topic": "asian-games",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Where are the 2026 Asian Games held?",
+   "answers": [
+    "Nagoya",
+    "Aichi"
+   ]
+  },
+  {
+   "id": "A2",
+   "topic": "asian-games",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When are the Games held?",
+   "answers": [
+    "19 September to 4 October",
+    "19 September"
+   ]
+  },
+  {
+   "id": "A3",
+   "topic": "asian-games",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How many events are contested?",
+   "answers": [
+    "469 events",
+    "469"
+   ]
+  },
+  {
+   "id": "A4",
+   "topic": "asian-games",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How many sports are contested?",
+   "answers": [
+    "43 sports",
+    "43 sport"
+   ]
+  },
+  {
+   "id": "A5",
+   "topic": "asian-games",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How is the table ordered?",
+   "answers": [
+    "number of gold medals",
+    "number of silver medals"
+   ]
+  },
+  {
+   "id": "A6",
+   "topic": "asian-games",
+   "tag": "table",
+   "importance": "key",
+   "question": "Which NOC is ranked first in the table (a row with rank, name and counts)?",
+   "answers": [
+    "re:(^|\\W)1\\W+china\\b",
+    "re:\\bchina\\W+(?:[a-z]{3}\\W+)?\\d+\\W+\\d+\\W+\\d+\\W+\\d+"
+   ]
+  },
+  {
+   "id": "A7",
+   "topic": "asian-games",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Which NOC is ranked second (Japan, the host)?",
+   "answers": [
+    "re:(^|\\W)2\\W+japan\\b",
+    "re:\\bjapan\\W+(?:[a-z]{3}\\W+)?\\d+\\W+\\d+\\W+\\d+\\W+\\d+"
+   ]
+  },
+  {
+   "id": "A8",
+   "topic": "asian-games",
+   "tag": "table",
+   "importance": "detail",
+   "question": "What is China's gold, silver and bronze count (a row of counts)?",
+   "answers": [
+    "re:\\bchina\\W+(?:[a-z]{3}\\W+)?\\d+\\W+\\d+\\W+\\d+\\W+\\d+"
+   ]
+  },
+  {
+   "id": "A9",
+   "topic": "asian-games",
+   "tag": "table",
+   "importance": "detail",
+   "question": "What is the table's total medal count (a Total row)?",
+   "answers": [
+    "re:\\btotals?\\W+(?:\\(\\d+ entries\\)\\W+)?(?:[a-z]{3}\\W+)?\\d+\\W+\\d+\\W+\\d+\\W+\\d+"
+   ]
+  },
+  {
+   "id": "A10",
+   "topic": "asian-games",
+   "tag": "table",
+   "importance": "detail",
+   "question": "How many NOCs won a medal?",
+   "answers": [
+    "re:medall?ing nocs?\\W+\\d+",
+    "re:nocs? (that won|with) a medal\\W+\\d+"
+   ]
+  },
+  {
+   "id": "A11",
+   "topic": "asian-games",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Infobox: which NOC won the most gold medals?",
+   "answers": [
+    "re:most gold medals\\W{1,8}china"
+   ]
+  },
+  {
+   "id": "A12",
+   "topic": "asian-games",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Infobox: which NOC won the most total medals?",
+   "answers": [
+    "re:most total medals\\W{1,8}china"
+   ]
+  },
+  {
+   "id": "A13",
+   "topic": "asian-games",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Table: Uzbekistan's row of counts",
+   "answers": [
+    "re:\\buzbekistan\\W+(?:[a-z]{3}\\W+)?\\d+\\W+\\d+\\W+\\d+\\W+\\d+"
+   ]
+  },
+  {
+   "id": "A14",
+   "topic": "asian-games",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Table: Kazakhstan's row of counts",
+   "answers": [
+    "re:\\bkazakhstan\\W+(?:[a-z]{3}\\W+)?\\d+\\W+\\d+\\W+\\d+\\W+\\d+"
+   ]
+  },
+  {
+   "id": "M11",
+   "topic": "madonna",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Infobox: which relative is listed (brother)?",
+   "answers": [
+    "Christopher Ciccone"
+   ]
+  },
+  {
+   "id": "M12",
+   "topic": "madonna",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Infobox: years active",
+   "answers": [
+    "re:years active\\W{1,8}1979\\W{1,8}present"
+   ]
+  },
+  {
+   "id": "M13",
+   "topic": "madonna",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Filmography list: which animated film is listed (Arthur and the Invisibles)?",
+   "answers": [
+    "Arthur and the Invisibles"
+   ]
+  },
+  {
+   "id": "L11",
+   "topic": "lizzie",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Infobox: what is she known for?",
+   "answers": [
+    "Suspected homicide of father and stepmother",
+    "Suspected homicide"
+   ]
+  },
+  {
+   "id": "L12",
+   "topic": "lizzie",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Infobox: resting place",
+   "answers": [
+    "re:resting place\\W{1,8}oak grove"
+   ]
+  },
+  {
+   "id": "L13",
+   "topic": "lizzie",
+   "tag": "table",
+   "importance": "detail",
+   "question": "In literature list: which Walter Satterthwait novel is listed (Miss Lizzie)?",
+   "answers": [
+    "Satterthwait"
+   ]
+  },
+  {
+   "id": "L14",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was the outcome of Lizzie Borden's trial?",
+   "answers": [
+    "tried and acquitted"
+   ]
+  },
+  {
+   "id": "L15",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Whose murders was she tried for?",
+   "answers": [
+    "murders of her father and stepmother"
+   ]
+  },
+  {
+   "id": "L16",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When did Lizzie Borden die?",
+   "answers": [
+    "June 1, 1927",
+    "1 June 1927"
+   ]
+  },
+  {
+   "id": "G11",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What does a gospel narrate?",
+   "answers": [
+    "words and deeds of Jesus Christ"
+   ]
+  },
+  {
+   "id": "M14",
+   "topic": "madonna",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What is Madonna's place in music history?",
+   "answers": [
+    "best-selling female music artist of all time"
+   ]
+  },
+  {
+   "id": "K1",
+   "topic": "kaczynski",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was Ted Kaczynski born?",
+   "answers": [
+    "May 22, 1942",
+    "22 May 1942"
+   ]
+  },
+  {
+   "id": "K2",
+   "topic": "kaczynski",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What did Kaczynski do between 1978 and 1995?",
+   "answers": [
+    "mail bombing campaign",
+    "murdered three people and injured 23 others"
+   ]
+  },
+  {
+   "id": "K3",
+   "topic": "kaczynski",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was Kaczynski arrested?",
+   "answers": [
+    "arrest in 1996",
+    "after his arrest in 1996"
+   ]
+  },
+  {
+   "id": "K4",
+   "topic": "kaczynski",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was his sentence?",
+   "answers": [
+    "sentenced to several consecutive life terms in prison without the possibility of parole"
+   ]
+  },
+  {
+   "id": "K5",
+   "topic": "kaczynski",
+   "tag": "prose",
+   "importance": "key",
+   "question": "How and when did he die?",
+   "answers": [
+    "hanged himself in prison in June 2023",
+    "June 10, 2023"
+   ]
+  },
+  {
+   "id": "K6",
+   "topic": "kaczynski",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which book-length manifesto did he write?",
+   "answers": [
+    "Industrial Society and Its Future"
+   ]
+  },
+  {
+   "id": "K7",
+   "topic": "kaczynski",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Where did he live as a recluse?",
+   "answers": [
+    "Lincoln, Montana"
+   ]
+  },
+  {
+   "id": "K8",
+   "topic": "kaczynski",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Infobox: which relative is listed?",
+   "answers": [
+    "David Kaczynski"
+   ]
+  },
+  {
+   "id": "P1",
+   "topic": "pac",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was Pac (Benjamin Satterley) born?",
+   "answers": [
+    "22 August 1986",
+    "August 22, 1986"
+   ]
+  },
+  {
+   "id": "P2",
+   "topic": "pac",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was Pac's profession?",
+   "answers": [
+    "English professional wrestler"
+   ]
+  },
+  {
+   "id": "P3",
+   "topic": "pac",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When did Pac die?",
+   "answers": [
+    "27 September 2026",
+    "September 27, 2026"
+   ]
+  },
+  {
+   "id": "P4",
+   "topic": "pac",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which major US promotion was he best known for?",
+   "answers": [
+    "All Elite Wrestling"
+   ]
+  },
+  {
+   "id": "P5",
+   "topic": "pac",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What ring name did he use in WWE?",
+   "answers": [
+    "Adrian Neville"
+   ]
+  },
+  {
+   "id": "P6",
+   "topic": "pac",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which NXT distinction was he first to hold?",
+   "answers": [
+    "first man to have held both the NXT Championship and the NXT Tag Team Championship"
+   ]
+  },
+  {
+   "id": "P7",
+   "topic": "pac",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Where was he born?",
+   "answers": [
+    "Newcastle upon Tyne"
+   ]
+  },
+  {
+   "id": "P8",
+   "topic": "pac",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Infobox: billed height",
+   "answers": [
+    "re:billed height\\W{1,8}5 ft 8 in"
+   ]
+  },
+  {
+   "id": "D1",
+   "topic": "dorothy",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What kind of film is Dorothy?",
+   "answers": [
+    "Indian Tamil-language drama film"
+   ]
+  },
+  {
+   "id": "D2",
+   "topic": "dorothy",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who directed Dorothy?",
+   "answers": [
+    "directed by Karthik Subbaraj"
+   ]
+  },
+  {
+   "id": "D3",
+   "topic": "dorothy",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was the theatrical release?",
+   "answers": [
+    "25 September"
+   ]
+  },
+  {
+   "id": "D4",
+   "topic": "dorothy",
+   "tag": "prose",
+   "importance": "key",
+   "question": "How was the film received?",
+   "answers": [
+    "positive reviews from critics"
+   ]
+  },
+  {
+   "id": "D5",
+   "topic": "dorothy",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Where did the film premiere?",
+   "answers": [
+    "2026 Toronto International Film Festival"
+   ]
+  },
+  {
+   "id": "D6",
+   "topic": "dorothy",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "When was the film shot?",
+   "answers": [
+    "between November 2025 and March 2026"
+   ]
+  },
+  {
+   "id": "D7",
+   "topic": "dorothy",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Infobox: music by",
+   "answers": [
+    "re:music by\\W{1,8}ilaiyaraaja"
+   ]
+  },
+  {
+   "id": "S1",
+   "topic": "starship",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was Starship flight 14?",
+   "answers": [
+    "fourteenth launch and the first operational flight"
+   ]
+  },
+  {
+   "id": "S2",
+   "topic": "starship",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When did it launch?",
+   "answers": [
+    "September 28, 2026",
+    "28 September 2026"
+   ]
+  },
+  {
+   "id": "S3",
+   "topic": "starship",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What did it deploy?",
+   "answers": [
+    "26 operational Starlink V3 satellites",
+    "26 Starlink V3 satellites"
+   ]
+  },
+  {
+   "id": "S4",
+   "topic": "starship",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was the main outcome?",
+   "answers": [
+    "first operational Starlink deployment"
+   ]
+  },
+  {
+   "id": "S5",
+   "topic": "starship",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Where did Ship 41 splash down?",
+   "answers": [
+    "controlled splashdown in the Pacific Ocean"
+   ]
+  },
+  {
+   "id": "S6",
+   "topic": "starship",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What went wrong on ascent?",
+   "answers": [
+    "one of the 33 Raptor engines on Super Heavy shut down prematurely"
+   ]
+  },
+  {
+   "id": "S7",
+   "topic": "starship",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Infobox: launch site",
+   "answers": [
+    "re:launch site\\W{1,8}starbase"
+   ]
+  },
+  {
+   "id": "S8",
+   "topic": "starship",
+   "tag": "prose",
+   "importance": "key",
+   "question": "How did the flight of Ship 41 end?",
+   "answers": [
+    "early deorbit burn",
+    "controlled splashdown in the Pacific Ocean"
+   ]
+  },
+  {
+   "id": "K9",
+   "topic": "kaczynski",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "On what date was Kaczynski arrested?",
+   "answers": [
+    "April 3, 1996",
+    "3 April 1996"
+   ]
+  },
+  {
+   "id": "K10",
+   "topic": "kaczynski",
+   "tag": "prose",
+   "importance": "key",
+   "question": "In which prison did he serve his life sentences?",
+   "answers": [
+    "ADX Florence"
+   ]
+  },
+  {
+   "id": "K11",
+   "topic": "kaczynski",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "At which medical facility was he held when he died?",
+   "answers": [
+    "Federal Medical Center, Butner"
+   ]
+  },
+  {
+   "id": "K12",
+   "topic": "kaczynski",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "At what time was he found unresponsive on the day he died?",
+   "answers": [
+    "re:12:23 a\\.?m\\.? on june 10, 2023"
+   ]
+  },
+  {
+   "id": "P9",
+   "topic": "pac",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Where was Pac found dead?",
+   "answers": [
+    "unresponsive in a rental car"
+   ]
+  },
+  {
+   "id": "L17",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What kind of weapon killed Andrew Borden?",
+   "answers": [
+    "hatchet-like weapon"
+   ]
+  },
+  {
+   "id": "L18",
+   "topic": "lizzie",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was the jury verdict at her trial?",
+   "answers": [
+    "the jury acquitted Lizzie Borden"
+   ]
+  },
+  {
+   "id": "S9",
+   "topic": "starship",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What happened to Ship 41 after splashdown?",
+   "answers": [
+    "tipped onto its side"
+   ]
+  },
+  {
+   "id": "M15",
+   "topic": "madonna",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How much did she amass in sales in the first decade of her career?",
+   "answers": [
+    "$1.2 billion in sales"
+   ]
+  },
+  {
+   "id": "D8",
+   "topic": "dorothy",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What do Subbu's father and brothers hire Karthi to do?",
+   "answers": [
+    "hire Karthi to kill Subbu"
+   ]
+  },
+  {
+   "id": "G12",
+   "topic": "gospel",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What does mainstream Islamic belief hold about the original Injil?",
+   "answers": [
+    "original Injil has been lost or altered"
+   ]
+  },
+  {
+   "id": "A15",
+   "topic": "asian-games",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Table: Bahrain's row of counts",
+   "answers": [
+    "re:\\bbahrain\\W+(?:[a-z]{3}\\W+)?\\d+\\W+\\d+\\W+\\d+\\W+\\d+"
+   ]
+  },
+  {
+   "id": "p7576966-k1",
+   "topic": "p7576966",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was Pierre de Fermat born?",
+   "answers": [
+    "17 August 1601"
+   ],
+   "page_id": 7576966
+  },
+  {
+   "id": "p7576966-k2",
+   "topic": "p7576966",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was Fermat's profession besides mathematics, and what office did he hold?",
+   "answers": [
+    "councilor at the Parlement de Toulouse",
+    "magistrate"
+   ],
+   "page_id": 7576966
+  },
+  {
+   "id": "p7576966-k3",
+   "topic": "p7576966",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What is Fermat's Last Theorem and who first proved it, and when?",
+   "answers": [
+    "Andrew Wiles",
+    "1994"
+   ],
+   "page_id": 7576966
+  },
+  {
+   "id": "p7576966-k4",
+   "topic": "p7576966",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When and where did Fermat die?",
+   "answers": [
+    "12 January 1665",
+    "at Castres"
+   ],
+   "page_id": 7576966
+  },
+  {
+   "id": "p7576966-d1",
+   "topic": "p7576966",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who was Fermat's father and what was his trade?",
+   "answers": [
+    "Dominique Fermat",
+    "leather merchant"
+   ],
+   "page_id": 7576966
+  },
+  {
+   "id": "p7576966-d2",
+   "topic": "p7576966",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "On what date did Fermat marry Louise de Long?",
+   "answers": [
+    "1 June 1631"
+   ],
+   "page_id": 7576966
+  },
+  {
+   "id": "p7576966-d3",
+   "topic": "p7576966",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "With whom did Fermat correspond in 1654 to lay the foundation of probability theory?",
+   "answers": [
+    "Blaise Pascal",
+    "Pascal"
+   ],
+   "page_id": 7576966
+  },
+  {
+   "id": "p7576966-d4",
+   "topic": "p7576966",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which mathematician pointed out that 4,294,967,297 is divisible by 641, disproving Fermat's claim about Fermat numbers?",
+   "answers": [
+    "Leonhard Euler",
+    "Euler"
+   ],
+   "page_id": 7576966
+  },
+  {
+   "id": "p7576966-d5",
+   "topic": "p7576966",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Where did Fermat receive his degree, and in what year?",
+   "answers": [
+    "University of Orl\u00e9ans",
+    "University of Orleans",
+    "1626"
+   ],
+   "page_id": 7576966
+  },
+  {
+   "id": "p50189309-k1",
+   "topic": "p50189309",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was L\u00e9opold Chandezon's occupation?",
+   "answers": [
+    "playwright and librettist",
+    "playwright",
+    "librettist"
+   ],
+   "page_id": 50189309
+  },
+  {
+   "id": "p50189309-k2",
+   "topic": "p50189309",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When did L\u00e9opold Chandezon die?",
+   "answers": [
+    "17 July 1846"
+   ],
+   "page_id": 50189309
+  },
+  {
+   "id": "p50189309-k3",
+   "topic": "p50189309",
+   "tag": "prose",
+   "importance": "key",
+   "question": "In which city were his plays staged?",
+   "answers": [
+    "Paris",
+    "Parisian"
+   ],
+   "page_id": 50189309
+  },
+  {
+   "id": "p50189309-d1",
+   "topic": "p50189309",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Name one of the Parisian theatres where his plays were presented.",
+   "answers": [
+    "Th\u00e9\u00e2tre de l'Ambigu-Comique",
+    "Ambigu-Comique",
+    "Th\u00e9\u00e2tre de la Ga\u00eet\u00e9",
+    "Porte-Saint-Martin"
+   ],
+   "page_id": 50189309
+  },
+  {
+   "id": "p50189309-d2",
+   "topic": "p50189309",
+   "tag": "table",
+   "importance": "detail",
+   "question": "With whom did Chandezon write the 1814 melodrama Baudoin de J\u00e9rusalem?",
+   "answers": [
+    "Eug\u00e8ne Cantiran de Boirie",
+    "Cantiran de Boirie"
+   ],
+   "page_id": 50189309
+  },
+  {
+   "id": "p50189309-d3",
+   "topic": "p50189309",
+   "tag": "table",
+   "importance": "detail",
+   "question": "In which year was Mazeppa, ou le Cheval tartare written, and after which author?",
+   "answers": [
+    "1825",
+    "lord Byron"
+   ],
+   "page_id": 50189309
+  },
+  {
+   "id": "p50189309-d4",
+   "topic": "p50189309",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Which 1837 comedie en vaudevilles is in his list of works?",
+   "answers": [
+    "Ma Rente avant tout"
+   ],
+   "page_id": 50189309
+  },
+  {
+   "id": "p43436462-k1",
+   "topic": "p43436462",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was Geoff Richards born?",
+   "answers": [
+    "30 April 1951"
+   ],
+   "page_id": 43436462
+  },
+  {
+   "id": "p43436462-k2",
+   "topic": "p43436462",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What did Geoff Richards do in rugby union?",
+   "answers": [
+    "player and coach",
+    "rugby union player and coach"
+   ],
+   "page_id": 43436462
+  },
+  {
+   "id": "p43436462-k3",
+   "topic": "p43436462",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which national team did Richards play for, and how many times?",
+   "answers": [
+    "three times for Australia",
+    "played three times for Australia"
+   ],
+   "page_id": 43436462
+  },
+  {
+   "id": "p43436462-d1",
+   "topic": "p43436462",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which team did Richards coach at the 2006 Women's Rugby World Cup?",
+   "answers": [
+    "England"
+   ],
+   "page_id": 43436462
+  },
+  {
+   "id": "p43436462-d2",
+   "topic": "p43436462",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In which year did he resign as England head coach?",
+   "answers": [
+    "2007"
+   ],
+   "page_id": 43436462
+  },
+  {
+   "id": "p43436462-d3",
+   "topic": "p43436462",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which Sydney club did Richards play for after emigrating to Australia?",
+   "answers": [
+    "Eastern Suburbs"
+   ],
+   "page_id": 43436462
+  },
+  {
+   "id": "p43436462-d4",
+   "topic": "p43436462",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Where was Geoff Richards born?",
+   "answers": [
+    "Hornchurch"
+   ],
+   "page_id": 43436462
+  },
+  {
+   "id": "p20405-k1",
+   "topic": "p20405",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who was Miles Davis and what made him significant?",
+   "answers": [
+    "trumpeter, bandleader, composer",
+    "trumpeter",
+    "among the most influential and acclaimed figures in the history of jazz"
+   ],
+   "page_id": 20405
+  },
+  {
+   "id": "p20405-k2",
+   "topic": "p20405",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When and where was Miles Davis born?",
+   "answers": [
+    "May 26, 1926",
+    "Alton, Illinois"
+   ],
+   "page_id": 20405
+  },
+  {
+   "id": "p20405-k3",
+   "topic": "p20405",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which 1959 album is among the most popular jazz albums of all time?",
+   "answers": [
+    "Kind of Blue"
+   ],
+   "page_id": 20405
+  },
+  {
+   "id": "p20405-k4",
+   "topic": "p20405",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When did Davis die and of what?",
+   "answers": [
+    "September 28, 1991",
+    "stroke, pneumonia and respiratory failure"
+   ],
+   "page_id": 20405
+  },
+  {
+   "id": "p20405-d1",
+   "topic": "p20405",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who gave Davis his first trumpet in 1935?",
+   "answers": [
+    "John Eubanks"
+   ],
+   "page_id": 20405
+  },
+  {
+   "id": "p20405-d2",
+   "topic": "p20405",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which teacher was \"the biggest influence on my life\" for Davis?",
+   "answers": [
+    "Elwood Buchanan"
+   ],
+   "page_id": 20405
+  },
+  {
+   "id": "p20405-d3",
+   "topic": "p20405",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "On what date was Davis shot at five times in his Ferrari?",
+   "answers": [
+    "October 10, 1969"
+   ],
+   "page_id": 20405
+  },
+  {
+   "id": "p20405-d4",
+   "topic": "p20405",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Where was Davis buried?",
+   "answers": [
+    "Woodlawn Cemetery"
+   ],
+   "page_id": 20405
+  },
+  {
+   "id": "p20405-d5",
+   "topic": "p20405",
+   "tag": "table",
+   "importance": "detail",
+   "question": "For which work did Davis win the 1960 award for Best Jazz Composition of More Than Five Minutes Duration?",
+   "answers": [
+    "Sketches of Spain"
+   ],
+   "page_id": 20405
+  },
+  {
+   "id": "p60832-k1",
+   "topic": "p60832",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who was Hatshepsut and what dynasty did she belong to?",
+   "answers": [
+    "sixth pharaoh of the Eighteenth Dynasty of Egypt",
+    "sixth pharaoh"
+   ],
+   "page_id": 60832
+  },
+  {
+   "id": "p60832-k2",
+   "topic": "p60832",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Whose regent was Hatshepsut before she became pharaoh?",
+   "answers": [
+    "Thutmose III",
+    "stepson, Thutmose III"
+   ],
+   "page_id": 60832
+  },
+  {
+   "id": "p60832-k3",
+   "topic": "p60832",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which famous building project is she best known for?",
+   "answers": [
+    "Mortuary Temple of Hatshepsut at Deir el-Bahari",
+    "Deir el-Bahari"
+   ],
+   "page_id": 60832
+  },
+  {
+   "id": "p60832-k4",
+   "topic": "p60832",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What happened to her statues and monuments after her death?",
+   "answers": [
+    "her statues were destroyed",
+    "monuments were defaced",
+    "chiselled off"
+   ],
+   "page_id": 60832
+  },
+  {
+   "id": "p60832-d1",
+   "topic": "p60832",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How old was Hatshepsut when she married Thutmose II?",
+   "answers": [
+    "fourteen or fifteen years old"
+   ],
+   "page_id": 60832
+  },
+  {
+   "id": "p60832-d2",
+   "topic": "p60832",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How many live myrrh trees did the expedition to Punt bring back?",
+   "answers": [
+    "31 live myrrh trees",
+    "31"
+   ],
+   "page_id": 60832
+  },
+  {
+   "id": "p60832-d3",
+   "topic": "p60832",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who discovered tomb KV60 in 1903?",
+   "answers": [
+    "Howard Carter"
+   ],
+   "page_id": 60832
+  },
+  {
+   "id": "p60832-d4",
+   "topic": "p60832",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who is suspected by some as the defacer of Hatshepsut's monuments?",
+   "answers": [
+    "Amenhotep II"
+   ],
+   "page_id": 60832
+  },
+  {
+   "id": "p60832-d5",
+   "topic": "p60832",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "What was the name of Hatshepsut's daughter?",
+   "answers": [
+    "Neferure"
+   ],
+   "page_id": 60832
+  },
+  {
+   "id": "p16603-k1",
+   "topic": "p16603",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who is Keanu Reeves and when was he born?",
+   "answers": [
+    "September 2, 1964",
+    "Canadian actor and musician",
+    "actor"
+   ],
+   "page_id": 16603
+  },
+  {
+   "id": "p16603-k2",
+   "topic": "p16603",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Where was Reeves born and where was he raised?",
+   "answers": [
+    "Beirut",
+    "Toronto"
+   ],
+   "page_id": 16603
+  },
+  {
+   "id": "p16603-k3",
+   "topic": "p16603",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which action film series gave Reeves a career comeback beginning in 2014?",
+   "answers": [
+    "John Wick"
+   ],
+   "page_id": 16603
+  },
+  {
+   "id": "p16603-k4",
+   "topic": "p16603",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What role did Reeves play in the 1999 film The Matrix?",
+   "answers": [
+    "Thomas Anderson",
+    "Neo"
+   ],
+   "page_id": 16603
+  },
+  {
+   "id": "p16603-d1",
+   "topic": "p16603",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which band is Reeves a member of?",
+   "answers": [
+    "Dogstar"
+   ],
+   "page_id": 16603
+  },
+  {
+   "id": "p16603-d2",
+   "topic": "p16603",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which high school was Reeves expelled from?",
+   "answers": [
+    "Etobicoke School of the Arts"
+   ],
+   "page_id": 16603
+  },
+  {
+   "id": "p16603-d3",
+   "topic": "p16603",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "On what date was Jennifer Syme killed in a car collision?",
+   "answers": [
+    "April 2, 2001"
+   ],
+   "page_id": 16603
+  },
+  {
+   "id": "p16603-d4",
+   "topic": "p16603",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In what year was the lipopeptide keanumycin named in his honour?",
+   "answers": [
+    "2023"
+   ],
+   "page_id": 16603
+  },
+  {
+   "id": "p16603-d5",
+   "topic": "p16603",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Who was Reeves's step-father, listed among his relatives?",
+   "answers": [
+    "Paul Aaron"
+   ],
+   "page_id": 16603
+  },
+  {
+   "id": "p4284-k1",
+   "topic": "p4284",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was the Battle of Stalingrad and who fought it?",
+   "answers": [
+    "Nazi Germany and its Axis allies fought the Soviet Union",
+    "Eastern Front of World War II"
+   ],
+   "page_id": 4284
+  },
+  {
+   "id": "p4284-k2",
+   "topic": "p4284",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When did the German offensive on the city begin?",
+   "answers": [
+    "23 August",
+    "On 23 August"
+   ],
+   "page_id": 4284
+  },
+  {
+   "id": "p4284-k3",
+   "topic": "p4284",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What Soviet counteroffensive encircled the German 6th Army, and when did it start?",
+   "answers": [
+    "Operation Uranus",
+    "19 November"
+   ],
+   "page_id": 4284
+  },
+  {
+   "id": "p4284-k4",
+   "topic": "p4284",
+   "tag": "prose",
+   "importance": "key",
+   "question": "How did the battle end for the German 6th Army?",
+   "answers": [
+    "finally capitulated",
+    "capitulated",
+    "2 February 1943"
+   ],
+   "page_id": 4284
+  },
+  {
+   "id": "p4284-d1",
+   "topic": "p4284",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How many Axis personnel were trapped in the encirclement?",
+   "answers": [
+    "approximately 330,000",
+    "330,000"
+   ],
+   "page_id": 4284
+  },
+  {
+   "id": "p4284-d2",
+   "topic": "p4284",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "On what date did the Red Army announce surrender terms by aircraft and loudspeakers?",
+   "answers": [
+    "7 January 1943"
+   ],
+   "page_id": 4284
+  },
+  {
+   "id": "p4284-d3",
+   "topic": "p4284",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "When did Operation Koltso launch?",
+   "answers": [
+    "10 January 1943"
+   ],
+   "page_id": 4284
+  },
+  {
+   "id": "p4284-d4",
+   "topic": "p4284",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How many German and allied troops were captured during the battle?",
+   "answers": [
+    "235,000"
+   ],
+   "page_id": 4284
+  },
+  {
+   "id": "p4284-d5",
+   "topic": "p4284",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How many total casualties did the USSR suffer, according to archival figures?",
+   "answers": [
+    "1,129,619"
+   ],
+   "page_id": 4284
+  },
+  {
+   "id": "p352339-k1",
+   "topic": "p352339",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When did the Great Lisbon earthquake occur?",
+   "answers": [
+    "1 November, 1755",
+    "1 November 1755",
+    "Saturday, 1 November"
+   ],
+   "page_id": 352339
+  },
+  {
+   "id": "p352339-k2",
+   "topic": "p352339",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was the estimated magnitude of the earthquake?",
+   "answers": [
+    "7.7 or greater",
+    "7.7"
+   ],
+   "page_id": 352339
+  },
+  {
+   "id": "p352339-k3",
+   "topic": "p352339",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was the outcome of the earthquake for Lisbon?",
+   "answers": [
+    "almost completely destroyed Lisbon",
+    "death toll in Lisbon around 30,000"
+   ],
+   "page_id": 352339
+  },
+  {
+   "id": "p352339-k4",
+   "topic": "p352339",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What field is said to have been born from the earthquake?",
+   "answers": [
+    "modern seismology and earthquake engineering",
+    "modern seismology"
+   ],
+   "page_id": 352339
+  },
+  {
+   "id": "p352339-d1",
+   "topic": "p352339",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How long after the earthquake did the tsunami engulf the harbor?",
+   "answers": [
+    "Approximately 40 minutes",
+    "40 minutes"
+   ],
+   "page_id": 352339
+  },
+  {
+   "id": "p352339-d2",
+   "topic": "p352339",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which Algarve city escaped heavy damage because of the sandy banks of Ria Formosa?",
+   "answers": [
+    "Faro"
+   ],
+   "page_id": 352339
+  },
+  {
+   "id": "p352339-d3",
+   "topic": "p352339",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who presented plans for rebuilding Lisbon on 4 December 1755?",
+   "answers": [
+    "Manuel da Maia"
+   ],
+   "page_id": 352339
+  },
+  {
+   "id": "p352339-d4",
+   "topic": "p352339",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which institution was founded in 1780 following the social disarray of the earthquake?",
+   "answers": [
+    "Casa Pia"
+   ],
+   "page_id": 352339
+  },
+  {
+   "id": "p352339-d5",
+   "topic": "p352339",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "What fault is listed for the earthquake?",
+   "answers": [
+    "Azores\u2013Gibraltar Transform Fault",
+    "Azores-Gibraltar Transform Fault"
+   ],
+   "page_id": 352339
+  },
+  {
+   "id": "p59568546-k1",
+   "topic": "p59568546",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was the 2024 US presidential election held and who were the main tickets?",
+   "answers": [
+    "November 5, 2024",
+    "Donald Trump and Ohio junior senator JD Vance"
+   ],
+   "page_id": 59568546
+  },
+  {
+   "id": "p59568546-k2",
+   "topic": "p59568546",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who won the election and by what Electoral College margin?",
+   "answers": [
+    "312 Electoral College votes to Harris's 226",
+    "312 electoral votes to Harris' 226",
+    "312"
+   ],
+   "page_id": 59568546
+  },
+  {
+   "id": "p59568546-k3",
+   "topic": "p59568546",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Why did Joe Biden withdraw from the race and when?",
+   "answers": [
+    "July 21, 2024",
+    "poor debate performance"
+   ],
+   "page_id": 59568546
+  },
+  {
+   "id": "p59568546-k4",
+   "topic": "p59568546",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What share of the national popular vote did Trump win?",
+   "answers": [
+    "plurality of 49.8%",
+    "49.8%"
+   ],
+   "page_id": 59568546
+  },
+  {
+   "id": "p59568546-d1",
+   "topic": "p59568546",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "On what date was Trump shot in the ear in an assassination attempt?",
+   "answers": [
+    "July 13, 2024"
+   ],
+   "page_id": 59568546
+  },
+  {
+   "id": "p59568546-d2",
+   "topic": "p59568546",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who carried out the second assassination attempt on September 15, 2024?",
+   "answers": [
+    "Ryan Wesley Routh"
+   ],
+   "page_id": 59568546
+  },
+  {
+   "id": "p59568546-d3",
+   "topic": "p59568546",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Where was the Harris-Trump debate of September 10, 2024 held?",
+   "answers": [
+    "Philadelphia, Pennsylvania"
+   ],
+   "page_id": 59568546
+  },
+  {
+   "id": "p59568546-d4",
+   "topic": "p59568546",
+   "tag": "table",
+   "importance": "detail",
+   "question": "How many popular votes did Donald Trump receive according to the results table?",
+   "answers": [
+    "77,302,580"
+   ],
+   "page_id": 59568546
+  },
+  {
+   "id": "p59568546-d5",
+   "topic": "p59568546",
+   "tag": "table",
+   "importance": "detail",
+   "question": "How many popular votes did Kamala Harris receive?",
+   "answers": [
+    "75,017,613"
+   ],
+   "page_id": 59568546
+  },
+  {
+   "id": "p36581929-k1",
+   "topic": "p36581929",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which team won the 2026 FIFA World Cup and when did the tournament run?",
+   "answers": [
+    "Spain",
+    "June 11, 2026",
+    "July 19"
+   ],
+   "page_id": 36581929
+  },
+  {
+   "id": "p36581929-k2",
+   "topic": "p36581929",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who hosted the tournament?",
+   "answers": [
+    "Canada, Mexico, and the United States",
+    "United States",
+    "three countries"
+   ],
+   "page_id": 36581929
+  },
+  {
+   "id": "p36581929-k3",
+   "topic": "p36581929",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was the score of the final and who was the losing finalist?",
+   "answers": [
+    "1\u20130 after extra time",
+    "Argentina"
+   ],
+   "page_id": 36581929
+  },
+  {
+   "id": "p36581929-k4",
+   "topic": "p36581929",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which player won the Golden Ball?",
+   "answers": [
+    "Rodri"
+   ],
+   "page_id": 36581929
+  },
+  {
+   "id": "p36581929-d1",
+   "topic": "p36581929",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Where was the final played?",
+   "answers": [
+    "MetLife Stadium in East Rutherford",
+    "MetLife Stadium"
+   ],
+   "page_id": 36581929
+  },
+  {
+   "id": "p36581929-d2",
+   "topic": "p36581929",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Where was the opening match played?",
+   "answers": [
+    "Estadio Azteca in Mexico City",
+    "Estadio Azteca"
+   ],
+   "page_id": 36581929
+  },
+  {
+   "id": "p36581929-d3",
+   "topic": "p36581929",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who won the Golden Glove and the Young Player Award?",
+   "answers": [
+    "Unai Sim\u00f3n",
+    "Pau Cubars\u00ed"
+   ],
+   "page_id": 36581929
+  },
+  {
+   "id": "p36581929-d4",
+   "topic": "p36581929",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "At which FIFA Congress, and in what year, did the United bid beat Morocco?",
+   "answers": [
+    "68th FIFA Congress in Moscow in 2018",
+    "Moscow"
+   ],
+   "page_id": 36581929
+  },
+  {
+   "id": "p36581929-d5",
+   "topic": "p36581929",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Who was the top scorer and how many goals did he score?",
+   "answers": [
+    "Kylian Mbapp\u00e9 (10 goals)",
+    "Kylian Mbappe (10 goals)",
+    "10 goals"
+   ],
+   "page_id": 36581929
+  },
+  {
+   "id": "p646612-k1",
+   "topic": "p646612",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What were the Selma to Montgomery marches?",
+   "answers": [
+    "three protest marches",
+    "protest marches"
+   ],
+   "page_id": 646612
+  },
+  {
+   "id": "p646612-k2",
+   "topic": "p646612",
+   "tag": "prose",
+   "importance": "key",
+   "question": "On what date did the first march, known as Bloody Sunday, take place?",
+   "answers": [
+    "March 7, 1965",
+    "March 7, 1965, led by"
+   ],
+   "page_id": 646612
+  },
+  {
+   "id": "p646612-k3",
+   "topic": "p646612",
+   "tag": "prose",
+   "importance": "key",
+   "question": "How did state troopers and possemen end the first march?",
+   "answers": [
+    "batons and tear gas",
+    "tear gas"
+   ],
+   "page_id": 646612
+  },
+  {
+   "id": "p646612-k4",
+   "topic": "p646612",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What law did President Johnson ask Congress to pass after the marches?",
+   "answers": [
+    "Voting Rights Act of 1965",
+    "Voting Rights Act"
+   ],
+   "page_id": 646612
+  },
+  {
+   "id": "p646612-d1",
+   "topic": "p646612",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which state trooper shot Jimmie Lee Jackson in Marion?",
+   "answers": [
+    "James Bonard Fowler",
+    "Fowler"
+   ],
+   "page_id": 646612
+  },
+  {
+   "id": "p646612-d2",
+   "topic": "p646612",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "On what day did the Unitarian Universalist minister James Reeb die?",
+   "answers": [
+    "Reeb died on Thursday, March 11",
+    "March 11"
+   ],
+   "page_id": 646612
+  },
+  {
+   "id": "p646612-d3",
+   "topic": "p646612",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How many whites were registered to vote in Lowndes County at the time of the march?",
+   "answers": [
+    "2,240 whites",
+    "2,240"
+   ],
+   "page_id": 646612
+  },
+  {
+   "id": "p646612-d4",
+   "topic": "p646612",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "How many protestors were arrested according to the event summary?",
+   "answers": [
+    "3300+",
+    "3300"
+   ],
+   "page_id": 646612
+  },
+  {
+   "id": "p646612-d5",
+   "topic": "p646612",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which white mother of five from Detroit was assassinated by Ku Klux Klan members while ferrying marchers?",
+   "answers": [
+    "Viola Liuzzo",
+    "Liuzzo"
+   ],
+   "page_id": 646612
+  },
+  {
+   "id": "p4479530-k1",
+   "topic": "p4479530",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What is Chistopol and where is it located?",
+   "answers": [
+    "a town in Tatarstan, Russia",
+    "town in Tatarstan",
+    "Tatarstan"
+   ],
+   "page_id": 4479530
+  },
+  {
+   "id": "p4479530-k2",
+   "topic": "p4479530",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was the population of Chistopol at the 2010 Census?",
+   "answers": [
+    "60,755"
+   ],
+   "page_id": 4479530
+  },
+  {
+   "id": "p4479530-k3",
+   "topic": "p4479530",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What notable group of people found shelter in Chistopol during the Great Patriotic War?",
+   "answers": [
+    "Union of Soviet Writers",
+    "Soviet Writers"
+   ],
+   "page_id": 4479530
+  },
+  {
+   "id": "p4479530-d1",
+   "topic": "p4479530",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Since what year has Chistopol had town status?",
+   "answers": [
+    "Town status since: 1781",
+    "1781"
+   ],
+   "page_id": 4479530
+  },
+  {
+   "id": "p4479530-d2",
+   "topic": "p4479530",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In what year was the Vostok watches factory founded in Chistopol?",
+   "answers": [
+    "founded in 1942",
+    "1942"
+   ],
+   "page_id": 4479530
+  },
+  {
+   "id": "p4479530-d3",
+   "topic": "p4479530",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which famous writer was evacuated to Chistopol during the second world war?",
+   "answers": [
+    "Boris Pasternak, evacuated to Chistopol",
+    "Pasternak"
+   ],
+   "page_id": 4479530
+  },
+  {
+   "id": "p4479530-d4",
+   "topic": "p4479530",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which composer was born in Chistopol?",
+   "answers": [
+    "Sofia Gubaidulina",
+    "Gubaidulina"
+   ],
+   "page_id": 4479530
+  },
+  {
+   "id": "p2367020-k1",
+   "topic": "p2367020",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What is the Blue Mountains range in Jamaica known for in terms of length?",
+   "answers": [
+    "longest mountain range in Jamaica",
+    "longest mountain range"
+   ],
+   "page_id": 2367020
+  },
+  {
+   "id": "p2367020-k2",
+   "topic": "p2367020",
+   "tag": "prose",
+   "importance": "key",
+   "question": "How high is Blue Mountain Peak, the highest point in Jamaica?",
+   "answers": [
+    "2,256 m",
+    "2,256"
+   ],
+   "page_id": 2367020
+  },
+  {
+   "id": "p2367020-k3",
+   "topic": "p2367020",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which four parishes does the Blue Mountains range span?",
+   "answers": [
+    "Portland, St Thomas, St Mary and St Andrew",
+    "Portland"
+   ],
+   "page_id": 2367020
+  },
+  {
+   "id": "p2367020-k4",
+   "topic": "p2367020",
+   "tag": "infobox",
+   "importance": "key",
+   "question": "In what year was Blue and John Crow Mountains designated a World Heritage site?",
+   "answers": [
+    "Designated: 2015",
+    "2015"
+   ],
+   "page_id": 2367020
+  },
+  {
+   "id": "p2367020-d1",
+   "topic": "p2367020",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How far away is the island of Cuba, which can be seen from the summit on a clear day?",
+   "answers": [
+    "210 km",
+    "130 mi"
+   ],
+   "page_id": 2367020
+  },
+  {
+   "id": "p2367020-d2",
+   "topic": "p2367020",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In what year was the Blue and John Crow Mountains National Park established?",
+   "answers": [
+    "established in 1992",
+    "1992"
+   ],
+   "page_id": 2367020
+  },
+  {
+   "id": "p2367020-d3",
+   "topic": "p2367020",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What is the climate classification of the high elevations of the Blue Mountains?",
+   "answers": [
+    "subtropical highland climate (Cfb)",
+    "Cfb"
+   ],
+   "page_id": 2367020
+  },
+  {
+   "id": "p2367020-d4",
+   "topic": "p2367020",
+   "tag": "table",
+   "importance": "detail",
+   "question": "What is the average annual precipitation in millimetres in the climate table for the Blue Mountains?",
+   "answers": [
+    "2,335"
+   ],
+   "page_id": 2367020
+  },
+  {
+   "id": "p2367020-d5",
+   "topic": "p2367020",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which two farming communities rely on the rich soil for growing coffee, with one closest to Blue Mountain Peak?",
+   "answers": [
+    "Hagley Gap and Mavis Bank",
+    "Hagley Gap"
+   ],
+   "page_id": 2367020
+  },
+  {
+   "id": "p2421391-k1",
+   "topic": "p2421391",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What kind of country is Bhutan and where is it located?",
+   "answers": [
+    "landlocked country in South Asia",
+    "landlocked country"
+   ],
+   "page_id": 2421391
+  },
+  {
+   "id": "p2421391-k2",
+   "topic": "p2421391",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What is the capital and largest city of Bhutan?",
+   "answers": [
+    "The capital and largest city is Thimphu",
+    "Thimphu"
+   ],
+   "page_id": 2421391
+  },
+  {
+   "id": "p2421391-k3",
+   "topic": "p2421391",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which figure unified the valleys of Bhutan into a single state?",
+   "answers": [
+    "Zhabdrung Ngawang Namgyal",
+    "Ngawang Namgyal"
+   ],
+   "page_id": 2421391
+  },
+  {
+   "id": "p2421391-k4",
+   "topic": "p2421391",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What form of government does Bhutan have, with a king as head of state?",
+   "answers": [
+    "democratic constitutional monarchy",
+    "constitutional monarchy"
+   ],
+   "page_id": 2421391
+  },
+  {
+   "id": "p2421391-d1",
+   "topic": "p2421391",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What is the territory of Bhutan in square kilometres?",
+   "answers": [
+    "38,394 square kilometres",
+    "38,394"
+   ],
+   "page_id": 2421391
+  },
+  {
+   "id": "p2421391-d2",
+   "topic": "p2421391",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In what year was Ugyen Wangchuck unanimously chosen as hereditary king?",
+   "answers": [
+    "In 1907, an epochal year",
+    "1907"
+   ],
+   "page_id": 2421391
+  },
+  {
+   "id": "p2421391-d3",
+   "topic": "p2421391",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "About how many bitcoin did Bhutan hold as of 15 November 2024?",
+   "answers": [
+    "12,206 BTC",
+    "12,206"
+   ],
+   "page_id": 2421391
+  },
+  {
+   "id": "p2421391-d4",
+   "topic": "p2421391",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What is the currency of Bhutan, fixed to the Indian rupee?",
+   "answers": [
+    "ngultrum"
+   ],
+   "page_id": 2421391
+  },
+  {
+   "id": "p2421391-d5",
+   "topic": "p2421391",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Who is the Prime Minister of Bhutan according to the infobox?",
+   "answers": [
+    "Prime Minister: Tshering Tobgay",
+    "Tshering Tobgay"
+   ],
+   "page_id": 2421391
+  },
+  {
+   "id": "p2110211-k1",
+   "topic": "p2110211",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What is Stari Most and where is it?",
+   "answers": [
+    "rebuilt 16th-century Ottoman bridge in the city of Mostar",
+    "Ottoman bridge in the city of Mostar",
+    "Mostar"
+   ],
+   "page_id": 2110211
+  },
+  {
+   "id": "p2110211-k2",
+   "topic": "p2110211",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who commissioned the Old Bridge and in what year?",
+   "answers": [
+    "Suleiman the Magnificent in 1557",
+    "Commissioned by Suleiman the Magnificent in 1557"
+   ],
+   "page_id": 2110211
+  },
+  {
+   "id": "p2110211-k3",
+   "topic": "p2110211",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was the Old Bridge destroyed by shelling?",
+   "answers": [
+    "9 November 1993"
+   ],
+   "page_id": 2110211
+  },
+  {
+   "id": "p2110211-k4",
+   "topic": "p2110211",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was the reconstructed bridge reopened?",
+   "answers": [
+    "23 July 2004"
+   ],
+   "page_id": 2110211
+  },
+  {
+   "id": "p2110211-d1",
+   "topic": "p2110211",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who designed the bridge?",
+   "answers": [
+    "Mimar Hayruddin"
+   ],
+   "page_id": 2110211
+  },
+  {
+   "id": "p2110211-d2",
+   "topic": "p2110211",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How long is the Stari Most in metres?",
+   "answers": [
+    "30 metres (98 ft 5 in) long",
+    "30 metres"
+   ],
+   "page_id": 2110211
+  },
+  {
+   "id": "p2110211-d3",
+   "topic": "p2110211",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who built the first temporary bridge, opened on 30 December 1993, and in how many days?",
+   "answers": [
+    "Spanish military engineers",
+    "built in only three days",
+    "three days"
+   ],
+   "page_id": 2110211
+  },
+  {
+   "id": "p2110211-d4",
+   "topic": "p2110211",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which two towers protect the bridge?",
+   "answers": [
+    "Halebija tower",
+    "Tara tower"
+   ],
+   "page_id": 2110211
+  },
+  {
+   "id": "p2110211-d5",
+   "topic": "p2110211",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Since what year has Stari Most been a tour stop in the Red Bull Cliff Diving World Series?",
+   "answers": [
+    "Since 2015",
+    "2015"
+   ],
+   "page_id": 2110211
+  },
+  {
+   "id": "p12024-k1",
+   "topic": "p12024",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What is general relativity?",
+   "answers": [
+    "geometric theory of gravitation"
+   ],
+   "page_id": 12024
+  },
+  {
+   "id": "p12024-k2",
+   "topic": "p12024",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who published general relativity and when?",
+   "answers": [
+    "Albert Einstein in May 1916",
+    "May 1916"
+   ],
+   "page_id": 12024
+  },
+  {
+   "id": "p12024-k3",
+   "topic": "p12024",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which regions of space does general relativity predict, where nothing, not even light, can escape?",
+   "answers": [
+    "black holes"
+   ],
+   "page_id": 12024
+  },
+  {
+   "id": "p12024-k4",
+   "topic": "p12024",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What major problem remains unresolved between general relativity and quantum physics?",
+   "answers": [
+    "no self-consistent theory of quantum gravity",
+    "quantum gravity"
+   ],
+   "page_id": 12024
+  },
+  {
+   "id": "p12024-d1",
+   "topic": "p12024",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who found the first non-trivial exact solution to the Einstein field equations in 1916?",
+   "answers": [
+    "Karl Schwarzschild",
+    "Schwarzschild metric"
+   ],
+   "page_id": 12024
+  },
+  {
+   "id": "p12024-d2",
+   "topic": "p12024",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In which year did an expedition led by Eddington confirm the prediction of light deflection?",
+   "answers": [
+    "in 1919 an expedition led by Eddington",
+    "1919"
+   ],
+   "page_id": 12024
+  },
+  {
+   "id": "p12024-d3",
+   "topic": "p12024",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who used the binary pulsar PSR1913+16, discovered in 1974, to observe orbital decay from gravitational waves?",
+   "answers": [
+    "Hulse and Taylor"
+   ],
+   "page_id": 12024
+  },
+  {
+   "id": "p12024-d4",
+   "topic": "p12024",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In which month and year did the Advanced LIGO team announce the detection of gravitational waves from a black hole merger?",
+   "answers": [
+    "February 2016"
+   ],
+   "page_id": 12024
+  },
+  {
+   "id": "p12024-d5",
+   "topic": "p12024",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which mathematician pointed out Riemannian geometry to Einstein, published as Grossmann and Einstein in 1913?",
+   "answers": [
+    "Marcel Grossmann",
+    "Grossmann"
+   ],
+   "page_id": 12024
+  },
+  {
+   "id": "p22228064-k1",
+   "topic": "p22228064",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What kind of disease is Parkinson's disease?",
+   "answers": [
+    "neurodegenerative disease primarily of the central nervous system",
+    "neurodegenerative disease"
+   ],
+   "page_id": 22228064
+  },
+  {
+   "id": "p22228064-k2",
+   "topic": "p22228064",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which motor symptoms are collectively called parkinsonism?",
+   "answers": [
+    "tremors, slowness in initiating movement (bradykinesia), rigidity",
+    "bradykinesia"
+   ],
+   "page_id": 22228064
+  },
+  {
+   "id": "p22228064-k3",
+   "topic": "p22228064",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Loss of which neurons in the substantia nigra underlies Parkinson's disease?",
+   "answers": [
+    "dopamine-producing neurons"
+   ],
+   "page_id": 22228064
+  },
+  {
+   "id": "p22228064-k4",
+   "topic": "p22228064",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Is there a cure for Parkinson's disease?",
+   "answers": [
+    "No cure for PD is known",
+    "No cure"
+   ],
+   "page_id": 22228064
+  },
+  {
+   "id": "p22228064-d1",
+   "topic": "p22228064",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In what year did James Parkinson publish the first full medical description of the disease?",
+   "answers": [
+    "In 1817, English physician James Parkinson",
+    "1817"
+   ],
+   "page_id": 22228064
+  },
+  {
+   "id": "p22228064-d2",
+   "topic": "p22228064",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What was the title of James Parkinson's monograph?",
+   "answers": [
+    "An Essay on the Shaking Palsy"
+   ],
+   "page_id": 22228064
+  },
+  {
+   "id": "p22228064-d3",
+   "topic": "p22228064",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who described the microscopic particles later named Lewy bodies in 1912?",
+   "answers": [
+    "Frederic Lewy"
+   ],
+   "page_id": 22228064
+  },
+  {
+   "id": "p22228064-d4",
+   "topic": "p22228064",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "At what age was Michael J. Fox diagnosed with Parkinson's disease?",
+   "answers": [
+    "29 years old"
+   ],
+   "page_id": 22228064
+  },
+  {
+   "id": "p22228064-d5",
+   "topic": "p22228064",
+   "tag": "table",
+   "importance": "detail",
+   "question": "What is the prevalence of anxiety among people with Parkinson's disease in the symptom table?",
+   "answers": [
+    "40-50"
+   ],
+   "page_id": 22228064
+  },
+  {
+   "id": "p45809-k1",
+   "topic": "p45809",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What does Dijkstra's algorithm do?",
+   "answers": [
+    "finding the shortest paths between nodes in a weighted graph",
+    "shortest paths"
+   ],
+   "page_id": 45809
+  },
+  {
+   "id": "p45809-k2",
+   "topic": "p45809",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who conceived Dijkstra's algorithm?",
+   "answers": [
+    "Edsger W. Dijkstra"
+   ],
+   "page_id": 45809
+  },
+  {
+   "id": "p45809-k3",
+   "topic": "p45809",
+   "tag": "prose",
+   "importance": "key",
+   "question": "In what year was the algorithm conceived, and how long after was it published?",
+   "answers": [
+    "conceived by computer scientist Edsger W. Dijkstra in 1956",
+    "1956"
+   ],
+   "page_id": 45809
+  },
+  {
+   "id": "p45809-k4",
+   "topic": "p45809",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What data structure does the algorithm use to select the shortest paths known so far?",
+   "answers": [
+    "min-priority queue"
+   ],
+   "page_id": 45809
+  },
+  {
+   "id": "p45809-d1",
+   "topic": "p45809",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How many cities were on the transportation map of the Netherlands that Dijkstra implemented for ARMAC?",
+   "answers": [
+    "64 cities"
+   ],
+   "page_id": 45809
+  },
+  {
+   "id": "p45809-d2",
+   "topic": "p45809",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which institution did Dijkstra work at in Amsterdam in 1956?",
+   "answers": [
+    "Mathematical Center"
+   ],
+   "page_id": 45809
+  },
+  {
+   "id": "p45809-d3",
+   "topic": "p45809",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who proposed a Fibonacci heap priority queue in 1984 to optimize running time?",
+   "answers": [
+    "Fredman & Tarjan 1984",
+    "Fredman & Tarjan"
+   ],
+   "page_id": 45809
+  },
+  {
+   "id": "p45809-d4",
+   "topic": "p45809",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What is the running time using a binary heap?",
+   "answers": [
+    "O((V+E)logV)"
+   ],
+   "page_id": 45809
+  },
+  {
+   "id": "p45809-d5",
+   "topic": "p45809",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which algorithm was the first to use a bucket queue for graphs with positive integer edge weights?",
+   "answers": [
+    "Dial's algorithm"
+   ],
+   "page_id": 45809
+  },
+  {
+   "id": "p407734-k1",
+   "topic": "p407734",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What is mercury(II) chloride and what is its formula?",
+   "answers": [
+    "HgCl2"
+   ],
+   "page_id": 407734
+  },
+  {
+   "id": "p407734-k2",
+   "topic": "p407734",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What is mercury(II) chloride historically also called?",
+   "answers": [
+    "corrosive sublimate",
+    "sulema"
+   ],
+   "page_id": 407734
+  },
+  {
+   "id": "p407734-k3",
+   "topic": "p407734",
+   "tag": "prose",
+   "importance": "key",
+   "question": "How harmful is mercury(II) chloride to humans?",
+   "answers": [
+    "very toxic to humans",
+    "highly toxic compound"
+   ],
+   "page_id": 407734
+  },
+  {
+   "id": "p407734-k4",
+   "topic": "p407734",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What did mercury(II) chloride once serve as before being replaced by procaine penicillin?",
+   "answers": [
+    "first line treatment for syphilis",
+    "syphilis"
+   ],
+   "page_id": 407734
+  },
+  {
+   "id": "p407734-d1",
+   "topic": "p407734",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What is the Hg-Cl distance in the crystal?",
+   "answers": [
+    "2.38 \u00c5",
+    "2.38 A"
+   ],
+   "page_id": 407734
+  },
+  {
+   "id": "p407734-d2",
+   "topic": "p407734",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What happened to Olive Thomas in 1920 involving mercury bichloride?",
+   "answers": [
+    "accidentally ingested the compound",
+    "Olive Thomas"
+   ],
+   "page_id": 407734
+  },
+  {
+   "id": "p407734-d3",
+   "topic": "p407734",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which man was poisoned in the Tower of London in 1613 with an enema of mercury sublimate?",
+   "answers": [
+    "Thomas Overbury"
+   ],
+   "page_id": 407734
+  },
+  {
+   "id": "p407734-d4",
+   "topic": "p407734",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which Arabic alchemical text first described the synthesis of mercury(II) chloride?",
+   "answers": [
+    "De aluminibus et salibus"
+   ],
+   "page_id": 407734
+  },
+  {
+   "id": "p372063-k1",
+   "topic": "p372063",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What does the Coase theorem postulate?",
+   "answers": [
+    "economic efficiency of an economic allocation or outcome in the presence of externalities",
+    "externalities"
+   ],
+   "page_id": 372063
+  },
+  {
+   "id": "p372063-k2",
+   "topic": "p372063",
+   "tag": "prose",
+   "importance": "key",
+   "question": "In which 1960 article did Coase set out his main point about transaction costs?",
+   "answers": [
+    "The Problem of Social Cost"
+   ],
+   "page_id": 372063
+  },
+  {
+   "id": "p372063-k3",
+   "topic": "p372063",
+   "tag": "prose",
+   "importance": "key",
+   "question": "In what year was Coase awarded the Nobel Prize?",
+   "answers": [
+    "Nobel Prize in 1991",
+    "1991"
+   ],
+   "page_id": 372063
+  },
+  {
+   "id": "p372063-k4",
+   "topic": "p372063",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What do real-world transaction costs mean for the practical applicability of the theorem?",
+   "answers": [
+    "almost always inapplicable",
+    "rarely low enough to allow for efficient bargaining"
+   ],
+   "page_id": 372063
+  },
+  {
+   "id": "p372063-d1",
+   "topic": "p372063",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What problem was Coase considering when he developed the theorem?",
+   "answers": [
+    "regulation of radio frequencies",
+    "radio frequencies"
+   ],
+   "page_id": 372063
+  },
+  {
+   "id": "p372063-d2",
+   "topic": "p372063",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who coined the equivalence extension of the Coase theorem in 1969?",
+   "answers": [
+    "Steven N. S. Cheung"
+   ],
+   "page_id": 372063
+  },
+  {
+   "id": "p372063-d3",
+   "topic": "p372063",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which 1947 case popularised economic analysis of tort liability by Judge Learned Hand?",
+   "answers": [
+    "United States v. Carroll Towing Co.",
+    "Carroll Towing"
+   ],
+   "page_id": 372063
+  },
+  {
+   "id": "p372063-d4",
+   "topic": "p372063",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which critical legal scholar criticised the theorem in 1981 citing the endowment effect?",
+   "answers": [
+    "Duncan Kennedy"
+   ],
+   "page_id": 372063
+  },
+  {
+   "id": "p372063-d5",
+   "topic": "p372063",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In what year was the Danish waterworks and farmers example published?",
+   "answers": [
+    "published in 2012",
+    "2012"
+   ],
+   "page_id": 372063
+  },
+  {
+   "id": "p407734-d5",
+   "topic": "p407734",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What is the solubility of mercury(II) chloride in water at 20 C?",
+   "answers": [
+    "6% at 20",
+    "6%"
+   ],
+   "page_id": 407734
+  },
+  {
+   "id": "p70091-k1",
+   "topic": "p70091",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who wrote and directed Spirited Away?",
+   "answers": [
+    "Hayao Miyazaki"
+   ],
+   "page_id": 70091
+  },
+  {
+   "id": "p70091-k2",
+   "topic": "p70091",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was Spirited Away released in Japan?",
+   "answers": [
+    "20 July 2001",
+    "July 20, 2001"
+   ],
+   "page_id": 70091
+  },
+  {
+   "id": "p70091-k3",
+   "topic": "p70091",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which witch turns the heroine's parents into pigs?",
+   "answers": [
+    "Yubaba"
+   ],
+   "page_id": 70091
+  },
+  {
+   "id": "p70091-k4",
+   "topic": "p70091",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which Academy Award did Spirited Away win?",
+   "answers": [
+    "Academy Award for Best Animated Feature",
+    "Best Animated Feature"
+   ],
+   "page_id": 70091
+  },
+  {
+   "id": "p70091-d1",
+   "topic": "p70091",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Who composed the music of Spirited Away?",
+   "answers": [
+    "Joe Hisaishi"
+   ],
+   "page_id": 70091
+  },
+  {
+   "id": "p70091-d2",
+   "topic": "p70091",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How much did Spirited Away gross at the worldwide box office?",
+   "answers": [
+    "US$396 million",
+    "$396 million"
+   ],
+   "page_id": 70091
+  },
+  {
+   "id": "p70091-d3",
+   "topic": "p70091",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which film surpassed Spirited Away as highest-grossing film in Japanese history in 2020?",
+   "answers": [
+    "re:demon slayer"
+   ],
+   "page_id": 70091
+  },
+  {
+   "id": "p70091-d4",
+   "topic": "p70091",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who served as executive producer of the English-dubbed version?",
+   "answers": [
+    "John Lasseter",
+    "Lasseter"
+   ],
+   "page_id": 70091
+  },
+  {
+   "id": "p70091-d5",
+   "topic": "p70091",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Which top prize did Spirited Away win at the 52nd Berlin International Film Festival?",
+   "answers": [
+    "Golden Bear"
+   ],
+   "page_id": 70091
+  },
+  {
+   "id": "p17253525-k1",
+   "topic": "p17253525",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who wrote Flowers for Algernon?",
+   "answers": [
+    "Daniel Keyes"
+   ],
+   "page_id": 17253525
+  },
+  {
+   "id": "p17253525-k2",
+   "topic": "p17253525",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who is the first human subject of the intelligence surgery, whose progress reports tell the story?",
+   "answers": [
+    "Charlie Gordon"
+   ],
+   "page_id": 17253525
+  },
+  {
+   "id": "p17253525-k3",
+   "topic": "p17253525",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was the novelette first published?",
+   "answers": [
+    "April 1959"
+   ],
+   "page_id": 17253525
+  },
+  {
+   "id": "p17253525-k4",
+   "topic": "p17253525",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which award did the novelette win in 1960?",
+   "answers": [
+    "Hugo Award for Best Short Fiction",
+    "Hugo Award"
+   ],
+   "page_id": 17253525
+  },
+  {
+   "id": "p17253525-d1",
+   "topic": "p17253525",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which editor suggested changing the ending so that Charlie keeps his intelligence?",
+   "answers": [
+    "Horace Gold"
+   ],
+   "page_id": 17253525
+  },
+  {
+   "id": "p17253525-d2",
+   "topic": "p17253525",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which novel tied with Flowers for Algernon for the Nebula Award for Best Novel?",
+   "answers": [
+    "Babel-17"
+   ],
+   "page_id": 17253525
+  },
+  {
+   "id": "p17253525-d3",
+   "topic": "p17253525",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "What IQ does Charlie reach within three months of the operation in the novel?",
+   "answers": [
+    "185"
+   ],
+   "page_id": 17253525
+  },
+  {
+   "id": "p17253525-d4",
+   "topic": "p17253525",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which Academy Award-winning 1968 film adapted the story?",
+   "answers": [
+    "Charly"
+   ],
+   "page_id": 17253525
+  },
+  {
+   "id": "p17253525-d5",
+   "topic": "p17253525",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "At what number is the book on the American Library Association list of most frequently challenged books of 1990-1999?",
+   "answers": [
+    "re:number 43\\b",
+    "43rd",
+    "43"
+   ],
+   "page_id": 17253525
+  },
+  {
+   "id": "p77212825-k1",
+   "topic": "p77212825",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What kind of album is Six of One?",
+   "answers": [
+    "live solo soprano saxophone album",
+    "solo soprano saxophone"
+   ],
+   "page_id": 77212825
+  },
+  {
+   "id": "p77212825-k2",
+   "topic": "p77212825",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Who is the artist behind Six of One?",
+   "answers": [
+    "Evan Parker"
+   ],
+   "page_id": 77212825
+  },
+  {
+   "id": "p77212825-k3",
+   "topic": "p77212825",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was Six of One recorded?",
+   "answers": [
+    "June 18, 1980",
+    "18 June 1980"
+   ],
+   "page_id": 77212825
+  },
+  {
+   "id": "p77212825-d1",
+   "topic": "p77212825",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Where was the album recorded?",
+   "answers": [
+    "St Jude-on-the-Hill"
+   ],
+   "page_id": 77212825
+  },
+  {
+   "id": "p77212825-d2",
+   "topic": "p77212825",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Which bonus track appears on the CD reissue?",
+   "answers": [
+    "Sixes and Sevens"
+   ],
+   "page_id": 77212825
+  },
+  {
+   "id": "p77212825-d3",
+   "topic": "p77212825",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which label reissued the album on vinyl in 2021?",
+   "answers": [
+    "Otoroku",
+    "Cafe Oto"
+   ],
+   "page_id": 77212825
+  },
+  {
+   "id": "p77212825-d4",
+   "topic": "p77212825",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "What is the length of Six of One?",
+   "answers": [
+    "56:16"
+   ],
+   "page_id": 77212825
+  },
+  {
+   "id": "p18029866-k1",
+   "topic": "p18029866",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which developer made Dirt Track Racing?",
+   "answers": [
+    "Ratbag Games"
+   ],
+   "page_id": 18029866
+  },
+  {
+   "id": "p18029866-k2",
+   "topic": "p18029866",
+   "tag": "infobox",
+   "importance": "key",
+   "question": "When was Dirt Track Racing released in Europe?",
+   "answers": [
+    "November 15, 1999",
+    "15 November 1999"
+   ],
+   "page_id": 18029866
+  },
+  {
+   "id": "p18029866-k3",
+   "topic": "p18029866",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which award did the game win from Computer Games Strategy Plus in 1999?",
+   "answers": [
+    "Racing Game of the Year"
+   ],
+   "page_id": 18029866
+  },
+  {
+   "id": "p18029866-d1",
+   "topic": "p18029866",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Who published Dirt Track Racing?",
+   "answers": [
+    "WizardWorks Software",
+    "WizardWorks"
+   ],
+   "page_id": 18029866
+  },
+  {
+   "id": "p18029866-d2",
+   "topic": "p18029866",
+   "tag": "table",
+   "importance": "detail",
+   "question": "What score did GameSpot give the game?",
+   "answers": [
+    "6.6/10",
+    "6.6"
+   ],
+   "page_id": 18029866
+  },
+  {
+   "id": "p18029866-d3",
+   "topic": "p18029866",
+   "tag": "table",
+   "importance": "detail",
+   "question": "What score did IGN give the game?",
+   "answers": [
+    "8.8/10",
+    "8.8"
+   ],
+   "page_id": 18029866
+  },
+  {
+   "id": "p18029866-d4",
+   "topic": "p18029866",
+   "tag": "table",
+   "importance": "detail",
+   "question": "What was the game's GameRankings aggregate score?",
+   "answers": [
+    "69%"
+   ],
+   "page_id": 18029866
+  },
+  {
+   "id": "p21242-k1",
+   "topic": "p21242",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What kind of business was Nokia originally established as in 1865?",
+   "answers": [
+    "pulp mill"
+   ],
+   "page_id": 21242
+  },
+  {
+   "id": "p21242-k2",
+   "topic": "p21242",
+   "tag": "prose",
+   "importance": "key",
+   "question": "For a decade beginning in which year was Nokia the largest worldwide vendor of mobile phones?",
+   "answers": [
+    "1998"
+   ],
+   "page_id": 21242
+  },
+  {
+   "id": "p21242-k3",
+   "topic": "p21242",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which company bought Nokia's mobile phone business in 2014?",
+   "answers": [
+    "Microsoft"
+   ],
+   "page_id": 21242
+  },
+  {
+   "id": "p21242-k4",
+   "topic": "p21242",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which company did Nokia agree to purchase in 2015 for 15.6 billion euros?",
+   "answers": [
+    "Alcatel-Lucent"
+   ],
+   "page_id": 21242
+  },
+  {
+   "id": "p21242-d1",
+   "topic": "p21242",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who established the first Nokia pulp mill near Tampere?",
+   "answers": [
+    "Fredrik Idestam",
+    "Idestam"
+   ],
+   "page_id": 21242
+  },
+  {
+   "id": "p21242-d2",
+   "topic": "p21242",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Where is Nokia headquartered?",
+   "answers": [
+    "Espoo, Finland",
+    "Espoo"
+   ],
+   "page_id": 21242
+  },
+  {
+   "id": "p21242-d3",
+   "topic": "p21242",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "On what date was Nokia founded?",
+   "answers": [
+    "12 May 1865",
+    "May 12, 1865"
+   ],
+   "page_id": 21242
+  },
+  {
+   "id": "p21242-d4",
+   "topic": "p21242",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How much was Apple estimated to pay Nokia in the June 2011 patent settlement?",
+   "answers": [
+    "$600 million",
+    "600 million"
+   ],
+   "page_id": 21242
+  },
+  {
+   "id": "p21242-d5",
+   "topic": "p21242",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Who was Nokia chief executive officer from 1992 to 2006?",
+   "answers": [
+    "Jorma Ollila",
+    "Ollila"
+   ],
+   "page_id": 21242
+  },
+  {
+   "id": "p31797-k1",
+   "topic": "p31797",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What type of university is Oxford?",
+   "answers": [
+    "collegiate research university"
+   ],
+   "page_id": 31797
+  },
+  {
+   "id": "p31797-k2",
+   "topic": "p31797",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Since when is there evidence of teaching at Oxford?",
+   "answers": [
+    "1096"
+   ],
+   "page_id": 31797
+  },
+  {
+   "id": "p31797-k3",
+   "topic": "p31797",
+   "tag": "prose",
+   "importance": "key",
+   "question": "In which year did Oxford begin rapid growth after Henry II banned his subjects from studying in Paris?",
+   "answers": [
+    "1167"
+   ],
+   "page_id": 31797
+  },
+  {
+   "id": "p31797-k4",
+   "topic": "p31797",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When were women given the right to take degrees at Oxford?",
+   "answers": [
+    "7 October 1920",
+    "October 1920"
+   ],
+   "page_id": 31797
+  },
+  {
+   "id": "p31797-d1",
+   "topic": "p31797",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which king did the chronicler Ranulf Higden claim founded the university in the 9th century?",
+   "answers": [
+    "Alfred the Great",
+    "Alfred"
+   ],
+   "page_id": 31797
+  },
+  {
+   "id": "p31797-d2",
+   "topic": "p31797",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "How many students did Lady Margaret Hall and Somerville first admit in 1879?",
+   "answers": [
+    "21 students",
+    "21"
+   ],
+   "page_id": 31797
+  },
+  {
+   "id": "p31797-d3",
+   "topic": "p31797",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In which year did Oriel, the last men's college, admit women?",
+   "answers": [
+    "1985"
+   ],
+   "page_id": 31797
+  },
+  {
+   "id": "p31797-d4",
+   "topic": "p31797",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which women's college was the last to begin accepting male students, in 2008?",
+   "answers": [
+    "St Hilda's"
+   ],
+   "page_id": 31797
+  },
+  {
+   "id": "p31797-d5",
+   "topic": "p31797",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "Who is the Vice-Chancellor of the University of Oxford?",
+   "answers": [
+    "Irene Tracey"
+   ],
+   "page_id": 31797
+  },
+  {
+   "id": "p38252-k1",
+   "topic": "p38252",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Where and when was Radiohead formed?",
+   "answers": [
+    "Abingdon, Oxfordshire, in 1985",
+    "Abingdon, Oxfordshire",
+    "Abingdon"
+   ],
+   "page_id": 38252
+  },
+  {
+   "id": "p38252-k2",
+   "topic": "p38252",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was Radiohead's debut album?",
+   "answers": [
+    "Pablo Honey"
+   ],
+   "page_id": 38252
+  },
+  {
+   "id": "p38252-k3",
+   "topic": "p38252",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which 1997 album is acclaimed as a landmark record and one of the greatest albums in popular music?",
+   "answers": [
+    "OK Computer"
+   ],
+   "page_id": 38252
+  },
+  {
+   "id": "p38252-k4",
+   "topic": "p38252",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which Radiohead album was self-released in 2007 as a download with customers setting their own price?",
+   "answers": [
+    "In Rainbows"
+   ],
+   "page_id": 38252
+  },
+  {
+   "id": "p38252-d1",
+   "topic": "p38252",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "The name Radiohead was taken from a song by which band?",
+   "answers": [
+    "Talking Heads"
+   ],
+   "page_id": 38252
+  },
+  {
+   "id": "p38252-d2",
+   "topic": "p38252",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which producer has worked with Radiohead since 1994?",
+   "answers": [
+    "Nigel Godrich",
+    "Godrich"
+   ],
+   "page_id": 38252
+  },
+  {
+   "id": "p38252-d3",
+   "topic": "p38252",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "On what date did Radiohead release In Rainbows on their website?",
+   "answers": [
+    "10 October 2007",
+    "October 10, 2007"
+   ],
+   "page_id": 38252
+  },
+  {
+   "id": "p38252-d4",
+   "topic": "p38252",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In which year was Radiohead inducted into the Rock and Roll Hall of Fame?",
+   "answers": [
+    "2019"
+   ],
+   "page_id": 38252
+  },
+  {
+   "id": "p38252-d5",
+   "topic": "p38252",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Which Radiohead studio album came out in 2001?",
+   "answers": [
+    "Amnesiac"
+   ],
+   "page_id": 38252
+  },
+  {
+   "id": "p380845-k1",
+   "topic": "p380845",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What is gross domestic product (GDP)?",
+   "answers": [
+    "market value of all final goods and services from a nation in a given year",
+    "market value of all final goods and services"
+   ],
+   "page_id": 380845
+  },
+  {
+   "id": "p380845-k2",
+   "topic": "p380845",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which institution's World Economic Outlook provides the first list of estimates?",
+   "answers": [
+    "International Monetary Fund",
+    "IMF"
+   ],
+   "page_id": 380845
+  },
+  {
+   "id": "p380845-k3",
+   "topic": "p380845",
+   "tag": "table",
+   "importance": "key",
+   "question": "Which country has the largest nominal GDP in the IMF 2026 column?",
+   "answers": [
+    "United States"
+   ],
+   "page_id": 380845
+  },
+  {
+   "id": "p380845-k4",
+   "topic": "p380845",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Which country moved from ninth place in 1978 to second in 2010 after market reforms?",
+   "answers": [
+    "China"
+   ],
+   "page_id": 380845
+  },
+  {
+   "id": "p380845-d1",
+   "topic": "p380845",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Around which year did the United States overtake the British Empire?",
+   "answers": [
+    "1916"
+   ],
+   "page_id": 380845
+  },
+  {
+   "id": "p380845-d2",
+   "topic": "p380845",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "In which months does the IMF publish its definitive data and estimates?",
+   "answers": [
+    "April and October"
+   ],
+   "page_id": 380845
+  },
+  {
+   "id": "p380845-d3",
+   "topic": "p380845",
+   "tag": "table",
+   "importance": "detail",
+   "question": "What is Germany's World Bank (2025) nominal GDP in million US dollars?",
+   "answers": [
+    "5,050,923"
+   ],
+   "page_id": 380845
+  },
+  {
+   "id": "p380845-d4",
+   "topic": "p380845",
+   "tag": "table",
+   "importance": "detail",
+   "question": "What is India's United Nations (2024) nominal GDP in million US dollars?",
+   "answers": [
+    "3,952,244"
+   ],
+   "page_id": 380845
+  },
+  {
+   "id": "p380845-d5",
+   "topic": "p380845",
+   "tag": "table",
+   "importance": "detail",
+   "question": "What is the European Union's IMF (2026) nominal GDP in million US dollars?",
+   "answers": [
+    "23,034,637"
+   ],
+   "page_id": 380845
+  },
+  {
+   "id": "p52456392-k1",
+   "topic": "p52456392",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Between which dates were the 2024 Indian general elections held, and in how many phases?",
+   "answers": [
+    "19 April to 1 June 2024",
+    "19 April to 1 June"
+   ],
+   "page_id": 52456392
+  },
+  {
+   "id": "p52456392-k2",
+   "topic": "p52456392",
+   "tag": "prose",
+   "importance": "key",
+   "question": "Whose third term as prime minister did the election result confirm?",
+   "answers": [
+    "Narendra Modi",
+    "Modi"
+   ],
+   "page_id": 52456392
+  },
+  {
+   "id": "p52456392-k3",
+   "topic": "p52456392",
+   "tag": "prose",
+   "importance": "key",
+   "question": "How many seats did the BJP win in the 2024 election?",
+   "answers": [
+    "240 seats",
+    "240"
+   ],
+   "page_id": 52456392
+  },
+  {
+   "id": "p52456392-k4",
+   "topic": "p52456392",
+   "tag": "prose",
+   "importance": "key",
+   "question": "How many of the Lok Sabha's 543 seats did the NDA secure overall?",
+   "answers": [
+    "293"
+   ],
+   "page_id": 52456392
+  },
+  {
+   "id": "p52456392-d1",
+   "topic": "p52456392",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Which BJP candidate was elected unopposed in the Surat constituency in Gujarat?",
+   "answers": [
+    "Mukesh Dalal"
+   ],
+   "page_id": 52456392
+  },
+  {
+   "id": "p52456392-d2",
+   "topic": "p52456392",
+   "tag": "infobox",
+   "importance": "detail",
+   "question": "What was the voter turnout in the 2024 Indian general election?",
+   "answers": [
+    "66.1%"
+   ],
+   "page_id": 52456392
+  },
+  {
+   "id": "p52456392-d3",
+   "topic": "p52456392",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "On what date did the Supreme Court of India rule the Electoral Bond system unconstitutional?",
+   "answers": [
+    "15 February 2024"
+   ],
+   "page_id": 52456392
+  },
+  {
+   "id": "p52456392-d4",
+   "topic": "p52456392",
+   "tag": "table",
+   "importance": "detail",
+   "question": "How many seats did the Telugu Desam Party win?",
+   "answers": [
+    "16"
+   ],
+   "page_id": 52456392
+  },
+  {
+   "id": "p52456392-d5",
+   "topic": "p52456392",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Who won the Wayanad constituency?",
+   "answers": [
+    "Rahul Gandhi"
+   ],
+   "page_id": 52456392
+  },
+  {
+   "id": "p14173586-k1",
+   "topic": "p14173586",
+   "tag": "prose",
+   "importance": "key",
+   "question": "How many studio albums did Joy Division release?",
+   "answers": [
+    "two studio albums",
+    "two"
+   ],
+   "page_id": 14173586
+  },
+  {
+   "id": "p14173586-k2",
+   "topic": "p14173586",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was Joy Division's debut studio album?",
+   "answers": [
+    "Unknown Pleasures"
+   ],
+   "page_id": 14173586
+  },
+  {
+   "id": "p14173586-k3",
+   "topic": "p14173586",
+   "tag": "prose",
+   "importance": "key",
+   "question": "When was Ian Curtis found dead?",
+   "answers": [
+    "18 May 1980",
+    "May 18, 1980"
+   ],
+   "page_id": 14173586
+  },
+  {
+   "id": "p14173586-k4",
+   "topic": "p14173586",
+   "tag": "prose",
+   "importance": "key",
+   "question": "What was the first official release as Joy Division?",
+   "answers": [
+    "An Ideal for Living"
+   ],
+   "page_id": 14173586
+  },
+  {
+   "id": "p14173586-d1",
+   "topic": "p14173586",
+   "tag": "prose",
+   "importance": "detail",
+   "question": "Who formed Joy Division in 1976?",
+   "answers": [
+    "Bernard Sumner and Peter Hook",
+    "Bernard Sumner"
+   ],
+   "page_id": 14173586
+  },
+  {
+   "id": "p14173586-d2",
+   "topic": "p14173586",
+   "tag": "table",
+   "importance": "detail",
+   "question": "When was Unknown Pleasures released?",
+   "answers": [
+    "15 June 1979",
+    "June 15, 1979"
+   ],
+   "page_id": 14173586
+  },
+  {
+   "id": "p14173586-d3",
+   "topic": "p14173586",
+   "tag": "table",
+   "importance": "detail",
+   "question": "What was the UK peak chart position of \"Love Will Tear Us Apart\"?",
+   "answers": [
+    "13"
+   ],
+   "page_id": 14173586
+  },
+  {
+   "id": "p14173586-d4",
+   "topic": "p14173586",
+   "tag": "table",
+   "importance": "detail",
+   "question": "When was the compilation album Substance released?",
+   "answers": [
+    "11 July 1988",
+    "July 11, 1988"
+   ],
+   "page_id": 14173586
+  },
+  {
+   "id": "p14173586-d5",
+   "topic": "p14173586",
+   "tag": "table",
+   "importance": "detail",
+   "question": "Which label released the live box set Eternal: Live?",
+   "answers": [
+    "Warner"
+   ],
+   "page_id": 14173586
+  }
+ ]
+}

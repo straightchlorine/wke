@@ -1,0 +1,205 @@
+[
+ {
+  "title": "Avengers: Endgame",
+  "label": "Plot",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Avengers: Endgame",
+  "label": "Marketing",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Starship flight 14",
+  "label": "Significance",
+  "verdict": "no",
+  "defect": "SpaceX selected SpaceX (source: NASA selected SpaceX)",
+  "role": "target"
+ },
+ {
+  "title": "UEFA Nations League",
+  "label": "Adoption",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "UEFA Nations League",
+  "label": "Post-2028 review",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Orange Order",
+  "label": "Politics",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Orange Order",
+  "label": "Relationship with loyalist",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Historicity of the Gospels",
+  "label": "Scope and genre",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Historicity of the Gospels",
+  "label": "From oral traditions",
+  "verdict": "partly",
+  "defect": "Gospels considered first oral tradition; Keith claim unattributed and verbless",
+  "role": ""
+ },
+ {
+  "title": "Historicity of the Gospels",
+  "label": "Texts",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Katseye",
+  "label": "2026",
+  "verdict": "partly",
+  "defect": "Manon announced (source: it was announced that Manon would); missing full stop after quote",
+  "role": ""
+ },
+ {
+  "title": "Mahathir Mohamad",
+  "label": "Early years",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Mahathir Mohamad",
+  "label": "Economic development",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Ted Kaczynski",
+  "label": "University of Michigan",
+  "verdict": "yes",
+  "defect": "garbled, not false",
+  "role": ""
+ },
+ {
+  "title": "Limonene",
+  "label": "Uses",
+  "verdict": "partly",
+  "defect": "cut: such. as it is produced from a renewable source",
+  "role": "target"
+ },
+ {
+  "title": "Monster: The Lizzie Borden Story",
+  "label": "Premise",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "2026 Asian Games",
+  "label": "Bidding process",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Lord",
+  "label": "Substantive title",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": ".xyz",
+  "label": "Malicious domains",
+  "verdict": "partly",
+  "defect": "top 5 for malicious registrations (source: .xyz and .shop)",
+  "role": ""
+ },
+ {
+  "title": "Case Keenum",
+  "label": "2007 season",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "India at the 2026 Asian Games",
+  "label": "Boxing",
+  "verdict": "partly",
+  "defect": "cut: 11-member squad for Games . then the same fact repeated",
+  "role": "target"
+ },
+ {
+  "title": "Justin Verlander",
+  "label": "2019",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Adolf Hitler",
+  "label": "Dictatorship",
+  "verdict": "no",
+  "defect": "quoted Hitler boast stated as fact",
+  "role": "target"
+ },
+ {
+  "title": "Primetime (film)",
+  "label": "Filming",
+  "verdict": "no",
+  "defect": "To Catch a Predator was shot in New Orleans (it is the film Primetime); Florida/Louisiana reversed",
+  "role": "target"
+ },
+ {
+  "title": "Adolf Hitler",
+  "label": "Br",
+  "verdict": "yes",
+  "defect": "exploited his political messages, garbled not false",
+  "role": ""
+ },
+ {
+  "title": "Jesus",
+  "label": "Trials by the Sanhedrin",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Heart of the Beast",
+  "label": "Plot",
+  "verdict": "partly",
+  "defect": "attacked by a grizzly bear (source: confronted; it retreats)",
+  "role": ""
+ },
+ {
+  "title": "Nirvana (band)",
+  "label": "1988",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ },
+ {
+  "title": "Turing machine",
+  "label": "The state",
+  "verdict": "yes",
+  "defect": "",
+  "role": ""
+ }
+]

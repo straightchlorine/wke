@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<style>
+.f{fill:#F7F6F2;stroke:#1C1B18;stroke-width:2}
+.e{fill:none;stroke:#8F8B80;stroke-width:2}
+.n{fill:#1C1B18}
+.s{fill:#A82E1C}
+@media (prefers-color-scheme:dark){
+.f{fill:#1F2225;stroke:#ECEAE3}
+.e{stroke:#6B7178}
+.n{fill:#ECEAE3}
+.s{fill:#F08A7C}
+}
+</style>
+<rect class="f" x="1" y="1" width="30" height="30"/>
+<path class="e" d="M8 24 16 16 24 8"/>
+<circle class="n" cx="8" cy="24" r="3"/>
+<circle class="n" cx="16" cy="16" r="3"/>
+<circle class="s" cx="24" cy="8" r="3"/>
+</svg>

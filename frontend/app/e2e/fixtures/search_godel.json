@@ -1,0 +1,48 @@
+{
+  "query": "G\u00f6del",
+  "results": [
+    {
+      "page_id": 16736,
+      "title": "Kurt G\u00f6del",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 58863,
+      "title": "G\u00f6del's incompleteness theorems",
+      "description": null,
+      "dossier_state": "ready"
+    },
+    {
+      "page_id": 207790,
+      "title": "G\u00f6del numbering",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 48103,
+      "title": "G\u00f6del, Escher, Bach",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 67187366,
+      "title": "G\u00f6del's loophole",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 12420,
+      "title": "G\u00f6del's ontological proof",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 26424742,
+      "title": "G\u00f6del machine",
+      "description": null,
+      "dossier_state": "none"
+    }
+  ],
+  "did_you_mean": null
+}

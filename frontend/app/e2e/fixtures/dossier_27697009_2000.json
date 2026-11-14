@@ -1,0 +1,1383 @@
+{
+  "schema_version": "2",
+  "license_notice": "Quoted passages are CC BY-SA 4.0 Wikipedia content, cited to a pinned revision. Summaries are machine output, not a Wikipedia quotation.",
+  "sections": [
+    {
+      "id": "0",
+      "label": "API",
+      "label_source": "article_title",
+      "chunk_ids": [
+        "1384555837:0:0",
+        "1384555837:0:1",
+        "1384555837:0:2",
+        "1384555837:0:3"
+      ],
+      "heading_path": [],
+      "citation_id": "c1",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.7646834246050773
+    },
+    {
+      "id": "1",
+      "label": "Purpose",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:1:0",
+        "1384555837:1:1",
+        "1384555837:1:2",
+        "1384555837:1:3",
+        "1384555837:1:4"
+      ],
+      "heading_path": [
+        "Purpose"
+      ],
+      "citation_id": "c10",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.6616898119832876
+    },
+    {
+      "id": "2",
+      "label": "History of the term",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:2:0",
+        "1384555837:2:1",
+        "1384555837:2:2",
+        "1384555837:2:3",
+        "1384555837:2:4",
+        "1384555837:2:5",
+        "1384555837:2:6",
+        "1384555837:2:7",
+        "1384555837:2:8"
+      ],
+      "heading_path": [
+        "History of the term"
+      ],
+      "citation_id": "c11",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "withheld",
+      "withheld_reason": "8 of 16 short phrases of the text appear nowhere in the source",
+      "importance": 0.7621590450954374
+    },
+    {
+      "id": "3",
+      "label": "Types",
+      "label_source": "heading",
+      "chunk_ids": [],
+      "heading_path": [
+        "Types"
+      ],
+      "citation_id": "c12",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "no_prose",
+      "withheld_reason": null,
+      "importance": 0.0
+    },
+    {
+      "id": "4",
+      "label": "Libraries and frameworks",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:4:0",
+        "1384555837:4:1",
+        "1384555837:4:2",
+        "1384555837:4:3",
+        "1384555837:4:4",
+        "1384555837:4:5"
+      ],
+      "heading_path": [
+        "Types",
+        "Libraries and frameworks"
+      ],
+      "citation_id": "c13",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": {
+        "kind": "machine_summary",
+        "text": "API can be used in different languages and libraries that share the same programming interface . API use can vary depending on the type of programming language involved .",
+        "model": "sshleifer/distilbart-cnn-6-6",
+        "model_revision": "d2fde4ca",
+        "params": {
+          "num_beams": 1,
+          "min_length": 30,
+          "max_length": 96,
+          "input_tokens": 479
+        },
+        "input_chunk_ids": [
+          "1384555837:4:0",
+          "1384555837:4:1",
+          "1384555837:4:2",
+          "1384555837:4:3",
+          "1384555837:4:4"
+        ],
+        "citation_id": "c13",
+        "generated_at": "2026-11-11T19:22:46.696009Z",
+        "infer_seconds": 1.000157271999342
+      },
+      "summary_state": "done",
+      "withheld_reason": null,
+      "importance": 0.5772681231321677
+    },
+    {
+      "id": "5",
+      "label": "Operating systems",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:5:0",
+        "1384555837:5:1",
+        "1384555837:5:2",
+        "1384555837:5:3"
+      ],
+      "heading_path": [
+        "Types",
+        "Operating systems"
+      ],
+      "citation_id": "c14",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.44618061290033206
+    },
+    {
+      "id": "6",
+      "label": "Remote APIs",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:6:0",
+        "1384555837:6:1"
+      ],
+      "heading_path": [
+        "Types",
+        "Remote APIs"
+      ],
+      "citation_id": "c15",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.46363976952741226
+    },
+    {
+      "id": "7",
+      "label": "Web APIs",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:7:0",
+        "1384555837:7:1"
+      ],
+      "heading_path": [
+        "Types",
+        "Web APIs"
+      ],
+      "citation_id": "c16",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.47919784525219755
+    },
+    {
+      "id": "8",
+      "label": "Design",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:8:0"
+      ],
+      "heading_path": [
+        "Design"
+      ],
+      "citation_id": "c17",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5059907276589627
+    },
+    {
+      "id": "9",
+      "label": "Release policies",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:9:0"
+      ],
+      "heading_path": [
+        "Release policies"
+      ],
+      "citation_id": "c18",
+      "dropped_non_prose": true,
+      "dropped_lists": 1,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.5102299283088653
+    },
+    {
+      "id": "10",
+      "label": "Public API implications",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:10:0",
+        "1384555837:10:1",
+        "1384555837:10:2",
+        "1384555837:10:3"
+      ],
+      "heading_path": [
+        "Release policies",
+        "Public API implications"
+      ],
+      "citation_id": "c19",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.45006112632493567
+    },
+    {
+      "id": "11",
+      "label": "API documentation",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:11:0",
+        "1384555837:11:1",
+        "1384555837:11:2",
+        "1384555837:11:3",
+        "1384555837:11:4",
+        "1384555837:11:5",
+        "1384555837:11:6"
+      ],
+      "heading_path": [
+        "API documentation"
+      ],
+      "citation_id": "c20",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.567961476442385
+    },
+    {
+      "id": "12",
+      "label": "Dispute over copyright protection for APIs",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:12:0",
+        "1384555837:12:1",
+        "1384555837:12:2"
+      ],
+      "heading_path": [
+        "Dispute over copyright protection for APIs"
+      ],
+      "citation_id": "c21",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.3911357806109528
+    },
+    {
+      "id": "13",
+      "label": "Examples",
+      "label_source": "heading",
+      "chunk_ids": [
+        "1384555837:13:list0"
+      ],
+      "heading_path": [
+        "Examples"
+      ],
+      "citation_id": "c22",
+      "dropped_non_prose": false,
+      "dropped_lists": 0,
+      "dropped_tables": 0,
+      "summary": null,
+      "summary_state": "skipped",
+      "withheld_reason": null,
+      "importance": 0.49042348411934555
+    }
+  ],
+  "chunks": [
+    {
+      "id": "1384555837:0:0",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 0,
+      "text": "An application programming interface (API) is a connection between computers or between computer programs. It is a type of software interface, offering a service to other pieces of software. A document or standard that describes how to build such a connection or interface is called an API specification. A computer system that meets this standard is said to implement or expose an API. The term API may refer either to the specification or to the implementation.",
+      "est_tokens": 116,
+      "relevance": 0.9268741607666016,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 67,
+          "end": 76,
+          "title": "Computer"
+        },
+        {
+          "start": 88,
+          "end": 105,
+          "title": "Computer program"
+        },
+        {
+          "start": 132,
+          "end": 141,
+          "title": "Interface (computing)"
+        },
+        {
+          "start": 181,
+          "end": 189,
+          "title": "Software"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:0:1",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 1,
+      "text": "In contrast to a user interface, which connects a computer to a person, an application programming interface connects computers or pieces of software to each other. It is not intended to be used directly by a person (the end user) other than a computer programmer who is incorporating it into software. An API is often made up of different parts which act as tools or services that are available to the programmer. A program or a programmer that uses one of these parts is said to call that portion of the API. The calls that make up the API are also known as subroutines, methods, requests, or endpoints. An API specification defines these calls, meaning that it explains how to use or implement them.",
+      "est_tokens": 176,
+      "relevance": 0.9304454326629639,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 17,
+          "end": 31,
+          "title": "User interface"
+        },
+        {
+          "start": 221,
+          "end": 229,
+          "title": "End user"
+        },
+        {
+          "start": 244,
+          "end": 263,
+          "title": "Computer programmer"
+        },
+        {
+          "start": 560,
+          "end": 571,
+          "title": "Subroutine"
+        },
+        {
+          "start": 595,
+          "end": 604,
+          "title": "Communication endpoint"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:0:2",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 2,
+      "text": "One of the main purpose of APIs is to hide the internal details of how a system works, exposing only those parts a programmer will find useful and keeping them consistent even if the internal details later change. An API may be custom-built for a particular pair of systems, or it may be a shared standard allowing interoperability among many systems.",
+      "est_tokens": 88,
+      "relevance": 0.7102449536323547,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 38,
+          "end": 63,
+          "title": "Information hiding"
+        },
+        {
+          "start": 315,
+          "end": 331,
+          "title": "Interoperability"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:0:3",
+      "kind": "prose",
+      "citation_id": "c1",
+      "heading_path": [],
+      "order": 3,
+      "text": "The term API is often used to refer to web APIs, which allow communication between computers that are joined by the internet. There are also APIs for programming languages, software libraries, computer operating systems, and computer hardware. APIs originated in the 1940s, though the term did not emerge until the 1960s and 70s.",
+      "est_tokens": 83,
+      "relevance": 0.7870607376098633,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 39,
+          "end": 47,
+          "title": "Web API"
+        },
+        {
+          "start": 116,
+          "end": 124,
+          "title": "Internet"
+        },
+        {
+          "start": 150,
+          "end": 171,
+          "title": "Programming language"
+        },
+        {
+          "start": 173,
+          "end": 191,
+          "title": "Library (computing)"
+        },
+        {
+          "start": 202,
+          "end": 219,
+          "title": "Operating system"
+        },
+        {
+          "start": 225,
+          "end": 242,
+          "title": "Computer hardware"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:1:0",
+      "kind": "prose",
+      "citation_id": "c10",
+      "heading_path": [
+        "Purpose"
+      ],
+      "order": 4,
+      "text": "An API opens a software system to interactions from the outside. It allows two software systems to communicate across a boundary \u2014 an interface \u2014 using mutually agreed-upon signals. In other words, an API connects software entities together. Unlike a user interface, an API is typically not visible to users. It is an \"under the hood\" portion of a software system, used for machine-to-machine communication.",
+      "est_tokens": 102,
+      "relevance": 0.8499335050582886,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 251,
+          "end": 265,
+          "title": "User interface"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:1:4",
+      "kind": "prose",
+      "citation_id": "c10",
+      "heading_path": [
+        "Purpose"
+      ],
+      "order": 8,
+      "text": "An API is often compared to a contract. It represents an agreement between parties: a service provider who offers the API and the software developers who rely upon it. If the API remains stable, or if it changes only in predictable ways, developers' confidence in the API will increase. This may increase their use of the API.",
+      "est_tokens": 82,
+      "relevance": 0.6981689929962158,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 30,
+          "end": 38,
+          "title": "Contract"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:2:0",
+      "kind": "prose",
+      "citation_id": "c11",
+      "heading_path": [
+        "History of the term"
+      ],
+      "order": 9,
+      "text": "The term API initially described an interface only for end-user-facing programs, known as application programs. This origin is still reflected in the name \"application programming interface.\" Today, the term is broader, including also utility software and even hardware interfaces.",
+      "est_tokens": 71,
+      "relevance": 0.8577020168304443,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 90,
+          "end": 110,
+          "title": "Application program"
+        },
+        {
+          "start": 235,
+          "end": 251,
+          "title": "Utility software"
+        },
+        {
+          "start": 261,
+          "end": 280,
+          "title": "Hardware interface design"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:2:8",
+      "kind": "prose",
+      "citation_id": "c11",
+      "heading_path": [
+        "History of the term"
+      ],
+      "order": 17,
+      "text": "The Semantic Web proposed by Tim Berners-Lee in 2001 included \"semantic APIs\" that recast the API as an open, distributed data interface rather than a software behavior interface. Proprietary interfaces and agents became more widespread than open ones, but the idea of the API as a data interface took hold. Because web APIs are widely used to exchange data of all kinds online, API has become a broad term describing much of the communication on the internet. When used in this way, the term API has overlap in meaning with the term communication protocol.",
+      "est_tokens": 140,
+      "relevance": 0.6257801651954651,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 4,
+          "end": 16,
+          "title": "Semantic Web"
+        },
+        {
+          "start": 29,
+          "end": 44,
+          "title": "Tim Berners-Lee"
+        },
+        {
+          "start": 104,
+          "end": 108,
+          "title": "Open innovation"
+        },
+        {
+          "start": 180,
+          "end": 191,
+          "title": "Proprietary software"
+        },
+        {
+          "start": 534,
+          "end": 556,
+          "title": "Communication protocol"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:4:0",
+      "kind": "prose",
+      "citation_id": "c13",
+      "heading_path": [
+        "Types",
+        "Libraries and frameworks"
+      ],
+      "order": 18,
+      "text": "The interface to a software library is one type of API. The API describes and prescribes the \"expected behavior\" (a specification) while the library is an \"actual implementation\" of this set of rules.",
+      "est_tokens": 50,
+      "relevance": 0.6136852502822876,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 19,
+          "end": 35,
+          "title": "Library (computing)"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:4:4",
+      "kind": "prose",
+      "citation_id": "c13",
+      "heading_path": [
+        "Types",
+        "Libraries and frameworks"
+      ],
+      "order": 22,
+      "text": "An API can also be related to a software framework: a framework can be based on several libraries implementing several APIs, but unlike the normal use of an API, the access to the behavior built into the framework is mediated by extending its content with new classes plugged into the framework itself.",
+      "est_tokens": 76,
+      "relevance": 0.7021417617797852,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 32,
+          "end": 50,
+          "title": "Software framework"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:5:0",
+      "kind": "prose",
+      "citation_id": "c14",
+      "heading_path": [
+        "Types",
+        "Operating systems"
+      ],
+      "order": 24,
+      "text": "An API can specify the interface between an application and the operating system. POSIX, for example, specifies a set of common APIs that aim to enable an application written for a POSIX conformant operating system to be compiled for another POSIX conformant operating system.",
+      "est_tokens": 69,
+      "relevance": 0.6834300756454468,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 64,
+          "end": 80,
+          "title": "Operating system"
+        },
+        {
+          "start": 82,
+          "end": 87,
+          "title": "POSIX"
+        },
+        {
+          "start": 221,
+          "end": 229,
+          "title": "Compiled"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:6:0",
+      "kind": "prose",
+      "citation_id": "c15",
+      "heading_path": [
+        "Types",
+        "Remote APIs"
+      ],
+      "order": 28,
+      "text": "Remote APIs allow developers to manipulate remote resources through protocols, specific standards for communication that allow different technologies to work together, regardless of language or platform. For example, the Java Database Connectivity API allows developers to query many different types of databases with the same set of functions, while the Java remote method invocation API uses the Java Remote Method Protocol to allow invocation of functions that operate remotely, but appear local to the developer.",
+      "est_tokens": 129,
+      "relevance": 0.5841428637504578,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 68,
+          "end": 77,
+          "title": "Communications protocol"
+        },
+        {
+          "start": 303,
+          "end": 312,
+          "title": "Database"
+        },
+        {
+          "start": 355,
+          "end": 384,
+          "title": "Java remote method invocation"
+        },
+        {
+          "start": 435,
+          "end": 445,
+          "title": "Remote procedure call"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:7:1",
+      "kind": "prose",
+      "citation_id": "c16",
+      "heading_path": [
+        "Types",
+        "Web APIs"
+      ],
+      "order": 31,
+      "text": "Part of this trend is related to the Semantic Web movement toward Resource Description Framework (RDF), a concept to promote web-based ontology engineering technologies. Web APIs allow the combination of multiple APIs into new applications known as mashups. In the social media space, web APIs have allowed web communities to facilitate sharing content and data between communities and applications. In this way, content that is created in one place can be dynamically posted and updated to multiple locations on the web. For example, Twitter's REST API allows developers to access core Twitter data and the Search API provides methods for developers to interact with Twitter Search and trends data.",
+      "est_tokens": 175,
+      "relevance": 0.3860625922679901,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 37,
+          "end": 49,
+          "title": "Semantic Web"
+        },
+        {
+          "start": 66,
+          "end": 96,
+          "title": "Resource Description Framework"
+        },
+        {
+          "start": 135,
+          "end": 155,
+          "title": "Ontology engineering"
+        },
+        {
+          "start": 249,
+          "end": 256,
+          "title": "Mashup (web application hybrid)"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:8:0",
+      "kind": "prose",
+      "citation_id": "c17",
+      "heading_path": [
+        "Design"
+      ],
+      "order": 32,
+      "text": "The design of an API has significant impact on its usage. The principle of information hiding describes the role of programming interfaces as enabling modular programming by hiding the implementation details of the modules so that users of modules need not understand the complexities inside the modules. Thus, the design of an API attempts to provide only the tools a user would expect. The design of programming interfaces represents an important part of software architecture, the organization of a complex piece of software.",
+      "est_tokens": 132,
+      "relevance": 0.6896004676818848,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 75,
+          "end": 93,
+          "title": "Information hiding"
+        },
+        {
+          "start": 151,
+          "end": 170,
+          "title": "Modular programming"
+        },
+        {
+          "start": 457,
+          "end": 478,
+          "title": "Software architecture"
+        }
+      ],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:9:0",
+      "kind": "prose",
+      "citation_id": "c18",
+      "heading_path": [
+        "Release policies"
+      ],
+      "order": 33,
+      "text": "APIs are one of the more common ways technology companies integrate. Those that provide and use APIs are considered as being members of a business ecosystem.",
+      "est_tokens": 40,
+      "relevance": 0.7204376459121704,
+      "cluster_id": 1,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:10:0",
+      "kind": "prose",
+      "citation_id": "c19",
+      "heading_path": [
+        "Release policies",
+        "Public API implications"
+      ],
+      "order": 34,
+      "text": "An important factor when an API becomes public is its \"interface stability\". Changes to the API\u2014for example adding new parameters to a function call\u2014could break compatibility with the clients that depend on that API.",
+      "est_tokens": 54,
+      "relevance": 0.41305214166641235,
+      "cluster_id": 0,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:11:0",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "API documentation"
+      ],
+      "order": 38,
+      "text": "API documentation describes what services an API offers and how to use those services, aiming to cover everything a client would need to know for practical purposes.",
+      "est_tokens": 42,
+      "relevance": 0.6144131422042847,
+      "cluster_id": 1,
+      "links": [],
+      "formulas": []
+    },
+    {
+      "id": "1384555837:11:5",
+      "kind": "prose",
+      "citation_id": "c20",
+      "heading_path": [
+        "API documentation"
+      ],
+      "order": 43,
+      "text": "API documentation can be enriched with metadata information like Java annotations. This metadata can be used by the compiler, tools, and by the run-time environment to implement custom behaviors or custom handling.",
+      "est_tokens": 54,
+      "relevance": 0.5354732275009155,
+      "cluster_id": 1,
+      "links": [
+        {
+          "start": 65,
+          "end": 81,
+          "title": "Java annotation"
+        }
+      ],
+      "formulas": []
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": 27697009,
+        "title": "API",
+        "role": "seed",
+        "section_ids": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13"
+        ]
+      },
+      {
+        "id": 15881,
+        "title": "Java (programming language)",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 26346,
+        "title": "Remote procedure call",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 81601,
+        "title": "Windows API",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 160224,
+        "title": "Interface description language",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 1665342,
+        "title": "NPAPI",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 1877442,
+        "title": "Geographic information system software",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 4545603,
+        "title": "OLE Automation",
+        "role": "related",
+        "section_ids": null
+      },
+      {
+        "id": 5887624,
+        "title": "JADE (programming language)",
+        "role": "related",
+        "section_ids": null
+      }
+    ],
+    "edges": [
+      {
+        "source": 27697009,
+        "target": 81601,
+        "weight": 0.6607221961021423
+      },
+      {
+        "source": 160224,
+        "target": 4545603,
+        "weight": 0.5999565720558167
+      },
+      {
+        "source": 27697009,
+        "target": 160224,
+        "weight": 0.5194188356399536
+      },
+      {
+        "source": 26346,
+        "target": 160224,
+        "weight": 0.5168663263320923
+      },
+      {
+        "source": 27697009,
+        "target": 1665342,
+        "weight": 0.46029096841812134
+      },
+      {
+        "source": 27697009,
+        "target": 15881,
+        "weight": 0.454974889755249
+      },
+      {
+        "source": 27697009,
+        "target": 4545603,
+        "weight": 0.432630717754364
+      },
+      {
+        "source": 81601,
+        "target": 1665342,
+        "weight": 0.4165898561477661
+      },
+      {
+        "source": 15881,
+        "target": 160224,
+        "weight": 0.4111153483390808
+      },
+      {
+        "source": 1877442,
+        "target": 5887624,
+        "weight": 0.4090026021003723
+      },
+      {
+        "source": 26346,
+        "target": 4545603,
+        "weight": 0.40874701738357544
+      }
+    ]
+  },
+  "id": "27697009@1384555837:21e6563c85bc",
+  "topic": {
+    "page_id": 27697009,
+    "title": "API",
+    "description": null,
+    "url": "https://en.wikipedia.org/wiki/API"
+  },
+  "build": {
+    "state": "complete",
+    "built_at": "2026-11-12T08:25:27.069704Z",
+    "pipeline_version": "fixtures-2026-11-12",
+    "analysis": "ml",
+    "summaries_done": 2,
+    "summaries_total": 3,
+    "truncated": false,
+    "stage_seconds": {
+      "build": 1.4628235290001612,
+      "summarize": 0.764646,
+      "total": 2.227469529000161
+    }
+  },
+  "freshness": {
+    "state": "unknown",
+    "pinned_rev_id": 1384555837,
+    "latest_rev_id": null,
+    "edits_since": null,
+    "checked_at": null,
+    "source": "none"
+  },
+  "budget": {
+    "requested": 2000,
+    "counts": "dossier",
+    "used_est_tokens": 1869,
+    "estimator": "chars/4",
+    "included_chunk_ids": [
+      "1384555837:0:0",
+      "1384555837:0:1",
+      "1384555837:0:2",
+      "1384555837:0:3",
+      "1384555837:2:0",
+      "1384555837:2:8",
+      "1384555837:1:0",
+      "1384555837:1:4",
+      "1384555837:4:0",
+      "1384555837:4:4",
+      "1384555837:11:0",
+      "1384555837:11:5",
+      "1384555837:9:0",
+      "1384555837:8:0",
+      "1384555837:7:1",
+      "1384555837:6:0",
+      "1384555837:10:0",
+      "1384555837:5:0"
+    ],
+    "omitted_chunks": 31,
+    "complete": false,
+    "shortened_chunk_ids": []
+  },
+  "links": {
+    "self": "http://localhost:8010/api/v1/dossiers/27697009?budget=2000&format=json&parts=dossier,metadata,sources",
+    "pinned": "http://localhost:8010/api/v1/dossiers/27697009/rev/1384555837?budget=2000&parts=dossier,metadata,sources",
+    "markdown": "http://localhost:8010/api/v1/dossiers/27697009.md?budget=2000&parts=dossier,metadata,sources",
+    "wikipedia": "https://en.wikipedia.org/wiki/API"
+  },
+  "citations": [
+    {
+      "id": "c1",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": null,
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837"
+    },
+    {
+      "id": "c2",
+      "pin": {
+        "page_id": 15881,
+        "title": "Java (programming language)",
+        "rev_id": 1384617813,
+        "rev_timestamp": "2026-11-09T04:20:47Z",
+        "url": "https://en.wikipedia.org/wiki/Java_%28programming_language%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384617813",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.621853Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c3",
+      "pin": {
+        "page_id": 26346,
+        "title": "Remote procedure call",
+        "rev_id": 1383559226,
+        "rev_timestamp": "2026-11-03T09:19:46Z",
+        "url": "https://en.wikipedia.org/wiki/Remote_procedure_call",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1383559226",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.621891Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c4",
+      "pin": {
+        "page_id": 81601,
+        "title": "Windows API",
+        "rev_id": 1382687998,
+        "rev_timestamp": "2026-10-29T20:20:25Z",
+        "url": "https://en.wikipedia.org/wiki/Windows_API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1382687998",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.621909Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c5",
+      "pin": {
+        "page_id": 160224,
+        "title": "Interface description language",
+        "rev_id": 1372840942,
+        "rev_timestamp": "2026-09-02T15:02:53Z",
+        "url": "https://en.wikipedia.org/wiki/Interface_description_language",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1372840942",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.621925Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c6",
+      "pin": {
+        "page_id": 1665342,
+        "title": "NPAPI",
+        "rev_id": 1384604518,
+        "rev_timestamp": "2026-11-09T02:31:01Z",
+        "url": "https://en.wikipedia.org/wiki/NPAPI",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384604518",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.621939Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c7",
+      "pin": {
+        "page_id": 1877442,
+        "title": "Geographic information system software",
+        "rev_id": 1377608705,
+        "rev_timestamp": "2026-09-30T04:17:16Z",
+        "url": "https://en.wikipedia.org/wiki/Geographic_information_system_software",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1377608705",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.621954Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c8",
+      "pin": {
+        "page_id": 4545603,
+        "title": "OLE Automation",
+        "rev_id": 1366539849,
+        "rev_timestamp": "2026-07-28T16:20:46Z",
+        "url": "https://en.wikipedia.org/wiki/OLE_Automation",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1366539849",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.621968Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c9",
+      "pin": {
+        "page_id": 5887624,
+        "title": "JADE (programming language)",
+        "rev_id": 1384986833,
+        "rev_timestamp": "2026-11-11T06:30:26Z",
+        "url": "https://en.wikipedia.org/wiki/JADE_%28programming_language%29",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384986833",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.621986Z"
+      },
+      "role": "related",
+      "anchor": null,
+      "url": null
+    },
+    {
+      "id": "c10",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "Purpose",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#Purpose"
+    },
+    {
+      "id": "c11",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "History_of_the_term",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#History_of_the_term"
+    },
+    {
+      "id": "c12",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "Types",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#Types"
+    },
+    {
+      "id": "c13",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "Libraries_and_frameworks",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#Libraries_and_frameworks"
+    },
+    {
+      "id": "c14",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "Operating_systems",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#Operating_systems"
+    },
+    {
+      "id": "c15",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "Remote_APIs",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#Remote_APIs"
+    },
+    {
+      "id": "c16",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "Web_APIs",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#Web_APIs"
+    },
+    {
+      "id": "c17",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "Design",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#Design"
+    },
+    {
+      "id": "c18",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "Release_policies",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#Release_policies"
+    },
+    {
+      "id": "c19",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "Public_API_implications",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#Public_API_implications"
+    },
+    {
+      "id": "c20",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "API_documentation",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#API_documentation"
+    },
+    {
+      "id": "c21",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "Dispute_over_copyright_protection_for_APIs",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#Dispute_over_copyright_protection_for_APIs"
+    },
+    {
+      "id": "c22",
+      "pin": {
+        "page_id": 27697009,
+        "title": "API",
+        "rev_id": 1384555837,
+        "rev_timestamp": "2026-11-08T21:12:03Z",
+        "url": "https://en.wikipedia.org/wiki/API",
+        "permalink": "https://en.wikipedia.org/w/index.php?oldid=1384555837",
+        "license": "CC BY-SA 4.0",
+        "retrieved_at": "2026-11-12T08:25:25.608147Z"
+      },
+      "role": "seed",
+      "anchor": "Examples",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1384555837#Examples"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "stream": "connected",
+  "server_time": "2026-09-28T11:38:39Z",
+  "cursor": 4,
+  "last_event_at": "2026-09-28T11:38:39Z",
+  "edits": [
+    {
+      "cursor": 1,
+      "page_id": null,
+      "title": "List of elevator accidents",
+      "rev_new": 1377229293,
+      "rev_old": 1376900021,
+      "ts": "2026-09-28T11:38:37Z",
+      "user_kind": "registered",
+      "byte_delta": -91,
+      "diff_url": "https://en.wikipedia.org/w/index.php?diff=1377229293&oldid=1376900021"
+    },
+    {
+      "cursor": 2,
+      "page_id": null,
+      "title": "Sandra Leiblum",
+      "rev_new": 1377229296,
+      "rev_old": 1377229022,
+      "ts": "2026-09-28T11:38:38Z",
+      "user_kind": "registered",
+      "byte_delta": -11,
+      "diff_url": "https://en.wikipedia.org/w/index.php?diff=1377229296&oldid=1377229022"
+    },
+    {
+      "cursor": 3,
+      "page_id": null,
+      "title": "Climbing",
+      "rev_new": 1377229292,
+      "rev_old": 1369357171,
+      "ts": "2026-09-28T11:38:36Z",
+      "user_kind": "registered",
+      "byte_delta": 58,
+      "diff_url": "https://en.wikipedia.org/w/index.php?diff=1377229292&oldid=1369357171"
+    },
+    {
+      "cursor": 4,
+      "page_id": null,
+      "title": "Volleyball at the 2026 Asian Games \u2013 Men's tournament",
+      "rev_new": 1377229298,
+      "rev_old": 1377229238,
+      "ts": "2026-09-28T11:38:39Z",
+      "user_kind": "registered",
+      "byte_delta": -8,
+      "diff_url": "https://en.wikipedia.org/w/index.php?diff=1377229298&oldid=1377229238"
+    }
+  ],
+  "counters": {
+    "enwiki_edits_last_hour": 4,
+    "tracked_edits_last_hour": 0,
+    "window_complete": false,
+    "window_since": "2026-09-28T11:38:37Z",
+    "dossiers_built_today": 30,
+    "topics_tracked": 40,
+    "index_date": "2026-09-26",
+    "next_refresh": null
+  }
+}

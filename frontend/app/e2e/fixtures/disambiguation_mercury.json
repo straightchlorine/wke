@@ -1,0 +1,45 @@
+{
+  "type": "https://wke.piotrkrzysztof.dev/problems/disambiguation",
+  "title": "Conflict",
+  "status": 409,
+  "detail": "'Mercury' is a disambiguation page. Pick one of the candidates.",
+  "code": "disambiguation",
+  "request_id": "b4d7a7f4-0432-4b19-88cb-214d467f133b",
+  "candidates": [
+    {
+      "page_id": 42068,
+      "title": "Freddie Mercury",
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 19694,
+      "title": "Mercury (planet)",
+      "dossier_state": "ready"
+    },
+    {
+      "page_id": 18617142,
+      "title": "Mercury (element)",
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 325909,
+      "title": "Mercury Records",
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 140995,
+      "title": "Mercury Prize",
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 19812,
+      "title": "Project Mercury",
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 256339,
+      "title": "Mercury (automobile)",
+      "dossier_state": "none"
+    }
+  ]
+}

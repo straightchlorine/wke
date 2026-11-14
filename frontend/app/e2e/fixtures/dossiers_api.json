@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "page_id": 27697009,
+      "title": "API",
+      "rev_id": 1384555837,
+      "pinned_at": "2026-11-08T21:12:03Z",
+      "freshness_state": "unknown",
+      "edits_since_pin": 0,
+      "largest_budget_filled": 8000,
+      "sections": 14,
+      "built_at": "2026-11-12T08:25:27.069704Z"
+    }
+  ],
+  "next_cursor": null
+}

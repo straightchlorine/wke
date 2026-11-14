@@ -1,0 +1,562 @@
+{
+  "schema_version": "1",
+  "date": "2026-09-26",
+  "source": "wikifeeds_mostread",
+  "source_url": "https://en.wikipedia.org/api/rest_v1/feed/featured/2026/09/26",
+  "generated_at": "2026-09-26T03:00:00Z",
+  "next_refresh": null,
+  "topics": [
+    {
+      "rank": 1,
+      "page_id": 214796,
+      "title": "Lizzie Borden",
+      "description": "American woman acquitted of murder (1860\u20131927)",
+      "views": 421359,
+      "rev_id": 1377141497,
+      "lead_excerpt": "Lizzie Andrew Borden was an American woman who was tried and acquitted of the murders of her father and stepmother in Fall River, Massachusetts. No other individuals were charged with the murders.",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 2,
+      "page_id": 18621887,
+      "title": "Ted Kaczynski",
+      "description": "American domestic terrorist (1942\u20132023)",
+      "views": 376033,
+      "rev_id": 1377130069,
+      "lead_excerpt": "Theodore John Kaczynski, also known as the Unabomber, was an American mathematician and domestic terrorist. A mathematics prodigy, he abandoned his academic career in 1969 to pursue a reclusive primitive lifestyle and lone wolf terrorism campaign.",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 3,
+      "page_id": 18514671,
+      "title": "Roblox",
+      "description": "Multiplayer game creation platform",
+      "views": 370335,
+      "rev_id": 1375277477,
+      "lead_excerpt": "Roblox is an online game platform and game creation system developed by Roblox Corporation that allows users to program and play games created by themselves or other users. It was developed by David Baszucki and Erik Cassel in 2004, and released to the public in 2006. As of Febru",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 4,
+      "page_id": 82744644,
+      "title": "India at the 2026 Asian Games",
+      "description": "Sporting event delegation",
+      "views": 260257,
+      "rev_id": 1377222671,
+      "lead_excerpt": "India is participating in the 2026 Asian Games in Aichi Prefecture, Japan from 19 September to 4 October 2026. This is the country's 20th consecutive appearance in the competition, having made its debut at the inaugural 1951 Asian Games. The Indian contingent consisted of 495 ath",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 5,
+      "page_id": 82893793,
+      "title": "2026 Asian Games medal table",
+      "description": "Award",
+      "views": 259696,
+      "rev_id": 1377219908,
+      "lead_excerpt": "The 2026 Asian Games, officially known as the XX Asian Games or Aichi\u2013Nagoya 2026, is the largest sporting event in Asia governed by Olympic Council of Asia (OCA). They are currently being held from 19 September to 4 October 2026 in Aichi Prefecture and Nagoya, Japan, with 469 ev",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 6,
+      "page_id": 51790406,
+      "title": "2026 Asian Games",
+      "description": "Multi-sport event in Aichi and Nagoya, Japan",
+      "views": 229525,
+      "rev_id": 1377123610,
+      "lead_excerpt": "The 2026 Asian Games , officially the XX Asian Games (\u7b2c\u4e8c\u5341\u56de\u30a2\u30b8\u30a2\u7af6\u6280\u5927\u4f1a) and also known as Aichi\u2013Nagoya 2026 (\u611b\u77e5\u30fb\u540d\u53e4\u5c4b2026), is an ongoing multi-sport event being held in Aichi Prefecture in Japan from 19 September to 4 October 2026 though several competitions started from 10 September. ",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 7,
+      "page_id": 80682580,
+      "title": "The Paradise (2026 Indian film)",
+      "description": "2026 Indian film by Srikanth Odela",
+      "views": 210483,
+      "rev_id": 1377160773,
+      "lead_excerpt": "The Paradise is a 2026 Indian Telugu-language period action drama film directed by Srikanth Odela and produced by Sudhakar Cherukuri and Ishan Saksena, under Sri Lakshmi Venkateshwara Cinemas and IVY Entertainment, respectively. The film stars Nani, Mohan Babu, Kayadu Lohar, Sona",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 8,
+      "page_id": 3616702,
+      "title": "Justin Verlander",
+      "description": "American baseball player (born 1983)",
+      "views": 204136,
+      "rev_id": 1377212535,
+      "lead_excerpt": "Justin Brooks Verlander is a former American professional baseball pitcher who played 21 seasons of Major League Baseball (MLB). He played for the Detroit Tigers, Houston Astros, New York Mets, and San Francisco Giants. A three-time Cy Young Award winner, an American League Most ",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 9,
+      "page_id": 79450412,
+      "title": "Primetime (film)",
+      "description": "2026 film by Lance Oppenheim",
+      "views": 159635,
+      "rev_id": 1377093150,
+      "lead_excerpt": "Primetime is a 2026 American psychological crime thriller film directed by Lance Oppenheim in his narrative feature film debut. Based on the 2007 Esquire article \"Tonight on Dateline This Man Will Die\" by Luke Dittrich, the film follows the production of the reality television se",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 10,
+      "page_id": 15838471,
+      "title": "Christa Pike",
+      "description": "American convicted murderer (born 1976)",
+      "views": 131276,
+      "rev_id": 1377210089,
+      "lead_excerpt": "Christa Gail Pike is an American convicted murderer who is incarcerated on death row in Tennessee. In 1995, when she was 18, Pike murdered her 19-year-old Job Corps classmate Colleen Slemmer in Knoxville. Pike and two friends led Slemmer into the woods, where they tortured and ki",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 11,
+      "page_id": 214928,
+      "title": "Aileen Wuornos",
+      "description": "American serial killer (1956\u20132002)",
+      "views": 119893,
+      "rev_id": 1377163497,
+      "lead_excerpt": "Aileen Carol Wuornos was an American serial killer. Between 1989 and 1990, while engaging in street prostitution along highways in Florida, Wuornos shot, killed, and robbed seven of her male clients. She initially claimed that her victims had either raped or attempted to rape her",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 12,
+      "page_id": 83866394,
+      "title": "Monster: The Lizzie Borden Story",
+      "description": "Season of television series",
+      "views": 118794,
+      "rev_id": 1377094667,
+      "lead_excerpt": "Monster: The Lizzie Borden Story is the fourth season of the American biographical crime drama anthology television series Monster, created by Ian Brennan for Netflix. The season centers on murder suspect Lizzie Borden who was tried and acquitted of the 1892 axe murders of her fa",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 13,
+      "page_id": 78983091,
+      "title": "Resident Evil (2026 film)",
+      "description": "Film by Zach Cregger",
+      "views": 113703,
+      "rev_id": 1377106042,
+      "lead_excerpt": "Resident Evil is a 2026 horror film directed by Zach Cregger and written by Cregger and Shay Hatten, based on the Resident Evil video game franchise by Capcom. It is the eighth live-action film of the Resident Evil film series, and serves as a reboot. The film stars Austin Abrams",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 14,
+      "page_id": 84317,
+      "title": "Ansel Adams",
+      "description": "American photographer and environmentalist (1902\u20131984)",
+      "views": 108140,
+      "rev_id": 1375509856,
+      "lead_excerpt": "Ansel Easton Adams was an American landscape photographer and environmentalist known for his black-and-white images of the American West. He helped found Group f/64, an association of photographers advocating \"pure\" photography which favored sharp focus and the use of the full to",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 15,
+      "page_id": 31008752,
+      "title": "Kate Upton",
+      "description": "American model and actress (born 1992)",
+      "views": 101512,
+      "rev_id": 1377179566,
+      "lead_excerpt": "Katherine Elizabeth Upton is an American model and actress. She first appeared in the Sports Illustrated Swimsuit Issue in 2011, and was the cover model for the 2012, 2013, and 2017 issues. In addition, she was the subject of the 100th-anniversary Vanity Fair cover. Upton has als",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 16,
+      "page_id": 65490215,
+      "title": "Arch Manning",
+      "description": "American football player (born 2004)",
+      "views": 94955,
+      "rev_id": 1377025419,
+      "lead_excerpt": "Archibald Charles Manning is an American college football quarterback for the Texas Longhorns. He is a member of the Manning family of football players.",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 17,
+      "page_id": 5138199,
+      "title": "Chris Hansen",
+      "description": "American television journalist (born 1959)",
+      "views": 93167,
+      "rev_id": 1377160504,
+      "lead_excerpt": "Christopher Edward Hansen is an American television presenter, journalist, and YouTube personality. During his tenure as a correspondent for Dateline NBC, he hosted the program's segment To Catch a Predator (2004\u20132007), which revolved around catching potential online predators us",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 18,
+      "page_id": 308193,
+      "title": "Delta Goodrem",
+      "description": "Australian singer-songwriter (born 1984)",
+      "views": 90972,
+      "rev_id": 1376674994,
+      "lead_excerpt": "Delta Lea Goodrem AM is an Australian singer, songwriter and actress. She has a total of nine number-one singles and 17 top-ten hits on the ARIA Singles Chart. She has sold over eight million albums globally and overall has won three World Music Awards, 12 ARIA Music Awards, an M",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 19,
+      "page_id": 153232,
+      "title": "Nigella Lawson",
+      "description": "English food writer and TV cook (born 1960)",
+      "views": 90964,
+      "rev_id": 1376586108,
+      "lead_excerpt": "Nigella Lucy Lawson is an English food writer, television cook, and former journalist. Known for her relaxed and indulgent approach to cooking and food writing, she has sold more than eight million cookery books worldwide to date, and has appeared on numerous television programme",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 20,
+      "page_id": 83869521,
+      "title": "Dorothy (film)",
+      "description": "2026 Indian film by Karthik Subbaraj",
+      "views": 90286,
+      "rev_id": 1377211566,
+      "lead_excerpt": "Dorothy is a 2026 Indian Tamil-language independent drama film directed by Karthik Subbaraj and produced by Guneet Monga Kapoor, Achin Jain and Jyoti Deshpande. The film stars Keerthy Suresh, Sananth and Rishikanth. It follows two inseparable friends whose lives are transformed b",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 21,
+      "page_id": 43573275,
+      "title": "Elizabeth Holmes",
+      "description": "American fraudulent businesswoman (born 1984)",
+      "views": 88434,
+      "rev_id": 1376873430,
+      "lead_excerpt": "Elizabeth Anne Holmes is an American businesswoman convicted of fraud in connection with her health technology company Theranos. Holmes founded Theranos in 2003, and its valuation soared in the early 2010s after it claimed to have revolutionized blood testing by developing method",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 22,
+      "page_id": 22112821,
+      "title": "Johnny Knoxville",
+      "description": "American stunt performer and actor (born 1971)",
+      "views": 87319,
+      "rev_id": 1374937851,
+      "lead_excerpt": "Philip John Clapp, known professionally as Johnny Knoxville, is an American stunt performer, actor, producer, and screenwriter. He is best known as a co-creator and star of the MTV reality slapstick comedy stunt show Jackass (2000\u20132001) and its subsequent movie franchise (2002-20",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 23,
+      "page_id": 44254295,
+      "title": "Avengers: Endgame",
+      "description": "2019 Marvel Studios film",
+      "views": 83201,
+      "rev_id": 1377214641,
+      "lead_excerpt": "Avengers: Endgame is a 2019 American superhero film based on the Marvel Comics superhero team the Avengers. Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the direct sequel to Avengers: Infinity War (2018) and the 22nd film in the Marvel ",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 24,
+      "page_id": 52359676,
+      "title": "Tom Bateman (actor)",
+      "description": "British actor (born 1989)",
+      "views": 80382,
+      "rev_id": 1376969658,
+      "lead_excerpt": "Thomas Jonathan Bateman is a British actor best known for his roles as Giuliano de' Medici in the Starz historical fantasy drama series Da Vinci's Demons (2013\u20132015), as Bouc in the mystery films Murder on the Orient Express (2017) and Death on the Nile (2022), and as Matt Pierce",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 25,
+      "page_id": 72961634,
+      "title": "Backrooms (film)",
+      "description": "2026 film by Kane Parsons",
+      "views": 80335,
+      "rev_id": 1377138470,
+      "lead_excerpt": "Backrooms is a 2026 American psychological horror film directed and co-scored by Kane Parsons, and written by Will Soodik. It is based on Parsons's web series which was inspired by the \"Backrooms\" creepypasta. In the film, Clark, a furniture store owner, and his therapist Mary di",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 26,
+      "page_id": 16894,
+      "title": "Kylie Minogue",
+      "description": "Australian singer and actress (born 1968)",
+      "views": 79366,
+      "rev_id": 1377051111,
+      "lead_excerpt": "Kylie Ann Minogue is an Australian singer, songwriter, and actress. Frequently referred to as the \"Princess of Pop\", she has achieved recognition in both the music industry and the fashion world as a major style icon. Her accolades include two Grammy Awards, four Brit Awards and ",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 27,
+      "page_id": 83207016,
+      "title": "American Horror Story: 13",
+      "description": "Thirteenth season of American Horror Story",
+      "views": 75963,
+      "rev_id": 1377161826,
+      "lead_excerpt": "The thirteenth season of the American horror anthology television series American Horror Story, subtitled 13, takes place primarily in New York City, and follows Ben DeSoto, a hospice caretaker suffering from triskaidekaphobia, who takes a strange job at The Apollyon, an eerie re",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 28,
+      "page_id": 4331409,
+      "title": "Jaime Winstone",
+      "description": "English actress (born 1985)",
+      "views": 75248,
+      "rev_id": 1374858694,
+      "lead_excerpt": "Jaime Margaret Winstone is an English actress. With a career spanning over two decades, she is best known for her work in television and film, with her roles including Kidulthood (2006), Goldplated (2006), Dead Set (2008), Donkey Punch (2008), Boogie Woogie (2009), Made in Dagenh",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 29,
+      "page_id": 76419267,
+      "title": "Heart of the Beast",
+      "description": "2026 film by David Ayer",
+      "views": 75183,
+      "rev_id": 1377141769,
+      "lead_excerpt": "Heart of the Beast is a 2026 American survival thriller film directed by David Ayer and written by Cameron Alexander. The film stars Brad Pitt as a retired Special Forces veteran navigating a grueling 58-mile trek to safety with his traumatized combat German Shepherd after their ",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 30,
+      "page_id": 83043290,
+      "title": "Unabomber (film)",
+      "description": "2026 film by Janus Metz Pedersen",
+      "views": 74973,
+      "rev_id": 1377198597,
+      "lead_excerpt": "Unabomber is a 2026 American crime drama film directed by Janus Metz Pedersen and written by Sam Chalsen and Nelson Greaves based on the domestic terrorist, Ted Kaczynski. The film stars Russell Crowe, Jacob Tremblay, Annabelle Wallis, and Shailene Woodley.",
+      "dossier_state": "ready",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 31,
+      "page_id": 77431649,
+      "title": "Ella Beatty",
+      "description": "American actress (born 2000)",
+      "views": 74601,
+      "rev_id": 1377018393,
+      "lead_excerpt": "Ella Beatty is an American actress. An alumna of the Juilliard School, she is best known for her breakthrough role as the titular character in Monster: The Lizzie Borden Story (2026). She has also starred in the films If I Had Legs I'd Kick You (2025) and Act One (2026).",
+      "dossier_state": "partial",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 32,
+      "page_id": 84192445,
+      "title": "The Vvaan: Force of the Forrest",
+      "description": "2026 Indian film by Deepak Kumar Mishra",
+      "views": 69918,
+      "rev_id": 1377202848,
+      "lead_excerpt": "The Vvaan: Force of the Forrest is a 2026 Indian Hindi-language fantasy thriller film directed by Deepak Kumar Mishra. The film stars Sidharth Malhotra and Tamannaah Bhatia in the lead roles, with Anup Soni, Sunil Grover, Shweta Tiwari and Maniesh Paul in supporting roles.",
+      "dossier_state": "building",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 33,
+      "page_id": 47491342,
+      "title": ".xyz",
+      "description": "Internet top-level domain",
+      "views": 65899,
+      "rev_id": 1375286095,
+      "lead_excerpt": ".xyz is a top-level domain name that was proposed in ICANN's new generic top-level domain (gTLD) Program for consisting of the last three letters of the Latin-script alphabet. XYZ.com and CentralNic are the registries for the domain, which was created by entrepreneur Daniel Negar",
+      "dossier_state": "none",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 34,
+      "page_id": 20147376,
+      "title": "Neatsville, Kentucky",
+      "description": "Unincorporated community in Kentucky, US",
+      "views": 65864,
+      "rev_id": 1375980890,
+      "lead_excerpt": "Neatsville is an unincorporated community in Adair County, in the U.S. state of Kentucky. It is located at the junction of Kentucky Route 206 and Kentucky Route 76. Its elevation is 705\u00a0feet (215\u00a0m). For unknown reasons, the town's name was spelled as Neetsville from 1876 until 1",
+      "dossier_state": "partial",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 35,
+      "page_id": 411839,
+      "title": "Chrissie Hynde",
+      "description": "American musician (born 1951)",
+      "views": 65809,
+      "rev_id": 1371964501,
+      "lead_excerpt": "Christine Ellen Hynde is an American-British singer, songwriter, and musician. She is a founding member of the rock band the Pretenders and is the band's lead vocalist, guitarist, and primary songwriter. Hynde is the band's only original member and is the only continuous member o",
+      "dossier_state": "building",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 36,
+      "page_id": 79717568,
+      "title": "Forgotten Island",
+      "description": "2026 DreamWorks Animation film",
+      "views": 65400,
+      "rev_id": 1377220044,
+      "lead_excerpt": "Forgotten Island is a 2026 American animated fantasy comedy film written and directed by Joel Crawford and Januel Mercado. Produced by DreamWorks Animation, the film features the voices of H.E.R., Liza Soberano, Dave Franco, Jenny Slate, Manny Jacinto, Dolly de Leon, Jo Koy, Ronn",
+      "dossier_state": "none",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 37,
+      "page_id": 42316516,
+      "title": "UEFA Nations League",
+      "description": "European football competition",
+      "views": 65315,
+      "rev_id": 1377044812,
+      "lead_excerpt": "The UEFA Nations League is an international European football competition played by the senior men's national teams of the member associations of UEFA, the sport's European governing body. The competition was devised to minimise friendlies and give nations competitive encounters ",
+      "dossier_state": "partial",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 38,
+      "page_id": 83375714,
+      "title": "Hanuman Ansh",
+      "description": "2026 Indian film by Vishal Chaturvedi",
+      "views": 60794,
+      "rev_id": 1377216220,
+      "lead_excerpt": "Hanuman Ansh is a 2026 Indian Hindi-language biographical film written, directed and produced by Vishal Chaturvedi under his banner, Swambhu Media Network. Serving as the first instalment of a trilogy, it is based on his book Divine Detour: That Changed My Life, based on the life",
+      "dossier_state": "building",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 39,
+      "page_id": 1779163,
+      "title": "Limonene",
+      "description": "Type of molecule",
+      "views": 59436,
+      "rev_id": 1377165860,
+      "lead_excerpt": "Limonene is a slightly yellow-green liquid aliphatic hydrocarbon classified as a cyclic monoterpene, and is the major component in the fragrance and essential oil of citrus fruit peels, taking its name from Italian limone 'lemon'.",
+      "dossier_state": "none",
+      "edits_last_hour": 0
+    },
+    {
+      "rank": 40,
+      "page_id": 5211271,
+      "title": "Cooper Manning",
+      "description": "American entrepreneur and TV personality (born 1974)",
+      "views": 56994,
+      "rev_id": 1375265116,
+      "lead_excerpt": "Cooper Archibald Manning is an American entrepreneur and television personality who is the host of the television show The Manning Hour for Fox Sports as well as principal and senior managing director of investor relations for AJ Capital Partners. He is the eldest son of former p",
+      "dossier_state": "partial",
+      "edits_last_hour": 0
+    }
+  ],
+  "edges": [
+    {
+      "source": 82893793,
+      "target": 51790406,
+      "weight": 0.923
+    },
+    {
+      "source": 82744644,
+      "target": 51790406,
+      "weight": 0.782
+    },
+    {
+      "source": 82744644,
+      "target": 82893793,
+      "weight": 0.744
+    },
+    {
+      "source": 65490215,
+      "target": 5211271,
+      "weight": 0.7
+    },
+    {
+      "source": 18621887,
+      "target": 83043290,
+      "weight": 0.592
+    },
+    {
+      "source": 214796,
+      "target": 83866394,
+      "weight": 0.555
+    },
+    {
+      "source": 83866394,
+      "target": 77431649,
+      "weight": 0.49
+    },
+    {
+      "source": 214796,
+      "target": 77431649,
+      "weight": 0.461
+    },
+    {
+      "source": 214796,
+      "target": 43573275,
+      "weight": 0.422
+    },
+    {
+      "source": 15838471,
+      "target": 214928,
+      "weight": 0.412
+    },
+    {
+      "source": 83866394,
+      "target": 83207016,
+      "weight": 0.409
+    },
+    {
+      "source": 214796,
+      "target": 214928,
+      "weight": 0.407
+    },
+    {
+      "source": 80682580,
+      "target": 84192445,
+      "weight": 0.4
+    },
+    {
+      "source": 31008752,
+      "target": 77431649,
+      "weight": 0.385
+    },
+    {
+      "source": 214928,
+      "target": 43573275,
+      "weight": 0.384
+    },
+    {
+      "source": 80682580,
+      "target": 83375714,
+      "weight": 0.376
+    },
+    {
+      "source": 308193,
+      "target": 16894,
+      "weight": 0.375
+    },
+    {
+      "source": 78983091,
+      "target": 83043290,
+      "weight": 0.366
+    },
+    {
+      "source": 79450412,
+      "target": 78983091,
+      "weight": 0.365
+    },
+    {
+      "source": 79450412,
+      "target": 76419267,
+      "weight": 0.356
+    },
+    {
+      "source": 78983091,
+      "target": 76419267,
+      "weight": 0.352
+    },
+    {
+      "source": 72961634,
+      "target": 83207016,
+      "weight": 0.35
+    }
+  ]
+}

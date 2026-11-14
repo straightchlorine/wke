@@ -1,0 +1,48 @@
+{
+  "query": "Mercury",
+  "results": [
+    {
+      "page_id": 42068,
+      "title": "Freddie Mercury",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 19694,
+      "title": "Mercury (planet)",
+      "description": null,
+      "dossier_state": "ready"
+    },
+    {
+      "page_id": 18617142,
+      "title": "Mercury (element)",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 325909,
+      "title": "Mercury Records",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 140995,
+      "title": "Mercury Prize",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 19812,
+      "title": "Project Mercury",
+      "description": null,
+      "dossier_state": "none"
+    },
+    {
+      "page_id": 256339,
+      "title": "Mercury (automobile)",
+      "description": null,
+      "dossier_state": "none"
+    }
+  ],
+  "did_you_mean": null
+}
