@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Wikipedia Knowledge Explorer API: REST, MCP, job worker, watcher and trending entrypoints."
 requires-python = ">=3.12,<3.15"
 dependencies = [
-    "fastapi==0.162.0",
+    "fastapi==0.162.2",
     "uvicorn[standard]>=0.54,<1",
     "pydantic[email]>=2.14.2,<3",
     "pydantic-settings==2.16.2",
