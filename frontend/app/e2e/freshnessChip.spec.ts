@@ -140,3 +140,24 @@ test.describe("freshness chips", only("desktop-1440"), () => {
     });
   });
 });
+
+test(
+  "Source record: a long out-of-date chip stays inside its column",
+  only("desktop-1440", "desktop-1920"),
+  async ({ page, open }) => {
+    await mockFreshness(page, "dossier_1095706_8000.json", {
+      state: "stale",
+      source: "poll",
+      edits_since: 12345,
+      checked_at: "2026-09-28T16:18:40Z",
+    });
+    await open("/t/Jesus");
+    const chip = freshnessChip(page);
+    await expect(chip).toHaveText(/Out of date: 12,345 edits since built/);
+    const { chipRight, columnRight } = await chip.evaluate((el) => ({
+      chipRight: el.getBoundingClientRect().right,
+      columnRight: el.closest("[data-record]")!.getBoundingClientRect().right,
+    }));
+    expect(chipRight).toBeLessThanOrEqual(columnRight + 0.5);
+  },
+);

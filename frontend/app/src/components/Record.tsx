@@ -15,6 +15,8 @@ export interface RecordRowProps {
   title?: string;
   /** Lets a "normal" value wrap onto further lines instead of ending in an ellipsis. Use it only for prose, such as the parameter lists on the machines page. */
   wrap?: boolean;
+  /** Moves the value onto its own line, right-aligned, when it does not fit beside the label. Use it for a value that cannot shrink, such as a chip. */
+  wrapRow?: boolean;
   /** Draws the dotted leader between label and value. */
   leader?: boolean;
   /** Puts label, leader and value on one baseline, with the value right-aligned to the record's edge. `sub` is right-aligned under the value and `below` under that. `Record` sets it when its own `lines` is on. */
@@ -35,6 +37,7 @@ export function RecordRow({
   title,
   leader = true,
   wrap = false,
+  wrapRow = false,
   lines = false,
   below,
   dense = false,
@@ -80,7 +83,7 @@ export function RecordRow({
   const unitInColumn = big && !subBlock;
   // A text row with no second fact keeps its label and value on one line.
   // The value ends in an ellipsis, or wraps inside its own box when `wrap` is set. Every other row may wrap as a whole.
-  const oneLine = !big && !subBlock && sub == null;
+  const oneLine = !big && !subBlock && sub == null && !wrapRow;
   const truncates = oneLine && !wrap;
   // A row that holds a link, chip or tooltip gets a thumb-high row under a coarse pointer.
   const hasControl = [label, value, sub].some(
@@ -100,7 +103,7 @@ export function RecordRow({
       ) : null}
       <span
         title={title ?? (typeof value === "string" ? value : undefined)}
-        className={`${big ? "text-18" : "text-13"} text-ink tabular-nums text-right ${truncates ? `min-w-0 truncate ${hasControl ? "pointer-coarse:-my-3.5 pointer-coarse:py-3.5" : ""}` : oneLine ? "min-w-0 wrap-anywhere" : ""}`}
+        className={`${big ? "text-18" : "text-13"} text-ink tabular-nums text-right ${truncates ? `min-w-0 truncate ${hasControl ? "pointer-coarse:-my-3.5 pointer-coarse:py-3.5" : ""}` : oneLine ? "min-w-0 wrap-anywhere" : wrapRow ? "ml-auto" : ""}`}
       >
         {value}
       </span>
