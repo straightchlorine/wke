@@ -28,7 +28,8 @@ PAGEVIEWS_API_URL = "https://wikimedia.org/api/rest_v1/metrics/pageviews/top"
 # (keys.WM_LOCK_TTL_MS) covers UNAVAILABLE_MAX_ATTEMPTS of them.
 WIKIMEDIA_TIMEOUT_SECONDS = 15.0
 
-# A call slower than this sets wm:pace, so every process pauses before the next one.
+# A call slower than this sets wm:pace, so background calls in every process pause
+# before their next one.
 SLOW_CALL_SECONDS = 1.0
 LOCK_RETRY_INTERVAL_SECONDS = 0.05
 INLINE_LOCK_DEADLINE_SECONDS = 3.0
@@ -80,7 +81,10 @@ class WikimediaTransport:
         action_api: bool,
         mode: CallMode = "inline",
     ) -> httpx.Response:
-        await self._wait_out_pace()
+        # A reader waiting on a search or a page skips the pause.
+        # The lock still lets only one call through at a time.
+        if mode == "worker":
+            await self._wait_out_pace()
 
         token = await self._acquire_lock(mode)
         try:

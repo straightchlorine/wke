@@ -57,7 +57,7 @@ describe("useTopicSuggestions", () => {
   it("lists nothing and asks nothing for fewer than three characters", async () => {
     const { result } = renderSuggestions("al");
     await rest(1000);
-    expect(result.current).toEqual({ term: "", suggestions: [] });
+    expect(result.current).toEqual({ term: "", suggestions: [], status: "idle" });
     expect(searchTopics).not.toHaveBeenCalled();
     expect(listDossiers).not.toHaveBeenCalled();
   });
@@ -123,13 +123,36 @@ describe("useTopicSuggestions", () => {
     expect(searchTopics).toHaveBeenCalledWith({ query: { q: "alan", limit: 5 } });
   });
 
-  it("lists nothing when both sources fail", async () => {
+  it("lists nothing and reports a failure when both sources fail", async () => {
     searchTopics.mockResolvedValue({ error: { status: 500 } });
     listDossiers.mockRejectedValue(new Error("offline"));
     const { result } = renderSuggestions("ala");
     await answered();
     expect(result.current.suggestions).toEqual([]);
+    expect(result.current.status).toBe("failed");
     expect(searchTopics).toHaveBeenCalledTimes(1);
+  });
+
+  it("reports a failure when Wikipedia search fails and no stored dossier matches", async () => {
+    searchTopics.mockResolvedValue({ error: { status: 503 } });
+    const { result } = renderSuggestions("ala");
+    await answered();
+    expect(result.current.status).toBe("failed");
+  });
+
+  it("reports searching while the answer is on its way, and idle once it has arrived", async () => {
+    let answer!: (value: unknown) => void;
+    searchTopics.mockReturnValue(new Promise((resolve) => (answer = resolve)));
+    const { result, rerender } = renderSuggestions("ala");
+    await rest(300);
+    expect(result.current.status).toBe("searching");
+    rerender({ text: "alan" });
+    expect(result.current.status).toBe("idle");
+    rerender({ text: "ala" });
+    await act(async () => answer({ data: { results: [candidate("Alan Turing", 1)] } }));
+    await rest(10);
+    expect(result.current.status).toBe("idle");
+    expect(result.current.suggestions).toHaveLength(1);
   });
 
   it("asks again for a text whose last answer was a failure", async () => {

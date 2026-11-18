@@ -272,6 +272,8 @@ function Dossiers() {
               onEscape={() => setTitleFilter("")}
               onOptionCount={setSuggestionCount}
               listContainer={suggestionCount > 0 ? listSlot : null}
+              // The table answers the filter, so a slow or failed suggestion needs no line of its own.
+              showStatus={false}
               trailing={
                 titleFilter !== "" ? (
                   <button

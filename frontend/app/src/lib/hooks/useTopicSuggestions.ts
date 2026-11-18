@@ -20,6 +20,8 @@ export interface TopicSuggestions {
   term: string;
   /** Titles matching `term`, stored dossiers first; empty while the input has moved past `term`. */
   suggestions: TopicCandidate[];
+  /** "searching" while the answer for the current text is on its way, "failed" when it could not be had. */
+  status: "idle" | "searching" | "failed";
 }
 
 /**
@@ -48,7 +50,8 @@ export function useTopicSuggestions(text: string): TopicSuggestions {
       ]);
       const wikiRows = wiki?.data?.results ?? null;
       const storedRows = stored?.data?.items ?? null;
-      if (wikiRows == null && storedRows == null) {
+      // Without Wikipedia's titles, an empty stored list is a failure, not an answer of no titles.
+      if (wikiRows == null && !storedRows?.length) {
         throw wiki?.error ?? stored?.error ?? new Error("search failed");
       }
       return mergeStoredFirst(term, storedRows ?? [], wikiRows ?? [], MAX_SUGGESTIONS);
@@ -59,5 +62,13 @@ export function useTopicSuggestions(text: string): TopicSuggestions {
   });
 
   // A stale list under a changed input would offer titles the reader has already typed past.
-  return { term, suggestions: term === trimmed ? (query.data ?? NONE) : NONE };
+  const current = term === trimmed;
+  const status = !current
+    ? "idle"
+    : query.isError
+      ? "failed"
+      : query.isPending && query.fetchStatus !== "idle"
+        ? "searching"
+        : "idle";
+  return { term, suggestions: current ? (query.data ?? NONE) : NONE, status };
 }

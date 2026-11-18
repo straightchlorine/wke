@@ -21,3 +21,6 @@ export function notBuiltHint(input: "keyboard" | "touch"): string {
 export function buildVerbHint(input: "keyboard" | "touch"): string {
   return `${input === "touch" ? "tap" : "Enter"} builds it`;
 }
+
+/** Says the title suggestions could not be had, so an empty list is not read as no matching titles. */
+export const SUGGESTIONS_PAUSED = "Suggestions paused, try again in a moment";

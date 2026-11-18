@@ -1,6 +1,7 @@
 import type { ApiError, TopicCandidate } from "../api/generated";
 import type { Budget } from "../lib/budget";
 import { errorTitle } from "../lib/errors";
+import { SUGGESTIONS_PAUSED } from "../lib/searchButton";
 import { Button } from "./Button";
 import { CountdownButton } from "./CountdownButton";
 import { DidYouMean } from "./DidYouMean";
@@ -65,7 +66,7 @@ export function ProblemPanel({
             {didYouMean.length > 0 || suggestion != null ? (
               <DidYouMean candidates={didYouMean} suggestion={suggestion} budget={budget} />
             ) : suggestionsPaused ? (
-              <p className="text-13 text-ink-2">Suggestions paused, try again in a moment</p>
+              <p className="text-13 text-ink-2">{SUGGESTIONS_PAUSED}</p>
             ) : null}
             {openSearch ? <OpenTopicSearch className="mt-4" /> : null}
           </div>

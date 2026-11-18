@@ -75,18 +75,35 @@ async def test_pacing_waits_after_slow_call(redis_client, wm_fixtures) -> None:
         call_count["n"] += 1
         if call_count["n"] == 1:
             clock.advance(1.5)  # first call "took" 1.5s
-        return httpx.Response(200, json=wm_fixtures.json("search.json"))
+        return httpx.Response(200, json=wm_fixtures.json("morelike.json"))
 
     client = make_wikimedia_client(redis_client, handler, clock=clock, sleep=spy_sleep)
 
-    await client.search(FIXTURE_TITLE, 8)
+    await client.morelike(FIXTURE_TITLE, mode="worker")
     ttl_after_first = await redis_client.ttl(keys.WM_PACE)
     assert ttl_after_first > 0
 
-    await client.search(FIXTURE_TITLE, 8)
+    await client.morelike(FIXTURE_TITLE, mode="worker")
 
     # The second call waited out the whole pause the slow first call set.
     assert sleeps == [float(keys.WM_PACE_TTL_SECONDS)]
+
+
+async def test_inline_call_skips_the_pause(redis_client, wm_fixtures) -> None:
+    """A search typed by a reader does not wait out a pause set by a slow background call."""
+    await redis_client.set(keys.WM_PACE, "1", ex=keys.WM_PACE_TTL_SECONDS)
+    sleeps = []
+
+    async def spy_sleep(seconds: float) -> None:
+        sleeps.append(seconds)
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json=wm_fixtures.json("search.json"))
+
+    client = make_wikimedia_client(redis_client, handler, sleep=spy_sleep)
+    await client.search(FIXTURE_TITLE, 8)
+
+    assert sleeps == []
 
 
 async def test_pace_wait_happens_before_lock_is_taken(redis_client, wm_fixtures) -> None:
@@ -99,10 +116,10 @@ async def test_pace_wait_happens_before_lock_is_taken(redis_client, wm_fixtures)
         observed_lock_during_sleep.append(await redis_client.get(keys.WM_LOCK))
 
     def handler(request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, json=wm_fixtures.json("search.json"))
+        return httpx.Response(200, json=wm_fixtures.json("morelike.json"))
 
     client = make_wikimedia_client(redis_client, handler, sleep=spy_sleep)
-    await client.search(FIXTURE_TITLE, 8)
+    await client.morelike(FIXTURE_TITLE, mode="worker")
 
     assert observed_lock_during_sleep == [None]
     assert await redis_client.get(keys.WM_LOCK) is None

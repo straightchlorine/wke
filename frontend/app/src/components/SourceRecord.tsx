@@ -79,7 +79,8 @@ export function SourceRecord({
         />
       ),
       size: "normal" as const,
-      wrap: true,
+      // An out-of-date chip is wider than a column of the three-column record.
+      wrapRow: true,
     },
     {
       label: "Licence",
