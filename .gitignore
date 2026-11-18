@@ -62,16 +62,8 @@ node_modules/
 # the lab leaves the repo (separate project); stops a half-moved tree from being committed
 /notebooks/
 
-# internal docs: track README, spec, decisions, design brief, audit and plans
+# internal docs
 docs/internal/*
-!docs/internal/README.md
-!docs/internal/architecture/
-!docs/internal/decisions/
-!docs/internal/design/
-!docs/internal/audit-2026-10-25/
-!docs/internal/plans/
-docs/internal/design/mockups/
-docs/internal/design/candidates/
 
 # owner decision 2: product statement stays local until the owner publishes it
 /PRODUCT.md
