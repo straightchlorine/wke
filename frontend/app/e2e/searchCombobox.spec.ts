@@ -242,3 +242,61 @@ lightOnly(() => {
     },
   );
 });
+
+test(
+  "a slow answer shows Searching... under the box, then the titles replace it",
+  only("desktop-1440"),
+  async ({ page, open }) => {
+    await open("/", { ready: searchBox(page) });
+    let answer!: () => void;
+    const answered = new Promise<void>((resolve) => (answer = resolve));
+    await page.route(/\/api\/v1\/search(\?[^/]*)?$/, async (route) => {
+      await answered;
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          query: "lizzie",
+          results: [{ page_id: 11, title: "Lizzie Borden", dossier_state: "none" }],
+        }),
+      });
+    });
+    const box = searchBox(page);
+    await box.fill("Lizzie");
+    const line = page.getByText("Searching...", { exact: true });
+    await expect(line).toHaveCSS("opacity", "1");
+    await expect(box).toHaveAttribute("aria-expanded", "false");
+    answer();
+    await expect(page.getByRole("option")).toHaveCount(1);
+    await expect(line).toHaveCount(0);
+  },
+);
+
+test(
+  "a failed search says suggestions are paused instead of showing nothing",
+  only("desktop-1440"),
+  async ({ page, open }) => {
+    await open("/", { ready: searchBox(page) });
+    await page.route(/\/api\/v1\/search(\?[^/]*)?$/, (route) =>
+      route.fulfill({
+        status: 503,
+        contentType: "application/problem+json",
+        body: JSON.stringify({
+          title: "Service Unavailable",
+          status: 503,
+          code: "upstream_budget",
+        }),
+      }),
+    );
+    const box = searchBox(page);
+    await box.fill("Zzyzx Road");
+    // The live region repeats the text, so the line is looked up beside the box.
+    await expect(
+      box.locator("..").getByText("Suggestions paused, try again in a moment"),
+    ).toBeVisible();
+    await expect(page.locator("#live-region")).toHaveText(
+      "Suggestions paused, try again in a moment",
+    );
+    await expect(box).toHaveAttribute("aria-expanded", "false");
+  },
+);

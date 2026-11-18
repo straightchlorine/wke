@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { announceLive } from "../lib/liveRegion";
 import { useMediaQuery } from "../lib/hooks/useMediaQuery";
 import { useTopicSuggestions } from "../lib/hooks/useTopicSuggestions";
-import { buildVerbHint, notBuiltHint } from "../lib/searchButton";
+import { buildVerbHint, notBuiltHint, SUGGESTIONS_PAUSED } from "../lib/searchButton";
 import type { DossierState } from "../lib/dossierState";
 import { DossierStateChip } from "./Chip";
 
@@ -36,6 +36,8 @@ export interface SearchComboboxProps {
   onActiveStateChange?: (state: DossierState | null) => void;
   /** Use the shared control height instead of the default field height, for a row of controls. */
   compact?: boolean;
+  /** Shows a line under the input while suggestions are slow to come, and when they fail. */
+  showStatus?: boolean;
 }
 
 /**
@@ -59,6 +61,7 @@ export function SearchCombobox({
   listContainer,
   onActiveStateChange,
   compact = false,
+  showStatus = true,
 }: SearchComboboxProps) {
   // A device that cannot hover counts as touch, so its hint for a title with no dossier says tap instead of Enter.
   // The row text and the live region both use that wording.
@@ -73,12 +76,19 @@ export function SearchCombobox({
     index: -1,
   });
 
-  const { term, suggestions } = useTopicSuggestions(value);
+  const { term, suggestions, status } = useTopicSuggestions(value);
   const active = highlight.key === term ? highlight.index : -1;
   const setActive = (index: number) => setHighlight({ key: term, index });
   const options = dismissed ? [] : suggestions;
   const open = options.length > 0;
   const optionId = (index: number) => `${listId}-${index}`;
+  const statusLine = showStatus && !dismissed && !open && status !== "idle" ? status : null;
+
+  useEffect(() => {
+    if (statusLine === "failed") {
+      announceLive(SUGGESTIONS_PAUSED);
+    }
+  }, [statusLine]);
 
   useEffect(() => {
     if (onOptionCount) {
@@ -222,6 +232,14 @@ export function SearchCombobox({
       />
       {trailing}
       {inFlow ? createPortal(list, listContainer) : list}
+      {statusLine ? (
+        // "Searching..." stays transparent for 600 ms, so a quick answer never flashes it.
+        <p
+          className={`absolute inset-x-0 top-full z-30 flex min-h-11 items-center border-(length:--hairline) border-t-0 border-ink bg-sheet px-3 text-13 text-ink-2 ${statusLine === "searching" ? "transition-opacity delay-600 duration-0 starting:opacity-0" : ""}`}
+        >
+          {statusLine === "searching" ? "Searching..." : SUGGESTIONS_PAUSED}
+        </p>
+      ) : null}
     </div>
   );
 }
