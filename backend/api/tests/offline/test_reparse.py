@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import os
+
 import pytest
 
+from tests.core.render.test_render_structure import _jumping
 from tests.factories.dossier import FACTORY_RELATED_TITLE, make_fixture_dossier, make_summary
 from tests.support.wikimedia import WmFixtures
 from wke.core.citations import seed_pin
@@ -53,6 +56,46 @@ def test_view_and_markdown_packs_to_the_budget_and_renders():
     assert view.budget.requested == 2000
     assert view.budget.used_est_tokens <= 2000
     assert dossier.topic.title in markdown
+
+
+def test_view_and_markdown_reads_the_subsection_headings_switch(monkeypatch):
+    dossier = _jumping([["Busy"], ["Busy", "Alpha"]])
+    assert "\n### Alpha\n" in view_and_markdown(dossier, 2000)[1]
+    monkeypatch.setenv("SUBSECTION_HEADINGS", "false")
+    assert "### Alpha" not in view_and_markdown(dossier, 2000)[1]
+
+
+def _facts_ids(view) -> list[str]:
+    kind = {c.id: c.kind for c in view.chunks}
+    return [c for s in view.sections for c in s.chunk_ids if kind.get(c) == "facts"] + [
+        c.id for c in view.chunks if c.kind == "facts"
+    ]
+
+
+def test_view_and_markdown_is_lean_by_default_and_reads_the_lean_response_switch(monkeypatch):
+    dossier = make_fixture_dossier()
+    assert any(c.kind == "facts" for c in dossier.chunks)
+    monkeypatch.delenv("LEAN_RESPONSE", raising=False)
+    assert _facts_ids(view_and_markdown(dossier, 32000)[0]) == []
+    monkeypatch.setenv("LEAN_RESPONSE", "false")
+    assert _facts_ids(view_and_markdown(dossier, 32000)[0]) != []
+
+
+def test_view_and_markdown_lean_argument_overrides_the_environment(monkeypatch):
+    dossier = make_fixture_dossier()
+    monkeypatch.setenv("LEAN_RESPONSE", "true")
+    assert _facts_ids(view_and_markdown(dossier, 32000, lean=False)[0]) != []
+    monkeypatch.setenv("LEAN_RESPONSE", "false")
+    assert _facts_ids(view_and_markdown(dossier, 32000, lean=True)[0]) == []
+
+
+def test_view_and_markdown_needs_no_service_environment(monkeypatch, tmp_path):
+    for name in list(os.environ):
+        monkeypatch.delenv(name)
+    monkeypatch.chdir(tmp_path)
+    view, markdown = view_and_markdown(make_fixture_dossier(), 8000)
+    assert _facts_ids(view) == []
+    assert "Born: c. 6 to 4 BC" not in markdown
 
 
 def test_view_and_markdown_shows_summaries_only_when_asked():

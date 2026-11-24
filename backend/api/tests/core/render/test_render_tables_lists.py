@@ -38,7 +38,7 @@ def _dossier(kind: Literal["table", "list"], text: str, count: int = 1) -> Dossi
 
 def _markdown(dossier: Dossier, budget: Literal[2000, 8000, 32000]) -> str:
     view = render.build_view(dossier, budget, make_freshness(dossier), make_links(dossier))
-    return render.render_markdown(view, parts=frozenset({"dossier", "metadata"}))
+    return render.render_markdown(view, parts=frozenset({"dossier", "metadata"}), lean=False)
 
 
 def test_a_list_is_a_quoted_bullet_list_with_nested_items_and_the_cut_note() -> None:

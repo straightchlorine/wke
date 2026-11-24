@@ -11,16 +11,20 @@ import pytest
 from tests.factories.dossier import make_fixture_dossier
 from tests.support.constants import PIPELINE_VERSION
 from tests.support.offline import cache_html
+from wke.api.etag import etag_is_lean
 from wke.core import keys
 from wke.core.citations import seed_pin
 from wke.core.models import Dossier
 from wke.offline.reparse import view_and_markdown
 from wke.offline.store import (
+    LeanPullError,
     connect,
+    find_pulled_by_title,
     load_dossier,
     load_html,
     load_pulled,
     load_pulled_html,
+    pulled_etag,
     stored_page_ids,
 )
 
@@ -29,7 +33,8 @@ def _pull(root: Path, dossier: Dossier, name: str | None = None) -> Path:
     """Write the 32000-token view of a dossier in the pull folder layout."""
     folder = root / (name or f"{dossier.topic.page_id}-slug")
     folder.mkdir()
-    view, _ = view_and_markdown(dossier, 32000)
+    # A pull made before the key facts block left the responses still holds it.
+    view, _ = view_and_markdown(dossier, 32000, lean=False)
     (folder / "rest-32000.json").write_text(view.model_dump_json(), encoding="utf-8")
     return folder
 
@@ -136,3 +141,72 @@ def test_load_pulled_html_reads_the_source_of_the_pinned_revision(tmp_path: Path
     assert load_pulled_html(tmp_path, 5) == "<p>caf\u00e9</p>"
     assert load_pulled_html(tmp_path, 6) is None
     assert load_pulled_html(None, 5) is None
+
+
+def _record_etag(folder: Path, etag: str | None) -> None:
+    """Write the manifest.json entry pull.py writes for rest-32000.json."""
+    entry: dict[str, object] = {"bytes": 1, "status": 200}
+    if etag is not None:
+        entry["etag"] = etag
+    manifest = {"title": "Alma", "files": {"rest-32000.json": entry}}
+    (folder / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+
+
+@pytest.mark.parametrize(
+    ("etag", "lean"),
+    [
+        ('"1-pv-32000-json-complete-5-s1-l0-pdms"', False),
+        ('"1-pv-32000-json-complete-5-s1-l0-pdmsl"', True),
+        ('"1-pv-32000-json-complete-5-s1-l0-pdmsl-r1"', True),
+        ('"1-pv-32000-json-complete-5-s1-l0-pdmslh-r0"', True),
+        ('"1-pv-32000-json-complete-5-s1-l0-pdmsh"', False),
+        ('"1-test-pv-32000-json-complete-5-s0-l1-pdl"', True),
+        ('"1377998321-dev-32000-json-complete-5-s1-l0"', False),
+        ('W/"1-pv-32000-json-complete-5-s1-l0-pdl"', True),
+        ("not an etag", False),
+    ],
+)
+def test_the_lean_letter_of_an_etag_is_read_from_its_parts_code(etag: str, lean: bool) -> None:
+    assert etag_is_lean(etag) is lean
+
+
+@pytest.mark.parametrize(
+    "etag",
+    ['"1-pv-32000-json-complete-5-s1-l0-pdmsl"', '"1-pv-32000-json-complete-5-s1-l0-pdmslh-r1"'],
+)
+def test_load_pulled_refuses_a_pull_made_from_a_lean_api(tmp_path: Path, etag: str):
+    dossier = make_fixture_dossier()
+    _record_etag(_pull(tmp_path, dossier), etag)
+    with pytest.raises(LeanPullError, match="LEAN_RESPONSE=false") as caught:
+        load_pulled(str(tmp_path), dossier.topic.page_id)
+    assert etag in str(caught.value)
+
+
+@pytest.mark.parametrize("etag", [None, '"1-pv-32000-json-complete-5-s1-l0-pdmsh"'])
+def test_load_pulled_takes_a_pull_without_the_lean_letter_as_whole(tmp_path: Path, etag):
+    dossier = make_fixture_dossier()
+    folder = _pull(tmp_path, dossier)
+    _record_etag(folder, etag)
+    assert load_pulled(str(tmp_path), dossier.topic.page_id) is not None
+
+
+def test_load_pulled_takes_a_pull_without_a_manifest_as_whole(tmp_path: Path):
+    dossier = make_fixture_dossier()
+    _pull(tmp_path, dossier)
+    assert pulled_etag(tmp_path / f"{dossier.topic.page_id}-slug") is None
+    assert load_pulled(str(tmp_path), dossier.topic.page_id) is not None
+
+
+def test_find_pulled_by_title_refuses_only_the_lean_pull_of_that_title(tmp_path: Path):
+    dossier = make_fixture_dossier()
+    lean = _pull(tmp_path, dossier, name="7-lean")
+    _record_etag(lean, '"1-pv-32000-json-complete-5-s1-l0-pdmsl"')
+    whole = _pull(tmp_path, dossier, name="8-whole")
+    _record_etag(whole, None)
+    other = json.loads((lean / "manifest.json").read_text(encoding="utf-8"))
+    assert find_pulled_by_title(str(tmp_path), dossier.topic.title) is not None
+    (lean / "manifest.json").write_text(
+        json.dumps({**other, "title": dossier.topic.title}), encoding="utf-8"
+    )
+    with pytest.raises(LeanPullError):
+        find_pulled_by_title(str(tmp_path), dossier.topic.title)

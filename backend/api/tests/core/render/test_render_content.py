@@ -20,7 +20,7 @@ def _markdown(dossier: Dossier, budget: BudgetTokens = 32000) -> str:
     view = render.build_view(
         dossier, budget, make_freshness(dossier), make_links(dossier), include_summaries=True
     )
-    return render.render_markdown(view, include_summaries=True)
+    return render.render_markdown(view, include_summaries=True, lean=False)
 
 
 def test_facts_are_a_quoted_bullet_list_with_the_lead_citation() -> None:

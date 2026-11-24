@@ -90,15 +90,18 @@ class Passage:
         match = _FIRST_WORD.match(self.text)
         return bool(match and match.group().islower() and match.group() in FUNCTION_WORDS)
 
-    def sentences(self) -> list[Passage]:
+    def sentences(self, quotes: bool = True) -> list[Passage]:
         """Split the passage at real sentence ends.
+
+        Args:
+            quotes: False to split as before quotations were kept whole.
 
         Returns:
             list[Passage]: the sentences in order, each with its own spans.
         """
         parts: list[Passage] = []
         cursor = 0
-        for sentence in split_sentences(self.text):
+        for sentence in split_sentences(self.text, quotes):
             start = self.text.index(sentence, cursor)
             cursor = start + len(sentence)
             parts.append(self.slice(start, cursor))

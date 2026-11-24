@@ -7,6 +7,9 @@ QUEUE_SUM_INTERACTIVE = "q:sum:interactive"
 QUEUE_BACKGROUND = "q:background"
 QUEUE_SUM_BACKGROUND = "q:sum:background"
 QUEUE_PROCESSING = "q:processing"
+# The rating stage has its own loop, so these two are not in QUEUE_PRIORITY_ORDER.
+QUEUE_RATE = "q:rate"
+QUEUE_RATE_PROCESSING = "q:rate:processing"
 QUEUE_PRIORITY_ORDER = (
     QUEUE_INTERACTIVE,
     QUEUE_SUM_INTERACTIVE,

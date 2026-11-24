@@ -206,7 +206,7 @@
       "id": 15,
       "type": "stat",
       "title": "Trending snapshot age",
-      "description": "Age of the most-read topics snapshot behind the home page. It is rebuilt once a day at 03:00 UTC, so under about a day is healthy.",
+      "description": "Age of the most-read topics snapshot behind the home page. It is rebuilt once a day at 05:00 UTC, so under about a day is healthy.",
       "datasource": {
         "type": "prometheus",
         "uid": "${datasource}"

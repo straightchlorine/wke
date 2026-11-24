@@ -10,7 +10,7 @@ from wke.core.render.budget import FLAT_NOTICE, budget_line, holds_whole_article
 from wke.core.render.defaults import DEFAULT_INCLUDE_SUMMARIES
 from wke.core.render.escape import escape_inline_markup, neutralise
 from wke.core.render.header import PROVENANCE_NOTICE
-from wke.core.render.labels import SUMMARY_LABEL, heading_prefix
+from wke.core.render.labels import SUMMARY_LABEL, heading_prefix, subsection_heading_prefix
 from wke.core.render.leftout import left_out_header
 from wke.core.render.notes import summary_notice, tables_left_out_line
 from wke.core.render.parts import ALL_PARTS, Part
@@ -130,6 +130,8 @@ def section_lines(
     sources: SourceList,
     include_summaries: bool,
     links: bool = False,
+    subsection_headings: bool = True,
+    notes: bool = True,
 ) -> list[str]:
     """Return the lines of one section: heading, passages, summary and notes.
 
@@ -141,6 +143,8 @@ def section_lines(
         sources: the citation tags of the document.
         include_summaries: whether the render asks for summaries.
         links: whether to write the passages' wiki links inline.
+        subsection_headings: whether a passage from another subsection gets its heading.
+        notes: whether to write the line for tables and lists the budget left out.
 
     Returns:
         list[str]: the lines, each block followed by a blank line.
@@ -155,8 +159,21 @@ def section_lines(
     if not section_chunk_ids and section.summary is None:
         return lines
 
+    previous_path: list[str] | None = None
     for chunk_id in section_chunk_ids:
         chunk = chunk_by_id[chunk_id]
+        if chunk.kind == "prose":
+            # a structural build folds nested sections into one; the chunks keep their path
+            if (
+                subsection_headings
+                and previous_path is not None
+                and chunk.heading_path
+                and chunk.heading_path != previous_path
+                and chunk.heading_path != section.heading_path
+            ):
+                mark = subsection_heading_prefix(section)
+                lines.extend([f"{mark} {escape_inline_markup(chunk.heading_path[-1])}", ""])
+            previous_path = chunk.heading_path
         lines.extend(quote(chunk, chunk.text, origin))
         if tag := sources.tag(chunk.citation_id):
             lines.append(tag)
@@ -166,7 +183,7 @@ def section_lines(
         lines.extend(summary_lines(section, chunk_by_id, seed_id, sources))
     elif notice is not None:
         lines.extend([f"_{notice}_", ""])
-    if structured_out:
+    if structured_out and notes:
         lines.extend([tables_left_out_line(structured_out), ""])
     return lines
 
@@ -219,6 +236,8 @@ def content_lines(
     sources: SourceList,
     include_summaries: bool,
     links: bool = False,
+    subsection_headings: bool = True,
+    notes: bool = True,
 ) -> list[str]:
     """Return the lines of the dossier part: every kept section with its passages.
 
@@ -228,6 +247,8 @@ def content_lines(
         sources: the citation tags of the document; filled while rendering.
         include_summaries: whether the render asks for summaries.
         links: whether to write the passages' wiki links inline.
+        subsection_headings: whether a passage from another subsection gets its heading.
+        notes: whether to write the lines for tables and lists the budget left out.
 
     Returns:
         list[str]: the section lines in document order, each block followed
@@ -240,14 +261,26 @@ def content_lines(
         if section.id in layout.kept_ids:
             lines.extend(
                 section_lines(
-                    view, section, chunk_by_id, seed_id, sources, include_summaries, links
+                    view,
+                    section,
+                    chunk_by_id,
+                    seed_id,
+                    sources,
+                    include_summaries,
+                    links,
+                    subsection_headings=subsection_headings,
+                    notes=notes,
                 )
             )
     return lines
 
 
 def content_text(
-    view: DossierView, include_summaries: bool = DEFAULT_INCLUDE_SUMMARIES, links: bool = False
+    view: DossierView,
+    include_summaries: bool = DEFAULT_INCLUDE_SUMMARIES,
+    links: bool = False,
+    subsection_headings: bool = True,
+    notes: bool = True,
 ) -> tuple[str, SourceList]:
     """Render the dossier part, with its [cN] tags, and collect its sources.
 
@@ -255,13 +288,23 @@ def content_text(
         view: A DossierView produced by build_view.
         include_summaries: Whether the view was packed with summaries.
         links: Whether to write the passages' wiki links inline.
+        subsection_headings: Whether passages of a new subsection get its heading.
+        notes: Whether to write the lines for tables and lists the budget left out.
 
     Returns:
         tuple[str, SourceList]: the section Markdown, which is the text the
         token budget counts, and the citations it used in order of first use.
     """
     sources = SourceList(view)
-    lines = content_lines(view, _layout(view), sources, include_summaries, links)
+    lines = content_lines(
+        view,
+        _layout(view),
+        sources,
+        include_summaries,
+        links,
+        subsection_headings=subsection_headings,
+        notes=notes,
+    )
     return "\n".join(lines).rstrip("\n") + "\n", sources
 
 
@@ -270,6 +313,9 @@ def render_markdown(
     include_summaries: bool = DEFAULT_INCLUDE_SUMMARIES,
     links: bool = False,
     parts: frozenset[Part] = ALL_PARTS,
+    *,
+    subsection_headings: bool = True,
+    lean: bool,
 ) -> str:
     """Render a packed DossierView to Markdown.
 
@@ -285,6 +331,10 @@ def render_markdown(
             written; "metadata" adds the head above it, "sources" adds the
             [cN] markers and the Sources list below it. The CC BY-SA footer
             is always the last line.
+        subsection_headings: Whether a structural build's passages from a new
+            subsection get its heading; False writes the Markdown as before.
+        lean: Whether the per-section lines for tables and lists the budget
+            left out are written only with "metadata"; otherwise always.
 
     Returns:
         str: The Markdown document. With "metadata": title, pinning line, a
@@ -294,14 +344,25 @@ def render_markdown(
         anything included keeps its heading only as the parent of one that
         has), each quoted passage, key-facts list or table (followed by the
         citation tag of its section with "sources"), machine summaries under a
-        visible label, a note of the tables and lists the budget left out, and
-        the licence footer. With "sources": a Sources list of exact section
-        URLs before the footer.
+        visible label, a note of the tables and lists the budget left out
+        (with "metadata" when lean), and the licence footer. With "sources": a
+        Sources list of exact section URLs before the footer.
     """
     layout = _layout(view)
     sources = SourceList(view, markers="sources" in parts)
     lines = header_lines(view, layout, links) if "metadata" in parts else []
-    lines.extend(content_lines(view, layout, sources, include_summaries, links))
+    notes = "metadata" in parts or not lean
+    lines.extend(
+        content_lines(
+            view,
+            layout,
+            sources,
+            include_summaries,
+            links,
+            subsection_headings=subsection_headings,
+            notes=notes,
+        )
+    )
     if "sources" in parts:
         lines.extend(sources_lines(sources))
     lines.extend(license_lines(view.license_notice))

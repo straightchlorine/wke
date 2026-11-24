@@ -50,7 +50,7 @@ export type Citation = {
 export type Chunk = {
   id: string;
   /**
-   * prose is a run of whole sentences (it starts at a sentence start and ends at a sentence end, and has no "see X" pointer sentences). facts is the infobox as up to 12 "Label: value" lines, placed right after the lead. table is one table as a caption line, a header row and rows of compact Markdown table text; a cell that a rowspan covers repeats its text in each row it covers. list is one outermost list of a section that has little prose of its own, as one "- item" line per item (a nested item is a further line indented by two spaces). A table or list that does not fit the budget is cut at a row or item boundary: its first rows or items, the first "Total" row of a table when it lies past them, and a last line "(N rows; M shown)" or "(N items; M shown)" (the same line marks a parse-time cut at 200 rows or items). Cell and item text is verbatim; est_tokens counts the stored text and the chunk's text in a response is the shortened text when budget.shortened_chunk_ids names the chunk.
+   * prose is a run of whole sentences (it starts at a sentence start and ends at a sentence end, and has no "see X" pointer sentences). facts is the infobox as up to 12 "Label: value" lines, placed right after the lead; a response does not carry it unless the server setting LEAN_RESPONSE is false. table is one table as a caption line, a header row and rows of compact Markdown table text; a cell that a rowspan covers repeats its text in each row it covers. list is one outermost list of a section that has little prose of its own, as one "- item" line per item (a nested item is a further line indented by two spaces). A table or list that does not fit the budget is cut at a row or item boundary: its first rows or items, the first "Total" row of a table when it lies past them, and a last line "(N rows; M shown)" or "(N items; M shown)" (the same line marks a parse-time cut at 200 rows or items). Cell and item text is verbatim; est_tokens counts the stored text and the chunk's text in a response is the shortened text when budget.shortened_chunk_ids names the chunk.
    */
   kind?: 'prose' | 'facts' | 'table' | 'list';
   /**
@@ -216,6 +216,10 @@ export type BuildInfo = {
   stage_seconds?: {
     [key: string]: number;
   };
+  /**
+   * Which relevance the passages were packed with: "rating" when the model's stored rating of the revision was complete, else "relevance". Absent unless the service runs with SELECTION_RATING.
+   */
+  selection?: 'relevance' | 'rating';
 };
 
 export type DossierContent = {
@@ -400,7 +404,11 @@ export type Format = 'json' | 'md';
 export type Links = boolean;
 
 /**
- * Comma list over dossier, metadata, sources; it must contain dossier (422 validation_error otherwise, and for an unknown part). Order and duplicates do not matter. Default `dossier`: the sections and passages alone, with no [cN] markers, no revision pin, no budget line and no truncation signal. `metadata` adds them (Markdown: the title, pin line, budget line, notices and "Left out:" line; JSON: id, topic, build, freshness, budget, links). `sources` adds the [cN] markers and the Sources list (JSON: citations). `dossier,metadata,sources` is the full document. The budget counts the dossier part only, markers included; the passage selection never depends on parts. The licence notice is always present and never counted.
+ * Comma list over dossier, metadata, sources; it must contain dossier (422 validation_error otherwise, and for an unknown part). Order and duplicates do not matter.
+ * dossier (default): the sections and passages, the only part the budget counts; no [cN] markers, no per-section left-out lines.
+ * metadata: the title, pin line, budget line, notices, the "Left out:" line and the per-section lines for tables and lists left out (JSON: id, topic, build, freshness, budget, links).
+ * sources: the [cN] markers and the Sources list (JSON: citations).
+ * metadata and sources come on top of the budget, and the passage selection never depends on parts. The licence notice is always present and never counted.
  *
  */
 export type Parts = string;
@@ -502,7 +510,11 @@ export type RequestDossierData = {
   path?: never;
   query?: {
     /**
-     * Comma list over dossier, metadata, sources; it must contain dossier (422 validation_error otherwise, and for an unknown part). Order and duplicates do not matter. Default `dossier`: the sections and passages alone, with no [cN] markers, no revision pin, no budget line and no truncation signal. `metadata` adds them (Markdown: the title, pin line, budget line, notices and "Left out:" line; JSON: id, topic, build, freshness, budget, links). `sources` adds the [cN] markers and the Sources list (JSON: citations). `dossier,metadata,sources` is the full document. The budget counts the dossier part only, markers included; the passage selection never depends on parts. The licence notice is always present and never counted.
+     * Comma list over dossier, metadata, sources; it must contain dossier (422 validation_error otherwise, and for an unknown part). Order and duplicates do not matter.
+     * dossier (default): the sections and passages, the only part the budget counts; no [cN] markers, no per-section left-out lines.
+     * metadata: the title, pin line, budget line, notices, the "Left out:" line and the per-section lines for tables and lists left out (JSON: id, topic, build, freshness, budget, links).
+     * sources: the [cN] markers and the Sources list (JSON: citations).
+     * metadata and sources come on top of the budget, and the passage selection never depends on parts. The licence notice is always present and never counted.
      *
      */
     parts?: string;
@@ -567,7 +579,11 @@ export type GetDossierData = {
      */
     links?: boolean;
     /**
-     * Comma list over dossier, metadata, sources; it must contain dossier (422 validation_error otherwise, and for an unknown part). Order and duplicates do not matter. Default `dossier`: the sections and passages alone, with no [cN] markers, no revision pin, no budget line and no truncation signal. `metadata` adds them (Markdown: the title, pin line, budget line, notices and "Left out:" line; JSON: id, topic, build, freshness, budget, links). `sources` adds the [cN] markers and the Sources list (JSON: citations). `dossier,metadata,sources` is the full document. The budget counts the dossier part only, markers included; the passage selection never depends on parts. The licence notice is always present and never counted.
+     * Comma list over dossier, metadata, sources; it must contain dossier (422 validation_error otherwise, and for an unknown part). Order and duplicates do not matter.
+     * dossier (default): the sections and passages, the only part the budget counts; no [cN] markers, no per-section left-out lines.
+     * metadata: the title, pin line, budget line, notices, the "Left out:" line and the per-section lines for tables and lists left out (JSON: id, topic, build, freshness, budget, links).
+     * sources: the [cN] markers and the Sources list (JSON: citations).
+     * metadata and sources come on top of the budget, and the passage selection never depends on parts. The licence notice is always present and never counted.
      *
      */
     parts?: string;
@@ -619,7 +635,11 @@ export type GetDossierMarkdownData = {
      */
     links?: boolean;
     /**
-     * Comma list over dossier, metadata, sources; it must contain dossier (422 validation_error otherwise, and for an unknown part). Order and duplicates do not matter. Default `dossier`: the sections and passages alone, with no [cN] markers, no revision pin, no budget line and no truncation signal. `metadata` adds them (Markdown: the title, pin line, budget line, notices and "Left out:" line; JSON: id, topic, build, freshness, budget, links). `sources` adds the [cN] markers and the Sources list (JSON: citations). `dossier,metadata,sources` is the full document. The budget counts the dossier part only, markers included; the passage selection never depends on parts. The licence notice is always present and never counted.
+     * Comma list over dossier, metadata, sources; it must contain dossier (422 validation_error otherwise, and for an unknown part). Order and duplicates do not matter.
+     * dossier (default): the sections and passages, the only part the budget counts; no [cN] markers, no per-section left-out lines.
+     * metadata: the title, pin line, budget line, notices, the "Left out:" line and the per-section lines for tables and lists left out (JSON: id, topic, build, freshness, budget, links).
+     * sources: the [cN] markers and the Sources list (JSON: citations).
+     * metadata and sources come on top of the budget, and the passage selection never depends on parts. The licence notice is always present and never counted.
      *
      */
     parts?: string;
@@ -669,7 +689,11 @@ export type GetDossierRevisionData = {
      */
     links?: boolean;
     /**
-     * Comma list over dossier, metadata, sources; it must contain dossier (422 validation_error otherwise, and for an unknown part). Order and duplicates do not matter. Default `dossier`: the sections and passages alone, with no [cN] markers, no revision pin, no budget line and no truncation signal. `metadata` adds them (Markdown: the title, pin line, budget line, notices and "Left out:" line; JSON: id, topic, build, freshness, budget, links). `sources` adds the [cN] markers and the Sources list (JSON: citations). `dossier,metadata,sources` is the full document. The budget counts the dossier part only, markers included; the passage selection never depends on parts. The licence notice is always present and never counted.
+     * Comma list over dossier, metadata, sources; it must contain dossier (422 validation_error otherwise, and for an unknown part). Order and duplicates do not matter.
+     * dossier (default): the sections and passages, the only part the budget counts; no [cN] markers, no per-section left-out lines.
+     * metadata: the title, pin line, budget line, notices, the "Left out:" line and the per-section lines for tables and lists left out (JSON: id, topic, build, freshness, budget, links).
+     * sources: the [cN] markers and the Sources list (JSON: citations).
+     * metadata and sources come on top of the budget, and the passage selection never depends on parts. The licence notice is always present and never counted.
      *
      */
     parts?: string;

@@ -47,6 +47,23 @@ class Settings(BaseSettings):
         description="/healthz fails once one inference job has held the slot this long.",
     )
 
+    rating_model_path: str = Field(
+        default="",
+        description="GGUF file of the rating model; empty turns POST /v1/rate off (503).",
+    )
+    rating_threads: int = Field(default=2, ge=1)
+    rating_n_ctx: int = Field(default=8192, ge=1)
+    rating_required_memory_gib: float = Field(
+        default=10.0,
+        ge=0,
+        description=(
+            "Memory limit the pod must have before the rating model loads (0 turns the check "
+            "off); measured peak of the whole service 9.35 GiB on x86 with all three models "
+            "loaded (RT0, 2026-11-19); nothing measured on arm64; set it from a measurement of "
+            "the real pod. A pod without a limit passes."
+        ),
+    )
+
     kmeans_seed: int = Field(default=42)
     kmeans_max_k: int = Field(default=6, ge=2)
     kmeans_chunks_per_cluster: int = Field(default=6, ge=1)

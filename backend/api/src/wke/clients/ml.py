@@ -1,4 +1,4 @@
-"""wke-ml client: /v1/analyze and /v1/summarize, one in-flight call.
+"""wke-ml client: /v1/analyze, /v1/summarize and /v1/rate, one in-flight call.
 
 wke-ml holds exactly one inference slot; this client mirrors that with its
 own `asyncio.Semaphore(1)` so a second caller queues in wke-api rather than
@@ -39,6 +39,17 @@ class MLClient:
     def __init__(self, http_client: httpx.AsyncClient) -> None:
         self._http = http_client
         self._semaphore = asyncio.Semaphore(1)
+
+    def sibling(self) -> MLClient:
+        """Build a client for the same wke-ml with a call slot of its own.
+
+        The rating loop uses one, so its long calls do not hold the slot that every analyze
+        and summarize of a build waits for. The HTTP client, and so its settings, is shared.
+
+        Returns:
+            MLClient: another instance over the same HTTP client.
+        """
+        return MLClient(self._http)
 
     async def analyze(
         self,
@@ -113,6 +124,31 @@ class MLClient:
             "max_length": max_length,
         }
         return await self._post("/v1/summarize", payload, deadline_ms)
+
+    async def rate(
+        self,
+        title: str,
+        lead: str,
+        passages: list[dict[str, str]],
+        deadline_ms: int,
+    ) -> dict[str, Any]:
+        """Have the rating model score passages of one article, 0 to 3.
+
+        Args:
+            title: the article title.
+            lead: the article lead, the shared prompt prefix.
+            passages: {id, text} payloads, 1 to 8.
+            deadline_ms: X-Deadline-Ms sent to wke-ml, also the call's timeout.
+
+        Returns:
+            dict: model, prompt_sha256, scores (id to float or None), fallback_ids, infer_seconds.
+
+        Raises:
+            MLUnavailable: on timeout, connection error, an HTTP error status (503
+                rating_unavailable included) or a non-JSON body.
+        """
+        payload = {"title": title, "lead": lead, "passages": passages}
+        return await self._post("/v1/rate", payload, deadline_ms)
 
     async def readyz(self) -> bool:
         """Probe wke-ml's /readyz endpoint.

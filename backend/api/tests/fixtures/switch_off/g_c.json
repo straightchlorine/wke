@@ -1,0 +1,134 @@
+{
+ "json 2000": {
+  "body_chars": 35312,
+  "body_sha256": "7e187db0862d543f00fd9951daf4b22ab30e37fb0824c2b73acf8c9d4d8cc8fe",
+  "headers": {
+   "cache-control": "public, max-age=60",
+   "content-type": "application/json",
+   "etag": "\"1382808793-test-pv-2000-json-complete-1-s0-l0-pdl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ },
+ "json 32000": {
+  "body_chars": 170200,
+  "body_sha256": "31ff71e9102af0a54a48e506f8c80135a66e32955a31ab011ac46f565a44d5d1",
+  "headers": {
+   "cache-control": "public, max-age=60",
+   "content-type": "application/json",
+   "etag": "\"1382808793-test-pv-32000-json-complete-1-s0-l0-pdl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ },
+ "json 8000": {
+  "body_chars": 75888,
+  "body_sha256": "c45c8c07565752d26e4031f3de0c1ce12ce9f1c596744061d7e4fd4c3643c340",
+  "headers": {
+   "cache-control": "public, max-age=60",
+   "content-type": "application/json",
+   "etag": "\"1382808793-test-pv-8000-json-complete-1-s0-l0-pdl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ },
+ "md 2000": {
+  "body_chars": 7653,
+  "body_sha256": "1e7eb4310109f6887c4188ddf556a5e35439c9949794946c410dcece20e6b801",
+  "headers": {
+   "cache-control": "public, max-age=60",
+   "content-type": "text/markdown; charset=utf-8",
+   "etag": "\"1382808793-test-pv-2000-markdown-complete-1-s0-l0-pdl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ },
+ "md 32000": {
+  "body_chars": 83423,
+  "body_sha256": "e28f5d47aa95e00a825a43e9c89285a3ca1da9959b26ab9bc184724657c832b3",
+  "headers": {
+   "cache-control": "public, max-age=60",
+   "content-type": "text/markdown; charset=utf-8",
+   "etag": "\"1382808793-test-pv-32000-markdown-complete-1-s0-l0-pdl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ },
+ "md 8000": {
+  "body_chars": 30184,
+  "body_sha256": "90ed813848b1f1c0748b6f6f0681d3ab64d039cfc00d0b8e7914f562705c79ac",
+  "headers": {
+   "cache-control": "public, max-age=60",
+   "content-type": "text/markdown; charset=utf-8",
+   "etag": "\"1382808793-test-pv-8000-markdown-complete-1-s0-l0-pdl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ },
+ "parts 2000": {
+  "body_chars": 56604,
+  "body_sha256": "3be3ae9031f755b4ff30cb04e333591ea960e4cc6df684b04ec714dcf3e21457",
+  "headers": {
+   "cache-control": "public, max-age=60",
+   "content-type": "application/json",
+   "etag": "\"1382808793-test-pv-2000-json-complete-1-s0-l0-pdmsl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ },
+ "parts 32000": {
+  "body_chars": 193842,
+  "body_sha256": "dadb93986a3dbc753bb6649439807da2ea1ae402ec3af6600353b20f1e184463",
+  "headers": {
+   "cache-control": "public, max-age=60",
+   "content-type": "application/json",
+   "etag": "\"1382808793-test-pv-32000-json-complete-1-s0-l0-pdmsl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ },
+ "parts 8000": {
+  "body_chars": 97854,
+  "body_sha256": "57d7bbaea573c4866a242687adfb18c1138f738d9861497402a853a947f4824d",
+  "headers": {
+   "cache-control": "public, max-age=60",
+   "content-type": "application/json",
+   "etag": "\"1382808793-test-pv-8000-json-complete-1-s0-l0-pdmsl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ },
+ "rev 2000": {
+  "body_chars": 35312,
+  "body_sha256": "7e187db0862d543f00fd9951daf4b22ab30e37fb0824c2b73acf8c9d4d8cc8fe",
+  "headers": {
+   "cache-control": "public, max-age=31536000, immutable",
+   "content-type": "application/json",
+   "etag": "\"1382808793-test-pv-2000-json-complete-1-s0-l0-pdl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ },
+ "rev 32000": {
+  "body_chars": 170200,
+  "body_sha256": "31ff71e9102af0a54a48e506f8c80135a66e32955a31ab011ac46f565a44d5d1",
+  "headers": {
+   "cache-control": "public, max-age=31536000, immutable",
+   "content-type": "application/json",
+   "etag": "\"1382808793-test-pv-32000-json-complete-1-s0-l0-pdl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ },
+ "rev 8000": {
+  "body_chars": 75888,
+  "body_sha256": "c45c8c07565752d26e4031f3de0c1ce12ce9f1c596744061d7e4fd4c3643c340",
+  "headers": {
+   "cache-control": "public, max-age=31536000, immutable",
+   "content-type": "application/json",
+   "etag": "\"1382808793-test-pv-8000-json-complete-1-s0-l0-pdl\"",
+   "vary": "Origin"
+  },
+  "status": 200
+ }
+}

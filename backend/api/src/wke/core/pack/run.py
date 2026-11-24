@@ -54,6 +54,7 @@ def pack(
     requested: BudgetTokens,
     include_summaries: bool = True,
     reserve: int = 0,
+    facts: bool = True,
 ) -> PackedDossier:
     """Pack a dossier's chunks and summaries to a token budget, coverage first.
 
@@ -79,6 +80,8 @@ def pack(
             packer does not charge (quote prefixes, blank lines).
             The first lead passage and the key facts ignore it, so they are
             never lost to it.
+        facts: Whether to spend budget on the key facts; without it the facts
+            chunk is neither packed nor counted as omitted.
 
     Returns:
         A PackedDossier carrying the Budget, the text for every included
@@ -90,7 +93,8 @@ def pack(
         state.used += held
         packer = Packer(dossier, step, state, include_summaries, held)
         place_lead(packer)
-        place_facts(packer)
+        if facts:
+            place_facts(packer)
         place_openers(packer)
         place_structured(packer)
         place_summaries(packer, SUMMARY_SHARE * step)
@@ -100,7 +104,7 @@ def pack(
         state = packer.state
 
     included = state.included
-    omitted = len(dossier.chunks) - len(included)
+    omitted = sum(1 for c in dossier.chunks if facts or c.kind != "facts") - len(included)
     budget = Budget(
         requested=requested,
         used_est_tokens=_used_tokens(dossier, state),

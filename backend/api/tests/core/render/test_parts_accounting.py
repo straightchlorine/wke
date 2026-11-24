@@ -43,7 +43,7 @@ def test_content_that_fills_the_budget_still_fits_with_sources_on_top() -> None:
     content, _ = content_text(view, False)
     assert view.budget.used_est_tokens == est_tokens(content) <= 2000
     assert 2000 - view.budget.used_est_tokens <= SECTION_HEADING_OVERHEAD_TOKENS
-    assert est_tokens(render.render_markdown(view, False)) > 2000
+    assert est_tokens(render.render_markdown(view, False, lean=False)) > 2000
 
 
 def test_metadata_and_sources_do_not_move_the_selection() -> None:
@@ -151,10 +151,14 @@ def test_the_held_back_reserve_doubles_each_round_while_the_pack_does_not_change
     real_pack = pack.pack
 
     def stubborn(
-        d: Dossier, requested: BudgetTokens, include_summaries: bool = True, reserve: int = 0
+        d: Dossier,
+        requested: BudgetTokens,
+        include_summaries: bool = True,
+        reserve: int = 0,
+        facts: bool = True,
     ) -> PackedDossier:
         reserves.append(reserve)
-        return real_pack(d, requested, include_summaries, 0)
+        return real_pack(d, requested, include_summaries, 0, facts)
 
     monkeypatch.setattr("wke.core.render.view.pack", stubborn)
     view = _build(dossier)
@@ -197,7 +201,7 @@ def test_the_summary_frame_costs_no_more_than_the_packer_charges() -> None:
     # summary, so the frame the render writes must stay within that.
     dossier = make_fixture_dossier()
     view = render.build_view(dossier, 32000, make_freshness(dossier), make_links(dossier), True)
-    lines = render.render_markdown(view, True).splitlines()
+    lines = render.render_markdown(view, True, lean=False).splitlines()
     start = next(index for index, line in enumerate(lines) if line == f"**{SUMMARY_LABEL}**")
     end = next(index for index in range(start, len(lines)) if lines[index].startswith("Model: "))
     summarised = next(section for section in view.sections if section.summary is not None)

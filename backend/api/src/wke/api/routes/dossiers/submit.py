@@ -153,8 +153,19 @@ async def _ready_dossier(service: DossierService, page_id: int, parts: frozenset
     view = await service.get_dossier_view(
         page_id, DEFAULT_BUDGET, "json", DEFAULT_INCLUDE_SUMMARIES, parts=parts
     )
-    body, media_type = dossier_body(view, "json", DEFAULT_INCLUDE_SUMMARIES, False, parts)
-    etag = view_etag(view, DEFAULT_BUDGET, "json", DEFAULT_INCLUDE_SUMMARIES, parts=parts)
+    lean = service.lean_response
+    body, media_type = dossier_body(
+        view, "json", DEFAULT_INCLUDE_SUMMARIES, False, parts, subsection_headings=False, lean=lean
+    )
+    etag = view_etag(
+        view,
+        DEFAULT_BUDGET,
+        "json",
+        DEFAULT_INCLUDE_SUMMARIES,
+        parts=parts,
+        lean=lean,
+        subsection_headings=service.subsection_headings,
+    )
     return Response(
         content=body,
         media_type=media_type,

@@ -4,7 +4,7 @@ import { readFixtureJson } from "./buildFixture";
 import { dossierBody } from "./mockApi";
 import { trackErrors, assertNoErrors, expectShellRendered } from "./errorTracking";
 import { freshnessChip, mockFreshness, openJesus } from "./readingSection";
-import { expect, lightOnly, only, settleScroll, test } from "./support";
+import { buildButton, expect, lightOnly, only, openAndBuild, settleScroll, test } from "./support";
 
 const dossier = readFixtureJson<{
   sections: {
@@ -71,9 +71,11 @@ test.describe("Dossier page", () => {
       const posted = page.waitForRequest(
         (request) => request.method() === "POST" && /\/api\/v1\/dossiers(\?|$)/.test(request.url()),
       );
-      await open("/t/Kamchatka", {
-        ready: page.getByRole("heading", { level: 1, name: "Kamchatka Peninsula" }),
-      });
+      await open("/t/Kamchatka", { ready: buildButton(page) });
+      await buildButton(page).click();
+      await expect(
+        page.getByRole("heading", { level: 1, name: "Kamchatka Peninsula" }),
+      ).toBeVisible();
       expect((await posted).postDataJSON()).toMatchObject({ title: "Kamchatka" });
       await expect(page.locator(HEADINGS).first()).toBeVisible();
       assertNoErrors(errors);
@@ -199,7 +201,7 @@ test.describe("Dossier page", () => {
   test("an unbuilt title shows the 404 panel with Did you mean entries", async ({ page, open }) => {
     const errors = trackErrors(page);
 
-    await open("/t/Nonexistent_Title");
+    await openAndBuild(page, open, "/t/Nonexistent_Title");
     await expect(page.getByText("No article by that title")).toBeVisible();
     await expect(page.getByText("Did you mean")).toBeVisible();
     await expect(page.getByText("Request ID: mock-not-found")).toBeVisible();
@@ -238,7 +240,7 @@ test.describe("Dossier page", () => {
         }),
       });
     });
-    await open("/t/Jesu");
+    await openAndBuild(page, open, "/t/Jesu");
     const hint = page.getByText("Did you mean");
     await expect(hint).toBeVisible();
     await expect(hint.getByRole("link", { name: "Jesus" })).toHaveAttribute("href", /\/t\/Jesus/);

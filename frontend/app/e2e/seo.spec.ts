@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { test, expect, only } from "./support";
+import { buildButton, test, expect, only } from "./support";
 
 async function themeColors(page: Page): Promise<string[]> {
   return page
@@ -147,7 +147,14 @@ test.describe("Per-route metadata", only("desktop-1440"), () => {
   });
 
   test("an unbuilt dossier is noindex and has no canonical", async ({ page, open }) => {
-    await open("/t/Nonexistent_Title");
+    await open("/t/Nonexistent_Title", { ready: buildButton(page) });
+    await expect.poll(async () => (await readHead(page)).robots).toBe("noindex,follow");
+    const unbuilt = await readHead(page);
+    expect(unbuilt.canonical).toBeNull();
+    expect(unbuilt.ogUrl).toBeNull();
+    expect(unbuilt.ldTypes).toEqual([]);
+
+    await buildButton(page).click();
     await expect(page.getByText("No article by that title")).toBeVisible();
     await expect.poll(async () => (await readHead(page)).robots).toBe("noindex,follow");
     const head = await readHead(page);

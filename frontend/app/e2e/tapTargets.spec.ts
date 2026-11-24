@@ -1,6 +1,14 @@
 import type { Locator, Page } from "@playwright/test";
 import { hitExtent, hitWidth } from "./hitAreas";
-import { test, expect, lightOnly, only, VIEWPORTS, LANDSCAPE_PHONE as LANDSCAPE } from "./support";
+import {
+  test,
+  expect,
+  lightOnly,
+  only,
+  openAndBuild,
+  VIEWPORTS,
+  LANDSCAPE_PHONE as LANDSCAPE,
+} from "./support";
 
 const PHONE = VIEWPORTS["mobile-390"];
 
@@ -96,7 +104,7 @@ test.describe("44 px hit height at 390", only("mobile-390"), () => {
           ),
           "Read here",
         ).toBeGreaterThanOrEqual(MIN_HIT);
-        await open("/t/Nonexistent_Title");
+        await openAndBuild(page, open, "/t/Nonexistent_Title");
         await both(
           page.getByRole("link", { name: "Back to today's index" }),
           "Back to today's index",
@@ -115,7 +123,7 @@ test.describe("44 px hit height at 390", only("mobile-390"), () => {
       page,
       open,
     }) => {
-      await open("/t/Nonexistent_Title", {
+      await openAndBuild(page, open, "/t/Nonexistent_Title", {
         ready: page.getByRole("heading", { level: 1, name: "No article by that title" }),
       });
       const links = page.locator("main a[href^='/t/']");

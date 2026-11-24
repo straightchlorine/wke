@@ -2,11 +2,16 @@
 
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
+import fakeredis
 import pytest
 
-from tests.factories.dossier import make_fixture_view
+from tests.factories.dossier import make_fixture_dossier, make_fixture_view
 from tests.support.scripts import load_script
 from wke.core.render import render_markdown
+from wke.offline.reparse import view_and_markdown
 
 recall = load_script("eval_recall.py")
 
@@ -59,7 +64,7 @@ def test_scored_text_drops_header_headings_and_sources() -> None:
 def test_scored_text_follows_the_rendered_summary_block() -> None:
     view = make_fixture_view()
     summary = next(s.summary.text for s in view.sections if s.summary is not None)
-    markdown = render_markdown(view, include_summaries=True)
+    markdown = render_markdown(view, include_summaries=True, lean=False)
     assert recall.normalise(summary) in recall.scored_text(markdown, headings=False, summaries=True)
     assert recall.normalise(summary) not in recall.scored_text(markdown, headings=False)
 
@@ -113,3 +118,35 @@ def test_summarise_adds_topics_up_per_budget() -> None:
     assert (out["answered"], out["total"], out["tokens_est"], out["recall"]) == (3, 4, 15, 0.75)
     assert out["by_tag"]["prose"] == {"answered": 2, "total": 4, "recall": 0.5}
     assert out["by_tag"]["table"]["recall"] is None
+
+
+def test_main_refuses_a_lean_pull_for_a_topic_redis_does_not_hold(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    pulled = tmp_path / "pulled" / "7-jesus"
+    pulled.mkdir(parents=True)
+    view, _ = view_and_markdown(make_fixture_dossier(), 32000, lean=False)
+    (pulled / "rest-32000.json").write_text(view.model_dump_json())
+    etag = '"1-pv-32000-json-complete-5-s1-l0-pdmsl"'
+    (pulled / "manifest.json").write_text(
+        json.dumps({"files": {"rest-32000.json": {"etag": etag}}})
+    )
+    questions = tmp_path / "questions.json"
+    questions.write_text(
+        json.dumps({"topics": {"jesus": {"page_id": 7, "rev_id": 1}}, "questions": []})
+    )
+    monkeypatch.setattr(recall, "connect", lambda url: fakeredis.FakeRedis(decode_responses=True))
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "eval_recall",
+            "--offline",
+            "--questions",
+            str(questions),
+            "--pulled-dir",
+            str(pulled.parent),
+        ],
+    )
+
+    with pytest.raises(SystemExit, match="jesus: .*lean response"):
+        recall.main()

@@ -9,10 +9,15 @@ from pathlib import Path
 
 import redis
 
+from wke.api.etag import etag_is_lean
 from wke.core import keys
 from wke.core.models import Dossier
 
 DEFAULT_REDIS = "redis://localhost:6379/0"
+
+
+class LeanPullError(ValueError):
+    """A pulled folder holds a lean view, which is not the whole stored dossier."""
 
 
 def connect(url: str = DEFAULT_REDIS) -> redis.Redis:
@@ -56,6 +61,25 @@ def load_dossier(
     return Dossier.model_validate_json(raw) if raw else None
 
 
+def pulled_etag(folder: Path, name: str = "rest-32000.json") -> str | None:
+    """Read the ETag a pull recorded for one of its files.
+
+    Args:
+        folder: the pulled dossier folder.
+        name: the file the ETag belongs to.
+
+    Returns:
+        The ETag from the folder's manifest.json, or None when the manifest, the file's
+        entry or its ETag is missing (an offline_dossier.py folder, which is always whole).
+    """
+    try:
+        manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
+        etag = manifest["files"][name]["etag"]
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+    return etag if isinstance(etag, str) and etag else None
+
+
 def load_pulled(pulled_dir: str, page_id: int) -> Dossier | None:
     """Rebuild a dossier from the rest-32000.json of an earlier pull.
 
@@ -63,7 +87,11 @@ def load_pulled(pulled_dir: str, page_id: int) -> Dossier | None:
     and chunk, so it validates as a Dossier. Used for topics whose Redis
     entry has expired. A view packed without summaries carries none, so a
     section the original had summarised comes back with state "done" and no
-    summary.
+    summary. A view built with LEAN_RESPONSE on holds no Key facts chunk, so it
+    is a served view and not the whole dossier: pull.py records the response's
+    ETag in manifest.json, and an ETag with the lean letter makes this refuse the
+    folder. A pull without a recorded ETag (offline_dossier.py folders, which are
+    written with the Key facts in) is taken as whole.
 
     Args:
         pulled_dir: folder holding pull.py output (<page_id>-<slug>/).
@@ -72,17 +100,59 @@ def load_pulled(pulled_dir: str, page_id: int) -> Dossier | None:
     Returns:
         The Dossier, or None when there is no pull of that page or its
         32000-token view left chunks out.
+
+    Raises:
+        LeanPullError: when the pull was made from an API serving the lean response.
     """
     folder = next(Path(pulled_dir).glob(f"{page_id}-*"), None)
     path = folder / "rest-32000.json" if folder else None
-    if path is None or not path.exists():
+    if folder is None or path is None or not path.exists():
         return None
+    etag = pulled_etag(folder)
+    if etag is not None and etag_is_lean(etag):
+        raise LeanPullError(
+            f"{folder} was pulled from an API serving the lean response (ETag {etag}): its "
+            "rest-32000.json has no Key facts chunk, so it is a served view and not the whole "
+            "dossier. Pull again from an API with LEAN_RESPONSE=false, or read the dossier "
+            "from Redis."
+        )
     data = json.loads(path.read_text(encoding="utf-8"))
     if data.get("budget", {}).get("omitted_chunks"):
         return None
     for view_only in ("freshness", "budget", "links"):
         data.pop(view_only, None)
     return Dossier.model_validate(data)
+
+
+def find_pulled_by_title(pulled_dir: str, title: str) -> Dossier | None:
+    """Find a pulled dossier by article title, case-insensitive.
+
+    Args:
+        pulled_dir: folder holding pull.py output.
+        title: article title.
+
+    Returns:
+        The Dossier, or None when no pull of that title is usable.
+
+    Raises:
+        LeanPullError: when the pull of that title is a lean one. A lean pull of another
+        title is skipped.
+    """
+    wanted = title.lower()
+    for folder in sorted(Path(pulled_dir).glob("*-*")):
+        try:
+            dossier = load_pulled(pulled_dir, int(folder.name.split("-", 1)[0]))
+        except LeanPullError:
+            try:
+                manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                manifest = {}
+            if str(manifest.get("title", "")).lower() == wanted:
+                raise
+            continue
+        if dossier is not None and dossier.topic.title.lower() == wanted:
+            return dossier
+    return None
 
 
 def load_pulled_html(folder: Path | None, rev_id: int) -> str | None:

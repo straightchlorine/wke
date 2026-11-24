@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { expect, lightOnly, only, settleLayout, test } from "./support";
+import { expect, lightOnly, only, openAndBuild, settleLayout, test } from "./support";
 
 // Inline links in running text keep their line height, so on a phone a tap at the centre or at either end of a link must still land on it.
 // Links on adjacent lines share the gap between them, so no reach beyond the line is asserted here.
@@ -10,11 +10,13 @@ const SIZES = [
   [390, 844],
 ] as const;
 
-const PAGES = [
-  { path: "/machines", scope: "main p", min: 4, label: "For machines lede" },
-  { path: "/t/", scope: "main p", min: 1, label: "Dossiers lede" },
-  { path: "/t/Nonexistent_Title", scope: "main", min: 1, label: "Did you mean" },
-] as const;
+// A page marked `build` is a title with no stored dossier, which shows its links once Build is pressed.
+const PAGES: readonly { path: string; scope: string; min: number; label: string; build?: true }[] =
+  [
+    { path: "/machines", scope: "main p", min: 4, label: "For machines lede" },
+    { path: "/t/", scope: "main p", min: 1, label: "Dossiers lede" },
+    { path: "/t/Nonexistent_Title", scope: "main", min: 1, label: "Did you mean", build: true },
+  ];
 
 async function misses(page: Page, scope: string): Promise<string[]> {
   return page.evaluate(async (selector) => {
@@ -68,9 +70,9 @@ lightOnly(() => {
     test.describe(`${width}x${height}`, only("desktop-1440"), () => {
       test.use({ viewport: { width, height }, hasTouch: true, isMobile: true });
 
-      for (const { path, scope, min, label } of PAGES) {
+      for (const { path, scope, min, label, build } of PAGES) {
         test(`${label} links take a tap on the centre and both ends`, async ({ page, open }) => {
-          await open(path);
+          await (build ? openAndBuild(page, open, path) : open(path));
           const links = page.locator(`${scope} a[href]`);
           await expect(links.first()).toBeVisible();
           // The suggestion list can arrive after the heading shows.

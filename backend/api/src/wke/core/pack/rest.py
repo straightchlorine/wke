@@ -30,10 +30,13 @@ def place_rest(packer: Packer) -> None:
         packer: the pass to place into.
     """
     locked = locked_sections(packer)
+    # the key facts are placed by place_facts alone
     pending = [
         c
         for c in packer.dossier.chunks
-        if c.id not in packer.included and packer.owner.get(c.id, "") not in locked
+        if c.id not in packer.included
+        and c.kind != "facts"
+        and packer.owner.get(c.id, "") not in locked
     ]
     score = section_importance(packer.dossier.sections, packer.dossier.chunks)
 

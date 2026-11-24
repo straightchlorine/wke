@@ -108,6 +108,9 @@ def view_etag(
     include_summaries: bool,
     links: bool = False,
     parts: frozenset[Part] = DEFAULT_PARTS,
+    *,
+    lean: bool,
+    subsection_headings: bool,
 ) -> str:
     """Compute the ETag for a packed view, shared by the JSON and Markdown routes.
 
@@ -118,6 +121,12 @@ def view_etag(
         include_summaries: whether the view was packed with summaries.
         links: whether the Markdown carries inline links.
         parts: the selected response parts.
+        lean: whether the view was built lean; it adds "l" to the parts code, so a body served
+            before the setting existed never shares its tag. Required: a caller that forgets
+            it would hand out the tag of the wrong body.
+        subsection_headings: whether the view was built with subsection headings (they change
+            the passages of a structural build); it adds "h" after the "l", so a body served
+            without them never shares its tag. Required for the same reason.
 
     Returns:
         str: the quoted ETag value.
@@ -131,5 +140,6 @@ def view_etag(
         view.build.summaries_done,
         include_summaries,
         links,
-        parts_code(parts),
+        parts_code(parts) + ("l" if lean else "") + ("h" if subsection_headings else ""),
+        view.build.selection,
     )

@@ -7,11 +7,10 @@ metadata:
     app.kubernetes.io/component: api
 spec:
   replicas: 1
+  # Two api pods on one Redis queue overwrite each other's summary updates, so the old pod
+  # stops before the new one starts. The API is down for the swap.
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+    type: Recreate
   selector:
     matchLabels:
       app.kubernetes.io/name: wke-api

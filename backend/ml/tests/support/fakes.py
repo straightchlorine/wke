@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import threading
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
+from typing import Any
 
 import numpy as np
 
 from wke_ml.backends import Embedder, FloatArray
+from wke_ml.rating import Rating
 
 
 class BlockingEmbedder:
@@ -86,3 +88,145 @@ class FakeRequest:
             bool: the value given at construction.
         """
         return self._disconnected
+
+
+class ProcessorList(list[Any]):
+    """Stand-in for llama_cpp.LogitsProcessorList: a list that is callable."""
+
+    def __call__(self, input_ids: Any, scores: Any) -> Any:
+        """Pass the scores through every processor, as llama.cpp does.
+
+        Args:
+            input_ids: the tokens so far.
+            scores: the logits row.
+
+        Returns:
+            The scores the last processor returned.
+        """
+        for processor in self:
+            scores = processor(input_ids, scores)
+        return scores
+
+
+class FakeLlama:
+    """A model with digit tokens 10..13 (bare) and 20..23 (spaced); a test sets the logits."""
+
+    VOCAB = 40
+
+    def __init__(
+        self,
+        logits: Sequence[float] | None = None,
+        generated: str = "2",
+        spaced: bool = True,
+    ) -> None:
+        self._logits = list(logits) if logits is not None else self.row(favoured=3, boost=12.0)
+        self._generated = generated
+        self._spaced = spaced
+        self.calls: list[dict[str, Any]] = []
+
+    @classmethod
+    def row(cls, favoured: int | None, boost: float) -> list[float]:
+        """Build a logit row where one digit's two tokens stand out from a flat vocabulary.
+
+        Args:
+            favoured: the digit that gets the boost, or None for a flat row.
+            boost: the logit given to the favoured digit's bare and spaced token.
+
+        Returns:
+            list[float]: VOCAB logits.
+        """
+        row = [0.0] * cls.VOCAB
+        if favoured is not None:
+            row[10 + favoured] = boost
+            row[20 + favoured] = boost
+        return row
+
+    def tokenize(self, text: bytes, add_bos: bool = True, special: bool = False) -> list[int]:
+        """Tokenize a digit as one token, anything else as two.
+
+        Args:
+            text: the spelling, as bytes.
+            add_bos: ignored.
+            special: ignored.
+
+        Returns:
+            list[int]: the token ids.
+        """
+        spelling = text.decode()
+        if spelling.strip() in {"0", "1", "2", "3"}:
+            digit = int(spelling.strip())
+            if not spelling.startswith(" "):
+                return [10 + digit]
+            return [20 + digit] if self._spaced else [30, 31]
+        return [30, 31]
+
+    def create_chat_completion(self, **kwargs: Any) -> dict[str, Any]:
+        """Record the call; feed the logits row to the logits processor or generate text.
+
+        Args:
+            **kwargs: the call's arguments.
+
+        Returns:
+            dict[str, Any]: a chat completion reply.
+        """
+        self.calls.append(kwargs)
+        processor = kwargs.get("logits_processor")
+        if processor is not None:
+            processor([1, 2], list(self._logits))
+            content = "3"
+        else:
+            content = self._generated
+        return {"choices": [{"message": {"content": content}}]}
+
+
+def fake_loader(llama: FakeLlama) -> Callable[[str, int, int], tuple[Any, type[list[Any]]]]:
+    """Build a loader that hands out one fake model and counts its loads.
+
+    Args:
+        llama: the model to return.
+
+    Returns:
+        Callable: a loader like wke_ml.rating.load_llama; its `loads` attribute counts calls.
+    """
+
+    def loader(_path: str, _threads: int, _n_ctx: int) -> tuple[Any, type[list[Any]]]:
+        loader.loads += 1  # type: ignore[attr-defined]
+        return llama, ProcessorList
+
+    loader.loads = 0  # type: ignore[attr-defined]
+    return loader
+
+
+class FakeRater:
+    """A rater whose scores are set by a test; ids of `fallback` come back as generated."""
+
+    def __init__(
+        self,
+        scores: dict[str, float | None] | None = None,
+        fallback: frozenset[str] = frozenset(),
+        error: Exception | None = None,
+    ) -> None:
+        self.model_file = "fake-model.gguf"
+        self._scores = scores or {}
+        self._fallback = fallback
+        self._error = error
+        self.calls: list[tuple[str, str, str]] = []
+
+    def rate(
+        self, title: str, lead: str, passage: str, should_stop: Callable[[], bool] | None = None
+    ) -> Rating:
+        """Look the passage text up in the scores, or raise the error given at construction.
+
+        Args:
+            title: the article title.
+            lead: the article lead.
+            passage: the passage text, which is the key of the scores.
+            should_stop: ignored.
+
+        Returns:
+            Rating: the scripted rating.
+        """
+        self.calls.append((title, lead, passage))
+        if self._error is not None:
+            raise self._error
+        return Rating(self._scores.get(passage, 1.0), passage in self._fallback)

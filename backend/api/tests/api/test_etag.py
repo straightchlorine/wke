@@ -40,9 +40,19 @@ def test_etag_format() -> None:
     assert full == '"1200000-test-pv-8000-markdown-partial-3-s1-l1-pdms"'
 
 
+def test_selection_adds_r0_or_r1_and_none_adds_nothing() -> None:
+    plain = etag.compute_etag(**_BASE)
+
+    assert etag.compute_etag(**_BASE, selection=None) == plain
+    assert etag.compute_etag(**_BASE, selection="relevance") == plain[:-1] + '-r0"'
+    assert etag.compute_etag(**_BASE, selection="rating") == plain[:-1] + '-r1"'
+
+
 @pytest.mark.parametrize(
     "change",
     [
+        {"selection": "relevance"},
+        {"selection": "rating"},
         {"rev_id": 1200001},
         {"pipeline_version": "other-pv"},
         {"budget": 2000},

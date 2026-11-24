@@ -5,6 +5,8 @@ from __future__ import annotations
 import pytest
 
 from tests.factories.parsed import LEAD, parse_sections, texts
+from wke.core.parse.chunks import trim_fragment_tail
+from wke.core.parse.passage import Passage
 
 BEFORE = "<p>The first claim is stated here and it is complete.</p>"
 AFTER = "<p>The second claim is stated there and it is complete.</p>"
@@ -64,3 +66,56 @@ def test_a_blockquote_holding_only_its_citation_adds_nothing() -> None:
     quote = "<blockquote><div class='templatequotecite'>Dunn 2003</div></blockquote>"
     article = parse_sections(LEAD, BEFORE + quote)
     assert texts(article)[1:] == ["The first claim is stated here and it is complete."]
+
+
+def test_long_quoted_paragraph_is_not_cut_inside_the_quotation() -> None:
+    quoted = " ".join(
+        f"Quoted sentence number {n} says something rather long and plain about it all."
+        for n in range(1, 6)
+    )
+    paragraph = "A full sentence of ordinary prose. " * 22 + f'He wrote: "{quoted}" Then he left.'
+    article = parse_sections(LEAD, f"<p>{paragraph}</p>")
+    pieces = texts(article, "prose")[1:]
+    assert len(pieces) == 2
+    assert all(piece.count('"') % 2 == 0 for piece in pieces)
+
+
+def test_navigation_sentence_in_a_quoted_sentence_drops_only_its_own_piece() -> None:
+    paragraph = (
+        BEFORE[3:-4] + ' He said "Scores are given below. The final was 3 to 1 in Rome." Then more.'
+    )
+    article = parse_sections(LEAD, f"<p>{paragraph}</p>")
+    assert texts(article, "prose")[1:] == [
+        "The first claim is stated here and it is complete. "
+        'The final was 3 to 1 in Rome." Then more.'
+    ]
+
+
+def test_fragment_tail_after_a_quotation_drops_only_the_fragment() -> None:
+    paragraph = (
+        BEFORE[3:-4] + ' He said "It was late. The final was 3 to 1 in Rome" and then he left'
+    )
+    article = parse_sections(LEAD, f"<p>{paragraph}</p>")
+    assert texts(article, "prose")[1:] == [
+        'The first claim is stated here and it is complete. He said "It was late.'
+    ]
+
+
+def test_list_introduction_after_a_quotation_drops_only_the_introduction() -> None:
+    paragraph = (
+        BEFORE[3:-4]
+        + ' He said "Nothing else. The final was 3 to 1 in Rome." and listed the results:'
+    )
+    article = parse_sections(LEAD, f"<p>{paragraph}</p><ul><li>a</li></ul>")
+    assert texts(article, "prose")[1:] == [
+        'The first claim is stated here and it is complete. He said "Nothing else.'
+    ]
+
+
+def test_chunk_tail_trim_keeps_the_sentence_before_a_fragment_in_a_quotation() -> None:
+    text = (
+        'The city grew. The mayor said "Peace came in 1945. '
+        'The rebuilding lasted ten years" and later wrote:'
+    )
+    kept = trim_fragment_tail(Passage(text)).text
+    assert kept == 'The city grew. The mayor said "Peace came in 1945.'

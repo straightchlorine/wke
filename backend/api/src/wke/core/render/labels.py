@@ -20,3 +20,15 @@ def heading_prefix(section: Section) -> str:
         subsections, and so on down to six.
     """
     return "#" * min(MAX_HEADING_LEVEL, 1 + max(1, len(section.heading_path)))
+
+
+def subsection_heading_prefix(section: Section) -> str:
+    """Markdown heading marks for a subsection shown inside a section.
+
+    Args:
+        section: the section whose passages jump between subsections.
+
+    Returns:
+        str: one level below the section's own heading, at most six.
+    """
+    return "#" * min(MAX_HEADING_LEVEL, len(heading_prefix(section)) + 1)

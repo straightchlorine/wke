@@ -60,6 +60,7 @@ from wke.core.models.budgets import BUDGETS, BudgetTokens
 from wke.core.text.tokens import est_tokens
 from wke.offline.reparse import reparse, view_and_markdown
 from wke.offline.store import (
+    LeanPullError,
     connect,
     load_dossier,
     load_html,
@@ -402,7 +403,10 @@ def main() -> None:
                     client, topic["page_id"], topic["rev_id"] if args.pinned else None
                 )
                 if dossier is None and args.pulled_dir:
-                    dossier = load_pulled(args.pulled_dir, topic["page_id"])
+                    try:
+                        dossier = load_pulled(args.pulled_dir, topic["page_id"])
+                    except LeanPullError as exc:
+                        raise SystemExit(f"{key}: {exc}") from exc
                 if dossier is None:
                     raise SystemExit(f"{key}: no stored dossier in Redis")
                 if args.reparse:

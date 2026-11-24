@@ -7,6 +7,7 @@ exception type breaks that fallback.
 
 from __future__ import annotations
 
+import asyncio
 import json
 
 import httpx
@@ -151,3 +152,60 @@ async def test_analyze_sends_the_seed_page_id_only_when_given() -> None:
     assert bodies[0]["page_id"] == 7
     assert "page_id" not in bodies[1]
     assert bodies[1]["related_leads"] == []
+
+
+async def test_rate_posts_the_article_and_passages_with_the_deadline_and_returns_the_body() -> None:
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json={"scores": {"c1": 2.5}})
+
+    result = await _client(handler).rate(
+        "Ada", "A lead.", [{"id": "c1", "text": "A passage."}], deadline_ms=120_000
+    )
+
+    [request] = seen
+    assert request.url.path == "/v1/rate"
+    assert request.headers["X-Deadline-Ms"] == "120000"
+    assert json.loads(request.content) == {
+        "title": "Ada",
+        "lead": "A lead.",
+        "passages": [{"id": "c1", "text": "A passage."}],
+    }
+    assert result == {"scores": {"c1": 2.5}}
+
+
+@pytest.mark.parametrize("status", [422, 503])
+async def test_rate_error_statuses_raise_ml_unavailable(status: int) -> None:
+    with pytest.raises(MLUnavailable) as exc_info:
+        await _client(lambda _request: httpx.Response(status)).rate(
+            "Ada", "A lead.", [{"id": "c1", "text": "A passage."}], deadline_ms=1000
+        )
+
+    assert exc_info.value.reason == f"http_{status}"
+
+
+async def test_a_sibling_has_a_call_slot_of_its_own_over_the_same_http_client() -> None:
+    gate = asyncio.Event()
+    started: list[str] = []
+
+    async def handler(request: httpx.Request) -> httpx.Response:
+        started.append(request.url.path)
+        if request.url.path == "/v1/rate":
+            await gate.wait()
+        return httpx.Response(200, json={})
+
+    first = _client(handler)
+    second = first.sibling()
+    slow = asyncio.create_task(first.rate("T", "L", [{"id": "c", "text": "x"}], 60_000))
+    try:
+        await asyncio.sleep(0.05)
+
+        await asyncio.wait_for(second.summarize("some text"), timeout=2)
+
+        assert started == ["/v1/rate", "/v1/summarize"]
+        assert second is not first
+    finally:
+        gate.set()
+        await slow

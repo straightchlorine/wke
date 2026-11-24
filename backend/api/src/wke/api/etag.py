@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import re
 from typing import Literal
 
 from wke.core.render.defaults import DEFAULT_INCLUDE_SUMMARIES
@@ -24,6 +25,7 @@ def compute_etag(
     summaries: bool = DEFAULT_INCLUDE_SUMMARIES,
     links: bool = False,
     parts_code: str = "pd",
+    selection: Literal["relevance", "rating"] | None = None,
 ) -> str:
     """Build the ETag for a packed dossier response.
 
@@ -44,17 +46,42 @@ def compute_etag(
         summaries: Request's summaries query flag.
         links: Request's links query flag (Markdown with inline links).
         parts_code: the code of the selected parts, such as "pd" or "pdms".
+        selection: which relevance the view was packed with; None while selection by rating
+            is off.
 
     Returns:
         str: the quoted ETag,
-        "{rev_id}-{pv}-{budget}-{fmt}-{state}-{done}-{s0|s1}-{l0|l1}-{parts_code}".
+        "{rev_id}-{pv}-{budget}-{fmt}-{state}-{done}-{s0|s1}-{l0|l1}-{parts_code}", followed by
+        "-r0" (stored relevance) or "-r1" (rating) when selection is not None.
     """
     summaries_flag = "s1" if summaries else "s0"
     links_flag = "l1" if links else "l0"
+    selection_part = "" if selection is None else f"-r{int(selection == 'rating')}"
     return (
         f'"{rev_id}-{pipeline_version}-{budget}-{fmt}-'
-        f'{build_state}-{summaries_done}-{summaries_flag}-{links_flag}-{parts_code}"'
+        f'{build_state}-{summaries_done}-{summaries_flag}-{links_flag}-{parts_code}{selection_part}"'
     )
+
+
+# The last part of a tag from compute_etag, before any "-r0"/"-r1": "p", the part letters, then
+# "l" for the lean response and "h" for subsection headings (see view_etag).
+_PARTS_CODE = re.compile(r"p[dms]*(?P<lean>l)?h?")
+_SELECTION_SUFFIX = re.compile(r"-r[01]$")
+
+
+def etag_is_lean(etag: str) -> bool:
+    """Tell from a dossier ETag whether the body was built with LEAN_RESPONSE on.
+
+    Args:
+        etag: the ETag of a dossier response, as compute_etag wrote it.
+
+    Returns:
+        bool: True when the parts code carries the lean letter; False for a tag without it,
+        including a tag of an older format that has no parts code at all.
+    """
+    tag = _SELECTION_SUFFIX.sub("", etag.strip().removeprefix("W/").strip('"'))
+    match = _PARTS_CODE.fullmatch(tag.rsplit("-", 1)[-1])
+    return bool(match and match["lean"])
 
 
 def is_not_modified(etag: str, if_none_match: str | None) -> bool:

@@ -203,13 +203,26 @@ def write_sidecars(out_dir: Path, dossier: Dossier, links: DossierLinks, fresh: 
     (out_dir / "native").mkdir(parents=True, exist_ok=True)
     (out_dir / "native" / f"{pid}.json").write_text(dossier.model_dump_json(exclude_none=True))
     for name, budget in SIDECAR_BUDGETS:
-        view = render.build_view(dossier, budget, fresh, links, include_summaries=True)
+        view = render.build_view(
+            dossier,
+            budget,
+            fresh,
+            links,
+            include_summaries=True,
+            subsection_headings=settings.subsection_headings,
+            lean=settings.lean_response,
+        )
         (out_dir / name).mkdir(parents=True, exist_ok=True)
         if name == "after_cache":
             payload = json.dumps(view.model_dump(mode="json", by_alias=True, exclude_none=True))
             (out_dir / name / f"{pid}.json").write_text(payload)
         else:
-            markdown = render.render_markdown(view, include_summaries=True)
+            markdown = render.render_markdown(
+                view,
+                include_summaries=True,
+                subsection_headings=settings.subsection_headings,
+                lean=settings.lean_response,
+            )
             (out_dir / name / f"{pid}.md").write_text(markdown)
 
 

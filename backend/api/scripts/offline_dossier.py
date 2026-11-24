@@ -7,7 +7,9 @@ carrying over the stored relevance and summaries, so tables, key facts, section
 citations and the summary source check show up on old dossiers too.
 
 Output: one <page_id>-<slug> folder per dossier in --out-dir, in the layout
-pull.py writes, so the dossier-control checker runs on it.
+pull.py writes, so the dossier-control checker runs on it. The rest-<budget>.json
+files and the Markdown are the view as the API serves it, following LEAN_RESPONSE; only
+rest-32000.json is the full stored dossier with its Key facts (load_pulled reads it back).
 
 Usage, from backend/api:
 
@@ -35,6 +37,7 @@ from wke.core.citations import seed_pin
 from wke.core.models.budgets import BUDGETS, BudgetTokens
 from wke.offline.reparse import reparse, view_and_markdown
 from wke.offline.store import (
+    LeanPullError,
     connect,
     load_dossier,
     load_html,
@@ -87,7 +90,10 @@ def write_offline_folders(
         int(f.name.split("-", 1)[0]) for f in pulled.glob("*-*") if f.name[0].isdigit()
     )
     for page_id in sorted({*stored_page_ids(client), *pulled_ids}):
-        dossier = load_dossier(client, page_id) or load_pulled(pulled_dir, page_id)
+        try:
+            dossier = load_dossier(client, page_id) or load_pulled(pulled_dir, page_id)
+        except LeanPullError as exc:
+            raise SystemExit(str(exc)) from exc
         if dossier is None:
             continue
         earlier = next(iter(pulled.glob(f"{page_id}-*")), None)
@@ -122,7 +128,14 @@ def write_offline_folders(
             for source in earlier.glob("source-*.html"):
                 shutil.copy(source, folder / source.name)
         for budget in budgets:
-            view, markdown = view_and_markdown(dossier, budget)
+            # Only rest-32000.json is the archive that load_pulled reads back as the stored
+            # dossier, so it is packed with the Key facts chunk in (lean=False), whatever
+            # LEAN_RESPONSE says. Everything else is the served view and follows LEAN_RESPONSE.
+            view, markdown = view_and_markdown(
+                dossier, budget, lean=False if budget == 32000 else None
+            )
+            if budget == 32000:
+                _, markdown = view_and_markdown(dossier, budget)
             for name, text in (
                 (f"rest-{budget}.json", view.model_dump_json()),
                 (f"rest-{budget}.md", markdown),

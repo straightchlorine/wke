@@ -137,7 +137,7 @@ describe("TodaysIndex", () => {
     [
       "no snapshot yet",
       { trending: undefined },
-      "No index yet. The nightly job builds it at 03:00 UTC.",
+      "No index yet. The nightly job builds it at 05:00 UTC.",
     ],
   ])("shows no rows while %s", async (_name, props, text) => {
     renderIndex({ ...props, topics: [] });

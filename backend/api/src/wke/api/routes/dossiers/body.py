@@ -16,6 +16,9 @@ def dossier_body(
     summaries: bool,
     links: bool,
     parts: frozenset[Part],
+    *,
+    subsection_headings: bool = True,
+    lean: bool,
 ) -> tuple[str, str]:
     """Write the body of a dossier read in the requested format and parts.
 
@@ -25,12 +28,24 @@ def dossier_body(
         summaries: whether the view was packed with summaries.
         links: whether the Markdown carries inline links.
         parts: the selected response parts.
+        subsection_headings: whether the Markdown writes subsection headings.
+        lean: whether the view was built lean (the service's lean_response).
 
     Returns:
         tuple[str, str]: the body text and its media type.
     """
     if fmt == "markdown":
-        return render_markdown(view, summaries, links, parts), "text/markdown"
+        return (
+            render_markdown(
+                view,
+                summaries,
+                links,
+                parts,
+                subsection_headings=subsection_headings,
+                lean=lean,
+            ),
+            "text/markdown",
+        )
     return response_json(to_response(view, parts)), "application/json"
 
 

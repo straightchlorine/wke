@@ -36,11 +36,11 @@ function candidate(title: string, pageId = PAGE_ID) {
 const found = { data: { query: TITLE, results: [candidate(TITLE)] } };
 const notFound = { data: { query: TITLE, results: [] } };
 
-function renderDossier(client = newClient(), title = TITLE) {
+function renderDossier(client = newClient(), title = TITLE, allowBuild = true) {
   const wrapper = ({ children }: { children: ReactNode }) => (
     <QueryClientProvider client={client}>{children}</QueryClientProvider>
   );
-  return renderHook(({ name }: { name: string }) => useDossier(name, 8000), {
+  return renderHook(({ name }: { name: string }) => useDossier(name, 8000, allowBuild), {
     wrapper,
     initialProps: { name: title },
   });
@@ -48,6 +48,10 @@ function renderDossier(client = newClient(), title = TITLE) {
 
 function newClient() {
   return new QueryClient({ defaultOptions: { queries: { retry: false } } });
+}
+
+function renderDirect() {
+  return renderDossier(newClient(), TITLE, false);
 }
 
 describe("useDossier", () => {
@@ -220,7 +224,7 @@ describe("useDossier", () => {
       );
       const { rerender } = renderHook(
         ({ name }: { name: string }) => {
-          const result = useDossier(name, 8000);
+          const result = useDossier(name, 8000, true);
           seen.push({ title: name, job: result.job?.id ?? null });
           return result;
         },
@@ -271,6 +275,127 @@ describe("useDossier", () => {
     expect(requestDossier).toHaveBeenCalledTimes(2);
   });
 
+  describe("when building is not allowed", () => {
+    beforeEach(() => {
+      searchTopics.mockResolvedValue(found);
+      getDossier.mockResolvedValue({ error: problem(404, "not_built") });
+      requestDossier.mockResolvedValue({ data: queued });
+      getJob.mockResolvedValue({ data: { ...queued, status: "running" } });
+    });
+
+    it("stops in the unbuilt phase for a title with no stored dossier", async () => {
+      const { result } = renderDirect();
+      await waitFor(() => expect(result.current.phase).toBe("unbuilt"));
+      expect(result.current).toMatchObject({ problem: null, job: null, pageId: null });
+      expect(requestDossier).not.toHaveBeenCalled();
+    });
+
+    it("shows a stored dossier without a build request", async () => {
+      getDossier.mockResolvedValue({ data: nestDossier(flat) });
+      const { result } = renderDirect();
+      await waitFor(() => expect(result.current.dossier?.topic.title).toBe(TITLE));
+      expect(result.current.phase).toBe("built");
+      expect(requestDossier).not.toHaveBeenCalled();
+    });
+
+    it("shows an error other than not stored as it is", async () => {
+      getDossier.mockResolvedValue({ error: problem(500, "internal") });
+      const { result } = renderDirect();
+      await waitFor(() => expect(result.current.phase).toBe("error"));
+      expect(result.current.problem?.status).toBe(500);
+      expect(requestDossier).not.toHaveBeenCalled();
+    });
+
+    it("shows a failed search as an error, and retry searches again without a build", async () => {
+      searchTopics.mockResolvedValueOnce({ error: problem(502, "upstream_unavailable") });
+      searchTopics.mockResolvedValue(notFound);
+      const { result } = renderDirect();
+      await waitFor(() => expect(result.current.phase).toBe("error"));
+      expect(result.current.problem?.status).toBe(502);
+
+      act(() => result.current.retry());
+      await waitFor(() => expect(result.current.phase).toBe("unbuilt"));
+      expect(searchTopics).toHaveBeenCalledTimes(2);
+      expect(requestDossier).not.toHaveBeenCalled();
+    });
+
+    it("does not build on retry after an error on a direct load", async () => {
+      getDossier.mockResolvedValueOnce({ error: problem(500, "internal") });
+      const { result } = renderDirect();
+      await waitFor(() => expect(result.current.phase).toBe("error"));
+
+      getDossier.mockResolvedValue({ error: problem(404, "not_built") });
+      act(() => result.current.retry());
+      await waitFor(() => expect(result.current.phase).toBe("unbuilt"));
+      expect(requestDossier).not.toHaveBeenCalled();
+    });
+
+    it("requests the build when build is called and follows its job", async () => {
+      const { result } = renderDirect();
+      await waitFor(() => expect(result.current.phase).toBe("unbuilt"));
+
+      act(() => result.current.build());
+      expect(result.current.phase).toBe("resolving");
+      await waitFor(() => expect(result.current.phase).toBe("building"));
+      expect(requestDossier).toHaveBeenCalledTimes(1);
+      expect(result.current.job?.id).toBe(queued.id);
+    });
+
+    it("shows the not found answer of a requested build", async () => {
+      searchTopics.mockResolvedValue(notFound);
+      requestDossier.mockResolvedValue({ error: problem(404, "not_found") });
+      const { result } = renderDirect();
+      await waitFor(() => expect(result.current.phase).toBe("unbuilt"));
+      expect(requestDossier).not.toHaveBeenCalled();
+
+      act(() => result.current.build());
+      await waitFor(() => expect(result.current.phase).toBe("error"));
+      expect(result.current.problem?.code).toBe("not_found");
+    });
+
+    it("builds again on retry after a requested build failed", async () => {
+      requestDossier.mockResolvedValueOnce({ error: problem(500, "internal") });
+      const { result } = renderDirect();
+      await waitFor(() => expect(result.current.phase).toBe("unbuilt"));
+      act(() => result.current.build());
+      await waitFor(() => expect(result.current.phase).toBe("error"));
+
+      act(() => result.current.retry());
+      await waitFor(() => expect(result.current.phase).toBe("building"));
+      expect(requestDossier).toHaveBeenCalledTimes(2);
+    });
+
+    it("requests a job the server no longer has once more after a requested build", async () => {
+      getJob.mockResolvedValueOnce({ error: problem(404, "not_found") });
+      getJob.mockResolvedValue({ data: { ...queued, status: "done" } });
+      const { result } = renderDirect();
+      await waitFor(() => expect(result.current.phase).toBe("unbuilt"));
+      act(() => result.current.build());
+      await waitFor(() => expect(result.current.phase).toBe("built"));
+      expect(requestDossier).toHaveBeenCalledTimes(2);
+      expect(result.current.problem).toBeNull();
+    });
+
+    it("starts the next title afresh, so it is unbuilt again", async () => {
+      const client = newClient();
+      const wrapper = ({ children }: { children: ReactNode }) => (
+        <QueryClientProvider client={client}>{children}</QueryClientProvider>
+      );
+      const { result, rerender } = renderHook(
+        ({ name }: { name: string }) => useDossier(name, 8000, false),
+        { wrapper, initialProps: { name: TITLE } },
+      );
+      await waitFor(() => expect(result.current.phase).toBe("unbuilt"));
+      act(() => result.current.build());
+      await waitFor(() => expect(result.current.phase).toBe("building"));
+      expect(requestDossier).toHaveBeenCalledTimes(1);
+
+      rerender({ name: "Other" });
+      await waitFor(() => expect(result.current.phase).toBe("unbuilt"));
+      expect(requestDossier).toHaveBeenCalledTimes(1);
+    });
+  });
+
   it("never returns the previous topic's dossier under a new title", async () => {
     const other = loadDossier("dossier_214796_8000.json");
     searchTopics.mockImplementation(async ({ query }: { query: { q: string } }) => ({
@@ -291,7 +416,7 @@ describe("useDossier", () => {
     );
     const { rerender } = renderHook(
       ({ name }: { name: string }) => {
-        const result = useDossier(name, 8000);
+        const result = useDossier(name, 8000, true);
         renders.push({
           title: name,
           shown: result.dossier?.topic.title ?? null,

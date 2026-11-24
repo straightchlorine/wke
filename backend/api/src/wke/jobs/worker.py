@@ -7,13 +7,16 @@ import contextlib
 import logging
 from datetime import UTC, datetime
 
-from wke.clients.ml import MLClient
+from wke.clients.ml import DEFAULT_ANALYZE_DEADLINE_MS, MLClient
 from wke.clients.redis import RedisClient
 from wke.clients.wikimedia import WikimediaClient
 from wke.core import keys
+from wke.core.keys import DOSSIER_STRUCTURAL_TTL_SECONDS
+from wke.jobs.build.rating import RatingConfig
 from wke.jobs.build.run import run_build
 from wke.jobs.build.summarize import run_summary_item
 from wke.jobs.queue import JobQueue
+from wke.jobs.rater import Rater
 from wke.logging_setup import job_id_var, request_id_var
 
 logger = logging.getLogger(__name__)
@@ -46,6 +49,12 @@ class Worker:
         wikipedia_api_url: str,
         public_host: str = "",
         public_scheme: str = "https",
+        analyze_deadline_ms: int = DEFAULT_ANALYZE_DEADLINE_MS,
+        analyze_retries: int = 0,
+        analyze_retry_pause_ms: int = 0,
+        analyze_retry_on_timeout: bool = False,
+        structural_ttl_seconds: int = DOSSIER_STRUCTURAL_TTL_SECONDS,
+        rating: Rater | None = None,
     ) -> None:
         self._redis = redis
         self._job_queue = job_queue
@@ -57,10 +66,18 @@ class Worker:
         self._wikipedia_api_url = wikipedia_api_url
         self._public_host = public_host
         self._public_scheme = public_scheme
+        self._analyze_deadline_ms = analyze_deadline_ms
+        self._analyze_retries = analyze_retries
+        self._analyze_retry_pause_ms = analyze_retry_pause_ms
+        self._analyze_retry_on_timeout = analyze_retry_on_timeout
+        self._structural_ttl_seconds = structural_ttl_seconds
+        self._rating = rating
         self._current: str | None = None
 
     async def run_forever(self) -> None:
         """Reap stalled items once at startup, then dequeue and process forever.
+
+        With a rater, its loop runs beside this one as a child task and stops with it.
 
         Raises:
             asyncio.CancelledError: re-raised after requeuing the
@@ -68,12 +85,18 @@ class Worker:
                 shutdown) can await cancellation cleanly.
         """
         await self.reap_stalled()
+        rater_task = asyncio.create_task(self._rating.run_forever()) if self._rating else None
         try:
             while True:
                 await self._run_once()
         except asyncio.CancelledError:
             await self._requeue_current()
             raise
+        finally:
+            if rater_task is not None:
+                rater_task.cancel()
+                with contextlib.suppress(asyncio.CancelledError):
+                    await rater_task
 
     async def _run_once(self) -> None:
         item = await self._job_queue.next_item(NEXT_ITEM_TIMEOUT_SECONDS)
@@ -149,6 +172,12 @@ class Worker:
                 background=background,
                 public_host=self._public_host,
                 public_scheme=self._public_scheme,
+                analyze_deadline_ms=self._analyze_deadline_ms,
+                analyze_retries=self._analyze_retries,
+                analyze_retry_pause_ms=self._analyze_retry_pause_ms,
+                analyze_retry_on_timeout=self._analyze_retry_on_timeout,
+                structural_ttl_seconds=self._structural_ttl_seconds,
+                rating=self._rating.config if self._rating else RatingConfig(),
             )
 
     async def _heartbeat(self, value: str) -> None:

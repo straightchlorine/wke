@@ -57,7 +57,9 @@ def trim_fragment_tail(passage: Passage) -> Passage:
         Passage: the text without trailing sentences that do not end at a
         sentence end; empty when none does.
     """
-    sentences = passage.sentences()
+    # Decided on the pieces the rule had before quotations were kept whole, so a
+    # quotation kept whole is not dropped whole with the fragment after it.
+    sentences = passage.sentences(quotes=False)
     while sentences and not sentences[-1].ends_sentence():
         sentences.pop()
     return join_passages(sentences)

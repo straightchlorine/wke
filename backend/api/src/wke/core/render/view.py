@@ -13,9 +13,16 @@ from wke.core.text.wikilinks import usable_spans
 MAX_FIT_ROUNDS = 6
 
 
-def _content_tokens(view: DossierView, include_summaries: bool) -> int:
+def _content_tokens(
+    view: DossierView,
+    include_summaries: bool,
+    subsection_headings: bool = True,
+    notes: bool = True,
+) -> int:
     """Return the estimated tokens of the view's dossier part, tags included."""
-    text, _ = content_text(view, include_summaries)
+    text, _ = content_text(
+        view, include_summaries, subsection_headings=subsection_headings, notes=notes
+    )
     return est_tokens(text)
 
 
@@ -50,12 +57,19 @@ def _drop_last_passage(view: DossierView) -> DossierView:
     return view.model_copy(update={"chunks": chunks, "sections": sections, "budget": budget})
 
 
-def _trim_to_budget(view: DossierView, include_summaries: bool) -> DossierView:
+def _trim_to_budget(
+    view: DossierView,
+    include_summaries: bool,
+    subsection_headings: bool = True,
+    notes: bool = True,
+) -> DossierView:
     """Drop passages from the end of the pack order until the content fits the budget.
 
     Args:
         view: the view after the fit rounds.
         include_summaries: whether the view was packed with summaries.
+        subsection_headings: whether the render writes subsection headings.
+        notes: whether the per-section left-out lines count.
 
     Returns:
         DossierView: a view whose dossier part is within the budget.
@@ -66,7 +80,9 @@ def _trim_to_budget(view: DossierView, include_summaries: bool) -> DossierView:
     """
     if not view.chunks:
         raise ValueError("content cannot fit the budget: no passage was kept")
-    while _content_tokens(view, include_summaries) > view.budget.requested:
+    while (
+        _content_tokens(view, include_summaries, subsection_headings, notes) > view.budget.requested
+    ):
         if len(view.budget.included_chunk_ids) < 2:
             raise ValueError("content cannot fit the budget")
         view = _drop_last_passage(view)
@@ -79,6 +95,8 @@ def build_view(
     freshness: Freshness,
     links: DossierLinks,
     include_summaries: bool = DEFAULT_INCLUDE_SUMMARIES,
+    subsection_headings: bool = True,
+    lean: bool = False,
 ) -> DossierView:
     """Pack a dossier so its content fits a token budget and build its view.
 
@@ -86,7 +104,8 @@ def build_view(
     budget the overshoot is held back from the packer and the dossier is
     packed again (at most MAX_FIT_ROUNDS times). Anything still over is
     trimmed from the end of the pack order. The header, the Sources list and
-    the licence footer are not part of the measure.
+    the licence footer are not part of the measure. Lean leaves the key facts
+    and the per-section left-out lines out of the pack and the measure.
 
     Args:
         dossier: The stored, immutable dossier.
@@ -94,6 +113,9 @@ def build_view(
         freshness: Freshness computed at read time by the caller.
         links: self/pinned/markdown/wikipedia links for this response.
         include_summaries: Whether to pack section summaries.
+        subsection_headings: Whether the render writes subsection headings, which the fit measures.
+        lean: Whether the key facts and the left-out lines stay out of the
+            counted dossier part; the view then holds no key facts chunk.
 
     Returns:
         DossierView: A view whose chunks fit the budget and whose used_est_tokens
@@ -103,18 +125,25 @@ def build_view(
         ValueError: If not even the first passage fits the budget.
     """
     reserve = 0
-    view = assemble_view(dossier, budget, freshness, links, include_summaries, reserve)
+    notes = not lean
+    view = assemble_view(
+        dossier, budget, freshness, links, include_summaries, reserve, facts=not lean
+    )
     for attempt in range(MAX_FIT_ROUNDS):
-        overshoot = _content_tokens(view, include_summaries) - budget
+        overshoot = _content_tokens(view, include_summaries, subsection_headings, notes) - budget
         if overshoot <= 0:
             break
         # whole chunks drop out at once, so a small reserve changes nothing;
         # the step doubles each round until something does.
         reserve += overshoot << attempt
-        view = assemble_view(dossier, budget, freshness, links, include_summaries, reserve)
-    view = _trim_to_budget(view, include_summaries)
+        view = assemble_view(
+            dossier, budget, freshness, links, include_summaries, reserve, facts=not lean
+        )
+    view = _trim_to_budget(view, include_summaries, subsection_headings, notes)
     counted = view.budget.model_copy(
-        update={"used_est_tokens": _content_tokens(view, include_summaries)}
+        update={
+            "used_est_tokens": _content_tokens(view, include_summaries, subsection_headings, notes)
+        }
     )
     return view.model_copy(update={"budget": counted})
 
@@ -126,6 +155,7 @@ def assemble_view(
     links: DossierLinks,
     include_summaries: bool,
     reserve: int,
+    facts: bool = True,
 ) -> DossierView:
     """Pack a dossier holding back a reserve and build the view.
 
@@ -136,11 +166,15 @@ def assemble_view(
         links: self/pinned/markdown/wikipedia links for this response.
         include_summaries: Whether to pack section summaries.
         reserve: Tokens the packer holds back for content Markdown it does not charge.
+        facts: Whether the key facts are packed; without it the sections do not list them.
 
     Returns:
         DossierView: A view with chunks filtered to the packed budget.
     """
-    packed = pack(dossier, budget, include_summaries=include_summaries, reserve=reserve)
+    packed = pack(
+        dossier, budget, include_summaries=include_summaries, reserve=reserve, facts=facts
+    )
+    facts_ids = set() if facts else {c.id for c in dossier.chunks if c.kind == "facts"}
     included = set(packed.budget.included_chunk_ids)
     chunks = [
         chunk.model_copy(
@@ -156,6 +190,9 @@ def assemble_view(
 
     sections: list[Section] = []
     for section in dossier.sections:
+        if facts_ids.intersection(section.chunk_ids):
+            ids = [cid for cid in section.chunk_ids if cid not in facts_ids]
+            section = section.model_copy(update={"chunk_ids": ids})
         if section.summary is not None and section.id not in packed.included_summary_section_ids:
             sections.append(section.model_copy(update={"summary": None}))
         elif section.summary is not None:

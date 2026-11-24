@@ -24,6 +24,8 @@ dev = [
     "httpx==0.28.1",
     "ruff==0.17.4",
 ]
+# Not installed by a plain `uv sync`: the rating model's runtime, added to the image with --group rating.
+rating = ["llama-cpp-python==0.3.36"]
 
 [tool.uv.sources]
 torch = { index = "pytorch-cpu" }

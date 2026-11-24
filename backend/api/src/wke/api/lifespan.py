@@ -21,7 +21,9 @@ from wke.clients.redis import RedisClient, RedisFactory
 from wke.clients.user_agent import build_user_agent
 from wke.clients.wikimedia import WikimediaClient
 from wke.clients.wikimedia_transport import WIKIMEDIA_TIMEOUT_SECONDS
+from wke.jobs.build.rating import RatingConfig
 from wke.jobs.queue import JobQueue
+from wke.jobs.rater import Rater
 from wke.jobs.worker import Worker
 from wke.logging_setup import configure_logging
 from wke.services.dossiers import DossierService
@@ -50,7 +52,15 @@ def _build_service(
     )
     job_queue = JobQueue(redis, cfg.pipeline_version, cfg.queue_cap, cfg.background_queue_cap)
     service = DossierService(
-        redis, wikimedia, job_queue, cfg.pipeline_version, cfg.public_host, cfg.public_scheme
+        redis,
+        wikimedia,
+        job_queue,
+        cfg.pipeline_version,
+        cfg.public_host,
+        cfg.public_scheme,
+        cfg.subsection_headings,
+        cfg.lean_response,
+        rating=RatingConfig.from_settings(cfg),
     )
     return wikimedia, job_queue, service
 
@@ -108,7 +118,29 @@ def _build_worker(
         str(cfg.wikipedia_api_url),
         public_host=cfg.public_host,
         public_scheme=cfg.public_scheme,
+        analyze_deadline_ms=cfg.analyze_deadline_ms,
+        analyze_retries=cfg.analyze_retries,
+        analyze_retry_pause_ms=cfg.analyze_retry_pause_ms,
+        analyze_retry_on_timeout=cfg.analyze_retry_on_timeout,
+        structural_ttl_seconds=cfg.dossier_structural_ttl_seconds,
+        rating=_build_rater(cfg, redis, ml),
     )
+
+
+def _build_rater(cfg: Settings, redis: RedisClient, ml: MLClient) -> Rater | None:
+    """Build the rating loop, or None while SELECTION_RATING is off.
+
+    Args:
+        cfg: the settings.
+        redis: the Redis client.
+        ml: the wke-ml client of the worker; the rater gets a sibling of it, with its own call slot.
+
+    Returns:
+        Rater | None: the loop the worker runs beside its own.
+    """
+    if not cfg.selection_rating:
+        return None
+    return Rater(redis, ml.sibling(), RatingConfig.from_settings(cfg), cfg.pipeline_version)
 
 
 async def _stop_tasks(*tasks: asyncio.Task[None] | None) -> None:

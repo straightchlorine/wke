@@ -28,7 +28,7 @@ def _dossier(links: list[LinkSpan]) -> Dossier:
 
 def _markdown(dossier: Dossier, budget: BudgetTokens = 32000, links: bool = True) -> str:
     view = render.build_view(dossier, budget, make_freshness(dossier), make_links(dossier), False)
-    return render.render_markdown(view, False, links)
+    return render.render_markdown(view, False, links, lean=False)
 
 
 def test_each_link_text_is_the_verbatim_substring_of_the_passage() -> None:
@@ -97,7 +97,7 @@ def test_links_are_off_by_default_and_not_charged_to_the_budget() -> None:
             dossier, budget, make_freshness(dossier), make_links(dossier), False
         )
         plain, _ = content_text(view, False)
-        linked = render.render_markdown(view, False, True)
+        linked = render.render_markdown(view, False, True, lean=False)
         assert not LINK.search(plain)
         assert est_tokens(plain) <= budget
         assert view.budget.used_est_tokens == est_tokens(plain)

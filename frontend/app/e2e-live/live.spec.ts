@@ -1,6 +1,6 @@
 import type { APIResponse, Locator, Page } from "@playwright/test";
 import { nearestHeading, stickyBottom, waitForBudget } from "../e2e/readingSection";
-import { expect, only, settle, settleScroll, test } from "../e2e/support";
+import { expect, only, openAndBuild, settle, settleScroll, test } from "../e2e/support";
 
 // Live checks against the real API through the preview proxy. Nothing is
 // mocked, so every assertion has to hold for whatever the snapshot holds.
@@ -350,7 +350,7 @@ test.describe("navigation and layout", () => {
     page,
     open,
   }) => {
-    await open("/t/No_Such_Article_Xyz", {
+    await openAndBuild(page, open, "/t/No_Such_Article_Xyz", {
       ready: page.getByRole("heading", { level: 1, name: "No article by that title" }),
     });
     const h1 = await page

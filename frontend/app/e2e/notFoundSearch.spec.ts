@@ -1,5 +1,5 @@
 import type { Locator, Page } from "@playwright/test";
-import { test, expect, lightOnly, only } from "./support";
+import { test, expect, lightOnly, only, openAndBuild } from "./support";
 
 function notBuiltHeading(page: Page): Locator {
   return page.getByRole("heading", { level: 1, name: "No article by that title" });
@@ -9,7 +9,7 @@ test(
   "the not-built page: an unhighlighted Enter opens the typed title",
   only("desktop-1440"),
   async ({ page, open }) => {
-    await open("/t/Nonexistent_Title");
+    await openAndBuild(page, open, "/t/Nonexistent_Title", { ready: notBuiltHeading(page) });
     const box = page.getByRole("combobox", { name: "Search for a topic" });
     await box.fill("Kamchatka");
     await expect(page.getByRole("option").first()).toBeVisible();
@@ -49,7 +49,7 @@ test(
 
 test.describe("Did you mean rows", () => {
   test("say Enter builds it on a keyboard device", only("desktop-1440"), async ({ page, open }) => {
-    await open("/t/Nonexistent_Title", { ready: notBuiltHeading(page) });
+    await openAndBuild(page, open, "/t/Nonexistent_Title", { ready: notBuiltHeading(page) });
     const rows = page.locator("main [data-record-row]");
     await expect(rows.first()).toBeVisible();
     const texts = await rows.allTextContents();
@@ -65,7 +65,7 @@ test.describe("Did you mean rows", () => {
     test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
 
     test("say what a tap does", only("mobile-390"), async ({ page, open }) => {
-      await open("/t/Nonexistent_Title", { ready: notBuiltHeading(page) });
+      await openAndBuild(page, open, "/t/Nonexistent_Title", { ready: notBuiltHeading(page) });
       const texts = await page.locator("main [data-record-row]").allTextContents();
       expect(texts.some((text) => text.includes("tap builds it"))).toBe(true);
       expect(texts.some((text) => text.includes("click builds it"))).toBe(false);
@@ -76,7 +76,7 @@ test.describe("Did you mean rows", () => {
 lightOnly(() => {
   test.describe("not-found search", () => {
     test("the not-built page mounts the Home search under Did you mean", async ({ page, open }) => {
-      await open("/t/Nonexistent_Title", {
+      await openAndBuild(page, open, "/t/Nonexistent_Title", {
         ready: notBuiltHeading(page),
       });
       await expect(page).toHaveTitle(/^No article by that title/);

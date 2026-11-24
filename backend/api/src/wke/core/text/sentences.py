@@ -35,6 +35,9 @@ _NON_TERMINAL_WORDS = frozenset(
     )
 )
 
+_CURLY_OPEN = "\u201c"
+_CURLY_CLOSE = "\u201d"
+
 _INITIALS = re.compile(r"^(?:[A-Z]\.)*[A-Z]$")
 
 
@@ -79,14 +82,40 @@ def _is_real_end(text: str, match: re.Match[str]) -> bool:
     return not (_INITIALS.match(word) or word in _NON_TERMINAL_WORDS)
 
 
-def split_sentences(text: str) -> list[str]:
+def _quotes_balance(text: str) -> bool:
+    """Tell whether every double quotation in text is opened and closed.
+
+    Args:
+        text: single-line text.
+
+    Returns:
+        bool: True when the straight quotes are even in number and the curly
+        ones close as many as they open, never closing before opening.
+    """
+    depth = 0
+    for char in text:
+        depth += (char == _CURLY_OPEN) - (char == _CURLY_CLOSE)
+        if depth < 0:
+            return False
+    return depth == 0 and text.count('"') % 2 == 0
+
+
+def split_sentences(text: str, quotes: bool = True) -> list[str]:
     """Split text into sentences at real sentence ends only.
 
     A missed split only makes a piece longer, while a wrong split cuts a
-    sentence, so the rule errs on the side of not splitting.
+    sentence, so the rule errs on the side of not splitting. A full stop
+    inside an open double quotation (straight or curly) is not a split
+    point, so a quotation stays in one piece, unless the double quotes of
+    the text do not balance, which is split by the rule without quotations.
+    Single quotes and apostrophes are never counted. A longer piece is not
+    free: a caller that drops whole sentences drops all of a quotation with
+    it, so such a caller splits a piece it is about to drop with
+    quotes=False and decides on those pieces.
 
     Args:
         text: single-line text with collapsed whitespace.
+        quotes: False to split as before quotations were kept whole.
 
     Returns:
         list[str]: the sentences in order, whose space-joined form equals
@@ -94,8 +123,15 @@ def split_sentences(text: str) -> list[str]:
     """
     sentences: list[str] = []
     start = 0
+    track_quotes = quotes and _quotes_balance(text)
+    straight = curly = counted = 0
     for match in SENTENCE_END.finditer(text):
-        if _is_real_end(text, match):
+        if track_quotes:
+            seen = text[counted : match.end()]
+            straight += seen.count('"')
+            curly += seen.count(_CURLY_OPEN) - seen.count(_CURLY_CLOSE)
+            counted = match.end()
+        if _is_real_end(text, match) and not (straight % 2 or curly > 0):
             sentences.append(text[start : match.start() + len(match.group().rstrip())])
             start = match.end()
     tail = text[start:]
