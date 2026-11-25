@@ -4,10 +4,10 @@ version = "0.1.0"
 description = "Wikipedia Knowledge Explorer API: REST, MCP, job worker, watcher and trending entrypoints."
 requires-python = ">=3.12,<3.15"
 dependencies = [
-    "fastapi==0.162.2",
+    "fastapi==0.163.1",
     "uvicorn[standard]>=0.54,<1",
     "pydantic[email]>=2.14.2,<3",
-    "pydantic-settings==2.16.2",
+    "pydantic-settings==2.16.3",
     "httpx>=0.28.1,<1",
     "redis[hiredis]>=8.1,<9",
     "slowapi>=0.1.10,<1",
@@ -21,11 +21,11 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest==9.2.0",
-    "pytest-asyncio==1.4.1.post1",
+    "pytest-asyncio==1.5.0",
     "pytest-cov>=7.1,<8",
     "fakeredis[lua]>=2.40,<3",
     "hypothesis>=6.170,<7",
-    "ruff==0.17.4",
+    "ruff==0.17.5",
 ]
 
 [build-system]
