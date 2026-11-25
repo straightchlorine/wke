@@ -6,16 +6,18 @@ further and re-runs the current parser over the Parsoid HTML cached in Redis,
 carrying over the stored relevance and summaries, so tables, key facts, section
 citations and the summary source check show up on old dossiers too.
 
-Output: one <page_id>-<slug> folder per dossier in --out-dir, in the layout
-pull.py writes, so the dossier-control checker runs on it.
+Output: one <page_id>-<slug> folder per dossier in --out-dir, holding
+manifest.json, rest-<budget>.json and .md and the source HTML: the same layout
+as a dossier pulled through the API, so the same checks run on both. The views
+follow LEAN_RESPONSE, except rest-32000.json, which keeps the Key facts.
 
 Usage, from backend/api:
 
     uv run python scripts/offline_dossier.py --out-dir ../../.run/offline
     uv run python scripts/offline_dossier.py --out-dir /tmp/o --reparse
 
---pulled-dir is where the earlier pull.py output is read from, and defaults
-to ../../.run/dossiers.
+--pulled-dir is a folder of dossiers pulled earlier through the API, in that
+layout; it defaults to ../../.run/dossiers.
 
 The loaders it shares with the other scripts live in `wke.offline`.
 """
@@ -35,6 +37,7 @@ from wke.core.citations import seed_pin
 from wke.core.models.budgets import BUDGETS, BudgetTokens
 from wke.offline.reparse import reparse, view_and_markdown
 from wke.offline.store import (
+    LeanPullError,
     connect,
     load_dossier,
     load_html,
@@ -63,18 +66,18 @@ def write_offline_folders(
     budgets: tuple[BudgetTokens, ...] = BUDGETS,
     do_reparse: bool = False,
 ) -> list[str]:
-    """Write rest-<budget>.json and .md per stored dossier in the pull.py layout.
+    """Write rest-<budget>.json and .md per stored dossier, one folder each.
 
     The manifest and the source HTML of an earlier pull of the same dossier
-    are copied next to the files, so the dossier-control checker can run on
-    the folder. A dossier without an earlier pull gets a minimal manifest and
-    the source HTML from the Redis cache when it is warm. A pulled dossier
+    are copied next to the files, so the folder matches a pulled one. A
+    dossier without an earlier pull gets a minimal manifest and the source
+    HTML from the Redis cache when it is warm. A pulled dossier
     that Redis no longer holds is rebuilt from its rest-32000.json.
 
     Args:
         client: Redis client.
         out_dir: folder that receives one <page_id>-<slug> folder per dossier.
-        pulled_dir: folder holding the pull.py output to take manifests from.
+        pulled_dir: folder of earlier pulls to take manifests and source HTML from.
         budgets: token budgets to pack and render.
         do_reparse: re-run the current parser over the cached HTML first.
 
@@ -87,7 +90,10 @@ def write_offline_folders(
         int(f.name.split("-", 1)[0]) for f in pulled.glob("*-*") if f.name[0].isdigit()
     )
     for page_id in sorted({*stored_page_ids(client), *pulled_ids}):
-        dossier = load_dossier(client, page_id) or load_pulled(pulled_dir, page_id)
+        try:
+            dossier = load_dossier(client, page_id) or load_pulled(pulled_dir, page_id)
+        except LeanPullError as exc:
+            raise SystemExit(str(exc)) from exc
         if dossier is None:
             continue
         earlier = next(iter(pulled.glob(f"{page_id}-*")), None)
@@ -122,7 +128,13 @@ def write_offline_folders(
             for source in earlier.glob("source-*.html"):
                 shutil.copy(source, folder / source.name)
         for budget in budgets:
-            view, markdown = view_and_markdown(dossier, budget)
+            # load_pulled reads rest-32000.json back as the stored dossier, so it keeps the
+            # Key facts whatever LEAN_RESPONSE says.
+            view, markdown = view_and_markdown(
+                dossier, budget, lean=False if budget == 32000 else None
+            )
+            if budget == 32000:
+                _, markdown = view_and_markdown(dossier, budget)
             for name, text in (
                 (f"rest-{budget}.json", view.model_dump_json()),
                 (f"rest-{budget}.md", markdown),
@@ -141,7 +153,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=(__doc__ or "").splitlines()[0])
     parser.add_argument("--out-dir", required=True, help="write per-dossier folders here")
     parser.add_argument(
-        "--pulled-dir", default="../../.run/dossiers", help="earlier pull.py output"
+        "--pulled-dir", default="../../.run/dossiers", help="folder of earlier pulls"
     )
     parser.add_argument("--reparse", action="store_true", help="re-run the current parser")
     args = parser.parse_args()

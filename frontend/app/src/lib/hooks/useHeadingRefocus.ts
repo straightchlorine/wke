@@ -3,8 +3,8 @@ import { useEffect, useRef } from "react";
 /**
  * Puts focus back on the page's h1 when `phaseKey` changes, because each phase renders its own h1
  * and React unmounts the focused one, which drops focus to the body.
- * It acts only after client-side navigation, where the root layout moved focus to the h1. On a
- * direct load nothing was focused, and focusing later would draw a focus ring nobody asked for.
+ * `arrivedViaNavigation` must be true for it to act; on a direct load nothing was focused, so
+ * focusing later would draw a focus ring nobody asked for.
  */
 export function useHeadingRefocus(phaseKey: string, arrivedViaNavigation: boolean): void {
   const previousKey = useRef(phaseKey);

@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 from tests.support.constants import PIPELINE_VERSION
 from wke.clients.ml import MLClient
 from wke.clients.redis import RedisClient
 from wke.clients.wikimedia import WikimediaClient
 from wke.core import keys
 from wke.core.models import Dossier, Job
+from wke.jobs.build.rating import RatingConfig
 from wke.jobs.build.run import run_build
 from wke.jobs.build.summarize import run_summary_item
 from wke.jobs.queue import JobQueue
@@ -37,6 +40,8 @@ async def build_only(
     public_host: str = "",
     public_scheme: str = "https",
     background: bool = False,
+    rating: RatingConfig = RatingConfig(),
+    **analyze: Any,
 ) -> JobQueue:
     """Store the job and run its build, leaving the summary items queued.
 
@@ -49,6 +54,9 @@ async def build_only(
         public_host: the PUBLIC_HOST setting.
         public_scheme: the PUBLIC_SCHEME setting.
         background: True when the job came off the background queue.
+        rating: the SELECTION_RATING settings; disabled by default.
+        **analyze: the analyze_* keyword arguments of run_build (deadline and retries of the
+            build's wke-ml analyze call).
 
     Returns:
         JobQueue: the queue the job was stored in.
@@ -67,6 +75,8 @@ async def build_only(
         background=background,
         public_host=public_host,
         public_scheme=public_scheme,
+        rating=rating,
+        **analyze,
     )
     return queue
 

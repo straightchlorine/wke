@@ -20,3 +20,6 @@ data:
   QUEUE_CAP: "20"
   BACKGROUND_QUEUE_CAP: "50"
   WM_BUDGET_PER_MINUTE: "150"
+  # One analyze attempt gets 15 s and is not retried, so it ends within the 20 s the MCP
+  # get_dossier tool waits for a partial dossier.
+  ANALYZE_DEADLINE_MS: "15000"

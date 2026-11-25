@@ -198,9 +198,8 @@ class RedisClient:
         Raises:
             redis.exceptions.RedisError: on any Redis-side failure.
         """
-        # int annotation on the blmove is not enforced, lib:
-        # params = [first_list, second_list, src, dest, timeout]
-        # so float timeout reaches the server
+        # redis-py annotates the timeout as int but sends it to the server as given,
+        # and the server accepts a float, so sub-second timeouts work.
         item = await self._redis.blmove(
             first_list,
             second_list,

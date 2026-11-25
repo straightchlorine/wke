@@ -14,6 +14,7 @@ from pydantic import HttpUrl, TypeAdapter
 
 from wke.clients.redis import RedisClient
 from wke.clients.wikimedia import WikimediaClient
+from wke.core import keys
 from wke.core.citations import citation_url
 from wke.core.models import (
     BuildInfo,
@@ -156,8 +157,12 @@ async def persist_degraded(
     pipeline_version: str,
     started: float,
     result: HttpUrl | None,
+    structural_ttl_seconds: int = keys.DOSSIER_STRUCTURAL_TTL_SECONDS,
 ) -> None:
-    """Persist the structural-only dossier when wke-ml is unavailable.
+    """Persist the dossier without clusters or summaries when wke-ml is unavailable.
+
+    This structural dossier holds only what parsing the article gives: sections, passages
+    and citations.
 
     Args:
         job: the running job.
@@ -167,6 +172,7 @@ async def persist_degraded(
         pipeline_version: PIPELINE_VERSION setting.
         started: time.monotonic() at the start of the build.
         result: the Job.result_url value, or None.
+        structural_ttl_seconds: lifetime of the stored structural dossier.
     """
     assert job.rev_id is not None
     bump_done(job)  # embed attempt over (unavailable)
@@ -190,6 +196,7 @@ async def persist_degraded(
         parsed=fetched.parsed,
         stage_seconds={"build": build_seconds},
         result_url=result,
+        ttl_seconds=structural_ttl_seconds,
     )
     DOSSIER_BUILD_SECONDS.labels(outcome="degraded", analysis="structural").observe(build_seconds)
 

@@ -53,10 +53,21 @@ DOSSIER_BUILD_SECONDS = Histogram(
     "through the last summary for outcome complete.",
     ["outcome", "analysis"],
 )
+ANALYZE_ATTEMPTS_TOTAL = Counter(
+    "wke_analyze_attempts_total",
+    "wke-ml analyze calls of dossier builds, one per attempt, by outcome (ok or reason).",
+    ["outcome"],
+)
 SUMMARY_STATE_TOTAL = Counter(
     "wke_summary_state_total",
     "Section summaries by terminal state.",
     ["state"],
+)
+RATING_STAGE_TOTAL = Counter(
+    "wke_rating_stage_total",
+    "Rating stage attempts by outcome: done, deadline, ml_unavailable, mismatch, "
+    "dossier_gone, superseded, claimed.",
+    ["outcome"],
 )
 WATCHER_CONNECTED = Gauge(
     "wke_watcher_connected",

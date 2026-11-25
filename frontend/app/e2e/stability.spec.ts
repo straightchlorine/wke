@@ -2,7 +2,16 @@ import type { Page } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { hitsControl } from "./hitAreas";
 import { nearestHeading, waitForBudget } from "./readingSection";
-import { eachTheme, expect, lightOnly, only, settleLayout, settleScroll, test } from "./support";
+import {
+  eachTheme,
+  expect,
+  lightOnly,
+  only,
+  openAndBuild,
+  settleLayout,
+  settleScroll,
+  test,
+} from "./support";
 
 /** Waits for every finite animation and transition on the page, so a colour check does not read a half-faded one. */
 async function settleAnimations(page: Page) {
@@ -135,7 +144,9 @@ test.describe("not-built panel contrast", () => {
             }),
           });
         });
-        await open("/t/No_Such_Article_Xyz", { ready: page.getByText("Request ID:") });
+        await openAndBuild(page, open, "/t/No_Such_Article_Xyz", {
+          ready: page.getByText("Request ID:"),
+        });
         await settleAnimations(page);
         const results = await new AxeBuilder({ page }).withRules(["color-contrast"]).analyze();
         expect(results.violations.flatMap((v) => v.nodes.map((n) => n.html.slice(0, 120)))).toEqual(

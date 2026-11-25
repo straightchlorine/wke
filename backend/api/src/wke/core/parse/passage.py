@@ -90,15 +90,20 @@ class Passage:
         match = _FIRST_WORD.match(self.text)
         return bool(match and match.group().islower() and match.group() in FUNCTION_WORDS)
 
-    def sentences(self) -> list[Passage]:
-        """Split the passage at real sentence ends.
+    def sentences(self, quotes: bool = True) -> list[Passage]:
+        """Split the passage into sentences, ignoring full stops that are not sentence ends.
+
+        Args:
+            quotes: True keeps a double-quoted quotation inside one sentence; False splits
+                at every sentence end, even inside a quotation.
 
         Returns:
-            list[Passage]: the sentences in order, each with its own spans.
+            list[Passage]: the sentences in order, each keeping the links and formulas
+            that fall inside it.
         """
         parts: list[Passage] = []
         cursor = 0
-        for sentence in split_sentences(self.text):
+        for sentence in split_sentences(self.text, quotes):
             start = self.text.index(sentence, cursor)
             cursor = start + len(sentence)
             parts.append(self.slice(start, cursor))

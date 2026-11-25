@@ -113,7 +113,7 @@ async def test_withheld_summary_is_named_in_the_markdown(
     withheld = next(s for s in dossier.sections if s.summary_state == "withheld")
     assert withheld.withheld_reason
     assert f"Summary withheld: {withheld.withheld_reason}." in render.render_markdown(
-        view, include_summaries=True
+        view, include_summaries=True, lean=False
     )
 
 
@@ -152,7 +152,9 @@ async def test_served_dossier_passes_the_validator_at_every_budget(
     for budget in (2000, 8000, 32000):
         view = render.build_view(dossier, budget, freshness, links, include_summaries=True)
         report = validate_view(
-            view, render.render_markdown(view, include_summaries=True), lambda _rev: headings
+            view,
+            render.render_markdown(view, include_summaries=True, lean=False),
+            lambda _rev: headings,
         )
         assert report.ok, report.problems[:5]
         assert report.counts["anchors_checked"] > 0

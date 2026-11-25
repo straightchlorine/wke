@@ -204,6 +204,7 @@ async def _store_structural(
     title: str,
     pipeline_version: str,
     now: datetime,
+    ttl_seconds: int,
 ) -> None:
     """Write the structural dossier and its indexes to Redis.
 
@@ -215,12 +216,13 @@ async def _store_structural(
         title: the article title.
         pipeline_version: PIPELINE_VERSION setting.
         now: build timestamp.
+        ttl_seconds: lifetime of the stored dossier.
     """
     dossier_key = keys.dossier(page_id, rev_id, pipeline_version)
     await redis.set(
         dossier_key,
         dossier_payload(dossier),
-        ex=keys.DOSSIER_STRUCTURAL_TTL_SECONDS,
+        ex=ttl_seconds,
     )
     await redis.set(keys.ptr(page_id), ptr_json(rev_id, pipeline_version, now))
     await redis.sadd(keys.TRACKED, str(page_id))
@@ -293,6 +295,7 @@ async def persist_structural(
     parsed: ParsedArticle,
     stage_seconds: dict[str, float],
     result_url: HttpUrl | None = None,
+    ttl_seconds: int = keys.DOSSIER_STRUCTURAL_TTL_SECONDS,
 ) -> None:
     """Persist a complete structural dossier when wke-ml is unavailable.
 
@@ -313,6 +316,7 @@ async def persist_structural(
         parsed: the parsed article.
         stage_seconds: timings by stage name.
         result_url: Job.result_url, or None.
+        ttl_seconds: lifetime of the stored dossier.
     """
     top_level, chunk_ids_by_section, dropped_lists, dropped_tables = _merge_nested_sections(parsed)
     chunks, kinds = _rank_chunks_by_order(parsed)
@@ -343,6 +347,7 @@ async def persist_structural(
         title=title,
         pipeline_version=pipeline_version,
         now=now,
+        ttl_seconds=ttl_seconds,
     )
     await _finish_structural_job(
         redis,

@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { test, expect, lightOnly, only } from "./support";
+import { buildButton, test, expect, lightOnly, only } from "./support";
 import { freeze } from "./buildFixture";
 
 interface Problems {
@@ -32,15 +32,26 @@ const VISITS: {
   path: string;
   ready: string | RegExp;
   prepare?: (page: Page) => Promise<void>;
+  /** Presses the Build button once the page has loaded. */
+  build?: true;
+  /** Treats the page as loaded when its Build button shows, not its heading. */
+  unbuilt?: true;
 }[] = [
   { name: "Home", path: "/", ready: /.+/ },
   { name: "Dossiers", path: "/t", ready: "Dossiers" },
   { name: "a dossier", path: "/t/Jesus", ready: "Jesus" },
   { name: "For machines", path: "/machines", ready: "For machines" },
   {
+    name: "the unbuilt page",
+    path: "/t/Nonexistent_Title",
+    ready: /.+/,
+    unbuilt: true,
+  },
+  {
     name: "the not-built page",
     path: "/t/Nonexistent_Title",
     ready: /.+/,
+    build: true,
   },
   { name: "the 404", path: "/no-such-page", ready: /.+/ },
   {
@@ -48,6 +59,7 @@ const VISITS: {
     path: "/t/Jesus",
     ready: /.+/,
     prepare: (page) => freeze(page),
+    build: true,
   },
 ];
 
@@ -62,8 +74,14 @@ lightOnly(() => {
         const problems = watch(page);
         await visit.prepare?.(page);
         await open(visit.path, {
-          ready: page.getByRole("heading", { level: 1 }).filter({ hasText: visit.ready }).first(),
+          ready: visit.unbuilt
+            ? buildButton(page)
+            : page.getByRole("heading", { level: 1 }).filter({ hasText: visit.ready }).first(),
         });
+        if (visit.build) {
+          await buildButton(page).click();
+          await expect(buildButton(page)).toBeHidden();
+        }
         await page.clock.runFor(800);
         expect(problems.page).toEqual([]);
         expect(problems.console).toEqual([]);

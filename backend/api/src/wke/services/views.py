@@ -15,6 +15,7 @@ from wke.core.errors import ApiException
 from wke.core.models import Dossier, DossierLinks, DossierView
 from wke.core.models.budgets import BudgetTokens
 from wke.core.render.parts import ALL_PARTS_ORDER, DEFAULT_PARTS, Part
+from wke.jobs.build.rating import apply_rating, parse_document, rating_key
 from wke.metrics import CACHE_REQUESTS_TOTAL
 from wke.services import freshness as freshness_mod
 from wke.services.base import ServiceBase
@@ -146,10 +147,62 @@ class ViewsMixin(ServiceBase):
             )
 
         view_links = self._dossier_links(dossier, page_id, resolved_rev_id, budget, fmt, parts)
-        view = render.build_view(dossier, budget, fresh, view_links, include_summaries=summaries)
+        selection: Literal["relevance", "rating"] | None = None
+        if self._rating.enabled:
+            dossier, selection = await self._select_by_rating(dossier, page_id, resolved_rev_id)
+        lean = self._lean_response
+        view = render.build_view(
+            dossier,
+            budget,
+            fresh,
+            view_links,
+            include_summaries=summaries,
+            subsection_headings=self.subsection_headings,
+            lean=lean,
+        )
+        if selection is not None:
+            view = view.model_copy(
+                update={"build": view.build.model_copy(update={"selection": selection})}
+            )
         if fmt == "markdown":
-            return render.render_markdown(view, summaries, links, parts)
+            return render.render_markdown(
+                view,
+                summaries,
+                links,
+                parts,
+                subsection_headings=self.subsection_headings,
+                lean=lean,
+            )
         return view
+
+    async def _select_by_rating(
+        self, dossier: Dossier, page_id: int, rev_id: int
+    ) -> tuple[Dossier, Literal["relevance", "rating"]]:
+        """Re-rank the dossier by its stored rating scores when the rating is complete and usable.
+
+        Args:
+            dossier: the stored dossier.
+            page_id: Wikipedia page id.
+            rev_id: pinned revision id.
+
+        Returns:
+            tuple: the dossier to pack and how its passages were chosen: the re-ranked copy
+            and "rating", or the stored dossier and "relevance" when the rating is absent,
+            unfinished, from another prompt or model, or covers too few passages.
+        """
+        document = parse_document(
+            await self._redis.get(rating_key(page_id, rev_id, self._pipeline_version))
+        )
+        if document is not None and document.done:
+            rated = apply_rating(
+                dossier,
+                document.scores,
+                self._rating.summary_sections,
+                self._rating.min_coverage,
+            )
+            if rated is not None:
+                return rated, "rating"
+        return dossier, "relevance"
 
     def _spawn_background(self, coro: Coroutine[Any, Any, None]) -> None:
         """Fire a background task and keep a reference until it finishes.

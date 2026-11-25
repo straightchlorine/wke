@@ -86,5 +86,5 @@ def test_markdown_of_a_built_dossier_shows_the_formula_as_code(links: bool) -> N
     chunk = prose("l0", [], 0, text, 1.0, formulas=[FormulaSpan(start=12, end=16)])
     dossier = dossier_of([section("s0", [], ["l0"])], [chunk])
     view = render.build_view(dossier, 32000, make_freshness(dossier), make_links(dossier), False)
-    assert "> The cost is `O(n)` overall." in render.render_markdown(view, False, links)
+    assert "> The cost is `O(n)` overall." in render.render_markdown(view, False, links, lean=False)
     assert view.chunks[0].text == text

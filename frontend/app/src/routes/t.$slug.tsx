@@ -13,6 +13,7 @@ import { DossierHead } from "../components/DossierHead";
 import { DossierOpening } from "../components/DossierOpening";
 import { DossierProblem } from "../components/DossierProblem";
 import { DossierToolbar } from "../components/DossierToolbar";
+import { DossierUnbuilt } from "../components/DossierUnbuilt";
 import { Hud } from "../components/Hud";
 import { MarginNoteRail } from "../components/MarginNote";
 import { RelatedPlate } from "../components/RelatedPlate";
@@ -34,6 +35,7 @@ import { slugPath, unslugify } from "../lib/slug";
 import { freshnessView, seedPin } from "../lib/sourceRecord";
 import { useBudget } from "../lib/hooks/useBudget";
 import { useBudgetScroll } from "../lib/hooks/useBudgetScroll";
+import { useBuildOnArrival } from "../lib/hooks/useBuildOnArrival";
 import { useCurrentSection } from "../lib/hooks/useCurrentSection";
 import { useDossier } from "../lib/hooks/useDossier";
 import { useDossierExports } from "../lib/hooks/useDossierExports";
@@ -76,6 +78,20 @@ function Dossier() {
   const [budget, setBudgetState] = useBudget(search.budget, writeBudgetParam);
   const title = useMemo(() => unslugify(slug), [slug]);
 
+  // Only a navigation inside the app starts a build by itself, so a crawler never does.
+  const mayBuild = useBuildOnArrival(slug);
+  const [arrivedViaNavigation] = useState(() => !rootNavState.isInitialLoad);
+  // This component stays mounted when the slug changes, so remember the first slug and count
+  // any later one as a navigation.
+  const [firstSlug] = useState(slug);
+  const [leftFirstSlug, setLeftFirstSlug] = useState(false);
+  if (slug !== firstSlug && !leftFirstSlug) {
+    setLeftFirstSlug(true);
+  }
+
+  // Pressing Build removes the focused button, so focus has to be moved back to the heading.
+  const [pressedBuild, setPressedBuild] = useState(false);
+
   const {
     phase,
     problem,
@@ -85,13 +101,14 @@ function Dossier() {
     job,
     cancelBuild,
     retry,
+    build,
     pageId,
     dossier: fullDossier,
     dossierLoading,
     dossierError,
     refetchDossier,
     rateLimitNote,
-  } = useDossier(title, budget);
+  } = useDossier(title, budget, mayBuild);
   // The page shows prose. A section the build found no prose in is left out of the article, the
   // chips and the Contents rail, and the source record says so. The JSON download and the API's
   // Markdown are the API's own.
@@ -148,18 +165,20 @@ function Dossier() {
         : undefined,
   });
 
-  const [arrivedViaNavigation] = useState(() => !rootNavState.isInitialLoad);
-  // The component is not remounted when the slug changes, so a move to another dossier is a navigation
-  // too, and stays one when the reader returns to the first dossier.
-  const [firstSlug] = useState(slug);
-  const [leftFirstSlug, setLeftFirstSlug] = useState(false);
-  if (slug !== firstSlug && !leftFirstSlug) {
-    setLeftFirstSlug(true);
-  }
-  useHeadingRefocus(
-    phase === "error" ? "error" : dossier ? "loaded" : "building",
-    arrivedViaNavigation || leftFirstSlug,
-  );
+  // With no dossier and no build job yet, while still resolving or loading, the page is opening.
+  const opening = !dossier && !job && (phase === "resolving" || dossierLoading);
+  // Each view renders its own h1, so the view name tells useHeadingRefocus when it was replaced.
+  const view =
+    phase === "error"
+      ? "error"
+      : phase === "unbuilt"
+        ? "unbuilt"
+        : dossier
+          ? "loaded"
+          : opening
+            ? "opening"
+            : "building";
+  useHeadingRefocus(view, arrivedViaNavigation || leftFirstSlug || pressedBuild);
 
   if (phase === "error" && problem) {
     return (
@@ -175,8 +194,19 @@ function Dossier() {
     );
   }
 
-  // Until the API has answered with a job or a not-ready state, the page is only opening.
-  if (!dossier && !job && (phase === "resolving" || dossierLoading)) {
+  if (phase === "unbuilt") {
+    return (
+      <DossierUnbuilt
+        title={title}
+        onBuild={() => {
+          setPressedBuild(true);
+          build();
+        }}
+      />
+    );
+  }
+
+  if (opening) {
     return <DossierOpening title={title} />;
   }
 

@@ -1,0 +1,7 @@
+{
+  "system": "You rate how much a passage of an article matters to a reader who wants its essentials. Answer with one digit: 0, 1, 2 or 3.",
+  "intro": "A reader wants the essentials of the Wikipedia article \"{title}\". Below are the lead of the article and then one passage of it. Rate how much a reader who wants the essentials of \"{title}\" needs this passage, on this scale:\n3 = essential: the reader would miss something central to the topic without it\n2 = important: a main fact, event or idea of the topic\n1 = detail: side information that only a reader who wants more than the essentials would need\n0 = trivia: not needed by a reader who wants the essentials\n\nLead of the article:\n{lead}\n\n",
+  "section": "Section: {heading}\n",
+  "passage": "Passage:\n{passage}\n\nHow much does a reader who wants the essentials of the topic need this passage? Answer with one digit: 0, 1, 2 or 3.",
+  "lead_heading": "the lead of the article"
+}

@@ -13,7 +13,9 @@ from wke.clients.redis import RedisClient, default_redis_factory
 from wke.clients.user_agent import build_user_agent
 from wke.clients.wikimedia import WikimediaClient
 from wke.clients.wikimedia_transport import WIKIMEDIA_TIMEOUT_SECONDS
+from wke.jobs.build.rating import RatingConfig
 from wke.jobs.queue import JobQueue
+from wke.jobs.rater import Rater
 from wke.jobs.worker import Worker
 from wke.logging_setup import configure_logging
 from wke.settings import settings
@@ -54,6 +56,21 @@ async def _run() -> None:
         str(settings.wikipedia_api_url),
         public_host=settings.public_host,
         public_scheme=settings.public_scheme,
+        analyze_deadline_ms=settings.analyze_deadline_ms,
+        analyze_retries=settings.analyze_retries,
+        analyze_retry_pause_ms=settings.analyze_retry_pause_ms,
+        analyze_retry_on_timeout=settings.analyze_retry_on_timeout,
+        structural_ttl_seconds=settings.dossier_structural_ttl_seconds,
+        rating=(
+            Rater(
+                redis,
+                ml.sibling(),
+                RatingConfig.from_settings(settings),
+                settings.pipeline_version,
+            )
+            if settings.selection_rating
+            else None
+        ),
     )
 
     try:

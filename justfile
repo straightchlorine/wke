@@ -11,6 +11,7 @@ export WKE_PORT := env("WKE_PORT", "8000")
 ML_PORT := env("ML_PORT", "8001")
 WEB_PORT := env("WEB_PORT", "8080")
 REDIS_PORT := env("REDIS_PORT", "6379")
+DOSSIER_CONTROL := env("DOSSIER_CONTROL", justfile_directory() / ".." / "wke-bench" / ".claude" / "skills" / "dossier-control")
 
 export WATCHER_METRICS_PORT := env("WATCHER_METRICS_PORT", "8002")
 export LOG_FORMAT := env("LOG_FORMAT", "console")
@@ -75,6 +76,7 @@ restart svc="api":
     echo "restarted {{svc}}; check with: just status"
 
 # pull a dossier through every channel and check it (just dossier "<topic>")
+# DOSSIER_CONTROL is the folder holding pull.py and check; set it to use another copy
 dossier topic *args:
-    @test -f .claude/skills/dossier-control/pull.py || { echo "dossier-control skill not installed"; exit 1; }
-    cd backend/api && dir=$(uv run python ../../.claude/skills/dossier-control/pull.py "{{topic}}" {{args}} | tail -1); test -d "$dir" && uv run python ../../.claude/skills/dossier-control/check "$dir"
+    @test -f {{DOSSIER_CONTROL}}/pull.py || { echo "dossier-control not found at {{DOSSIER_CONTROL}}"; exit 1; }
+    cd backend/api && dir=$(uv run python {{DOSSIER_CONTROL}}/pull.py "{{topic}}" {{args}} | tail -1); test -d "$dir" && uv run python {{DOSSIER_CONTROL}}/check "$dir"

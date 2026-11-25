@@ -57,7 +57,8 @@ def trim_fragment_tail(passage: Passage) -> Passage:
         Passage: the text without trailing sentences that do not end at a
         sentence end; empty when none does.
     """
-    sentences = passage.sentences()
+    # Split inside quotations too, so only the unfinished tail is cut, not a whole quotation.
+    sentences = passage.sentences(quotes=False)
     while sentences and not sentences[-1].ends_sentence():
         sentences.pop()
     return join_passages(sentences)

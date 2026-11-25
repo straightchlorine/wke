@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import re
 from typing import Literal
 
 from wke.core.render.defaults import DEFAULT_INCLUDE_SUMMARIES
@@ -24,15 +25,14 @@ def compute_etag(
     summaries: bool = DEFAULT_INCLUDE_SUMMARIES,
     links: bool = False,
     parts_code: str = "pd",
+    selection: Literal["relevance", "rating"] | None = None,
 ) -> str:
     """Build the ETag for a packed dossier response.
 
-    Includes build state and summaries_done so in-place updates from
-    partial to complete dossier change the ETag; includes summaries flag
-    so ?summaries=false and ?summaries=true never collide, and the links
-    flag so a Markdown body with inline links never shares a tag with one
-    without, and the parts code so a different selection of parts never
-    shares a tag.
+    Every input that changes the body is part of the tag: the build state and
+    summary count (a dossier is updated in place while summaries arrive), the
+    summaries and links flags, and the parts code. Two different bodies never
+    share a tag.
 
     Args:
         rev_id: Pinned revision id.
@@ -43,18 +43,43 @@ def compute_etag(
         summaries_done: Count of completed summaries; changes ETag mid-poll.
         summaries: Request's summaries query flag.
         links: Request's links query flag (Markdown with inline links).
-        parts_code: the code of the selected parts, such as "pd" or "pdms".
+        parts_code: the selected parts as a short code, such as "pd" or "pdms",
+            optionally followed by "l" (lean response) and "h" (subsection headings).
+        selection: whether passages were chosen by "relevance" (stored scores) or by
+            "rating" (the rating model's scores); None while rating is off.
 
     Returns:
-        str: the quoted ETag,
-        "{rev_id}-{pv}-{budget}-{fmt}-{state}-{done}-{s0|s1}-{l0|l1}-{parts_code}".
+        str: the quoted ETag, shaped
+        "{rev_id}-{pv}-{budget}-{fmt}-{state}-{done}-{s0|s1}-{l0|l1}-{parts_code}",
+        plus "-r0" (relevance) or "-r1" (rating) when selection is not None.
     """
     summaries_flag = "s1" if summaries else "s0"
     links_flag = "l1" if links else "l0"
+    selection_part = "" if selection is None else f"-r{int(selection == 'rating')}"
     return (
         f'"{rev_id}-{pipeline_version}-{budget}-{fmt}-'
-        f'{build_state}-{summaries_done}-{summaries_flag}-{links_flag}-{parts_code}"'
+        f'{build_state}-{summaries_done}-{summaries_flag}-{links_flag}-{parts_code}{selection_part}"'
     )
+
+
+# The parts code at the end of a tag, before any "-r0"/"-r1": "p", one letter per part,
+# "l" if the response was lean (no Key facts), "h" if it has subsection headings.
+_PARTS_CODE = re.compile(r"p[dms]*(?P<lean>l)?h?")
+_SELECTION_SUFFIX = re.compile(r"-r[01]$")
+
+
+def etag_is_lean(etag: str) -> bool:
+    """Tell from a dossier ETag whether the body was built without the Key facts.
+
+    Args:
+        etag: the ETag of a dossier response, as compute_etag wrote it.
+
+    Returns:
+        bool: True when the parts code carries the "l" letter.
+    """
+    tag = _SELECTION_SUFFIX.sub("", etag.strip().removeprefix("W/").strip('"'))
+    match = _PARTS_CODE.fullmatch(tag.rsplit("-", 1)[-1])
+    return bool(match and match["lean"])
 
 
 def is_not_modified(etag: str, if_none_match: str | None) -> bool:

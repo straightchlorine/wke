@@ -3,6 +3,7 @@
 Endpoints:
   POST /v1/analyze    -- MiniLM embed + cluster + relevance + related edges
   POST /v1/summarize  -- distilbart-cnn-6-6 abstractive summary
+  POST /v1/rate       -- local model's 0 to 3 rating of up to 8 passages
   GET  /healthz       -- weights resident
   GET  /readyz        -- warm-up inference done for both models
   GET  /metrics       -- prometheus text exposition
@@ -10,7 +11,9 @@ Endpoints:
 One inference slot at a time (asyncio.Semaphore(1), work run via
 run_in_threadpool), a bounded wait queue (settings.queue_max_wait), 503
 + Retry-After once the queue is full, and a disconnect/deadline check
-before a queued job is allowed to start. There is no per-client rate
+before a queued job is allowed to start. /v1/rate has a second, separate
+slot of its own, so a rating call and an analyze call can run at once and
+share the CPU. There is no per-client rate
 limiting: access control is the cluster NetworkPolicy.
 """
 
@@ -23,22 +26,36 @@ import asyncio
 import logging
 import re
 import sys
+import threading
 import time
 import uuid
-from collections.abc import AsyncIterator, Awaitable, Callable
+from collections.abc import AsyncIterator, Callable
 from contextlib import asynccontextmanager
+from functools import partial
 from typing import Protocol
 
 from fastapi import FastAPI, Header, Request
 from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import JSONResponse, Response
 from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
+from starlette.datastructures import MutableHeaders
+from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 from wke_ml.analyze import AnalyzeRequest, AnalyzeResponse
 from wke_ml.analyze import analyze as run_analyze
 from wke_ml.backends import build_embedder, build_summarizer
 from wke_ml.logging_setup import configure_logging, request_id_var
 from wke_ml.metrics import INFER_SECONDS, INFLIGHT, SHED_TOTAL
+from wke_ml.rating import (
+    PROMPT_SHA256,
+    PromptTooLong,
+    Rater,
+    RateRequest,
+    RateResponse,
+    RatingAbandoned,
+    RatingUnavailable,
+    build_rater,
+)
 from wke_ml.settings import Settings, get_settings
 from wke_ml.summarize import SummarizeRequest, SummarizeResponse
 from wke_ml.summarize import summarize as run_summarize
@@ -50,12 +67,13 @@ RETRY_AFTER_SECONDS = 2
 QUIET_PATHS = frozenset({"/healthz", "/readyz", "/metrics"})
 REQUEST_ID_RE = re.compile(r"^[A-Za-z0-9-]{8,64}$")
 
-# Once a job has acquired the slot, it is not worth starting if less than
-# this much of the caller's deadline remains -- the caller's own timeout
-# (deadline_ms/1000 in wke-api's ml client) is about to fire anyway, so
-# running the job would just hold the single slot for a response nobody
-# reads.
+# A job that gets the slot with less than this many seconds of its caller's
+# deadline left is refused with a deadline error: the caller is about to time out,
+# and running it would hold the only slot for a response nobody reads.
 MIN_START_SECONDS = 0.5
+
+# Seconds between checks whether the client of a running job has disconnected.
+DISCONNECT_POLL_SECONDS = 0.5
 
 
 class ShedError(Exception):
@@ -110,6 +128,7 @@ class InferenceGate:
         deadline_ms: float | None,
         op: str,
         fn: Callable[[], T],
+        on_abandon: Callable[[], None] | None = None,
     ) -> tuple[T, float]:
         """Run fn under the single inference slot, subject to shedding rules.
 
@@ -120,6 +139,8 @@ class InferenceGate:
                 None if the caller set no deadline.
             op: metric label for wke_ml_infer_seconds.
             fn: zero-arg callable run in the threadpool while holding the slot.
+            on_abandon: called when the client disconnects or the request is cancelled while
+                fn runs, so fn can stop early; the slot stays held until fn returns.
 
         Returns:
             tuple[T, float]: fn's return value and the seconds it held the slot.
@@ -174,7 +195,10 @@ class InferenceGate:
             start = time.monotonic()
             self._running_since = start
             try:
-                result = await run_in_threadpool(fn)
+                if on_abandon is None:
+                    result = await run_in_threadpool(fn)
+                else:
+                    result = await self._run_abandonable(request, fn, on_abandon)
             finally:
                 elapsed = time.monotonic() - start
                 self._running_since = None
@@ -186,6 +210,35 @@ class InferenceGate:
                 self._semaphore.release()
             if counted:
                 self._waiting -= 1
+
+    async def _run_abandonable[T](
+        self, request: DisconnectCheck, fn: Callable[[], T], on_abandon: Callable[[], None]
+    ) -> T:
+        """Run fn in the threadpool, calling on_abandon if the client disconnects meanwhile.
+
+        Returns:
+            T: fn's return value.
+        """
+        work = asyncio.ensure_future(run_in_threadpool(fn))
+        watcher = asyncio.create_task(_watch_disconnect(request, on_abandon))
+        try:
+            return await asyncio.shield(work)
+        except asyncio.CancelledError:
+            on_abandon()
+            # A thread cannot be killed, so wait for it to return before the slot is freed.
+            await asyncio.wait({work})
+            if not work.cancelled():
+                work.exception()  # read it so asyncio does not warn it was never retrieved
+            raise
+        finally:
+            watcher.cancel()
+
+
+async def _watch_disconnect(request: DisconnectCheck, on_abandon: Callable[[], None]) -> None:
+    """Call on_abandon once the client has gone away."""
+    while not await request.is_disconnected():
+        await asyncio.sleep(DISCONNECT_POLL_SECONDS)
+    on_abandon()
 
 
 def _parse_deadline(header_value: str | None) -> float | None:
@@ -246,6 +299,30 @@ def _shed_response(request: Request) -> JSONResponse:
     )
 
 
+def _problem(request: Request, status: int, code: str, title: str, detail: str) -> JSONResponse:
+    """Build an error response without Retry-After.
+
+    Args:
+        request: the inbound request, for the X-Request-ID echo.
+        status: the HTTP status.
+        code: the machine-readable error code.
+        title: short summary.
+        detail: what went wrong.
+
+    Returns:
+        JSONResponse: an ApiError-shaped problem body.
+    """
+    body = {
+        "type": "about:blank",
+        "title": title,
+        "status": status,
+        "detail": detail,
+        "code": code,
+        "request_id": request.state.request_id,
+    }
+    return JSONResponse(status_code=status, content=body, media_type="application/problem+json")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     """Load model weights, warm up both backends, then serve.
@@ -270,6 +347,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         summarizer = app.state.summarizer_factory(settings)
         app.state.embedder = embedder
         app.state.summarizer = summarizer
+        # Only builds the rater; its model file loads on the first /v1/rate call.
+        app.state.rater = app.state.rater_factory(settings)
         logger.info("wke-ml weights resident")
 
         await run_in_threadpool(embedder.embed, ["warm-up"])
@@ -288,6 +367,43 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     yield
 
 
+class RequestIdMiddleware:
+    """Attach a validated request id to the request state and echo it as X-Request-ID.
+
+    Also logs one access line per request. It is plain ASGI because under BaseHTTPMiddleware
+    Request.is_disconnected() stays False on a real server.
+    """
+
+    def __init__(self, app: ASGIApp) -> None:
+        self.app = app
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        if scope["type"] != "http":
+            await self.app(scope, receive, send)
+            return
+        request = Request(scope)
+        request_id = _request_id(request)
+        request.state.request_id = request_id
+        request_id_var.set(request_id)
+        started = time.monotonic()
+
+        async def send_with_id(message: Message) -> None:
+            if message["type"] == "http.response.start":
+                MutableHeaders(scope=message)["X-Request-ID"] = request_id
+                # Paths are fixed (no titles or query strings), so logging them is safe.
+                logger.log(
+                    logging.DEBUG if request.url.path in QUIET_PATHS else logging.INFO,
+                    "%s %s status=%d duration_ms=%.0f",
+                    request.method,
+                    request.url.path,
+                    message["status"],
+                    (time.monotonic() - started) * 1000,
+                )
+            await send(message)
+
+        await self.app(scope, receive, send_with_id)
+
+
 def create_app(settings: Settings | None = None) -> FastAPI:
     """Build the wke-ml FastAPI app.
 
@@ -304,7 +420,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     configure_logging(app.state.settings.log_level, app.state.settings.log_format)
     app.state.embedder_factory = build_embedder
     app.state.summarizer_factory = build_summarizer
+    app.state.rater_factory = build_rater
     app.state.gate = InferenceGate(app.state.settings.queue_max_wait)
+    app.state.rate_gate = InferenceGate(app.state.settings.queue_max_wait)
 
     @app.exception_handler(ShedError)
     async def handle_shed_error(request: Request, _exc: ShedError) -> JSONResponse:
@@ -320,35 +438,33 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         """
         return _shed_response(request)
 
-    @app.middleware("http")
-    async def add_request_id(
-        request: Request, call_next: Callable[[Request], Awaitable[Response]]
-    ) -> Response:
-        """Attach a validated request id to state and echo it as a header.
+    @app.exception_handler(RatingUnavailable)
+    async def handle_rating_unavailable(request: Request, exc: RatingUnavailable) -> JSONResponse:
+        """Answer 503 rating_unavailable when the rating model cannot be used.
 
         Args:
             request: the inbound request.
-            call_next: the next handler in the ASGI middleware chain.
+            exc: the raised error; its message is the detail.
 
         Returns:
-            Response: the downstream response, with X-Request-ID set.
+            JSONResponse: a 503 without Retry-After.
         """
-        request.state.request_id = _request_id(request)
-        request_id_var.set(request.state.request_id)
-        started = time.monotonic()
-        response = await call_next(request)
-        response.headers["X-Request-ID"] = request.state.request_id
-        # Fixed ml paths only (no titles or query strings), so the caller's
-        # id is searchable in wke-ml's logs.
-        logger.log(
-            logging.DEBUG if request.url.path in QUIET_PATHS else logging.INFO,
-            "%s %s status=%d duration_ms=%.0f",
-            request.method,
-            request.url.path,
-            response.status_code,
-            (time.monotonic() - started) * 1000,
-        )
-        return response
+        return _problem(request, 503, "rating_unavailable", "Rating is unavailable", str(exc))
+
+    @app.exception_handler(PromptTooLong)
+    async def handle_prompt_too_long(request: Request, exc: PromptTooLong) -> JSONResponse:
+        """Answer 422 prompt_too_long when one passage's prompt exceeds the context.
+
+        Args:
+            request: the inbound request.
+            exc: the raised error; its message is the detail.
+
+        Returns:
+            JSONResponse: a 422.
+        """
+        return _problem(request, 422, "prompt_too_long", "Prompt is too long", str(exc))
+
+    app.add_middleware(RequestIdMiddleware)
 
     @app.post("/v1/analyze")
     async def analyze(
@@ -406,6 +522,60 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         result.infer_seconds = elapsed
         return result
 
+    @app.post("/v1/rate")
+    async def rate(
+        request: Request,
+        body: RateRequest,
+        x_deadline_ms: str | None = Header(default=None, alias="X-Deadline-Ms"),
+    ) -> RateResponse:
+        """Rate each passage of one article, one at a time on the rating slot.
+
+        Args:
+            request: the inbound request, polled for disconnect and deadline.
+            body: article title and lead, and 1 to 8 passages.
+            x_deadline_ms: remaining caller budget in milliseconds; applies to each passage's
+                wait for the slot.
+
+        Returns:
+            RateResponse: score per passage id (null when no digit came) and the ids rated by
+            the generated digit.
+
+        Raises:
+            ClientDisconnectedError: the client went away while a passage was being rated.
+        """
+        gate: InferenceGate = request.app.state.rate_gate
+        rater: Rater = request.app.state.rater
+        deadline = _parse_deadline(x_deadline_ms)
+        scores: dict[str, float | None] = {}
+        fallback_ids: list[str] = []
+        seconds = 0.0
+        stop = threading.Event()
+        try:
+            for passage in body.passages:
+                rating, elapsed = await gate.run(
+                    request,
+                    deadline,
+                    "rate",
+                    partial(rater.rate, body.title, body.lead, passage.text, stop.is_set),
+                    on_abandon=stop.set,
+                )
+                scores[passage.id] = rating.score
+                if rating.fallback:
+                    fallback_ids.append(passage.id)
+                seconds += elapsed
+        except RatingAbandoned:
+            SHED_TOTAL.labels(reason="disconnected").inc()
+            raise ClientDisconnectedError() from None
+        finally:
+            stop.set()
+        return RateResponse(
+            model=rater.model_file,
+            prompt_sha256=PROMPT_SHA256,
+            scores=scores,
+            fallback_ids=fallback_ids,
+            infer_seconds=seconds,
+        )
+
     @app.get("/healthz")
     async def healthz() -> JSONResponse:
         """Report that model weights are resident and inference is not wedged.
@@ -414,7 +584,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         (weights loaded, warm-up run) or exits the process, so weights are
         always resident once the endpoint is reachable; the k8s startupProbe
         must cover the loading window itself. Beyond that, liveness fails
-        when one job has held the single inference slot longer than
+        when one job has held an inference slot (analyze or rating) longer than
         stuck_after_seconds. A thread wedged inside torch is the only case
         this catches; a slow but progressing job is not distinguished from
         a hung one below that threshold.
@@ -423,7 +593,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             JSONResponse: 200 with status "ok", or 503 with status "stuck" when
             the running job exceeds stuck_after_seconds.
         """
-        if app.state.gate.running_seconds() > app.state.settings.stuck_after_seconds:
+        running = max(app.state.gate.running_seconds(), app.state.rate_gate.running_seconds())
+        if running > app.state.settings.stuck_after_seconds:
             return JSONResponse(status_code=503, content={"status": "stuck"})
         return JSONResponse(status_code=200, content={"status": "ok"})
 

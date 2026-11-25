@@ -68,6 +68,13 @@ class Settings(BaseSettings):
         description="TCP port the watcher serves /metrics on (python -m wke.watcher).",
     )
 
+    lean_response: bool = Field(
+        default=True,
+        description=(
+            "Omit the Key facts block and the per-section 'left out at this budget' lines "
+            "from responses and the budget."
+        ),
+    )
     summary_sections: int = Field(
         default=8,
         ge=1,
@@ -81,6 +88,39 @@ class Settings(BaseSettings):
         ge=1,
         le=4,
         description="Beam count passed to wke-ml /v1/summarize.",
+    )
+    subsection_headings: bool = Field(
+        default=True,
+        description=(
+            "Show a subsection's heading where passages of a structural build jump subsections."
+        ),
+    )
+    analyze_deadline_ms: int = Field(
+        default=8000,
+        ge=1,
+        description="Deadline in ms of each wke-ml /v1/analyze call made by a dossier build.",
+    )
+    analyze_retries: int = Field(
+        default=0,
+        ge=0,
+        description=(
+            "Retries of a failed analyze call; http_4xx never, a timeout only with "
+            "ANALYZE_RETRY_ON_TIMEOUT."
+        ),
+    )
+    analyze_retry_pause_ms: int = Field(
+        default=1000,
+        ge=0,
+        description="Pause in ms before each analyze retry.",
+    )
+    analyze_retry_on_timeout: bool = Field(
+        default=False,
+        description="Retry an analyze call that timed out.",
+    )
+    dossier_structural_ttl_seconds: int = Field(
+        default=600,
+        ge=1,
+        description="Lifetime in seconds of a structural (wke-ml unavailable) dossier.",
     )
     log_level: str = Field(
         default="INFO",
@@ -123,6 +163,43 @@ class Settings(BaseSettings):
     )
     pipeline_version: str = Field(
         description="Pipeline version string embedded in dossier and job keys.",
+    )
+    selection_rating: bool = Field(
+        default=False,
+        description=(
+            "Pack dossiers by a model's 0 to 3 rating of each passage. Off: nothing is rated, "
+            "queued or read."
+        ),
+    )
+    rating_deadline_seconds: int = Field(
+        default=1800,
+        ge=1,
+        description="Longest one rating attempt; the next resumes it.",
+    )
+    rating_call_timeout_seconds: int = Field(
+        default=120,
+        ge=1,
+        description="Timeout and X-Deadline-Ms of one wke-ml rating call (one passage).",
+    )
+    rating_min_coverage: float = Field(
+        default=0.9,
+        ge=0.0,
+        le=1.0,
+        description=(
+            "Share of prose passages that must have a real score for the rating to apply."
+        ),
+    )
+    rating_max_attempts: int = Field(
+        default=3,
+        ge=1,
+        description=(
+            "Attempts without a new score before a rating stage is given up until the next build."
+        ),
+    )
+    rating_retry_backoff_seconds: int = Field(
+        default=60,
+        ge=0,
+        description="Wait before a failed rating stage is tried again; doubles per attempt.",
     )
 
     @field_validator("cors_origins", mode="before")

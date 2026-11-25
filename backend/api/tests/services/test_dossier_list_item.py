@@ -39,9 +39,24 @@ def _unpackable_overflow_dossier() -> Dossier:
     return dossier.model_copy(update={"chunks": huge_chunks})
 
 
-async def _list_item(redis_client: RedisClient, dossier: Dossier) -> DossierListItem:
+def _facts_only_fit_at_8000_dossier() -> Dossier:
+    """The fixture dossier with a Key facts chunk too big for 2000 tokens beside the rest."""
+    dossier = make_fixture_dossier()
+    text = "word " * 1500
+    chunks = [
+        c.model_copy(update={"text": text, "est_tokens": est_tokens(text)})
+        if c.kind == "facts"
+        else c
+        for c in dossier.chunks
+    ]
+    return dossier.model_copy(update={"chunks": chunks})
+
+
+async def _list_item(
+    redis_client: RedisClient, dossier: Dossier, lean_response: bool = True
+) -> DossierListItem:
     await seed_dossier(redis_client, dossier)
-    service = make_service(redis_client)
+    service = make_service(redis_client, lean_response=lean_response)
     items, _ = await service.list_dossiers(None, 10, None)
     return next(item for item in items if item.page_id == dossier.topic.page_id)
 
@@ -84,6 +99,26 @@ async def test_largest_budget_filled_defaults_to_32000_when_none_complete(
     item = await _list_item(redis_client, dossier)
 
     assert item.largest_budget_filled == 32000
+
+
+async def test_largest_budget_filled_leaves_the_key_facts_out_when_the_response_is_lean(
+    redis_client: RedisClient,
+) -> None:
+    dossier = _facts_only_fit_at_8000_dossier()
+    assert not pack.pack(dossier, 2000).budget.complete
+    assert pack.pack(dossier, 2000, facts=False).budget.complete
+
+    item = await _list_item(redis_client, dossier, lean_response=True)
+
+    assert item.largest_budget_filled == 2000
+
+
+async def test_largest_budget_filled_counts_the_key_facts_when_the_response_is_not_lean(
+    redis_client: RedisClient,
+) -> None:
+    item = await _list_item(redis_client, _facts_only_fit_at_8000_dossier(), lean_response=False)
+
+    assert item.largest_budget_filled == 8000
 
 
 async def test_pinned_at_is_the_seed_pins_rev_timestamp_not_retrieved_at(

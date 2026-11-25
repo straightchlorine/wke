@@ -45,7 +45,7 @@ def _check_golden(stem: str, view: DossierView) -> None:
         stem: file name of the pair without extension.
         view: the view to render and serialise.
     """
-    markdown = render.render_markdown(view, include_summaries=True)
+    markdown = render.render_markdown(view, include_summaries=True, lean=False)
     payload = json.loads(view.model_dump_json(by_alias=True, indent=2))
     payload_text = json.dumps(payload, indent=2, sort_keys=True) + "\n"
     md_path = GOLDEN_DIR / f"{stem}.md"
@@ -89,7 +89,9 @@ def test_rendered_fixture_passes_the_validator_at_every_budget(budget: BudgetTok
     )
     headings = make_heading_map(view)
     report = validate_view(
-        view, render.render_markdown(view, include_summaries=True), lambda _rev: headings
+        view,
+        render.render_markdown(view, include_summaries=True, lean=False),
+        lambda _rev: headings,
     )
     assert report.ok, report.problems
     assert report.counts["anchors_checked"] == len(headings)

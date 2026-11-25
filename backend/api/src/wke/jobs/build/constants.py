@@ -31,3 +31,13 @@ RESULT_URL_BUDGET = 8000
 # cluster, persist. Without wke-ml the path skips "cluster".
 ML_PATH_STAGE_COUNT = 7
 STRUCTURAL_PATH_STAGE_COUNT = 6
+
+RATING_MODEL = "gemma4-e4b"
+RATING_MODEL_FILE = "gemma-4-E4B-it-Q4_K_M.gguf"
+# sha256 of the prompt text wke-ml sends the rating model; a reply with another hash is
+# refused.
+RATING_PROMPT_SHA256 = "f68afeb2bc1aaf3734cdeb0127500589966f47fbb7b74c20a004941e69bc6ec7"
+RATING_CALL_ATTEMPTS = 3
+RATING_RETRY_PAUSE_SECONDS = 5
+# Seconds added to the rating deadline to get the lock lifetime, so the lock outlasts the job.
+RATING_LOCK_MARGIN_SECONDS = 600

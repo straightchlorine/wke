@@ -23,6 +23,20 @@ CAPTION_MAX_WORDS = 12
 EMPTY = Passage("")
 
 
+def _is_navigation(sentence: Passage) -> bool:
+    """Tell whether a sentence only sends the reader elsewhere, such as "See also ...".
+
+    Args:
+        sentence: one sentence of a paragraph.
+
+    Returns:
+        bool: True when it matches one of the navigation phrases in wke.core.text.navigation.
+    """
+    return bool(
+        NAVIGATION_SENTENCE.match(sentence.text) or NAVIGATION_ANYWHERE.search(sentence.text)
+    )
+
+
 def prose_of_paragraph(node: LexborNode, keep_open: bool = False) -> tuple[Passage, Passage]:
     """Clean one `<p>` and drop navigation sentences and list introductions.
 
@@ -47,13 +61,17 @@ def prose_of_paragraph(node: LexborNode, keep_open: bool = False) -> tuple[Passa
     marked = clean_text(node.text(separator="", strip=False))
     if keep_open:
         marked = clean_text(tidy_pronunciation(marked))
+    # A quotation counts as one sentence, so dropping a navigation match would drop the whole
+    # quotation. Split a matching sentence at every end and drop only the matching pieces.
     sentences = [
-        s
+        piece
         for s in read_marked(marked, titles).sentences()
-        if not NAVIGATION_SENTENCE.match(s.text) and not NAVIGATION_ANYWHERE.search(s.text)
+        for piece in (s.sentences(quotes=False) if _is_navigation(s) else [s])
+        if not _is_navigation(piece)
     ]
     if not sentences:
         return EMPTY, EMPTY
+    sentences[-1:] = sentences[-1].sentences(quotes=False)
     if sentences[-1].ends_intro() and dropped_block_follows(node):
         intro = join_passages(sentences)
         sentences.pop()

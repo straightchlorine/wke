@@ -2,7 +2,7 @@ import type { Page } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 import { freeze, readFixtureJson } from "./buildFixture";
 import { mockApi } from "./mockApi";
-import { eachTheme, expect, lightOnly, settleLayout, test } from "./support";
+import { buildButton, eachTheme, expect, lightOnly, settleLayout, test } from "./support";
 
 async function h1Box(page: Page) {
   const box = await page.getByRole("heading", { level: 1 }).boundingBox();
@@ -16,6 +16,7 @@ eachTheme(() => {
   test("the building page is the finished page's head over one list of steps", async ({ page }) => {
     await freeze(page, { done: 7, total: 12 }, 700);
     await page.goto("/t/Jesus");
+    await buildButton(page).click();
     await expect(page.getByText("Opening this dossier...")).toBeVisible();
     const opening = await h1Box(page);
     await expect(page.getByText("Building this dossier now.")).toBeVisible();
@@ -100,7 +101,9 @@ eachTheme(() => {
 lightOnly(() => {
   test("the building head sits where the finished head sits", async ({ page, open }) => {
     await freeze(page);
-    await open("/t/Jesus", { ready: page.getByText("Building this dossier now.") });
+    await open("/t/Jesus", { ready: buildButton(page) });
+    await buildButton(page).click();
+    await expect(page.getByText("Building this dossier now.")).toBeVisible();
     const crumb = await page.getByRole("navigation", { name: "Breadcrumb" }).boundingBox();
     const building = await h1Box(page);
     // The same page once the dossier exists.

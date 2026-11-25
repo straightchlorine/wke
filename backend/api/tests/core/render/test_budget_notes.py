@@ -22,7 +22,7 @@ def _markdown(dossier: Dossier, budget: BudgetTokens = 32000, summaries: bool = 
     view = render.build_view(
         dossier, budget, make_freshness(dossier), make_links(dossier), summaries
     )
-    return render.render_markdown(view, summaries)
+    return render.render_markdown(view, summaries, lean=False)
 
 
 def _small() -> Dossier:
@@ -175,7 +175,7 @@ def _view_without_prose() -> DossierView:
 
 def test_an_article_without_prose_has_no_opening_note_and_an_empty_sources_list() -> None:
     view = _view_without_prose()
-    text = render.render_markdown(view)
+    text = render.render_markdown(view, lean=False)
     budget_line = next(ln for ln in text.splitlines() if ln.startswith("Budget "))
     assert budget_line.startswith("Budget 32,000 tokens: no passages")
     assert "Opening passages" not in text

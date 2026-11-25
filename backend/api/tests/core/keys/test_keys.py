@@ -36,3 +36,15 @@ def test_search_key_separates_query_and_limit() -> None:
     assert keys.wm_search("Jesus", 8) == keys.wm_search("Jesus", 8)
     assert keys.wm_search("Jesus", 8) != keys.wm_search("Jesus", 10)
     assert keys.wm_search("Jesus", 8) != keys.wm_search("jesus", 8)
+
+
+def test_rating_keys_name_the_revision_pipeline_prompt_and_model() -> None:
+    assert keys.rating(7, 9, "pv", "f68afeb2bc1a", "gemma4-e4b") == (
+        "rating:7:9:pv:f68afeb2bc1a:gemma4-e4b"
+    )
+    assert keys.rating_lock(7, 9, "pv", "f68afeb2bc1a", "gemma4-e4b") == (
+        "rate:lock:7:9:pv:f68afeb2bc1a:gemma4-e4b"
+    )
+    assert keys.rating_heartbeat(7, 9) == "rate:hb:7:9"
+    assert keys.rating(7, 9, "pv", "a", "m") != keys.rating(7, 10, "pv", "a", "m")
+    assert keys.rating(7, 9, "pv", "a", "m") != keys.rating(7, 9, "pv", "b", "m")

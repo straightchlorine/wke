@@ -22,7 +22,7 @@ def _markdown(dossier: Dossier, budget: BudgetTokens = 2000) -> str:
     view = render.build_view(
         dossier, budget, make_freshness(dossier), links, include_summaries=True
     )
-    return render.render_markdown(view, include_summaries=True)
+    return render.render_markdown(view, include_summaries=True, lean=False)
 
 
 @pytest.mark.parametrize(
@@ -98,9 +98,13 @@ def test_budget_line_counts_passages_left_out_and_no_section_note(
     real_pack = pack.pack
 
     def tight(
-        d: Dossier, requested: BudgetTokens, include_summaries: bool = True, reserve: int = 0
+        d: Dossier,
+        requested: BudgetTokens,
+        include_summaries: bool = True,
+        reserve: int = 0,
+        facts: bool = True,
     ) -> PackedDossier:
-        packed = real_pack(d, requested, include_summaries, reserve)
+        packed = real_pack(d, requested, include_summaries, reserve, facts)
         keep = [i for i in packed.budget.included_chunk_ids if i != "1:4:1"]
         budget = packed.budget.model_copy(
             update={"included_chunk_ids": keep, "omitted_chunks": 1, "complete": False}
@@ -131,3 +135,94 @@ def test_heading_only_parent_is_kept_for_an_included_child() -> None:
     parent_block = text.split("## Parent\n")[1].split("### Child")[0]
     assert parent_block.strip() == ""
     assert "\n### Child\n" in text
+
+
+def _jumping(paths: list[list[str]], kinds: list[str] | None = None) -> Dossier:
+    """The nested dossier whose last section, "Busy", holds one chunk per heading path, in order."""
+    base = make_nested_dossier()
+    template = base.chunks[2]
+    chunks = [
+        template.model_copy(
+            update={
+                "id": f"1:4:{n}",
+                "heading_path": path,
+                "text": f"Busy passage {n}.",
+                "kind": kinds[n] if kinds else "prose",
+            }
+        )
+        for n, path in enumerate(paths)
+    ]
+    busy = base.sections[4].model_copy(update={"chunk_ids": [c.id for c in chunks]})
+    sections = [*base.sections[:4], busy]
+    return base.model_copy(update={"sections": sections, "chunks": [*base.chunks[:2], *chunks]})
+
+
+def _busy_block(text: str) -> str:
+    return text.split("\n## Busy\n")[1].split("\n## Sources")[0]
+
+
+def test_structural_view_shows_a_subsection_heading_on_a_jump() -> None:
+    block = _busy_block(
+        _markdown(_jumping([["Busy"], ["Busy", "Alpha"], ["Busy", "Alpha"], ["Busy", "Beta"]]))
+    )
+    assert block.index("passage 0.") < block.index("\n### Alpha\n") < block.index("passage 1.")
+    assert block.index("passage 2.") < block.index("\n### Beta\n") < block.index("passage 3.")
+    assert block.count("### Alpha") == 1
+
+
+def test_no_heading_for_the_first_chunk_or_the_same_path() -> None:
+    assert "###" not in _busy_block(_markdown(_jumping([["Busy", "Alpha"], ["Busy", "Alpha"]])))
+    assert "###" not in _busy_block(_markdown(_jumping([["Busy"], ["Busy"]])))
+
+
+def test_no_heading_for_a_return_to_the_sections_own_path() -> None:
+    block = _busy_block(_markdown(_jumping([["Busy", "Alpha"], ["Busy"]])))
+    assert "###" not in block
+
+
+def test_ml_view_gets_no_extra_heading() -> None:
+    text = _markdown(make_nested_dossier())
+    assert text.count("###") == 1
+
+
+def test_heading_level_is_one_below_the_section_and_stops_at_six() -> None:
+    deep = list("ABCDE")
+    block = _busy_block(_markdown(_jumping([["Busy"], ["Busy", "Alpha"]])))
+    assert "\n### Alpha\n" in block
+    base = _jumping([["Busy"], [*deep, "Z"]])
+    busy = base.sections[4].model_copy(update={"heading_path": deep})
+    text = _markdown(base.model_copy(update={"sections": [*base.sections[:4], busy]}))
+    assert "\n###### Z\n" in text
+    assert "####### Z" not in text
+
+
+def test_subsection_heading_is_escaped() -> None:
+    block = _busy_block(_markdown(_jumping([["Busy"], ["Busy", "<b>Alpha</b>"]])))
+    assert "<b>" not in block
+
+
+def test_facts_table_and_list_chunks_do_not_change_the_previous_path() -> None:
+    kinds = ["prose", "table", "prose", "facts", "prose", "list", "prose"]
+    paths = [["Busy", "A"], ["Busy", "B"], ["Busy", "A"], ["Busy", "C"], ["Busy", "A"]]
+    paths += [["Busy", "D"], ["Busy", "A"]]
+    assert "###" not in _busy_block(_markdown(_jumping(paths, kinds)))
+
+
+def test_flag_off_is_byte_equal_to_today() -> None:
+    jumping = _jumping([["Busy"], ["Busy", "Alpha"], ["Busy", "Beta"]])
+    flat = _jumping([["Busy"], ["Busy"], ["Busy"]])
+    links = make_links(jumping)
+    view = render.build_view(
+        jumping,
+        2000,
+        make_freshness(jumping),
+        links,
+        include_summaries=True,
+        subsection_headings=False,
+    )
+    off = render.render_markdown(
+        view, include_summaries=True, subsection_headings=False, lean=False
+    )
+    assert "###" not in _busy_block(off)
+    assert off == _markdown(flat)
+    assert "### Alpha" in _markdown(jumping)

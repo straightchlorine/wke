@@ -10,6 +10,7 @@ from wke.core import keys
 from wke.core.dossiers import pointer_rev_id, state_from_dossier_json
 from wke.core.models import DossierListItem, DossierState, TrendingSnapshot
 from wke.core.viewcache import ViewCache
+from wke.jobs.build.rating import RatingConfig
 from wke.jobs.queue import JobQueue
 
 
@@ -24,6 +25,9 @@ class ServiceBase:
         pipeline_version: str,
         public_host: str = "",
         public_scheme: str = "https",
+        subsection_headings: bool = True,
+        lean_response: bool = True,
+        rating: RatingConfig = RatingConfig(),
     ) -> None:
         self._redis = redis
         self._wikimedia = wikimedia
@@ -31,6 +35,9 @@ class ServiceBase:
         self._pipeline_version = pipeline_version
         self._public_host = public_host
         self._public_scheme = public_scheme
+        self.subsection_headings = subsection_headings
+        self._lean_response = lean_response
+        self._rating = rating
         self._base_url = f"{public_scheme}://{public_host}" if public_host else ""
         # Holds references to fire-and-forget background rebuild tasks so
         # they cannot be garbage-collected mid-flight (asyncio docs: "Save
@@ -53,6 +60,11 @@ class ServiceBase:
             str: e.g. "https://wke.example.com", or "" if PUBLIC_HOST is unset.
         """
         return self._base_url
+
+    @property
+    def lean_response(self) -> bool:
+        """Whether responses omit the Key facts and left-out lines (LEAN_RESPONSE)."""
+        return self._lean_response
 
     async def _dossier_state(self, page_id: int) -> DossierState:
         """Read one page's dossier state; see `_dossier_states`.

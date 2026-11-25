@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pydantic import HttpUrl, TypeAdapter
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from wke.core import render
 from wke.core.citations import seed_pin
@@ -21,8 +22,21 @@ _URL = TypeAdapter(HttpUrl)
 _PLACEHOLDER_BASE = "https://wke.invalid"
 
 
+class _RenderSwitch(BaseSettings):
+    """Read SUBSECTION_HEADINGS and LEAN_RESPONSE from the environment or .env."""
+
+    model_config = SettingsConfigDict(
+        env_file=".env", env_file_encoding="utf-8", extra="ignore", case_sensitive=False
+    )
+    subsection_headings: bool = True
+    lean_response: bool = True
+
+
 def view_and_markdown(
-    dossier: Dossier, budget: BudgetTokens, summaries: bool = DEFAULT_INCLUDE_SUMMARIES
+    dossier: Dossier,
+    budget: BudgetTokens,
+    summaries: bool = DEFAULT_INCLUDE_SUMMARIES,
+    lean: bool | None = None,
 ) -> tuple[DossierView, str]:
     """Pack a dossier and render it, as the API does.
 
@@ -33,6 +47,8 @@ def view_and_markdown(
         dossier: the stored dossier.
         budget: 2000, 8000 or 32000.
         summaries: whether summaries take part in the packing.
+        lean: whether to leave out the Key facts and the left-out lines; None reads
+            LEAN_RESPONSE from the environment.
 
     Returns:
         tuple[DossierView, str]: the packed view and its Markdown.
@@ -49,8 +65,19 @@ def view_and_markdown(
         markdown=_URL.validate_python(f"{_PLACEHOLDER_BASE}/md"),
         wikipedia=pin.url,
     )
-    view = render.build_view(dossier, budget, freshness, links, include_summaries=summaries)
-    return view, render.render_markdown(view, summaries)
+    switch = _RenderSwitch()
+    headings = switch.subsection_headings
+    lean = switch.lean_response if lean is None else lean
+    view = render.build_view(
+        dossier,
+        budget,
+        freshness,
+        links,
+        include_summaries=summaries,
+        subsection_headings=headings,
+        lean=lean,
+    )
+    return view, render.render_markdown(view, summaries, subsection_headings=headings, lean=lean)
 
 
 def reparse(dossier: Dossier, html: str) -> Dossier:

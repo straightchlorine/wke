@@ -39,7 +39,7 @@ def _view() -> DossierView:
 
 
 def _render(parts: frozenset[Part]) -> str:
-    return render.render_markdown(_view(), include_summaries=True, parts=parts)
+    return render.render_markdown(_view(), include_summaries=True, parts=parts, lean=False)
 
 
 def test_blocks_come_in_fixed_order_with_the_licence_last() -> None:

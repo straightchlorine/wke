@@ -5,7 +5,14 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Literal
 
-from pydantic import ConfigDict, Field, HttpUrl, model_validator
+from pydantic import (
+    ConfigDict,
+    Field,
+    HttpUrl,
+    SerializerFunctionWrapHandler,
+    model_serializer,
+    model_validator,
+)
 
 from wke.core.models.base import WkeModel
 from wke.core.models.budgets import BudgetTokens
@@ -197,6 +204,17 @@ class BuildInfo(WkeModel):
     summaries_total: int
     truncated: bool | None = None
     stage_seconds: dict[str, float] | None = None
+    # Whether passages were chosen by stored relevance or by the rating model's scores.
+    # Set on a served view only while SELECTION_RATING is on; never stored.
+    selection: Literal["relevance", "rating"] | None = None
+
+    @model_serializer(mode="wrap")
+    def _omit_unset_selection(self, handler: SerializerFunctionWrapHandler):
+        """Leave selection out of the JSON while it is None."""
+        data = handler(self)
+        if self.selection is None:
+            data.pop("selection", None)
+        return data
 
 
 class DossierTopic(WkeModel):

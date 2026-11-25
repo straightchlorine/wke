@@ -35,10 +35,9 @@ logger = logging.getLogger(__name__)
 EXCERPT_MAX_CHARS = 280
 ANALYZE_MAX_EDGES = 80
 
-# The nightly job runs at 03:00 UTC (cron "0 3 * * *"). The schedule lives
-# in the deployment, not in Settings: changing it means editing both the
-# CronJob and this constant.
-TRENDING_REFRESH_HOUR_UTC = 3
+# The nightly job runs at 05:00 UTC, after Wikimedia publishes yesterday's page views.
+# The schedule is set in the Kubernetes CronJob, not in Settings, so change both together.
+TRENDING_REFRESH_HOUR_UTC = 5
 
 
 async def run_trending(

@@ -33,6 +33,78 @@ def test_split_sentences_only_at_real_ends() -> None:
     assert split_sentences("") == []
 
 
+def test_no_split_inside_an_open_double_quotation() -> None:
+    text = 'He wrote: "It was late. Nobody came. We left." Then he slept.'
+    assert split_sentences(text) == [
+        'He wrote: "It was late. Nobody came. We left."',
+        "Then he slept.",
+    ]
+
+
+def test_split_resumes_after_the_closing_quote() -> None:
+    assert split_sentences('She said "I am done." Then she left. It was over.') == [
+        'She said "I am done."',
+        "Then she left.",
+        "It was over.",
+    ]
+
+
+def test_curly_and_nested_quotes() -> None:
+    text = (
+        "He said \u201cShe told me \u201cgo home. Now.\u201d and I went. Later.\u201d "
+        "Then it ended."
+    )
+    assert split_sentences(text) == [
+        "He said \u201cShe told me \u201cgo home. Now.\u201d and I went. Later.\u201d",
+        "Then it ended.",
+    ]
+
+
+@pytest.mark.parametrize(
+    ("text", "expected"),
+    [
+        (
+            'He said "It was late. Nobody came. Then we left. The end.',
+            ['He said "It was late.', "Nobody came.", "Then we left.", "The end."],
+        ),
+        (
+            "He said \u201cIt was late. Nobody came. Then we left.",
+            ["He said \u201cIt was late.", "Nobody came.", "Then we left."],
+        ),
+        (
+            "It was late.\u201d Nobody came. Then we left.",
+            ["It was late.\u201d", "Nobody came.", "Then we left."],
+        ),
+    ],
+)
+def test_unbalanced_quotes_fall_back_to_the_old_rule(text: str, expected: list[str]) -> None:
+    assert split_sentences(text) == expected
+
+
+def test_abbreviation_inside_a_quote() -> None:
+    text = 'He said "Dr. Smith arrived. Mr. Jones left." Then it ended.'
+    assert split_sentences(text) == [
+        'He said "Dr. Smith arrived. Mr. Jones left."',
+        "Then it ended.",
+    ]
+
+
+def test_apostrophes_do_not_open_a_quotation() -> None:
+    text = "It was Tom\u2019s turn. The dogs\u2019 bowls were empty. He said 'no.' Then he left."
+    assert split_sentences(text) == [
+        "It was Tom\u2019s turn.",
+        "The dogs\u2019 bowls were empty.",
+        "He said 'no.'",
+        "Then he left.",
+    ]
+
+
+@given(st.text(alphabet="ab. \"\u201c\u201d'?", max_size=60))
+def test_joined_sentences_equal_the_text(text: str) -> None:
+    text = " ".join(text.split())
+    assert " ".join(split_sentences(text)) == text
+
+
 @pytest.mark.parametrize(
     "text",
     ["He left.", "Why?", "Stop!", "It went on\u2026", 'He said "Yes."', "(It ended.)", "Done.  "],

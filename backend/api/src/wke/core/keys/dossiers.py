@@ -1,4 +1,4 @@
-"""Redis keys of stored dossiers and their summaries."""
+"""Redis keys of dossiers, summaries and ratings."""
 
 from __future__ import annotations
 
@@ -45,6 +45,53 @@ def ptr(page_id: int) -> str:
         str: `ptr:{page_id}`.
     """
     return f"ptr:{page_id}"
+
+
+def rating(page_id: int, rev_id: int, pipeline_version: str, prompt12: str, model: str) -> str:
+    """Build the key of a revision's stored rating (the rating model's scores per passage).
+
+    Args:
+        page_id: Wikipedia page id.
+        rev_id: pinned revision id.
+        pipeline_version: PIPELINE_VERSION setting.
+        prompt12: first 12 hex chars of the prompt hash.
+        model: rating model name.
+
+    Returns:
+        str: `rating:{page_id}:{rev_id}:{pv}:{prompt12}:{model}`.
+    """
+    return f"rating:{page_id}:{rev_id}:{pipeline_version}:{prompt12}:{model}"
+
+
+def rating_lock(page_id: int, rev_id: int, pipeline_version: str, prompt12: str, model: str) -> str:
+    """Build the key of the lock that allows one rating job per revision at a time.
+
+    Args:
+        page_id: Wikipedia page id.
+        rev_id: pinned revision id.
+        pipeline_version: PIPELINE_VERSION setting.
+        prompt12: first 12 hex chars of the prompt hash.
+        model: rating model name.
+
+    Returns:
+        str: `rate:lock:{page_id}:{rev_id}:{pv}:{prompt12}:{model}`.
+    """
+    return f"rate:lock:{page_id}:{rev_id}:{pipeline_version}:{prompt12}:{model}"
+
+
+def rating_heartbeat(page_id: int, rev_id: int) -> str:
+    """Build the key a rater refreshes while it rates a revision.
+
+    The key expires on its own, so a rater that died stops looking alive.
+
+    Args:
+        page_id: Wikipedia page id.
+        rev_id: pinned revision id.
+
+    Returns:
+        str: `rate:hb:{page_id}:{rev_id}`.
+    """
+    return f"rate:hb:{page_id}:{rev_id}"
 
 
 def rebuild_debounce(page_id: int) -> str:

@@ -287,13 +287,13 @@ async def test_dossier_state_of_the_pinned_revision(
 @pytest.mark.parametrize(
     ("moment", "expected"),
     [
-        (datetime(2026, 9, 27, 1, 0, tzinfo=UTC), datetime(2026, 9, 27, 3, 0, tzinfo=UTC)),
-        (datetime(2026, 9, 27, 3, 0, tzinfo=UTC), datetime(2026, 9, 28, 3, 0, tzinfo=UTC)),
-        (datetime(2026, 9, 27, 3, 0, 5, tzinfo=UTC), datetime(2026, 9, 28, 3, 0, tzinfo=UTC)),
+        (datetime(2026, 9, 27, 1, 0, tzinfo=UTC), datetime(2026, 9, 27, 5, 0, tzinfo=UTC)),
+        (datetime(2026, 9, 27, 5, 0, tzinfo=UTC), datetime(2026, 9, 28, 5, 0, tzinfo=UTC)),
+        (datetime(2026, 9, 27, 5, 0, 5, tzinfo=UTC), datetime(2026, 9, 28, 5, 0, tzinfo=UTC)),
     ],
     ids=["before-todays-run", "at-todays-run", "after-todays-run"],
 )
-async def test_next_refresh_is_the_next_03_00_utc_strictly_after_the_run(
+async def test_next_refresh_is_the_next_05_00_utc_strictly_after_the_run(
     redis_client: RedisClient,
     job_queue: JobQueue,
     wm_fixtures: WmFixtures,
@@ -304,3 +304,19 @@ async def test_next_refresh_is_the_next_03_00_utc_strictly_after_the_run(
 
     assert snapshot is not None
     assert snapshot.next_refresh == expected
+
+
+async def test_trending_keeps_its_deadline(
+    redis_client: RedisClient, job_queue: JobQueue, wm_fixtures: WmFixtures
+) -> None:
+    deadlines: list[str] = []
+    inner = analyze_edge_handler()
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        deadlines.append(request.headers["X-Deadline-Ms"])
+        return inner(request)
+
+    await _run(redis_client, job_queue, wm_fixtures, ml_handler=handler)
+
+    assert deadlines
+    assert set(deadlines) == {"8000"}

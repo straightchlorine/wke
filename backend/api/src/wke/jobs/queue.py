@@ -15,6 +15,7 @@ from wke.clients.redis import RedisClient
 from wke.core import keys
 from wke.core.errors import ApiException
 from wke.core.models import Job
+from wke.jobs.build.rating import parse_document, rating_key, rating_lock_key
 from wke.jobs.job_record import make_job_id, new_queued_job
 
 logger = logging.getLogger(__name__)
@@ -223,6 +224,36 @@ class JobQueue:
         """
         queue_name = keys.QUEUE_SUM_BACKGROUND if background else keys.QUEUE_SUM_INTERACTIVE
         await self._redis.rpush(queue_name, f"{job_id}:{section_id}")
+
+    async def enqueue_rating(self, page_id: int, rev_id: int, lock_seconds: int) -> None:
+        """Queue a revision for rating unless it is already rated or queued.
+
+        Never raises: a failure here must not fail the build whose dossier is stored.
+
+        Args:
+            page_id: Wikipedia page id.
+            rev_id: pinned revision id.
+            lock_seconds: lifetime of the lock that allows one rating job per revision.
+        """
+        try:
+            document = parse_document(
+                await self._redis.get(rating_key(page_id, rev_id, self._pipeline_version))
+            )
+            if document is not None and document.done:
+                await self._extend_rating(page_id, rev_id)
+                return
+            lock = rating_lock_key(page_id, rev_id, self._pipeline_version)
+            if await self._redis.set(lock, "1", ex=lock_seconds, nx=True):
+                await self._redis.rpush(keys.QUEUE_RATE, f"{page_id}:{rev_id}")
+        except Exception:
+            logger.exception("rating enqueue failed for page %s rev %s", page_id, rev_id)
+
+    async def _extend_rating(self, page_id: int, rev_id: int) -> None:
+        """Extend a finished rating's expiry so it lasts at least as long as its dossier."""
+        dossier_ttl = await self._redis.ttl(keys.dossier(page_id, rev_id, self._pipeline_version))
+        key = rating_key(page_id, rev_id, self._pipeline_version)
+        if 0 <= await self._redis.ttl(key) < dossier_ttl:
+            await self._redis.expire(key, dossier_ttl)
 
     async def get_job(self, job_id: str) -> Job | None:
         """Read a job's current status.

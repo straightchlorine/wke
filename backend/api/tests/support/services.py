@@ -12,6 +12,7 @@ from wke.clients.redis import RedisClient
 from wke.core import keys
 from wke.core.citations import seed_pin
 from wke.core.models import Dossier
+from wke.jobs.build.rating import RatingConfig
 from wke.jobs.queue import JobQueue
 from wke.services.dossiers import DossierService
 
@@ -26,6 +27,8 @@ def make_service(
     *,
     pipeline_version: str = PIPELINE_VERSION,
     public_host: str = REQUIRED_ENV["PUBLIC_HOST"],
+    lean_response: bool = True,
+    rating: RatingConfig = RatingConfig(),
 ) -> DossierService:
     """Build a DossierService whose Wikimedia calls are answered by `handler`.
 
@@ -35,13 +38,23 @@ def make_service(
             404 when omitted.
         pipeline_version: the pipeline version the service reads and builds.
         public_host: the host its absolute links are rooted at (https).
+        lean_response: the LEAN_RESPONSE setting (no Key facts block, no left-out lines).
+        rating: the SELECTION_RATING settings; disabled by default.
 
     Returns:
-        DossierService: wired to a JobQueue with a cap of 20.
+        DossierService: wired to a job queue that holds at most 20 jobs.
     """
     wikimedia = make_wikimedia_client(redis_client, handler)
     job_queue = JobQueue(redis_client, pipeline_version, queue_cap=20)
-    return DossierService(redis_client, wikimedia, job_queue, pipeline_version, public_host)
+    return DossierService(
+        redis_client,
+        wikimedia,
+        job_queue,
+        pipeline_version,
+        public_host,
+        lean_response=lean_response,
+        rating=rating,
+    )
 
 
 async def seed_dossier(

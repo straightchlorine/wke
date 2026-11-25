@@ -21,10 +21,14 @@ export function toDidYouMean(data: SearchTopicsResponses[200] | undefined): DidY
   };
 }
 
-/** How a title resolved. A "built" page id is ready to fetch, and "building" carries the job to poll. */
+/**
+ * How a title resolved: "built" has a page id to fetch, "building" the job to poll, "unbuilt" means
+ * no dossier is stored and no build was requested, and "error" holds the problem.
+ */
 export type ResolveOutcome =
   | { phase: "built"; pageId: number; rateLimitNote?: string }
   | { phase: "building"; jobId: string }
+  | { phase: "unbuilt" }
   | {
       phase: "error";
       problem: ApiError;
@@ -58,17 +62,22 @@ function cachedOnRateLimit(
 }
 
 /**
- * Resolves a title to a page id, uses the dossier if one is already built, and otherwise requests
- * a build. A dossier found this way is stored in the query cache for `budget`.
+ * Resolves a title to a built page, a build job, an unbuilt state or an error, caching a stored dossier for `budget`.
+ * A build is requested only when `allowBuild` is true; otherwise a missing dossier gives "unbuilt".
  */
 export async function resolveDossier(
   title: string,
   budget: Budget,
   queryClient: QueryClient,
+  allowBuild: boolean,
 ): Promise<ResolveOutcome> {
   try {
     // The title search is a GET and does not count against the build rate limit.
     const search = await searchTopics({ query: { q: title } });
+    // A failed search cannot show whether a dossier exists, so report the error, not "unbuilt".
+    if (!allowBuild && search.error) {
+      return fail(search.error);
+    }
     const exact = search.data?.results.find((c) => c.title.toLowerCase() === title.toLowerCase());
 
     if (exact) {
@@ -77,7 +86,7 @@ export async function resolveDossier(
         queryClient.setQueryData(dossierQueryOptions(exact.page_id, budget).queryKey, built.data);
         return { phase: "built", pageId: exact.page_id };
       }
-      // A 404 means the dossier is not built yet, so the build request below follows.
+      // A 404 means no dossier is stored yet; the build request below runs if a build is allowed.
       if (built.error && built.error.status !== 404) {
         const cached =
           built.error.status === 429
@@ -85,6 +94,10 @@ export async function resolveDossier(
             : null;
         return cached ?? fail(built.error);
       }
+    }
+
+    if (!allowBuild) {
+      return { phase: "unbuilt" };
     }
 
     const result = await requestDossierView(title);

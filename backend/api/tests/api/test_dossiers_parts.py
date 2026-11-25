@@ -76,7 +76,7 @@ async def test_markdown_routes_return_what_the_renderer_writes_for_the_selection
         )
 
     assert response.status_code == 200
-    assert response.text == render_markdown(view, False, False, parts)
+    assert response.text == render_markdown(view, False, False, parts, lean=False)
 
 
 @pytest.mark.parametrize(

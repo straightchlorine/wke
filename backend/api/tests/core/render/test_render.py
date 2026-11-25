@@ -33,7 +33,7 @@ def _view(budget: BudgetTokens = 32000) -> DossierView:
 
 def test_every_quoted_passage_has_a_citation_tag() -> None:
     view = _view()
-    text = render.render_markdown(view, include_summaries=True)
+    text = render.render_markdown(view, include_summaries=True, lean=False)
     quote_blocks = re.findall(r"(?:^>.*\n?)+", text, flags=re.MULTILINE)
     assert quote_blocks
     for block in quote_blocks:
@@ -44,7 +44,7 @@ def test_every_quoted_passage_has_a_citation_tag() -> None:
 
 def test_machine_summary_label_only_for_done_sections() -> None:
     view = _view()
-    text = render.render_markdown(view, include_summaries=True)
+    text = render.render_markdown(view, include_summaries=True, lean=False)
     assert f"**{render.SUMMARY_LABEL}**" in text
     label_count = text.count(f"**{render.SUMMARY_LABEL}**")
     done_sections = [s for s in view.sections if s.summary is not None]
@@ -54,28 +54,28 @@ def test_machine_summary_label_only_for_done_sections() -> None:
 
 def test_pending_and_unavailable_render_as_notice_not_text() -> None:
     view = _view()
-    text = render.render_markdown(view, include_summaries=True)
+    text = render.render_markdown(view, include_summaries=True, lean=False)
     assert "Summary pending" in text
     assert "Summary unavailable" in text
     assert "Summary skipped" not in text
 
 
 def test_a_render_with_summaries_off_carries_no_summary_notice() -> None:
-    text = render.render_markdown(_view(), include_summaries=False)
+    text = render.render_markdown(_view(), include_summaries=False, lean=False)
     assert "Summary pending" not in text
     assert "Summary unavailable" not in text
 
 
 def test_licence_footer_present() -> None:
     view = _view()
-    text = render.render_markdown(view, include_summaries=True)
+    text = render.render_markdown(view, include_summaries=True, lean=False)
     assert text.rstrip().endswith(view.license_notice)
     assert "CC BY-SA 4.0" in text
 
 
 def test_sources_list_has_permalink_per_citation() -> None:
     view = _view()
-    text = render.render_markdown(view, include_summaries=True)
+    text = render.render_markdown(view, include_summaries=True, lean=False)
     assert "## Sources" in text
     for citation in view.citations:
         if any(c.citation_id == citation.id for c in view.chunks):
@@ -84,7 +84,7 @@ def test_sources_list_has_permalink_per_citation() -> None:
 
 def test_injection_defence_no_forged_heading_or_rule() -> None:
     view = _view()
-    text = render.render_markdown(view, include_summaries=True)
+    text = render.render_markdown(view, include_summaries=True, lean=False)
     lines = text.splitlines()
     heading_lines = [ln for ln in lines if ln.startswith("## Sources")]
     assert len(heading_lines) == 1
@@ -164,7 +164,7 @@ def test_forged_link_reference_definition_is_defanged_end_to_end() -> None:
     freshness = make_freshness(dossier)
     links = make_links(dossier)
     view = render.build_view(dossier, 32000, freshness, links, include_summaries=True)
-    text = render.render_markdown(view, include_summaries=True)
+    text = render.render_markdown(view, include_summaries=True, lean=False)
     assert "\\[c1\\]: https://evil.example" in text
     assert "[c1]: https://evil.example" not in text
 
@@ -195,7 +195,7 @@ def test_many_dropped_sections_at_2000_keep_lead_and_stay_in_budget() -> None:
     dossier = make_overflowing_fixture_dossier()
     links = make_links(dossier)
     view = render.build_view(dossier, 2000, make_freshness(dossier), links, include_summaries=False)
-    markdown = render.render_markdown(view, include_summaries=False)
+    markdown = render.render_markdown(view, include_summaries=False, lean=False)
     assert view.budget.omitted_chunks > 40
     assert dossier.chunks[0].id in view.budget.included_chunk_ids
     assert "Left out: 6 sections left out at this budget: Section 2, Section 3" in markdown
@@ -207,8 +207,8 @@ def test_many_dropped_sections_at_2000_keep_lead_and_stay_in_budget() -> None:
 def test_render_defaults_leave_summaries_and_their_notices_out() -> None:
     dossier = make_fixture_dossier()
     default_view = render.build_view(dossier, 32000, make_freshness(dossier), make_links(dossier))
-    default = render.render_markdown(default_view)
-    opted_in = render.render_markdown(_view(), include_summaries=True)
+    default = render.render_markdown(default_view, lean=False)
+    opted_in = render.render_markdown(_view(), include_summaries=True, lean=False)
 
     assert render.SUMMARY_LABEL not in default
     assert "Summary withheld" not in default

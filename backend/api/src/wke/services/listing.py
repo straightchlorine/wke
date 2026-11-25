@@ -112,11 +112,11 @@ class ListingMixin(ServiceBase):
             logger.warning("unreadable dossier for page %s left out of the list", page_id)
             return None
 
-        # The smallest budget whose pack holds every section; the largest
-        # budget when none does.
+        # The smallest budget whose pack holds every chunk, or the largest budget when none
+        # does. A lean response has no Key facts, so the pack leaves them out too.
         largest_budget_filled: BudgetTokens = 32000
         for candidate in BUDGETS:
-            if pack.pack(dossier, candidate).budget.complete:
+            if pack.pack(dossier, candidate, facts=not self.lean_response).budget.complete:
                 largest_budget_filled = candidate
                 break
 

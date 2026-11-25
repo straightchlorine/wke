@@ -18,13 +18,15 @@ PARTS_OPENAPI_PARAM = {
     "name": "parts",
     "in": "query",
     "description": (
-        "Comma list over dossier, metadata, sources; it must contain dossier. "
-        "Default dossier: the sections and passages alone, with no [cN] "
-        "markers, no revision pin and no truncation signal. metadata adds the "
-        "title, pin line, budget line and notices (JSON: id, topic, build, "
-        "freshness, budget, links); sources adds the [cN] markers and the "
-        "Sources list (JSON: citations). The budget counts the dossier part "
-        "only. The licence notice is always present."
+        "Comma list over dossier, metadata, sources; it must contain dossier.\n"
+        "dossier (default): the sections and passages, the only part the budget counts; "
+        "no [cN] markers, no per-section left-out lines.\n"
+        'metadata: the title, pin line, budget line, notices, the "Left out:" line and the '
+        "per-section lines for tables and lists left out (JSON: id, topic, build, "
+        "freshness, budget, links).\n"
+        "sources: the [cN] markers and the Sources list (JSON: citations).\n"
+        "metadata and sources come on top of the budget. "
+        "The licence notice is always present."
     ),
     "schema": {"type": "string", "default": "dossier"},
 }

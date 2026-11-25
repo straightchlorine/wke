@@ -20,13 +20,13 @@ Usage, from backend/api:
 
 --ranking prints every non-lead section with its rank, its importance and how
 it reaches the pack at the budget, so a ranking can be read in one table.
---pulled-dir reads a topic Redis does not hold from a pull.py folder.
+--pulled-dir reads a topic Redis does not hold from a folder of dossiers pulled
+earlier through the API (one <page_id>-<slug>/ folder each).
 """
 
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 
 import redis
 
@@ -38,10 +38,11 @@ from wke.jobs.build.select import select_summary_sections
 from wke.offline.reparse import reparse
 from wke.offline.store import (
     DEFAULT_REDIS,
+    LeanPullError,
     connect,
+    find_pulled_by_title,
     load_dossier,
     load_html,
-    load_pulled,
     stored_page_ids,
 )
 from wke.settings import settings
@@ -59,17 +60,17 @@ def _args() -> argparse.Namespace:
     parser.add_argument("--reparse", action="store_true", help="re-parse cached Parsoid HTML")
     parser.add_argument("--redis-url", default=DEFAULT_REDIS)
     parser.add_argument("--ranking", action="store_true", help="list every ranked section")
-    parser.add_argument("--pulled-dir", default="", help="pull.py folder for topics not in Redis")
+    parser.add_argument("--pulled-dir", default="", help="earlier pulls, for topics not in Redis")
     return parser.parse_args()
 
 
 def find_dossier(client: redis.Redis, title: str, pulled_dir: str = "") -> Dossier | None:
-    """Find a dossier by article title in Redis, else in a pull.py folder.
+    """Find a dossier by article title in Redis, else among earlier pulls.
 
     Args:
         client: Redis client.
         title: article title, case-insensitive.
-        pulled_dir: pull.py output folder to fall back to; empty for none.
+        pulled_dir: folder of earlier pulls to fall back to; empty for none.
 
     Returns:
         Dossier | None: the stored dossier, or None.
@@ -79,10 +80,10 @@ def find_dossier(client: redis.Redis, title: str, pulled_dir: str = "") -> Dossi
         if dossier is not None and dossier.topic.title.lower() == title.lower():
             return dossier
     if pulled_dir:
-        for folder in sorted(Path(pulled_dir).glob("*-*")):
-            dossier = load_pulled(pulled_dir, int(folder.name.split("-", 1)[0]))
-            if dossier is not None and dossier.topic.title.lower() == title.lower():
-                return dossier
+        try:
+            return find_pulled_by_title(pulled_dir, title)
+        except LeanPullError as exc:
+            raise SystemExit(str(exc)) from exc
     return None
 
 
@@ -101,7 +102,7 @@ def classify(
         for the top-k sections (all ranked sections with everything), most
         important first.
     """
-    packed = pack.pack(dossier, budget)
+    packed = pack.pack(dossier, budget, facts=not settings.lean_response)
     included = set(packed.budget.included_chunk_ids)
     scores = pack.section_importance(dossier.sections, dossier.chunks)
     ids = select_summary_sections(dossier.sections, dossier.chunks, settings.summary_sections)

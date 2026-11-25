@@ -71,14 +71,37 @@ async def _serve_dossier(
     # a partial build (summaries still pending) or a structural-fallback build
     # (short-TTL, meant to be rebuilt) can still change in place, so caching it
     # for a year would freeze it.
-    is_final = rev_id is not None and view.build.state == "complete" and view.build.analysis == "ml"
+    # A view packed by stored relevance can change once the rating finishes, so it is not final.
+    is_final = (
+        rev_id is not None
+        and view.build.state == "complete"
+        and view.build.analysis == "ml"
+        and view.build.selection != "relevance"
+    )
     headers = {
-        "ETag": view_etag(view, budget, fmt, summaries, links, parts),
+        "ETag": view_etag(
+            view,
+            budget,
+            fmt,
+            summaries,
+            links,
+            parts,
+            lean=service.lean_response,
+            subsection_headings=service.subsection_headings,
+        ),
         "Cache-Control": cache_control_for("revision" if is_final else "latest"),
     }
     if is_not_modified(headers["ETag"], if_none_match):
         return Response(status_code=304, headers=headers)
-    body, media_type = dossier_body(view, fmt, summaries, links, parts)
+    body, media_type = dossier_body(
+        view,
+        fmt,
+        summaries,
+        links,
+        parts,
+        subsection_headings=service.subsection_headings,
+        lean=service.lean_response,
+    )
     headers.update(token_headers(view, body))
     if discovery_headers:
         headers["WKE-Freshness"] = view.freshness.state

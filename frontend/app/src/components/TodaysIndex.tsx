@@ -131,7 +131,7 @@ export function TodaysIndex({
         </ol>
       ) : !trending ? (
         <p className="mt-4 max-w-(--container-prose) text-13 text-ink-2">
-          No index yet. The nightly job builds it at 03:00 UTC.
+          No index yet. The nightly job builds it at 05:00 UTC.
         </p>
       ) : (
         <>

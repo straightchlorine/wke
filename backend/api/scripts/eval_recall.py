@@ -32,8 +32,8 @@ parser over the cached Parsoid HTML, so key facts and tables are scored on
 dossiers stored before they existed; the HTML is the Redis cache at
 --redis-url, then the source-<rev>.html of the --pulled-dir folder, and a
 topic with neither is scored as stored. --no-summary-standins packs without
-summaries, to measure what summary stand-ins add. --pulled-dir falls back to a
-pull.py folder for a topic Redis does not hold.
+summaries, to measure what summary stand-ins add. --pulled-dir reads a topic
+Redis does not hold from a folder of dossiers pulled earlier through the API.
 
 Usage, from backend/api:
 
@@ -60,6 +60,7 @@ from wke.core.models.budgets import BUDGETS, BudgetTokens
 from wke.core.text.tokens import est_tokens
 from wke.offline.reparse import reparse, view_and_markdown
 from wke.offline.store import (
+    LeanPullError,
     connect,
     load_dossier,
     load_html,
@@ -125,7 +126,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--pulled-dir",
         default="",
-        help="with --offline: read a topic missing from Redis from this pull.py folder",
+        help="with --offline: read a topic missing from Redis from this folder of earlier pulls",
     )
     parser.add_argument(
         "--pinned",
@@ -402,7 +403,10 @@ def main() -> None:
                     client, topic["page_id"], topic["rev_id"] if args.pinned else None
                 )
                 if dossier is None and args.pulled_dir:
-                    dossier = load_pulled(args.pulled_dir, topic["page_id"])
+                    try:
+                        dossier = load_pulled(args.pulled_dir, topic["page_id"])
+                    except LeanPullError as exc:
+                        raise SystemExit(f"{key}: {exc}") from exc
                 if dossier is None:
                     raise SystemExit(f"{key}: no stored dossier in Redis")
                 if args.reparse:

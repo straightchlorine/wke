@@ -17,8 +17,6 @@
 
 Turns a Wikipedia topic into a dossier pinned to one article revision, cut to a token budget.
 
-<img src="frontend/app/public/og.png" alt="WKE social preview image" width="800">
-
 </div>
 
 ## Architecture

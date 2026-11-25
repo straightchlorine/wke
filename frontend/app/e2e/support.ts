@@ -109,6 +109,27 @@ export const test = base.extend<Options & Fixtures>({
   },
 });
 
+/** The Build button shown when an unbuilt title is opened directly. */
+export function buildButton(page: Page): Locator {
+  return page.getByRole("button", { name: "Build dossier" });
+}
+
+/** Opens an unbuilt title, presses Build, and waits for `options.ready` (the first h1 by default). */
+export async function openAndBuild(
+  page: Page,
+  open: (path: string, options?: OpenOptions) => Promise<void>,
+  path: string,
+  options: OpenOptions = {},
+): Promise<void> {
+  await open(path, { viewport: options.viewport, ready: buildButton(page) });
+  await buildButton(page).click();
+  await expect(buildButton(page)).toBeHidden();
+  await expect(options.ready ?? page.getByRole("heading", { level: 1 }).first()).toBeVisible({
+    timeout: PAGE_READY_TIMEOUT_MS,
+  });
+  await settleLayout(page);
+}
+
 /** Defines the tests once per theme, each run in a describe named after the theme with that theme stored. */
 export function eachTheme(define: (theme: Theme) => void): void {
   for (const theme of THEMES) {

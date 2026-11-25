@@ -10,7 +10,7 @@ import { resolveDossier, toDidYouMean } from "./resolveDossier";
 import type { DidYouMean, ResolveOutcome } from "./resolveDossier";
 import { usePolledJob } from "./usePolledJob";
 
-export type BuildPhase = "resolving" | "building" | "built" | "error";
+export type BuildPhase = "resolving" | "unbuilt" | "building" | "built" | "error";
 
 export interface UseDossierResult {
   phase: BuildPhase;
@@ -26,8 +26,10 @@ export interface UseDossierResult {
   job: ReturnType<typeof usePolledJob>["job"];
   /** Stops polling client-side and returns to "error" with a cancelled problem. */
   cancelBuild: () => void;
-  /** Re-runs the build request from scratch. */
+  /** Looks the title up again, as on first load. */
   retry: () => void;
+  /** Requests the build of the title; used in the "unbuilt" phase, where none was requested. */
+  build: () => void;
   /** The resolved page id, once known. */
   pageId: number | null;
   /** The dossier at the current budget, once the page id is known. */
@@ -74,11 +76,14 @@ interface State {
   attempt: number;
   /** True once a vanished job has been requested again, which happens only once. */
   jobRestarted: boolean;
+  /** True once the reader asked to build this title. */
+  buildRequested: boolean;
 }
 
 type Action =
   | { type: "resolved"; title: string; outcome: ResolveOutcome }
   | { type: "retry"; title: string }
+  | { type: "build"; title: string }
   | { type: "jobDone"; pageId: number }
   | { type: "failed"; problem: ApiError }
   | { type: "jobError"; problem: ApiError };
@@ -96,6 +101,7 @@ function initialState(title: string): State {
     rateLimitNote: null,
     attempt: 0,
     jobRestarted: false,
+    buildRequested: false,
   };
 }
 
@@ -121,6 +127,9 @@ function reduce(state: State, action: Action): State {
       if (outcome.phase === "building") {
         return { ...current, phase: "building", jobId: outcome.jobId };
       }
+      if (outcome.phase === "unbuilt") {
+        return { ...current, phase: "unbuilt" };
+      }
       return {
         ...failed(current, outcome.problem),
         didYouMean: outcome.didYouMean?.candidates ?? [],
@@ -129,7 +138,17 @@ function reduce(state: State, action: Action): State {
       };
     }
     case "retry":
-      return { ...initialState(current.title), attempt: current.attempt + 1 };
+      return {
+        ...initialState(current.title),
+        attempt: current.attempt + 1,
+        buildRequested: current.buildRequested,
+      };
+    case "build":
+      return {
+        ...initialState(current.title),
+        attempt: current.attempt + 1,
+        buildRequested: true,
+      };
     case "jobDone":
       return { ...current, phase: "built", pageId: action.pageId };
     case "failed":
@@ -138,17 +157,23 @@ function reduce(state: State, action: Action): State {
       // A job error. A 404 means the server no longer has the job, so the build is requested once
       // more without an error. A second 404 is shown.
       if (action.problem.status === 404 && !current.jobRestarted) {
-        return { ...initialState(current.title), attempt: current.attempt + 1, jobRestarted: true };
+        return {
+          ...initialState(current.title),
+          attempt: current.attempt + 1,
+          jobRestarted: true,
+          buildRequested: current.buildRequested,
+        };
       }
       return failed(current, action.problem);
   }
 }
 
 /**
- * Resolves a title to a page id, uses the dossier if one is already built, and otherwise requests
- * a build and polls its job. The dossier itself is a query that refetches when the budget changes.
+ * Resolves a title to a page id and uses its dossier, or requests a build and polls its job.
+ * When `allowBuild` is false it stops in the "unbuilt" phase until `build` is called.
+ * The dossier itself is a query that refetches when the budget changes.
  */
-export function useDossier(title: string, budget: Budget): UseDossierResult {
+export function useDossier(title: string, budget: Budget, allowBuild: boolean): UseDossierResult {
   const [stored, dispatch] = useReducer(reduce, title, initialState);
   // The stored state may still belong to the previous title for the render after a change.
   const state = stored.title === title ? stored : initialState(title);
@@ -156,7 +181,9 @@ export function useDossier(title: string, budget: Budget): UseDossierResult {
   const { job, error: jobError, cancel: cancelPolling } = usePolledJob(state.jobId);
 
   // A budget change must not run the resolve again, because only the dossier query refetches for it.
-  const resolve = useEffectEvent(() => resolveDossier(title, budget, queryClient));
+  const resolve = useEffectEvent(() =>
+    resolveDossier(title, budget, queryClient, allowBuild || state.buildRequested),
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -212,6 +239,7 @@ export function useDossier(title: string, budget: Budget): UseDossierResult {
       dispatch({ type: "failed", problem: CANCELLED_PROBLEM });
     },
     retry: () => dispatch({ type: "retry", title }),
+    build: () => dispatch({ type: "build", title }),
     pageId: state.pageId,
     dossier: dossierQuery.data,
     dossierError: dossierQuery.error,
