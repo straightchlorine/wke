@@ -26,9 +26,9 @@ export interface UseDossierResult {
   job: ReturnType<typeof usePolledJob>["job"];
   /** Stops polling client-side and returns to "error" with a cancelled problem. */
   cancelBuild: () => void;
-  /** Runs the resolve again, which requests a build only if building is allowed or was asked for. */
+  /** Looks the title up again, as on first load. */
   retry: () => void;
-  /** Requests the build of a title in the "unbuilt" phase. After it, this title builds as if building had been allowed. */
+  /** Requests the build of the title; used in the "unbuilt" phase, where none was requested. */
   build: () => void;
   /** The resolved page id, once known. */
   pageId: number | null;
@@ -76,7 +76,7 @@ interface State {
   attempt: number;
   /** True once a vanished job has been requested again, which happens only once. */
   jobRestarted: boolean;
-  /** True once the reader asked to build this title, which lets every later resolve request it. */
+  /** True once the reader asked to build this title. */
   buildRequested: boolean;
 }
 
@@ -169,8 +169,8 @@ function reduce(state: State, action: Action): State {
 }
 
 /**
- * Resolves a title to a page id, uses its dossier if built, and otherwise requests a build and polls
- * its job, or stops in the "unbuilt" phase until `build` is called when `allowBuild` is false.
+ * Resolves a title to a page id and uses its dossier, or requests a build and polls its job.
+ * When `allowBuild` is false it stops in the "unbuilt" phase until `build` is called.
  * The dossier itself is a query that refetches when the budget changes.
  */
 export function useDossier(title: string, budget: Budget, allowBuild: boolean): UseDossierResult {

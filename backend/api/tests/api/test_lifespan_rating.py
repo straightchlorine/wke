@@ -1,4 +1,4 @@
-"""The lifespan creates the rating loop only while SELECTION_RATING is on."""
+"""The lifespan creates the rating loop (the background rater) only while SELECTION_RATING is on."""
 
 from __future__ import annotations
 

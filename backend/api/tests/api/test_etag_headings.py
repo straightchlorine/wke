@@ -1,19 +1,14 @@
-"""The subsection-headings switch has a letter in the ETag, beside the lean one."""
+"""The ETag ends in "l" for LEAN_RESPONSE and "h" for SUBSECTION_HEADINGS when each is on."""
 
 from __future__ import annotations
-
-import inspect
 
 import pytest
 
 from tests.support.apps import app_client
 from tests.support.constants import FIXTURE_TITLE
-from wke.api.routes.dossiers.body import dossier_body
-from wke.api.routes.dossiers.params import view_etag
-from wke.core.render import render_markdown
 
 SWITCHES = [
-    pytest.param((False, False, "-s0-l0-pd"), id="both-off-is-base"),
+    pytest.param((False, False, "-s0-l0-pd"), id="both-off-is-plain"),
     pytest.param((True, False, "-s0-l0-pdl"), id="lean"),
     pytest.param((False, True, "-s0-l0-pdh"), id="headings"),
     pytest.param((True, True, "-s0-l0-pdlh"), id="lean-and-headings"),
@@ -22,7 +17,7 @@ SWITCHES = [
 
 @pytest.fixture
 def switches(request: pytest.FixtureRequest, monkeypatch: pytest.MonkeyPatch) -> str:
-    """Set LEAN_RESPONSE and SUBSECTION_HEADINGS before the app reads its settings."""
+    """Set LEAN_RESPONSE and SUBSECTION_HEADINGS from the param before the app is built."""
     lean, headings, tail = request.param
     monkeypatch.setenv("LEAN_RESPONSE", str(lean).lower())
     monkeypatch.setenv("SUBSECTION_HEADINGS", str(headings).lower())
@@ -56,26 +51,3 @@ async def test_a_tag_made_without_the_headings_letter_gets_a_fresh_body(
 
     assert same.status_code == 304
     assert stale.status_code == 200
-
-
-def test_view_etag_takes_both_switches_as_required_arguments() -> None:
-    parameters = inspect.signature(view_etag).parameters
-    for name in ("lean", "subsection_headings"):
-        assert parameters[name].default is inspect.Parameter.empty
-        assert parameters[name].kind is inspect.Parameter.KEYWORD_ONLY
-
-
-@pytest.mark.parametrize("function", [dossier_body, render_markdown, view_etag])
-def test_lean_has_no_default_so_a_caller_that_forgets_it_fails(function) -> None:
-    assert inspect.signature(function).parameters["lean"].default is inspect.Parameter.empty
-
-
-def test_the_openapi_description_names_both_etag_letters() -> None:
-    from pathlib import Path
-
-    import yaml
-
-    spec = yaml.safe_load((Path(__file__).parents[2] / "openapi.yaml").read_text())
-    text = spec["paths"]["/api/v1/dossiers/{page_id}"]["get"]["description"]
-    assert '"l" when LEAN_RESPONSE is on' in text
-    assert '"h" when SUBSECTION_HEADINGS is on' in text

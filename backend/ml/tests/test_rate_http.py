@@ -1,4 +1,4 @@
-"""POST /v1/rate: contract, one gate hold per passage, and the errors."""
+"""POST /v1/rate: contract, one rating slot taken per passage, and errors."""
 
 from __future__ import annotations
 
@@ -86,7 +86,7 @@ async def test_an_analyze_does_not_wait_for_a_rating_call_that_is_running(
     await rating
 
     assert analyze.status_code == 200
-    assert rating_done is False  # the analyze answered while the rating call still ran
+    assert rating_done is False  # the analyze finished while the rating call was still running
 
 
 async def test_a_full_rating_queue_does_not_shed_an_analyze(
@@ -111,7 +111,7 @@ async def test_a_rating_call_the_client_abandoned_is_told_to_stop_and_frees_its_
     class Polling(FakeRater):
         def rate(self, title: str, lead: str, passage: str, should_stop=None):  # noqa: ANN001, ANN202
             started.set()
-            for _ in range(500):  # waits at most 5 s for the stop
+            for _ in range(500):  # polls for the stop signal for at most 5 s
                 if should_stop():
                     seen_stop.set()
                     raise RatingAbandoned()
@@ -122,7 +122,7 @@ async def test_a_rating_call_the_client_abandoned_is_told_to_stop_and_frees_its_
     rating = asyncio.create_task(client.post("/v1/rate", json=_body("a", "b")))
     await asyncio.to_thread(started.wait)
 
-    rating.cancel()  # the client gives up
+    rating.cancel()  # the client disconnects
     with pytest.raises(asyncio.CancelledError):
         await rating
     assert await asyncio.to_thread(seen_stop.wait, 2)
@@ -184,7 +184,7 @@ async def test_the_slot_is_held_until_an_abandoned_job_returns(
     await asyncio.sleep(0.05)
 
     assert abandoned.is_set()
-    assert not second.done()  # the thread still runs, so the slot is not free
+    assert not second.done()  # the abandoned job's thread still runs, so the slot is taken
     release.set()
     assert (await second)[0] == "second"
     with pytest.raises(asyncio.CancelledError):
@@ -302,7 +302,7 @@ async def test_the_rater_is_built_by_the_factory_without_loading_a_model(
 async def test_a_real_disconnect_stops_the_running_passage_and_starts_no_further_one(
     running_app: FastAPI,
 ) -> None:
-    """Over a raw ASGI channel, as a server gives it: the receive answers http.disconnect."""
+    """Calls the app through raw ASGI: receive() returns the body, then http.disconnect."""
     started, stopped = threading.Event(), threading.Event()
 
     class Waiting(FakeRater):
@@ -355,5 +355,5 @@ async def test_a_real_disconnect_stops_the_running_passage_and_starts_no_further
     await asyncio.wait_for(call, timeout=5)
 
     assert stopped.is_set()
-    assert len(rater.calls) == 1  # the other two passages never started
+    assert len(rater.calls) == 1  # the second and third passages were never rated
     assert running_app.state.rate_gate.running_seconds() == 0.0

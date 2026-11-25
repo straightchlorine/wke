@@ -1,4 +1,4 @@
-"""Selection by rating: the stored rating document and the repack of a dossier under it."""
+"""The stored rating document and the repack of a dossier under it."""
 
 from __future__ import annotations
 
@@ -18,13 +18,13 @@ from wke.jobs.build.select import select_summary_sections
 if TYPE_CHECKING:
     from wke.settings import Settings
 
-# A section whose summary the repack may drop when the re-selection no longer picks it.
+# Summary states that are reset to "skipped" when the repack drops the section's summary.
 _SUMMARISED = ("done", "withheld", "unavailable")
 
 
 @dataclass(frozen=True)
 class RatingConfig:
-    """The SELECTION_RATING settings a build, the rater and a read need."""
+    """The rating settings shared by the build, the rater and dossier reads."""
 
     enabled: bool = False
     deadline_seconds: int = 1800
@@ -36,7 +36,7 @@ class RatingConfig:
 
     @classmethod
     def from_settings(cls, cfg: Settings) -> RatingConfig:
-        """Read the config from the settings.
+        """Build the config from the settings.
 
         Args:
             cfg: the settings.
@@ -56,7 +56,7 @@ class RatingConfig:
 
 
 class RatingDocument(BaseModel):
-    """What the rater stores per revision: the scores so far and whether every passage has one."""
+    """The rater's stored scores for a revision; done is True once every passage is scored."""
 
     prompt_sha256: str
     model: str
@@ -65,7 +65,7 @@ class RatingDocument(BaseModel):
 
 
 def rating_key(page_id: int, rev_id: int, pipeline_version: str) -> str:
-    """Name the rating document of a revision under the current prompt and model.
+    """Build the Redis key of a revision's rating document, for the current prompt and model.
 
     Args:
         page_id: Wikipedia page id.
@@ -79,7 +79,7 @@ def rating_key(page_id: int, rev_id: int, pipeline_version: str) -> str:
 
 
 def rating_lock_key(page_id: int, rev_id: int, pipeline_version: str) -> str:
-    """Name the lock that keeps one rating stage queued or running per rating document.
+    """Build the key of the lock that allows one queued or running rating job per revision.
 
     Args:
         page_id: Wikipedia page id.
@@ -95,13 +95,13 @@ def rating_lock_key(page_id: int, rev_id: int, pipeline_version: str) -> str:
 
 
 def parse_document(raw: str | None) -> RatingDocument | None:
-    """Read a stored rating document made under the current prompt and model.
+    """Parse a stored rating document made under the current prompt and model.
 
     Args:
         raw: the stored value, or None.
 
     Returns:
-        RatingDocument | None: None when absent, unreadable or made under another prompt or model.
+        RatingDocument | None: None if absent, unreadable or from another prompt or model.
     """
     if raw is None:
         return None
@@ -115,7 +115,7 @@ def parse_document(raw: str | None) -> RatingDocument | None:
 
 
 def ranks_of(values: dict[str, float]) -> dict[str, float]:
-    """Rank the values, 0 for the lowest; equal values share the mean of their ranks.
+    """Rank the values from 0 upward; tied values get the mean of the ranks they span.
 
     Args:
         values: a value per id.
@@ -136,11 +136,11 @@ def ranks_of(values: dict[str, float]) -> dict[str, float]:
 
 
 def rank_map(values: dict[str, float], stored: dict[str, float]) -> dict[str, float]:
-    """Give the values' order the stored relevances' level and spread.
+    """Replace the values by stored relevances, keeping the values' order.
 
-    The value of rank r becomes the stored relevance sorted ascending at position r, interpolated
-    between two positions for a tie, so the packer's balance between relevance and section
-    importance stays what it was.
+    The value ranked r-th smallest becomes the r-th smallest stored relevance, interpolated
+    when ranks are tied. Rating scores thus reorder passages without changing the relevance
+    scale the packer was built for.
 
     Args:
         values: the new value per passage id.
@@ -166,22 +166,20 @@ def apply_rating(
     summary_sections: int,
     min_coverage: float = 0.0,
 ) -> Dossier | None:
-    """Repack a copy of the dossier under the rating of its prose passages.
+    """Return a copy of the dossier with its prose passages re-ranked by the rating scores.
 
-    A passage without a score takes the mean of the article's other scores. Prose relevance gets
-    the rating's order on the stored level and spread; then non-prose relevance, section
-    importance and the summary sections are recomputed as a build does, and a summary of a section
-    no longer chosen is dropped (state "skipped").
+    A passage without a score takes the mean of the others. A section that is no longer
+    among those chosen for summaries loses its summary (state "skipped").
 
     Args:
         dossier: the stored dossier; not changed.
-        scores: a score 0 to 3 (or None) per prose chunk id.
+        scores: a score 0 to 3, or None, per prose chunk id.
         summary_sections: the SUMMARY_SECTIONS setting.
-        min_coverage: the share of the prose passages that must hold a real score.
+        min_coverage: share of prose passages that must have a real score.
 
     Returns:
-        Dossier | None: the repacked copy, or None when the scored ids are not the prose chunk ids
-        or fewer than min_coverage of the passages have a score.
+        Dossier | None: the copy; None if the ids differ from the prose chunk ids or coverage is
+        below min_coverage.
     """
     repacked = dossier.model_copy(deep=True)
     prose = [c for c in repacked.chunks if c.kind == "prose"]

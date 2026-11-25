@@ -17,7 +17,7 @@ DEFAULT_REDIS = "redis://localhost:6379/0"
 
 
 class LeanPullError(ValueError):
-    """A pulled folder holds a lean view, which is not the whole stored dossier."""
+    """A pulled folder holds a view served without the Key facts, so it is not the whole dossier."""
 
 
 def connect(url: str = DEFAULT_REDIS) -> redis.Redis:
@@ -69,8 +69,7 @@ def pulled_etag(folder: Path, name: str = "rest-32000.json") -> str | None:
         name: the file the ETag belongs to.
 
     Returns:
-        The ETag from the folder's manifest.json, or None when the manifest, the file's
-        entry or its ETag is missing (an offline_dossier.py folder, which is always whole).
+        The ETag from the folder's manifest.json, or None when it or the entry is missing.
     """
     try:
         manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
@@ -87,14 +86,12 @@ def load_pulled(pulled_dir: str, page_id: int) -> Dossier | None:
     and chunk, so it validates as a Dossier. Used for topics whose Redis
     entry has expired. A view packed without summaries carries none, so a
     section the original had summarised comes back with state "done" and no
-    summary. A view built with LEAN_RESPONSE on holds no Key facts chunk, so it
-    is a served view and not the whole dossier: pull.py records the response's
-    ETag in manifest.json, and an ETag with the lean letter makes this refuse the
-    folder. A pull without a recorded ETag (offline_dossier.py folders, which are
-    written with the Key facts in) is taken as whole.
+    summary. A view served without the Key facts (a lean response) cannot be
+    rebuilt into the whole dossier, so a pull whose recorded ETag marks it lean is
+    refused; a pull with no recorded ETag is taken as whole.
 
     Args:
-        pulled_dir: folder holding pull.py output (<page_id>-<slug>/).
+        pulled_dir: folder of dossiers pulled through the API, one <page_id>-<slug>/ each.
         page_id: Wikipedia page id.
 
     Returns:
@@ -102,7 +99,7 @@ def load_pulled(pulled_dir: str, page_id: int) -> Dossier | None:
         32000-token view left chunks out.
 
     Raises:
-        LeanPullError: when the pull was made from an API serving the lean response.
+        LeanPullError: when the pull was served without the Key facts.
     """
     folder = next(Path(pulled_dir).glob(f"{page_id}-*"), None)
     path = folder / "rest-32000.json" if folder else None
@@ -128,15 +125,15 @@ def find_pulled_by_title(pulled_dir: str, title: str) -> Dossier | None:
     """Find a pulled dossier by article title, case-insensitive.
 
     Args:
-        pulled_dir: folder holding pull.py output.
+        pulled_dir: folder of dossiers pulled through the API.
         title: article title.
 
     Returns:
         The Dossier, or None when no pull of that title is usable.
 
     Raises:
-        LeanPullError: when the pull of that title is a lean one. A lean pull of another
-        title is skipped.
+        LeanPullError: when the pull of that title was served without the Key facts; other
+        such pulls are skipped.
     """
     wanted = title.lower()
     for folder in sorted(Path(pulled_dir).glob("*-*")):

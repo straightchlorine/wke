@@ -32,9 +32,9 @@ const VISITS: {
   path: string;
   ready: string | RegExp;
   prepare?: (page: Page) => Promise<void>;
-  /** Presses Build on the page a direct load of an unbuilt title shows. */
+  /** Presses the Build button once the page has loaded. */
   build?: true;
-  /** Waits for the Build button, which only the unbuilt view has, instead of for a heading. */
+  /** Treats the page as loaded when its Build button shows, not its heading. */
   unbuilt?: true;
 }[] = [
   { name: "Home", path: "/", ready: /.+/ },

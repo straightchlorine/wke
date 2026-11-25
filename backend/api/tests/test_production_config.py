@@ -1,4 +1,4 @@
-"""The production ConfigMap sets the analyze deadline that the code default leaves at 8 s."""
+"""The production config map sets an analyze deadline above the code default."""
 
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ def test_one_analyze_attempt_stays_under_the_mcp_wait_and_the_http_timeout() -> 
     assert attempt <= ML_HTTP_TIMEOUT_SECONDS
 
 
-def test_the_code_default_stays_at_8_seconds_so_that_all_switches_off_equals_base() -> None:
+def test_the_code_default_stays_at_8_seconds_and_no_retry() -> None:
     assert Settings.model_fields["analyze_deadline_ms"].default == 8000
     assert Settings.model_fields["analyze_retries"].default == 0
 

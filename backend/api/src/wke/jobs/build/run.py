@@ -44,7 +44,7 @@ async def _analyze_with_retries(
     retry_on_timeout: bool,
     sleep: Callable[[float], Awaitable[None]] = asyncio.sleep,
 ) -> dict[str, Any]:
-    """Call wke-ml analyze, retrying a transient failure, one log line per attempt.
+    """Call wke-ml analyze, retrying a transient failure, and log every attempt.
 
     Args:
         ml: wke-ml client.
@@ -120,7 +120,7 @@ def _log_analyze(
 async def _queue_rating(
     job_queue: JobQueue, rating: RatingConfig, page_id: int, rev_id: int
 ) -> None:
-    """Queue the stored dossier's rating stage when selection by rating is on."""
+    """Queue the stored dossier for rating when rating is enabled."""
     if rating.enabled:
         await job_queue.enqueue_rating(
             page_id, rev_id, rating.deadline_seconds + RATING_LOCK_MARGIN_SECONDS
@@ -171,12 +171,12 @@ async def run_build(
         public_host: PUBLIC_HOST setting, for Job.result_url; empty
             leaves result_url unset.
         public_scheme: PUBLIC_SCHEME setting, for Job.result_url.
-        analyze_deadline_ms: ANALYZE_DEADLINE_MS setting, the deadline of each analyze call.
+        analyze_deadline_ms: ANALYZE_DEADLINE_MS setting.
         analyze_retries: ANALYZE_RETRIES setting.
         analyze_retry_pause_ms: ANALYZE_RETRY_PAUSE_MS setting.
         analyze_retry_on_timeout: ANALYZE_RETRY_ON_TIMEOUT setting.
         structural_ttl_seconds: DOSSIER_STRUCTURAL_TTL_SECONDS setting.
-        rating: the rating settings; when enabled, the stored dossier is queued for rating.
+        rating: rating settings; the stored dossier is queued when enabled.
 
     Raises:
         Exception: whatever the build raised, after marking the job failed

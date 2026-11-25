@@ -23,8 +23,7 @@ _PLACEHOLDER_BASE = "https://wke.invalid"
 
 
 class _RenderSwitch(BaseSettings):
-    """SUBSECTION_HEADINGS and LEAN_RESPONSE as wke.settings reads them. Settings itself
-    needs the service's required variables, which the offline tools do not have."""
+    """Read SUBSECTION_HEADINGS and LEAN_RESPONSE from the environment or .env."""
 
     model_config = SettingsConfigDict(
         env_file=".env", env_file_encoding="utf-8", extra="ignore", case_sensitive=False
@@ -48,8 +47,8 @@ def view_and_markdown(
         dossier: the stored dossier.
         budget: 2000, 8000 or 32000.
         summaries: whether summaries take part in the packing.
-        lean: whether the key facts and the left-out lines stay out of the counted
-            part, as LEAN_RESPONSE does; None reads LEAN_RESPONSE from the environment.
+        lean: whether to leave out the Key facts and the left-out lines; None reads
+            LEAN_RESPONSE from the environment.
 
     Returns:
         tuple[DossierView, str]: the packed view and its Markdown.

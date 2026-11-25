@@ -1,10 +1,9 @@
 """POST /v1/rate: a local model rates how much a reader who wants the essentials needs a passage.
 
-The prompt is one fixed text (rating_prompt.json): the instruction, the article title and lead
-(the same for every passage of an article, so llama.cpp reuses the evaluated prefix), then the
-passage. The rating is the expected value over the probabilities of the four answer digits 0 to 3,
-read at the first answer token; a row where those digits hold less than half of the probability
-mass falls back to the digit the model generates.
+The title and lead come before the passage in the prompt, so llama.cpp can reuse the part it already
+evaluated for the previous passage of the same article. The score is the expected value of the
+digits 0 to 3 under the model's probabilities for the first answer token. If those four digits hold
+less than half of the probability, the score is the digit the model generates instead.
 """
 
 # llama_cpp is an optional group of the image and has no types here.
@@ -35,7 +34,7 @@ INTRO: str = _PROMPT["intro"]
 SECTION: str = _PROMPT["section"]
 PASSAGE: str = _PROMPT["passage"]
 LEAD_HEADING: str = _PROMPT["lead_heading"]
-# The section and lead heading are not used by this prompt but belong to the hash.
+# prompt() does not use SECTION or LEAD_HEADING; they stay in the hash so it covers the whole file.
 PROMPT_SHA256 = hashlib.sha256(
     f"{SYSTEM}\n{INTRO}\n{SECTION}\n{PASSAGE}\n{LEAD_HEADING}".encode()
 ).hexdigest()
@@ -48,21 +47,21 @@ THINK = re.compile(r"<think>(.*?)</think>|<think>.*\Z", re.DOTALL)
 MAX_PASSAGES = 8
 MAX_TEXT_CHARS = 100_000
 GIB = 1024**3
-# A cgroup v1 limit at or above this is the "no limit" value (v2 says "max").
+# A cgroup v1 memory limit this large means "no limit" (v2 writes "max" instead).
 NO_LIMIT_BYTES = 1 << 60
 CGROUP_ROOT = Path("/sys/fs/cgroup")
 
 
 class RatingUnavailable(Exception):
-    """The rating model is not configured, its file is missing, or it did not load."""
+    """The rating model is off, its file is missing, or it did not load."""
 
 
 class RatingAbandoned(Exception):
-    """The client gave up on the call, so it stops at the next point the model can be left."""
+    """The client gave up on the call."""
 
 
 class PromptTooLong(Exception):
-    """The prompt of one passage does not fit the model's context."""
+    """One passage's prompt does not fit the context."""
 
 
 class RatePassage(BaseModel):
@@ -86,7 +85,11 @@ class RateResponse(BaseModel):
 
 @dataclass(frozen=True)
 class Rating:
-    """One passage's score (None when no digit came) and whether the generated digit was used."""
+    """A passage score and where it came from.
+
+    The score is None when the model produced no digit. fallback is True when it comes from the
+    generated reply instead of the first-token probabilities.
+    """
 
     score: float | None
     fallback: bool
@@ -110,15 +113,15 @@ class Rater(Protocol):
             title: the article title.
             lead: the article lead.
             passage: the passage text.
-            should_stop: polled between the model's steps; True means the client has gone.
+            should_stop: polled between model steps; True means the client has gone.
 
         Returns:
-            Rating: the score and whether it came from the generated digit.
+            Rating: the score and whether the generated digit gave it.
 
         Raises:
             RatingUnavailable: the model is off, missing or failed to load.
             PromptTooLong: the prompt does not fit the context.
-            RatingAbandoned: should_stop said so before the next step.
+            RatingAbandoned: should_stop returned True.
         """
 
 
@@ -131,7 +134,7 @@ def prompt(title: str, lead: str, passage: str) -> tuple[str, str]:
         passage: the passage text.
 
     Returns:
-        tuple[str, str]: the system text and the user text; the title and lead come first.
+        tuple[str, str]: the system text and the user text.
     """
     return SYSTEM, INTRO.format(title=title, lead=lead.strip()) + PASSAGE.format(
         passage=passage.strip()
@@ -143,13 +146,13 @@ def _messages(system: str, user: str) -> list[dict[str, str]]:
 
 
 def strip_think(text: str) -> str:
-    """Remove every think block (closed or unclosed) from a reply.
+    """Remove think blocks, closed or not, from a reply.
 
     Args:
         text: the generated reply.
 
     Returns:
-        str: the reply without think blocks, stripped.
+        str: the stripped reply.
     """
     return THINK.sub("", text).strip()
 
@@ -161,11 +164,11 @@ def digit_ids(llm: Any) -> dict[int, list[int]]:
         llm: the loaded model, for its tokenizer.
 
     Returns:
-        dict[int, list[int]]: per digit the id of the bare digit and, where " 3" is a token of its
-        own, of the spaced one.
+        dict[int, list[int]]: per digit the id of the bare digit and of the spaced one if it is a
+        single token.
 
     Raises:
-        ValueError: a digit is not a single token, or two digits share a token.
+        ValueError: no spelling of a digit is a single token, or two digits share a token.
     """
     out: dict[int, list[int]] = {}
     for digit in DIGITS:
@@ -185,15 +188,15 @@ def digit_ids(llm: Any) -> dict[int, list[int]]:
 def digit_probabilities(
     scores: list[float], ids: dict[int, list[int]]
 ) -> tuple[float | None, float]:
-    """Read one next-token logit row as the expected digit and the digits' share of the mass.
+    """Turn one row of logits into the expected digit and the probability the digits hold.
 
     Args:
-        scores: the logits over the whole vocabulary.
+        scores: the logits over the whole vocabulary, one value per token id.
         ids: the token ids of each digit.
 
     Returns:
-        tuple[float | None, float]: the expected value over the four digits (None when they hold
-        no mass) and the share of the softmax they hold.
+        tuple[float | None, float]: the expected digit (None if the digits hold no probability)
+        and the share of the whole vocabulary's probability that the four digits hold together.
     """
     top = max(scores)
     total = math.log(sum(math.exp(s - top) for s in scores)) + top
@@ -212,7 +215,7 @@ def generated_digit(llm: Any, system: str, user: str) -> int | None:
         user: the user text.
 
     Returns:
-        int | None: the digit, or None when the first 80 characters hold none.
+        int | None: the digit, None if the first 80 characters hold none.
     """
     reply = llm.create_chat_completion(
         messages=_messages(system, user),
@@ -229,10 +232,10 @@ def memory_limit_bytes(root: Path = CGROUP_ROOT) -> int | None:
     """Read the memory limit of this container's cgroup.
 
     Args:
-        root: the cgroup mount; v2's memory.max is read first, then v1's limit_in_bytes.
+        root: the cgroup mount; v2 memory.max is tried before v1 limit_in_bytes.
 
     Returns:
-        int | None: the limit in bytes, None when there is none or it cannot be read.
+        int | None: the limit in bytes, None if there is none or it is unreadable.
     """
     for name in ("memory.max", "memory/memory.limit_in_bytes"):
         try:
@@ -250,8 +253,8 @@ def load_llama(model_path: str, threads: int, n_ctx: int) -> tuple[Any, type[lis
 
     Args:
         model_path: the GGUF file.
-        threads: threads for prompt processing and generation.
-        n_ctx: the context size in tokens.
+        threads: thread count.
+        n_ctx: context size in tokens.
 
     Returns:
         tuple: the loaded model and llama_cpp's LogitsProcessorList class.
@@ -294,7 +297,7 @@ class LlamaRater:
         self._required_memory = required_memory_bytes
         self._cgroup_root = cgroup_root
         self._loaded: tuple[Any, type[list[Any]], dict[int, list[int]]] | None = None
-        # Set when the loaded model's tokenizer cannot carry the digits; the model is then dropped.
+        # Set when a digit is not a single token; later calls fail with this text, not reload.
         self._unusable: str | None = None
         self.model_file = Path(model_path).name
 
@@ -337,16 +340,16 @@ class LlamaRater:
             title: the article title.
             lead: the article lead.
             passage: the passage text.
-            should_stop: polled before the load, after the prompt is evaluated and before the
-                generated digit; the prompt evaluation itself cannot be interrupted.
+            should_stop: polled before the load, per logits step and before the generated digit;
+                prompt evaluation cannot be interrupted.
 
         Returns:
-            Rating: the expected digit, or the generated digit when the digits hold too little mass.
+            Rating: the expected digit, or the generated one when the digits hold too little mass.
 
         Raises:
             RatingUnavailable: the model is off, missing, too big for the pod or failed to load.
             PromptTooLong: the prompt does not fit the context.
-            RatingAbandoned: should_stop said so at one of those points.
+            RatingAbandoned: should_stop returned True at one of those points.
         """
         if should_stop():
             raise RatingAbandoned()
@@ -370,7 +373,8 @@ class LlamaRater:
                 logits_processor=processors([grab]),
             )
         except ValueError as exc:
-            # llama_cpp's wording (Llama._create_completion); another ValueError is not a 422.
+            # llama_cpp raises ValueError with this text for an oversized prompt.
+            # Any other ValueError is a real bug and propagates.
             if "exceed context window" not in str(exc):
                 raise
             raise PromptTooLong(str(exc)) from exc
@@ -384,7 +388,7 @@ class LlamaRater:
 
 
 def build_rater(settings: Settings) -> Rater:
-    """Construct the rater; nothing is loaded until its first call.
+    """Construct the rater; nothing loads until its first call.
 
     Args:
         settings: service settings.

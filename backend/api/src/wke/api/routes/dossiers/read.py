@@ -71,8 +71,7 @@ async def _serve_dossier(
     # a partial build (summaries still pending) or a structural-fallback build
     # (short-TTL, meant to be rebuilt) can still change in place, so caching it
     # for a year would freeze it.
-    # A view packed with the stored relevance while selection by rating is on may still be
-    # repacked once its rating completes.
+    # A view packed by stored relevance can change once the rating finishes, so it is not final.
     is_final = (
         rev_id is not None
         and view.build.state == "complete"

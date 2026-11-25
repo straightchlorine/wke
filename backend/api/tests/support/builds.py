@@ -55,7 +55,8 @@ async def build_only(
         public_scheme: the PUBLIC_SCHEME setting.
         background: True when the job came off the background queue.
         rating: the SELECTION_RATING settings; disabled by default.
-        **analyze: the analyze_* keywords of run_build.
+        **analyze: the analyze_* keyword arguments of run_build (deadline and retries of the
+            build's wke-ml analyze call).
 
     Returns:
         JobQueue: the queue the job was stored in.

@@ -1,4 +1,4 @@
-"""The rating loop: a wke-ml call per prose passage, a stored document after each, its stops."""
+"""The rating loop: one wke-ml call per prose passage, saving the stored rating after each."""
 
 from __future__ import annotations
 
@@ -58,7 +58,7 @@ def _reply(scores: dict[str, float | None], **overrides: Any) -> httpx.Response:
 
 
 class Ml:
-    """A wke-ml that rates each passage by its index in the dossier and keeps every request."""
+    """A fake wke-ml whose n-th call scores n mod 4 unless `respond` is given; keeps requests."""
 
     def __init__(self, respond: Callable[[httpx.Request, int], httpx.Response] | None = None):
         self.requests: list[httpx.Request] = []
@@ -84,7 +84,7 @@ def _outcomes() -> dict[str, float]:
 
 
 async def _run(redis_client: RedisClient, ml: Ml, config: RatingConfig = CONFIG) -> None:
-    """Run the loop until nothing on q:rate is due and q:rate:processing is empty."""
+    """Run the loop until the queue q:rate and its in-progress list q:rate:processing are empty."""
     rater = Rater(redis_client, make_ml_client(ml), config, PIPELINE_VERSION)
     task = asyncio.create_task(rater.run_forever())
     try:
@@ -216,7 +216,7 @@ async def test_a_second_attempt_does_not_write_its_partial_copy_over_a_finished_
 
     async def respond(request: httpx.Request) -> httpx.Response:
         calls.append(1)
-        await redis_client.set(KEY, finished.model_dump_json())  # the first attempt finishes
+        await redis_client.set(KEY, finished.model_dump_json())
         [passage] = json.loads(request.content)["passages"]
         return _reply({passage["id"]: 0.0})
 
@@ -466,15 +466,15 @@ async def test_an_item_that_raises_is_logged_and_removed(
     assert "rating item failed: not-an-item" in caplog.text
 
 
-# --- stages that end without a complete rating: lock, retry, backoff, cap ---
+# --- a stage that ends before every passage is rated: lock released, item queued again ---
 
 LOCK = rating_lock_key(PAGE_ID, REV_ID, PIPELINE_VERSION)
 HEARTBEAT = keys.rating_heartbeat(PAGE_ID, REV_ID)
-SAFETY_NET_SECONDS = 30  # only so a broken test fails instead of hanging
+SAFETY_NET_SECONDS = 30  # upper bound on waits, so a broken test fails instead of hanging
 
 
 async def _lock_and_queue(redis_client: RedisClient) -> None:
-    """Enqueue as a build does: the lock is taken and the item is queued."""
+    """Queue the rating item, which also takes the per-revision rating lock, as a build does."""
     await make_queue(redis_client).enqueue_rating(PAGE_ID, REV_ID, 2400)
     assert await redis_client.get(LOCK) is not None
 
@@ -524,7 +524,7 @@ async def test_a_requeued_stage_is_tried_again_once_due_and_finishes(
     await redis_client.rpush(keys.QUEUE_RATE, ITEM)
 
     def respond(request: httpx.Request, n: int) -> httpx.Response:
-        if n <= 3:  # the first attempt's three tries of the first passage
+        if n <= 3:
             return httpx.Response(503)
         [passage] = json.loads(request.content)["passages"]
         return _reply({passage["id"]: 2.0})
@@ -569,7 +569,7 @@ async def test_a_deadline_stage_releases_the_lock_and_the_retry_resumes_from_the
     async def respond(request: httpx.Request) -> httpx.Response:
         [passage] = json.loads(request.content)["passages"]
         if slow[0] and passage["id"] == PROSE[2].id:
-            slow[0] = False  # only the first try of this passage hangs
+            slow[0] = False
             await asyncio.sleep(10)
         return _reply({passage["id"]: 2.0})
 
@@ -590,7 +590,7 @@ async def test_a_deadline_stage_releases_the_lock_and_the_retry_resumes_from_the
     with pytest.raises(asyncio.CancelledError):
         await task
 
-    # Two passages before the cut, the cut one tried again, then the rest: none rated twice.
+    # Only the slow third passage is requested twice; the first two are not repeated.
     assert ml_requests == [c.id for c in PROSE[:3]] + [c.id for c in PROSE[2:]]
     assert await redis_client.get(LOCK) is None
 
@@ -625,7 +625,7 @@ async def test_a_done_stage_keeps_its_lock(redis_client: RedisClient) -> None:
     assert await redis_client.get(LOCK) is not None
 
 
-# --- a revision that is no longer current ---
+# --- an item whose revision is no longer the page's current one ---
 
 
 async def test_an_item_whose_revision_is_no_longer_the_pointers_is_skipped_without_a_call(
@@ -658,7 +658,7 @@ async def test_the_queue_stays_first_in_first_out(redis_client: RedisClient) -> 
     assert ml.bodies()[-1]["title"] == DOSSIER.topic.title
 
 
-# --- two raters, a heartbeat per item, reaping ---
+# --- two raters: a heartbeat key marks a revision in work; a dead rater's items are requeued ---
 
 
 async def test_a_revision_another_rater_holds_is_skipped(redis_client: RedisClient) -> None:
@@ -727,8 +727,8 @@ async def test_an_item_whose_rater_died_is_found_while_the_loop_runs(
     task = asyncio.create_task(
         Rater(redis_client, make_ml_client(ml), CONFIG, PIPELINE_VERSION).run_forever()
     )
-    await asyncio.sleep(0.1)  # started and idle
-    await redis_client.rpush(keys.QUEUE_RATE_PROCESSING, ITEM)  # a sibling took it and died
+    await asyncio.sleep(0.1)
+    await redis_client.rpush(keys.QUEUE_RATE_PROCESSING, ITEM)
     await _until(lambda: _is_done(redis_client), "the dead rater's item rated")
     task.cancel()
     with pytest.raises(asyncio.CancelledError):
@@ -743,10 +743,10 @@ async def test_the_claim_is_refreshed_while_rating_and_released_after(
     await seed_dossier(redis_client, DOSSIER)
     await redis_client.rpush(keys.QUEUE_RATE, ITEM)
     seen: list[int] = []
-    waiting: asyncio.Queue[None] = asyncio.Queue()  # the heartbeat is asleep, ready for a tick
-    ticks: asyncio.Queue[None] = asyncio.Queue()  # the test wakes it
+    waiting: asyncio.Queue[None] = asyncio.Queue()
+    ticks: asyncio.Queue[None] = asyncio.Queue()
 
-    released = asyncio.Event()  # the item is off q:rate:processing: the claim is released too
+    released = asyncio.Event()
     real_lrem = redis_client.lrem
 
     async def lrem(*args: Any, **kwargs: Any) -> Any:
@@ -764,10 +764,10 @@ async def test_the_claim_is_refreshed_while_rating_and_released_after(
     async def respond(request: httpx.Request) -> httpx.Response:
         async with asyncio.timeout(SAFETY_NET_SECONDS):
             if not seen:
-                await waiting.get()  # the heartbeat of the item starts asleep
+                await waiting.get()
             await redis_client.expire(HEARTBEAT, 1)
             ticks.put_nowait(None)
-            await waiting.get()  # asleep again: the write of the tick is done
+            await waiting.get()
         seen.append(await redis_client.ttl(HEARTBEAT))
         [passage] = json.loads(request.content)["passages"]
         return _reply({passage["id"]: 2.0})
@@ -778,7 +778,8 @@ async def test_the_claim_is_refreshed_while_rating_and_released_after(
             redis_client, MLClient(http), CONFIG, PIPELINE_VERSION, heartbeat_sleep=heartbeat_sleep
         ).run_forever()
     )
-    # Not "the rating done": a cancel between the last write and the release would leave the claim.
+    # The item leaves the processing list after the heartbeat key is deleted; cancelling
+    # earlier could leave the key behind.
     async with asyncio.timeout(SAFETY_NET_SECONDS):
         await released.wait()
     task.cancel()
@@ -787,7 +788,7 @@ async def test_the_claim_is_refreshed_while_rating_and_released_after(
 
     assert await _is_done(redis_client)
     assert len(seen) == len(PROSE)
-    assert min(seen) > 1  # the claim was set back to its full life during every call
+    assert min(seen) > 1
     assert await redis_client.get(HEARTBEAT) is None
 
 
@@ -817,13 +818,13 @@ async def test_a_stopped_rater_puts_its_item_back_first_and_lets_go_of_the_claim
     assert await redis_client.get(HEARTBEAT) is None
 
 
-# --- a Redis error must not end the loop, and a claim that cannot be kept is given up ---
+# --- a Redis error must not end the loop; an item whose heartbeat cannot be kept is given up ---
 
 
 def _fail(
     redis_client: RedisClient, monkeypatch: pytest.MonkeyPatch, name: str, times: int
 ) -> None:
-    """Make the first `times` calls of one RedisClient method raise, as a dropped link does."""
+    """Make the first `times` calls of one RedisClient method raise."""
     real = getattr(redis_client, name)
     left = [times]
 
@@ -841,7 +842,7 @@ async def test_a_redis_error_in_the_reap_is_logged_and_the_loop_goes_on(
 ) -> None:
     await seed_dossier(redis_client, DOSSIER)
     monkeypatch.setattr(rater_module, "REAP_INTERVAL_SECONDS", 0.05)
-    _fail(redis_client, monkeypatch, "lrange", 2)  # the reap at start and the first periodic one
+    _fail(redis_client, monkeypatch, "lrange", 2)
     task = asyncio.create_task(
         Rater(redis_client, make_ml_client(Ml()), CONFIG, PIPELINE_VERSION).run_forever()
     )
@@ -918,7 +919,7 @@ async def test_a_claim_that_cannot_be_refreshed_gives_the_item_back_instead_of_r
         if key == HEARTBEAT and not kwargs.get("nx") and broken[0]:
             if mode == "raises":
                 raise OSError("redis is down")
-            return False  # what RedisClient answers when Redis failed
+            return False
         return await real_set(key, value, **kwargs)
 
     monkeypatch.setattr(redis_client, "set", set_)
@@ -929,10 +930,10 @@ async def test_a_claim_that_cannot_be_refreshed_gives_the_item_back_instead_of_r
         calls.append(1)
         if len(calls) == 1:
             try:
-                await asyncio.sleep(30)  # still rating when the claim is found lost
+                await asyncio.sleep(30)
             except asyncio.CancelledError:
                 cancelled.set()
-                broken[0] = False  # Redis is back for the second attempt
+                broken[0] = False
                 raise
         [passage] = json.loads(request.content)["passages"]
         return _reply({passage["id"]: 2.0})
@@ -948,7 +949,7 @@ async def test_a_claim_that_cannot_be_refreshed_gives_the_item_back_instead_of_r
         with pytest.raises(asyncio.CancelledError):
             await task
 
-    assert cancelled.is_set()  # the call without a claim was stopped, not waited for
+    assert cancelled.is_set()
     assert len(calls) == 1 + len(PROSE)
     assert "rating heartbeat lost" in caplog.text
     assert await redis_client.llen(keys.QUEUE_RATE_PROCESSING) == 0
@@ -980,7 +981,7 @@ async def test_a_claim_that_stays_unwritable_is_given_back_once_with_a_backoff(
         return httpx.Response(503)
 
     async def heartbeat_sleep(_seconds: float) -> None:
-        await asyncio.sleep(0)  # three failed writes, no waiting
+        await asyncio.sleep(0)
 
     http = httpx.AsyncClient(transport=httpx.MockTransport(respond), base_url="http://wke-ml.test")
     before = time.time()
@@ -991,7 +992,7 @@ async def test_a_claim_that_stays_unwritable_is_given_back_once_with_a_backoff(
     )
     try:
         await _until(lambda: _queued_retry(redis_client), "the item given back with a backoff")
-        await asyncio.sleep(0.3)  # longer than the pause of the loop: nothing may be called again
+        await asyncio.sleep(0.3)
     finally:
         task.cancel()
         with pytest.raises(asyncio.CancelledError):
@@ -1016,7 +1017,7 @@ async def test_a_claim_that_cannot_be_written_gives_the_item_back(
 ) -> None:
     await seed_dossier(redis_client, DOSSIER)
     await redis_client.rpush(keys.QUEUE_RATE, ITEM)
-    _fail(redis_client, monkeypatch, "set", 1)  # the claim of the first attempt
+    _fail(redis_client, monkeypatch, "set", 1)
 
     await _run(redis_client, Ml())
 

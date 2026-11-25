@@ -1,4 +1,4 @@
-"""run_build queues the rating stage of the dossier it stored, only while the switch is on."""
+"""run_build queues the rating stage of the dossier it stored, only while SELECTION_RATING is on."""
 
 from __future__ import annotations
 
@@ -75,7 +75,8 @@ async def test_a_rebuild_of_a_rated_revision_queues_nothing_more(
 
     await build_only(redis_client, wikimedia_client, ml_client_ok, make_job(), rating=ON)
 
-    assert await redis_client.llen(keys.QUEUE_RATE) == 0  # the lock still holds
+    # The first build's rating lock for this revision is still held, so nothing is queued.
+    assert await redis_client.llen(keys.QUEUE_RATE) == 0
 
 
 async def test_a_failure_to_queue_does_not_fail_the_stored_build(

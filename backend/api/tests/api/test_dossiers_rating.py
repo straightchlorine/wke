@@ -1,4 +1,4 @@
-"""Selection by rating on the REST routes: JSON field, ETag and cache lifetime."""
+"""Choosing passages by the stored model rating on the REST routes: JSON field, ETag, caching."""
 
 from __future__ import annotations
 

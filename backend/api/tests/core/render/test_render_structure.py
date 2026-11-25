@@ -138,7 +138,7 @@ def test_heading_only_parent_is_kept_for_an_included_child() -> None:
 
 
 def _jumping(paths: list[list[str]], kinds: list[str] | None = None) -> Dossier:
-    """The nested dossier with section "Busy" holding one chunk per given path."""
+    """The nested dossier whose last section, "Busy", holds one chunk per heading path, in order."""
     base = make_nested_dossier()
     template = base.chunks[2]
     chunks = [

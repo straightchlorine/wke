@@ -94,15 +94,7 @@ class ProcessorList(list[Any]):
     """Stand-in for llama_cpp.LogitsProcessorList: a list that is callable."""
 
     def __call__(self, input_ids: Any, scores: Any) -> Any:
-        """Pass the scores through every processor, as llama.cpp does.
-
-        Args:
-            input_ids: the tokens so far.
-            scores: the logits row.
-
-        Returns:
-            The scores the last processor returned.
-        """
+        """Pass the scores through every processor, as llama.cpp does."""
         for processor in self:
             scores = processor(input_ids, scores)
         return scores
@@ -126,15 +118,7 @@ class FakeLlama:
 
     @classmethod
     def row(cls, favoured: int | None, boost: float) -> list[float]:
-        """Build a logit row where one digit's two tokens stand out from a flat vocabulary.
-
-        Args:
-            favoured: the digit that gets the boost, or None for a flat row.
-            boost: the logit given to the favoured digit's bare and spaced token.
-
-        Returns:
-            list[float]: VOCAB logits.
-        """
+        """Build a logit row where one digit's two tokens stand out from a flat vocabulary."""
         row = [0.0] * cls.VOCAB
         if favoured is not None:
             row[10 + favoured] = boost
@@ -142,16 +126,7 @@ class FakeLlama:
         return row
 
     def tokenize(self, text: bytes, add_bos: bool = True, special: bool = False) -> list[int]:
-        """Tokenize a digit as one token, anything else as two.
-
-        Args:
-            text: the spelling, as bytes.
-            add_bos: ignored.
-            special: ignored.
-
-        Returns:
-            list[int]: the token ids.
-        """
+        """Tokenize a digit as one token; a spaced digit is two tokens when spaced is False."""
         spelling = text.decode()
         if spelling.strip() in {"0", "1", "2", "3"}:
             digit = int(spelling.strip())
@@ -161,14 +136,7 @@ class FakeLlama:
         return [30, 31]
 
     def create_chat_completion(self, **kwargs: Any) -> dict[str, Any]:
-        """Record the call; feed the logits row to the logits processor or generate text.
-
-        Args:
-            **kwargs: the call's arguments.
-
-        Returns:
-            dict[str, Any]: a chat completion reply.
-        """
+        """Record the call; feed the logits row to a processor, else return generated text."""
         self.calls.append(kwargs)
         processor = kwargs.get("logits_processor")
         if processor is not None:
@@ -180,14 +148,7 @@ class FakeLlama:
 
 
 def fake_loader(llama: FakeLlama) -> Callable[[str, int, int], tuple[Any, type[list[Any]]]]:
-    """Build a loader that hands out one fake model and counts its loads.
-
-    Args:
-        llama: the model to return.
-
-    Returns:
-        Callable: a loader like wke_ml.rating.load_llama; its `loads` attribute counts calls.
-    """
+    """Build a loader that hands out one fake model and counts its loads."""
 
     def loader(_path: str, _threads: int, _n_ctx: int) -> tuple[Any, type[list[Any]]]:
         loader.loads += 1  # type: ignore[attr-defined]
@@ -198,7 +159,10 @@ def fake_loader(llama: FakeLlama) -> Callable[[str, int, int], tuple[Any, type[l
 
 
 class FakeRater:
-    """A rater whose scores are set by a test; ids of `fallback` come back as generated."""
+    """A rater whose scores are set by a test, keyed by passage text.
+
+    Passages listed in `fallback` come back flagged as rated by the generated digit.
+    """
 
     def __init__(
         self,
@@ -215,17 +179,7 @@ class FakeRater:
     def rate(
         self, title: str, lead: str, passage: str, should_stop: Callable[[], bool] | None = None
     ) -> Rating:
-        """Look the passage text up in the scores, or raise the error given at construction.
-
-        Args:
-            title: the article title.
-            lead: the article lead.
-            passage: the passage text, which is the key of the scores.
-            should_stop: ignored.
-
-        Returns:
-            Rating: the scripted rating.
-        """
+        """Return the score keyed by the passage text (1.0 if absent), or raise the given error."""
         self.calls.append((title, lead, passage))
         if self._error is not None:
             raise self._error

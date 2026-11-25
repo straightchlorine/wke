@@ -30,7 +30,7 @@ def place_rest(packer: Packer) -> None:
         packer: the pass to place into.
     """
     locked = locked_sections(packer)
-    # the key facts are placed by place_facts alone
+    # Key facts are skipped here because place_facts includes them.
     pending = [
         c
         for c in packer.dossier.chunks

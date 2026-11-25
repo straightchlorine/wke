@@ -1,4 +1,4 @@
-"""The offline script writes pull.py-style folders for the stored dossiers."""
+"""The offline script writes one folder per stored dossier, laid out like a pulled one."""
 
 from __future__ import annotations
 

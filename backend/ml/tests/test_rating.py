@@ -14,7 +14,7 @@ from wke_ml import rating
 from wke_ml.rating import LlamaRater, PromptTooLong, RatingAbandoned, RatingUnavailable
 from wke_ml.settings import Settings
 
-# The hash of the five prompt strings the rating was measured with.
+# SHA-256 of the five strings in rating_prompt.json; it changes whenever the prompt text does.
 MEASURED_PROMPT_SHA256 = "f68afeb2bc1aaf3734cdeb0127500589966f47fbb7b74c20a004941e69bc6ec7"
 PROMPT_FILE = Path(rating.__file__).with_name("rating_prompt.json")
 
@@ -58,8 +58,8 @@ def test_prompt_puts_title_and_lead_before_the_stripped_passage() -> None:
     assert user.endswith("Answer with one digit: 0, 1, 2 or 3.")
 
 
-# The lab's own messages (wkelab.readability.rate.prompt, variant "lead") for two items, written
-# out from its output: the lead and the passage are stripped, braces and quotes stay literal.
+# The expected system and user text written out in full: lead and passage are stripped, and
+# braces and quotes in the input are kept literally.
 LAB_SYSTEM = (
     "You rate how much a passage of an article matters to a reader who wants its essentials. "
     "Answer with one digit: 0, 1, 2 or 3."
@@ -320,7 +320,7 @@ def test_the_rating_settings_default_to_off() -> None:
     )
 
 
-# --- the pod's memory limit ---
+# --- the container's memory limit ---
 
 GIB = 1024**3
 
@@ -449,7 +449,7 @@ def test_build_rater_passes_the_required_memory_of_the_settings(model_file: str)
     assert Settings(backend="stub").rating_required_memory_gib == 10.0
 
 
-# --- a tokenizer that cannot carry the digits ---
+# --- a model whose tokenizer has no single token for a digit ---
 
 
 def test_a_failed_tokenizer_check_does_not_load_the_model_again_on_every_call(
@@ -469,7 +469,7 @@ def test_a_failed_tokenizer_check_does_not_load_the_model_again_on_every_call(
     assert loader.loads == 1  # type: ignore[attr-defined]
 
 
-# --- a call the client abandoned ---
+# --- a call whose client has gone (should_stop returns True) ---
 
 
 def test_a_call_abandoned_before_it_starts_loads_nothing_and_asks_the_model_nothing(
@@ -501,7 +501,7 @@ def test_a_call_abandoned_before_the_generated_digit_does_not_generate(model_fil
     with pytest.raises(RatingAbandoned):
         LlamaRater(model_file, 2, 8192, fake_loader(llama)).rate("T", "L", "P", lambda: next(polls))
 
-    assert len(llama.calls) == 1  # the one-token read; no 8-token generation
+    assert len(llama.calls) == 1  # only the one-token probability read ran; no reply was generated
 
 
 def test_a_call_nobody_abandons_is_unchanged(model_file: str) -> None:

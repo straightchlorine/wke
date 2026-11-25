@@ -1,4 +1,4 @@
-"""The build's analyze call: its own deadline, retries, and one log line per attempt."""
+"""The build's call to wke-ml analyze has its own deadline and retries, and logs each attempt."""
 
 from __future__ import annotations
 

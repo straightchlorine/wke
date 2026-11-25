@@ -38,11 +38,11 @@ def make_service(
             404 when omitted.
         pipeline_version: the pipeline version the service reads and builds.
         public_host: the host its absolute links are rooted at (https).
-        lean_response: the service's lean setting.
+        lean_response: the LEAN_RESPONSE setting (no Key facts block, no left-out lines).
         rating: the SELECTION_RATING settings; disabled by default.
 
     Returns:
-        DossierService: wired to a JobQueue with a cap of 20.
+        DossierService: wired to a job queue that holds at most 20 jobs.
     """
     wikimedia = make_wikimedia_client(redis_client, handler)
     job_queue = JobQueue(redis_client, pipeline_version, queue_cap=20)

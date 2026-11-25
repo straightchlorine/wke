@@ -1,4 +1,7 @@
-"""The lean response on a rated read: every format and part serves the same lean pack."""
+"""A rated read with LEAN_RESPONSE on drops the Key facts and left-out lines in every format.
+
+LEAN_RESPONSE omits the Key facts block and the per-section "left out at this budget" lines.
+"""
 
 from __future__ import annotations
 
@@ -95,7 +98,7 @@ async def test_the_dossier_tokens_header_of_a_rated_lean_response_is_within_the_
 
 
 def _structural_dossier() -> Dossier:
-    """A structural build: one section of passages that jump between four subsections."""
+    """A structural build: one section whose passages cycle through four subsections in turn."""
     from tests.factories.synthetic import dossier_of, prose, section, sized
 
     rows = "\n".join(f"Fact {n}: {sized('value', 14)}" for n in range(12))
@@ -152,7 +155,7 @@ async def test_each_switch_acts_alone_on_the_markdown_route(
 
 
 async def _seed_rated_with_a_left_out_table(redis_client, fake_redis) -> Dossier:
-    """A dossier whose section s3 holds a table too big for 2000 tokens, with a stored rating."""
+    """A dossier whose section s3 has a table too big for 2000 tokens, and a stored rating."""
     from tests.api.test_lean_response import _with_heavy_table
     from tests.factories.dossier import make_fixture_dossier
     from tests.support.services import seed_dossier

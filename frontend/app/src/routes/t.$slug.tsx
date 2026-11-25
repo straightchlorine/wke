@@ -78,20 +78,18 @@ function Dossier() {
   const [budget, setBudgetState] = useBudget(search.budget, writeBudgetParam);
   const title = useMemo(() => unslugify(slug), [slug]);
 
-  // The page asks for a build by itself only after a navigation inside the app, so a crawler that
-  // runs the page does not start one for every title it finds. A direct open shows Build instead.
+  // Only a navigation inside the app starts a build by itself, so a crawler never does.
   const mayBuild = useBuildOnArrival(slug);
-  // Whether the reader got here by a navigation, which decides if focus moves to the heading.
   const [arrivedViaNavigation] = useState(() => !rootNavState.isInitialLoad);
-  // The component is not remounted when the slug changes, so a move to another dossier is a navigation
-  // too and moves focus.
+  // This component stays mounted when the slug changes, so remember the first slug and count
+  // any later one as a navigation.
   const [firstSlug] = useState(slug);
   const [leftFirstSlug, setLeftFirstSlug] = useState(false);
   if (slug !== firstSlug && !leftFirstSlug) {
     setLeftFirstSlug(true);
   }
 
-  // Pressing Build unmounts the focused button, so focus is put back on the heading afterwards.
+  // Pressing Build removes the focused button, so focus has to be moved back to the heading.
   const [pressedBuild, setPressedBuild] = useState(false);
 
   const {
@@ -167,9 +165,9 @@ function Dossier() {
         : undefined,
   });
 
-  // Until the API has answered with a job or a not-ready state, the page is only opening.
+  // With no dossier and no build job yet, while still resolving or loading, the page is opening.
   const opening = !dossier && !job && (phase === "resolving" || dossierLoading);
-  // Each view renders its own h1, so each gets its own key.
+  // Each view renders its own h1, so the view name tells useHeadingRefocus when it was replaced.
   const view =
     phase === "error"
       ? "error"

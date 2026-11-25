@@ -50,7 +50,7 @@ def test_find_dossier_is_none_for_an_unknown_title() -> None:
 
 
 def _big_key_facts_dossier() -> Dossier:
-    """The fixture dossier with a Key facts chunk that takes most of a 2000-token pack."""
+    """The fixture dossier with a Key facts chunk that takes up most of a 2000-token budget."""
     dossier = make_fixture_dossier()
     text = "word " * 1500
     chunks = [

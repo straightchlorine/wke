@@ -58,9 +58,7 @@ class Settings(BaseSettings):
         ge=0,
         description=(
             "Memory limit the pod must have before the rating model loads (0 turns the check "
-            "off); measured peak of the whole service 9.35 GiB on x86 with all three models "
-            "loaded (RT0, 2026-11-19); nothing measured on arm64; set it from a measurement of "
-            "the real pod. A pod without a limit passes."
+            "off). A pod without a limit passes."
         ),
     )
 

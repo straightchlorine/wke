@@ -24,13 +24,13 @@ EMPTY = Passage("")
 
 
 def _is_navigation(sentence: Passage) -> bool:
-    """Tell whether a sentence is a navigation sentence.
+    """Tell whether a sentence only sends the reader elsewhere, such as "See also ...".
 
     Args:
         sentence: one sentence of a paragraph.
 
     Returns:
-        bool: True when a navigation pattern matches it.
+        bool: True when it matches one of the navigation phrases in wke.core.text.navigation.
     """
     return bool(
         NAVIGATION_SENTENCE.match(sentence.text) or NAVIGATION_ANYWHERE.search(sentence.text)
@@ -61,9 +61,8 @@ def prose_of_paragraph(node: LexborNode, keep_open: bool = False) -> tuple[Passa
     marked = clean_text(node.text(separator="", strip=False))
     if keep_open:
         marked = clean_text(tidy_pronunciation(marked))
-    # A quotation is one sentence, but a drop decided on it would take every
-    # sentence of the quotation along, so each drop is decided on the pieces
-    # the rule had before quotations were kept whole.
+    # A quotation counts as one sentence, so dropping a navigation match would drop the whole
+    # quotation. Split a matching sentence at every end and drop only the matching pieces.
     sentences = [
         piece
         for s in read_marked(marked, titles).sentences()

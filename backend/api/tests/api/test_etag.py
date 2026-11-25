@@ -149,3 +149,21 @@ async def test_md_route_etag_differs_from_json_route(app: FastAPI, built_page: i
         as_md = await client.get(f"/api/v1/dossiers/{built_page}.md", params={"budget": "8000"})
 
     assert as_json.headers["etag"] != as_md.headers["etag"]
+
+
+@pytest.mark.parametrize(
+    ("tag", "lean"),
+    [
+        ('"1-pv-32000-json-complete-5-s1-l0-pdms"', False),
+        ('"1-pv-32000-json-complete-5-s1-l0-pdmsl"', True),
+        ('"1-pv-32000-json-complete-5-s1-l0-pdmsl-r1"', True),
+        ('"1-pv-32000-json-complete-5-s1-l0-pdmslh-r0"', True),
+        ('"1-pv-32000-json-complete-5-s1-l0-pdmsh"', False),
+        ('"1-test-pv-32000-json-complete-5-s0-l1-pdl"', True),
+        ('"1377998321-dev-32000-json-complete-5-s1-l0"', False),
+        ('W/"1-pv-32000-json-complete-5-s1-l0-pdl"', True),
+        ("not an etag", False),
+    ],
+)
+def test_the_lean_letter_of_an_etag_is_read_from_its_parts_code(tag: str, lean: bool) -> None:
+    assert etag.etag_is_lean(tag) is lean

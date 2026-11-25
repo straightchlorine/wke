@@ -1,4 +1,4 @@
-"""Redis keys of stored dossiers and their summaries."""
+"""Redis keys of dossiers, summaries and ratings."""
 
 from __future__ import annotations
 
@@ -48,14 +48,14 @@ def ptr(page_id: int) -> str:
 
 
 def rating(page_id: int, rev_id: int, pipeline_version: str, prompt12: str, model: str) -> str:
-    """Build the key of the stored rating of one revision's prose passages.
+    """Build the key of a revision's stored rating (the rating model's scores per passage).
 
     Args:
         page_id: Wikipedia page id.
         rev_id: pinned revision id.
         pipeline_version: PIPELINE_VERSION setting.
-        prompt12: the first 12 hex characters of the rating prompt's hash.
-        model: the rating model's name.
+        prompt12: first 12 hex chars of the prompt hash.
+        model: rating model name.
 
     Returns:
         str: `rating:{page_id}:{rev_id}:{pv}:{prompt12}:{model}`.
@@ -64,14 +64,14 @@ def rating(page_id: int, rev_id: int, pipeline_version: str, prompt12: str, mode
 
 
 def rating_lock(page_id: int, rev_id: int, pipeline_version: str, prompt12: str, model: str) -> str:
-    """Build the key that keeps one rating stage queued or running per rating key.
+    """Build the key of the lock that allows one rating job per revision at a time.
 
     Args:
         page_id: Wikipedia page id.
         rev_id: pinned revision id.
         pipeline_version: PIPELINE_VERSION setting.
-        prompt12: the first 12 hex characters of the rating prompt's hash.
-        model: the rating model's name.
+        prompt12: first 12 hex chars of the prompt hash.
+        model: rating model name.
 
     Returns:
         str: `rate:lock:{page_id}:{rev_id}:{pv}:{prompt12}:{model}`.
@@ -80,7 +80,9 @@ def rating_lock(page_id: int, rev_id: int, pipeline_version: str, prompt12: str,
 
 
 def rating_heartbeat(page_id: int, rev_id: int) -> str:
-    """Build the key a rater refreshes while it rates one revision.
+    """Build the key a rater refreshes while it rates a revision.
+
+    The key expires on its own, so a rater that died stops looking alive.
 
     Args:
         page_id: Wikipedia page id.

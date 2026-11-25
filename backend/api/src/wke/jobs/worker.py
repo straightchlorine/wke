@@ -75,9 +75,9 @@ class Worker:
         self._current: str | None = None
 
     async def run_forever(self) -> None:
-        """Reap stalled items once at startup, then dequeue and process forever.
+        """Requeue items a crashed worker left half done, then take and process items forever.
 
-        With a rater, its loop runs beside this one as a child task and stops with it.
+        A rater, if given, runs beside this loop and stops with it.
 
         Raises:
             asyncio.CancelledError: re-raised after requeuing the
@@ -95,7 +95,8 @@ class Worker:
         finally:
             if rater_task is not None:
                 rater_task.cancel()
-                with contextlib.suppress(asyncio.CancelledError):
+                # A dead rater must not mask the worker's own exit reason.
+                with contextlib.suppress(asyncio.CancelledError, Exception):
                     await rater_task
 
     async def _run_once(self) -> None:
@@ -195,7 +196,11 @@ class Worker:
             await asyncio.sleep(HEARTBEAT_INTERVAL_SECONDS)
 
     async def reap_stalled(self) -> None:
-        """Requeue q:processing items whose job heartbeat is stale or missing."""
+        """Put back on the queue the jobs a dead worker left half done.
+
+        q:processing lists the jobs being built. A worker refreshes a job's heartbeat key
+        while it builds; an item whose job is gone or whose heartbeat is stale is requeued.
+        """
         items = await self._redis.lrange(keys.QUEUE_PROCESSING, 0, -1)
         for value in items:
             if await self._is_stale(value):

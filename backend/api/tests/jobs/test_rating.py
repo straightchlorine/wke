@@ -1,4 +1,4 @@
-"""Repacking a dossier under the model rating: rank map, non-prose relevance, summaries."""
+"""Re-ranking a dossier by the model rating: rank map, relevance of non-prose chunks, summaries."""
 
 from __future__ import annotations
 
@@ -27,7 +27,8 @@ CAREER1 = "1382805013:career:1"
 LEGACY = "1382805013:legacy:0"
 TABLE = "1382805013:career:table0"
 FACTS = "1382805013:lead:facts"
-# Stored prose relevance, ascending: 0.4 0.5 0.6 0.9 0.95 1.0.
+# The fixture dossier's stored relevance of its six prose passages, ascending:
+# 0.4 0.5 0.6 0.9 0.95 1.0.
 SCORES: dict[str, float | None] = {
     LEAD: 1.0,
     EARLY0: 3.0,
@@ -63,8 +64,8 @@ def test_rank_map_interpolates_a_tie_between_two_stored_positions() -> None:
     assert mapped == pytest.approx({"c": 0.2, "a": 0.4 + 0.5 * 0.4, "b": 0.4 + 0.5 * 0.4})
 
 
-# Written out from the lab's selection.quantile_map (docs/research/2026-11-18-recipe/selection.py):
-# (values, stored relevance, mapped), an odd count with ties, one passage, an even count, all tied.
+# Cases of (rating scores, stored relevance, expected mapped relevance): an odd count with
+# ties, one passage, an even count, and all scores tied.
 LAB_RANK_MAPS = [
     (
         {"a": 0.2, "b": 0.9, "c": 0.2, "d": 0.5, "e": 0.9},
@@ -100,7 +101,9 @@ def test_the_rating_replaces_the_prose_relevance_by_rank() -> None:
     repacked = apply_rating(make_fixture_dossier(), SCORES, summary_sections=8)
 
     assert repacked is not None
-    # Scores / 3, the missing one filled by the mean 1.8 / 3: 0.33 1.0 0.0 0.67 0.6 1.0.
+    # Scores divided by 3, the missing one (CAREER1) replaced by the mean 1.8 / 3. In order
+    # LEAD..LEGACY: 0.33 1.0 0.0 0.67 0.6 1.0. Each passage then takes the stored relevance
+    # at its rank in that list; tied passages share the average of their positions.
     assert _relevance(repacked) == pytest.approx(
         {
             EARLY1: 0.4,
@@ -168,8 +171,8 @@ def test_summaries_of_sections_the_selection_no_longer_picks_are_dropped() -> No
 
     assert repacked is not None
     by_id = {s.id: s for s in repacked.sections}
-    # One summary section is chosen; the stored "done" and "unavailable" sections not chosen
-    # are skipped, a "pending" section keeps its state.
+    # A section the selection no longer picks becomes "skipped" and loses its summary if it was
+    # "done" or "unavailable"; one still "pending" stays pending.
     kept = [s for s in (by_id["s1"], by_id["s3"]) if s.summary_state != "skipped"]
     assert len(kept) <= 1
     for section in (by_id["s1"], by_id["s3"]):
@@ -178,7 +181,7 @@ def test_summaries_of_sections_the_selection_no_longer_picks_are_dropped() -> No
             assert section.withheld_reason is None
     assert by_id["s2"].summary_state == "pending"
     assert by_id["s0"].summary_state == "skipped"
-    assert repacked.build.summaries_done == 1  # as stored
+    assert repacked.build.summaries_done == 1
 
 
 def test_all_sections_keep_their_summaries_when_the_setting_allows_them_all() -> None:
@@ -271,7 +274,7 @@ def test_the_coverage_is_the_share_of_prose_passages_with_a_real_score() -> None
     dossier = make_fixture_dossier()
     ids = [c.id for c in dossier.chunks if c.kind == "prose"]
     scores: dict[str, float | None] = {i: 2.0 for i in ids}
-    scores[ids[0]] = None  # 5 of 6 passages hold a score
+    scores[ids[0]] = None
 
     assert apply_rating(dossier, scores, 8, min_coverage=0.8) is not None
     assert apply_rating(dossier, scores, 8, min_coverage=0.9) is None

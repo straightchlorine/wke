@@ -204,8 +204,8 @@ class BuildInfo(WkeModel):
     summaries_total: int
     truncated: bool | None = None
     stage_seconds: dict[str, float] | None = None
-    # Which relevance the view was packed with; set on a served view only while
-    # SELECTION_RATING is on, never stored, and left out of the JSON when None.
+    # Whether passages were chosen by stored relevance or by the rating model's scores.
+    # Set on a served view only while SELECTION_RATING is on; never stored.
     selection: Literal["relevance", "rating"] | None = None
 
     @model_serializer(mode="wrap")

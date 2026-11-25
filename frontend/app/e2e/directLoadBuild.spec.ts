@@ -15,7 +15,7 @@ function countBuildRequests(page: Page): () => number {
   return () => count;
 }
 
-/** Waits until the page has asked the API about the title and the stored dossier, then lets it settle. */
+/** Waits until the page has fetched the stored dossier of `pageId` and the network is idle. */
 async function waitForLookups(page: Page, pageId: number) {
   await page.waitForResponse(new RegExp(`/api/v1/dossiers/${pageId}(\\?|$)`));
   await page.waitForLoadState("networkidle");
@@ -214,7 +214,6 @@ lightOnly(() => {
       open,
     }) => {
       await freeze(page);
-      // The first title gets the not found answer, whose Did you mean links lead to other titles.
       await page.route(/\/api\/v1\/dossiers(\?[^/]*)?$/, async (route) => {
         const body: unknown = route.request().postDataJSON();
         const title = typeof body === "object" && body !== null && "title" in body && body.title;
@@ -251,8 +250,8 @@ lightOnly(() => {
       });
       await open("/t/Nonexistent_Title", { ready: buildButton(page) });
       await buildButton(page).click();
-      // The first title's own build request goes out after its title search, so it must be over
-      // before the count starts.
+      // Pressing Build searches for the title and then sends its own build request. Wait for the
+      // search result so that request is not counted below.
       await expect(page.getByText("No article by that title")).toBeVisible();
       const builds = countBuildRequests(page);
       await page.getByRole("link", { name: "Lizzie Borden" }).first().click();

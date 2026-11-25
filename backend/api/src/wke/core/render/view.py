@@ -63,13 +63,13 @@ def _trim_to_budget(
     subsection_headings: bool = True,
     notes: bool = True,
 ) -> DossierView:
-    """Drop passages from the end of the pack order until the content fits the budget.
+    """Drop passages, last packed first, until the rendered content fits the budget.
 
     Args:
-        view: the view after the fit rounds.
+        view: the view after the repacking rounds of build_view.
         include_summaries: whether the view was packed with summaries.
         subsection_headings: whether the render writes subsection headings.
-        notes: whether the per-section left-out lines count.
+        notes: whether the per-section lines naming left-out tables and lists count.
 
     Returns:
         DossierView: a view whose dossier part is within the budget.
@@ -100,12 +100,13 @@ def build_view(
 ) -> DossierView:
     """Pack a dossier so its content fits a token budget and build its view.
 
-    Packs, renders the dossier part and measures it; while that is over the
-    budget the overshoot is held back from the packer and the dossier is
-    packed again (at most MAX_FIT_ROUNDS times). Anything still over is
-    trimmed from the end of the pack order. The header, the Sources list and
-    the licence footer are not part of the measure. Lean leaves the key facts
-    and the per-section left-out lines out of the pack and the measure.
+    Packs the dossier, renders its dossier part and measures it. While the
+    measure is over the budget, a growing reserve is held back from the packer
+    and the dossier is packed again (at most MAX_FIT_ROUNDS times). Anything
+    still over is trimmed passage by passage, last packed first. The header,
+    the Sources list and the licence footer are not measured. When lean, the key
+    facts and the per-section lines naming left-out tables and lists are neither
+    packed nor measured.
 
     Args:
         dossier: The stored, immutable dossier.
@@ -113,8 +114,9 @@ def build_view(
         freshness: Freshness computed at read time by the caller.
         links: self/pinned/markdown/wikipedia links for this response.
         include_summaries: Whether to pack section summaries.
-        subsection_headings: Whether the render writes subsection headings, which the fit measures.
-        lean: Whether the key facts and the left-out lines stay out of the
+        subsection_headings: Whether the render writes subsection headings, which are
+            counted in the measure.
+        lean: Whether to leave the key facts and the left-out lines out of the
             counted dossier part; the view then holds no key facts chunk.
 
     Returns:
@@ -133,8 +135,8 @@ def build_view(
         overshoot = _content_tokens(view, include_summaries, subsection_headings, notes) - budget
         if overshoot <= 0:
             break
-        # whole chunks drop out at once, so a small reserve changes nothing;
-        # the step doubles each round until something does.
+        # Packing drops whole chunks, so a reserve smaller than one chunk may change
+        # nothing. Doubling the added reserve each round makes sure a chunk drops soon.
         reserve += overshoot << attempt
         view = assemble_view(
             dossier, budget, freshness, links, include_summaries, reserve, facts=not lean
@@ -157,7 +159,7 @@ def assemble_view(
     reserve: int,
     facts: bool = True,
 ) -> DossierView:
-    """Pack a dossier holding back a reserve and build the view.
+    """Pack a dossier with a token reserve held back, and build the view.
 
     Args:
         dossier: The stored, immutable dossier.
@@ -165,8 +167,8 @@ def assemble_view(
         freshness: Freshness computed at read time by the caller.
         links: self/pinned/markdown/wikipedia links for this response.
         include_summaries: Whether to pack section summaries.
-        reserve: Tokens the packer holds back for content Markdown it does not charge.
-        facts: Whether the key facts are packed; without it the sections do not list them.
+        reserve: Tokens held back for Markdown the packer does not count.
+        facts: Whether the key facts are packed; if False the view holds no key facts.
 
     Returns:
         DossierView: A view with chunks filtered to the packed budget.

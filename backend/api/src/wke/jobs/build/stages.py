@@ -159,7 +159,10 @@ async def persist_degraded(
     result: HttpUrl | None,
     structural_ttl_seconds: int = keys.DOSSIER_STRUCTURAL_TTL_SECONDS,
 ) -> None:
-    """Persist the structural-only dossier when wke-ml is unavailable.
+    """Persist the dossier without clusters or summaries when wke-ml is unavailable.
+
+    This structural dossier holds only what parsing the article gives: sections, passages
+    and citations.
 
     Args:
         job: the running job.

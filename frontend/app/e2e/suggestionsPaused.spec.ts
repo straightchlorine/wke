@@ -5,7 +5,7 @@ lightOnly(() => {
     page,
     open,
   }) => {
-    // The search answers normally until Build is pressed, so the direct load reaches the unbuilt view.
+    // Searches succeed until `limited` is set, which happens only after Build is pressed.
     let limited = false;
     await page.route("**/api/v1/search**", (route) =>
       !limited

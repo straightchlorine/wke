@@ -1,9 +1,6 @@
-"""Selection by rating (F) with subsection headings (B) and the ETag.
+"""Subsection headings and the ETag follow the passages the rating picks.
 
-B's headings and the fit loop run inside build_view, on the passages the pack shows. With a
-rating applied that pack is the rated one, so these tests pin that they follow it. The services
-here are not lean, so the key facts chunk is in the pack, as it is in the ETag of base; the
-lean response with a rating is in test_rating_with_lean.py.
+The services here have LEAN_RESPONSE off.
 """
 
 from __future__ import annotations
@@ -45,9 +42,10 @@ def _facts(rows: list[str]) -> Chunk:
 
 
 def _two_passages() -> Dossier:
-    """Passage a:0 (stored relevance 0.9) states the Born row, b:0 (0.1) states the Died row.
+    """A Key facts chunk with a Born and a Died row, and two long passages, one repeating each row.
 
-    At 2000 tokens only one of the two fits beside the lead, so the pack decides which one shows.
+    Passage a:0 (stored relevance 0.9) repeats the Born row and b:0 (0.1) the Died row; only one
+    of them fits a 2000-token budget.
     """
     chunks = [
         prose("l:0", [], 0, "Alma Reyes is a Chilean sculptor.", 1.0),
@@ -64,7 +62,7 @@ def _two_passages() -> Dossier:
 
 
 def _structural() -> Dossier:
-    """One section whose passages sit in subsections; only two of its three fit at 2000 tokens."""
+    """One section whose passages sit in subsections; only two of its three fit 2000 tokens."""
     chunks = [
         prose("l:0", [], 0, "Alma Reyes is a Chilean sculptor.", 1.0),
         prose("b:0", ["Busy"], 10, sized("Opening passage of the busy part.", 900), 0.9),
@@ -107,7 +105,7 @@ async def _markdown(service: DossierService, dossier: Dossier, budget: int = 200
     return await service.get_dossier_view(dossier.topic.page_id, budget, "markdown", False)  # type: ignore[return-value]
 
 
-# The rating puts b:0 above a:0, the reverse of the stored relevance.
+# The rating scores b:0 above a:0, the reverse of their stored relevance.
 SWAPPED: dict[str, float | None] = {"l:0": 3.0, "a:0": 0.0, "b:0": 3.0}
 
 
@@ -144,11 +142,8 @@ async def test_the_fit_loop_counts_the_headings_of_the_rated_pack(
     assert on.budget.used_est_tokens > off.budget.used_est_tokens
 
 
-# ETag: every part is named here; nothing but the selection is new to the ETag of base.
-
-
 def _base_etag(view: DossierView, budget: int = 2000) -> str:
-    """The ETag of base's code: build state, summaries done, s0, l0 and the parts code pd."""
+    """The ETag of a build with no rating applied: no selection suffix or letters."""
     build = view.build
     return (
         f'"{view.freshness.pinned_rev_id}-{build.pipeline_version}-{budget}-json-'
@@ -156,7 +151,7 @@ def _base_etag(view: DossierView, budget: int = 2000) -> str:
     )
 
 
-async def test_every_switch_off_gives_the_etag_of_base(redis_client: RedisClient) -> None:
+async def test_every_setting_off_gives_the_etag_without_a_rating(redis_client: RedisClient) -> None:
     dossier = _two_passages()
     service = await _serve(
         redis_client, dossier, SWAPPED, lean=False, headings=False, rating=RatingConfig()

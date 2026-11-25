@@ -10,7 +10,7 @@ const SIZES = [
   [390, 844],
 ] as const;
 
-// A page marked `build` is a title with no stored dossier, which shows its links once Build is pressed.
+// A page marked `build` has no stored dossier; its links appear only after Build is pressed.
 const PAGES: readonly { path: string; scope: string; min: number; label: string; build?: true }[] =
   [
     { path: "/machines", scope: "main p", min: 4, label: "For machines lede" },

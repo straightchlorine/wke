@@ -7,7 +7,7 @@ export interface DossierUnbuiltProps {
   onBuild: () => void;
 }
 
-/** The page for a title with no stored dossier that was opened directly, with a button that builds it. */
+/** The page for an unbuilt title opened directly, with a button that builds it. */
 export function DossierUnbuilt({ title, onBuild }: DossierUnbuiltProps) {
   return (
     <div className="min-h-svh w-full py-8">

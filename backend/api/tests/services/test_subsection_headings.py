@@ -1,4 +1,4 @@
-"""The SUBSECTION_HEADINGS switch reaches the service's markdown render."""
+"""The service's SUBSECTION_HEADINGS setting decides if its Markdown has subsection headings."""
 
 from __future__ import annotations
 

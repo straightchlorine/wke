@@ -22,8 +22,8 @@ export function toDidYouMean(data: SearchTopicsResponses[200] | undefined): DidY
 }
 
 /**
- * How a title resolved. A "built" page id is ready to fetch, "building" carries the job to poll,
- * and "unbuilt" means no dossier is stored and none was requested.
+ * How a title resolved: "built" has a page id to fetch, "building" the job to poll, "unbuilt" means
+ * no dossier is stored and no build was requested, and "error" holds the problem.
  */
 export type ResolveOutcome =
   | { phase: "built"; pageId: number; rateLimitNote?: string }
@@ -62,9 +62,8 @@ function cachedOnRateLimit(
 }
 
 /**
- * Resolves a title to a page id and stores its dossier in the query cache for `budget` if one exists.
- * Otherwise it requests a build, or without `allowBuild` ends as "unbuilt", or as an error if the
- * search failed.
+ * Resolves a title to a built page, a build job, an unbuilt state or an error, caching a stored dossier for `budget`.
+ * A build is requested only when `allowBuild` is true; otherwise a missing dossier gives "unbuilt".
  */
 export async function resolveDossier(
   title: string,
@@ -75,7 +74,7 @@ export async function resolveDossier(
   try {
     // The title search is a GET and does not count against the build rate limit.
     const search = await searchTopics({ query: { q: title } });
-    // A failed search cannot say whether a dossier is stored, so it is shown as the error.
+    // A failed search cannot show whether a dossier exists, so report the error, not "unbuilt".
     if (!allowBuild && search.error) {
       return fail(search.error);
     }
@@ -87,7 +86,7 @@ export async function resolveDossier(
         queryClient.setQueryData(dossierQueryOptions(exact.page_id, budget).queryKey, built.data);
         return { phase: "built", pageId: exact.page_id };
       }
-      // A 404 means the dossier is not built yet, so the build request below follows if allowed.
+      // A 404 means no dossier is stored yet; the build request below runs if a build is allowed.
       if (built.error && built.error.status !== 404) {
         const cached =
           built.error.status === 429

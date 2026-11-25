@@ -109,15 +109,12 @@ export const test = base.extend<Options & Fixtures>({
   },
 });
 
-/** The button that builds a title with no stored dossier, on the page a direct load of it shows. */
+/** The Build button shown when an unbuilt title is opened directly. */
 export function buildButton(page: Page): Locator {
   return page.getByRole("button", { name: "Build dossier" });
 }
 
-/**
- * Opens the path of a title with no stored dossier, presses Build, and waits for the `ready` locator
- * (the first h1 by default) once the Build button is gone.
- */
+/** Opens an unbuilt title, presses Build, and waits for `options.ready` (the first h1 by default). */
 export async function openAndBuild(
   page: Page,
   open: (path: string, options?: OpenOptions) => Promise<void>,

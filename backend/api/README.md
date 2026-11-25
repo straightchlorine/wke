@@ -41,18 +41,18 @@ See `.env.example`; a variable with no default is required.
 | `CORS_ORIGINS` | empty | Comma-separated allowed origins |
 | `SUMMARY_SECTIONS` | 8 | Most sections summarized per build (3 to 8 by article size) |
 | `NUM_BEAMS` | 1 | Beam count for wke-ml `/v1/summarize` |
-| `LEAN_RESPONSE` | true | Leave the Key facts block out of every response and the per-section "left out at this budget" lines out of the dossier part and the budget (they come with `parts=dossier,metadata`); `false` serves both everywhere and counts them against the budget, as before |
-| `SUBSECTION_HEADINGS` | true | Markdown of a structural dossier names the subsection where passages jump between subsections; `false` renders as before |
-| `ANALYZE_DEADLINE_MS` | 8000 | Deadline the worker sends wke-ml `/v1/analyze` for a build, and the timeout of that call. Production sets 15000 in `k8s/base/configmap.yaml` (no retry); keep one attempt under the 20 s the MCP `get_dossier` tool waits for a partial build |
-| `ANALYZE_RETRIES` | 0 | Extra analyze attempts after a failure (4xx is never retried). A 503 shed by wke-ml after it waited almost the whole deadline for a slot counts as a quick failure and is retried even with `ANALYZE_RETRY_ON_TIMEOUT=false`, so with retries on a build can take `(ANALYZE_RETRIES + 1) x ANALYZE_DEADLINE_MS` plus the pauses |
+| `LEAN_RESPONSE` | true | Leave the Key facts block and the per-section "left out" lines out of responses and the budget; `parts=dossier,metadata` brings them back |
+| `SUBSECTION_HEADINGS` | true | Structural-dossier Markdown names the subsection where passages jump; `false` leaves the headings out |
+| `ANALYZE_DEADLINE_MS` | 8000 | Deadline sent to wke-ml `/v1/analyze` and that call's timeout; keep one attempt under the 20 s the MCP `get_dossier` tool waits |
+| `ANALYZE_RETRIES` | 0 | Extra analyze attempts after a failure (4xx is never retried); a 503 shed by wke-ml late in the deadline is retried even without `ANALYZE_RETRY_ON_TIMEOUT` |
 | `ANALYZE_RETRY_PAUSE_MS` | 1000 | Pause between analyze attempts |
 | `ANALYZE_RETRY_ON_TIMEOUT` | false | Also retry an analyze timeout |
 | `DOSSIER_STRUCTURAL_TTL_SECONDS` | 600 | Lifetime of a structural dossier built while wke-ml is unavailable |
 | `SELECTION_RATING` | false | Pack by wke-ml's model rating once a revision's rating is stored (see below) |
 | `RATING_DEADLINE_SECONDS` | 1800 | Longest one rating attempt of an article; the next attempt resumes it |
 | `RATING_CALL_TIMEOUT_SECONDS` | 120 | Timeout of one wke-ml rating call (one passage) |
-| `RATING_MIN_COVERAGE` | 0.9 | Share of an article's prose passages that must hold a real score for its rating to be applied; below it the dossier is packed by the stored relevance |
-| `RATING_MAX_ATTEMPTS` | 3 | Attempts of a stage that end unavailable or over the deadline with no new score before it is dropped until the next build |
+| `RATING_MIN_COVERAGE` | 0.9 | Share of prose passages that need a real score for the rating to apply; below it the stored relevance packs |
+| `RATING_MAX_ATTEMPTS` | 3 | Failed attempts without a new score before a stage is dropped until the next build |
 | `RATING_RETRY_BACKOFF_SECONDS` | 60 | Wait before such a stage is tried again; doubles per attempt |
 | `LOG_LEVEL` | INFO | Python logging level |
 | `QUEUE_CAP` | 20 | `q:interactive` depth before 503 |

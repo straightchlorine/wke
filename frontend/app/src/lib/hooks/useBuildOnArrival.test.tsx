@@ -31,7 +31,7 @@ describe("useBuildOnArrival", () => {
       extraRoutes: ["/elsewhere"],
     });
     await screen.findByText("waits");
-    // The app's first commit is past once the reader clicks a link.
+    // By the time the reader clicks a link, the app's first render is over.
     rootNavState.isInitialLoad = false;
     act(() => router.history.push("/elsewhere"));
     expect(screen.queryByText("waits")).toBeNull();

@@ -139,12 +139,12 @@ def section_lines(
         view: the packed view.
         section: the section to render.
         chunk_by_id: the chunks the view carries.
-        seed_id: citation id used when a summary's section names none.
+        seed_id: id of the citation for the article itself, used when the section has none.
         sources: the citation tags of the document.
         include_summaries: whether the render asks for summaries.
         links: whether to write the passages' wiki links inline.
         subsection_headings: whether a passage from another subsection gets its heading.
-        notes: whether to write the line for tables and lists the budget left out.
+        notes: whether to write the line naming tables and lists the budget left out.
 
     Returns:
         list[str]: the lines, each block followed by a blank line.
@@ -163,7 +163,8 @@ def section_lines(
     for chunk_id in section_chunk_ids:
         chunk = chunk_by_id[chunk_id]
         if chunk.kind == "prose":
-            # a structural build folds nested sections into one; the chunks keep their path
+            # A structural build merges nested subsections into one section; each chunk keeps
+            # its own heading path, so a change of path marks a new subsection.
             if (
                 subsection_headings
                 and previous_path is not None
@@ -332,21 +333,20 @@ def render_markdown(
             [cN] markers and the Sources list below it. The CC BY-SA footer
             is always the last line.
         subsection_headings: Whether a structural build's passages from a new
-            subsection get its heading; False writes the Markdown as before.
-        lean: Whether the per-section lines for tables and lists the budget
-            left out are written only with "metadata"; otherwise always.
+            subsection get its heading.
+        lean: True writes the per-section lines naming tables and lists the budget
+            left out only when "metadata" is selected; False always writes them.
 
     Returns:
-        str: The Markdown document. With "metadata": title, pinning line, a
-        budget line naming what was left out, one "Left out:" line naming the
-        sections without content and those where nothing fit the budget. Always:
-        one heading per remaining section (nested by depth; a section without
-        anything included keeps its heading only as the parent of one that
-        has), each quoted passage, key-facts list or table (followed by the
-        citation tag of its section with "sources"), machine summaries under a
-        visible label, a note of the tables and lists the budget left out
-        (with "metadata" when lean), and the licence footer. With "sources": a
-        Sources list of exact section URLs before the footer.
+        str: The Markdown document. With "metadata" it starts with the title, the
+        pinning line, a budget line naming what was left out, and a "Left out:" line
+        naming sections without content and sections where nothing fit the budget.
+        Always: one heading per remaining section (nested by depth; a section with
+        nothing included keeps its heading only as the parent of one that has), each
+        quoted passage, key-facts list or table (followed by its section's citation
+        tag with "sources"), machine summaries under a visible label, the notes on
+        tables and lists the budget left out (see lean), and the licence footer.
+        With "sources": a Sources list of exact section URLs before the footer.
     """
     layout = _layout(view)
     sources = SourceList(view, markers="sources" in parts)

@@ -1,4 +1,4 @@
-"""The rating loop: rates the prose passages of stored dossiers through wke-ml, a call each."""
+"""The loop that rates the prose passages of stored dossiers through wke-ml."""
 
 from __future__ import annotations
 
@@ -36,16 +36,17 @@ logger = logging.getLogger(__name__)
 NEXT_ITEM_TIMEOUT_SECONDS = 1.0
 HEARTBEAT_INTERVAL_SECONDS = 5.0
 REAP_INTERVAL_SECONDS = 30.0
-# The pause after a Redis call of the loop failed, and how many heartbeat writes in a row may
-# fail (the claim lives JOB_HEARTBEAT_TTL_SECONDS, far longer) before the item is given back.
+# Seconds to pause after a failed Redis call. After this many failed heartbeat writes in a
+# row the rater stops working on the item and queues it for a retry; the heartbeat key
+# lives long enough to survive that many misses.
 REDIS_ERROR_PAUSE_SECONDS = 1.0
 HEARTBEAT_FAILURES_ALLOWED = 3
-# Outcomes that are retried later; every other end of a stage is final.
+# Outcomes after which the revision is queued again; any other outcome is final.
 _RETRIED = ("ml_unavailable", "deadline")
 
 
 class _StageEnd(Exception):
-    """The attempt stops with this outcome; the stored passages stay."""
+    """Ends the attempt with this outcome; scores already stored are kept."""
 
     def __init__(self, outcome: str) -> None:
         super().__init__(outcome)
@@ -53,23 +54,26 @@ class _StageEnd(Exception):
 
 
 class _ClaimLost(Exception):
-    """The claim on the item could not be set or kept; the item goes back on the queue."""
+    """The claim (heartbeat key) could not be set; the item goes back on the queue."""
 
 
 class _HeartbeatLost(_ClaimLost):
-    """The heartbeat of a claim failed too often; the item is retried after a backoff."""
+    """Heartbeat writes failed too often to keep the claim; the item is retried after a backoff."""
 
 
 @dataclass
 class _Attempt:
-    """What one attempt of a stage got done."""
+    """Progress of one attempt: how many passages got a new score."""
 
     new_scores: int = 0
 
 
 @dataclass(frozen=True)
 class RatingItem:
-    """A q:rate entry: "page:rev", or "page:rev:failures:due" for a retry that waits until due."""
+    """An entry of the q:rate list: "page:rev", or "page:rev:failures:due" for a retry.
+
+    due is a Unix time; the retry is not started before it.
+    """
 
     page_id: int
     rev_id: int
@@ -92,9 +96,11 @@ class RatingItem:
 class Rater:
     """Takes "page_id:rev_id" items off q:rate and rates that dossier's prose passages.
 
-    Several instances may run (a rollout): the one that takes an item claims its revision with a
-    heartbeat, as the build worker does for a job; another that meets the same revision skips it,
-    and an item whose heartbeat is gone is put back on the queue.
+    q:rate is the Redis list of revisions waiting to be rated; an item being rated sits in
+    q:rate:processing. A rater claims a revision by setting its heartbeat key, a short-lived
+    key it refreshes while it works. Another rater that meets a claimed revision skips it.
+    An item in processing whose heartbeat key is gone belongs to a dead rater and is put
+    back on q:rate.
     """
 
     def __init__(
@@ -112,11 +118,10 @@ class Rater:
         self._pipeline_version = pipeline_version
 
     async def run_forever(self) -> None:
-        """Put stalled items back, then take items one at a time until cancelled.
+        """Requeue items a dead rater left behind, then rate items one at a time until cancelled.
 
         Raises:
-            asyncio.CancelledError: when stopped; the item in flight goes back to the front of
-                the queue.
+            asyncio.CancelledError: when stopped; the item in flight goes back on the queue.
         """
         await self._reap()
         last_reap = time.monotonic()
@@ -158,7 +163,7 @@ class Rater:
             return None
 
     async def _reap(self) -> None:
-        """Run the reap; a Redis error is logged and waited out, it never ends the loop."""
+        """Requeue stalled items, logging a Redis error instead of ending the loop."""
         try:
             await self._reap_stalled()
         except Exception:
@@ -166,7 +171,7 @@ class Rater:
             await asyncio.sleep(REDIS_ERROR_PAUSE_SECONDS)
 
     async def _remove(self, value: str) -> None:
-        """Take a finished item off q:rate:processing; if that fails the reap finds it later."""
+        """Take a finished item off q:rate:processing; if that fails, a later requeue finds it."""
         try:
             await self._redis.lrem(keys.QUEUE_RATE_PROCESSING, 1, value)
         except Exception:
@@ -174,7 +179,7 @@ class Rater:
             await asyncio.sleep(REDIS_ERROR_PAUSE_SECONDS)
 
     async def _give_back(self, value: str) -> None:
-        """Put the item first on the queue again; if that fails the reap finds it later."""
+        """Put the item at the front of q:rate again; if that fails, a later requeue finds it."""
         try:
             await self._redis.lpush(keys.QUEUE_RATE, value)
             await self._redis.lrem(keys.QUEUE_RATE_PROCESSING, 1, value)
@@ -182,9 +187,9 @@ class Rater:
             logger.exception("rating item could not be put back: %s", value)
 
     async def _retry_later(self, value: str) -> None:
-        """Queue an item whose heartbeat failed again after the backoff of an unavailable wke-ml.
+        """Queue an item whose heartbeat failed for a retry after the backoff.
 
-        If Redis fails here the item stays in processing and the reap finds it later.
+        If Redis fails here the item stays in q:rate:processing and the next requeue pass finds it.
         """
         try:
             item = RatingItem.parse(value)
@@ -196,7 +201,7 @@ class Rater:
         await self._release_lock(value)
 
     async def _release_lock(self, value: str) -> None:
-        """Release the build's rating lock of an item that failed unexpectedly."""
+        """Release the rating lock of an item that failed unexpectedly."""
         try:
             item = RatingItem.parse(value)
             await self._redis.delete(
@@ -208,7 +213,7 @@ class Rater:
             logger.exception("rating lock could not be released: %s", value)
 
     async def _reap_stalled(self) -> None:
-        """Put the items of q:rate:processing whose heartbeat is gone back on the queue."""
+        """Put items of q:rate:processing back on q:rate when no heartbeat key exists for them."""
         for value in await self._redis.lrange(keys.QUEUE_RATE_PROCESSING, 0, -1):
             try:
                 item = RatingItem.parse(value)
@@ -224,9 +229,9 @@ class Rater:
                 logger.warning("requeued stalled rating item %s", value)
 
     async def _heartbeat(self, key: str) -> None:
-        """Refresh the claim until cancelled; ends by itself when the claim cannot be kept.
+        """Refresh the heartbeat key every few seconds until cancelled or too many writes fail.
 
-        RedisClient.set answers False when Redis failed, so a False counts like a raised error.
+        RedisClient.set returns False on a Redis failure, which counts like a raised error.
         """
         failures = 0
         while True:
@@ -244,7 +249,7 @@ class Rater:
                 return
 
     async def _rate_item(self, value: str) -> float:
-        """Rate one item, or put a retry that is not due yet back at the tail.
+        """Rate one item, or put a retry that is not yet due back at the end of q:rate.
 
         Returns:
             float: seconds the loop waits before it takes the next item.
@@ -273,7 +278,7 @@ class Rater:
         try:
             await asyncio.wait({beat, work}, return_when=asyncio.FIRST_COMPLETED)
             if not work.done():
-                # The heartbeat ended first: no claim, so no rating.
+                # The heartbeat task ended first, so the claim could not be kept.
                 raise _HeartbeatLost
             work.result()
         finally:
@@ -317,7 +322,7 @@ class Rater:
             await self._retry(item, outcome, attempt)
 
     async def _is_current(self, item: RatingItem) -> bool:
-        """Tell whether the revision is still the one the page's pointer names.
+        """Tell whether the revision is still the page's latest.
 
         Returns:
             bool: False only when a readable pointer names another revision.
@@ -327,10 +332,9 @@ class Rater:
         return current is None or current == item.rev_id
 
     async def _retry(self, item: RatingItem, outcome: str, attempt: _Attempt) -> None:
-        """Queue the stage again after a backoff, unless attempts without progress ran out.
+        """Queue the revision again after a backoff, unless too many attempts in a row failed.
 
-        A stage that stored a new score starts counting its failures over, so a long article cut
-        off by the deadline keeps resuming until it is done.
+        An attempt that stored at least one new score resets the failure count.
         """
         failures = 0 if attempt.new_scores else item.failures + 1
         if failures >= self.config.max_attempts:
@@ -376,11 +380,7 @@ class Rater:
         await self._store(key, scores, done=True)
 
     async def _store(self, key: str, scores: dict[str, float | None], done: bool) -> bool:
-        """Write the document; a partial one never replaces a finished one.
-
-        A second attempt on the same revision (a lock that expired, another replica) holds an
-        older copy of the scores; once the first has finished, the second stops instead of
-        writing it back.
+        """Write the rating document; an unfinished one never replaces a finished one.
 
         Returns:
             bool: False when a finished document was already stored and nothing was written.
@@ -396,7 +396,7 @@ class Rater:
         return True
 
     async def _rate_passage(self, title: str, lead: str, chunk_id: str, text: str) -> float | None:
-        """Rate one passage, retrying a failed call; a 422 (prompt too long) scores None.
+        """Rate one passage, retrying a failed call; a 422 from wke-ml gives the passage no score.
 
         Raises:
             _StageEnd: wke-ml stayed unavailable, or answered under another prompt or model.

@@ -20,7 +20,6 @@ data:
   QUEUE_CAP: "20"
   BACKGROUND_QUEUE_CAP: "50"
   WM_BUDGET_PER_MINUTE: "150"
-  # The worker runs inside wke-api and reads this map too. One analyze attempt gets 15 s (the code
-  # default is 8000) and is not retried (ANALYZE_RETRIES stays 0): 15 s is under the 20 s the MCP
-  # get_dossier tool waits for a partial build.
+  # One analyze attempt gets 15 s and is not retried, so it ends within the 20 s the MCP
+  # get_dossier tool waits for a partial dossier.
   ANALYZE_DEADLINE_MS: "15000"

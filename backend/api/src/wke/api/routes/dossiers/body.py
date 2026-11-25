@@ -29,7 +29,7 @@ def dossier_body(
         links: whether the Markdown carries inline links.
         parts: the selected response parts.
         subsection_headings: whether the Markdown writes subsection headings.
-        lean: whether the view was built lean (the service's lean_response).
+        lean: whether the response omits the Key facts and left-out lines.
 
     Returns:
         tuple[str, str]: the body text and its media type.

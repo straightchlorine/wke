@@ -1,4 +1,4 @@
-"""A lean view: no Key facts block, and no per-section left-out lines in the counted part."""
+"""A lean view has no Key facts block and no per-section "left out" lines in the budgeted text."""
 
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ PART_SETS: list[frozenset[Part]] = [
 
 
 def _dossier() -> Dossier:
-    """A lead with Key facts, one section of 40 passages and a list that cannot fit 2000."""
+    """A lead with Key facts, one section of 40 passages and a list too long for 2000 tokens."""
     rows = "\n".join(f"Fact {n}: {sized('value', 14)}" for n in range(12))
     facts = prose("1:lead:facts", [], 1, rows).model_copy(update={"kind": "facts"})
     items = "\n".join(f"- {'word ' * 120}{n}" for n in range(10))

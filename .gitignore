@@ -50,11 +50,12 @@ cython_debug/
 node_modules/
 /frontend/app/dist/
 
-# local agent tooling; the dossier-control skill is tracked because scripts and eval data depend on it
-.claude/*
-!.claude/skills/
-.claude/skills/*
-!.claude/skills/dossier-control/
+# local agent tooling and AI instructions, kept out of the repo
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+.mcp.json
 .impeccable/
 .gstack/
 .playwright-mcp/

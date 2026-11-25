@@ -1,10 +1,10 @@
-"""wke-ml client: /v1/analyze, /v1/summarize and /v1/rate, one in-flight call.
+"""wke-ml client: /v1/analyze, /v1/summarize and /v1/rate, one call at a time.
 
-wke-ml holds exactly one inference slot; this client mirrors that with its
-own `asyncio.Semaphore(1)` so a second caller queues in wke-api rather than
-piling up requests at wke-ml. Every request carries `X-Deadline-Ms`; the
-client never caches anything itself -- only model output (the summary
-content-address cache) is cached, and that lives in the caller, not here.
+wke-ml runs one model call at a time; this client mirrors that with its
+own `asyncio.Semaphore(1)` so a second caller waits in wke-api rather than
+piling up requests at wke-ml. Every request carries `X-Deadline-Ms`, the
+time wke-ml may spend on it. The client caches nothing; any caching of model
+output is done by its callers.
 """
 
 from __future__ import annotations
@@ -41,10 +41,9 @@ class MLClient:
         self._semaphore = asyncio.Semaphore(1)
 
     def sibling(self) -> MLClient:
-        """Build a client for the same wke-ml with a call slot of its own.
+        """Build a client over the same HTTP client with its own one-call-at-a-time slot.
 
-        The rating loop uses one, so its long calls do not hold the slot that every analyze
-        and summarize of a build waits for. The HTTP client, and so its settings, is shared.
+        The rating loop uses one so its long calls do not make a build wait.
 
         Returns:
             MLClient: another instance over the same HTTP client.
@@ -132,20 +131,21 @@ class MLClient:
         passages: list[dict[str, str]],
         deadline_ms: int,
     ) -> dict[str, Any]:
-        """Have the rating model score passages of one article, 0 to 3.
+        """Score passages of one article, 0 to 3, with the rating model.
 
         Args:
             title: the article title.
-            lead: the article lead, the shared prompt prefix.
-            passages: {id, text} payloads, 1 to 8.
+            lead: the article lead.
+            passages: dicts with "id" and "text" keys, 1 to 8 of them.
             deadline_ms: X-Deadline-Ms sent to wke-ml, also the call's timeout.
 
         Returns:
-            dict: model, prompt_sha256, scores (id to float or None), fallback_ids, infer_seconds.
+            dict: model, prompt_sha256, scores (passage id to score, None when none was
+            produced), fallback_ids (passages scored by the generated digit instead of
+            the digit probabilities) and infer_seconds.
 
         Raises:
-            MLUnavailable: on timeout, connection error, an HTTP error status (503
-                rating_unavailable included) or a non-JSON body.
+            MLUnavailable: on timeout, connection error, HTTP error status or non-JSON body.
         """
         payload = {"title": title, "lead": lead, "passages": passages}
         return await self._post("/v1/rate", payload, deadline_ms)

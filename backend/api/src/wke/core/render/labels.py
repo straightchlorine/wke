@@ -23,10 +23,10 @@ def heading_prefix(section: Section) -> str:
 
 
 def subsection_heading_prefix(section: Section) -> str:
-    """Markdown heading marks for a subsection shown inside a section.
+    """Return the Markdown "#" marks for a subsection heading written inside a section.
 
     Args:
-        section: the section whose passages jump between subsections.
+        section: the section whose passages come from several subsections.
 
     Returns:
         str: one level below the section's own heading, at most six.

@@ -1,7 +1,6 @@
-"""Change D's analyze deadline and retry belong to the build's analyze call alone.
+"""The ANALYZE_* deadline and retry settings apply to the build's analyze call and nothing else.
 
-The Rater has its own wke-ml client and its own timeouts; neither follows the ANALYZE_* settings,
-and a rating call never moves a build's analyze deadline or retry.
+The Rater has its own wke-ml client, deadline and retries; none of them follow ANALYZE_*.
 """
 
 from __future__ import annotations
@@ -46,7 +45,7 @@ def _no_pauses(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 class _Ml:
-    """A wke-ml that fails the first calls of each route as told and keeps every request."""
+    """A fake wke-ml that fails the first N calls of /v1/analyze and /v1/rate; keeps requests."""
 
     def __init__(self, analyze_failures: int = 0, rate_failures: int = 0) -> None:
         self.requests: list[httpx.Request] = []
@@ -113,11 +112,9 @@ async def test_the_analyze_deadline_and_retry_stay_on_analyze_and_the_rating_kee
         Rater(redis_client, make_ml_client(rate_ml), RATING, PIPELINE_VERSION), redis_client
     )
 
-    # the build: one retry of analyze, each attempt on the analyze deadline, never a rating call
     assert [r.headers["X-Deadline-Ms"] for r in build_ml.calls("/v1/analyze")] == ["1234"] * 2
     assert build_ml.calls("/v1/rate") == []
-    # the rater: the call timeout, not the analyze deadline; its one failed call is tried again
-    # although ANALYZE_RETRIES counts analyze only (here 1, and ANALYZE_RETRY_ON_TIMEOUT is off)
+    # The rater retries its failed call by its own rule; ANALYZE_RETRIES applies to analyze only.
     rate_calls = rate_ml.calls("/v1/rate")
     assert rate_ml.calls("/v1/analyze") == []
     assert {r.headers["X-Deadline-Ms"] for r in rate_calls} == {"77000"}
@@ -181,7 +178,6 @@ async def test_a_rating_timeout_is_retried_although_analyze_timeouts_are_not(
         with pytest.raises(asyncio.CancelledError):
             await task
 
-    # the three tries of one passage, then the stage ends and waits out its backoff
     assert calls.count("/v1/rate") == RATING_CALL_ATTEMPTS
 
 
@@ -205,7 +201,6 @@ async def test_a_worker_with_a_rater_passes_it_the_analyze_settings_separately(
     for name, value in ANALYZE.items():
         assert seen[name] == value
     assert seen["rating"] == RATING
-    # no rating field reaches the analyze settings and none of them reaches the rating's
     assert not {"analyze_deadline_ms", "analyze_retries"} & set(RatingConfig.__dataclass_fields__)
 
 
@@ -230,7 +225,6 @@ async def test_the_lifespan_gives_the_worker_the_analyze_settings_and_the_rater_
     assert rater is not None and rater._ml is not ml
     assert rater._ml._semaphore is not ml._semaphore
     assert rater.config.call_timeout_seconds == 77 and rater.config.deadline_seconds == 60
-    # off, no rater exists and the analyze settings are the same
     off = Settings.model_validate({"analyze_deadline_ms": 1234})
     assert _build_rater(off, redis_client, ml) is None
     assert _build_worker(off, redis_client, make_queue(redis_client), None, ml)._rating is None  # type: ignore[arg-type]

@@ -178,7 +178,7 @@ class ViewsMixin(ServiceBase):
     async def _select_by_rating(
         self, dossier: Dossier, page_id: int, rev_id: int
     ) -> tuple[Dossier, Literal["relevance", "rating"]]:
-        """Repack the dossier under its stored rating when that rating is complete and fits it.
+        """Re-rank the dossier by its stored rating scores when the rating is complete and usable.
 
         Args:
             dossier: the stored dossier.
@@ -186,9 +186,9 @@ class ViewsMixin(ServiceBase):
             rev_id: pinned revision id.
 
         Returns:
-            tuple: the dossier to pack and which selection it carries; the stored dossier and
-            "relevance" when the rating is absent, unfinished, names other passages or
-            holds a real score for too few of them.
+            tuple: the dossier to pack and how its passages were chosen: the re-ranked copy
+            and "rating", or the stored dossier and "relevance" when the rating is absent,
+            unfinished, from another prompt or model, or covers too few passages.
         """
         document = parse_document(
             await self._redis.get(rating_key(page_id, rev_id, self._pipeline_version))

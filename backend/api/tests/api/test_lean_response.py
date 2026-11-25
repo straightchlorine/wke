@@ -1,4 +1,4 @@
-"""The lean response: no Key facts block, and left-out lines only with metadata."""
+"""LEAN_RESPONSE: no Key facts block, and "left out at this budget" lines only with metadata."""
 
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ FULL = "dossier,metadata,sources"
 
 
 def _with_heavy_table(dossier: Dossier) -> Dossier:
-    """Add a table too big for 2000 tokens to section s3."""
+    """Add a table too big for a 2000-token budget to section s3."""
     heavy = dossier.chunks[-1].model_copy(
         update={
             "text": "x" * 8100,
@@ -49,7 +49,7 @@ PAGE_ID = DOSSIER.topic.page_id
 
 @pytest.fixture
 def legacy(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Set LEAN_RESPONSE=false before the app reads its settings."""
+    """Turn LEAN_RESPONSE off before the app is built."""
     monkeypatch.setenv("LEAN_RESPONSE", "false")
 
 
@@ -158,7 +158,8 @@ async def test_the_setting_off_serves_the_base_response(legacy, app, redis_clien
     assert reply.text == render.render_markdown(view, False, False, DEFAULT_PARTS, lean=False)
     assert FACTS_LABEL in reply.text and NOTICE in reply.text
     assert any(c["kind"] == "facts" for c in json_reply.json()["dossier"]["chunks"])
-    assert reply.headers["etag"].endswith('-pdh"')  # lean off: no "l"; headings on by default: "h"
+    # No "l" because lean is off; "h" because subsection headings are on by default.
+    assert reply.headers["etag"].endswith('-pdh"')
 
 
 async def test_the_lean_etag_never_equals_the_base_one(app, redis_client) -> None:

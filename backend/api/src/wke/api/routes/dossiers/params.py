@@ -121,12 +121,9 @@ def view_etag(
         include_summaries: whether the view was packed with summaries.
         links: whether the Markdown carries inline links.
         parts: the selected response parts.
-        lean: whether the view was built lean; it adds "l" to the parts code, so a body served
-            before the setting existed never shares its tag. Required: a caller that forgets
-            it would hand out the tag of the wrong body.
-        subsection_headings: whether the view was built with subsection headings (they change
-            the passages of a structural build); it adds "h" after the "l", so a body served
-            without them never shares its tag. Required for the same reason.
+        lean: whether the response omits the Key facts and left-out lines; adds "l" to the
+            parts code so a lean and a full body never share a tag.
+        subsection_headings: whether the body has subsection headings; adds "h" after the "l".
 
     Returns:
         str: the quoted ETag value.

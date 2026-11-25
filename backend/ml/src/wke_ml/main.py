@@ -3,7 +3,7 @@
 Endpoints:
   POST /v1/analyze    -- MiniLM embed + cluster + relevance + related edges
   POST /v1/summarize  -- distilbart-cnn-6-6 abstractive summary
-  POST /v1/rate       -- local model's 0 to 3 rating of up to 8 passages (off without a model file)
+  POST /v1/rate       -- local model's 0 to 3 rating of up to 8 passages
   GET  /healthz       -- weights resident
   GET  /readyz        -- warm-up inference done for both models
   GET  /metrics       -- prometheus text exposition
@@ -11,10 +11,10 @@ Endpoints:
 One inference slot at a time (asyncio.Semaphore(1), work run via
 run_in_threadpool), a bounded wait queue (settings.queue_max_wait), 503
 + Retry-After once the queue is full, and a disconnect/deadline check
-before a queued job is allowed to start. /v1/rate has a gate of its own,
-so an analyze never waits behind a rating call; the two may run at once
-and share the CPU. There is no per-client rate limiting: access control
-is the cluster NetworkPolicy.
+before a queued job is allowed to start. /v1/rate has a second, separate
+slot of its own, so a rating call and an analyze call can run at once and
+share the CPU. There is no per-client rate
+limiting: access control is the cluster NetworkPolicy.
 """
 
 # Route handlers and middleware are registered by their decorators, never called by name.
@@ -67,14 +67,12 @@ RETRY_AFTER_SECONDS = 2
 QUIET_PATHS = frozenset({"/healthz", "/readyz", "/metrics"})
 REQUEST_ID_RE = re.compile(r"^[A-Za-z0-9-]{8,64}$")
 
-# Once a job has acquired the slot, it is not worth starting if less than
-# this much of the caller's deadline remains -- the caller's own timeout
-# (deadline_ms/1000 in wke-api's ml client) is about to fire anyway, so
-# running the job would just hold the single slot for a response nobody
-# reads.
+# A job that gets the slot with less than this many seconds of its caller's
+# deadline left is refused with a deadline error: the caller is about to time out,
+# and running it would hold the only slot for a response nobody reads.
 MIN_START_SECONDS = 0.5
 
-# How often a running job that can be abandoned asks whether its client is still there.
+# Seconds between checks whether the client of a running job has disconnected.
 DISCONNECT_POLL_SECONDS = 0.5
 
 
@@ -141,9 +139,8 @@ class InferenceGate:
                 None if the caller set no deadline.
             op: metric label for wke_ml_infer_seconds.
             fn: zero-arg callable run in the threadpool while holding the slot.
-            on_abandon: called once when the client disconnects or the request is cancelled
-                while fn runs, so fn can stop early; the slot stays held until fn returns,
-                because its thread cannot be killed.
+            on_abandon: called when the client disconnects or the request is cancelled while
+                fn runs, so fn can stop early; the slot stays held until fn returns.
 
         Returns:
             tuple[T, float]: fn's return value and the seconds it held the slot.
@@ -217,7 +214,7 @@ class InferenceGate:
     async def _run_abandonable[T](
         self, request: DisconnectCheck, fn: Callable[[], T], on_abandon: Callable[[], None]
     ) -> T:
-        """Run fn in the threadpool, telling on_abandon when the client goes.
+        """Run fn in the threadpool, calling on_abandon if the client disconnects meanwhile.
 
         Returns:
             T: fn's return value.
@@ -228,9 +225,10 @@ class InferenceGate:
             return await asyncio.shield(work)
         except asyncio.CancelledError:
             on_abandon()
-            await asyncio.wait({work})  # the slot is held until the thread has returned
+            # A thread cannot be killed, so wait for it to return before the slot is freed.
+            await asyncio.wait({work})
             if not work.cancelled():
-                work.exception()  # marks it retrieved
+                work.exception()  # read it so asyncio does not warn it was never retrieved
             raise
         finally:
             watcher.cancel()
@@ -305,10 +303,10 @@ def _problem(request: Request, status: int, code: str, title: str, detail: str) 
     """Build an error response without Retry-After.
 
     Args:
-        request: the inbound request, used for X-Request-ID echo.
+        request: the inbound request, for the X-Request-ID echo.
         status: the HTTP status.
         code: the machine-readable error code.
-        title: short summary of the problem.
+        title: short summary.
         detail: what went wrong.
 
     Returns:
@@ -349,7 +347,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         summarizer = app.state.summarizer_factory(settings)
         app.state.embedder = embedder
         app.state.summarizer = summarizer
-        app.state.rater = app.state.rater_factory(settings)  # loads on its first call
+        # Only builds the rater; its model file loads on the first /v1/rate call.
+        app.state.rater = app.state.rater_factory(settings)
         logger.info("wke-ml weights resident")
 
         await run_in_threadpool(embedder.embed, ["warm-up"])
@@ -371,10 +370,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 class RequestIdMiddleware:
     """Attach a validated request id to the request state and echo it as X-Request-ID.
 
-    Also logs one access line per request, once the response starts. It is a plain ASGI
-    middleware on purpose: a BaseHTTPMiddleware hands the app another receive channel, under
-    which Request.is_disconnected() stays False on a real server and an abandoned call is never
-    seen.
+    Also logs one access line per request. It is plain ASGI because under BaseHTTPMiddleware
+    Request.is_disconnected() stays False on a real server.
     """
 
     def __init__(self, app: ASGIApp) -> None:
@@ -393,8 +390,7 @@ class RequestIdMiddleware:
         async def send_with_id(message: Message) -> None:
             if message["type"] == "http.response.start":
                 MutableHeaders(scope=message)["X-Request-ID"] = request_id
-                # Fixed ml paths only (no titles or query strings), so the caller's
-                # id is searchable in wke-ml's logs.
+                # Paths are fixed (no titles or query strings), so logging them is safe.
                 logger.log(
                     logging.DEBUG if request.url.path in QUIET_PATHS else logging.INFO,
                     "%s %s status=%d duration_ms=%.0f",
@@ -444,11 +440,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.exception_handler(RatingUnavailable)
     async def handle_rating_unavailable(request: Request, exc: RatingUnavailable) -> JSONResponse:
-        """Answer 503 rating_unavailable when the rating model is off, missing or failed to load.
+        """Answer 503 rating_unavailable when the rating model cannot be used.
 
         Args:
-            request: the inbound request, used for X-Request-ID echo.
-            exc: the raised error; its message becomes the detail.
+            request: the inbound request.
+            exc: the raised error; its message is the detail.
 
         Returns:
             JSONResponse: a 503 without Retry-After.
@@ -460,8 +456,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         """Answer 422 prompt_too_long when one passage's prompt exceeds the context.
 
         Args:
-            request: the inbound request, used for X-Request-ID echo.
-            exc: the raised error; its message becomes the detail.
+            request: the inbound request.
+            exc: the raised error; its message is the detail.
 
         Returns:
             JSONResponse: a 422.
@@ -532,21 +528,17 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         body: RateRequest,
         x_deadline_ms: str | None = Header(default=None, alias="X-Deadline-Ms"),
     ) -> RateResponse:
-        """Rate each passage of one article, one hold of the rating gate per passage.
-
-        The rating gate is not the one analyze and summarize use, so those never wait behind a
-        rating call. When the client goes away the running passage stops at the next point the
-        model can be left and no further passage starts.
+        """Rate each passage of one article, one at a time on the rating slot.
 
         Args:
             request: the inbound request, polled for disconnect and deadline.
             body: article title and lead, and 1 to 8 passages.
-            x_deadline_ms: remaining caller budget in milliseconds, if set; it applies to
-                the wait for the slot of each passage.
+            x_deadline_ms: remaining caller budget in milliseconds; applies to each passage's
+                wait for the slot.
 
         Returns:
-            RateResponse: score per passage id (null when no digit came), the ids rated by
-            the generated digit; a shed job answers 503 instead.
+            RateResponse: score per passage id (null when no digit came) and the ids rated by
+            the generated digit.
 
         Raises:
             ClientDisconnectedError: the client went away while a passage was being rated.
@@ -592,7 +584,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         (weights loaded, warm-up run) or exits the process, so weights are
         always resident once the endpoint is reachable; the k8s startupProbe
         must cover the loading window itself. Beyond that, liveness fails
-        when one job has held an inference slot (either gate) longer than
+        when one job has held an inference slot (analyze or rating) longer than
         stuck_after_seconds. A thread wedged inside torch is the only case
         this catches; a slow but progressing job is not distinguished from
         a hung one below that threshold.

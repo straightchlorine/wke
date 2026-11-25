@@ -128,15 +128,17 @@ def _build_worker(
 
 
 def _build_rater(cfg: Settings, redis: RedisClient, ml: MLClient) -> Rater | None:
-    """Build the rating loop, or None while SELECTION_RATING is off.
+    """Build the rating loop, or None when rating is off.
 
     Args:
         cfg: the settings.
         redis: the Redis client.
-        ml: the wke-ml client of the worker; the rater gets a sibling of it, with its own call slot.
+        ml: the worker's wke-ml client; the rater gets its own client over the same
+            connection so its long calls do not block builds.
 
     Returns:
-        Rater | None: the loop the worker runs beside its own.
+        Rater | None: the loop to run beside the worker, or None when
+        SELECTION_RATING is false.
     """
     if not cfg.selection_rating:
         return None

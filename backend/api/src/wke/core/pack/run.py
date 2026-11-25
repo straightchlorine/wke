@@ -58,26 +58,25 @@ def pack(
 ) -> PackedDossier:
     """Pack a dossier's chunks and summaries to a token budget, coverage first.
 
-    Order of inclusion: the lead's passages (up to 40 percent of the budget,
-    the first one always), the key facts, one opening passage per section by
-    importance (a section whose opening passage does not fit is represented
-    by its summary when that fits, else by the passage cut at a sentence end),
-    tables and lists of the top-ranked sections (one takes at most 15
-    percent of a step's budget; a longer one is cut at a row or item
-    boundary), the remaining passages by their own relevance plus the
-    importance of the section they belong to, and last any summary that
-    still fits beside its section's passages. Only whole chunks and whole
-    summaries are ever included, apart from the lead and openers cut at a
-    sentence end and a table or list cut at a row or item boundary. A larger
-    budget extends the packs of the smaller ones, so a budget never holds
-    less than the one below it.
+    The pack is built once per budget size up to the requested one, smallest first,
+    so a larger budget contains everything a smaller one holds. At each size the
+    order of inclusion is: the lead's passages (up to 40 percent of the budget, the
+    first one always), the key facts, one opening passage per section by
+    importance (if it does not fit, the section's summary stands in when that fits,
+    else the passage cut at a sentence end), tables and lists of the top-ranked
+    sections (one takes at most 15 percent of the budget and is cut at a row or
+    item boundary if longer), summaries up to 10 percent of the budget, the
+    remaining passages by their own relevance plus the importance of their
+    section, and last any summary that still fits beside its section's passages.
+    Chunks and summaries are included whole, except the lead, the openers and
+    tables or lists, which may be cut as described.
 
     Args:
         dossier: The stored, immutable dossier to pack.
         requested: One of 2000, 8000, 32000.
         include_summaries: Whether to spend budget on section summaries.
         reserve: Tokens held back at the requested budget for Markdown the
-            packer does not charge (quote prefixes, blank lines).
+            packer does not count (quote prefixes, blank lines).
             The first lead passage and the key facts ignore it, so they are
             never lost to it.
         facts: Whether to spend budget on the key facts; without it the facts

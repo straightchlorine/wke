@@ -226,14 +226,14 @@ class JobQueue:
         await self._redis.rpush(queue_name, f"{job_id}:{section_id}")
 
     async def enqueue_rating(self, page_id: int, rev_id: int, lock_seconds: int) -> None:
-        """Queue the rating stage of a stored dossier unless it is rated or already queued.
+        """Queue a revision for rating unless it is already rated or queued.
 
         Never raises: a failure here must not fail the build whose dossier is stored.
 
         Args:
             page_id: Wikipedia page id.
             rev_id: pinned revision id.
-            lock_seconds: how long the lock that keeps one stage per revision lives.
+            lock_seconds: lifetime of the lock that allows one rating job per revision.
         """
         try:
             document = parse_document(
@@ -249,7 +249,7 @@ class JobQueue:
             logger.exception("rating enqueue failed for page %s rev %s", page_id, rev_id)
 
     async def _extend_rating(self, page_id: int, rev_id: int) -> None:
-        """Keep a finished rating at least as long as the dossier that is stored again now."""
+        """Extend a finished rating's expiry so it lasts at least as long as its dossier."""
         dossier_ttl = await self._redis.ttl(keys.dossier(page_id, rev_id, self._pipeline_version))
         key = rating_key(page_id, rev_id, self._pipeline_version)
         if 0 <= await self._redis.ttl(key) < dossier_ttl:

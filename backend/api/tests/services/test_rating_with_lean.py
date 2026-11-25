@@ -1,11 +1,4 @@
-"""Selection by rating (F) with the lean response (G) and subsection headings (B).
-
-A lean view leaves the Key facts chunk out of the pack and the per-section "left out" lines out
-of the counted part. A rated view is a repack of the same dossier, so these tests pin that the
-rated pack is lean exactly as an unrated one is: the facts chunk never takes budget, it is in no
-list the response carries, no left-out line stands in the dossier part, and the headings of a
-structural build are counted by the fit beside the lean notes.
-"""
+"""A view chosen by the rating is lean like an unrated one: no Key facts, no left-out lines."""
 
 from __future__ import annotations
 
@@ -32,7 +25,7 @@ FACTS_LABEL = "**Key facts**"
 
 
 def _dossier() -> Dossier:
-    """A lead with Key facts, one section of 40 passages and a list that cannot fit 2000."""
+    """A lead with Key facts, one section of 40 passages and a list too long for 2000 tokens."""
     rows = "\n".join(f"Fact {n}: {sized('value', 14)}" for n in range(12))
     facts = prose(FACTS_ID, [], 1, rows).model_copy(update={"kind": "facts"})
     items = "\n".join(f"- {'word ' * 120}{n}" for n in range(10))
@@ -51,7 +44,7 @@ def _dossier() -> Dossier:
 
 
 def _scores(dossier: Dossier) -> dict[str, float | None]:
-    """The rating puts the last ten passages first, the reverse of the stored relevance."""
+    """Scores that rank the last ten passages first, the reverse of their stored relevance."""
     return {
         c.id: (3.0 if c.id == "1:lead:0" or int(c.id.rsplit(":", 1)[1]) >= 30 else 0.0)
         for c in dossier.chunks
@@ -107,7 +100,6 @@ async def test_a_rated_lean_pack_holds_no_key_facts_chunk(
     assert FACTS_ID not in [c.id for c in view.chunks]
     assert FACTS_ID not in view.budget.included_chunk_ids
     assert all(FACTS_ID not in s.chunk_ids for s in view.sections)
-    # the facts chunk is not counted as left out: only the list is
     assert view.budget.omitted_chunks == len(dossier.chunks) - 1 - len(view.chunks)
 
 
@@ -122,7 +114,6 @@ async def test_the_key_facts_room_of_a_rated_pack_goes_to_passages(
     assert lean.build.selection == full.build.selection == "rating"
     assert FACTS_ID in [c.id for c in full.chunks]
     assert _prose_tokens(lean) > _prose_tokens(full)
-    # the rated order holds: every passage the rating put first is shown
     shown = {c.id for c in lean.chunks}
     assert all(f"1:data:{n}" in shown for n in range(30, 40))
 
@@ -165,7 +156,6 @@ async def test_no_left_out_line_stands_in_the_dossier_part_of_a_rated_view(
 
     assert "of this section" not in body
     assert FACTS_LABEL not in body and "Fact 0:" not in body
-    # the lines are the metadata part's
     with_head = await _markdown(service, dossier, parts=frozenset({"dossier", "metadata"}))
     assert NOTICE in with_head
     assert FACTS_LABEL not in with_head and "Fact 0:" not in with_head
@@ -186,7 +176,7 @@ async def test_a_rated_view_not_lean_still_writes_both_as_before(
 
 
 def _structural() -> Dossier:
-    """One section whose passages sit in subsections, with a lead and Key facts."""
+    """One section whose 60 passages cycle through five subsections, plus a lead and Key facts."""
     rows = "\n".join(f"Fact {n}: {sized('value', 14)}" for n in range(12))
     facts = prose(FACTS_ID, [], 1, rows).model_copy(update={"kind": "facts"})
     subsections = ["Alpha", "Beta", "Gamma", "Delta", "Epsilon"]
@@ -218,7 +208,7 @@ async def test_headings_and_the_lean_response_together_stay_within_the_budget(
     redis_client: RedisClient, budget: int, rated: bool
 ) -> None:
     dossier = _structural()
-    # the rating shuffles the subsections so that the packed passages jump between them
+    # Spreads the scores so the chosen passages alternate between subsections.
     scores: dict[str, float | None] = {
         c.id: float((int(c.id.rsplit(":", 1)[1]) * 7) % 4) if c.id != "1:lead:0" else 3.0
         for c in dossier.chunks
@@ -234,7 +224,6 @@ async def test_headings_and_the_lean_response_together_stay_within_the_budget(
     assert body.count("\n### ") >= 3
     counted, _ = content_text(view, subsection_headings=True, notes=False)
     assert view.budget.used_est_tokens == est_tokens(counted) <= budget
-    # the headings cost tokens: the same view counted without them is smaller
     unheaded, _ = content_text(view, subsection_headings=False, notes=False)
     assert est_tokens(unheaded) < est_tokens(counted)
 

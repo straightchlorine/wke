@@ -11,7 +11,6 @@ import pytest
 from tests.factories.dossier import make_fixture_dossier
 from tests.support.constants import PIPELINE_VERSION
 from tests.support.offline import cache_html
-from wke.api.etag import etag_is_lean
 from wke.core import keys
 from wke.core.citations import seed_pin
 from wke.core.models import Dossier
@@ -33,7 +32,7 @@ def _pull(root: Path, dossier: Dossier, name: str | None = None) -> Path:
     """Write the 32000-token view of a dossier in the pull folder layout."""
     folder = root / (name or f"{dossier.topic.page_id}-slug")
     folder.mkdir()
-    # A pull made before the key facts block left the responses still holds it.
+    # Packed with the Key facts chunk included, as an API with LEAN_RESPONSE off serves it.
     view, _ = view_and_markdown(dossier, 32000, lean=False)
     (folder / "rest-32000.json").write_text(view.model_dump_json(), encoding="utf-8")
     return folder
@@ -144,30 +143,12 @@ def test_load_pulled_html_reads_the_source_of_the_pinned_revision(tmp_path: Path
 
 
 def _record_etag(folder: Path, etag: str | None) -> None:
-    """Write the manifest.json entry pull.py writes for rest-32000.json."""
+    """Write a manifest.json for the folder, with the ETag (if any) of its rest-32000.json."""
     entry: dict[str, object] = {"bytes": 1, "status": 200}
     if etag is not None:
         entry["etag"] = etag
     manifest = {"title": "Alma", "files": {"rest-32000.json": entry}}
     (folder / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
-
-
-@pytest.mark.parametrize(
-    ("etag", "lean"),
-    [
-        ('"1-pv-32000-json-complete-5-s1-l0-pdms"', False),
-        ('"1-pv-32000-json-complete-5-s1-l0-pdmsl"', True),
-        ('"1-pv-32000-json-complete-5-s1-l0-pdmsl-r1"', True),
-        ('"1-pv-32000-json-complete-5-s1-l0-pdmslh-r0"', True),
-        ('"1-pv-32000-json-complete-5-s1-l0-pdmsh"', False),
-        ('"1-test-pv-32000-json-complete-5-s0-l1-pdl"', True),
-        ('"1377998321-dev-32000-json-complete-5-s1-l0"', False),
-        ('W/"1-pv-32000-json-complete-5-s1-l0-pdl"', True),
-        ("not an etag", False),
-    ],
-)
-def test_the_lean_letter_of_an_etag_is_read_from_its_parts_code(etag: str, lean: bool) -> None:
-    assert etag_is_lean(etag) is lean
 
 
 @pytest.mark.parametrize(

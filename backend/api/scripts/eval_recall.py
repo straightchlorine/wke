@@ -32,8 +32,8 @@ parser over the cached Parsoid HTML, so key facts and tables are scored on
 dossiers stored before they existed; the HTML is the Redis cache at
 --redis-url, then the source-<rev>.html of the --pulled-dir folder, and a
 topic with neither is scored as stored. --no-summary-standins packs without
-summaries, to measure what summary stand-ins add. --pulled-dir falls back to a
-pull.py folder for a topic Redis does not hold.
+summaries, to measure what summary stand-ins add. --pulled-dir reads a topic
+Redis does not hold from a folder of dossiers pulled earlier through the API.
 
 Usage, from backend/api:
 
@@ -126,7 +126,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--pulled-dir",
         default="",
-        help="with --offline: read a topic missing from Redis from this pull.py folder",
+        help="with --offline: read a topic missing from Redis from this folder of earlier pulls",
     )
     parser.add_argument(
         "--pinned",

@@ -89,8 +89,7 @@ def _quotes_balance(text: str) -> bool:
         text: single-line text.
 
     Returns:
-        bool: True when the straight quotes are even in number and the curly
-        ones close as many as they open, never closing before opening.
+        bool: True when straight quotes are even and curly ones pair up in order.
     """
     depth = 0
     for char in text:
@@ -105,17 +104,12 @@ def split_sentences(text: str, quotes: bool = True) -> list[str]:
 
     A missed split only makes a piece longer, while a wrong split cuts a
     sentence, so the rule errs on the side of not splitting. A full stop
-    inside an open double quotation (straight or curly) is not a split
-    point, so a quotation stays in one piece, unless the double quotes of
-    the text do not balance, which is split by the rule without quotations.
-    Single quotes and apostrophes are never counted. A longer piece is not
-    free: a caller that drops whole sentences drops all of a quotation with
-    it, so such a caller splits a piece it is about to drop with
-    quotes=False and decides on those pieces.
+    inside an open double quotation is not a split point; text whose double
+    quotes do not balance is split as if quotes were False.
 
     Args:
         text: single-line text with collapsed whitespace.
-        quotes: False to split as before quotations were kept whole.
+        quotes: False to split at every sentence end, even inside a quotation.
 
     Returns:
         list[str]: the sentences in order, whose space-joined form equals

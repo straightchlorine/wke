@@ -71,9 +71,8 @@ class Settings(BaseSettings):
     lean_response: bool = Field(
         default=True,
         description=(
-            "Leave the Key facts block out of every response and the per-section 'left out at "
-            "this budget' lines out of the dossier part and the budget. 'false' serves "
-            "both in every response and counts them against the budget, as before."
+            "Omit the Key facts block and the per-section 'left out at this budget' lines "
+            "from responses and the budget."
         ),
     )
     summary_sections: int = Field(
@@ -93,8 +92,7 @@ class Settings(BaseSettings):
     subsection_headings: bool = Field(
         default=True,
         description=(
-            "Show a subsection's heading where passages of a structural build jump "
-            "between subsections; false renders as before."
+            "Show a subsection's heading where passages of a structural build jump subsections."
         ),
     )
     analyze_deadline_ms: int = Field(
@@ -106,8 +104,8 @@ class Settings(BaseSettings):
         default=0,
         ge=0,
         description=(
-            "Retries of a failed build analyze call; http_4xx is never retried, "
-            "a timeout only with ANALYZE_RETRY_ON_TIMEOUT."
+            "Retries of a failed analyze call; http_4xx never, a timeout only with "
+            "ANALYZE_RETRY_ON_TIMEOUT."
         ),
     )
     analyze_retry_pause_ms: int = Field(
@@ -117,7 +115,7 @@ class Settings(BaseSettings):
     )
     analyze_retry_on_timeout: bool = Field(
         default=False,
-        description="Retry an analyze call that timed out (it burns the deadline again).",
+        description="Retry an analyze call that timed out.",
     )
     dossier_structural_ttl_seconds: int = Field(
         default=600,
@@ -169,15 +167,14 @@ class Settings(BaseSettings):
     selection_rating: bool = Field(
         default=False,
         description=(
-            "Pack dossiers by a local model's 0 to 3 rating of each passage once a stored "
-            "rating is complete: a background stage rates every built dossier through wke-ml "
-            "POST /v1/rate. Off: nothing is rated, queued or read."
+            "Pack dossiers by a model's 0 to 3 rating of each passage. Off: nothing is rated, "
+            "queued or read."
         ),
     )
     rating_deadline_seconds: int = Field(
         default=1800,
         ge=1,
-        description="Longest one rating attempt of an article; the next attempt resumes it.",
+        description="Longest one rating attempt; the next resumes it.",
     )
     rating_call_timeout_seconds: int = Field(
         default=120,
@@ -189,16 +186,14 @@ class Settings(BaseSettings):
         ge=0.0,
         le=1.0,
         description=(
-            "Share of an article's prose passages that must hold a real score (not null) for "
-            "its rating to be applied; below it the dossier is packed by its stored relevance."
+            "Share of prose passages that must have a real score for the rating to apply."
         ),
     )
     rating_max_attempts: int = Field(
         default=3,
         ge=1,
         description=(
-            "Attempts of one rating stage that end unavailable or over the deadline without "
-            "storing a new score before it is given up until the next build."
+            "Attempts without a new score before a rating stage is given up until the next build."
         ),
     )
     rating_retry_backoff_seconds: int = Field(

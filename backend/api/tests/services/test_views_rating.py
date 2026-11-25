@@ -1,4 +1,4 @@
-"""A read packs with the stored rating only once it is complete and fits the dossier."""
+"""A read uses the stored rating only when it is complete and matches the dossier."""
 
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ PAGE_ID = DOSSIER.topic.page_id
 REV_ID = seed_pin(DOSSIER).rev_id
 KEY = rating_key(PAGE_ID, REV_ID, PIPELINE_VERSION)
 PROSE_IDS = [c.id for c in DOSSIER.chunks if c.kind == "prose"]
-# Reverses the stored order of the prose relevance: the lead becomes the least relevant.
+# The lead gets the lowest score, the reverse of its stored relevance (the highest).
 SCORES: dict[str, float | None] = dict(zip(PROSE_IDS, [0.0, 1.0, 1.0, 2.0, 3.0, 3.0], strict=True))
 ON = RatingConfig(enabled=True, summary_sections=8)
 
@@ -40,8 +40,7 @@ def _document(**overrides: Any) -> str:
 
 async def _service(redis_client: RedisClient, config: RatingConfig = ON) -> DossierService:
     await seed_dossier(redis_client, DOSSIER)
-    # Not lean: these tests compare the relevance of every stored chunk, the key facts chunk
-    # included. The lean pack of a rated view is in test_rating_with_lean.py.
+    # LEAN_RESPONSE off: these tests compare the relevance of every chunk, Key facts included.
     return make_service(redis_client, rating=config, lean_response=False)
 
 
@@ -188,7 +187,8 @@ async def test_a_rating_with_too_few_real_scores_is_not_applied_and_the_view_say
 async def test_the_coverage_setting_decides_how_many_nulls_a_rating_may_hold(
     redis_client: RedisClient,
 ) -> None:
-    scores = {**SCORES, PROSE_IDS[0]: None}  # 5 of 6
+    # One of six scores is None: coverage is 5/6, above 0.8 and below 0.9.
+    scores = {**SCORES, PROSE_IDS[0]: None}
     await _service(redis_client)
     await redis_client.set(KEY, _document(scores=scores))
 

@@ -144,7 +144,7 @@ async def _run_for(worker: worker_module.Worker, seconds: float) -> None:
 async def test_a_worker_with_a_rater_runs_its_loop_and_stops_it_with_itself(
     redis_client: RedisClient,
 ) -> None:
-    # No dossier is stored, so the item is taken, found gone and dropped.
+    # No dossier is stored, so the item is taken, found to have no dossier, and dropped.
     await redis_client.rpush(keys.QUEUE_RATE, f"{PAGE_ID}:{REV_ID}")
     rater = _rater(redis_client)
     worker = make_worker(redis_client, make_queue(redis_client), rater)

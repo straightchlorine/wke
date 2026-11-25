@@ -63,7 +63,7 @@ class ServiceBase:
 
     @property
     def lean_response(self) -> bool:
-        """Whether the key facts and the left-out lines stay out of the counted dossier part."""
+        """Whether responses omit the Key facts and left-out lines (LEAN_RESPONSE)."""
         return self._lean_response
 
     async def _dossier_state(self, page_id: int) -> DossierState:
