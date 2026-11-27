@@ -46,6 +46,16 @@ describe("DossierBuilding", () => {
     expect(screen.queryByText(/^Job /)).toBeNull();
   });
 
+  it("shows no placeholder blocks under the steps", async () => {
+    renderBuilding({ job });
+    await screen.findByRole("heading", { level: 1, name: "Jesus" });
+    expect(
+      document.querySelector(
+        '[aria-hidden="true"].animate-pulse, [aria-hidden="true"] .animate-pulse',
+      ),
+    ).toBeNull();
+  });
+
   it("calls onCancel from the Cancel button", async () => {
     const { onCancel } = renderBuilding();
     fireEvent.click(await screen.findByRole("button", { name: "Cancel" }));

@@ -74,7 +74,7 @@ eachTheme(() => {
     expect(report.ledeFont).toContain("Newsreader");
     expect(report.ledeSize).toBe(width >= 1024 ? "18px" : "16px");
     expect(report.ledeWidth).toBeLessThanOrEqual(660.5);
-    expect(report.bars).toBeGreaterThanOrEqual(3);
+    expect(report.bars).toBe(0);
     expect(report.docHeight).toBeGreaterThanOrEqual(report.inner.h);
     if (report.footerTop !== null) {
       expect(report.footerTop).toBeGreaterThanOrEqual(report.inner.h);
