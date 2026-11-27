@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import type { DossierView } from "../api/dossier";
 import { leadSentence } from "./lede";
+import { AUTHOR, CONTRIBUTORS_2025, type Person } from "./people";
 
 const SITE_NAME = "WKE";
 const SITE_URL = "https://wke.piotrkrzysztof.dev";
@@ -164,6 +165,37 @@ export function useSeo({
   }, [ld]);
 }
 
+/** The about page's description, kept here so the head and the tests share it. */
+export const ABOUT_DESCRIPTION =
+  "Who built WKE: a 2025 university group project by four people, rewritten in 2026 by Piotr Krzysztof Lis. Licences and credits.";
+
+/** The author's Person node, written out in full wherever the site names its author. */
+const AUTHOR_NODE = {
+  "@type": "Person",
+  "@id": AUTHOR.id,
+  name: AUTHOR.name,
+  alternateName: "Piotr Krzysztof",
+  url: "https://piotrkrzysztof.dev",
+  sameAs: [
+    "https://github.com/straightchlorine",
+    "https://codeberg.org/piotrkrzysztof",
+    "https://pypi.org/user/straightchlorine",
+    "https://hub.docker.com/u/straightchlorine",
+    "https://www.linkedin.com/in/straightchlorine",
+  ],
+};
+
+function contributorNode(person: Person): object {
+  const hrefs = person.links.map((link) => link.href);
+  return {
+    "@type": "Person",
+    ...(person.id ? { "@id": person.id } : {}),
+    name: person.name,
+    url: hrefs[0],
+    sameAs: hrefs,
+  };
+}
+
 /** Builds the home page's JSON-LD: a WebPage that belongs to the site-wide WebSite node. */
 export function homeJsonLd(): object {
   return {
@@ -172,6 +204,21 @@ export function homeJsonLd(): object {
     "@id": `${SITE_URL}/#webpage`,
     url: `${SITE_URL}/`,
     isPartOf: { "@id": WEBSITE_ID },
+  };
+}
+
+/** Builds the about page's JSON-LD: an AboutPage of the site by its author, mentioning the 2025 contributors. */
+export function aboutJsonLd(): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": `${SITE_URL}/about#webpage`,
+    url: `${SITE_URL}/about`,
+    name: "About",
+    description: ABOUT_DESCRIPTION,
+    isPartOf: { "@id": WEBSITE_ID },
+    author: { "@id": AUTHOR.id },
+    mentions: CONTRIBUTORS_2025.map(contributorNode),
   };
 }
 
@@ -232,6 +279,8 @@ export const WEBSITE_JSON_LD = {
   alternateName: "Wikipedia Knowledge Explorer",
   description: PITCH,
   url: `${SITE_URL}/`,
+  author: AUTHOR_NODE,
+  publisher: AUTHOR_NODE,
   potentialAction: {
     "@type": "SearchAction",
     target: { "@type": "EntryPoint", urlTemplate: `${SITE_URL}/?q={search_term_string}` },

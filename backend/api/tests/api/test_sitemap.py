@@ -43,6 +43,7 @@ async def test_sitemap_empty_index_lists_static_pages_only() -> None:
         "https://empty.example.test/",
         "https://empty.example.test/t/",
         "https://empty.example.test/machines",
+        "https://empty.example.test/about",
     ]
     assert root.findall("s:url/s:lastmod", NS) == []
 
@@ -60,11 +61,11 @@ async def test_sitemap_lists_dossiers_and_escapes_titles() -> None:
     assert body.isascii()
     root = ET.fromstring(body)
     urls = root.findall("s:url", NS)
-    assert len(urls) == 5
+    assert len(urls) == 6
     locs = [u.findtext("s:loc", namespaces=NS) for u in urls]
     assert f"https://two.example.test/t/{FIXTURE_WIKI_TITLE}" in locs
     assert "https://two.example.test/t/AT%26T_%3CCorp%3E" in locs
-    assert urls[3].findtext("s:lastmod", namespaces=NS) == "2026-09-01T12:30:05Z"
+    assert urls[4].findtext("s:lastmod", namespaces=NS) == "2026-09-01T12:30:05Z"
 
 
 async def test_sitemap_caps_entries() -> None:

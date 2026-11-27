@@ -1,6 +1,8 @@
 import { createContext, useContext, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
+import { Link } from "@tanstack/react-router";
 import { REPO_URL } from "../lib/links";
+import { AUTHOR, CONTRIBUTORS_2025, joinNames } from "../lib/people";
 
 /**
  * What the root layout provides to Colophon. `report` tells the layout that a route has its own colophon, so the layout skips its generic footer.
@@ -67,16 +69,24 @@ export function Colophon({ article, announce = true }: ColophonProps = {}) {
         </a>
         . WKE is not affiliated with or endorsed by the Wikimedia Foundation.
       </p>
-      {/* On a touch screen the larger margin keeps the tap areas of the links in this paragraph and the one above from overlapping. */}
-      <p className="mt-3 pointer-coarse:mt-7">
-        Built by Piotr Krzysztof Lis:{" "}
-        <a href="https://github.com/straightchlorine" className="hit-44 text-accent">
-          GitHub
-        </a>
-        ,{" "}
-        <a href="https://www.linkedin.com/in/piotr-krzysztof-lis" className="hit-44 text-accent">
-          LinkedIn
-        </a>
+      {/* On a touch screen the larger margin and line height keep the tap areas of the links in this paragraph and the one above from overlapping. */}
+      <p className="mt-3 pointer-coarse:mt-7 pointer-coarse:leading-6">
+        Built by {AUTHOR.name}:{" "}
+        {AUTHOR.links
+          .filter((link) => !link.aboutOnly)
+          .map((link, index) => (
+            <span key={link.href}>
+              {index > 0 ? ", " : null}
+              <a href={link.href} className="hit-44 text-accent">
+                {link.label}
+              </a>
+            </span>
+          ))}
+        . The 2025 version was a group project with{" "}
+        {joinNames(CONTRIBUTORS_2025.map((person) => person.name))}.{" "}
+        <Link to="/about" className="hit-44 text-accent">
+          About
+        </Link>
         .
       </p>
     </div>

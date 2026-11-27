@@ -6,6 +6,7 @@ const PAGES = [
   { path: "/t", ready: "Dossiers" },
   { path: "/t/Jesus", ready: "Jesus" },
   { path: "/machines", ready: "For machines" },
+  { path: "/about", ready: "About" },
 ] as const;
 
 eachTheme(() => {

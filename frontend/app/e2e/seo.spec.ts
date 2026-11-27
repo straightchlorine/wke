@@ -111,6 +111,15 @@ test.describe("Per-route metadata", only("desktop-1440"), () => {
     expect(head.ldTypes).toEqual([]);
   });
 
+  test("About is an indexable AboutPage", async ({ page, open }) => {
+    await open("/about");
+    await expect(page).toHaveTitle("About - WKE");
+    const head = await readHead(page);
+    expect(head.canonical).toBe("https://wke.piotrkrzysztof.dev/about");
+    expect(head.robots).toBe("index,follow");
+    expect(head.ldTypes).toEqual(["AboutPage"]);
+  });
+
   test("a loaded dossier is an indexable Article with a breadcrumb", async ({ page, open }) => {
     await open("/t/jesus");
     await expect(page).toHaveTitle("Jesus - WKE");

@@ -19,6 +19,15 @@ from wke.services.dossiers import DossierService
 
 CACHE_TTL_SECONDS = 300
 
+# The people of the 2025 group project, the author first, with the Polish letters
+# written as escapes so the source stays ASCII.
+PROJECT_2025_PEOPLE = (
+    "Piotr Krzysztof Lis, Jakub Kucharski, Wiktor Jarosi\u0144ski, Daniel Ka\u0142mucki"
+)
+
+# The last line of the document.
+CLOSING_LINE = "To the only God, be honour and glory for ever and ever."
+
 # (monotonic time, view generation, body) per base URL; a build bumps the
 # generation so a new dossier is listed at once.
 _cache: dict[str, tuple[float, int, str]] = {}
@@ -205,8 +214,12 @@ async def render_llms_txt(service: DossierService, limit: int = 40) -> str:
             "## Optional",
             "",
             "- For machines: " + base + "/machines",
+            "- About: " + base + "/about",
+            "- Author: https://piotrkrzysztof.dev (Piotr Krzysztof Lis)",
+            "- The 2025 group project: " + PROJECT_2025_PEOPLE,
             "- Source repository: https://github.com/straightchlorine/wke",
             "",
+            CLOSING_LINE,
         ]
     )
 

@@ -56,7 +56,13 @@ async def test_llms_txt_cold_document() -> None:
     assert "- Source repository: https://github.com/straightchlorine/wke" in body
     assert "codeberg" not in body.lower()
     assert "/docs/decisions" not in body
-    assert "/about" not in body
+    assert "- About: http://localhost:8010/about" in body
+    assert "- Author: https://piotrkrzysztof.dev (Piotr Krzysztof Lis)" in body
+    assert (
+        "- The 2025 group project: Piotr Krzysztof Lis, Jakub Kucharski, "
+        "Wiktor Jarosi\u0144ski, Daniel Ka\u0142mucki"
+    ) in body.splitlines()
+    assert body.splitlines()[-1] == "To the only God, be honour and glory for ever and ever."
 
 
 async def test_llms_txt_lists_only_ready_topics() -> None:
