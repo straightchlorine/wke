@@ -23,13 +23,14 @@ _PLACEHOLDER_BASE = "https://wke.invalid"
 
 
 class _RenderSwitch(BaseSettings):
-    """Read SUBSECTION_HEADINGS and LEAN_RESPONSE from the environment or .env."""
+    """Read SUBSECTION_HEADINGS, LEAN_RESPONSE and TABLE_REPACK from the environment or .env."""
 
     model_config = SettingsConfigDict(
         env_file=".env", env_file_encoding="utf-8", extra="ignore", case_sensitive=False
     )
     subsection_headings: bool = True
     lean_response: bool = True
+    table_repack: bool = True
 
 
 def view_and_markdown(
@@ -76,6 +77,7 @@ def view_and_markdown(
         include_summaries=summaries,
         subsection_headings=headings,
         lean=lean,
+        table_repack=switch.table_repack,
     )
     return view, render.render_markdown(view, summaries, subsection_headings=headings, lean=lean)
 

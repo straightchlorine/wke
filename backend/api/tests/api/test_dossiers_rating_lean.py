@@ -81,8 +81,8 @@ async def test_the_etag_of_a_rated_lean_response_names_both(
         await _store_rating(fake_redis, built_page)
         after = await client.get(f"/api/v1/dossiers/{built_page}")
 
-    assert before.headers["etag"].endswith('-pdlh-r0"')
-    assert after.headers["etag"].endswith('-pdlh-r1"')
+    assert before.headers["etag"].endswith('-pdlht-r0"')
+    assert after.headers["etag"].endswith('-pdlht-r1"')
     assert after.headers["etag"] != before.headers["etag"]
 
 
@@ -202,5 +202,5 @@ async def test_a_rated_post_200_equals_the_get_with_the_same_lean_etag(
 
     assert posted.status_code == 200
     assert posted.headers["etag"] == fetched.headers["etag"]
-    assert posted.headers["etag"].endswith('-pdlh-r1"')
+    assert posted.headers["etag"].endswith('-pdlht-r1"')
     assert posted.content == fetched.content

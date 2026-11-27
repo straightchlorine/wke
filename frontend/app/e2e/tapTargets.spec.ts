@@ -244,6 +244,7 @@ test.describe(
       ["a dossier", "/t/Lizzie_Borden", 'section[id^="s"] h2'],
       ["Dossiers", "/t/", "table tbody tr"],
       ["For machines", "/machines", "h1"],
+      ["About", "/about", "h1"],
     ];
     lightOnly(() => {
       for (const [name, viewport] of [

@@ -28,6 +28,7 @@ class ServiceBase:
         subsection_headings: bool = True,
         lean_response: bool = True,
         rating: RatingConfig = RatingConfig(),
+        table_repack: bool = True,
     ) -> None:
         self._redis = redis
         self._wikimedia = wikimedia
@@ -38,6 +39,7 @@ class ServiceBase:
         self.subsection_headings = subsection_headings
         self._lean_response = lean_response
         self._rating = rating
+        self._table_repack = table_repack
         self._base_url = f"{public_scheme}://{public_host}" if public_host else ""
         # Holds references to fire-and-forget background rebuild tasks so
         # they cannot be garbage-collected mid-flight (asyncio docs: "Save
@@ -65,6 +67,11 @@ class ServiceBase:
     def lean_response(self) -> bool:
         """Whether responses omit the Key facts and left-out lines (LEAN_RESPONSE)."""
         return self._lean_response
+
+    @property
+    def table_repack(self) -> bool:
+        """Whether a 2000 view may trade passages for table rows and list items (TABLE_REPACK)."""
+        return self._table_repack
 
     async def _dossier_state(self, page_id: int) -> DossierState:
         """Read one page's dossier state; see `_dossier_states`.

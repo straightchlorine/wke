@@ -17,8 +17,9 @@ SWITCHES = [
 
 @pytest.fixture
 def switches(request: pytest.FixtureRequest, monkeypatch: pytest.MonkeyPatch) -> str:
-    """Set LEAN_RESPONSE and SUBSECTION_HEADINGS from the param before the app is built."""
+    """Set the two switches from the param and TABLE_REPACK off, before the app is built."""
     lean, headings, tail = request.param
+    monkeypatch.setenv("TABLE_REPACK", "false")
     monkeypatch.setenv("LEAN_RESPONSE", str(lean).lower())
     monkeypatch.setenv("SUBSECTION_HEADINGS", str(headings).lower())
     return tail

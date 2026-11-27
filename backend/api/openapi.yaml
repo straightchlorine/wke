@@ -202,7 +202,9 @@ paths:
         parts as p plus d, m, s, stored relevance or rating). The parts code is followed by "l" when
         LEAN_RESPONSE is on (no Key facts block, notices of what was left out only with the metadata
         part), then by "h" when SUBSECTION_HEADINGS is on (a structural build writes subsection
-        headings); a tag without a letter is a body made without that setting. Cache-Control
+        headings), then by "t" when TABLE_REPACK is on (the 2000 budget may trade passages for table
+        rows and list items; the letter is on the tag at every budget); a tag without a letter is a
+        body made without that setting. Cache-Control
         public max-age=60. Links: rel=alternate (text/markdown),
         rel=describedby (/llms.txt). Freshness is computed at read time.
       parameters:

@@ -88,6 +88,7 @@ async def _serve_dossier(
             parts,
             lean=service.lean_response,
             subsection_headings=service.subsection_headings,
+            table_repack=service.table_repack,
         ),
         "Cache-Control": cache_control_for("revision" if is_final else "latest"),
     }

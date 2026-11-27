@@ -41,6 +41,7 @@ const VISITS: {
   { name: "Dossiers", path: "/t", ready: "Dossiers" },
   { name: "a dossier", path: "/t/Jesus", ready: "Jesus" },
   { name: "For machines", path: "/machines", ready: "For machines" },
+  { name: "About", path: "/about", ready: "About" },
   {
     name: "the unbuilt page",
     path: "/t/Nonexistent_Title",

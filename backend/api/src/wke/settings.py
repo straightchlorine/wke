@@ -75,6 +75,13 @@ class Settings(BaseSettings):
             "from responses and the budget."
         ),
     )
+    table_repack: bool = Field(
+        default=True,
+        description=(
+            "At the 2000 budget, trade the weakest extra passages for more table rows and "
+            "list items when that shows more of them."
+        ),
+    )
     summary_sections: int = Field(
         default=8,
         ge=1,

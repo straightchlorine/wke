@@ -158,8 +158,8 @@ async def test_the_setting_off_serves_the_base_response(legacy, app, redis_clien
     assert reply.text == render.render_markdown(view, False, False, DEFAULT_PARTS, lean=False)
     assert FACTS_LABEL in reply.text and NOTICE in reply.text
     assert any(c["kind"] == "facts" for c in json_reply.json()["dossier"]["chunks"])
-    # No "l" because lean is off; "h" because subsection headings are on by default.
-    assert reply.headers["etag"].endswith('-pdh"')
+    # No "l" because lean is off; "h" and "t" because those settings are on by default.
+    assert reply.headers["etag"].endswith('-pdht"')
 
 
 async def test_the_lean_etag_never_equals_the_base_one(app, redis_client) -> None:
@@ -167,7 +167,7 @@ async def test_the_lean_etag_never_equals_the_base_one(app, redis_client) -> Non
     async with app_client(app) as client:
         reply = await _get(client, "")
 
-    assert reply.headers["etag"].endswith('-pdlh"')
+    assert reply.headers["etag"].endswith('-pdlht"')
 
 
 @pytest.mark.parametrize("parts", [DEFAULT_PARTS, frozenset({"dossier", "metadata"}), ALL_PARTS])

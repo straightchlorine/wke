@@ -3,6 +3,8 @@ import { renderHook } from "@testing-library/react";
 import type { DossierView } from "../api/dossier";
 import { loadDossier } from "../test/fixtures";
 import {
+  ABOUT_DESCRIPTION,
+  aboutJsonLd,
   clipDescription,
   dossierDescription,
   dossierJsonLd,
@@ -134,5 +136,73 @@ describe("site JSON-LD", () => {
       isPartOf: { "@id": WEBSITE_JSON_LD["@id"] },
     });
     expect(WEBSITE_JSON_LD.potentialAction["@type"]).toBe("SearchAction");
+  });
+
+  it("names the author in full as the site's author and publisher", () => {
+    const author = {
+      "@type": "Person",
+      "@id": "https://piotrkrzysztof.dev/#piotr",
+      name: "Piotr Krzysztof Lis",
+      alternateName: "Piotr Krzysztof",
+      url: "https://piotrkrzysztof.dev",
+      sameAs: [
+        "https://github.com/straightchlorine",
+        "https://codeberg.org/piotrkrzysztof",
+        "https://pypi.org/user/straightchlorine",
+        "https://hub.docker.com/u/straightchlorine",
+        "https://www.linkedin.com/in/straightchlorine",
+      ],
+    };
+    expect(WEBSITE_JSON_LD.author).toEqual(author);
+    expect(WEBSITE_JSON_LD.publisher).toEqual(author);
+    expect(JSON.stringify(WEBSITE_JSON_LD)).not.toContain("#jakub");
+  });
+});
+
+describe("aboutJsonLd", () => {
+  it("is an AboutPage of the site, by the author, mentioning the three 2025 contributors", () => {
+    const ld: unknown = JSON.parse(JSON.stringify(aboutJsonLd()));
+    expect(ld).toEqual({
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "@id": "https://wke.piotrkrzysztof.dev/about#webpage",
+      url: "https://wke.piotrkrzysztof.dev/about",
+      name: "About",
+      description:
+        "Who built WKE: a 2025 university project by four people, rewritten in 2026 by Piotr Krzysztof Lis. Licences and credits.",
+      isPartOf: { "@id": WEBSITE_JSON_LD["@id"] },
+      author: { "@id": "https://piotrkrzysztof.dev/#piotr" },
+      mentions: [
+        {
+          "@type": "Person",
+          name: "Wiktor Jarosi\u0144ski",
+          url: "https://github.com/wiktorjarosinski",
+          sameAs: [
+            "https://github.com/wiktorjarosinski",
+            "https://www.linkedin.com/in/wiktor-jarosi%C5%84ski-719885244/",
+          ],
+        },
+        {
+          "@type": "Person",
+          name: "Daniel Ka\u0142mucki",
+          url: "https://github.com/Mastermod1",
+          sameAs: ["https://github.com/Mastermod1", "https://www.linkedin.com/in/danielkalmucki/"],
+        },
+        {
+          "@type": "Person",
+          "@id": "https://piotrkrzysztof.dev/#jakub",
+          name: "Jakub Kucharski",
+          url: "https://github.com/kubson2002k",
+          sameAs: [
+            "https://github.com/kubson2002k",
+            "https://www.linkedin.com/in/jakub-kucharski-360811305/",
+          ],
+        },
+      ],
+    });
+  });
+
+  it("keeps the description within the meta limit", () => {
+    expect(ABOUT_DESCRIPTION.length).toBeLessThanOrEqual(155);
   });
 });

@@ -24,7 +24,7 @@ from wke.services.dossiers import DossierService
 CACHE_TTL_SECONDS = 300
 MAX_ENTRIES = 50000
 PAGE_SIZE = 100
-STATIC_PATHS = ("/", "/t/", "/machines")
+STATIC_PATHS = ("/", "/t/", "/machines", "/about")
 
 # (monotonic time, view generation, body) per base URL; a build or an
 # invalidation bumps the generation so a new dossier is listed at once.

@@ -14,6 +14,7 @@ const SIZES = [
 const PAGES: readonly { path: string; scope: string; min: number; label: string; build?: true }[] =
   [
     { path: "/machines", scope: "main p", min: 4, label: "For machines lede" },
+    { path: "/about", scope: "main p", min: 3, label: "About credits and licence" },
     { path: "/t/", scope: "main p", min: 1, label: "Dossiers lede" },
     { path: "/t/Nonexistent_Title", scope: "main", min: 1, label: "Did you mean", build: true },
   ];

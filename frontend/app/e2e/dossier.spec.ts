@@ -133,7 +133,7 @@ test.describe("Dossier page", () => {
       const sectionCount = await sections.count();
       let sectionsWithPassages = 0;
       for (let i = 0; i < sectionCount; i++) {
-        const paragraphs = sections.nth(i).locator('[data-role="source-text"] p');
+        const paragraphs = sections.nth(i).locator('[data-role="source-text"] [id^="chunk-"]');
         const count = await paragraphs.count();
         if (count === 0) {
           continue;

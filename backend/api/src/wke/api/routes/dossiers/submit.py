@@ -165,6 +165,7 @@ async def _ready_dossier(service: DossierService, page_id: int, parts: frozenset
         parts=parts,
         lean=lean,
         subsection_headings=service.subsection_headings,
+        table_repack=service.table_repack,
     )
     return Response(
         content=body,

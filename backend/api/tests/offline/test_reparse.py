@@ -7,10 +7,18 @@ import os
 import pytest
 
 from tests.core.render.test_render_structure import _jumping
-from tests.factories.dossier import FACTORY_RELATED_TITLE, make_fixture_dossier, make_summary
+from tests.factories.dossier import (
+    FACTORY_RELATED_TITLE,
+    make_fixture_dossier,
+    make_freshness,
+    make_links,
+    make_summary,
+)
+from tests.factories.repack import make_repack_dossier
 from tests.support.wikimedia import WmFixtures
 from wke.core.citations import seed_pin
 from wke.core.models import Dossier, Section
+from wke.core.render import build_view
 from wke.core.render.labels import SUMMARY_LABEL
 from wke.jobs.build.summarize import summary_input
 from wke.offline.reparse import reparse, view_and_markdown
@@ -222,3 +230,14 @@ def test_reparse_drops_summaries_that_were_never_done(parsed: Dossier, html: str
 
     assert again.summary is None
     assert again.summary_state == "pending"
+
+
+def test_view_and_markdown_follows_table_repack_and_repacks_by_default(monkeypatch):
+    dossier = make_repack_dossier("table", 4)
+    monkeypatch.setenv("TABLE_REPACK", "false")
+    plain = view_and_markdown(dossier, 2000, lean=True)
+    off = build_view(dossier, 2000, make_freshness(dossier), make_links(), False, lean=True)
+    assert [c.id for c in plain[0].chunks] == [c.id for c in off.chunks]
+    assert "T:table0" not in [c.id for c in plain[0].chunks]
+    monkeypatch.delenv("TABLE_REPACK", raising=False)
+    assert "T:table0" in [c.id for c in view_and_markdown(dossier, 2000, lean=True)[0].chunks]

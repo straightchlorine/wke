@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
 from unittest.mock import AsyncMock
 
@@ -12,11 +13,24 @@ from mcp import Client
 
 from tests.factories.dossier import make_fixture_dossier, make_freshness, make_links
 from tests.support.apps import app_client, make_app
-from tests.support.constants import FIXTURE_PAGE_ID, FIXTURE_REV_ID, FIXTURE_TITLE
+from tests.support.builds import build_only
+from tests.support.constants import (
+    FIXTURE_PAGE_ID,
+    FIXTURE_REV_ID,
+    FIXTURE_TITLE,
+    PIPELINE_VERSION,
+)
 from tests.support.jobs import make_job
 from tests.support.mcp import payload_of, text_of, text_of_block
+from tests.support.ml_clients import analyze_down_client
+from tests.support.services import make_service, seed_dossier
 from tests.support.snapshots import make_snapshot
+from tests.support.wikimedia import WmFixtures, wikimedia_handler
 from wke.api.mcp_server import build_mcp_server
+from wke.clients.redis import RedisClient
+from wke.clients.wikimedia import WikimediaClient
+from wke.core import keys
+from wke.core.citations import seed_pin
 from wke.core.errors import ApiException
 from wke.core.models import DossierView, Job, JobProgress, TopicCandidate, TrendingSnapshot
 from wke.core.render import build_view
@@ -450,3 +464,46 @@ async def test_get_dossier_service_error_after_the_build_is_an_error_payload(
 
     assert not result.is_error
     assert payload_of(result) == {"status": "error", "code": "not_found", "detail": "gone"}
+
+
+async def test_get_dossier_returns_the_kept_older_dossier_after_a_degraded_build(
+    monkeypatch: pytest.MonkeyPatch,
+    redis_client: RedisClient,
+    fake_redis: FakeRedis,
+    wikimedia_client: WikimediaClient,
+    wm_fixtures: WmFixtures,
+) -> None:
+    monkeypatch.setattr("wke.api.mcp_server.GET_DOSSIER_WAIT_SECONDS", 10)
+    old = make_fixture_dossier()
+    await seed_dossier(redis_client, old)
+    await fake_redis.pexpire(
+        keys.dossier(FIXTURE_PAGE_ID, seed_pin(old).rev_id, PIPELINE_VERSION), 3 * 86_400_000
+    )
+    service = make_service(redis_client, wikimedia_handler(wm_fixtures), public_host="wke.example")
+
+    async def run_queued_build() -> None:
+        async with asyncio.timeout(5):
+            while not (ids := await redis_client.lrange(keys.QUEUE_INTERACTIVE, 0, -1)):
+                await asyncio.sleep(0.01)
+        job = await service.get_job(ids[0])
+        assert job is not None
+        await build_only(
+            redis_client,
+            wikimedia_client,
+            analyze_down_client(),
+            job,
+            public_host="wke.example",
+            structural_ttl_seconds=90,
+        )
+
+    worker = asyncio.create_task(run_queued_build())
+    async with Client(build_mcp_server(service)) as client:
+        result = await client.call_tool("get_dossier", {"title": FIXTURE_TITLE, "format": "json"})
+    await worker
+
+    payload = payload_of(result)
+    assert payload["status"] == "ready"
+    served = {chunk["id"] for chunk in payload["dossier"]["chunks"]}
+    assert served
+    assert served <= {chunk.id for chunk in old.chunks}
+    assert await redis_client.llen(keys.QUEUE_INTERACTIVE) == 1
