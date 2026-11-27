@@ -68,7 +68,7 @@ describe("DossierSection", () => {
   it("renders the kept passages as the source text", () => {
     const row = first(at8k, "full");
     const { container } = renderSection(at8k, row);
-    expect(container.querySelectorAll('[data-role="source-text"] p')).toHaveLength(
+    expect(container.querySelectorAll('[data-role="source-text"] [id^="chunk-"]')).toHaveLength(
       row.pack.includedChunks.length,
     );
   });

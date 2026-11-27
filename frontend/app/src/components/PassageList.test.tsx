@@ -47,4 +47,42 @@ describe("PassageList", () => {
     expect(first?.querySelector("span.whitespace-nowrap")?.textContent).toBe("here.[1]");
     expect(first?.textContent).toBe("First passage here.[1]");
   });
+
+  it("shows a table passage as a table, a list passage as a list and anything else as a paragraph", () => {
+    const mixed: Chunk[] = [
+      { ...baseChunk, id: "p", citation_id: "c1", kind: "prose", text: "Some prose." },
+      {
+        ...baseChunk,
+        id: "t",
+        citation_id: "c1",
+        kind: "table",
+        text: "Cap\n| A | B |\n| --- | --- |\n| 1 | 2 |",
+      },
+      { ...baseChunk, id: "l", citation_id: "c1", kind: "list", text: "- x\n  - y" },
+    ];
+    const { container } = render(
+      <PassageList chunks={mixed} citations={citations} numbers={numbers} />,
+    );
+    expect([...container.querySelectorAll("[id^='chunk-']")].map((el) => el.id)).toEqual([
+      "chunk-p",
+      "chunk-t",
+      "chunk-l",
+    ]);
+    expect(container.querySelector("p#chunk-p")).not.toBeNull();
+    expect(container.querySelectorAll("table tbody tr")).toHaveLength(1);
+    expect(container.querySelectorAll("li")).toHaveLength(2);
+    expect(container.querySelectorAll("a")).toHaveLength(1);
+  });
+
+  it("falls back to a paragraph for a table or list text that does not parse", () => {
+    const odd: Chunk[] = [
+      { ...baseChunk, id: "t", citation_id: "c2", kind: "table", text: "Not a table at all" },
+      { ...baseChunk, id: "l", citation_id: "c2", kind: "list", text: "plain words\nmore words" },
+    ];
+    const { container } = render(
+      <PassageList chunks={odd} citations={citations} numbers={numbers} />,
+    );
+    expect(container.querySelectorAll("table, ul")).toHaveLength(0);
+    expect([...container.querySelectorAll("p")].map((p) => p.id)).toEqual(["chunk-t", "chunk-l"]);
+  });
 });
