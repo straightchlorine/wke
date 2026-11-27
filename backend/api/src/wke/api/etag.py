@@ -44,7 +44,8 @@ def compute_etag(
         summaries: Request's summaries query flag.
         links: Request's links query flag (Markdown with inline links).
         parts_code: the selected parts as a short code, such as "pd" or "pdms",
-            optionally followed by "l" (lean response) and "h" (subsection headings).
+            optionally followed by "l" (lean response), "h" (subsection headings) and
+            "t" (table repack).
         selection: whether passages were chosen by "relevance" (stored scores) or by
             "rating" (the rating model's scores); None while rating is off.
 
@@ -63,8 +64,9 @@ def compute_etag(
 
 
 # The parts code at the end of a tag, before any "-r0"/"-r1": "p", one letter per part,
-# "l" if the response was lean (no Key facts), "h" if it has subsection headings.
-_PARTS_CODE = re.compile(r"p[dms]*(?P<lean>l)?h?")
+# "l" if the response was lean (no Key facts), "h" if it has subsection headings, "t" if
+# tables and lists may have been given room.
+_PARTS_CODE = re.compile(r"p[dms]*(?P<lean>l)?h?t?")
 _SELECTION_SUFFIX = re.compile(r"-r[01]$")
 
 

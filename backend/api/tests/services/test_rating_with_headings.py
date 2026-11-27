@@ -160,9 +160,9 @@ async def test_every_setting_off_gives_the_etag_without_a_rating(redis_client: R
     view = await _view(service, dossier)
 
     assert view.build.selection is None
-    assert view_etag(view, 2000, "json", False, lean=False, subsection_headings=False) == (
-        _base_etag(view)
-    )
+    assert view_etag(
+        view, 2000, "json", False, lean=False, subsection_headings=False, table_repack=False
+    ) == (_base_etag(view))
 
 
 async def test_the_etag_reflects_the_selection_used(redis_client: RedisClient) -> None:
@@ -170,7 +170,7 @@ async def test_the_etag_reflects_the_selection_used(redis_client: RedisClient) -
     unrated = await _view(await _serve(redis_client, dossier, None), dossier)
     rated = await _view(await _serve(redis_client, dossier, SWAPPED), dossier)
 
-    off = {"lean": False, "subsection_headings": False}
+    off = {"lean": False, "subsection_headings": False, "table_repack": False}
     assert view_etag(unrated, 2000, "json", False, **off) == _base_etag(unrated)[:-1] + '-r0"'
     assert view_etag(rated, 2000, "json", False, **off) == _base_etag(rated)[:-1] + '-r1"'
 
@@ -184,7 +184,9 @@ async def test_the_subsection_switch_adds_the_letter_h_to_the_etag(
 
     view = await _view(service, dossier)
 
-    etag = view_etag(view, 2000, "json", False, lean=False, subsection_headings=headings)
+    etag = view_etag(
+        view, 2000, "json", False, lean=False, subsection_headings=headings, table_repack=False
+    )
     assert etag == (_base_etag(view)[:-1] + 'h"' if headings else _base_etag(view))
 
 

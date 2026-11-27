@@ -159,6 +159,7 @@ class ViewsMixin(ServiceBase):
             include_summaries=summaries,
             subsection_headings=self.subsection_headings,
             lean=lean,
+            table_repack=self._table_repack,
         )
         if selection is not None:
             view = view.model_copy(

@@ -211,6 +211,7 @@ def write_sidecars(out_dir: Path, dossier: Dossier, links: DossierLinks, fresh: 
             include_summaries=True,
             subsection_headings=settings.subsection_headings,
             lean=settings.lean_response,
+            table_repack=settings.table_repack,
         )
         (out_dir / name).mkdir(parents=True, exist_ok=True)
         if name == "after_cache":

@@ -34,6 +34,7 @@ def test_all_required_vars_present_constructs(monkeypatch: pytest.MonkeyPatch) -
     assert s.wm_budget_per_minute == 150
     assert s.subsection_headings is True
     assert s.lean_response is True
+    assert s.table_repack is True
     assert s.selection_rating is False
     assert s.rating_deadline_seconds == 1800
     assert s.rating_call_timeout_seconds == 120
@@ -53,6 +54,13 @@ def test_lean_response_and_subsection_headings_read_their_variables(
 
     assert s.lean_response is False
     assert s.subsection_headings is False
+
+
+def test_table_repack_reads_its_variable(monkeypatch: pytest.MonkeyPatch) -> None:
+    _set_all(monkeypatch)
+    monkeypatch.setenv("TABLE_REPACK", "false")
+
+    assert Settings.model_validate({}).table_repack is False
 
 
 @pytest.mark.parametrize("missing_key", sorted(REQUIRED_ENV))

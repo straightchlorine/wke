@@ -9,6 +9,9 @@ from wke.core.pack.costs import SECTION_HEADING_OVERHEAD_TOKENS, TAG_TOKENS
 from wke.core.pack.importance import ranked_sections
 from wke.core.pack.owners import ancestors, section_of
 
+# Room reported for a passage the pack may not show, so that nothing fits it.
+NO_ROOM = -(10**9)
+
 
 @dataclass
 class PackState:
@@ -20,6 +23,7 @@ class PackState:
     summaries: set[str] = field(default_factory=set[str])
     charged: set[str] = field(default_factory=set[str])
     shortened: list[str] = field(default_factory=list[str])
+    openers: set[str] = field(default_factory=set[str])
 
 
 class Packer:
@@ -28,6 +32,10 @@ class Packer:
     The placement phases (place_lead, place_openers and the rest) are
     functions in their own modules; this class holds the lookups they share
     and charges the budget.
+
+    A repack of a view sets two limits. allowed_prose, when not None, names the
+    only passages that may be placed. held_lists maps a list's chunk id to the text
+    it is placed with, and these lists are neither extended nor cut.
     """
 
     def __init__(
@@ -37,12 +45,16 @@ class Packer:
         state: PackState,
         include_summaries: bool,
         reserve: int = 0,
+        allowed_prose: frozenset[str] | None = None,
+        held_lists: dict[str, str] | None = None,
     ):
         self.dossier = dossier
         self.budget = budget
         self.reserve = reserve
         self.state = state
         self.include_summaries = include_summaries
+        self.allowed_prose = allowed_prose
+        self.held_lists = held_lists or {}
         self.chunk_by_id = {c.id: c for c in dossier.chunks}
         self.owner = section_of(dossier)
         self.section_by_id = {s.id: s for s in dossier.sections}
@@ -96,7 +108,16 @@ class Packer:
         self.included.add(chunk.id)
 
     def chunk_room(self, chunk: Chunk) -> int:
-        """Return the tokens left for the chunk's own text once its frame is paid."""
+        """Return the tokens left for the chunk's own text once its frame is paid.
+
+        A passage outside allowed_prose has no room at all, whatever the budget holds.
+        """
+        if (
+            self.allowed_prose is not None
+            and chunk.kind == "prose"
+            and chunk.id not in self.allowed_prose
+        ):
+            return NO_ROOM
         frame = TAG_TOKENS + self.heading_cost(self.owner.get(chunk.id, ""))
         return self.remaining - frame
 

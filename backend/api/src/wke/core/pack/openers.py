@@ -27,6 +27,7 @@ def place_section_opener(packer: Packer, section: Section, shown: ShownOpenings)
     paragraph = pick_representative(packer, prose, shown)
     if paragraph is not None:
         packer.add_chunk(paragraph)
+        packer.state.openers.add(paragraph.id)
         shown.record(paragraph)
         return
 

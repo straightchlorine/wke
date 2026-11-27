@@ -111,6 +111,7 @@ def view_etag(
     *,
     lean: bool,
     subsection_headings: bool,
+    table_repack: bool,
 ) -> str:
     """Compute the ETag for a packed view, shared by the JSON and Markdown routes.
 
@@ -124,6 +125,8 @@ def view_etag(
         lean: whether the response omits the Key facts and left-out lines; adds "l" to the
             parts code so a lean and a full body never share a tag.
         subsection_headings: whether the body has subsection headings; adds "h" after the "l".
+        table_repack: whether a 2000 body may have been repacked for tables and lists; adds
+            "t" after the "h", at every budget.
 
     Returns:
         str: the quoted ETag value.
@@ -137,6 +140,11 @@ def view_etag(
         view.build.summaries_done,
         include_summaries,
         links,
-        parts_code(parts) + ("l" if lean else "") + ("h" if subsection_headings else ""),
+        (
+            parts_code(parts)
+            + ("l" if lean else "")
+            + ("h" if subsection_headings else "")
+            + ("t" if table_repack else "")
+        ),
         view.build.selection,
     )

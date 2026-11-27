@@ -49,8 +49,25 @@ def add_structured(packer: Packer, chunk: Chunk) -> bool:
     return True
 
 
+def place_held_lists(packer: Packer) -> None:
+    """Place the lists a repack carries over, with the text they were shown with.
+
+    Args:
+        packer: the pass to place into.
+    """
+    for chunk_id, text in packer.held_lists.items():
+        if chunk_id in packer.included:
+            continue
+        chunk = packer.chunk_by_id[chunk_id]
+        packer.add_chunk(chunk, text, est_tokens(text))
+        if text != chunk.text:
+            packer.state.shortened.append(chunk_id)
+
+
 def extend_structured(packer: Packer, leftover: bool = False) -> None:
     """Give cut tables and lists more rows from the room still free at this step.
+
+    A list the packer holds is never given more items.
 
     Args:
         packer: the pass to place into.
@@ -62,7 +79,11 @@ def extend_structured(packer: Packer, leftover: bool = False) -> None:
     cap = int(STRUCTURED_SHARE * packer.budget)
     score = section_importance(packer.dossier.sections, packer.dossier.chunks)
     order = sorted(
-        (cid for cid in state.shortened if packer.chunk_by_id[cid].kind != "prose"),
+        (
+            cid
+            for cid in state.shortened
+            if packer.chunk_by_id[cid].kind != "prose" and cid not in packer.held_lists
+        ),
         key=lambda cid: (-score.get(packer.owner.get(cid, ""), 0.0), packer.chunk_by_id[cid].order),
     )
     for chunk_id in order:
@@ -79,11 +100,12 @@ def extend_structured(packer: Packer, leftover: bool = False) -> None:
 
 
 def place_structured(packer: Packer) -> None:
-    """Extend cut tables, then add the tables and lists of the top-ranked sections.
+    """Place the held lists, extend cut tables, then add those of the top-ranked sections.
 
     Args:
         packer: the pass to place into.
     """
+    place_held_lists(packer)
     extend_structured(packer)
     top = packer.ranked[: math.ceil(len(packer.ranked) * TABLE_SECTION_SHARE)]
     for section in top:

@@ -55,6 +55,8 @@ def pack(
     include_summaries: bool = True,
     reserve: int = 0,
     facts: bool = True,
+    allowed_prose: frozenset[str] | None = None,
+    held_lists: dict[str, str] | None = None,
 ) -> PackedDossier:
     """Pack a dossier's chunks and summaries to a token budget, coverage first.
 
@@ -90,7 +92,7 @@ def pack(
     for step in (b for b in BUDGETS if b <= requested):
         held = reserve if step == requested else 0
         state.used += held
-        packer = Packer(dossier, step, state, include_summaries, held)
+        packer = Packer(dossier, step, state, include_summaries, held, allowed_prose, held_lists)
         place_lead(packer)
         if facts:
             place_facts(packer)
@@ -117,4 +119,5 @@ def pack(
         budget=budget,
         chunk_texts=state.texts,
         included_summary_section_ids=frozenset(state.summaries),
+        opener_ids=frozenset(state.openers),
     )

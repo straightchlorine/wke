@@ -19,8 +19,10 @@ class PackedDossier:
         included_summary_section_ids: Ids of sections whose summary fit
             within the budget and should be rendered, with or without
             passages of the section beside it.
+        opener_ids: Ids of the passages placed as a section's opening paragraph.
     """
 
     budget: Budget
     chunk_texts: dict[str, str] = field(default_factory=dict[str, str])
     included_summary_section_ids: frozenset[str] = field(default_factory=frozenset[str])
+    opener_ids: frozenset[str] = field(default_factory=frozenset[str])

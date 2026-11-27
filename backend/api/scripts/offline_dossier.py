@@ -9,7 +9,8 @@ citations and the summary source check show up on old dossiers too.
 Output: one <page_id>-<slug> folder per dossier in --out-dir, holding
 manifest.json, rest-<budget>.json and .md and the source HTML: the same layout
 as a dossier pulled through the API, so the same checks run on both. The views
-follow LEAN_RESPONSE, except rest-32000.json, which keeps the Key facts.
+follow LEAN_RESPONSE, and TABLE_REPACK at 2000, except rest-32000.json,
+which keeps the Key facts.
 
 Usage, from backend/api:
 

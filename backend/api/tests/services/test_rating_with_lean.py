@@ -238,7 +238,7 @@ async def test_the_etag_names_the_lean_response_then_the_selection(
     )
     rated = await _view(await _serve(redis_client, dossier, _scores(dossier)), dossier)
 
-    no_h = {"subsection_headings": False}
+    no_h = {"subsection_headings": False, "table_repack": False}
     assert view_etag(rated, 2000, "json", False, lean=True, **no_h).endswith('-pdl-r1"')
     assert view_etag(unrated, 2000, "json", False, lean=True, **no_h).endswith('-pdl-r0"')
     assert view_etag(plain, 2000, "json", False, lean=False, **no_h).endswith('-s0-l0-pd"')

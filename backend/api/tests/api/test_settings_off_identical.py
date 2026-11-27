@@ -28,7 +28,12 @@ RECORD = os.environ.get("WKE_RECORD_SETTINGS_OFF")
 HEADERS = ("etag", "cache-control", "content-type", "vary")
 BUDGETS = (2000, 8000, 32000)
 CLOCK = re.compile(r'"(built_at|retrieved_at)":"[^"]*"|"stage_seconds":\{[^}]*\}')
-OFF = {"selection_rating": False, "lean_response": False, "subsection_headings": False}
+OFF = {
+    "selection_rating": False,
+    "lean_response": False,
+    "subsection_headings": False,
+    "table_repack": False,
+}
 
 
 async def _capture(app, page_id: int) -> dict[str, dict]:
@@ -157,4 +162,25 @@ async def test_the_subsection_headings_alone_are_byte_identical_to_their_recordi
     for name, response in captured.items():
         expected = json.loads(json.dumps(recorded[name]))
         expected["headers"]["etag"] = expected["headers"]["etag"][:-1] + 'h"'
+        assert response == expected, name
+
+
+async def test_the_table_repack_alone_changes_nothing_but_the_etag_letter_here(
+    fake_redis, settings, wikimedia_client, ml_client_ok, built_page
+) -> None:
+    # Nothing in the recorded dossier is better shown by a repack.
+    if RECORD:
+        return
+    captured, recorded = await _check(
+        "quote_split_only.json",
+        fake_redis,
+        settings,
+        wikimedia_client,
+        ml_client_ok,
+        built_page,
+        **{**OFF, "table_repack": True},
+    )
+    for name, response in captured.items():
+        expected = json.loads(json.dumps(recorded[name]))
+        expected["headers"]["etag"] = expected["headers"]["etag"][:-1] + 't"'
         assert response == expected, name

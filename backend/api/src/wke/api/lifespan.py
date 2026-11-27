@@ -61,6 +61,7 @@ def _build_service(
         cfg.subsection_headings,
         cfg.lean_response,
         rating=RatingConfig.from_settings(cfg),
+        table_repack=cfg.table_repack,
     )
     return wikimedia, job_queue, service
 

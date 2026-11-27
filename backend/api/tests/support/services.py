@@ -29,6 +29,7 @@ def make_service(
     public_host: str = REQUIRED_ENV["PUBLIC_HOST"],
     lean_response: bool = True,
     rating: RatingConfig = RatingConfig(),
+    table_repack: bool = True,
 ) -> DossierService:
     """Build a DossierService whose Wikimedia calls are answered by `handler`.
 
@@ -40,6 +41,7 @@ def make_service(
         public_host: the host its absolute links are rooted at (https).
         lean_response: the LEAN_RESPONSE setting (no Key facts block, no left-out lines).
         rating: the SELECTION_RATING settings; disabled by default.
+        table_repack: the TABLE_REPACK setting (2000 views trade passages for tables and lists).
 
     Returns:
         DossierService: wired to a job queue that holds at most 20 jobs.
@@ -54,6 +56,7 @@ def make_service(
         public_host,
         lean_response=lean_response,
         rating=rating,
+        table_repack=table_repack,
     )
 
 
