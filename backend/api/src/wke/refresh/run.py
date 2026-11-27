@@ -3,9 +3,10 @@
 A stored dossier expires 7 days after its build and a read does not extend it. For
 every page in the `built` index this job reads the pointer and the dossier. A dossier
 that expires soon gets its full lifetime back, stale or not, with nothing else changed,
-so the page stays even when a rebuild is refused, deferred or fails. A dossier whose
-article has a newer revision is in addition sent to `maybe_enqueue_rebuild`, which keeps
-its own conditions and debounce. The job reads Redis only: no Wikipedia, no model.
+so the page stays even when a rebuild is refused, deferred or falls back to a build
+without the model. A dossier whose article has a newer revision is in addition sent to
+`maybe_enqueue_rebuild`, which keeps its own conditions and debounce. The job reads Redis
+only: no Wikipedia, no model.
 """
 
 from __future__ import annotations
@@ -116,7 +117,8 @@ async def run_refresh(
 
     stop_logged = False
     for item in stored:
-        # The expiry is renewed first, so no outcome of the rebuild can lose the page.
+        # The expiry is renewed first, so a rebuild that is refused, deferred or built
+        # without the model leaves the page in place.
         extended = await _extend(raw_redis, item, pipeline_version)
         if extended:
             summary.extended += 1

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import logging
 from datetime import UTC, datetime
 
@@ -9,6 +10,7 @@ from pydantic import HttpUrl
 
 from wke.clients.redis import RedisClient
 from wke.core import keys
+from wke.core.dossiers import pointer_rev_id
 from wke.core.models import (
     BuildInfo,
     Chunk,
@@ -195,6 +197,37 @@ def _structural_dossier(
     )
 
 
+async def _kept_revision(
+    redis: RedisClient, *, page_id: int, pipeline_version: str, ttl_seconds: int
+) -> int | None:
+    """Find a stored dossier that must not give way to a structural one.
+
+    A structural dossier never has more than `ttl_seconds` left, so a dossier of this
+    pipeline version with more than that left, or none at all, was built by the model.
+
+    Args:
+        redis: Redis client.
+        page_id: Wikipedia page id.
+        pipeline_version: PIPELINE_VERSION setting.
+        ttl_seconds: lifetime a structural dossier is stored with.
+
+    Returns:
+        int | None: the revision the pointer names, or None when the pointer is missing,
+        unreadable or of another pipeline version, or its dossier is gone or lives no
+        longer than a structural one.
+    """
+    ptr_raw = await redis.get(keys.ptr(page_id))
+    if ptr_raw is None:
+        return None
+    rev_id = pointer_rev_id(ptr_raw)
+    if rev_id is None or json.loads(ptr_raw).get("pipeline_version") != pipeline_version:
+        return None
+    left = await redis.ttl(keys.dossier(page_id, rev_id, pipeline_version))
+    if left == -1 or left > ttl_seconds:
+        return rev_id
+    return None
+
+
 async def _store_structural(
     redis: RedisClient,
     dossier: Dossier,
@@ -206,7 +239,11 @@ async def _store_structural(
     now: datetime,
     ttl_seconds: int,
 ) -> None:
-    """Write the structural dossier and its indexes to Redis.
+    """Write the structural dossier and point the page at it, unless a longer-lived one stands.
+
+    The dossier is always stored under its own key. When the page pointer names a
+    longer-lived dossier, the pointer and the indexes stay as they are. When that dossier
+    is of this very revision, nothing is written, so it keeps its lifetime.
 
     Args:
         redis: Redis client.
@@ -218,12 +255,23 @@ async def _store_structural(
         now: build timestamp.
         ttl_seconds: lifetime of the stored dossier.
     """
-    dossier_key = keys.dossier(page_id, rev_id, pipeline_version)
-    await redis.set(
-        dossier_key,
-        dossier_payload(dossier),
-        ex=ttl_seconds,
+    kept = await _kept_revision(
+        redis, page_id=page_id, pipeline_version=pipeline_version, ttl_seconds=ttl_seconds
     )
+    if kept != rev_id:
+        await redis.set(
+            keys.dossier(page_id, rev_id, pipeline_version),
+            dossier_payload(dossier),
+            ex=ttl_seconds,
+        )
+    if kept is not None:
+        logger.info(
+            "structural_dossier_kept page_id=%s kept_rev_id=%s new_rev_id=%s",
+            page_id,
+            kept,
+            rev_id,
+        )
+        return
     await redis.set(keys.ptr(page_id), ptr_json(rev_id, pipeline_version, now))
     await redis.sadd(keys.TRACKED, str(page_id))
     await redis.hset(keys.TRACKED_PAGE_IDS, normalize_title(title), str(page_id))
