@@ -3,7 +3,6 @@ import { buildStatusText, buildSteps } from "../lib/buildProgress";
 import { Button } from "./Button";
 import { DossierHead } from "./DossierHead";
 import { ErrorPanel } from "./ErrorPanel";
-import { SectionSkeleton } from "./SectionSkeleton";
 import { Steps } from "./Steps";
 
 export interface DossierBuildingProps {
@@ -51,7 +50,6 @@ export function DossierBuilding({
           }
         />
       ) : null}
-      <SectionSkeleton className="mt-10" />
     </div>
   );
 }

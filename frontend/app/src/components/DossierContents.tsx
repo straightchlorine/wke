@@ -35,7 +35,7 @@ export function DossierContents({
   return (
     <nav
       aria-label="Contents"
-      className="max-[1340px]:hidden min-[1340px]:sticky min-[1340px]:top-16 min-[1340px]:max-h-[calc(100vh/var(--ui-zoom)-88px)] min-[1340px]:overflow-y-auto min-[1340px]:overscroll-contain thin-scroll"
+      className="max-[1340px]:hidden min-[1340px]:sticky min-[1340px]:top-16 min-[1340px]:max-h-[calc(100vh/var(--ui-zoom)-88px)] min-[1340px]:overflow-y-auto min-[1340px]:overscroll-contain min-[1340px]:pr-3 thin-scroll"
     >
       <SectionTitle>Contents</SectionTitle>
       <ol className="mt-2">
