@@ -101,7 +101,7 @@ settings are in [backend/api/README.md](backend/api/README.md).
 
 ## Licence
 
-Code: MIT, see [LICENSE](LICENSE). Built by [Piotr Krzysztof Lis](https://piotrkrzysztof.dev).
+[MIT](LICENSE) for code.
 
 Third-party material keeps its own licence (fonts, model weights, Wikipedia text); see [NOTICE](NOTICE).
 
