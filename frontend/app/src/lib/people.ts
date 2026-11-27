@@ -31,20 +31,12 @@ export const AUTHOR: Person = {
 /** The people of the current version. To credit one more person for it, add one entry here. */
 export const CURRENT_VERSION: readonly Person[] = [AUTHOR];
 
-/** The people of the 2025 group project, the author first. */
+/** The people of the 2025 group project, in alphabetical order by surname. A new name goes in its place. */
 export const PROJECT_2025: readonly Person[] = [
-  AUTHOR,
-  {
-    name: "Jakub Kucharski",
-    id: "https://piotrkrzysztof.dev/#jakub",
-    links: [
-      { label: "GitHub", href: "https://github.com/kubson2002k" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/jakub-kucharski-360811305/" },
-    ],
-  },
   {
     name: "Wiktor Jarosi\u0144ski",
     links: [
+      { label: "GitHub", href: "https://github.com/wiktorjarosinski" },
       {
         label: "LinkedIn",
         href: "https://www.linkedin.com/in/wiktor-jarosi%C5%84ski-719885244/",
@@ -53,8 +45,20 @@ export const PROJECT_2025: readonly Person[] = [
   },
   {
     name: "Daniel Ka\u0142mucki",
-    links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/danielkalmucki/" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/Mastermod1" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/danielkalmucki/" },
+    ],
   },
+  {
+    name: "Jakub Kucharski",
+    id: "https://piotrkrzysztof.dev/#jakub",
+    links: [
+      { label: "GitHub", href: "https://github.com/kubson2002k" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/jakub-kucharski-360811305/" },
+    ],
+  },
+  AUTHOR,
 ];
 
 /** The people of the 2025 project other than the author. */

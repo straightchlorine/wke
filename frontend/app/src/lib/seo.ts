@@ -167,7 +167,7 @@ export function useSeo({
 
 /** The about page's description, kept here so the head and the tests share it. */
 export const ABOUT_DESCRIPTION =
-  "Who built WKE: a 2025 university group project by four people, rewritten in 2026 by Piotr Krzysztof Lis. Licences and credits.";
+  "Who built WKE: a 2025 university project by four people, rewritten in 2026 by Piotr Krzysztof Lis. Licences and credits.";
 
 /** The author's Person node, written out in full wherever the site names its author. */
 const AUTHOR_NODE = {

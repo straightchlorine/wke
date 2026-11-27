@@ -19,10 +19,10 @@ from wke.services.dossiers import DossierService
 
 CACHE_TTL_SECONDS = 300
 
-# The people of the 2025 group project, the author first, with the Polish letters
-# written as escapes so the source stays ASCII.
+# The people of the 2025 group project in alphabetical order by surname, with the
+# Polish letters written as escapes so the source stays ASCII.
 PROJECT_2025_PEOPLE = (
-    "Piotr Krzysztof Lis, Jakub Kucharski, Wiktor Jarosi\u0144ski, Daniel Ka\u0142mucki"
+    "Wiktor Jarosi\u0144ski, Daniel Ka\u0142mucki, Jakub Kucharski, Piotr Krzysztof Lis"
 )
 
 # The last line of the document.

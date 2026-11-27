@@ -6,15 +6,21 @@ describe("people", () => {
     expect(CURRENT_VERSION).toEqual([AUTHOR]);
   });
 
-  it("lists the four people of the 2025 project, the author first", () => {
+  it("lists the four people of the 2025 project in alphabetical order by surname", () => {
     expect(PROJECT_2025.map((person) => person.name)).toEqual([
-      "Piotr Krzysztof Lis",
-      "Jakub Kucharski",
       "Wiktor Jarosi\u0144ski",
       "Daniel Ka\u0142mucki",
+      "Jakub Kucharski",
+      "Piotr Krzysztof Lis",
     ]);
-    expect(PROJECT_2025[0]).toBe(AUTHOR);
-    expect(CONTRIBUTORS_2025).toEqual(PROJECT_2025.slice(1));
+    expect(PROJECT_2025).toContain(AUTHOR);
+    expect(CONTRIBUTORS_2025).toEqual(PROJECT_2025.filter((person) => person !== AUTHOR));
+  });
+
+  it("keeps the 2025 list sorted by surname, so a new name goes in its place", () => {
+    const surnames = PROJECT_2025.map((person) => person.name.split(" ").at(-1) ?? "");
+    const sorted = surnames.toSorted((a, b) => a.localeCompare(b, "pl"));
+    expect(surnames).toEqual(sorted);
   });
 
   it("keeps the Polish letters in the names", () => {
@@ -37,8 +43,14 @@ describe("people", () => {
         "https://github.com/kubson2002k",
         "https://www.linkedin.com/in/jakub-kucharski-360811305/",
       ],
-      "Wiktor Jarosi\u0144ski": ["https://www.linkedin.com/in/wiktor-jarosi%C5%84ski-719885244/"],
-      "Daniel Ka\u0142mucki": ["https://www.linkedin.com/in/danielkalmucki/"],
+      "Wiktor Jarosi\u0144ski": [
+        "https://github.com/wiktorjarosinski",
+        "https://www.linkedin.com/in/wiktor-jarosi%C5%84ski-719885244/",
+      ],
+      "Daniel Ka\u0142mucki": [
+        "https://github.com/Mastermod1",
+        "https://www.linkedin.com/in/danielkalmucki/",
+      ],
     });
   });
 
@@ -57,12 +69,12 @@ describe("people", () => {
     expect(new Set(hrefs).size).toBe(hrefs.length);
   });
 
-  it("gives the author and Jakub a shared id and the others none", () => {
+  it("gives Jakub and the author a shared id and the others none", () => {
     expect(PROJECT_2025.map((person) => person.id)).toEqual([
-      "https://piotrkrzysztof.dev/#piotr",
+      undefined,
+      undefined,
       "https://piotrkrzysztof.dev/#jakub",
-      undefined,
-      undefined,
+      "https://piotrkrzysztof.dev/#piotr",
     ]);
   });
 });

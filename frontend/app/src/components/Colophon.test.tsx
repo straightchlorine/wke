@@ -72,7 +72,7 @@ describe("Colophon", () => {
     host.remove();
   });
 
-  it("names the author with three links and the 2025 group, and links to About", async () => {
+  it("names the author with three links and links to About", async () => {
     renderWithRouter(<Colophon announce={false} />, options);
     const links = await screen.findAllByRole("link");
     const byName = (name: string) => links.find((a) => a.textContent === name);
@@ -82,10 +82,13 @@ describe("Colophon", () => {
       "https://www.linkedin.com/in/straightchlorine",
     );
     expect(byName("About")?.getAttribute("href")).toBe("/about");
-    const paragraph = byName("About")?.closest("p")?.textContent;
-    expect(paragraph).toBe(
-      "Built by Piotr Krzysztof Lis: piotrkrzysztof.dev, GitHub, LinkedIn. The 2025 version was a group project with Jakub Kucharski, Wiktor Jarosi\u0144ski and Daniel Ka\u0142mucki. About.",
+    const builtBy = byName("GitHub")?.closest("p");
+    expect(builtBy?.textContent).toBe(
+      "Built by Piotr Krzysztof Lis: piotrkrzysztof.dev, GitHub, LinkedIn.",
     );
+    const about = byName("About")?.closest("p");
+    expect(about?.textContent).toBe("About");
+    expect(builtBy?.nextElementSibling).toBe(about);
     expect(links.some((a) => a.getAttribute("href")?.includes("codeberg"))).toBe(false);
     for (const name of ["Jakub Kucharski", "Wiktor Jarosi\u0144ski", "Daniel Ka\u0142mucki"]) {
       expect(links.some((a) => a.textContent?.includes(name))).toBe(false);

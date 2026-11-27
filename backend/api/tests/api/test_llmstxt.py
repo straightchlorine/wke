@@ -59,8 +59,8 @@ async def test_llms_txt_cold_document() -> None:
     assert "- About: http://localhost:8010/about" in body
     assert "- Author: https://piotrkrzysztof.dev (Piotr Krzysztof Lis)" in body
     assert (
-        "- The 2025 group project: Piotr Krzysztof Lis, Jakub Kucharski, "
-        "Wiktor Jarosi\u0144ski, Daniel Ka\u0142mucki"
+        "- The 2025 group project: Wiktor Jarosi\u0144ski, Daniel Ka\u0142mucki, "
+        "Jakub Kucharski, Piotr Krzysztof Lis"
     ) in body.splitlines()
     assert body.splitlines()[-1] == "To the only God, be honour and glory for ever and ever."
 

@@ -14,11 +14,10 @@ eachTheme(() => {
       await expect(page.getByRole("heading", { level: 1 })).toHaveText("About");
       const main = page.locator("main");
       await expect(main).toContainText(
-        `WKE began in 2025 as a university group project by Piotr Krzysztof Lis, Jakub Kucharski, ${WIKTOR} and ${DANIEL}. The current version is a rewrite by Piotr Krzysztof Lis.`,
+        `Wikipedia Knowledge Explorer began in 2025 as a university project by ${WIKTOR}, ${DANIEL}, Jakub Kucharski and Piotr Krzysztof Lis. The current version is a rewrite by Piotr Krzysztof Lis.`,
       );
-      await expect(main).toContainText(
-        "The code is MIT. Text from Wikipedia is CC BY-SA 4.0. WKE is not affiliated with or endorsed by the Wikimedia Foundation.",
-      );
+      await expect(main).toContainText("The code is MIT. Text from Wikipedia is CC BY-SA 4.0.");
+      await expect(main).not.toContainText("Wikimedia Foundation");
       await expect(main.getByRole("heading", { level: 2 })).toHaveText([
         "Current version",
         "2025 project",
@@ -43,13 +42,15 @@ eachTheme(() => {
         "https://www.linkedin.com/in/jakub-kucharski-360811305/",
       ]);
       expect(await hrefsOf("2025 project", WIKTOR)).toEqual([
+        "https://github.com/wiktorjarosinski",
         "https://www.linkedin.com/in/wiktor-jarosi%C5%84ski-719885244/",
       ]);
       expect(await hrefsOf("2025 project", DANIEL)).toEqual([
+        "https://github.com/Mastermod1",
         "https://www.linkedin.com/in/danielkalmucki/",
       ]);
       await expect(page.getByRole("contentinfo")).toContainText(
-        `The 2025 version was a group project with Jakub Kucharski, ${WIKTOR} and ${DANIEL}.`,
+        "Built by Piotr Krzysztof Lis: piotrkrzysztof.dev, GitHub, LinkedIn.",
       );
       await expect(main.getByRole("link", { name: "wikipedia.org" })).toHaveAttribute(
         "href",
@@ -84,7 +85,7 @@ eachTheme(() => {
         site: document.head.querySelector("script#ld-site")?.textContent ?? "null",
       }));
       expect(head.description).toBe(
-        "Who built WKE: a 2025 university group project by four people, rewritten in 2026 by Piotr Krzysztof Lis. Licences and credits.",
+        "Who built WKE: a 2025 university project by four people, rewritten in 2026 by Piotr Krzysztof Lis. Licences and credits.",
       );
       expect(head.canonical).toBe("https://wke.piotrkrzysztof.dev/about");
       expect(head.robots).toBe("index,follow");
@@ -94,9 +95,9 @@ eachTheme(() => {
         author: { "@id": "https://piotrkrzysztof.dev/#piotr" },
         isPartOf: { "@id": "https://wke.piotrkrzysztof.dev/#website" },
         mentions: [
-          { "@id": "https://piotrkrzysztof.dev/#jakub", name: "Jakub Kucharski" },
           { name: WIKTOR },
           { name: DANIEL },
+          { "@id": "https://piotrkrzysztof.dev/#jakub", name: "Jakub Kucharski" },
         ],
       });
       const site: unknown = JSON.parse(head.site);

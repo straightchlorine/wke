@@ -28,12 +28,7 @@ function About() {
           About
         </h1>
         <p className={PROSE}>
-          WKE turns one Wikipedia article into a dossier: its sections grouped by topic, every
-          passage cited to one exact revision, cut to a token budget you choose. For people and for
-          language models. It is a self-hosted portfolio project.
-        </p>
-        <p className={PROSE}>
-          WKE began in 2025 as a university group project by{" "}
+          Wikipedia Knowledge Explorer began in 2025 as a university project by{" "}
           {joinNames(PROJECT_2025.map((person) => person.name))}. The current version is a rewrite
           by {joinNames(CURRENT_VERSION.map((person) => person.name))}.
         </p>
@@ -71,10 +66,7 @@ function About() {
         <h2 id="h-licence" className="font-serif text-22 font-medium text-ink">
           Licence
         </h2>
-        <p className={PROSE}>
-          The code is MIT. Text from Wikipedia is CC BY-SA 4.0. WKE is not affiliated with or
-          endorsed by the Wikimedia Foundation.
-        </p>
+        <p className={PROSE}>The code is MIT. Text from Wikipedia is CC BY-SA 4.0.</p>
         <p className="mt-3 text-13 pointer-coarse:mt-5">
           <a href="https://www.wikipedia.org/" className="hit-44 text-accent">
             wikipedia.org

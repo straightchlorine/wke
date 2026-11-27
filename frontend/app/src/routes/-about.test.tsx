@@ -25,7 +25,7 @@ describe("About", () => {
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("About");
     expect(document.title).toBe("About - WKE");
     expect(document.head.querySelector('meta[name="description"]')?.getAttribute("content")).toBe(
-      "Who built WKE: a 2025 university group project by four people, rewritten in 2026 by Piotr Krzysztof Lis. Licences and credits.",
+      "Who built WKE: a 2025 university project by four people, rewritten in 2026 by Piotr Krzysztof Lis. Licences and credits.",
     );
     expect(document.head.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
       "https://wke.piotrkrzysztof.dev/about",
@@ -38,11 +38,9 @@ describe("About", () => {
   it("states the lede and the credits with the Polish letters", () => {
     renderAbout();
     const text = document.body.textContent ?? "";
+    expect(text).not.toContain("WKE turns one Wikipedia article");
     expect(text).toContain(
-      "WKE turns one Wikipedia article into a dossier: its sections grouped by topic, every passage cited to one exact revision, cut to a token budget you choose. For people and for language models. It is a self-hosted portfolio project.",
-    );
-    expect(text).toContain(
-      "WKE began in 2025 as a university group project by Piotr Krzysztof Lis, Jakub Kucharski, Wiktor Jarosi\u0144ski and Daniel Ka\u0142mucki. The current version is a rewrite by Piotr Krzysztof Lis.",
+      "Wikipedia Knowledge Explorer began in 2025 as a university project by Wiktor Jarosi\u0144ski, Daniel Ka\u0142mucki, Jakub Kucharski and Piotr Krzysztof Lis. The current version is a rewrite by Piotr Krzysztof Lis.",
     );
   });
 
@@ -52,10 +50,10 @@ describe("About", () => {
     expect(headings).toEqual(["Current version", "2025 project", "Licence"]);
     expect(rowNames("Current version")).toEqual(["Piotr Krzysztof Lis"]);
     expect(rowNames("2025 project")).toEqual([
-      "Piotr Krzysztof Lis",
-      "Jakub Kucharski",
       "Wiktor Jarosi\u0144ski",
       "Daniel Ka\u0142mucki",
+      "Jakub Kucharski",
+      "Piotr Krzysztof Lis",
     ]);
   });
 
@@ -81,9 +79,11 @@ describe("About", () => {
       ["LinkedIn", "https://www.linkedin.com/in/jakub-kucharski-360811305/"],
     ]);
     expect(links(project, "Wiktor Jarosi\u0144ski")).toEqual([
+      ["GitHub", "https://github.com/wiktorjarosinski"],
       ["LinkedIn", "https://www.linkedin.com/in/wiktor-jarosi%C5%84ski-719885244/"],
     ]);
     expect(links(project, "Daniel Ka\u0142mucki")).toEqual([
+      ["GitHub", "https://github.com/Mastermod1"],
       ["LinkedIn", "https://www.linkedin.com/in/danielkalmucki/"],
     ]);
   });
@@ -91,9 +91,8 @@ describe("About", () => {
   it("states the licences, linked, and never the closing verse", () => {
     renderAbout();
     const paragraphs = Array.from(document.querySelectorAll("p")).map((p) => p.textContent);
-    expect(paragraphs).toContain(
-      "The code is MIT. Text from Wikipedia is CC BY-SA 4.0. WKE is not affiliated with or endorsed by the Wikimedia Foundation.",
-    );
+    expect(paragraphs).toContain("The code is MIT. Text from Wikipedia is CC BY-SA 4.0.");
+    expect(document.body.textContent).not.toContain("Wikimedia Foundation");
     expect(screen.getByRole("link", { name: "wikipedia.org" }).getAttribute("href")).toBe(
       "https://www.wikipedia.org/",
     );

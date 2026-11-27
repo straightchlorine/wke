@@ -169,10 +169,25 @@ describe("aboutJsonLd", () => {
       url: "https://wke.piotrkrzysztof.dev/about",
       name: "About",
       description:
-        "Who built WKE: a 2025 university group project by four people, rewritten in 2026 by Piotr Krzysztof Lis. Licences and credits.",
+        "Who built WKE: a 2025 university project by four people, rewritten in 2026 by Piotr Krzysztof Lis. Licences and credits.",
       isPartOf: { "@id": WEBSITE_JSON_LD["@id"] },
       author: { "@id": "https://piotrkrzysztof.dev/#piotr" },
       mentions: [
+        {
+          "@type": "Person",
+          name: "Wiktor Jarosi\u0144ski",
+          url: "https://github.com/wiktorjarosinski",
+          sameAs: [
+            "https://github.com/wiktorjarosinski",
+            "https://www.linkedin.com/in/wiktor-jarosi%C5%84ski-719885244/",
+          ],
+        },
+        {
+          "@type": "Person",
+          name: "Daniel Ka\u0142mucki",
+          url: "https://github.com/Mastermod1",
+          sameAs: ["https://github.com/Mastermod1", "https://www.linkedin.com/in/danielkalmucki/"],
+        },
         {
           "@type": "Person",
           "@id": "https://piotrkrzysztof.dev/#jakub",
@@ -182,18 +197,6 @@ describe("aboutJsonLd", () => {
             "https://github.com/kubson2002k",
             "https://www.linkedin.com/in/jakub-kucharski-360811305/",
           ],
-        },
-        {
-          "@type": "Person",
-          name: "Wiktor Jarosi\u0144ski",
-          url: "https://www.linkedin.com/in/wiktor-jarosi%C5%84ski-719885244/",
-          sameAs: ["https://www.linkedin.com/in/wiktor-jarosi%C5%84ski-719885244/"],
-        },
-        {
-          "@type": "Person",
-          name: "Daniel Ka\u0142mucki",
-          url: "https://www.linkedin.com/in/danielkalmucki/",
-          sameAs: ["https://www.linkedin.com/in/danielkalmucki/"],
         },
       ],
     });
