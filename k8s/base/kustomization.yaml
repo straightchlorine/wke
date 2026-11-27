@@ -24,9 +24,9 @@ images:
   - name: ghcr.io/straightchlorine/wke-api
     newTag: 0.3.0
   - name: ghcr.io/straightchlorine/wke-ml
-    newTag: 0.2.0
+    newTag: 0.3.0
   - name: ghcr.io/straightchlorine/wke-web
-    newTag: 0.2.0
+    newTag: 0.3.0
   # Multi-arch index digest for redis:7.4.11-alpine, from
   # `docker buildx imagetools inspect redis:7.4.11-alpine`.
   - name: redis
