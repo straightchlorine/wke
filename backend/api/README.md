@@ -18,6 +18,26 @@ trending entrypoints.
 - `python -m wke.worker` - the same job worker, standalone process.
 - `python -m wke.watcher` - EventStreams `recentchange` consumer.
 - `python -m wke.trending` - nightly snapshot + prebuild drain (CronJob).
+- `python -m wke.refresh` - nightly upkeep of stored dossiers (CronJob, 01:00 UTC).
+
+### Dossier refresh
+
+A stored dossier lives 7 days and a read does not extend it, and a page opened
+directly no longer builds itself. The refresh job keeps the known pages alive. For
+each stored dossier of the current pipeline version, closest to expiry first:
+
+- If it expires within 2 days, it gets the full 7 days again, together with its
+  rating, if it has one, whether or not the article changed. The dossier itself is
+  not rewritten.
+- If a newer revision of the article is known, it also asks for a rebuild through the
+  same rule a read uses (build older than 30 minutes, article quiet for 5 minutes,
+  one rebuild per page per 30 minutes). The old dossier stays until the rebuild
+  replaces it, and runs out by itself afterwards.
+
+It admits at most 200 rebuilds and stops asking after 30 minutes; a full background
+queue makes it wait 30 seconds and go on. What is left waits for the next run. It
+reads Redis only, logs one `wke.refresh:` line with the counts and exits 1 only when
+Redis fails.
 
 ## Environment variables
 
@@ -42,6 +62,7 @@ See `.env.example`; a variable with no default is required.
 | `SUMMARY_SECTIONS` | 8 | Most sections summarized per build (3 to 8 by article size) |
 | `NUM_BEAMS` | 1 | Beam count for wke-ml `/v1/summarize` |
 | `LEAN_RESPONSE` | true | Leave the Key facts block and the per-section "left out" lines out of responses and the budget; `parts=dossier,metadata` brings them back |
+| `TABLE_REPACK` | true | At the 2000 budget only, trade the weakest extra passages for more table rows and list items, whether the pack cut a table or list short or left it out, when that shows more of them; `false` serves the plain pack |
 | `SUBSECTION_HEADINGS` | true | Structural-dossier Markdown names the subsection where passages jump; `false` leaves the headings out |
 | `ANALYZE_DEADLINE_MS` | 8000 | Deadline sent to wke-ml `/v1/analyze` and that call's timeout; keep one attempt under the 20 s the MCP `get_dossier` tool waits |
 | `ANALYZE_RETRIES` | 0 | Extra analyze attempts after a failure (4xx is never retried); a 503 shed by wke-ml late in the deadline is retried even without `ANALYZE_RETRY_ON_TIMEOUT` |

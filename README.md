@@ -31,10 +31,12 @@ graph LR
     API -->|3 calls per cold build| WM[Wikipedia APIs]
     Watcher[watcher] -->|recentchange| Redis
     Trending[trending job] -->|most-read topics| Redis
+    Refresh[refresh job] -->|keeps dossiers,<br/>asks for rebuilds| Redis
 ```
 
-- `wke-api` serves REST, MCP and `/llms.txt` and runs the job worker, the watcher and the
-  trending job. It does not import torch.
+- `wke-api` serves REST, MCP and `/llms.txt` and runs the job worker, the watcher, the
+  trending job and the nightly refresh job, which keeps stored dossiers from expiring and
+  asks for a rebuild when the article was edited. It does not import torch.
 - `wke-ml` embeds and clusters sections and, on request, summarises. Without it the API
   groups sections by article structure instead.
 - `wke-web` is a React single-page app served by nginx.
@@ -99,9 +101,16 @@ settings are in [backend/api/README.md](backend/api/README.md).
 
 ## Licence
 
-Code: MIT, see [LICENSE](LICENSE).
+Code: MIT, see [LICENSE](LICENSE). Built by [Piotr Krzysztof Lis](https://piotrkrzysztof.dev).
 
-Third-party material keeps its own licence (fonts, model weights, Wikipedia text);
-see [NOTICE](NOTICE).
+Third-party material keeps its own licence (fonts, model weights, Wikipedia text); see [NOTICE](NOTICE).
 
 Article text served through WKE is from English Wikipedia under CC BY-SA 4.0.
+
+---
+
+<div align="center">
+
+To the only God, be honour and glory for ever and ever.
+
+</div>
